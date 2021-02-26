@@ -1,0 +1,22 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: sysWifiPic32mzw1}
+children:
+- type: Symbols
+  children:
+  - type: Combo
+    attributes: {id: SYS_WIFI_MODE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: AP}
+  - type: Boolean
+    attributes: {id: SYS_WIFI_STA_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'false'}
+- type: ElementPosition
+  attributes: {x: '286', y: '108', id: sysWifiPic32mzw1}

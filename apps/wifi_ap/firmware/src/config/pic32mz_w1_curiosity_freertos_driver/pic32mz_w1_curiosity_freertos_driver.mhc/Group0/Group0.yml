@@ -1,0 +1,6 @@
+format_version: v1.0
+type: GroupComponent
+attributes: {displayName: TIME, id: Group0}
+children:
+- type: ElementPosition
+  attributes: {x: '24', y: '88', id: Group0}

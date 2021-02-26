@@ -1,0 +1,6 @@
+format_version: v1.0
+type: GroupComponent
+attributes: {displayName: printf, id: Group2}
+children:
+- type: ElementPosition
+  attributes: {x: '23', y: '137', id: Group2}

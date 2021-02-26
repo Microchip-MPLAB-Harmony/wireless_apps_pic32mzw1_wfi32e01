@@ -1,0 +1,33 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: drvMiim}
+children:
+- type: Symbols
+  children:
+  - type: String
+    attributes: {id: DRV_MIIM_ETH_MODULE_ID}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: drvMiim, value: _ETH_BASE_ADDRESS}
+  - type: Menu
+    attributes: {id: DRV_MIIM_RTOS_MENU}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: DRV_SDHC_SYS_RTOS_TASK}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+- type: ElementPosition
+  attributes: {x: '68', y: '416', id: drvMiim}

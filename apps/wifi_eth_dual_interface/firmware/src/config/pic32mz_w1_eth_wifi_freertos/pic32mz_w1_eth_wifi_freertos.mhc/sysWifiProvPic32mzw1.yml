@@ -1,0 +1,15 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: sysWifiProvPic32mzw1}
+children:
+- type: Symbols
+  children:
+  - type: Boolean
+    attributes: {id: SYS_WIFIPROV_STA_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sysWifiProvPic32mzw1, value: 'false'}
+- type: ElementPosition
+  attributes: {x: '20', y: '20', id: sysWifiProvPic32mzw1}

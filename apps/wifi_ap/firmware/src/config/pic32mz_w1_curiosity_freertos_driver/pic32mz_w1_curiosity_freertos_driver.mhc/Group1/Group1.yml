@@ -1,0 +1,6 @@
+format_version: v1.0
+type: GroupComponent
+attributes: {displayName: TCPIP & SYS_CONSOLE, id: Group1}
+children:
+- type: ElementPosition
+  attributes: {x: '328', y: '136', id: Group1}

@@ -1,0 +1,49 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: sysWifiProvPic32mzw1}
+children:
+- type: Symbols
+  children:
+  - type: Boolean
+    attributes: {id: SYS_WIFIPROV_AP_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sysWifiProvPic32mzw1, value: 'false'}
+  - type: File
+    attributes: {id: SYS_WIFIPROV_JSON_HEADER}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
+  - type: File
+    attributes: {id: SYS_WIFIPROV_JSON_SOURCE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
+  - type: Boolean
+    attributes: {id: SYS_WIFIPROV_SOCKET}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'false'}
+  - type: Integer
+    attributes: {id: SYS_WIFIPROV_SOCKETPORT}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
+- type: ElementPosition
+  attributes: {x: '20', y: '20', id: sysWifiProvPic32mzw1}

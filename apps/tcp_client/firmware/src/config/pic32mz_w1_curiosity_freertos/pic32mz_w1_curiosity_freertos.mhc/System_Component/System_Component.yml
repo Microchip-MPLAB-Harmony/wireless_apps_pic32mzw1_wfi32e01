@@ -1,0 +1,6 @@
+format_version: v1.0
+type: GroupComponent
+attributes: {displayName: System Component, id: System Component}
+children:
+- type: ElementPosition
+  attributes: {x: '389', y: '59', id: System Component}
