@@ -18,7 +18,7 @@
     are defined here for convenience.
 *******************************************************************************/
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -62,6 +62,7 @@ typedef enum
 {
     /* Application's state machine's initial state. */
     APP_STATE_INIT_DONE=0,
+    APP_STATE_SERVICE_TASKS,
 } APP_STATES;
 
 typedef struct

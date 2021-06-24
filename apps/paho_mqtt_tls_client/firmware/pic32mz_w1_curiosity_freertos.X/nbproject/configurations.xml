@@ -264,6 +264,7 @@
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/definitions.h</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/config.h</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/FreeRTOSConfig.h</itemPath>
+          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/interrupts.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f5" displayName="FreeRTOS" projectFiles="true">
@@ -451,6 +452,7 @@
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/sha256.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/sha512.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/wc_port.h</itemPath>
+        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/rc2.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="wolfssl" projectFiles="true">
         <itemPath>../src/third_party/wolfssl/wolfssl/callbacks.h</itemPath>
@@ -468,6 +470,7 @@
       </logicalFolder>
       <itemPath>../src/app_cert.h</itemPath>
       <itemPath>../src/app.h</itemPath>
+      <itemPath>../src/app_mqtt.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -767,6 +770,7 @@
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/sha.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/sha256.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/sha512.c</itemPath>
+        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/rc2.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="wolfssl" projectFiles="true">
         <itemPath>../src/third_party/wolfssl/src/crl.c</itemPath>
@@ -781,6 +785,7 @@
       </logicalFolder>
       <itemPath>../src/app.c</itemPath>
       <itemPath>../src/main.c</itemPath>
+      <itemPath>../src/app_mqtt.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -877,7 +882,7 @@
         <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>2.50</languageToolchainVersion>
         <platform>3</platform>

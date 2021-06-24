@@ -14,7 +14,7 @@
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -85,7 +85,7 @@ typedef struct
 static    SYS_WIFI_CALLBACK     g_wifiSrvcCallBack[SYS_WIFI_MAX_CBS];
 
 /* Wi-Fi Service Object */
-static    SYS_WIFI_OBJ          g_wifiSrvcObj = {SYS_WIFI_STATUS_NONE,NULL};
+static    SYS_WIFI_OBJ          g_wifiSrvcObj = {SYS_WIFI_STATUS_NONE,0};
 
 /* Wi-Fi Driver ASSOC Handle */
 static WDRV_PIC32MZW_ASSOC_HANDLE g_wifiSrvcDrvAssocHdl = WDRV_PIC32MZW_ASSOC_HANDLE_INVALID;
@@ -491,7 +491,7 @@ static void SYS_WIFI_ScanHandler
     {
         if (1 == index) 
         {
-            char cmdTxt[8];
+            char cmdTxt[10];
             sprintf(cmdTxt, "SCAN#%02d", ofTotal);
             SYS_CONSOLE_PRINT("#%02d\r\n", ofTotal);
             SYS_CONSOLE_MESSAGE(">>#  RI  Sec  Recommend CH BSSID             SSID\r\n");
@@ -614,7 +614,7 @@ static SYS_WIFI_RESULT SYS_WIFI_SetScan
 ) 
 {
     uint8_t ret = SYS_WIFI_FAILURE;
-    if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_BSSFindFirst(g_wifiSrvcObj.wifiSrvcDrvHdl, channel, active, (WDRV_PIC32MZW_BSSFIND_NOTIFY_CALLBACK) SYS_WIFI_ScanHandler)) 
+    if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_BSSFindFirst(g_wifiSrvcObj.wifiSrvcDrvHdl, channel, active,NULL, (WDRV_PIC32MZW_BSSFIND_NOTIFY_CALLBACK) SYS_WIFI_ScanHandler)) 
     {
         ret = SYS_WIFI_SUCCESS ;
     }

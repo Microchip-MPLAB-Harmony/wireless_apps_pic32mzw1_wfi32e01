@@ -1,5 +1,5 @@
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -211,20 +211,10 @@ static void SysNet_Command_Process(int argc, char *argv[])
                     if (!strcmp((char*) argv[i], "auto_reconnect"))
                     {
                         sCfg.enable_reconnect = strtoul(argv[i + 1], 0, 10);
-                        if (sCfg.enable_reconnect > 1)
-                        {
-                            SYS_CONSOLE_PRINT("\n\rInvalid <auto_reconnect>");
-                            return;
-                        }
                     }
                     else if (!strcmp((char*) argv[i], "tls_enable"))
                     {
                         sCfg.enable_tls = strtoul(argv[i + 1], 0, 10);
-                        if (sCfg.enable_tls > 1)
-                        {
-                            SYS_CONSOLE_PRINT("\n\rInvalid <enable_tls>");
-                            return;
-                        }
                     }
                     else
                     {

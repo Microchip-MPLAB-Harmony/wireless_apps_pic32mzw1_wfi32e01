@@ -45,7 +45,14 @@ children:
         children:
         - {type: Value, value: ../peripheral/uart_02478/templates/plib_uart_ring_buffer.h.ftl}
   - type: Boolean
-    attributes: {id: UART_RING_BUFFER_ENABLE}
+    attributes: {id: UART_INTERRUPT_MODE_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart1, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: UART_OPERATING_MODE}
     children:
     - type: Attributes
       children:
@@ -56,7 +63,36 @@ children:
     - type: Values
       children:
       - type: Dynamic
+        attributes: {id: uart1, value: '2'}
+  - type: Boolean
+    attributes: {id: UART_RING_BUFFER_ENABLE}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: label}
+        children:
+        - {type: Value, value: '---'}
+    - type: Values
+      children:
+      - type: Dynamic
         attributes: {id: uart1, value: 'true'}
+  - type: Boolean
+    attributes: {id: UART_RING_BUFFER_MODE_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart1, value: 'true'}
+  - type: Comment
+    attributes: {id: UART_RING_BUFFER_SIZE_CONFIG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
   - type: Integer
     attributes: {id: UART_RX_RING_BUFFER_SIZE}
     children:
@@ -100,10 +136,10 @@ children:
     children:
     - type: Attributes
       children:
-      - type: Boolean
-        attributes: {id: readOnly}
+      - type: String
+        attributes: {id: label}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: '---'}
     - type: Values
       children:
       - type: Dynamic

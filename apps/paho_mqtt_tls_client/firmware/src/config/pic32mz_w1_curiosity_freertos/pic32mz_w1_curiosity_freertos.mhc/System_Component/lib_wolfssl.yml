@@ -40,6 +40,19 @@ children:
       - type: Dynamic
         attributes: {id: sysNetPic32mzw1, value: 'true'}
   - type: Boolean
+    attributes: {id: wolfsslOsalHeapKeys}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
     attributes: {id: wolfsslTLS13}
     children:
     - type: Values

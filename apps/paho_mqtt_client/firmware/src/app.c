@@ -20,8 +20,9 @@
     are called.  That is the responsibility of the configuration-specific system
     files.
  *******************************************************************************/
+
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -48,120 +49,107 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-#include "app.h"
-#include "system/mqtt/sys_mqtt.h"
-// *****************************************************************************
-// *****************************************************************************
-// Section: Declarations
-// *****************************************************************************
-// *****************************************************************************
 
+#include "definitions.h"
+#include "app.h"
+#include "app_mqtt.h"
+
+#ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME
+#include "system/mqtt/sys_mqtt.h"
+#include "system/sys_time_h2_adapter.h"
+#include "string.h"
+#endif
 
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
-// *****************************************************************************
-volatile APP_DATA            g_appData;
 
-SYS_MODULE_OBJ      g_sSysMqttHandle = SYS_MODULE_OBJ_INVALID;
-SYS_MQTT_Config     g_sTmpSysMqttCfg;
+#ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME
 static uint32_t     g_lastPubTimeout = 0;
-static uint32_t     PubMsgCnt = 0;
-
-#define MQTT_PERIOIDC_PUB_TIMEOUT   30 //Sec
+#define MQTT_PERIOIDC_PUB_TIMEOUT   30 //Sec ; if the value is 0, Periodic Publish will disable
 #define MQTT_PUB_TIMEOUT_CONST (MQTT_PERIOIDC_PUB_TIMEOUT * SYS_TMR_TickCounterFrequencyGet())
+#endif
 
-//#define APP_CFG_WITH_MQTT_API
+
+// *****************************************************************************
+/* Application Data
+
+  Summary:
+    Holds application data
+
+  Description:
+    This structure holds the application's data.
+
+  Remarks:
+    This structure should be initialized by the APP_Initialize function.
+
+    Application strings and buffers are be defined outside this structure.
+*/
+
+APP_DATA appData;
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Local data
+// Section: Application Callback Functions
 // *****************************************************************************
 // *****************************************************************************
 
+/* TODO:  Add any necessary callback functions.
+*/
 
+// *****************************************************************************
+// *****************************************************************************
+// Section: Application Local Functions
+// *****************************************************************************
+// *****************************************************************************
+#ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME
+
+void APP_CheckTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut)
+{
+    if(timeOutValue == 0)
+	{
+        return ;
+	}
+    
+	if(SYS_MQTT_STATUS_MQTT_CONNECTED != APP_MQTT_GetStatus(NULL))
+	{
+		return;
+	}
+	
+	if(lastTimeOut == 0)
+	{
+		g_lastPubTimeout = SYS_TMR_TickCountGet();
+		return;
+	}
+	
+    if (SYS_TMR_TickCountGet() - lastTimeOut > timeOutValue)
+	{
+		char message[32] = {0};
+		static uint32_t     PubMsgCnt = 0;
+		
+		sprintf(message, "message_%d\r\n", PubMsgCnt);
+		if (APP_MQTT_PublishMsg(message)== SYS_MQTT_SUCCESS)
+		{
+            SYS_CONSOLE_PRINT("\nPublished Msg(%d) to Topic\r\n", PubMsgCnt); 
+			PubMsgCnt++;
+		}
+		
+		g_lastPubTimeout = SYS_TMR_TickCountGet(); 
+	}
+}
+#endif
+
+
+/* TODO:  Add any necessary local functions.
+*/
+
+// *****************************************************************************
 // *****************************************************************************
 // Section: Application Initialization and State Machine Functions
 // *****************************************************************************
 // *****************************************************************************
-int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, void* cookie)
-{
-    switch(eEventType)
-    {
-        case SYS_MQTT_EVENT_MSG_RCVD:
-        {   
-			SYS_MQTT_PublishConfig	*psMsg = (SYS_MQTT_PublishConfig	*)data;
-            psMsg->message[psMsg->messageLength] = 0;
-            psMsg->topicName[psMsg->topicLength] = 0;
-            SYS_CONSOLE_PRINT("\nMqttCallback(): Msg received on Topic: %s ; Msg: %s\r\n", 
-				psMsg->topicName, psMsg->message);
-        }
-        break;
-        
-        case SYS_MQTT_EVENT_MSG_DISCONNECTED:
-        {
-            SYS_CONSOLE_PRINT("\nMqttCallback(): MQTT Disconnected\r\n");    
-        }
-        break;
-
-        case SYS_MQTT_EVENT_MSG_CONNECTED:
-        {
-            SYS_CONSOLE_PRINT("\nMqttCallback(): MQTT Connected\r\n");
-            g_lastPubTimeout = SYS_TMR_TickCountGet();
-        }
-        break;
-
-        case SYS_MQTT_EVENT_MSG_SUBSCRIBED:
-        {
-            SYS_MQTT_SubscribeConfig	*psMqttSubCfg = (SYS_MQTT_SubscribeConfig	*)data;
-            SYS_CONSOLE_PRINT("\nMqttCallback(): Subscribed to Topic '%s'\r\n", psMqttSubCfg->topicName);
-        }
-        break;
-
-        case SYS_MQTT_EVENT_MSG_UNSUBSCRIBED:
-        {
-            SYS_MQTT_SubscribeConfig	*psMqttSubCfg = (SYS_MQTT_SubscribeConfig	*)data;
-            SYS_CONSOLE_PRINT("\nMqttCallback(): UnSubscribed to Topic '%s'\r\n", psMqttSubCfg->topicName);                
-        }
-        break;
-
-		case SYS_MQTT_EVENT_MSG_PUBLISHED:
-		{
-            SYS_CONSOLE_PRINT("\nMqttCallback(): Published Msg(%d) to Topic\r\n", PubMsgCnt);                
-            g_lastPubTimeout = SYS_TMR_TickCountGet();
-		}
-		break;
-        
-        case SYS_MQTT_EVENT_MSG_CONNACK_TO:
-		{
-            SYS_CONSOLE_PRINT("\nMqttCallback(): Connack Timeout Happened\r\n");                
-		}
-		break;
-
-        case SYS_MQTT_EVENT_MSG_SUBACK_TO: 
-		{
-            SYS_CONSOLE_PRINT("\nMqttCallback(): Suback Timeout Happened\r\n");                
-		}
-		break;
-
-        case SYS_MQTT_EVENT_MSG_PUBACK_TO:
-		{
-            SYS_CONSOLE_PRINT("\nMqttCallback(): Puback Timeout Happened\r\n");                
-            g_lastPubTimeout = SYS_TMR_TickCountGet();
-		}
-		break;
-
-        case SYS_MQTT_EVENT_MSG_UNSUBACK_TO: 
-		{
-            SYS_CONSOLE_PRINT("\nMqttCallback(): UnSuback Timeout Happened\r\n");                
-		}
-		break;
-
-    }
-    return SYS_MQTT_SUCCESS;
-}
 
 /*******************************************************************************
   Function:
@@ -170,64 +158,20 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
   Remarks:
     See prototype in app.h.
  */
+
 void APP_Initialize ( void )
 {
-#ifdef APP_CFG_WITH_MQTT_API
-            SYS_MQTT_Config   *psMqttCfg;
+    /* Place the App state machine in its initial state. */
+    appData.state = APP_STATE_INIT_DONE;
 
-            memset(&g_sTmpSysMqttCfg, 0, sizeof(g_sTmpSysMqttCfg));
-            psMqttCfg = &g_sTmpSysMqttCfg;
-            psMqttCfg->sBrokerConfig.autoConnect = false;
-            psMqttCfg->sBrokerConfig.tlsEnabled = false;
-            strcpy(psMqttCfg->sBrokerConfig.brokerName, "test.mosquitto.org");
-            psMqttCfg->sBrokerConfig.serverPort = 1883;
-            psMqttCfg->subscribeCount = 1;
-            psMqttCfg->sSubscribeConfig[0].qos = 1;
-            strcpy(psMqttCfg->sSubscribeConfig[0].topicName, "MCHP/sample/b");
-            g_sSysMqttHandle = SYS_MQTT_Connect(&g_sTmpSysMqttCfg, MqttCallback, NULL);    
-#else    
-            g_sSysMqttHandle = SYS_MQTT_Connect(NULL, MqttCallback, NULL); 
-#endif    
+
+
+    /* TODO: Initialize your application's state machine and other
+     * parameters.
+     */
+	 APP_MQTT_Initialize();
 }
 
-bool checkTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut)
-{
-    if(lastTimeOut == 0)
-        return 0;
-    
-    return (SYS_TMR_TickCountGet() - lastTimeOut > timeOutValue);
-}
-
-void Publish_PeriodicMsg(void)
-{
-    if (checkTimeOut(MQTT_PUB_TIMEOUT_CONST, g_lastPubTimeout))
-    {
-        char        message[32] = {0};
-        SYS_MQTT_PublishTopicCfg	sMqttTopicCfg;
-        int32_t retVal = SYS_MQTT_FAILURE;
-
-        //reset the timer
-        g_lastPubTimeout = 0;
-        
-        /* All Params other than the message are initialized by the config provided in MHC*/
-        strcpy(sMqttTopicCfg.topicName, SYS_MQTT_DEF_PUB_TOPIC_NAME);
-        sMqttTopicCfg.topicLength = strlen(SYS_MQTT_DEF_PUB_TOPIC_NAME);
-        sMqttTopicCfg.retain = SYS_MQTT_DEF_PUB_RETAIN;
-        sMqttTopicCfg.qos = SYS_MQTT_DEF_PUB_QOS;
-
-        sprintf(message, "message_%d\r\n", PubMsgCnt);
-
-        retVal = SYS_MQTT_Publish(g_sSysMqttHandle, 
-                            &sMqttTopicCfg,
-                            message,
-                            sizeof(message));
-        if(retVal != SYS_MQTT_SUCCESS)
-        {
-            SYS_CONSOLE_PRINT("\nPublish_PeriodicMsg(): Failed (%d)\r\n", retVal);                            
-        }
-        PubMsgCnt++;
-    }
-}
 
 /******************************************************************************
   Function:
@@ -236,13 +180,39 @@ void Publish_PeriodicMsg(void)
   Remarks:
     See prototype in app.h.
  */
+
 void APP_Tasks ( void )
 {
-    Publish_PeriodicMsg();
-    SYS_MQTT_Task(g_sSysMqttHandle);
-
     /* Check the application's current state. */
-    SYS_CMD_READY_TO_READ();
+    switch ( appData.state )
+    {
+        /* Application's initial state. */
+        case APP_STATE_INIT_DONE:
+        {
+			appData.state = APP_STATE_SERVICE_TASKS;
+            break;
+        }
+
+        case APP_STATE_SERVICE_TASKS:
+        {
+            break;
+        }
+
+        /* TODO: implement your application state machine.*/
+
+
+        /* The default state should never be executed. */
+        default:
+        {
+            /* TODO: Handle error in application's state machine. */
+            break;
+        }
+    }
+
+	APP_MQTT_Tasks(); 
+#ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME		
+	APP_CheckTimeOut(MQTT_PUB_TIMEOUT_CONST, g_lastPubTimeout);
+#endif
 }
 
 

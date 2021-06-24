@@ -13,6 +13,10 @@ children:
         attributes: {id: enabled}
         children:
         - {type: Value, value: 'true'}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: ../wireless_system_pic32mzw1_wfi32e01/system/mqtt/templates/app.c.ftl}
   - type: File
     attributes: {id: APP0_H}
     children:
@@ -22,6 +26,10 @@ children:
         attributes: {id: enabled}
         children:
         - {type: Value, value: 'true'}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: ../wireless_system_pic32mzw1_wfi32e01/system/mqtt/templates/app.h.ftl}
   - type: KeyValueSet
     attributes: {id: COMMON_SYMBOL_CNTR}
     children:
@@ -81,6 +89,12 @@ children:
   - type: Boolean
     attributes: {id: ENABLE_DRV_COMMON}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: Dynamic
@@ -102,6 +116,12 @@ children:
   - type: Boolean
     attributes: {id: ENABLE_SYS_COMMON}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: Dynamic
@@ -116,6 +136,12 @@ children:
   - type: Boolean
     attributes: {id: ENABLE_SYS_RESET}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: Dynamic
