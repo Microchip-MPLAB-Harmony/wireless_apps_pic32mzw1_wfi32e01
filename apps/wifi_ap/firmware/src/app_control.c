@@ -379,12 +379,12 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
     }
     else if(!strcmp("scan", argv[1]))
     {
-        if(argc < 5)
+        if(argc < 4)
         {
             SYS_CONSOLE_MESSAGE("usage: wlan scan <active | passive> <channel> <scan time in ms>\r\n");
-            SYS_CONSOLE_MESSAGE("EX: wlan scan active 1 200 - Runs active scan on channel 1 for 200ms\r\n");
-            SYS_CONSOLE_MESSAGE("EX: wlan scan passive 6 120 - Runs passive scan on channel 6 for 120ms\r\n");
-            SYS_CONSOLE_MESSAGE("Note: Setting channel to '0' scans all channels and scan time of 0 uses default values\r\n");
+            SYS_CONSOLE_MESSAGE("EX: wlan scan active 1 - Runs active scan on channel 1 \r\n");
+            SYS_CONSOLE_MESSAGE("EX: wlan scan passive 6 - Runs passive scan on channel 6 \r\n");
+            SYS_CONSOLE_MESSAGE("Note: Setting channel to '0' or '255' scans all channels\r\n");
             
             return;
         }
@@ -393,11 +393,9 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
             if((!strcmp("active", argv[2])) || (!strcmp("passive", argv[2])))
             {
                 unsigned char channel;
-                uint16_t time;
                 SCAN_TYPE scanType;
                 
                 channel  = strtoul(argv[3],0,10);
-                time     = strtoul(argv[4],0,10);
                 if(!strcmp("active", argv[2]))
                 {
                     scanType = ACTIVE;
@@ -406,8 +404,37 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
                 {
                     scanType = PASSIVE;
                 }
-                APP_Scan(channel, scanType, time);
+                APP_Scan(channel, scanType);
             }
+        }
+    }
+    else if(!strcmp("scan_options", argv[1]))
+    {
+        if (argc < 7)
+        {
+            SYS_CONSOLE_MESSAGE("usage: wlan scan_options <num_slots> <active_slot_time in ms> <probes_per_slot> <passive_scan_time in ms> <stop_on_first>\r\n");
+            SYS_CONSOLE_MESSAGE("EX: wlan scan_options 1 30 1 0 0 - Sets the number of slots and probes per slot set to 1 and active slot time is set to 30ms per slot\r\n");
+            SYS_CONSOLE_MESSAGE("EX: wlan scan_options 2 0 0 400 0 - Sets the number of slots to 2 and passive scan time is set to 400ms per slot\r\n");
+            SYS_CONSOLE_MESSAGE("EX: wlan scan_options 0 0 0 0 1 - Stops the scan immediately after first SSID is found \r\n");
+            SYS_CONSOLE_MESSAGE("Note: Setting num_slots, probes_per_slot or time to 0 would leave the parameters to value set previously or default value \r\n");
+            
+            return;
+        }
+        else
+        {
+            uint8_t numSlots;
+            uint8_t activeSlotTime;
+            uint16_t passiveScanTime;
+            uint8_t numProbes;
+            int8_t stopOnFirst = -1;
+            
+            numSlots        = strtoul(argv[2],0,10);
+            activeSlotTime  = strtoul(argv[3],0,10);
+            numProbes       = strtoul(argv[4],0,10);
+            passiveScanTime = strtoul(argv[5],0,10);
+            stopOnFirst     = strtol(argv[6],0,10);
+            
+            APP_ScanOptions(numSlots, activeSlotTime, passiveScanTime, numProbes, stopOnFirst);
         }
     }
     else if(!strcmp("ap", argv[1]))

@@ -33,8 +33,9 @@
 #include <stdlib.h>
 #include "configuration.h"
 
-#define SSID_LENGTH     32
-#define PASSWORD_LENGTH 62
+#define SSID_LENGTH      32
+#define PASSWORD_LENGTH  62
+#define SSID_LIST_LENGTH 4
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 

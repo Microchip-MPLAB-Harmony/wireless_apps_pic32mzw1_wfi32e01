@@ -207,7 +207,7 @@ static void APP_RegDomainSetCallback(DRV_HANDLE handle, uint8_t index, uint8_t o
     }
     else
     {
-        appData.state = APP_WIFI_CONFIG;
+        appData.state = APP_TCPIP_WAIT_FOR_TCPIP_INIT;
         SYS_CONSOLE_MESSAGE("APP: Regulatory domain set successfully\r\n");
     }
 }
@@ -279,7 +279,7 @@ static void APP_RfMacConfigStatus(void)
     }
 }
 
-void APP_Scan(uint8_t channel, SCAN_TYPE scanType, uint16_t scanTime)
+void APP_Scan(uint8_t channel, SCAN_TYPE scanType)
 {
     if ((channel > 13) && (channel < 255))
     {
@@ -289,29 +289,97 @@ void APP_Scan(uint8_t channel, SCAN_TYPE scanType, uint16_t scanTime)
     
     SYS_CONSOLE_PRINT("APP: channel: %d scanType: %d\r\n",channel, scanType);
     
-    if(scanType == ACTIVE)
+    if (255 == channel)
     {
-        if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetScanParameters(appData.wdrvHandle, scanTime, 0))
-        {
-            SYS_CONSOLE_MESSAGE("APP Error: updating Scan Parameters\r\n");
-            return;
-        }
-    }
-    else
-    {
-        if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetScanParameters(appData.wdrvHandle, 0, scanTime))
-        {
-            SYS_CONSOLE_MESSAGE("APP Error: updating Scan Parameters\r\n");
-            return;
-        }
+        channel = WDRV_PIC32MZW_CID_ANY;
     }
 
-    if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindFirst(appData.wdrvHandle, channel, scanType, APP_BSSFindNotifyCallback))
+    if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindFirst(appData.wdrvHandle, channel, scanType, NULL, APP_BSSFindNotifyCallback))
     {
         SYS_CONSOLE_MESSAGE("APP Error: scan fail\r\n");
     }
 
     return;
+}
+
+void APP_ScanOptions(uint8_t numSlots, uint8_t activeSlotTime, uint16_t passiveScanTime, uint8_t numProbes, int8_t stopOnFirst)
+{
+    
+    if (stopOnFirst > 1)
+    {
+        SYS_CONSOLE_MESSAGE("APP Error: updating stop on first parameter");
+        return;
+    }
+    
+    if (0 == stopOnFirst)
+    {
+        if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetScanMatchMode(appData.wdrvHandle, WDRV_PIC32MZW_SCAN_MATCH_MODE_FIND_ALL))
+        {
+            SYS_CONSOLE_MESSAGE("APP Error: updating scan match mode\r\n");
+            return;
+        }
+    }
+    else if (1 == stopOnFirst)
+    {
+        if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetScanMatchMode(appData.wdrvHandle, WDRV_PIC32MZW_SCAN_MATCH_MODE_STOP_ON_FIRST))
+        {
+            SYS_CONSOLE_MESSAGE("APP Error: updating scan match mode\r\n");
+            return;
+        }
+    }
+
+    if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetScanParameters(appData.wdrvHandle, numSlots, activeSlotTime, passiveScanTime, numProbes))
+    {
+        SYS_CONSOLE_MESSAGE("APP Error: updating scan parameters\r\n");
+        return;
+    }
+}
+
+void APP_ScanSSIDList(uint8_t channel, uint8_t numSSIDs, char *ssid)
+{
+    int i;
+    char *pssid;
+    WDRV_PIC32MZW_SSID_LIST ssidList[SSID_LIST_LENGTH];
+    
+    if (numSSIDs > SSID_LIST_LENGTH)
+    {
+        SYS_CONSOLE_MESSAGE("APP: Invalid length of SSID list \r\n");
+        return;
+    }
+    
+    if ((channel > 13) && (channel < 255))
+    {
+        SYS_CONSOLE_MESSAGE("APP: Invalid channel \r\n");
+        return;
+    }
+    
+    if (255 == channel)
+    {
+        channel = WDRV_PIC32MZW_CID_ANY;
+    }
+    
+    for (i=0; i<numSSIDs; i++)
+    {
+        pssid = &ssid[i*(SSID_LENGTH+1)];
+        ssidList[i].ssid.length = strlen(pssid);
+        
+        if ((0 == ssidList[i].ssid.length) || (ssidList[i].ssid.length > SSID_LENGTH))
+        {
+            SYS_CONSOLE_MESSAGE("APP: SSID too long \r\n");
+            return;
+        }
+
+        memcpy(ssidList[i].ssid.name, pssid, ssidList[i].ssid.length);
+
+        ssidList[i].pNext = &ssidList[i+1];
+    }
+
+    ssidList[numSSIDs-1].pNext = NULL;
+    
+    if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindFirst(appData.wdrvHandle, channel, true, &ssidList[0], APP_BSSFindNotifyCallback))
+    {
+        SYS_CONSOLE_MESSAGE("APP Error: scan fail \r\n");
+    }
 }
 
 void APP_RSSIGet()
@@ -552,7 +620,22 @@ void APP_DRIVER_Tasks ( void )
             
             if (DRV_HANDLE_INVALID != appData.wdrvHandle) 
             {
+                appData.state = APP_WIFI_RF_MAC_CONFIG;
+            }
+            break;
+        }
+        
+        case APP_WIFI_RF_MAC_CONFIG:
+        {
+            APP_RfMacConfigStatus();
+            
+            if (true == appData.isRfMacConfigValid)
+            {
                 appData.state = APP_TCPIP_WAIT_FOR_TCPIP_INIT;
+            }
+            else
+            {
+                appData.state = APP_WIFI_ERROR;
             }
             break;
         }
@@ -575,22 +658,7 @@ void APP_DRIVER_Tasks ( void )
                     TCPIP_event_handle = TCPIP_STACK_HandlerRegister(netH, TCPIP_EV_CONN_ALL, APP_TcpipStack_EventHandler, NULL);
                     TCPIP_DHCP_HandlerRegister(netH, APP_TcpipDhcp_EventHandler, NULL);
                 }
-                appData.state = APP_WIFI_RF_MAC_CONFIG;
-            }
-            break;
-        }
-        
-        case APP_WIFI_RF_MAC_CONFIG:
-        {
-            APP_RfMacConfigStatus();
-            
-            if (true == appData.isRfMacConfigValid)
-            {
                 appData.state = APP_WIFI_CONFIG;
-            }
-            else
-            {
-                appData.state = APP_WIFI_ERROR;
             }
             break;
         }
@@ -672,7 +740,7 @@ void APP_DRIVER_Tasks ( void )
                 if (WDRV_PIC32MZW_SYS_STATUS_RF_READY == WDRV_PIC32MZW_StatusExt(appData.wdrvHandle))
                 {
                     appData.isRfMacConfigValid = true;
-                    appData.state = APP_WIFI_CONFIG;
+                    appData.state = APP_TCPIP_WAIT_FOR_TCPIP_INIT;
                 }
             }
             break;
