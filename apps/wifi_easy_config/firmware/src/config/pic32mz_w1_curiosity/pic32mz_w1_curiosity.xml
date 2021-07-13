@@ -787,7 +787,7 @@
         </KeyValueSet>
       </Symbols>
     </UniqueComponent>
-    <GroupComponent displayName="System Component" dnOrder="2" id="System Component">
+    <GroupComponent displayName="System Configuration" dnOrder="2" id="System Configuration">
       <Children dnOrder="0">
         <UniqueComponent dnOrder="0" id="core_timer">
           <Symbols dnOrder="0">
@@ -2202,7 +2202,7 @@
         <ElementPosition dnOrder="1" id="tcpip_basic_config" x="20" y="20"/>
       </ElementPositions>
     </ComponentGraph>
-    <ComponentGraph dnOrder="5" id="System Component">
+    <ComponentGraph dnOrder="5" id="System Configuration">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="HarmonyCore" x="30" y="380"/>
         <ElementPosition dnOrder="1" id="TCP/IP STACK" x="250" y="300"/>
@@ -2232,7 +2232,7 @@
     <ComponentGraph dnOrder="8" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="BSP_PIC32MZ_W1_Curiosity" x="113" y="86"/>
-        <ElementPosition dnOrder="1" id="System Component" x="457" y="113"/>
+        <ElementPosition dnOrder="1" id="System Configuration" x="457" y="113"/>
         <ElementPosition dnOrder="2" id="core" x="396" y="26"/>
         <ElementPosition dnOrder="3" id="sysWifiPic32mzw1" x="223" y="162"/>
         <ElementPosition dnOrder="4" id="sysWifiProvPic32mzw1" x="20" y="20"/>

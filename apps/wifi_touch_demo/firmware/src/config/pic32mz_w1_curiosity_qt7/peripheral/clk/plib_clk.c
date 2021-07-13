@@ -163,13 +163,11 @@ void CLK_Initialize( void )
   
 
     /* Peripheral Module Disable Configuration */
-    CFGCON0bits.PMDLOCK = 0;
 
     PMD1 = 0x20810800;
     PMD2 = 0x7d0f0f;
     PMD3 = 0x19030316;
 
-    CFGCON0bits.PMDLOCK = 1;
 
     /* Lock system since done with clock configuration */
     SYSKEY = 0x33333333;

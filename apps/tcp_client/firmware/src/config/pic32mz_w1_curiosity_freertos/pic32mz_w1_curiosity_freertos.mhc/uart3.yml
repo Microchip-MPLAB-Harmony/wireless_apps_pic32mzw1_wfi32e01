@@ -36,7 +36,14 @@ children:
       - type: Dynamic
         attributes: {id: uart3, value: '100000000'}
   - type: Boolean
-    attributes: {id: UART_RING_BUFFER_ENABLE}
+    attributes: {id: UART_INTERRUPT_MODE_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: 'false'}
+  - type: KeyValueSet
+    attributes: {id: UART_OPERATING_MODE}
     children:
     - type: Attributes
       children:
@@ -44,10 +51,26 @@ children:
         attributes: {id: readOnly}
         children:
         - {type: Value, value: 'true'}
-      - type: Boolean
-        attributes: {id: visible}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: '0'}
+  - type: Boolean
+    attributes: {id: UART_RING_BUFFER_ENABLE}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: label}
         children:
-        - {type: Value, value: 'false'}
+        - {type: Value, value: '---'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: 'false'}
+  - type: Boolean
+    attributes: {id: UART_RING_BUFFER_MODE_ENABLE}
+    children:
     - type: Values
       children:
       - type: Dynamic
@@ -64,10 +87,10 @@ children:
     children:
     - type: Attributes
       children:
-      - type: Boolean
-        attributes: {id: readOnly}
+      - type: String
+        attributes: {id: label}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: '---'}
     - type: Values
       children:
       - type: Dynamic
@@ -88,4 +111,4 @@ children:
         children:
         - {type: Value, value: UART}
 - type: ElementPosition
-  attributes: {x: '624', y: '174', id: uart3}
+  attributes: {x: '346', y: '152', id: uart3}

@@ -14,7 +14,7 @@
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -74,7 +74,6 @@ typedef struct
 
 /* Wi-Fi STA Mode, maximum auto connect retry */
 #define MAX_AUTO_CONNECT_RETRY                5
-
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data
@@ -85,7 +84,7 @@ typedef struct
 static    SYS_WIFI_CALLBACK     g_wifiSrvcCallBack[SYS_WIFI_MAX_CBS];
 
 /* Wi-Fi Service Object */
-static    SYS_WIFI_OBJ          g_wifiSrvcObj = {SYS_WIFI_STATUS_NONE,NULL};
+static    SYS_WIFI_OBJ          g_wifiSrvcObj = {SYS_WIFI_STATUS_NONE,0};
 
 /* Wi-Fi Driver ASSOC Handle */
 static WDRV_PIC32MZW_ASSOC_HANDLE g_wifiSrvcDrvAssocHdl = WDRV_PIC32MZW_ASSOC_HANDLE_INVALID;
@@ -120,7 +119,6 @@ static    OSAL_SEM_HANDLE_TYPE  g_wifiSrvcSemaphore;
 static     uint8_t               SYS_WIFI_DisConnect(void);
 static     SYS_WIFI_RESULT       SYS_WIFI_ConnectReq(void);
 static     SYS_WIFI_RESULT       SYS_WIFI_SetScan(uint8_t channel,bool active);
-
 
 static void  SYS_WIFI_WIFIPROVCallBack(uint32_t event, void * data,void *cookie);
 
@@ -256,7 +254,6 @@ static inline void SYS_WIFI_PrintConfig(void)
     }
 
 }
-
 static void SYS_WIFI_STAConnCallBack
 (
     DRV_HANDLE handle, 
@@ -320,9 +317,6 @@ static void SYS_WIFI_STAConnCallBack
             g_wifiSrvcAutoConnectRetry = 0;
             break;
         }
-
-        /*case WDRV_PIC32MZW_CONN_STATE_CONNECTING:
-            break;*/
         default:
         {
             break;
@@ -363,7 +357,7 @@ static void SYS_WIFI_ScanHandler
     {
         if (1 == index) 
         {
-            char cmdTxt[8];
+            char cmdTxt[10];
             sprintf(cmdTxt, "SCAN#%02d", ofTotal);
             SYS_CONSOLE_PRINT("#%02d\r\n", ofTotal);
             SYS_CONSOLE_MESSAGE(">>#  RI  Sec  Recommend CH BSSID             SSID\r\n");
@@ -486,7 +480,7 @@ static SYS_WIFI_RESULT SYS_WIFI_SetScan
 ) 
 {
     uint8_t ret = SYS_WIFI_FAILURE;
-    if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_BSSFindFirst(g_wifiSrvcObj.wifiSrvcDrvHdl, channel, active, (WDRV_PIC32MZW_BSSFIND_NOTIFY_CALLBACK) SYS_WIFI_ScanHandler)) 
+    if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_BSSFindFirst(g_wifiSrvcObj.wifiSrvcDrvHdl, channel, active,NULL, (WDRV_PIC32MZW_BSSFIND_NOTIFY_CALLBACK) SYS_WIFI_ScanHandler)) 
     {
         ret = SYS_WIFI_SUCCESS ;
     }
@@ -515,6 +509,7 @@ static uint8_t SYS_WIFI_DisConnect(void)
     }
     return ret;
 }
+
 
 static SYS_WIFI_RESULT SYS_WIFI_ConnectReq(void)
 {
@@ -617,6 +612,7 @@ static SYS_WIFI_RESULT SYS_WIFI_ConfigReq(void)
 
     if (SYS_WIFI_CONFIG_FAILURE == ret) 
     {
+        SYS_CONSOLE_MESSAGE("Error:Enter valid Wi-Fi configuration\r\n");
         SYS_WIFI_SetTaskstatus(SYS_WIFI_STATUS_CONFIG_ERROR);
     }
 
@@ -657,6 +653,7 @@ static uint32_t SYS_WIFI_ExecuteBlock
     static TCPIP_NET_HANDLE      netHdl;
     SYS_WIFI_OBJ *               wifiSrvcObj = (SYS_WIFI_OBJ *) object;
     uint8_t                      ret =  SYS_WIFIPROV_OBJ_INVALID;
+
  
     if (&g_wifiSrvcObj == (SYS_WIFI_OBJ*) wifiSrvcObj)
     {    
@@ -763,7 +760,6 @@ static uint32_t SYS_WIFI_ExecuteBlock
                 }
                 break;
             }
-
             case SYS_WIFI_STATUS_TCPIP_READY:
             {
                 break;

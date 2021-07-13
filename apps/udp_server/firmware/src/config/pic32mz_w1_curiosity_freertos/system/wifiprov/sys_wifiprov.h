@@ -16,7 +16,7 @@
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -253,7 +253,7 @@ typedef struct
     uint8_t saveConfig;
 
     /* Country Code configuration */
-    uint8_t countryCode[5];
+    uint8_t countryCode[6];
 
     /* Wi-Fi station mode configuration */
     SYS_WIFIPROV_STA_CONFIG staConfig;
@@ -279,7 +279,8 @@ typedef struct
 typedef enum
 {
     /* Wi-Fi Provisioning system service is in NVM read state */
-    SYS_WIFIPROV_STATUS_NVM_READ=1,
+    SYS_WIFIPROV_STATUS_NVM_READ,
+
     /* Wi-Fi Provisioning system service is in NVM read Wi-Fi Configuration 
       checking state */
     SYS_WIFIPROV_STATUS_CONFIG_CHECK,
@@ -293,7 +294,6 @@ typedef enum
     /* Wi-Fi Provisioning system service is in wait for NVM write to 
        complate state */
     SYS_WIFIPROV_STATUS_WAITFORWRITE,
-
     /* Wi-Fi Provisioning system service is in client request state */
     SYS_WIFIPROV_STATUS_WAITFORREQ,
 

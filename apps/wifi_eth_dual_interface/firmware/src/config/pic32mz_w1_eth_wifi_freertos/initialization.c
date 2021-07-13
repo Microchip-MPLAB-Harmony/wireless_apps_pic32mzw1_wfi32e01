@@ -155,9 +155,12 @@ static const DRV_MIIM_INIT drvMiimInitData =
 
 static CRYPT_RNG_CTX wdrvRngCtx;
 static const WDRV_PIC32MZW_SYS_INIT wdrvPIC32MZW1InitData = {
-    .pCryptRngCtx = &wdrvRngCtx,
-	.pRegDomName  = "GEN"
+    .pCryptRngCtx  = &wdrvRngCtx,
+    .pRegDomName   = "GEN",
+    .powerSaveMode = WDRV_PIC32MZW_POWERSAVE_RUN_MODE,
+    .powerSavePICCorrelation = WDRV_PIC32MZW_POWERSAVE_PIC_ASYNC_MODE
 };
+
 
 
 // *****************************************************************************
@@ -341,31 +344,31 @@ const TCPIP_NETWORK_CONFIG __attribute__((unused))  TCPIP_HOSTS_CONFIGURATION[] 
 {
     /*** Network Configuration Index 0 ***/
     {
-        TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX0,       // interface
-        TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX0,            // hostName
-        TCPIP_NETWORK_DEFAULT_MAC_ADDR_IDX0,             // macAddr
-        TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX0,           // ipAddr
-        TCPIP_NETWORK_DEFAULT_IP_MASK_IDX0,              // ipMask
-        TCPIP_NETWORK_DEFAULT_GATEWAY_IDX0,              // gateway
-        TCPIP_NETWORK_DEFAULT_DNS_IDX0,                  // priDNS
-        TCPIP_NETWORK_DEFAULT_SECOND_DNS_IDX0,           // secondDNS
-        TCPIP_NETWORK_DEFAULT_POWER_MODE_IDX0,           // powerMode
-        TCPIP_NETWORK_DEFAULT_INTERFACE_FLAGS_IDX0,      // startFlags
-       &TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX0,           // pMacObject
+        .interface = TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX0,
+        .hostName = TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX0,
+        .macAddr = TCPIP_NETWORK_DEFAULT_MAC_ADDR_IDX0,
+        .ipAddr = TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX0,
+        .ipMask = TCPIP_NETWORK_DEFAULT_IP_MASK_IDX0,
+        .gateway = TCPIP_NETWORK_DEFAULT_GATEWAY_IDX0,
+        .priDNS = TCPIP_NETWORK_DEFAULT_DNS_IDX0,
+        .secondDNS = TCPIP_NETWORK_DEFAULT_SECOND_DNS_IDX0,
+        .powerMode = TCPIP_NETWORK_DEFAULT_POWER_MODE_IDX0,
+        .startFlags = TCPIP_NETWORK_DEFAULT_INTERFACE_FLAGS_IDX0,
+        .pMacObject = &TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX0,
     },
     /*** Network Configuration Index 1 ***/
     {
-        TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX1,       // interface
-        TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX1,            // hostName
-        TCPIP_NETWORK_DEFAULT_MAC_ADDR_IDX1,             // macAddr
-        TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX1,           // ipAddr
-        TCPIP_NETWORK_DEFAULT_IP_MASK_IDX1,              // ipMask
-        TCPIP_NETWORK_DEFAULT_GATEWAY_IDX1,              // gateway
-        TCPIP_NETWORK_DEFAULT_DNS_IDX1,                  // priDNS
-        TCPIP_NETWORK_DEFAULT_SECOND_DNS_IDX1,           // secondDNS
-        TCPIP_NETWORK_DEFAULT_POWER_MODE_IDX1,           // powerMode
-        TCPIP_NETWORK_DEFAULT_INTERFACE_FLAGS_IDX1,      // startFlags
-       &TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX1,           // pMacObject
+        .interface = TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX1,
+        .hostName = TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX1,
+        .macAddr = TCPIP_NETWORK_DEFAULT_MAC_ADDR_IDX1,
+        .ipAddr = TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX1,
+        .ipMask = TCPIP_NETWORK_DEFAULT_IP_MASK_IDX1,
+        .gateway = TCPIP_NETWORK_DEFAULT_GATEWAY_IDX1,
+        .priDNS = TCPIP_NETWORK_DEFAULT_DNS_IDX1,
+        .secondDNS = TCPIP_NETWORK_DEFAULT_SECOND_DNS_IDX1,
+        .powerMode = TCPIP_NETWORK_DEFAULT_POWER_MODE_IDX1,
+        .startFlags = TCPIP_NETWORK_DEFAULT_INTERFACE_FLAGS_IDX1,
+        .pMacObject = &TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX1,
     },
 };
 
@@ -576,8 +579,9 @@ void SYS_Initialize ( void* data )
     sysObj.drvMiim = DRV_MIIM_Initialize( DRV_MIIM_INDEX_0, (const SYS_MODULE_INIT *) &drvMiimInitData );
 
     /* Initialize the PIC32MZW1 Driver */
-    CRYPT_RNG_Initialize(wdrvPIC32MZW1InitData.pCryptRngCtx);
+    CRYPT_RNG_Initialize(&wdrvRngCtx);
     sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
+
 
     sysObj.sysTime = SYS_TIME_Initialize(SYS_TIME_INDEX_0, (SYS_MODULE_INIT *)&sysTimeInitData);
     sysObj.sysConsole0 = SYS_CONSOLE_Initialize(SYS_CONSOLE_INDEX_0, (SYS_MODULE_INIT *)&sysConsole0Init);

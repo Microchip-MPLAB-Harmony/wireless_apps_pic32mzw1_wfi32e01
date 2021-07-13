@@ -50,34 +50,29 @@
 
 void static UART3_ErrorClear( void )
 {
-    /* rxBufferLen = (FIFO level + RX register) */
-    uint8_t rxBufferLen = UART_RXFIFO_DEPTH;
+    UART_ERROR errors = UART_ERROR_NONE;
     uint8_t dummyData = 0u;
 
-    /* If it's a overrun error then clear it to flush FIFO */
-    if(U3STA & _U3STA_OERR_MASK)
-    {
-        U3STACLR = _U3STA_OERR_MASK;
-    }
+    errors = (UART_ERROR)(U3STA & (_U3STA_OERR_MASK | _U3STA_FERR_MASK | _U3STA_PERR_MASK));
 
-    /* Read existing error bytes from FIFO to clear parity and framing error flags */
-    while(U3STA & (_U3STA_FERR_MASK | _U3STA_PERR_MASK))
+    if(errors != UART_ERROR_NONE)
     {
-        dummyData = (uint8_t )(U3RXREG );
-        rxBufferLen--;
-
-        /* Try to flush error bytes for one full FIFO and exit instead of
-         * blocking here if more error bytes are received */
-        if(rxBufferLen == 0u)
+        /* If it's a overrun error then clear it to flush FIFO */
+        if(U3STA & _U3STA_OERR_MASK)
         {
-            break;
+            U3STACLR = _U3STA_OERR_MASK;
         }
+
+        /* Read existing error bytes from FIFO to clear parity and framing error flags */
+        while(U3STA & _U3STA_URXDA_MASK)
+        {
+            dummyData = U3RXREG;
+        }
+
     }
 
     // Ignore the warning
     (void)dummyData;
-
-    return;
 }
 
 void UART3_Initialize( void )
@@ -98,7 +93,7 @@ void UART3_Initialize( void )
     U3MODE = 0x8;
 
     /* Enable UART3 Receiver and Transmitter */
-    U3STASET = (_U3STA_UTXEN_MASK | _U3STA_URXEN_MASK);
+    U3STASET = (_U3STA_UTXEN_MASK | _U3STA_URXEN_MASK );
 
     /* BAUD Rate register Setup */
     U3BRG = 216;
@@ -200,12 +195,14 @@ bool UART3_Read(void* buffer, const size_t size )
 
     if(lBuffer != NULL)
     {
-        /* Clear errors before submitting the request.
-         * ErrorGet clears errors internally. */
-        UART3_ErrorGet();
+
+        /* Clear error flags and flush out error data that may have been received when no active request was pending */
+        UART3_ErrorClear();
 
         while( size > processedSize )
         {
+            while(!(U3STA & _U3STA_URXDA_MASK));
+
             /* Error status */
             errorStatus = (U3STA & (_U3STA_OERR_MASK | _U3STA_FERR_MASK | _U3STA_PERR_MASK));
 
@@ -213,13 +210,19 @@ bool UART3_Read(void* buffer, const size_t size )
             {
                 break;
             }
-
-            /* Receiver buffer has data */
-            if((U3STA & _U3STA_URXDA_MASK) == _U3STA_URXDA_MASK)
+            if (( U3MODE & (_U3MODE_PDSEL0_MASK | _U3MODE_PDSEL1_MASK)) == (_U3MODE_PDSEL0_MASK | _U3MODE_PDSEL1_MASK))
             {
-                *lBuffer++ = (U3RXREG );
-                processedSize++;
+                /* 9-bit mode */
+                *(uint16_t*)lBuffer = (U3RXREG );
+                lBuffer += 2;
             }
+            else
+            {
+                /* 8-bit mode */
+                *lBuffer++ = (U3RXREG );
+            }
+
+            processedSize++;
         }
 
         if(size == processedSize)
@@ -241,11 +244,22 @@ bool UART3_Write( void* buffer, const size_t size )
     {
         while( size > processedSize )
         {
-            if(!(U3STA & _U3STA_UTXBF_MASK))
+            /* Wait while TX buffer is full */
+            while (U3STA & _U3STA_UTXBF_MASK);
+
+            if (( U3MODE & (_U3MODE_PDSEL0_MASK | _U3MODE_PDSEL1_MASK)) == (_U3MODE_PDSEL0_MASK | _U3MODE_PDSEL1_MASK))
             {
-                U3TXREG = *lBuffer++;
-                processedSize++;
+                /* 9-bit mode */
+                U3TXREG = *(uint16_t*)lBuffer;
+                lBuffer += 2;
             }
+            else
+            {
+                /* 8-bit mode */
+                U3TXREG = *lBuffer++;
+            }
+
+            processedSize++;
         }
 
         status = true;
@@ -257,9 +271,8 @@ bool UART3_Write( void* buffer, const size_t size )
 UART_ERROR UART3_ErrorGet( void )
 {
     UART_ERROR errors = UART_ERROR_NONE;
-    uint32_t status = U3STA;
 
-    errors = (UART_ERROR)(status & (_U3STA_OERR_MASK | _U3STA_FERR_MASK | _U3STA_PERR_MASK));
+    errors = (UART_ERROR)(U3STA & (_U3STA_OERR_MASK | _U3STA_FERR_MASK | _U3STA_PERR_MASK));
 
     if(errors != UART_ERROR_NONE)
     {

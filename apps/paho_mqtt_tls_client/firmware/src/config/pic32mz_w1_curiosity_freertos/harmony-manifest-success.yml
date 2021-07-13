@@ -4,7 +4,7 @@
 
 
 project: paho_mqtt_tls_client
-creation_date: 2021-06-24T12:02:15.645+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2021-07-13T18:36:04.019+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.7.2
@@ -16,7 +16,7 @@ modules:
     - {name: "core", version: "v3.9.1"}
     - {name: "csp", version: "v3.9.1"}
     - {name: "wireless_wifi", version: "v3.5.0"}
-    - {name: "paho.mqtt.embedded-c", version: "unknown"}
+    - {name: "paho.mqtt.embedded-c", version: "v1.2.2"}
     - {name: "dev_packs", version: "v3.9.0"}
     - {name: "wireless_system_pic32mzw1_wfi32e01", version: "unknown"}
     - {name: "wolfssl", version: "v4.7.0"}

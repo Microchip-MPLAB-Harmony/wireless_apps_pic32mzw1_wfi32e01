@@ -613,7 +613,7 @@
         </Integer>
       </Symbols>
     </UniqueComponent>
-    <GroupComponent displayName="System Component" dnOrder="2" id="System Component">
+    <GroupComponent displayName="System Configuration" dnOrder="2" id="System Configuration">
       <Children dnOrder="0">
         <UniqueComponent dnOrder="0" id="core_timer">
           <Symbols dnOrder="0">
@@ -1448,7 +1448,7 @@
   <UserData>
     <ComponentGraph dnOrder="0" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
-        <ElementPosition dnOrder="0" id="System Component" x="170" y="60"/>
+        <ElementPosition dnOrder="0" id="System Configuration" x="170" y="60"/>
         <ElementPosition dnOrder="1" id="core" x="580" y="20"/>
         <ElementPosition dnOrder="2" id="sysNetPic32mzw1" x="37" y="133"/>
         <ElementPosition dnOrder="3" id="sysWifiPic32mzw1" x="30" y="60"/>
@@ -1466,7 +1466,7 @@
         <ElementPosition dnOrder="0" id="tcpip_driver_config" x="20" y="20"/>
       </ElementPositions>
     </ComponentGraph>
-    <ComponentGraph dnOrder="3" id="System Component">
+    <ComponentGraph dnOrder="3" id="System Configuration">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="FreeRTOS" x="370" y="620"/>
         <ElementPosition dnOrder="1" id="HarmonyCore" x="190" y="620"/>

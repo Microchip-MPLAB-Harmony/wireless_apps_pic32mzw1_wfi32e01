@@ -1041,6 +1041,13 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '768'}
   - type: Hex
+    attributes: {id: SYS_PORT_K_ANSEL}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '8'}
+  - type: Hex
     attributes: {id: SYS_PORT_K_TRIS}
     children:
     - type: Values

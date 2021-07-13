@@ -63,17 +63,17 @@ void TMR2_Initialize(void)
 
     /*
     SIDL = 0
-    TCKPS =7
+    TCKPS =0
     T32   = 0
     TCS = 0
     */
-    T2CONSET = 0x70;
+    T2CONSET = 0x0;
 
     /* Clear counter */
     TMR2 = 0x0;
 
     /*Set period */
-    PR2 = 116U;
+    PR2 = 29999U;
 
     /* Enable TMR Interrupt */
     IEC0SET = _IEC0_T2IE_MASK;
@@ -110,13 +110,13 @@ uint16_t TMR2_CounterGet(void)
 
 uint32_t TMR2_FrequencyGet(void)
 {
-    return (390625);
+    return (100000000);
 }
 
 
 void TIMER_2_InterruptHandler (void)
 {
-    uint32_t status;
+    uint32_t status  = 0U;
     status = IFS0bits.T2IF;
     IFS0CLR = _IFS0_T2IF_MASK;
 

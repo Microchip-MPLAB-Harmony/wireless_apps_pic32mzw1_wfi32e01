@@ -93,6 +93,7 @@ extern "C" {
 
 
 #define SYS_NET_TLS_ENABLED
+#define WOLFSSL_TLS13_NO_PEEK_HANDSHAKE_DONE
 
 
 #define SYS_NET_CLICMD_ENABLED
@@ -222,7 +223,7 @@ extern "C" {
 #define TCPIP_ICMP_TASK_TICK_RATE              33
 #define TCPIP_ICMP_COMMAND_ENABLE              false
 
-#define SYS_WIFIPROV_NVMADDR        		0x900F0000
+#define SYS_WIFIPROV_NVMADDR        		0x900FF000
 #define SYS_WIFIPROV_SAVECONFIG        			true
 #define SYS_WIFIPROV_SOCKETPORT        		6666
 

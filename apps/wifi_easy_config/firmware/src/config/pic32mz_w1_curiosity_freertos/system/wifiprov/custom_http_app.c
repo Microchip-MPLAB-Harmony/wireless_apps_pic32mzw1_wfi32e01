@@ -15,7 +15,7 @@
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -90,7 +90,7 @@ static struct
 
     TCPIP_NETWORK_CONFIG   netConfig;  // configuration in the interface requested format
 }httpNetData;
-inline uint8_t Findstring_lenth(uint8_t *ptr)
+static inline uint8_t Findstring_lenth(uint8_t *ptr)
 {
     uint8_t len=0;
     for(;*ptr != '&';ptr++,len++);

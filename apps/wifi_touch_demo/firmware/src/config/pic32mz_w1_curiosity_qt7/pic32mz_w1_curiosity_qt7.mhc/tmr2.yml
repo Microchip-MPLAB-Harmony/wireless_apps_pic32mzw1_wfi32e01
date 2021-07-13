@@ -10,28 +10,21 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tmr2, value: '112'}
+        attributes: {id: tmr2, value: '0'}
   - type: Integer
     attributes: {id: TIMER_CLOCK_FREQ}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tmr2, value: '390625'}
+        attributes: {id: tmr2, value: '100000000'}
   - type: Long
     attributes: {id: TIMER_PERIOD}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tmr2, value: '116'}
-  - type: KeyValueSet
-    attributes: {id: TIMER_PRE_SCALER}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: lib_qtouch, value: '0'}
+        attributes: {id: tmr2, value: '29999'}
   - type: Float
     attributes: {id: TIMER_TIME_PERIOD_MS}
     children:
@@ -40,7 +33,7 @@ children:
       - type: Float
         attributes: {id: max}
         children:
-        - {type: Value, value: '167.7696'}
+        - {type: Value, value: '0.65537'}
   - type: Boolean
     attributes: {id: TMR_INTERRUPT_MODE}
     children:
@@ -54,21 +47,6 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tmr2, value: '256'}
-- type: Attachments
-  children:
-  - type: DirectCapability
-    attributes: {id: TMR2_TMR}
-    children:
-    - type: Attributes
-      children:
-      - type: String
-        attributes: {id: targetComponentID}
-        children:
-        - {type: Value, value: lib_qtouch}
-      - type: String
-        attributes: {id: targetAttachmentID}
-        children:
-        - {type: Value, value: Touch_timer}
+        attributes: {id: tmr2, value: '1'}
 - type: ElementPosition
   attributes: {x: '110', y: '168', id: tmr2}

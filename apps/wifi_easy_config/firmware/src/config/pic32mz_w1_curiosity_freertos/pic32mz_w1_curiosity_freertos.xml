@@ -894,7 +894,7 @@
         </KeyValueSet>
       </Symbols>
     </UniqueComponent>
-    <GroupComponent displayName="System Component" dnOrder="2" id="System Component">
+    <GroupComponent displayName="System Configuration" dnOrder="2" id="System Configuration">
       <Children dnOrder="0">
         <UniqueComponent dnOrder="0" id="core_timer">
           <Symbols dnOrder="0">
@@ -2303,7 +2303,7 @@
     <ComponentGraph dnOrder="5" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="BSP_PIC32MZ_W1_Curiosity" x="203" y="105"/>
-        <ElementPosition dnOrder="1" id="System Component" x="304" y="153"/>
+        <ElementPosition dnOrder="1" id="System Configuration" x="304" y="153"/>
         <ElementPosition dnOrder="2" id="core" x="358" y="12"/>
         <ElementPosition dnOrder="3" id="sysWifiPic32mzw1" x="211" y="221"/>
         <ElementPosition dnOrder="4" id="sysWifiProvPic32mzw1" x="20" y="20"/>
@@ -2315,7 +2315,7 @@
         <ElementPosition dnOrder="1" id="tcpip_basic_config" x="20" y="20"/>
       </ElementPositions>
     </ComponentGraph>
-    <ComponentGraph dnOrder="7" id="System Component">
+    <ComponentGraph dnOrder="7" id="System Configuration">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="FreeRTOS" x="590" y="340"/>
         <ElementPosition dnOrder="1" id="HarmonyCore" x="30" y="380"/>

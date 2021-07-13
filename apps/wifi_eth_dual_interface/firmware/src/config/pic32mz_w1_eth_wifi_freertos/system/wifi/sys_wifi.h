@@ -16,7 +16,7 @@
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -168,6 +168,27 @@ typedef enum
 
 
 // *****************************************************************************
+/* System Wi-Fi service station info structure shared with the Application.
+
+  Summary:
+    Information related to connected station shared with Application.
+
+  Description:
+    Information (MAC Address, IP Address) related to connected station.
+
+  Remarks:
+   None.
+*/
+typedef struct 
+{
+    /* IP Address of the station */
+    IPV4_ADDR ipAddr;
+
+    /* MAC Address of the station */
+    uint8_t macAddr[6];
+} SYS_WIFI_STA_APP_INFO;
+
+// *****************************************************************************
 /* System Wi-Fi service soft access point mode configuration structure
 
   Summary:
@@ -227,7 +248,7 @@ typedef struct
     uint8_t saveConfig;
 
     /* Country Code configuration */
-    uint8_t countryCode[5];
+    uint8_t countryCode[6];
 
 
     /* Wi-Fi access point mode configuration structure */
@@ -362,6 +383,7 @@ typedef enum{
     #include "tcpip/tcpip.h"
     #include "definitions.h"
 
+    //User can refer the application "wireless_apps_pic32mzw1_wfi32e01\apps\wifi_easy_config" for more information on how to implement callback.
     APP_DATA appData;
     void WiFiServCallback (uint32_t event, void * data,void *cookie )
     {
@@ -370,8 +392,18 @@ typedef enum{
         {
             case SYS_WIFI_CONNECT:
             {
+                //In STA mode, Wi-Fi service share IP address provided by AP in the callback
                 IPAddr = (IPV4_ADDR *)data;
                 SYS_CONSOLE_PRINT("IP address obtained = %d.%d.%d.%d \\r\\n",IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
+
+                //In AP mode, Wi-Fi service share MAC address and IP address of the connected STA in the callback
+                SYS_WIFI_STA_APP_INFO    *StaConnInfo = (SYS_WIFI_STA_APP_INFO *)data;
+                SYS_CONSOLE_PRINT("STA Connected to AP. Got IP address = %d.%d.%d.%d \r\n", 
+                        StaConnInfo->ipAddr.v[0], StaConnInfo->ipAddr.v[1], StaConnInfo->ipAddr.v[2], StaConnInfo->ipAddr.v[3]);                
+                SYS_CONSOLE_PRINT("STA Connected to AP. Got MAC address = %x:%x:%x:%x:%x:%x \r\n", 
+                        StaConnInfo->macAddr[0], StaConnInfo->macAddr[1], StaConnInfo->macAddr[2],
+                        StaConnInfo->macAddr[3], StaConnInfo->macAddr[4], StaConnInfo->macAddr[5]);
+                
                 break;
             }
             case SYS_WIFI_DISCONNECT:
@@ -693,7 +725,7 @@ uint8_t SYS_WIFI_Tasks (SYS_MODULE_OBJ object);
             memcpy(wifiSrvcConfig.staConfig.psk, WIFI_DEV_PSK, sizeof(WIFI_DEV_PSK));
 
             // sysObj.syswifi return from SYS_WIFI_Initialize() 
-            if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_CtrlMsg (sysObj.syswifi, SYS_WIFI_CONNECT, wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
+            if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_CtrlMsg (sysObj.syswifi, SYS_WIFI_CONNECT, &wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
             {
             
             }
@@ -730,8 +762,11 @@ uint8_t SYS_WIFI_Tasks (SYS_MODULE_OBJ object);
             } 
 
             Details of SYS_WIFI_DISCONNECT:
-                // Device Disconnect request using control message request. 
+                //In STA mode, device disconnect request using control message request. 
                 SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_DISCONNECT, NULL, 0);
+
+                //In AP mode, device disconnect request of the connected STA with MAC address. 
+                SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_DISCONNECT, macAddr, 6);
 
         </code>
 

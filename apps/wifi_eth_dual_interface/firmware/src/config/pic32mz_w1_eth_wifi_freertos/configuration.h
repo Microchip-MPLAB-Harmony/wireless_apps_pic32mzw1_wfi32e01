@@ -162,6 +162,10 @@ extern "C" {
 #define DRV_BA414E_RTOS_TASK_PRIORITY             1	
 
 
+#define SYS_WIFIPROV_NVMADDR        		0x900FF000
+#define SYS_WIFIPROV_SAVECONFIG        			true
+#define SYS_WIFIPROV_SOCKETPORT        		6666
+
 
 /*** ICMPv4 Server Configuration ***/
 #define TCPIP_STACK_USE_ICMP_SERVER
@@ -173,10 +177,6 @@ extern "C" {
 #define TCPIP_ICMP_ECHO_REQUEST_TIMEOUT        500
 #define TCPIP_ICMP_TASK_TICK_RATE              33
 #define TCPIP_ICMP_COMMAND_ENABLE              false
-
-#define SYS_WIFIPROV_NVMADDR        		0x900F0000
-#define SYS_WIFIPROV_SAVECONFIG        			true
-#define SYS_WIFIPROV_SOCKETPORT        		6666
 
 /*** TCPIP MAC Configuration ***/
 #define TCPIP_EMAC_TX_DESCRIPTORS				    8
@@ -242,6 +242,7 @@ extern "C" {
 #define TCPIP_TCP_QUIET_TIME		        	    0
 #define TCPIP_TCP_COMMANDS   false
 #define TCPIP_TCP_EXTERN_PACKET_PROCESS   false
+#define TCPIP_TCP_DISABLE_CRYPTO_USAGE		        	    false
 
 
 
@@ -291,7 +292,7 @@ extern "C" {
 
 /* Network Configuration Index 1 */
 #define TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX1	"ETHMAC"
-#define TCPIP_IF_ETHMAC
+#define TCPIP_IF_PIC32MZW_ETHMAC	
 
 #define TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX1				"MCHPBOARD_E"
 #define TCPIP_NETWORK_DEFAULT_MAC_ADDR_IDX1				0
