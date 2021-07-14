@@ -1637,13 +1637,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 15AB6693CC2E1EE7AB845EE42A6AC762
-- generatedChecksum: 8137F21011DA6686644515490B0E80FF
+- generatedChecksum: 27CE64BED83B46F00DD6CD839999D9F7
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: configuration.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 8137F21011DA6686644515490B0E80FF
+  userChecksum: 27CE64BED83B46F00DD6CD839999D9F7
 - generatedChecksum: 66CDC9B1DAB0393100A835676816E8BF
   logicalPath: wolfcrypt
   name: cpuid.h
@@ -2953,13 +2953,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 7C71A9D2BEF16AC21C17ED5C2452C263
-- generatedChecksum: 712D1407BC82CB6B3C4C44FED4F14D26
+- generatedChecksum: 871D24A774BC4F05A0E74E76746AEE2F
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/command
   name: sys_command.h
   physicalPath: system/command
   security: NON_SECURE
   type: HEADER
-  userChecksum: 712D1407BC82CB6B3C4C44FED4F14D26
+  userChecksum: 871D24A774BC4F05A0E74E76746AEE2F
 - generatedChecksum: 91CB36F6EC29DAA7C584282A875E5CBA
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/console
   name: sys_console.h

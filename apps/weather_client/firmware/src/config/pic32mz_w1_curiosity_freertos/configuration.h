@@ -84,11 +84,11 @@ extern "C" {
 
 #define SYS_NET_INDEX0_INTF       				SYS_NET_INTF_WIFI
 #define SYS_NET_INDEX0_MODE       				SYS_NET_MODE_CLIENT
-#define SYS_NET_INDEX0_PORT        				1
-#define SYS_NET_INDEX0_RECONNECT       			1
+#define SYS_NET_INDEX0_PORT        				80
+#define SYS_NET_INDEX0_RECONNECT       			0
 #define SYS_NET_INDEX0_ENABLE_TLS        		0
 #define SYS_NET_INDEX0_IPPROT       			SYS_NET_IP_PROT_TCP
-#define SYS_NET_INDEX0_HOST_NAME        		"192.168.1.1"
+#define SYS_NET_INDEX0_HOST_NAME        		"api.openweathermap.org"
 
 
 

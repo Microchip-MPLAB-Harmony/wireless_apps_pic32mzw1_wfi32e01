@@ -28,7 +28,6 @@
 // *****************************************************************************
 
 #include "system/net/sys_net.h"
-#include "system/wifiprov/sys_wifiprov_json.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: Declarations
@@ -79,21 +78,34 @@ void TcpClientCallback(uint32_t event, void *data, void* cookie)
         case SYS_NET_EVNT_RCVD_DATA:
         {
             char networkBuffer[512];
+            char *pcIndxPtr = NULL;
+            char *pcEndPtr = NULL;
             memset(networkBuffer, 0, sizeof (networkBuffer));
             
             SYS_NET_RecvMsg(g_tcpSrvcHandle, (uint8_t*) networkBuffer, sizeof (networkBuffer));
             SYS_CONSOLE_PRINT("SERVER Received JSON Data: %s:%zu\r\n",networkBuffer,strlen(networkBuffer));
 
-            struct json_obj root,child,sub ;
-            
-            if(!json_create(&root,(const char*)networkBuffer,strlen((const char*)networkBuffer)))
+            pcIndxPtr = strstr((char *)networkBuffer,"temp_max");
+            if (NULL != pcIndxPtr) 
             {
-                if(!json_find(&root, "name", &child))
-                    SYS_CONSOLE_PRINT("City name: %s\r\n",child.value.s);
+                pcIndxPtr = pcIndxPtr + strlen("temp_max") + 2;
+                pcEndPtr = strstr(pcIndxPtr, ",");
+                if (NULL != pcEndPtr) {
+                        *pcEndPtr = 0;
+                }
+                SYS_CONSOLE_PRINT("City Temperature :%s Celsius\r\n", pcIndxPtr);
+            }
 
-                if(!json_find(&root, "main", &child))
-                    if(!json_find(&child, "temp_max", &sub))
-                        SYS_CONSOLE_PRINT("City temp Max: %d: Celsius\r\n",sub.value.b);
+            pcIndxPtr = strstr((pcEndPtr + 1),"name");
+            if (NULL != pcIndxPtr) 
+            {
+                pcIndxPtr = pcIndxPtr + strlen("name") + 2;
+                pcEndPtr = strstr(pcIndxPtr, ",");
+                if (NULL != pcEndPtr) 
+                {
+                        *pcEndPtr = 0;
+                }
+                SYS_CONSOLE_PRINT("City Name : %s\r\n", pcIndxPtr);
             }
             break;
         }
