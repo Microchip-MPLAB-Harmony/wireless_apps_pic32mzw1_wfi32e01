@@ -346,7 +346,7 @@
     #define BENCH_EMBEDDED
 #endif
 
-#if defined(MICROCHIP_PIC32) && !defined(MICROCHIP_MPLAB_HARMONY_3)
+#ifdef MICROCHIP_PIC32
     /* #define WOLFSSL_MICROCHIP_PIC32MZ */
     #define SIZEOF_LONG_LONG 8
     #define SINGLE_THREADED

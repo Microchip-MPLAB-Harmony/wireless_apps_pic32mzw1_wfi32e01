@@ -2,5 +2,28 @@ format_version: v1.0
 type: UniqueComponent
 attributes: {id: tcpipUdp}
 children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: TCPIP_UDP_HEAP_SIZE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcpipUdp, value: '26600'}
+  - type: Integer
+    attributes: {id: TCPIP_UDP_SOCKET_DEFAULT_RX_QUEUE_LIMIT}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '16'}
+  - type: Integer
+    attributes: {id: TCPIP_UDP_SOCKET_DEFAULT_TX_QUEUE_LIMIT}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '5'}
 - type: ElementPosition
   attributes: {x: '287', y: '46', id: tcpipUdp}

@@ -403,7 +403,7 @@ extern "C" {
 #define NO_WRITEV
 #define NO_FILESYSTEM
 #define USE_FAST_MATH
-#define NO_BIG_INT
+#define NO_PWDBASED
 #define HAVE_MCAPI
 #define WOLF_CRYPTO_CB  // provide call-back support
 #define WOLFSSL_MICROCHIP_PIC32MZ

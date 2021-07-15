@@ -266,7 +266,7 @@ static void APP_RfMacConfigStatus(void)
             strcat(status, "MAC address, ");
         }
         
-        if (NULL != *status)
+        if ('\0' != *status)
         {
             appData.isRfMacConfigValid = false;
             SYS_CONSOLE_PRINT("APP Error: %s - configurations missing\r\n",status);

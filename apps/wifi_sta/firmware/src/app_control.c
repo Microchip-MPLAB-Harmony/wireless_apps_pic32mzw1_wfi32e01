@@ -88,7 +88,7 @@ static void nvmConfigInit(void)
 
 static void nvmPopulateBuffer(WLAN_CONFIG_DATA *wlanConfig)
 {
-    memset(nvmDataBuff, 0, BUFFER_SIZE); //Clear the buffer first
+    memset(nvmDataBuff, 0, sizeof(nvmDataBuff)); //Clear the buffer first
     memcpy((void*) nvmDataBuff, (const void*) wlanConfig, sizeof (WLAN_CONFIG_DATA)); //copy data into the template buffer.
 }
 
@@ -203,9 +203,9 @@ void APP_CONTROL_Tasks ( void )
 
         case APP_CONTROL_STATE_SERVICE_TASKS:
         {
-
             break;
         }
+        
         default:
         {
             break;
@@ -220,160 +220,171 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
         return;
     }
     
-    if(!strcmp("set", argv[1]))
+    if (!strcmp("config", argv[1]))
+    {
+        if (argc < 6)
+        {
+            SYS_CONSOLE_MESSAGE("usage: wlan config <ssid> <ssid_length> <channel> <open | wpa2 | wpam | wpa3 | wpa3m | wep> <password>\r\n");
+            return;
+        }
+        else
+        {
+            char *ssid = argv[2];
+            char *authMode = argv[5];
+            char *password;
+            unsigned char ssidLength = strtoul(argv[3],0,10);
+            unsigned char channel = strtoul(argv[4],0,10);
+
+            if (7 == argc)
+            {
+                password = argv[6];
+            }
+            else if (6 == argc)
+            {
+                password = "  ";
+            }
+            else 
+            {
+                SYS_CONSOLE_MESSAGE("usage: wlan config <ssid> <ssid_length> <channel> <open | wpa2 | wpam | wpa3 | wpa3m | wep> <password>\r\n");
+                return;
+            }
+
+            if(ssidLength > SSID_LENGTH)
+            {
+                SYS_CONSOLE_MESSAGE("SSID too long");
+                return;
+            }
+            else
+            {
+                app_controlData.wlanConfig.ssidLength = ssidLength;
+                memset(app_controlData.wlanConfig.ssid, 0, SSID_LENGTH);
+                memcpy(app_controlData.wlanConfig.ssid, ssid, ssidLength);
+            }
+
+            if ((channel > 13) && (channel < 255))
+            {
+                SYS_CONSOLE_MESSAGE("Invalid channel number");
+                return;
+            }
+            else
+            {
+                if(255 == channel)
+                {
+                    app_controlData.wlanConfig.channel = 0;
+                }
+                else
+                {
+                    app_controlData.wlanConfig.channel = channel;
+                }
+            }
+
+            if ((!strcmp(authMode, "open")) || (!strcmp(authMode, "OPEN"))) 
+            {
+                app_controlData.wlanConfig.authMode = OPEN;
+            } 
+            else if ((!strcmp(authMode, "wpa2")) || (!strcmp(authMode, "WPA2"))) 
+            {
+                app_controlData.wlanConfig.authMode = WPA2;
+            } 
+            else if ((!strcmp(authMode, "wpam")) || (!strcmp(authMode, "WPAM"))) 
+            {
+                app_controlData.wlanConfig.authMode = WPAWPA2MIXED;
+            } 
+            else if ((!strcmp(authMode, "wpa3")) || (!strcmp(authMode, "WPA3"))) 
+            {
+                app_controlData.wlanConfig.authMode = WPA3;
+            }
+            else if ((!strcmp(authMode, "wpa3m")) || (!strcmp(authMode, "WPA3M"))) 
+            {
+                app_controlData.wlanConfig.authMode = WPA2WPA3MIXED;
+            }
+            else if ((!strcmp(authMode, "wep")) || (!strcmp(authMode, "WEP"))) 
+            {
+                app_controlData.wlanConfig.authMode = WEP;
+            } 
+            else 
+            {
+                SYS_CONSOLE_MESSAGE("Invalid Auth mode \r\n Supported auth modes: <open | wpa2 | wpam | wpa3 | wpa3m | wep> \r\n");
+                return;
+            }
+
+            if(app_controlData.wlanConfig.authMode != WEP)
+            {
+                if(strlen(password) > PASSWORD_LENGTH)
+                {
+                    SYS_CONSOLE_MESSAGE("Password too long\r\n");
+                    return;
+                }
+                memset(app_controlData.wlanConfig.password, 0, PASSWORD_LENGTH+1);
+                memcpy(app_controlData.wlanConfig.password, password, strlen(password));
+            }
+            else
+            {
+                char* WEPIdx;
+                char* WEPKey;
+
+                WEPIdx = strtok(password, "*");
+
+                if (NULL == WEPIdx)
+                {
+                    SYS_CONSOLE_MESSAGE("Invalid WEP parameter\r\n");
+                    return;
+                }
+
+                WEPKey = strtok(NULL, "\0");
+
+                if (NULL == WEPKey)
+                {
+                    SYS_CONSOLE_MESSAGE("Invalid WEP parameter\r\n");
+                    return;
+                }
+
+                app_controlData.wlanConfig.wepIdx = strtol(WEPIdx, NULL, 0);
+                memcpy(app_controlData.wlanConfig.wepKey, (unsigned char *)WEPKey, strlen(WEPKey));
+            }
+
+            app_controlData.wlanConfigValid = true;
+        }
+    }
+    else if(!strcmp("save", argv[1]))
     {
         if (argc < 3)
         {
-            SYS_CONSOLE_MESSAGE("usage: wlan set config <ssid> <ssid_length> <channel> <open | wpa2 | wpam | wpa3 | wpa3m | wep> <password>\r\n");
+            return;
+        }
+        
+        if(!strcmp("config", argv[2]))
+        {
+            if(app_controlData.wlanConfigValid == true)
+            {
+                app_controlData.wlanConfigChanged = true;
+                nvmWriteConfig(&app_controlData.wlanConfig);
+                SYS_CONSOLE_MESSAGE("Configuration stored in Flash\r\n");
+            }
+            else
+            {
+                SYS_CONSOLE_MESSAGE("Entered WLAN configuration is Invalid\r\n");
+            }
+        }
+    }
+    else if(!strcmp("set", argv[1]))
+    {
+        if (argc < 4)
+        {
             SYS_CONSOLE_MESSAGE("usage: wlan set regdomain <reg_domain_name>\r\n");
             return;
         }
         
-        if (!strcmp("config", argv[2]))
-        {
-            if (argc < 7)
-            {
-                SYS_CONSOLE_MESSAGE("usage: wlan set config <ssid> <ssid_length> <channel> <open | wpa2 | wpam | wpa3 | wpa3m | wep> <password>\r\n");
-                return;
-            }
-            else
-            {
-                char *ssid = argv[3];
-                char *authMode = argv[6];
-                char *password;
-                unsigned char ssidLength = strtoul(argv[4],0,10);
-                unsigned char channel = strtoul(argv[5],0,10);
-                        
-                if (8 == argc)
-                {
-                    password = argv[7];
-                }
-                else if (7 == argc)
-                {
-                    password = "  ";
-                }
-                else 
-                {
-                    SYS_CONSOLE_MESSAGE("usage: wlan set config <ssid> <ssid_length> <channel> <open | wpa2 | wpam | wpa3 | wpa3m | wep> <password>\r\n");
-                    return;
-                }
-
-                if(ssidLength > SSID_LENGTH)
-                {
-                    SYS_CONSOLE_MESSAGE("SSID too long");
-                    return;
-                }
-                else
-                {
-                    app_controlData.wlanConfig.ssidLength = ssidLength;
-                    memset(app_controlData.wlanConfig.ssid, 0, SSID_LENGTH);
-                    memcpy(app_controlData.wlanConfig.ssid, ssid, ssidLength);
-                }
-
-                if ((channel > 13) && (channel < 255))
-                {
-                    SYS_CONSOLE_MESSAGE("Invalid channel number");
-                    return;
-                }
-                else
-                {
-                    if(255 == channel)
-                    {
-                        app_controlData.wlanConfig.channel = 0;
-                    }
-                    else
-                    {
-                        app_controlData.wlanConfig.channel = channel;
-                    }
-                }
-
-                if ((!strcmp(authMode, "open")) || (!strcmp(authMode, "OPEN"))) 
-                {
-                    app_controlData.wlanConfig.authMode = OPEN;
-                } 
-                else if ((!strcmp(authMode, "wpa2")) || (!strcmp(authMode, "WPA2"))) 
-                {
-                    app_controlData.wlanConfig.authMode = WPA2;
-                } 
-                else if ((!strcmp(authMode, "wpam")) || (!strcmp(authMode, "WPAM"))) 
-                {
-                    app_controlData.wlanConfig.authMode = WPAWPA2MIXED;
-                } 
-                else if ((!strcmp(authMode, "wpa3")) || (!strcmp(authMode, "WPA3"))) 
-                {
-                    app_controlData.wlanConfig.authMode = WPA3;
-                }
-                else if ((!strcmp(authMode, "wpa3m")) || (!strcmp(authMode, "WPA3M"))) 
-                {
-                    app_controlData.wlanConfig.authMode = WPA2WPA3MIXED;
-                }
-                else if ((!strcmp(authMode, "wep")) || (!strcmp(authMode, "WEP"))) 
-                {
-                    app_controlData.wlanConfig.authMode = WEP;
-                } 
-                else 
-                {
-                    SYS_CONSOLE_MESSAGE("Invalid Auth mode \r\n Supported auth modes: <open | wpa2 | wpam | wpa3 | wpa3m | wep> \r\n");
-                    return;
-                }
-
-                if(app_controlData.wlanConfig.authMode != WEP)
-                {
-                    if(strlen(password) > PASSWORD_LENGTH)
-                    {
-                        SYS_CONSOLE_MESSAGE("Password too long\r\n");
-                        return;
-                    }
-                    memset(app_controlData.wlanConfig.password, 0, PASSWORD_LENGTH+1);
-                    memcpy(app_controlData.wlanConfig.password, password, strlen(password));
-                }
-                else
-                {
-                    char* WEPIdx;
-                    char* WEPKey;
-
-                    WEPIdx = strtok(password, "*");
-
-                    if (NULL == WEPIdx)
-                    {
-                        SYS_CONSOLE_MESSAGE("Invalid WEP parameter\r\n");
-                        return;
-                    }
-
-                    WEPKey = strtok(NULL, "\0");
-
-                    if (NULL == WEPKey)
-                    {
-                        SYS_CONSOLE_MESSAGE("Invalid WEP parameter\r\n");
-                        return;
-                    }
-
-                    app_controlData.wlanConfig.wepIdx = strtol(WEPIdx, NULL, 0);
-                    memcpy(app_controlData.wlanConfig.wepKey, (unsigned char *)WEPKey, strlen(WEPKey));
-                }
-
-                app_controlData.wlanConfigValid = true;
-            }
-        }
-        else if (!strcmp("regdomain", argv[2]))
+        if (!strcmp("regdomain", argv[2]))
         {
             int length;
-            
-            if (argc < 4)
+            length = strlen(argv[3]);
+
+            if (length < 7)
             {
-                SYS_CONSOLE_MESSAGE("usage: wlan set regdomain <name>\r\n");
-                return;
-            }
-            else
-            {
-                length = strlen(argv[3]);
-                
-                if (length < 7)
-                {
-                    memset(app_controlData.regDomName, 0, 7);
-                    strcpy(app_controlData.regDomName, argv[3]);
-                    app_controlData.regDomChanged = true;
-                }
+                memset(app_controlData.regDomName, 0, 7);
+                strcpy(app_controlData.regDomName, argv[3]);
+                app_controlData.regDomChanged = true;
             }
         }
     }
@@ -386,26 +397,6 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
         else
         {
             SYS_CONSOLE_MESSAGE("Entered WLAN configuration is Invalid\r\n");
-        }
-    }
-    else if(!strcmp("config", argv[1]))
-    {
-        if (argc < 3)
-        {
-            return;
-        }
-        
-        if(!strcmp("save", argv[2]))
-        {
-            if(app_controlData.wlanConfigValid == true)
-            {
-                app_controlData.wlanConfigChanged = true;
-                nvmWriteConfig(&app_controlData.wlanConfig);
-            }
-            else
-            {
-                SYS_CONSOLE_MESSAGE("Entered WLAN configuration is Invalid\r\n");
-            }
         }
     }
     else if(!strcmp("scan", argv[1]))

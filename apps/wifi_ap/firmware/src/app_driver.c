@@ -235,7 +235,7 @@ static void APP_RfMacConfigStatus(void)
             strcat(status, "MAC address, ");
         }
         
-        if (NULL != *status)
+        if ('\0' != *status)
         {
             appData.isRfMacConfigValid = false;
             SYS_CONSOLE_PRINT("APP Error: %s - configurations missing\r\n",status);
@@ -269,39 +269,6 @@ void APP_Scan(uint8_t channel, SCAN_TYPE scanType)
     }
 
     return;
-}
-
-void APP_ScanOptions(uint8_t numSlots, uint8_t activeSlotTime, uint16_t passiveScanTime, uint8_t numProbes, int8_t stopOnFirst)
-{
-    
-    if (stopOnFirst > 1)
-    {
-        SYS_CONSOLE_MESSAGE("APP Error: updating stop on first parameter");
-        return;
-    }
-    
-    if (0 == stopOnFirst)
-    {
-        if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetScanMatchMode(appData.wdrvHandle, WDRV_PIC32MZW_SCAN_MATCH_MODE_FIND_ALL))
-        {
-            SYS_CONSOLE_MESSAGE("APP Error: updating scan match mode\r\n");
-            return;
-        }
-    }
-    else if (1 == stopOnFirst)
-    {
-        if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetScanMatchMode(appData.wdrvHandle, WDRV_PIC32MZW_SCAN_MATCH_MODE_STOP_ON_FIRST))
-        {
-            SYS_CONSOLE_MESSAGE("APP Error: updating scan match mode\r\n");
-            return;
-        }
-    }
-
-    if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetScanParameters(appData.wdrvHandle, numSlots, activeSlotTime, passiveScanTime, numProbes))
-    {
-        SYS_CONSOLE_MESSAGE("APP Error: updating scan parameters\r\n");
-        return;
-    }
 }
 
 bool APP_APStart()
