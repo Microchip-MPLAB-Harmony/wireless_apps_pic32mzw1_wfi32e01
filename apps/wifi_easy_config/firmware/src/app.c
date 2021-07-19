@@ -76,7 +76,7 @@ void APP_Tasks(void) {
         }
         case APP_STATE_GETCONFIG:
         {
-            if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETCONFIG, &wificonfig, sizeof(SYS_WIFI_CONFIG)))
+            if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETWIFICONFIG, &wificonfig, sizeof(SYS_WIFI_CONFIG)))
             {
                 SYS_CONSOLE_PRINT("%s:%d Device mode=%s \r\n", __func__, __LINE__, (wificonfig.mode == SYS_WIFI_STA) ? "STA" : "AP");
                 appData.state = APP_STATE_SERVICE_TASKS;

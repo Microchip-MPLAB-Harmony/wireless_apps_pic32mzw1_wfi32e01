@@ -32,5 +32,12 @@ children:
       children:
       - type: Dynamic
         attributes: {id: sysWifiPic32mzw1, value: 'true'}
+  - type: Boolean
+    attributes: {id: TCPIP_AUTOCONFIG_ENABLE_SNTP}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
 - type: ElementPosition
   attributes: {x: '20', y: '20', id: tcpip_apps_config}

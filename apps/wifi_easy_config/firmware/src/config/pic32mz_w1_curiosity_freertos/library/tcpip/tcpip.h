@@ -708,6 +708,7 @@ typedef struct TCPIP_STACK_INIT
 #include "tcpip/dhcps.h"
 #include "tcpip/dnss.h"
 #include "tcpip/icmp.h"
+#include "tcpip/sntp.h"
 #include "tcpip/http.h"
 #include "tcpip/lldp.h"
 #include "tcpip/tcpip_commands.h"

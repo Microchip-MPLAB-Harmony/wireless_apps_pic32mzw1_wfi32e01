@@ -927,8 +927,6 @@ void DRV_BA414E_Prepare(DRV_BA414E_ClientData * cd)
         case DRV_BA414E_OP_PRIM_MOD_EXP:
             DRV_BA414E_PrimModExp(cd);
             break;
-    case DRV_BA414E_OP_NONE:
-        break;
     }
 }
 void DRV_BA414E_ProcessEcdsaSign(DRV_BA414E_ClientData * cd)
@@ -1189,9 +1187,6 @@ void DRV_BA414E_Process(DRV_BA414E_ClientData * cd)
         case DRV_BA414E_OP_PRIM_MOD_EXP:
             DRV_BA414E_ProcessRsaModExp(cd);
             break;
-        case DRV_BA414E_OP_NONE:
-            break;
-
     }
 
 }

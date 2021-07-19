@@ -4,6 +4,13 @@ attributes: {id: sys_command}
 children:
 - type: Symbols
   children:
+  - type: Integer
+    attributes: {id: SYS_COMMAND_MAX_CMD_ARGS}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sysWifiProvPic32mzw1, value: '10'}
   - type: String
     attributes: {id: SYS_CONSOLE_DEVICE}
     children:

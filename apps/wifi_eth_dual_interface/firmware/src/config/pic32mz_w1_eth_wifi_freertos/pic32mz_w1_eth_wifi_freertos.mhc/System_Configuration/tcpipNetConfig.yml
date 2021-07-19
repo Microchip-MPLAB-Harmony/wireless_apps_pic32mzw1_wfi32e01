@@ -17,7 +17,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tcpipNetConfig, value: '-2'}
+        attributes: {id: tcpipNetConfig, value: '0'}
   - type: Boolean
     attributes: {id: TCPIP_STACK_USE_MAC_BRIDGE}
     children:

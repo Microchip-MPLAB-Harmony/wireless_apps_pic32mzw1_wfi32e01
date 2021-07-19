@@ -128,7 +128,7 @@ typedef enum
     SYS_WIFI_DISCONNECT,
     
     /* Control message type for requesting a Wi-Fi configuration information */
-    SYS_WIFI_GETCONFIG,
+    SYS_WIFI_GETWIFICONFIG,
 
     /* Control message type for updating a Provisioning Wi-Fi configuration 
        information */
@@ -137,10 +137,10 @@ typedef enum
     /* Control message type for registering a Wi-Fi system service 
        client callback */
     SYS_WIFI_REGCALLBACK,
-    
-    /* Control message type for requesting a Wi-Fi scan.In Scan request, 
-       client can set channel number and type of scan(active/passive). */
-    SYS_WIFI_SCANREQ
+
+            
+    /*Control message type for requesting a Wi-Fi driver handle */
+    SYS_WIFI_GETDRVHANDLE,
 
 } SYS_WIFI_CTRLMSG ;
 
@@ -705,19 +705,15 @@ uint8_t SYS_WIFI_Tasks (SYS_MODULE_OBJ object);
             
             }
 
-        Details of SYS_WIFI_SCANREQ:
-            
-            // In Scan request, user can set channel number and type of scan.
-            uint8_t buff[2];
 
-            // Scan all the channels 
-            buff[0] = 0 ;
+        Details of SYS_WIFI_GETDRVHANDLE:
 
-            // Set the Scan type as passive: 
-            //  false- passive scan,
-            //  true -active scan) 
-            buff[1] = false;
-            SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_SCANREQ, buff, 2);
+            // Get Wi-Fi Driver handle using control message request.
+            DRV_HANDLE myWifiDrvHandle;
+            if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETDRVHANDLE, &myWifiDrvHandle, sizeof(DRV_HANDLE)))
+            {
+                  //Received the handle
+            }
 
         Details of SYS_WIFI_REGCALLBACK:
 
@@ -725,13 +721,13 @@ uint8_t SYS_WIFI_Tasks (SYS_MODULE_OBJ object);
             // callback registration is a MHC configuration.
             SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_REGCALLBACK, WiFiServCallback, sizeof(uint8_t *));
 
-        Details of SYS_WIFI_GETCONFIG:
+        Details of SYS_WIFI_GETWIFICONFIG:
             
             // Get Wi-Fi Configuration using control message request.
             // The information of configuration is updated in the wifiSrvcConfig.
             
             SYS_WIFI_CONFIG wifiSrvcConfig;
-            if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETCONFIG, &wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
+            if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETWIFICONFIG, &wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
             {
                   //Received the wifiSrvcConfig data
             } 

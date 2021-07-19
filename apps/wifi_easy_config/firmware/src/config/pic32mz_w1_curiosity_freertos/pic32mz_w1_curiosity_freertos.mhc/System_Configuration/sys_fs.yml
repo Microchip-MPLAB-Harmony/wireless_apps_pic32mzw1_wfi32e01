@@ -4,15 +4,6 @@ attributes: {id: sys_fs}
 children:
 - type: Symbols
   children:
-  - type: Boolean
-    attributes: {id: SYS_FS_ALIGNED_BUFFER_ENABLE}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
   - type: File
     attributes: {id: SYS_FS_DISKIO_HEADER}
     children:

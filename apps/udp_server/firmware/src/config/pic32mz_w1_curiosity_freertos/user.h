@@ -32,7 +32,7 @@ extern "C" {
 // Section: User Configuration macros
 // *****************************************************************************
 // *****************************************************************************
-
+#define MICROCHIP_TCPIP
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
