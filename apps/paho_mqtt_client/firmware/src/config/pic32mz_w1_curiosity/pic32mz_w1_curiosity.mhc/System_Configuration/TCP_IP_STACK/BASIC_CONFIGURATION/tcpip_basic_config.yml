@@ -10,14 +10,14 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tcpip_apps_config, value: 'true'}
+        attributes: {id: tcpip_basic_config, value: 'true'}
   - type: Boolean
     attributes: {id: TCPIP_AUTOCONFIG_ENABLE_STACK}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tcpip_apps_config, value: 'true'}
+        attributes: {id: tcpip_basic_config, value: 'true'}
   - type: Boolean
     attributes: {id: TCPIP_AUTOCONFIG_ENABLE_TCPIPCMD}
     children:

@@ -169,6 +169,14 @@ SYSTEM_OBJECTS sysObj;
 // *****************************************************************************
 // *****************************************************************************
 
+
+static const DRV_BA414E_INIT_DATA ba414eInitData = 
+{
+};
+  
+ 
+
+
 // <editor-fold defaultstate="collapsed" desc="TCP/IP Stack Initialization Data">
 // *****************************************************************************
 // *****************************************************************************
@@ -208,6 +216,17 @@ const TCPIP_TCP_MODULE_CONFIG tcpipTCPInitData =
 
 
 
+/*** SNTP Client Initialization Data ***/
+const TCPIP_SNTP_MODULE_CONFIG tcpipSNTPInitData =
+{
+    .ntp_server             = TCPIP_NTP_SERVER,
+    .ntp_interface          = TCPIP_NTP_DEFAULT_IF,
+    .ntp_connection_type    = TCPIP_NTP_DEFAULT_CONNECTION_TYPE,
+    .ntp_reply_timeout      = TCPIP_NTP_REPLY_TIMEOUT,
+    .ntp_stamp_timeout      = TCPIP_NTP_TIME_STAMP_TMO,
+    .ntp_success_interval   = TCPIP_NTP_QUERY_INTERVAL,
+    .ntp_error_interval     = TCPIP_NTP_FAST_QUERY_INTERVAL,
+};
 
 
 
@@ -343,6 +362,7 @@ const TCPIP_STACK_MODULE_CONFIG TCPIP_STACK_MODULE_CONFIG_TBL [] =
     {TCPIP_MODULE_DHCP_SERVER,      &tcpipDHCPSInitData},           // TCPIP_MODULE_DHCP_SERVER
     {TCPIP_MODULE_DNS_CLIENT,       &tcpipDNSClientInitData},       // TCPIP_MODULE_DNS_CLIENT
     {TCPIP_MODULE_DNS_SERVER,       &tcpipDNSServerInitData},       // TCPIP_MODULE_DNS_SERVER
+    {TCPIP_MODULE_SNTP,             &tcpipSNTPInitData},            // TCPIP_MODULE_SNTP
 
     { TCPIP_MODULE_MANAGER,         &tcpipHeapConfig },             // TCPIP_MODULE_MANAGER
 
@@ -496,7 +516,7 @@ static const NET_PRES_INST_DATA netPresCfgs[] =
         .pTransObject_ds = &netPresTransObject0DS,
         .pTransObject_dc = &netPresTransObject0DC,
         .pProvObject_ss = NULL,
-        .pProvObject_sc = &net_pres_EncProviderStreamClient0,
+        .pProvObject_sc = NULL,
         .pProvObject_ds = NULL,
         .pProvObject_dc = NULL,
     },
@@ -627,6 +647,26 @@ const SYS_DEBUG_INIT debugInit =
 // *****************************************************************************
 // *****************************************************************************
 
+/*******************************************************************************
+  Function:
+    void STDIO_BufferModeSet ( void )
+
+  Summary:
+    Sets the buffering mode for stdin and stdout
+
+  Remarks:
+ ********************************************************************************/
+static void STDIO_BufferModeSet(void)
+{
+
+    /* Make stdin unbuffered */
+    setbuf(stdin, NULL);
+
+    /* Make stdout unbuffered */
+    setbuf(stdout, NULL);
+}
+
+
 
 
 /*******************************************************************************
@@ -645,6 +685,9 @@ void SYS_Initialize ( void* data )
     /* Start out with interrupts disabled before configuring any modules */
     __builtin_disable_interrupts();
 
+    STDIO_BufferModeSet();
+
+
   
     CLK_Initialize();
 	SYS_PMU_MLDO_TRIM();
@@ -659,6 +702,8 @@ void SYS_Initialize ( void* data )
     NVM_Initialize();
 
     CORETIMER_Initialize();
+	UART3_Initialize();
+
 	UART1_Initialize();
 
 
@@ -685,6 +730,8 @@ void SYS_Initialize ( void* data )
     sysObj.syswifi = SYS_WIFI_Initialize(NULL,NULL,NULL);
     SYS_ASSERT(sysObj.syswifi  != SYS_MODULE_OBJ_INVALID, "SYS_WIFI_Initialize Failed" );
 
+
+    sysObj.ba414e = DRV_BA414E_Initialize(0, (SYS_MODULE_INIT*)&ba414eInitData);
 
 
 	/* Network Presentation Layer Initialization */

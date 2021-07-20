@@ -31,7 +31,9 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: sysNetPic32mzw1, value: Single Threaded}
+        attributes: {id: sysNetPic32mzw1, value: FreeRTOS}
+      - type: User
+        attributes: {value: Single Threaded}
   - type: Boolean
     attributes: {id: wolfcrypt_aes_hw}
     children:
@@ -43,15 +45,6 @@ children:
         - {type: Value, value: 'true'}
   - type: Boolean
     attributes: {id: wolfcrypt_hashdrng}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
-  - type: Boolean
-    attributes: {id: wolfcrypt_hkdf}
     children:
     - type: Attributes
       children:
@@ -143,4 +136,4 @@ children:
         children:
         - {type: Value, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '290', y: '100', id: lib_wolfcrypt}
+  attributes: {x: '270', y: '100', id: lib_wolfcrypt}

@@ -63,6 +63,8 @@ void EVIC_Initialize( void )
     IPC20SET = 0x4000000 | 0x0;  /* RFSMC:  Priority 1 / Subpriority 0 */
     IPC21SET = 0x4 | 0x0;  /* RFMAC:  Priority 1 / Subpriority 0 */
     IPC21SET = 0x40000 | 0x0;  /* RFTM0:  Priority 1 / Subpriority 0 */
+    IPC41SET = 0x40000 | 0x0;  /* CRYPTO1:  Priority 1 / Subpriority 0 */
+    IPC41SET = 0x4000000 | 0x0;  /* CRYPTO1_FAULT:  Priority 1 / Subpriority 0 */
 
 
 

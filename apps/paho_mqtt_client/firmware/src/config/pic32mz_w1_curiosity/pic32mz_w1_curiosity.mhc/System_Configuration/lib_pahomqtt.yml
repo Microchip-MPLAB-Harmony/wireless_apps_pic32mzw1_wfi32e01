@@ -3,4 +3,4 @@ type: UniqueComponent
 attributes: {id: lib_pahomqtt}
 children:
 - type: ElementPosition
-  attributes: {x: '190', y: '720', id: lib_pahomqtt}
+  attributes: {x: '410', y: '620', id: lib_pahomqtt}

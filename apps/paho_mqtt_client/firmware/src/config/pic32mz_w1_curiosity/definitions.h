@@ -48,11 +48,14 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "crypto/crypto.h"
+#include "driver/ba414e/drv_ba414e.h"
 #include "system/net/sys_net.h"
-#include "peripheral/nvm/plib_nvm.h"
 #include "system/time/sys_time.h"
+#include "peripheral/nvm/plib_nvm.h"
 #include "peripheral/coretimer/plib_coretimer.h"
+#include "peripheral/uart/plib_uart3.h"
 #include "system/mqtt/sys_mqtt.h"
 #include "peripheral/uart/plib_uart1.h"
 #include "system/int/sys_int.h"
@@ -200,6 +203,9 @@ Remarks:
 
 typedef struct
 {
+
+    SYS_MODULE_OBJ  ba414e;
+
     SYS_MODULE_OBJ  sysTime;
     SYS_MODULE_OBJ  sysConsole0;
 

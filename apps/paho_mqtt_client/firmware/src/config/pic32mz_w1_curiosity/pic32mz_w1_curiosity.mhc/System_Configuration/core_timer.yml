@@ -70,4 +70,4 @@ children:
         children:
         - {type: Value, value: sys_time_TMR_dependency}
 - type: ElementPosition
-  attributes: {x: '180', y: '20', id: core_timer}
+  attributes: {x: '160', y: '20', id: core_timer}

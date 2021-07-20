@@ -1,5 +1,5 @@
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -87,6 +87,10 @@ void SYS_MQTT_TcpClientCallback(uint32_t event, void *data, void* cookie)
         SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
     }
         break;
+        
+    case SYS_NET_EVNT_LL_INTF_DOWN:
+    case SYS_NET_EVNT_LL_INTF_UP:
+        break;
     }
 }
 
@@ -122,6 +126,7 @@ void SYS_MQTT_ProcessTimeout(SYS_MQTT_Handle *hdl, SYS_MQTT_EVENT_TYPE cbEvent, 
 {
     if (SYS_MQTT_TimerExpired(hdl) == true)
     {
+        SYS_NET_RESULT  rc = SYS_NET_FAILURE;
         if (hdl->callback_fn)
         {
             hdl->callback_fn(cbEvent,
@@ -132,7 +137,16 @@ void SYS_MQTT_ProcessTimeout(SYS_MQTT_Handle *hdl, SYS_MQTT_EVENT_TYPE cbEvent, 
 
         SYS_MQTT_ResetTimer(hdl);
 
-        SYS_MQTT_SetInstStatus(hdl, nextStatus);
+        if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                  SYS_NET_CTRL_MSG_DISCONNECT,
+                                  NULL, 0)) != SYS_NET_SUCCESS)
+        {
+            SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+            return;
+        }
+        
+        SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
     }
 }
 
@@ -391,6 +405,17 @@ void SYS_MQTT_Paho_Task(SYS_MODULE_OBJ obj)
                                         SYS_MQTT_messageCallback)) != 0)
                 {
                     SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "MQTTSubscribe() failed (%d)\r\n", rc);
+
+                    if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                              SYS_NET_CTRL_MSG_DISCONNECT,
+                                              NULL, 0)) != SYS_NET_SUCCESS)
+                    {
+                        SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+                        return;
+                    }
+
+                    SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
 
                     return;
                 }
@@ -682,6 +707,17 @@ int32_t SYS_MQTT_Paho_CtrlMsg(SYS_MODULE_OBJ obj, SYS_MQTT_CtrlMsgType eCtrlMsgT
         {
             SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "MQTTSubscribe() Failed (%d)\r\n", rc);
 
+            if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                      SYS_NET_CTRL_MSG_DISCONNECT,
+                                      NULL, 0)) != SYS_NET_SUCCESS)
+            {
+                SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+                return SYS_MQTT_FAILURE;
+            }
+
+            SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
+
             return SYS_MQTT_FAILURE;
         }
 
@@ -742,6 +778,17 @@ int32_t SYS_MQTT_Paho_CtrlMsg(SYS_MODULE_OBJ obj, SYS_MQTT_CtrlMsgType eCtrlMsgT
         if (rc != 0)
         {
             SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "MQTTUnsubscribe failed (%d)\r\n", rc);
+
+            if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                      SYS_NET_CTRL_MSG_DISCONNECT,
+                                      NULL, 0)) != SYS_NET_SUCCESS)
+            {
+                SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+                return SYS_MQTT_FAILURE;
+            }
+
+            SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
 
             return SYS_MQTT_FAILURE;
         }
@@ -886,6 +933,17 @@ int32_t SYS_MQTT_Paho_SendMsg(SYS_MODULE_OBJ obj, SYS_MQTT_PublishTopicCfg *psTo
     if (rc != 0)
     {
         SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "MQTTPublish() Failed (%d)\r\n", rc);
+
+        if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                  SYS_NET_CTRL_MSG_DISCONNECT,
+                                  NULL, 0)) != SYS_NET_SUCCESS)
+        {
+            SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+            return SYS_MQTT_FAILURE;
+        }
+
+        SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
 
         return SYS_MQTT_FAILURE;
     }

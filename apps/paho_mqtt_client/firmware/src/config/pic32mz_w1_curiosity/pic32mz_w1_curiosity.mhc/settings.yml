@@ -1,13 +1,14 @@
 configName: pic32mz_w1_curiosity
-folderName: ''
+folderName: pic32mz_w1_curiosity
 format_version: v1.0
-frameworkPath: ../../..
+frameworkPath: ..\..\..
 processor: PIC32MZ1025W104132
-projectName: ''
+projectName: paho_mqtt_client_pic32mz_w1_curiosity
 settings:
-  PackageFilter: bsp;core;crypto;cryptoauthlib;csp;net;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_wifi
+  PackageFilter: bootloader;bootloader_apps_uart;bsp;core;crypto;cryptoauthlib;csp;net;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_apps_winc1500;wireless_apps_winc3400;wireless_system_pic32mzw1_wfi32e01;wireless_wifi
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
+  TRUSTZONE: 'false'
   CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
-  MERGE_STRATEGY: OVERWRITE
+  MERGE_STRATEGY: USER_ALL
   DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.4.193\atdf\PIC32MZ1025W104132.atdf

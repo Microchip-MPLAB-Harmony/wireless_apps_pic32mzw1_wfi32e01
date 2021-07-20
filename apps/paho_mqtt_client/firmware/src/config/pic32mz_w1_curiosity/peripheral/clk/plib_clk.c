@@ -150,9 +150,9 @@ void CLK_Initialize( void )
 
     /* Peripheral Module Disable Configuration */
 
-    PMD1 = 0x20818981;
+    PMD1 = 0x20018981;
     PMD2 = 0x7f0f0f;
-    PMD3 = 0x19030316;
+    PMD3 = 0x19030312;
 
 
     /* Lock system since done with clock configuration */

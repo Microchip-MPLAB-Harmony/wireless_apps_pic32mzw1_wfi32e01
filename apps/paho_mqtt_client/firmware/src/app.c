@@ -50,7 +50,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-#include "definitions.h"
 #include "app.h"
 #include "app_mqtt.h"
 
@@ -162,7 +161,7 @@ void APP_CheckTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut)
 void APP_Initialize ( void )
 {
     /* Place the App state machine in its initial state. */
-    appData.state = APP_STATE_INIT_DONE;
+    appData.state = APP_STATE_INIT;
 
 
 
@@ -187,14 +186,22 @@ void APP_Tasks ( void )
     switch ( appData.state )
     {
         /* Application's initial state. */
-        case APP_STATE_INIT_DONE:
+        case APP_STATE_INIT:
         {
-			appData.state = APP_STATE_SERVICE_TASKS;
+            bool appInitialized = true;
+
+
+            if (appInitialized)
+            {
+
+                appData.state = APP_STATE_SERVICE_TASKS;
+            }
             break;
         }
 
         case APP_STATE_SERVICE_TASKS:
         {
+
             break;
         }
 

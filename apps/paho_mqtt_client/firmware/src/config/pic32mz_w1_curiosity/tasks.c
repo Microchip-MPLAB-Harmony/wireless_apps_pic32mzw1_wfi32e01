@@ -87,6 +87,10 @@ SYS_CMD_Tasks();
 
     /* Maintain Middleware & Other Libraries */
     
+DRV_BA414E_Tasks(sysObj.ba414e);
+
+
+
 TCPIP_STACK_Task(sysObj.tcpip);
 
 
