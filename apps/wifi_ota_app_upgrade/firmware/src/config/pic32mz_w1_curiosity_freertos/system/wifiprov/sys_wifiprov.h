@@ -151,8 +151,6 @@ typedef enum
 {
     /* Requesting a operating mode as a station */
     SYS_WIFIPROV_STA = 0,
-    /* Requesting a operating mode as a access point. */
-    SYS_WIFIPROV_AP = 1
     
 } SYS_WIFIPROV_MODE ;
 
@@ -193,41 +191,6 @@ typedef struct
 
 } SYS_WIFIPROV_STA_CONFIG;
 
-// *****************************************************************************
-/* System Wi-Fi Provisioning service access point mode configuration structure
-
-  Summary:
-    Configuration of access point mode parameters.
-
-  Description:
-    Configuration of access point mode parameters.
-
-  Remarks:
-   None.
-*/
-typedef struct 
-{
-    /* Wi-Fi access point mode SSID */
-    uint8_t ssid[32];
-
-    /* Wi-Fi access point  mode passphrase */
-    uint8_t psk[64];
-
-    /* Wi-Fi access point mode authentication type */
-    SYS_WIFIPROV_AUTH authType;
-
-    /* Wi-Fi access point mode channel number 
-       values of channel:  
-       1 to 13 - operating channel of access point */
-    uint8_t channel;
-
-    /* Wi-Fi access point mode SSID visibility 
-       Value of ssidVisibility:
-       0 - Hidden SSID
-       1 - broadcast the SSID  */
-    bool ssidVisibility;
-
-} SYS_WIFIPROV_AP_CONFIG;
 
 // *****************************************************************************
 /* System Wi-Fi Provisioning service device configuration structure.
@@ -258,8 +221,6 @@ typedef struct
     /* Wi-Fi station mode configuration */
     SYS_WIFIPROV_STA_CONFIG staConfig;
 
-    /* Wi-Fi access point mode configuration */
-    SYS_WIFIPROV_AP_CONFIG apConfig;
 }SYS_WIFIPROV_CONFIG;
 
 // *****************************************************************************

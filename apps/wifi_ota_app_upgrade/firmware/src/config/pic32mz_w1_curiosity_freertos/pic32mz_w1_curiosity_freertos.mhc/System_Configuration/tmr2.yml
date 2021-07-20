@@ -4,20 +4,6 @@ attributes: {id: tmr2}
 children:
 - type: Symbols
   children:
-  - type: Integer
-    attributes: {id: TIMER_CLOCK_FREQ}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: tmr2, value: '100000000'}
-  - type: Long
-    attributes: {id: TIMER_PERIOD}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: tmr2, value: '29999'}
   - type: Boolean
     attributes: {id: TMR_INTERRUPT_MODE}
     children:
@@ -26,4 +12,4 @@ children:
       - type: Dynamic
         attributes: {id: tmr2, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '170', y: '620', id: tmr2}
+  attributes: {x: '730', y: '400', id: tmr2}

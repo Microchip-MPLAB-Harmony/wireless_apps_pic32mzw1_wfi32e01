@@ -194,7 +194,7 @@ static HTTP_IO_RESULT HTTPPostConfig_wifi(HTTP_CONN_HANDLE connHandle)
     uint32_t byteCount;
     TCP_SOCKET sktHTTP;
     
-    SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETCONFIG, &wifiConfig, sizeof(SYS_WIFI_CONFIG));
+    SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETWIFICONFIG, &wifiConfig, sizeof(SYS_WIFI_CONFIG));
     httpNetData.currNet = 0; // forget the old settings
     
     // Check to see if the browser is attempting to submit more data than we
@@ -416,7 +416,7 @@ void TCPIP_HTTP_Print_builddate(HTTP_CONN_HANDLE connHandle)
 
 void TCPIP_HTTP_Print_version(HTTP_CONN_HANDLE connHandle)
 {    
-    SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETCONFIG, &wifiConfig, sizeof(SYS_WIFI_CONFIG));
+    SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETWIFICONFIG, &wifiConfig, sizeof(SYS_WIFI_CONFIG));
     TCPIP_TCP_StringPut(TCPIP_HTTP_CurrentConnectionSocketGet(connHandle), (const void *)TCPIP_STACK_VERSION_STR);
 }
 

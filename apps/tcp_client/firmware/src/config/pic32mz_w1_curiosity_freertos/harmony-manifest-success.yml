@@ -17,7 +17,6 @@ modules:
     - {name: "csp", version: "v3.9.1"}
     - {name: "wireless_wifi", version: "v3.5.0"}
     - {name: "dev_packs", version: "v3.9.0"}
-    - {name: "integration", version: "unknown"}
     - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.5.0-TC1"}
     - {name: "wolfssl", version: "v4.7.0"}
     - {name: "net", version: "v3.7.2"}

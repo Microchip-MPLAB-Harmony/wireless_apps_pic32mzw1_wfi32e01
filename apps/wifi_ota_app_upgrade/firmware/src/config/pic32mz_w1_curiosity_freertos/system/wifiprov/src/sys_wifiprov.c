@@ -170,13 +170,6 @@ static void inline SYS_WIFIPROV_InitConfig(SYS_WIFIPROV_CONFIG *config)
         g_wifiProvSrvcConfig.staConfig.authType = SYS_WIFI_STA_AUTHTYPE;
         memcpy(g_wifiProvSrvcConfig.staConfig.ssid, SYS_WIFI_STA_SSID, sizeof (SYS_WIFI_STA_SSID));
         memcpy(g_wifiProvSrvcConfig.staConfig.psk, SYS_WIFI_STA_PWD, sizeof (SYS_WIFI_STA_PWD));
-        
-        /* AP Mode Configuration */
-        g_wifiProvSrvcConfig.apConfig.channel = SYS_WIFI_AP_CHANNEL;
-        g_wifiProvSrvcConfig.apConfig.ssidVisibility = SYS_WIFI_AP_SSIDVISIBILE;
-        g_wifiProvSrvcConfig.apConfig.authType = SYS_WIFI_AP_AUTHTYPE;
-        memcpy(g_wifiProvSrvcConfig.apConfig.ssid, SYS_WIFI_AP_SSID, sizeof (SYS_WIFI_AP_SSID));
-        memcpy(g_wifiProvSrvcConfig.apConfig.psk, SYS_WIFI_AP_PWD, sizeof (SYS_WIFI_AP_PWD));      
         SYS_WIFIPROV_SetTaskstatus(SYS_WIFIPROV_STATUS_NVM_READ);
     } 
     else 
@@ -230,7 +223,6 @@ static void SYS_WIFIPROV_PrintConfig(void)
 {
     SYS_CONSOLE_PRINT("\r\n mode=%d (0-STA,1-AP) saveConfig=%d countryCode=%s\r\n ", g_wifiProvSrvcConfig.mode, g_wifiProvSrvcConfig.saveConfig, g_wifiProvSrvcConfig.countryCode);
     SYS_CONSOLE_PRINT("\r\n STA Configuration :\r\n channel=%d \r\n autoConnect=%d \r\n ssid=%s \r\n passphase=%s \r\n authentication type=%d (1-Open,2-WEP,3-Mixed mode(WPA/WPA2),4-WPA2,5-Mixed mode(WPA2/WPA3),6-WPA3) \r\n", g_wifiProvSrvcConfig.staConfig.channel, g_wifiProvSrvcConfig.staConfig.autoConnect, g_wifiProvSrvcConfig.staConfig.ssid, g_wifiProvSrvcConfig.staConfig.psk, g_wifiProvSrvcConfig.staConfig.authType);
-    SYS_CONSOLE_PRINT("\r\n AP Configuration :\r\n  channel=%d \r\n ssidVisibility=%d \r\n ssid=%s \r\n passphase=%s \r\n authentication type=%d (1-Open,2-WEP,3-Mixed mode(WPA/WPA2),4-WPA2,5-Mixed mode(WPA2/WPA3),6-WPA3) \r\n", g_wifiProvSrvcConfig.apConfig.channel, g_wifiProvSrvcConfig.apConfig.ssidVisibility, g_wifiProvSrvcConfig.apConfig.ssid, g_wifiProvSrvcConfig.apConfig.psk, g_wifiProvSrvcConfig.apConfig.authType);
 }
 static void SYS_WIFIPROV_WriteConfig(void) 
 {
@@ -331,7 +323,7 @@ static SYS_WIFIPROV_STATUS SYS_WIFIPROV_ExecuteBlock
 
 static bool SYS_WIFIPROV_ConfigValidate(SYS_WIFIPROV_CONFIG wifiProvSrvcConfig) 
 {
-    if (!((wifiProvSrvcConfig.mode == SYS_WIFIPROV_STA) || (wifiProvSrvcConfig.mode == SYS_WIFIPROV_AP))) 
+    if (!((wifiProvSrvcConfig.mode == SYS_WIFIPROV_STA))) 
     {
         SYS_CONSOLE_MESSAGE(" set valid boot mode \r\n");
         return true;
@@ -365,34 +357,6 @@ static bool SYS_WIFIPROV_ConfigValidate(SYS_WIFIPROV_CONFIG wifiProvSrvcConfig)
             if (strlen((const char *) wifiProvSrvcConfig.staConfig.psk) < 8) 
             {
                 SYS_CONSOLE_MESSAGE(" set valid station mode passphase \r\n");
-                return true;
-            }
-        }
-    }
-    if (SYS_WIFIPROV_AP == (SYS_WIFIPROV_MODE) wifiProvSrvcConfig.mode) 
-    {
-        if (!((wifiProvSrvcConfig.apConfig.channel >= 1) && (wifiProvSrvcConfig.apConfig.channel <= 13))) 
-        {
-            SYS_CONSOLE_MESSAGE(" set valid access point mode channel number \r\n");
-            return true;
-        }
-        if (!((wifiProvSrvcConfig.apConfig.ssidVisibility == true) || (wifiProvSrvcConfig.apConfig.ssidVisibility == false))) 
-        {
-            SYS_CONSOLE_MESSAGE(" set valid access point mode SSID visibility \r\n");
-            return true;
-        }
-        if (!(((wifiProvSrvcConfig.apConfig.authType == SYS_WIFIPROV_OPEN) ||
-             ((wifiProvSrvcConfig.apConfig.authType >= SYS_WIFIPROV_WPAWPA2MIXED) && (wifiProvSrvcConfig.apConfig.authType <= SYS_WIFIPROV_WPA3)))))  //ignore WEP as not support 
-        {
-            SYS_CONSOLE_MESSAGE(" set valid access point mode Auth value \r\n");
-            return true;
-        }
-        
-        if ((wifiProvSrvcConfig.apConfig.authType >= SYS_WIFIPROV_WPAWPA2MIXED) && (wifiProvSrvcConfig.apConfig.authType <= SYS_WIFIPROV_WPA3)) 
-        {
-            if (strlen((const char *) wifiProvSrvcConfig.apConfig.psk) < 8) 
-            {
-                SYS_CONSOLE_MESSAGE(" set valid access point mode passphase \r\n");
                 return true;
             }
         }
@@ -486,65 +450,6 @@ static int SYS_WIFIPROV_CMDProcess
             {
                 SYS_CONSOLE_PRINT(" Wrong Command\n");
             }
-        } else if (SYS_WIFIPROV_AP == (SYS_WIFIPROV_MODE) strtol(argv[2], NULL, 0)) 
-        {
-            wifiProvSrvcConfig.mode = strtol(argv[2], NULL, 0);
-            wifiProvSrvcConfig.saveConfig = strtol(argv[3], NULL, 0);
-            len = strlen((const char *) argv[4])+1; 
-            if (len <= sizeof (wifiProvSrvcConfig.countryCode)) 
-            {
-                strncpy((char *)wifiProvSrvcConfig.countryCode,argv[4],len);
-            } 
-            else 
-            {
-                error = true;
-            }
-            wifiProvSrvcConfig.apConfig.channel = strtol(argv[5], NULL, 0);
-            wifiProvSrvcConfig.apConfig.ssidVisibility = strtol(argv[6], NULL, 0);
-            wifiProvSrvcConfig.apConfig.authType = strtol(argv[7], NULL, 0);
-            len = strlen((const char *) argv[8])+1;
-            if (len <= sizeof (wifiProvSrvcConfig.apConfig.ssid)) 
-            {
-                strncpy((char *)wifiProvSrvcConfig.apConfig.ssid,argv[8],len);
-            } 
-            else 
-            {
-                error = true;
-            }
-            
-            if (argc == 10) 
-            {
-                len = strlen((const char *) argv[9])+1;
-                if (len <= sizeof(wifiProvSrvcConfig.apConfig.psk))
-                {
-                     strncpy((char *)wifiProvSrvcConfig.apConfig.psk,argv[9],len);
-                } 
-                else 
-                {
-                    error = true;
-                }
-            } 
-            else 
-            {
-                memset(wifiProvSrvcConfig.apConfig.psk, 0, sizeof(wifiProvSrvcConfig.apConfig.psk));
-            }
-
-            if ((!error) &&(!SYS_WIFIPROV_ConfigValidate(wifiProvSrvcConfig))) 
-            {
-                g_wifiProvSrvcConfig.mode = wifiProvSrvcConfig.mode;
-                g_wifiProvSrvcConfig.saveConfig = wifiProvSrvcConfig.saveConfig;
-                memcpy(&g_wifiProvSrvcConfig.apConfig, &wifiProvSrvcConfig.apConfig, sizeof(SYS_WIFIPROV_AP_CONFIG));
-                SYS_WIFIPROV_WriteConfig();
-                //SYS_WIFIPROV_PrintConfig();
-            } 
-            else 
-            {
-                SYS_CONSOLE_PRINT(" Wrong Command\n");
-            }
-        } 
-        else 
-        {  
-            SYS_CONSOLE_PRINT(" Wrong Command\n");
         }
     } 
     else if ((argc == 2) && (!strcmp(argv[1], "get"))) 
@@ -697,68 +602,6 @@ static void SYS_WIFIPROV_DataUpdate(uint8_t buffer[])
                     error = true;
                 }
             }
-            /* Verifying JSON  "AP" field */
-            if (!json_find(&root, "AP", &child)) 
-            {
-                if (!json_find(&child, "ch", &sub)) 
-                {
-                    wifiProvSrvcConfig.apConfig.channel = sub.value.i;
-                }
-                else
-                {
-                    error = true;
-                }
-
-                if (!json_find(&child, "ssidv", &sub)) 
-                {
-                    wifiProvSrvcConfig.apConfig.ssidVisibility = sub.value.b;
-                }
-                else
-                {
-                    error = true;
-                }
-
-                if (!json_find(&child, "auth", &sub)) 
-                {
-                    wifiProvSrvcConfig.apConfig.authType = sub.value.i;
-                }
-                else
-                {
-                    error = true;
-                }
-
-                if (!json_find(&child, "SSID", &sub)) 
-                {
-                    if (strlen(sub.value.s) <= sizeof (wifiProvSrvcConfig.apConfig.ssid)) 
-                    {
-                        memcpy(wifiProvSrvcConfig.apConfig.ssid, sub.value.s, strlen(sub.value.s));
-                    } 
-                    else
-                    {
-                        error = true;
-                    }
-                } 
-                else
-                {
-                    error = true;
-                }
-
-                if (!json_find(&child, "PWD", &sub)) 
-                {
-                    if (strlen(sub.value.s) <= sizeof (wifiProvSrvcConfig.apConfig.psk)) 
-                    {
-                        memcpy(wifiProvSrvcConfig.apConfig.psk, sub.value.s, strlen(sub.value.s));
-                    } 
-                    else
-                    {
-                        error = true;
-                    }
-                } 
-                else
-                {
-                    error = true;
-                }
-            }
             /* Verifying JSON object error */
             if ((!error) && (!SYS_WIFIPROV_ConfigValidate(wifiProvSrvcConfig))) 
             {
@@ -766,7 +609,6 @@ static void SYS_WIFIPROV_DataUpdate(uint8_t buffer[])
                 g_wifiProvSrvcConfig.saveConfig = wifiProvSrvcConfig.saveConfig;
                 memcpy(g_wifiProvSrvcConfig.countryCode, wifiProvSrvcConfig.countryCode, sizeof (wifiProvSrvcConfig.countryCode));
                 memcpy(&g_wifiProvSrvcConfig.staConfig, &wifiProvSrvcConfig.staConfig, sizeof (SYS_WIFIPROV_STA_CONFIG));
-                memcpy(&g_wifiProvSrvcConfig.apConfig, &wifiProvSrvcConfig.apConfig, sizeof (SYS_WIFIPROV_AP_CONFIG));
                 //SYS_WIFIPROV_PrintConfig();
                 /* Updating Configuration into Wi-Fi Provisioning structure */
                 SYS_WIFIPROV_WriteConfig();

@@ -13,13 +13,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 2DF7C661F71182DC8188521EF1ABAA64
-- generatedChecksum: null
+- generatedChecksum: F8D62BE3F73EAE8786C37DB4EEB7C5CA
   logicalPath: ''
   name: app.c
   physicalPath: ../..
   security: NON_SECURE
   type: SOURCE
-  userChecksum: null
+  userChecksum: F8D62BE3F73EAE8786C37DB4EEB7C5CA
+- generatedChecksum: 58FB0E73A2590605D12D14C70B5369DC
+  logicalPath: ''
+  name: app_ota.c
+  physicalPath: system/ota/framework/ota_app
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 58FB0E73A2590605D12D14C70B5369DC
 - generatedChecksum: 928C0B9FF116D4D3994879848B3D46F8
   logicalPath: wolfcrypt
   name: arc4.c
@@ -90,6 +97,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 5E77D934A8B72313CE17241EAA55A4B9
+- generatedChecksum: BA60075CD7BB557B6B61B3714826F4B9
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework/cjson
+  name: cjson.c
+  physicalPath: system/ota/framework/cjson
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: BA60075CD7BB557B6B61B3714826F4B9
 - generatedChecksum: 21940316AEFB5947EDF5FB063544446C
   logicalPath: wolfcrypt
   name: cmac.c
@@ -279,6 +293,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: E608269FFD2B895BDAEEAD87D5FC1FE5
+- generatedChecksum: CE3FB96B2BA4662307A71B8D9905E5B3
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework/csv
+  name: csv.c
+  physicalPath: system/ota/framework/csv
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: CE3FB96B2BA4662307A71B8D9905E5B3
 - generatedChecksum: CFC552C86712D9FBCAC1F04EE8E76562
   logicalPath: wolfcrypt
   name: curve25519.c
@@ -328,6 +349,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: AE84DCDFFF8163C1C783B51DBDB02503
+- generatedChecksum: E60FEAAC9CC20D4746D6761A2AA63666
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: downloader.c
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: E60FEAAC9CC20D4746D6761A2AA63666
 - generatedChecksum: 2CCC0B41346FE79B85412A6AB80DAC55
   logicalPath: config/pic32mz_w1_curiosity_freertos/driver/ba414e/src
   name: drv_ba414e.c
@@ -335,20 +363,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 2CCC0B41346FE79B85412A6AB80DAC55
-- generatedChecksum: 65EED2D5BD5CBA1F2AECBDA945D2195A
+- generatedChecksum: 257ACC61A57EA8DE78BA7E1F78DB85A3
   logicalPath: config/pic32mz_w1_curiosity_freertos/driver/memory
   name: drv_memory.c
   physicalPath: driver/memory/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 65EED2D5BD5CBA1F2AECBDA945D2195A
-- generatedChecksum: 6CC6FE1080CA265AB8DF7741E7BB79B7
+  userChecksum: 257ACC61A57EA8DE78BA7E1F78DB85A3
+- generatedChecksum: AD5CAAD66A56C9B5D17EB7E756C22D0C
   logicalPath: config/pic32mz_w1_curiosity_freertos/driver/memory
   name: drv_memory_file_system.c
   physicalPath: driver/memory/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 6CC6FE1080CA265AB8DF7741E7BB79B7
+  userChecksum: AD5CAAD66A56C9B5D17EB7E756C22D0C
 - generatedChecksum: FBF53FFC458037E3BD44D4F66DBDED56
   logicalPath: config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1
   name: drv_pic32mzw1_crypto.c
@@ -524,6 +552,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: EF20A104939F627E3C0AE7DC97963334
+- generatedChecksum: 41A35CBD42545E196A732BA47F376DAC
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework/http_client
+  name: http_client.c
+  physicalPath: system/ota/framework/http_client
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 41A35CBD42545E196A732BA47F376DAC
 - generatedChecksum: 2AAEA12E884DD3B07F94C6AE7FEAACEA
   logicalPath: config/pic32mz_w1_curiosity_freertos/library/tcpip/src
   name: icmp.c
@@ -538,13 +573,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 62951755A45BA873C9775C77F461A8DF
-- generatedChecksum: 5C13186D57D9C19982351FE35BB5F38B
+- generatedChecksum: F68E1C8DF889CC57EAFF4E5521850576
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 5C13186D57D9C19982351FE35BB5F38B
+  userChecksum: F68E1C8DF889CC57EAFF4E5521850576
+- generatedChecksum: F48FA553787D28CFD0FD51331FDD2B73
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: int_flash.c
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: F48FA553787D28CFD0FD51331FDD2B73
 - generatedChecksum: 479A727027F5AD9CBBDC717FD86D8B5E
   logicalPath: wolfcrypt
   name: integer.c
@@ -559,20 +601,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: C09C27CBF5040E6905ADF10175E114CD
-- generatedChecksum: 343EFDCB9C4CEC30A461BB9D034937AF
+- generatedChecksum: 398C6655B08F4D9FE30B6F3B4A3AD8A5
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: interrupts.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 343EFDCB9C4CEC30A461BB9D034937AF
-- generatedChecksum: 696336B202FD2A53427A28A0E4DFEF25
+  userChecksum: 398C6655B08F4D9FE30B6F3B4A3AD8A5
+- generatedChecksum: 9C9F0EFD0B69E407412BBE8D2568869B
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: interrupts_a.S
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 696336B202FD2A53427A28A0E4DFEF25
+  userChecksum: 9C9F0EFD0B69E407412BBE8D2568869B
 - generatedChecksum: A40F0AFC67E19C6D4E8DEA7BB26DFD9E
   logicalPath: config/pic32mz_w1_curiosity_freertos/library/tcpip/src
   name: ipv4.c
@@ -601,13 +643,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: EC7D138490803EC5E5AB6AA691A6ADE2
-- generatedChecksum: null
+- generatedChecksum: F81A00E640818EDFB9E79C9BD241AEF4
   logicalPath: ''
   name: main.c
   physicalPath: ../..
   security: NON_SECURE
   type: SOURCE
-  userChecksum: null
+  userChecksum: F81A00E640818EDFB9E79C9BD241AEF4
 - generatedChecksum: 862D8D08452AA2686491E461C4741C4C
   logicalPath: wolfcrypt
   name: md2.c
@@ -650,13 +692,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 98FBCDAE8D08055A4805E0C0DB104767
-- generatedChecksum: D50C6F6B67E9A3CC5FA04505BBCBFFB3
+- generatedChecksum: 84F0B86EB1DB05F7FFD5DFACFDE56AE5
   logicalPath: config/pic32mz_w1_curiosity_freertos/net_pres/pres
   name: net_pres_enc_glue.c
   physicalPath: net_pres/pres
   security: NON_SECURE
   type: SOURCE
-  userChecksum: D50C6F6B67E9A3CC5FA04505BBCBFFB3
+  userChecksum: 84F0B86EB1DB05F7FFD5DFACFDE56AE5
 - generatedChecksum: 417DA77DBD58024F50AC993F8D468570
   logicalPath: config/pic32mz_w1_curiosity_freertos/library/tcpip/src
   name: oahash.c
@@ -678,6 +720,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 8FDD6248506F28B32C4F5FD9AA0D9C6F
+- generatedChecksum: 250DAA0FC53FF217336BCBD1F62B540B
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: ota.c
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 250DAA0FC53FF217336BCBD1F62B540B
+- generatedChecksum: B30443D55206D60675BBAB5F038B5E57
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: ota_database_parser.c
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: B30443D55206D60675BBAB5F038B5E57
 - generatedChecksum: 257FD8DA385CB8BD2ECBD68395BB7D76
   logicalPath: wolfcrypt/port
   name: pic32mz-crypt.c
@@ -734,13 +790,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 2FEFEA0D4E94F5A5F3D76BAEC3D602E5
-- generatedChecksum: 4C6BE0972FD9AB610A547EADE9F05D0A
+- generatedChecksum: B4B10AD587F245961C37DD327656D24B
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/evic
   name: plib_evic.c
   physicalPath: peripheral/evic
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 4C6BE0972FD9AB610A547EADE9F05D0A
+  userChecksum: B4B10AD587F245961C37DD327656D24B
 - generatedChecksum: EB7F0F839F6D89EAF439AFF0BECB195B
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/gpio
   name: plib_gpio.c
@@ -755,27 +811,27 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 302870B553042ED5294917554809F0B6
-- generatedChecksum: EAE3E39FECFDF4C7A13B0A8406098F89
+- generatedChecksum: 7C6DE78D7E90B1E3CF84978C9F743B44
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/rng
   name: plib_rng.c
   physicalPath: peripheral/rng
   security: NON_SECURE
   type: SOURCE
-  userChecksum: EAE3E39FECFDF4C7A13B0A8406098F89
-- generatedChecksum: F7E09078FD3E800D80E33A93D6AB0665
+  userChecksum: 7C6DE78D7E90B1E3CF84978C9F743B44
+- generatedChecksum: 9E0C5CB3F1755263D282843CC83092D1
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/rtcc
   name: plib_rtcc.c
   physicalPath: peripheral/rtcc
   security: NON_SECURE
   type: SOURCE
-  userChecksum: F7E09078FD3E800D80E33A93D6AB0665
-- generatedChecksum: 3E9F86A94FD25B1A80E14CDD4D3FE40C
+  userChecksum: 9E0C5CB3F1755263D282843CC83092D1
+- generatedChecksum: 45DCEF7AAB178A6AC21DC2CFCB79A2AF
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/spi/spi_master
   name: plib_spi1_master.c
   physicalPath: peripheral/spi/spi_master
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 3E9F86A94FD25B1A80E14CDD4D3FE40C
+  userChecksum: 45DCEF7AAB178A6AC21DC2CFCB79A2AF
 - generatedChecksum: ABA1DB8EC565E27B9EB7C715092B1EFA
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/tmr
   name: plib_tmr2.c
@@ -783,13 +839,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: ABA1DB8EC565E27B9EB7C715092B1EFA
-- generatedChecksum: 72BFBEF46060ABBF846FB7A3B2C667E4
+- generatedChecksum: 42775FC8827455AD530E1E1E62CFBA16
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/uart
   name: plib_uart1.c
   physicalPath: peripheral/uart
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 72BFBEF46060ABBF846FB7A3B2C667E4
+  userChecksum: 42775FC8827455AD530E1E1E62CFBA16
 - generatedChecksum: BE4CB7367E5A5B3DDA671207F469CA45
   logicalPath: wolfcrypt
   name: poly1305.c
@@ -867,6 +923,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 051B0845EB9A08A2435DCC735574C6C4
+- generatedChecksum: 3C60577F7BFB0670DF59E70C2CDDC7AD
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: sha256.c
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 3C60577F7BFB0670DF59E70C2CDDC7AD
 - generatedChecksum: C90FFB67D0F5A79C675FC2AA2F8BAAB9
   logicalPath: wolfcrypt
   name: sha256.c
@@ -1091,6 +1154,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 977B0DEC1FC8475ADEADC9A438FC5A13
+- generatedChecksum: 8E53A0A9E3F5F37E07B676BBA3BC8E1F
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota
+  name: sys_ota.c
+  physicalPath: system/ota
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 8E53A0A9E3F5F37E07B676BBA3BC8E1F
 - generatedChecksum: 21B531192E183E11DCAD9BC1B63C6D66
   logicalPath: config/pic32mz_w1_curiosity_freertos/system
   name: sys_random_h2_adapter.c
@@ -1119,20 +1189,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: F849420C740D2B32346B4B4D9F46C136
-- generatedChecksum: FE12B4B4AB3B93AFF84C1760416262F3
+- generatedChecksum: 963F14A74D0F3AE45C67CD73BD85D638
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifi
   name: sys_wifi.c
   physicalPath: system/wifi/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: FE12B4B4AB3B93AFF84C1760416262F3
-- generatedChecksum: AF209A4D29D46D21D1316E4C0CBE844A
+  userChecksum: 963F14A74D0F3AE45C67CD73BD85D638
+- generatedChecksum: D94802AD71130C608F7FE977395A5A84
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov.c
   physicalPath: system/wifiprov/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: AF209A4D29D46D21D1316E4C0CBE844A
+  userChecksum: D94802AD71130C608F7FE977395A5A84
 - generatedChecksum: 73953E96E08B075980D5A933ED18C28E
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov_json.c
@@ -1147,13 +1217,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 9A49A2339A0774ACCBC2178A9EE76586
-- generatedChecksum: A82279DD3536C6BB07DB2453E2B9464C
+- generatedChecksum: D9461BEBD08A34B62709294D502D5382
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: tasks.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: A82279DD3536C6BB07DB2453E2B9464C
+  userChecksum: D9461BEBD08A34B62709294D502D5382
 - generatedChecksum: 87C1B24DE55D66ED21AF304756588897
   logicalPath: config/pic32mz_w1_curiosity_freertos/library/tcpip/src
   name: tcp.c
@@ -1672,13 +1742,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: F2386B21ED11D9199C4D0257F0261C74
-- generatedChecksum: null
+- generatedChecksum: 452F7AB915EEA4B1529959D0FF80C3F7
   logicalPath: ''
   name: app.h
   physicalPath: ../..
   security: NON_SECURE
   type: HEADER
-  userChecksum: null
+  userChecksum: 452F7AB915EEA4B1529959D0FF80C3F7
+- generatedChecksum: 76765467E9B0A78A1575ADF81BEB3840
+  logicalPath: ''
+  name: app_ota.h
+  physicalPath: system/ota/framework/ota_app
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 76765467E9B0A78A1575ADF81BEB3840
 - generatedChecksum: F18EBACF5A587D5E164EFFDFADEC07AE
   logicalPath: wolfcrypt
   name: arc4.h
@@ -1798,6 +1875,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 9DF72D20ED64B6774CAB3F9F662EEB82
+- generatedChecksum: 56F4009448F401A1E72D6B9C90FCB933
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework/cjson
+  name: cjson.h
+  physicalPath: system/ota/framework/cjson
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 56F4009448F401A1E72D6B9C90FCB933
 - generatedChecksum: A826619BBE1DB6C8519A0E9998E8C9A5
   logicalPath: wolfcrypt
   name: cmac.h
@@ -1826,13 +1910,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 15AB6693CC2E1EE7AB845EE42A6AC762
-- generatedChecksum: 4D20887DD3402523C6B6AD7F63245235
+- generatedChecksum: C1E71A222EED0C6EFCCE37C56E38720D
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: configuration.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4D20887DD3402523C6B6AD7F63245235
+  userChecksum: C1E71A222EED0C6EFCCE37C56E38720D
 - generatedChecksum: 66CDC9B1DAB0393100A835676816E8BF
   logicalPath: wolfcrypt
   name: cpuid.h
@@ -2029,6 +2113,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 0B49F860205DD292C26DEE88DCC1DDB9
+- generatedChecksum: D552FF9153C8628929CD6AA1AF4C562E
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework/csv
+  name: csv.h
+  physicalPath: system/ota/framework/csv
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: D552FF9153C8628929CD6AA1AF4C562E
 - generatedChecksum: 3D84D9A910B8007E79BC01CC82813213
   logicalPath: wolfcrypt
   name: curve25519.h
@@ -2057,13 +2148,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 7959E2B94CEE186632B984636D40C252
-- generatedChecksum: FEB3AA677898A92C5448A151F651BC65
+- generatedChecksum: FD8770F64F5CA301A1017C30346ECCFC
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: definitions.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: FEB3AA677898A92C5448A151F651BC65
+  userChecksum: FD8770F64F5CA301A1017C30346ECCFC
 - generatedChecksum: 1EA4EDD5EA90F43EC407DE32441159A9
   logicalPath: FreeRTOS/Source/include
   name: deprecated_definitions.h
@@ -2211,6 +2302,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: A783D086981E7AE2F3EE8971C80F0D82
+- generatedChecksum: 054046DC4EC9B1F6076C20A73698C06B
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: downloader.h
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 054046DC4EC9B1F6076C20A73698C06B
 - generatedChecksum: 1D2094DFA60F847FFD4E8153B6E78027
   logicalPath: config/pic32mz_w1_curiosity_freertos/driver
   name: driver.h
@@ -2260,13 +2358,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 8BF1EFFCD7DC02480C27F3DE35FB5009
-- generatedChecksum: 4638FD164B17CBFDF7E8CB74E2189F60
+- generatedChecksum: 2E25CEFA28CCA2CD66BA9DF6B4C66621
   logicalPath: config/pic32mz_w1_curiosity_freertos/driver/memory
   name: drv_memory_local.h
   physicalPath: driver/memory/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4638FD164B17CBFDF7E8CB74E2189F60
+  userChecksum: 2E25CEFA28CCA2CD66BA9DF6B4C66621
 - generatedChecksum: E176579009BB7DFABB267ABC3551E5FE
   logicalPath: config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include
   name: drv_pic32mzw1.h
@@ -2484,6 +2582,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: F463D75CFC0C272C50306100AAA5DAE8
+- generatedChecksum: 1D71D7AE55644C59920785F008B36EAC
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework/http_client
+  name: http_client.h
+  physicalPath: system/ota/framework/http_client
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 1D71D7AE55644C59920785F008B36EAC
 - generatedChecksum: A283D25AF7C2CD5942A50D786EC51EA7
   logicalPath: config/pic32mz_w1_curiosity_freertos/library/tcpip/src
   name: http_manager.h
@@ -2575,6 +2680,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 325F6720BE02981E762B093B7405AB23
+- generatedChecksum: 6ED76E9532CA55100591A3EF9198D93A
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: int_flash.h
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 6ED76E9532CA55100591A3EF9198D93A
 - generatedChecksum: C492FEAFD776B304917664DD0F4F8C11
   logicalPath: wolfcrypt
   name: integer.h
@@ -2827,13 +2939,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: EAF3E7458B04813DFB158666690E65CA
-- generatedChecksum: BF6A1F560F30C49B2A88BDC1FFC1489F
+- generatedChecksum: FB990BD5FBF04E679C0E911EF50B23F4
   logicalPath: config/pic32mz_w1_curiosity_freertos/net_pres/pres
   name: net_pres_enc_glue.h
   physicalPath: net_pres/pres
   security: NON_SECURE
   type: HEADER
-  userChecksum: BF6A1F560F30C49B2A88BDC1FFC1489F
+  userChecksum: FB990BD5FBF04E679C0E911EF50B23F4
 - generatedChecksum: 510172705D6CDAC183C642DED5A1555B
   logicalPath: config/pic32mz_w1_curiosity_freertos/net_pres/pres
   name: net_pres_encryptionproviderapi.h
@@ -2904,6 +3016,34 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 9D6F205ECFDB2028C5CF766B52B5B7B2
+- generatedChecksum: D91CDC53953DABAB8F5AEA1D59E72BEE
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: ota.h
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: D91CDC53953DABAB8F5AEA1D59E72BEE
+- generatedChecksum: 168C4E317B1E4387D1C1440677672A72
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: ota_config.h
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 168C4E317B1E4387D1C1440677672A72
+- generatedChecksum: C84240FB8C03F090BED932AC17A733A0
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: ota_database_parser.h
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: C84240FB8C03F090BED932AC17A733A0
+- generatedChecksum: 712B3BD82E12AE44BE702C529B19A12F
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: ota_image.h
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 712B3BD82E12AE44BE702C529B19A12F
 - generatedChecksum: F50BC9DA4605913EE5CE1322D54A5C67
   logicalPath: wolfcrypt/port
   name: pic32mz-crypt.h
@@ -2967,13 +3107,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 2B5072810107E051495C4B6379DEDA4E
-- generatedChecksum: 3C52CEA231878411E3950ADD556AF20C
+- generatedChecksum: F342288057B1DA1774434CE705A8E3EA
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/gpio
   name: plib_gpio.h
   physicalPath: peripheral/gpio
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3C52CEA231878411E3950ADD556AF20C
+  userChecksum: F342288057B1DA1774434CE705A8E3EA
 - generatedChecksum: FBB2DEFAADE0488ACAFA5C5FB807B149
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/nvm
   name: plib_nvm.h
@@ -2988,13 +3128,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: F9DFA6C09CB3E8D12750C85043542892
-- generatedChecksum: 39839D4778D3C4C7513F98C4471EC3F3
+- generatedChecksum: 1D449E8D53692CBFFD05CBDCFD545665
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/rtcc
   name: plib_rtcc.h
   physicalPath: peripheral/rtcc
   security: NON_SECURE
   type: HEADER
-  userChecksum: 39839D4778D3C4C7513F98C4471EC3F3
+  userChecksum: 1D449E8D53692CBFFD05CBDCFD545665
 - generatedChecksum: 8B538ED26B7B1F9177E6F490AAE66B57
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/spi/spi_master
   name: plib_spi1_master.h
@@ -3142,6 +3282,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: D0717E591FA5C33AFA39AE41284A1D5F
+- generatedChecksum: A36D45ACB6D65AA24DE82D67BDE4977A
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: sha256.h
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: A36D45ACB6D65AA24DE82D67BDE4977A
 - generatedChecksum: D8FE42BA6ACF4BA11A8B45F753FC45CC
   logicalPath: wolfcrypt
   name: sha256.h
@@ -3401,6 +3548,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 04C2FE1CEAB469B0FD9D35AD66493977
+- generatedChecksum: 07505FE6D40F9EC5F4B5B4FC7D88B361
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota
+  name: sys_ota.h
+  physicalPath: system/ota
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 07505FE6D40F9EC5F4B5B4FC7D88B361
 - generatedChecksum: 5D12C990BEEF029AF81885587A366CA5
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ports
   name: sys_ports.h
@@ -3457,20 +3611,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 62F39464265EC34979649F761FB4FE57
-- generatedChecksum: E63A983DDB8F7036DEB0239A89CFCC4D
+- generatedChecksum: 620B7D8AE92D09178AB3142674127EC3
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifi
   name: sys_wifi.h
   physicalPath: system/wifi
   security: NON_SECURE
   type: HEADER
-  userChecksum: E63A983DDB8F7036DEB0239A89CFCC4D
-- generatedChecksum: AAB68980939990449A8E2E38795D3178
+  userChecksum: 620B7D8AE92D09178AB3142674127EC3
+- generatedChecksum: FDDB2255E2CB6096699A661FD2217D0A
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov.h
   physicalPath: system/wifiprov
   security: NON_SECURE
   type: HEADER
-  userChecksum: AAB68980939990449A8E2E38795D3178
+  userChecksum: FDDB2255E2CB6096699A661FD2217D0A
 - generatedChecksum: C28F8B3FC84CB966B6D30E3DBE83605F
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov_json.h
@@ -3835,13 +3989,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: C99E758A00938DD4FF1F7209697D49E5
-- generatedChecksum: null
+- generatedChecksum: 4B3C3EF8A318908A22B78500515C3288
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: user.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: null
+  userChecksum: 4B3C3EF8A318908A22B78500515C3288
 - generatedChecksum: C2E03F0EDC541FFF59760CD5013A1374
   logicalPath: wolfssl
   name: version.h
@@ -4038,13 +4192,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: CFA727A2AB910B5B462D51A388146811
-- generatedChecksum: 38B8D278EA69C81FF16A6EEA4989D1D1
-  logicalPath: config/pic32mz_w1_curiosity_freertos
-  name: p32MZ1025W104132.ld
-  physicalPath: ''
+- generatedChecksum: DFE5E369B3803D9ADF266AB5A54C4BF4
+  logicalPath: ota_linker
+  name: p32MZ1025W104132_application.ld
+  physicalPath: ota_linker
   security: NON_SECURE
   type: LINKER
-  userChecksum: 38B8D278EA69C81FF16A6EEA4989D1D1
+  userChecksum: DFE5E369B3803D9ADF266AB5A54C4BF4
 - generatedChecksum: D0A155C957A5AB326FFCFB27C332B88A
   logicalPath: wolfcrypt
   name: evp.c
@@ -4052,6 +4206,20 @@ files:
   security: NON_SECURE
   type: IMPORTANT
   userChecksum: D0A155C957A5AB326FFCFB27C332B88A
+- generatedChecksum: D0635F86C01C9C5EA5E78B5A232ADE5F
+  logicalPath: ''
+  name: hex2bin.exe
+  physicalPath: ../../../../tools/hex2bin
+  security: NON_SECURE
+  type: IMPORTANT
+  userChecksum: D0635F86C01C9C5EA5E78B5A232ADE5F
+- generatedChecksum: C1DA28A4223F0BBF84BF6AB21B26C773
+  logicalPath: ''
+  name: hex2bin.py
+  physicalPath: ../../../../tools/hex2bin
+  security: NON_SECURE
+  type: IMPORTANT
+  userChecksum: C1DA28A4223F0BBF84BF6AB21B26C773
 - generatedChecksum: 90414B5A018294AE2BBEF486235EA6BB
   logicalPath: wolfcrypt
   name: misc.c

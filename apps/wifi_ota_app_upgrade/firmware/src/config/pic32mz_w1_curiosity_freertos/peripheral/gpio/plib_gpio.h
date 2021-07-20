@@ -62,6 +62,15 @@
 // *****************************************************************************
 
 
+/*** Macros for SPI1_CS pin ***/
+#define SPI1_CS_Set()               (LATASET = (1<<1))
+#define SPI1_CS_Clear()             (LATACLR = (1<<1))
+#define SPI1_CS_Toggle()            (LATAINV= (1<<1))
+#define SPI1_CS_OutputEnable()      (TRISACLR = (1<<1))
+#define SPI1_CS_InputEnable()       (TRISASET = (1<<1))
+#define SPI1_CS_Get()               ((PORTA >> 1) & 0x1)
+#define SPI1_CS_PIN                  GPIO_PIN_RA1
+
 
 // *****************************************************************************
 /* GPIO Port

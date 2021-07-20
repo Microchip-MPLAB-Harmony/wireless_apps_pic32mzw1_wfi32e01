@@ -5,19 +5,12 @@ children:
 - type: Symbols
   children:
   - type: Integer
-    attributes: {id: BAUD_RATE}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: '230400'}
-  - type: Integer
     attributes: {id: BRG_VALUE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: uart1, value: '108'}
+        attributes: {id: uart1, value: '216'}
   - type: KeyValueSet
     attributes: {id: UART_BRGH}
     children:
@@ -25,23 +18,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: uart1, value: '0'}
-  - type: Comment
-    attributes: {id: UART_BRGH_MODE_COMMENT}
-    children:
-    - type: Attributes
-      children:
-      - type: String
-        attributes: {id: text}
-        children:
-        - {type: Value, value: '*** High Speed mode 4x baud clock enabled (BRGH =
-            1) ***'}
-  - type: Integer
-    attributes: {id: UART_CLOCK_FREQ}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart1, value: '100000000'}
   - type: File
     attributes: {id: UART_HEADER}
     children:
@@ -52,12 +28,50 @@ children:
         children:
         - {type: Value, value: ../peripheral/uart_02478/templates/plib_uart_ring_buffer.h.ftl}
   - type: Boolean
-    attributes: {id: UART_RING_BUFFER_ENABLE}
+    attributes: {id: UART_INTERRUPT_MODE_ENABLE}
     children:
     - type: Values
       children:
       - type: Dynamic
         attributes: {id: uart1, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: UART_OPERATING_MODE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart1, value: '2'}
+  - type: Boolean
+    attributes: {id: UART_RING_BUFFER_MODE_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart1, value: 'true'}
+  - type: Comment
+    attributes: {id: UART_RING_BUFFER_SIZE_CONFIG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: UART_RX_RING_BUFFER_SIZE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
   - type: File
     attributes: {id: UART_SOURCE}
     children:
@@ -70,6 +84,12 @@ children:
   - type: Integer
     attributes: {id: UART_TX_RING_BUFFER_SIZE}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: Dynamic
@@ -81,13 +101,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: uart1, value: '8'}
-  - type: Boolean
-    attributes: {id: USART_INTERRUPT_MODE}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart1, value: 'true'}
 - type: Attachments
   children:
   - type: DirectCapability

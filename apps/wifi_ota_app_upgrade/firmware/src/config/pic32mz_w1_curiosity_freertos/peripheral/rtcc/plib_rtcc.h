@@ -111,6 +111,9 @@ bool RTCC_AlarmSet( struct tm *alarmTime, RTCC_ALARM_MASK alarmFreq );
 
 void RTCC_CallbackRegister( RTCC_CALLBACK callback, uintptr_t context );
 
+void RTCC_InterruptEnable( RTCC_INT_MASK interrupt );
+
+void RTCC_InterruptDisable( RTCC_INT_MASK interrupt );
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility

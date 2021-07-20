@@ -128,4 +128,4 @@ children:
         children:
         - {type: Value, value: drv_memory_MEMORY_dependency}
 - type: ElementPosition
-  attributes: {x: '30', y: '700', id: drv_sst26}
+  attributes: {x: '170', y: '480', id: drv_sst26}

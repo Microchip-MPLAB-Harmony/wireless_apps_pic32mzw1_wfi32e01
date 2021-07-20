@@ -59,12 +59,30 @@
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
+static void _SYS_OTA_Tasks(  void *pvParameters  )
+{
+    while(1)
+    {
+        SYS_OTA_Tasks();
+        vTaskDelay(10/ portTICK_PERIOD_MS);
+    }
+}
+
 
 void _DRV_BA414E_Tasks(  void *pvParameters  )
 {
     while(1)
     {
         DRV_BA414E_Tasks(sysObj.ba414e);
+    }
+}
+
+void _DRV_MEMORY_0_Tasks(  void *pvParameters  )
+{
+    while(1)
+    {
+        DRV_MEMORY_Tasks(sysObj.drvMemory0);
+        vTaskDelay(DRV_MEMORY_RTOS_DELAY_IDX0 / portTICK_PERIOD_MS);
     }
 }
 
@@ -188,7 +206,23 @@ void SYS_Tasks ( void )
 
 
     /* Maintain Device Drivers */
-    
+        xTaskCreate( _SYS_OTA_Tasks,
+        "SYS_OTA_Tasks",
+        SYS_OTA_RTOS_STACK_SIZE,
+        (void*)NULL,
+        SYS_OTA_RTOS_TASK_PRIORITY,
+        (TaskHandle_t*)NULL
+    );
+
+
+    xTaskCreate( _DRV_MEMORY_0_Tasks,
+        "DRV_MEM_0_TASKS",
+        DRV_MEMORY_STACK_SIZE_IDX0,
+        (void*)NULL,
+        DRV_MEMORY_PRIORITY_IDX0,
+        (TaskHandle_t*)NULL
+    );
+
     xTaskCreate( _WDRV_PIC32MZW1_Tasks,
         "WDRV_PIC32MZW1_Tasks",
         1024,

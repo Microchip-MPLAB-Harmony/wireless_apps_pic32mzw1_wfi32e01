@@ -100,7 +100,7 @@
 #pragma config CLASSBDIS =         DISABLE
 #pragma config USBIDIO =         ON
 #pragma config VBUSIO =         ON
-#pragma config HSSPIEN =         OFF
+#pragma config HSSPIEN =         ON
 #pragma config SMCLR =      MCLR_NORM
 #pragma config USBDMTRIM =      0
 #pragma config USBDPTRIM =      0
@@ -151,6 +151,7 @@ static uint8_t gDrvMemory0EraseBuffer[DRV_SST26_ERASE_BUFFER_SIZE] CACHE_ALIGN;
 
 static DRV_MEMORY_CLIENT_OBJECT gDrvMemory0ClientObject[DRV_MEMORY_CLIENTS_NUMBER_IDX0];
 
+static DRV_MEMORY_BUFFER_OBJECT gDrvMemory0BufferObject[DRV_MEMORY_BUFFER_QUEUE_SIZE_IDX0];
 
 const DRV_MEMORY_DEVICE_INTERFACE drvMemory0DeviceAPI = {
     .Open               = DRV_SST26_Open,
@@ -169,11 +170,12 @@ const DRV_MEMORY_INIT drvMemory0InitData =
     .memDevIndex                = DRV_SST26_INDEX,
     .memoryDevice               = &drvMemory0DeviceAPI,
     .isMemDevInterruptEnabled   = true,
-    .memDevStatusPollUs         = 0,
     .isFsEnabled                = true,
     .deviceMediaType            = (uint8_t)SYS_FS_MEDIA_TYPE_SPIFLASH,
     .ewBuffer                   = &gDrvMemory0EraseBuffer[0],
     .clientObjPool              = (uintptr_t)&gDrvMemory0ClientObject[0],
+    .bufferObj                  = (uintptr_t)&gDrvMemory0BufferObject[0],
+    .queueSize                  = DRV_MEMORY_BUFFER_QUEUE_SIZE_IDX0,
     .nClientsMax                = DRV_MEMORY_CLIENTS_NUMBER_IDX0
 };
 
@@ -535,7 +537,7 @@ static const NET_PRES_INST_DATA netPresCfgs[] =
         .pTransObject_ds = &netPresTransObject0DS,
         .pTransObject_dc = &netPresTransObject0DC,
         .pProvObject_ss = NULL,
-        .pProvObject_sc = NULL,
+        .pProvObject_sc = &net_pres_EncProviderStreamClient0,
         .pProvObject_ds = NULL,
         .pProvObject_dc = NULL,
     },
@@ -755,6 +757,9 @@ void SYS_Initialize ( void* data )
     CRYPT_RNG_Initialize(&wdrvRngCtx);
     sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
 
+
+    OTA_Initialize();
+    SYS_OTA_Initialize();
 
 
     SYS_NET_Initialize();

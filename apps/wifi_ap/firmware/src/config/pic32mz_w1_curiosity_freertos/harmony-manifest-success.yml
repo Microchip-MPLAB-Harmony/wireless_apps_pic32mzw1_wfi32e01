@@ -17,7 +17,6 @@ modules:
     - {name: "core", version: "v3.9.2"}
     - {name: "wireless_wifi", version: "v3.5.0"}
     - {name: "dev_packs", version: "v3.9.0"}
-    - {name: "integration", version: "unknown"}
     - {name: "wolfssl", version: "v4.7.0"}
     - {name: "net", version: "v3.7.2"}
     - {name: "crypto", version: "v3.7.1"}

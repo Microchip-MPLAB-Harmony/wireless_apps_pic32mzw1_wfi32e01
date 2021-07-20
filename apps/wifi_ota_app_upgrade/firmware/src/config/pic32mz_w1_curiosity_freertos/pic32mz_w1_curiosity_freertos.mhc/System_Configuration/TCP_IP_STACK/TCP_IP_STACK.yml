@@ -3,4 +3,8 @@ type: GroupComponent
 attributes: {displayName: TCP/IP STACK, id: TCP/IP STACK}
 children:
 - type: ElementPosition
-  attributes: {x: '30', y: '220', id: TCP/IP STACK}
+  attributes: {x: '770', y: '180', id: TCP/IP STACK}
+- type: Attachments
+  children:
+  - type: Attachment
+    attributes: {namespace: PRESENTATION LAYER, id: 'net_Pres:Net_Pres_Crypto_Dependency'}

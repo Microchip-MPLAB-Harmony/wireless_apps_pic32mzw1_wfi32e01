@@ -28,4 +28,4 @@ children:
       - type: Dynamic
         attributes: {id: sysOtaPic32mzw1, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '450', y: '620', id: rtcc}
+  attributes: {x: '30', y: '460', id: rtcc}

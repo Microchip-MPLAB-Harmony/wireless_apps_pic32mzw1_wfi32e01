@@ -1259,4 +1259,4 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '0'}
 - type: ElementPosition
-  attributes: {x: '530', y: '60', id: core}
+  attributes: {x: '770', y: '240', id: core}

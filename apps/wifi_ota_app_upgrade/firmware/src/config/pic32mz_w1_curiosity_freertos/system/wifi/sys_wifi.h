@@ -161,10 +161,7 @@ typedef enum
 typedef enum 
 {
     /* Requesting a operating mode a station */
-    SYS_WIFI_STA = 0,
-
-    /* Requesting a operating mode a AP access point. */
-    SYS_WIFI_AP
+    SYS_WIFI_STA = 0
 } SYS_WIFI_MODE ;
 
 
@@ -205,62 +202,6 @@ typedef struct
 } SYS_WIFI_STA_CONFIG;
 
 
-// *****************************************************************************
-/* System Wi-Fi service station info structure shared with the Application.
-
-  Summary:
-    Information related to connected station shared with Application.
-
-  Description:
-    Information (MAC Address, IP Address) related to connected station.
-
-  Remarks:
-   None.
-*/
-typedef struct 
-{
-    /* IP Address of the station */
-    IPV4_ADDR ipAddr;
-
-    /* MAC Address of the station */
-    uint8_t macAddr[6];
-} SYS_WIFI_STA_APP_INFO;
-
-// *****************************************************************************
-/* System Wi-Fi service soft access point mode configuration structure
-
-  Summary:
-    Configuration of access point mode parameters.
-
-  Description:
-    Configuration of access point mode parameters.
-
-  Remarks:
-   None.
-*/
-typedef struct 
-{
-    /* Wi-Fi access point mode SSID */
-    uint8_t ssid[32];
-
-    /* Wi-Fi access point  mode passphrase */
-    uint8_t psk[64];
-
-    /* Wi-Fi access point mode authentication type */
-    SYS_WIFI_AUTH authType;
-
-    /* Wi-Fi access point mode channel number.
-       values of channel:  
-       1 to 13 - - operating channel of access point */
-    uint8_t channel;
-
-    /* Wi-Fi access point mode SSID visibility 
-       value of ssidVisibility:
-       0 - Hidden SSID
-       1 - broadcast the SSID  */
-    bool ssidVisibility;
-
-} SYS_WIFI_AP_CONFIG;
 
 // *****************************************************************************
 /* System Wi-Fi service device configuration structure.
@@ -292,8 +233,6 @@ typedef struct
     /* Wi-Fi station mode configuration structure */
     SYS_WIFI_STA_CONFIG staConfig;
 
-    /* Wi-Fi access point mode configuration structure */
-    SYS_WIFI_AP_CONFIG apConfig;
 
 }SYS_WIFI_CONFIG;
 
@@ -331,11 +270,6 @@ typedef enum
     /* Wi-Fi system service is in Wi-Fi connect request status */
     SYS_WIFI_STATUS_CONNECT_REQ,
 
-    /* In AP mode,Wi-Fi system service is in wait for AP IP address */
-    SYS_WIFI_STATUS_WAIT_FOR_AP_IP,
-    
-    /* In AP mode,Wi-Fi system service is in wait for connecting STA IP address */
-    SYS_WIFI_STATUS_WAIT_FOR_STA_IP,
  
     /* Wi-Fi system service is in TCPIP ready status, waiting for client request.*/
     SYS_WIFI_STATUS_TCPIP_READY,

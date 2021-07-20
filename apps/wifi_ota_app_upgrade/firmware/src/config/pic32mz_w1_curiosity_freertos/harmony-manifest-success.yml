@@ -4,21 +4,20 @@
 
 
 project: wifi_ota_app_upgrade
-creation_date: 2021-07-20T13:23:13.376+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2021-07-20T15:45:42.996+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.0
 mplabx_version: v5.50        # if MPLAB X plugin only
 plugin_version: v3.6.4        # if MPLAB X plugin only
-compiler: XC32 (3.01)
+compiler: XC32 (2.50)
 
 modules:
     - {name: "core", version: "v3.9.2"}
     - {name: "csp", version: "v3.9.1"}
     - {name: "wireless_wifi", version: "v3.5.0"}
     - {name: "dev_packs", version: "v3.9.0"}
-    - {name: "integration", version: "unknown"}
-    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.5.0-TC1"}
+    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "unknown"}
     - {name: "wolfssl", version: "v4.7.0"}
     - {name: "net", version: "v3.7.2"}
     - {name: "crypto", version: "v3.7.1"}

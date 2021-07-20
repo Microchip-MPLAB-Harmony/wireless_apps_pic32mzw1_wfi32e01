@@ -48,4 +48,4 @@ children:
         children:
         - {type: Value, value: drv_sst26_SPI_dependency}
 - type: ElementPosition
-  attributes: {x: '30', y: '620', id: spi1}
+  attributes: {x: '410', y: '400', id: spi1}

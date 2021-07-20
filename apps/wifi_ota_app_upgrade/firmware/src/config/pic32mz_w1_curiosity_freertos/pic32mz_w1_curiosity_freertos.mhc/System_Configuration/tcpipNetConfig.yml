@@ -81,4 +81,4 @@ children:
             children:
             - {type: Value, value: libdrvPic32mzw1Mac}
 - type: ElementPosition
-  attributes: {x: '30', y: '280', id: tcpipNetConfig}
+  attributes: {x: '570', y: '300', id: tcpipNetConfig}
