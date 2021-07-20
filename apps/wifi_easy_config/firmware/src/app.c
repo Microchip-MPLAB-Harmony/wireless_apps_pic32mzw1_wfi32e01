@@ -28,43 +28,60 @@
 APP_DATA appData;
 static SYS_WIFI_CONFIG wificonfig;
 
-void WiFiServCallback(uint32_t event, void * data, void *cookie) {
+void WiFiServCallback(uint32_t event, void * data, void *cookie) 
+{
     IPV4_ADDR *IPAddr;
-    switch (event) {
+    switch (event) 
+    {
         case SYS_WIFI_CONNECT:
+        {
             IPAddr = (IPV4_ADDR *) data;
-            if (SYS_WIFI_STA == wificonfig.mode) {
+            if (SYS_WIFI_STA == wificonfig.mode) 
+            {
                 SYS_CONSOLE_PRINT("Connected to AP. Got IP address = %d.%d.%d.%d \r\n", IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
-            //} else if (SYS_WIFI_AP == wificonfig.mode) {
-            //    SYS_CONSOLE_PRINT("Client connected to My AP. Giving IP address = %d.%d.%d.%d \r\n", IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
+            } 
+            else if (SYS_WIFI_AP == wificonfig.mode) 
+            {
+                SYS_CONSOLE_PRINT("Client connected to My AP. Giving IP address = %d.%d.%d.%d \r\n", IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
             }
             LED_GREEN_On();
             LED_RED_Off();
             break;
+        }
         case SYS_WIFI_DISCONNECT:
+        {
             SYS_CONSOLE_PRINT("Device DISCONNECTED \r\n");
             LED_RED_On();
             LED_GREEN_Off();
             break;
+        }
         case SYS_WIFI_PROVCONFIG:
+        {
             memcpy(&wificonfig,data,sizeof(SYS_WIFI_CONFIG));
             SYS_CONSOLE_PRINT("%s:%d Received Provisioning Data : \r\n Device mode=%s \r\n", __func__, __LINE__, (wificonfig.mode == SYS_WIFI_STA) ? "STA" : "AP");
-            if (SYS_WIFI_STA == wificonfig.mode) {
+            if (SYS_WIFI_STA == wificonfig.mode) 
+            {
                 SYS_CONSOLE_PRINT(" ssid=%s password=%s \r\n",wificonfig.staConfig.ssid,wificonfig.staConfig.psk);
-           // } else if (SYS_WIFI_AP == wificonfig.mode) {
-           //     SYS_CONSOLE_PRINT(" ssid=%s password=%s \r\n",wificonfig.apConfig.ssid,wificonfig.apConfig.psk);
+            } 
+            else if (SYS_WIFI_AP == wificonfig.mode) 
+            {
+                SYS_CONSOLE_PRINT(" ssid=%s password=%s \r\n",wificonfig.apConfig.ssid,wificonfig.apConfig.psk);
             }            
             break;
+        }
     }
 }
 
-void APP_Initialize(void) {
+void APP_Initialize(void) 
+{
     appData.state = APP_STATE_INIT;
 }
 
-void APP_Tasks(void) {
+void APP_Tasks(void) 
+{
 
-    switch (appData.state) {
+    switch (appData.state) 
+    {
         case APP_STATE_INIT:
         {
             SYS_CONSOLE_PRINT("Application: wifi_easy_config \r\n");
@@ -80,6 +97,7 @@ void APP_Tasks(void) {
             {
                 SYS_CONSOLE_PRINT("%s:%d Device mode=%s \r\n", __func__, __LINE__, (wificonfig.mode == SYS_WIFI_STA) ? "STA" : "AP");
                 appData.state = APP_STATE_SERVICE_TASKS;
+
             }            
             break;
         }
