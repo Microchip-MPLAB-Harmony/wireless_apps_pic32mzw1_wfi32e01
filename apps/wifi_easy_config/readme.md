@@ -109,7 +109,7 @@ To build the application, refer to the following table and open the project usin
 
 - For more details follow the steps available in page: [Wi-Fi provisioning using CLI](https://microchip-mplab-harmony.github.io/wireless_system_pic32mzw1_wfi32e01/system/wifiprov/docs/usage.md#command-line)
 
-The device will auto-reboot into STA mode.<br> 
+The device will switch from AP mode to STA mode.<br> 
 The device will now connect to the configured AP.<br>
   
    ![Console](images/wifi_easyconfig_log3.png)
