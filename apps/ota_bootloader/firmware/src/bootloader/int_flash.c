@@ -1,23 +1,6 @@
-/********************************************************************************
-  USART Driver Dynamic implementation.
-
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-    int_flash.c
-
-  Summary:
-    Source code for the Internal Flash Driver interface implementation.
-
-  Description:
-    This file contains the source code for the internal flash driver interface
-    implementation
- *******************************************************************************/
-
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2014-2015 released Microchip Technology Inc.  All rights reserved.
+Copyright (c) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -39,6 +22,25 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
 *******************************************************************************/
 // DOM-IGNORE-END
+
+/********************************************************************************
+  USART Driver Dynamic implementation.
+
+  Company:
+    Microchip Technology Inc.
+
+  File Name:
+    int_flash.c
+
+  Summary:
+    Source code for the Internal Flash Driver interface implementation.
+
+  Description:
+    This file contains the source code for the internal flash driver interface
+    implementation
+ *******************************************************************************/
+
+
 
 
 // *****************************************************************************
@@ -72,10 +74,9 @@ bool INT_Flash_Initialize(void)
     return true;
 }
 //---------------------------------------------------------------------------
-bool INT_Flash_Open(void)
+void INT_Flash_Open(void)
 {
     NVM_Initialize();
-    return true;
 }
 //---------------------------------------------------------------------------
 void INT_Flash_Close(void)

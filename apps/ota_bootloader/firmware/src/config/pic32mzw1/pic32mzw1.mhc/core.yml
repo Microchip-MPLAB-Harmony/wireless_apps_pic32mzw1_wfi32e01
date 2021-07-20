@@ -21,12 +21,10 @@ children:
   - type: Boolean
     attributes: {id: ADVANCED_EXCEPTION}
     children:
-    - type: Attributes
+    - type: Values
       children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'false'}
+      - type: User
+        attributes: {value: 'true'}
   - type: Boolean
     attributes: {id: BA414E_CLOCK_ENABLE}
     children:
@@ -370,6 +368,60 @@ children:
       children:
       - type: User
         attributes: {value: '0'}
+  - type: File
+    attributes: {id: CACHE_HEADER_H}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: CACHE_LOCAL_H}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: CACHE_PIC32MZ_H}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: CACHE_SOURCE_PIC32MZ_C}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: CACHE_SOURCE_PIC32MZ_S}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: CACHE_SYSTEM_DEF_H}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
   - type: Integer
     attributes: {id: CAN1_CLOCK_FREQUENCY}
     children:
@@ -544,7 +596,23 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: 'false'}
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: DATA_CACHE_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: File
+    attributes: {id: DEVICE_CACHE_H}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
   - type: Integer
     attributes: {id: DMAC_CLOCK_FREQUENCY}
     children:
@@ -636,6 +704,20 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: NVM_InterruptHandler}
+  - type: Boolean
+    attributes: {id: EVIC_35_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: Boolean
+    attributes: {id: EVIC_35_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
   - type: Boolean
     attributes: {id: EVIC_36_ENABLE}
     children:
@@ -889,14 +971,36 @@ children:
       - type: User
         attributes: {value: 'true'}
   - type: File
-    attributes: {id: EXCEPTIONS_C}
+    attributes: {id: EXCEPTIONS_ASM}
     children:
     - type: Attributes
       children:
       - type: Boolean
         attributes: {id: enabled}
         children:
-        - {type: Value, value: 'false'}
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: EXCEPTIONS_C}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: templates/filtering_exceptions_xc32_mips.c.ftl}
+  - type: Boolean
+    attributes: {id: FILTERING_EXCEPTION}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
   - type: Boolean
     attributes: {id: FLASH_CONTROL_INTERRUPT_ENABLE}
     children:
@@ -967,6 +1071,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '0'}
+  - type: Boolean
+    attributes: {id: INSTRUCTION_CACHE_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
   - type: String
     attributes: {id: KEIL_STACK_HEAP_SIZE}
     children:
@@ -1138,6 +1249,27 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '100000000'}
   - type: Boolean
+    attributes: {id: SPI1_FAULT_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: spi1, value: 'false'}
+  - type: Boolean
+    attributes: {id: SPI1_FAULT_INTERRUPT_ENABLE_UPDATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: Boolean
+    attributes: {id: SPI1_FAULT_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: spi1, value: 'false'}
+  - type: Boolean
     attributes: {id: SPI1_RX_INTERRUPT_ENABLE}
     children:
     - type: Values
@@ -1215,6 +1347,13 @@ children:
       - type: User
         attributes: {value: '200000000'}
   - type: Hex
+    attributes: {id: SYS_PORT_A_ANSEL}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '1024'}
+  - type: Hex
     attributes: {id: SYS_PORT_A_LAT}
     children:
     - type: Values
@@ -1228,6 +1367,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '2'}
+  - type: Hex
+    attributes: {id: SYS_PORT_K_ANSEL}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '8'}
   - type: Boolean
     attributes: {id: TMR1_CLOCK_ENABLE}
     children:
@@ -1424,6 +1570,13 @@ children:
       children:
       - type: User
         attributes: {value: '0'}
+  - type: Boolean
+    attributes: {id: USE_CACHE_MAINTENANCE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sys_fs, value: 'true'}
   - type: String
     attributes: {id: WIFICLK}
     children:
@@ -1445,6 +1598,22 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '100000000'}
+  - type: Setting
+    attributes: {id: XC32_HEAP}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: value}
+        children:
+        - {type: Value, value: '8192'}
+  - type: Integer
+    attributes: {id: XC32_HEAP_SIZE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '8192'}
   - type: KeyValueSet
     attributes: {id: clkSvcMode}
     children:

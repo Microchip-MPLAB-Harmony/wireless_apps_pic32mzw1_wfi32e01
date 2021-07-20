@@ -79,6 +79,41 @@ extern "C" {
 // Section: System Service Configuration
 // *****************************************************************************
 // *****************************************************************************
+/*** OTA Configuration ***/
+#define SYS_OTA_RTOS_STACK_SIZE     4096
+#define SYS_OTA_RTOS_TASK_PRIORITY  1
+
+#define SYS_OTA_AUTORESET_ENABLE   			true
+#define SYS_OTA_AUTOUPDATE_ENABLE           true
+#define SYS_OTA_PERODIC_UPDATE   			true
+#define SYS_OTA_APP_VER_NUM                 1
+#define SYS_OTA_TIME_INTERVAL               60
+#define SYS_OTA_URL                         "https://0.0.0.0:4443/ota.json"
+#define SYS_OTA_JSON_FILE_MAXSIZE           1000
+#define SYS_OTA_NUM_IMGS                    2
+#define SYS_OTA_ENFORCE_TLS   			    false
+
+
+#define SYS_NET_SUPP_INTF_WIFI_ONLY
+
+#define SYS_NET_INDEX0_INTF       				SYS_NET_INTF_WIFI
+#define SYS_NET_INDEX0_MODE       				SYS_NET_MODE_CLIENT
+#define SYS_NET_INDEX0_PORT        				1
+#define SYS_NET_INDEX0_RECONNECT       			1
+#define SYS_NET_INDEX0_ENABLE_TLS        		1
+#define SYS_NET_INDEX0_IPPROT       			SYS_NET_IP_PROT_TCP
+#define SYS_NET_INDEX0_HOST_NAME        		"192.168.1.1"
+
+
+
+#define SYS_NET_TLS_ENABLED
+#define WOLFSSL_TLS13_NO_PEEK_HANDSHAKE_DONE
+
+
+#define SYS_NET_CLICMD_ENABLED
+
+
+
 /* TIME System Service Configuration Options */
 #define SYS_TIME_INDEX_0                            (0)
 #define SYS_TIME_MAX_TIMERS                         (5)
@@ -110,6 +145,34 @@ extern "C" {
 #define SYS_DEBUG_USE_CONSOLE
 
 
+
+/* File System Service Configuration */
+
+#define SYS_FS_MEDIA_NUMBER               1
+#define SYS_FS_VOLUME_NUMBER              1
+
+#define SYS_FS_AUTOMOUNT_ENABLE           false
+#define SYS_FS_MAX_FILES                  1
+#define SYS_FS_MAX_FILE_SYSTEM_TYPE       1
+#define SYS_FS_MEDIA_MAX_BLOCK_SIZE       512
+#define SYS_FS_MEDIA_MANAGER_BUFFER_SIZE  2048
+#define SYS_FS_USE_LFN                    1
+#define SYS_FS_FILE_NAME_LEN              255
+#define SYS_FS_CWD_STRING_LEN             1024
+#define SYS_FS_ALIGNED_BUFFER_LEN         512
+
+/* File System RTOS Configurations*/
+#define SYS_FS_STACK_SIZE                 1024
+#define SYS_FS_PRIORITY                   1
+
+#define SYS_FS_FAT_VERSION                "v0.14a"
+#define SYS_FS_FAT_READONLY               false
+#define SYS_FS_FAT_CODE_PAGE              437
+#define SYS_FS_FAT_MAX_SS                 SYS_FS_MEDIA_MAX_BLOCK_SIZE
+
+
+
+
 #define SYS_CONSOLE_DEVICE_MAX_INSTANCES   			1
 #define SYS_CONSOLE_UART_MAX_INSTANCES 	   			1
 #define SYS_CONSOLE_USB_CDC_MAX_INSTANCES 	   		0
@@ -123,6 +186,27 @@ extern "C" {
 // Section: Driver Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* Memory Driver Global Configuration Options */
+#define DRV_MEMORY_INSTANCES_NUMBER          1
+
+/* Memory Driver Instance 0 Configuration */
+#define DRV_MEMORY_INDEX_0                   0
+#define DRV_MEMORY_CLIENTS_NUMBER_IDX0       1
+#define DRV_MEMORY_BUFFER_QUEUE_SIZE_IDX0    1
+
+/* Memory Driver Instance 0 RTOS Configurations*/
+#define DRV_MEMORY_STACK_SIZE_IDX0           1024
+#define DRV_MEMORY_PRIORITY_IDX0             1
+#define DRV_MEMORY_RTOS_DELAY_IDX0                         10
+
+/* SST26 Driver Instance Configuration */
+#define DRV_SST26_INDEX                 0
+#define DRV_SST26_CLIENTS_NUMBER        1
+#define DRV_SST26_START_ADDRESS         0x0
+#define DRV_SST26_PAGE_SIZE             256
+#define DRV_SST26_ERASE_BUFFER_SIZE     4096
+#define DRV_SST26_CHIP_SELECT_PIN       SYS_PORT_PIN_RA1
+
 /*** WiFi PIC32MZW1 Driver Configuration ***/
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
 #define WDRV_PIC32MZW_WPA3_SUPPORT
@@ -147,8 +231,7 @@ extern "C" {
 #define TCPIP_DNS_CLIENT_CACHE_PER_IPV6_ADDRESS		1
 #define TCPIP_DNS_CLIENT_ADDRESS_TYPE			    IP_ADDRESS_TYPE_IPV4
 #define TCPIP_DNS_CLIENT_CACHE_DEFAULT_TTL_VAL		1200
-#define TCPIP_DNS_CLIENT_CACHE_UNSOLVED_ENTRY_TMO	10
-#define TCPIP_DNS_CLIENT_LOOKUP_RETRY_TMO			5
+#define TCPIP_DNS_CLIENT_LOOKUP_RETRY_TMO			2
 #define TCPIP_DNS_CLIENT_MAX_HOSTNAME_LEN			64
 #define TCPIP_DNS_CLIENT_MAX_SELECT_INTERFACES		4
 #define TCPIP_DNS_CLIENT_DELETE_OLD_ENTRIES			true
@@ -178,9 +261,33 @@ extern "C" {
 #define TCPIP_ICMP_TASK_TICK_RATE              33
 #define TCPIP_ICMP_COMMAND_ENABLE              false
 
-#define SYS_WIFIPROV_NVMADDR        		0x900F0000
+#define SYS_WIFIPROV_NVMADDR        		0x900FF000
 #define SYS_WIFIPROV_SAVECONFIG        			true
 #define SYS_WIFIPROV_SOCKETPORT        		6666
+
+/******************************************************************************/
+/*wolfSSL TLS Layer Configuration*/
+/******************************************************************************/
+
+#define WOLFSSL_ALT_NAMES
+#define WOLFSSL_DER_LOAD
+#define KEEP_OUR_CERT
+#define KEEP_PEER_CERT
+#define HAVE_CRL_IO
+#define HAVE_IO_TIMEOUT
+#define TFM_NO_ASM
+#define WOLFSSL_NO_ASM
+#define SIZEOF_LONG_LONG 8
+#define WOLFSSL_USER_IO
+#define NO_WRITEV
+#define MICROCHIP_TCPIP
+#define HAVE_FFDHE_2048
+#define NO_PWDBASED
+#define HAVE_TLS_EXTENSIONS
+#define WOLFSSL_TLS13
+#define HAVE_SUPPORTED_CURVES
+#define NO_OLD_TLS
+#define USE_FAST_MATH
 
 
 /*** TCP Configuration ***/
@@ -204,6 +311,7 @@ extern "C" {
 #define TCPIP_TCP_QUIET_TIME		        	    0
 #define TCPIP_TCP_COMMANDS   false
 #define TCPIP_TCP_EXTERN_PACKET_PROCESS   false
+#define TCPIP_TCP_DISABLE_CRYPTO_USAGE		        	    false
 
 
 
@@ -240,11 +348,6 @@ extern "C" {
 
 
 
-	/*** tcpip_cmd Configuration ***/
-	#define TCPIP_STACK_COMMAND_ENABLE
-
-
-
 /* Network Configuration Index 0 */
 #define TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX0	"PIC32MZW1"
 #define TCPIP_IF_PIC32MZW1
@@ -266,14 +369,9 @@ extern "C" {
 #define TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX0			WDRV_PIC32MZW1_MACObject
 
 
-/* MPLAB Harmony Net Presentation Layer Definitions*/
-#define NET_PRES_NUM_INSTANCE 1
-#define NET_PRES_NUM_SOCKETS 10
 
-/* Net Pres RTOS Configurations*/
-#define NET_PRES_RTOS_STACK_SIZE                1024
-#define NET_PRES_RTOS_TASK_PRIORITY             1
-	
+	/*** tcpip_cmd Configuration ***/
+	#define TCPIP_STACK_COMMAND_ENABLE
 
 
 
@@ -345,6 +443,24 @@ extern "C" {
 
 
 
+/*** SNTP Configuration ***/
+#define TCPIP_STACK_USE_SNTP_CLIENT
+#define TCPIP_NTP_DEFAULT_IF		        	"PIC32MZW1"
+#define TCPIP_NTP_VERSION             			4
+#define TCPIP_NTP_DEFAULT_CONNECTION_TYPE   	IP_ADDRESS_TYPE_IPV4
+#define TCPIP_NTP_EPOCH		                	2208988800ul
+#define TCPIP_NTP_REPLY_TIMEOUT		        	6
+#define TCPIP_NTP_MAX_STRATUM		        	15
+#define TCPIP_NTP_TIME_STAMP_TMO				660
+#define TCPIP_NTP_SERVER		        		"pool.ntp.org"
+#define TCPIP_NTP_SERVER_MAX_LENGTH				30
+#define TCPIP_NTP_QUERY_INTERVAL				600
+#define TCPIP_NTP_FAST_QUERY_INTERVAL	    	14
+#define TCPIP_NTP_TASK_TICK_RATE				1100
+#define TCPIP_NTP_RX_QUEUE_LIMIT				2
+
+
+
 /*** UDP Configuration ***/
 #define TCPIP_UDP_MAX_SOCKETS		                	10
 #define TCPIP_UDP_SOCKET_DEFAULT_TX_SIZE		    	512
@@ -371,16 +487,17 @@ extern "C" {
 #define NO_PWDBASED
 #define HAVE_MCAPI
 #define WOLF_CRYPTO_CB  // provide call-back support
-#define WOLFCRYPT_ONLY
 #define WOLFSSL_MICROCHIP_PIC32MZ
 // ---------- CRYPTO HARDWARE MANIFEST START ----------
 #define WOLFSSL_HAVE_MCHP_HW_CRYPTO_ECC_HW_BA414E
 #define WOLFSSL_HAVE_MCHP_BA414E_CRYPTO
 // ---------- CRYPTO HARDWARE MANIFEST END ----------
 // ---------- FUNCTIONAL CONFIGURATION START ----------
-#define NO_MD4
-#define WOLFSSL_SHA224
-#define NO_PIC32MZ_HASH
+#define WOLFSSL_PIC32MZ_HASH
+#define WOLFSSL_PIC32MZ_HASH
+#define WOLFSSL_PIC32MZ_HASH
+#define HAVE_HKDF
+#define NO_DES3
 #define WOLFSSL_AES_128
 #define WOLFSSL_AES_192
 #define WOLFSSL_AES_256
@@ -390,23 +507,36 @@ extern "C" {
 #define HAVE_AES_CBC
 #define WOLFSSL_AES_COUNTER
 #define HAVE_AESGCM
-#define HAVE_AESCCM
 #define NO_RC4
 #define NO_HC128
 #define NO_RABBIT
 #define HAVE_ECC
-#define NO_DH
+#define HAVE_X963_KDF
+#define HAVE_ECC_ENCRYPT
+#define HAVE_DH
 #define NO_DSA
 #define FP_MAX_BITS 4096
 #define USE_CERT_BUFFERS_2048
+#define WC_RSA_PSS
 #define NO_DEV_RANDOM
 #define HAVE_HASHDRBG
 #define WC_NO_HARDEN
-#define SINGLE_THREADED
+#define FREERTOS
 #define NO_SIG_WRAPPER
 #define NO_ERROR_STRINGS
 #define NO_WOLFSSL_MEMORY
 // ---------- FUNCTIONAL CONFIGURATION END ----------
+
+/* MPLAB Harmony Net Presentation Layer Definitions*/
+#define NET_PRES_NUM_INSTANCE 1
+#define NET_PRES_NUM_SOCKETS 10
+
+/* Net Pres RTOS Configurations*/
+#define NET_PRES_RTOS_STACK_SIZE                5120
+#define NET_PRES_RTOS_TASK_PRIORITY             1
+	
+#define FREERTOS
+
 
 /* WIFI System Service Configuration Options */
 #define SYS_WIFI_DEVMODE        			SYS_WIFI_STA

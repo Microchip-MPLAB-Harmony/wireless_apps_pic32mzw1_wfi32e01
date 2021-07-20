@@ -73,9 +73,14 @@ void SYS_Tasks ( void )
 {
     /* Maintain system services */
     
+SYS_FS_Tasks();
+
+
 
     /* Maintain Device Drivers */
+    DRV_MEMORY_Tasks(sysObj.drvMemory0);
     
+
 
     /* Maintain Middleware & Other Libraries */
     

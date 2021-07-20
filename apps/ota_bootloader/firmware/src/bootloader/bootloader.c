@@ -1,3 +1,27 @@
+// DOM-IGNORE-BEGIN
+/*******************************************************************************
+Copyright (c) 2020-2021 released Microchip Technology Inc.  All rights reserved.
+
+Microchip licenses to you the right to use, modify, copy and distribute
+Software only when embedded on a Microchip microcontroller or digital signal
+controller that is integrated into your product or third party product
+(pursuant to the sublicense terms in the accompanying license agreement).
+
+You should refer to the license agreement accompanying this Software for
+additional information regarding your rights and obligations.
+
+SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF
+MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+IN NO EVENT SHALL MICROCHIP OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER
+CONTRACT, NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR
+OTHER LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR
+CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT OF
+SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+(INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+*******************************************************************************/
+// DOM-IGNORE-END
 /*******************************************************************************
   Company:
     Microchip Technology Inc.
@@ -10,7 +34,7 @@
 
   Description:
     This file contains the interface definition for the Bootloader library.
-*******************************************************************************/
+ *******************************************************************************/
 #include <stdio.h>
 #include <string.h>
 #include "configuration.h"
@@ -18,65 +42,111 @@
 #include "ota_config.h"
 #include "ota_image.h"
 #include "bootloader.h"
-#include "ext_flash.h"
 #include "int_flash.h"
-#include "imagestore.h"
 #include "sha256.h"
-
+#include "system/fs/sys_fs.h"
+#include "../bootloader/csv/csv.h"
+#include "ota_database_parser.h"
 //---------------------------------------------------------------------------
+static bool factory_reset = true;
+static bool new_image = false;
+static int selected_row;
+static char digest_str[66];
+static char digest_gl[4];
+static uint8_t digest_g[32];
+static OTA_DB_BUFFER *imageDB;
+static bool database_found;
+
 typedef uint32_t BOOTLOADER_STATUS;
+
+#define SYS_CONSOLE_DEBUG1      printf
 #define BOOTLOADER_STATUS_SUCCESS                  0
 #define BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED 1
 #define BOOTLOADER_STATUS_ERROR                   -1
 #define BOOTLOADER_STATUS_ERROR_NO_IMAGE_FOUND    -2
 
-#define BOOTLOADER_DEBUG_LEVEL 0
+#ifdef SYS_OTA_APPDEBUG_ENABLED
+#define OTA_DEBUG  
+#endif 
 
-#define APP_IMG_BOOT_CTL_SIGNATURE \
-    (((volatile uint8_t*)APP_IMG_BOOT_CTL)[FIRMWARE_IMAGE_HEADER_SIGNATURE_BYTE])
+#ifdef OTA_DEBUG
+#define FIRMWARE_IMAGE_HEADER_SIGNATURE_BYTE (4095)
+#endif
 
 #define __woraround_unused_variable(x) ((void)x)
 
-typedef enum
-{
+typedef enum {
     BOOTLOADER_TASK_INIT = 0,
     BOOTLOADER_TASK_CHECK_IMAGE,
     BOOTLOADER_TASK_SELECT_IMAGE,
     BOOTLOADER_TASK_PROGRAM_IMAGE,
     BOOTLOADER_TASK_VERIFY_IMAGE,
-    BOOTLOADER_TASK_SIGN_BOOT_CTL,
+    BOOTLOADER_TASK_SET_IMAGE_STATUS,
     BOOTLOADER_TASK_INVALIDATE_IMAGE,
-    BOOTLOADER_TASK_FLASH_PROGRAMMER,
+    BOOTLOADER_TASK_NO_IMAGE_FOUND,
     BOOTLOADER_TASK_JUMP_TO_APP,
-    BOOTLOADER_TASK_CLEANER,
     BOOTLOADER_TASK_FACTORY_RESET
 } BOOTLOADER_TASK_ID;
 
-typedef struct
-{
+typedef struct {
     FIRMWARE_IMAGE_HEADER img;
-    uint8_t               guard[32];
 } BOOTLOADER_TASK_PARAM;
 
-
-typedef struct
-{
+typedef struct {
     uint8_t buf[FLASH_SECTOR_SIZE];
-    
-    struct {
-        uint8_t                 context[1024];
-        int                     state;
-        int                     state_dbg;
-        BOOTLOADER_TASK_PARAM   param;
-    } task;
-    
-    BOOTLOADER_TASK_ID current_task;
-    uint32_t           debug_level;
 
+    struct {
+        uint8_t context[1024];
+        int state;
+        BOOTLOADER_TASK_PARAM param;
+    } task;
+    BOOTLOADER_TASK_ID current_task;
+
+    struct {
+        bool disk_mount;
+        bool reading_file;
+        bool file_opened;
+    } file_sys;
 } BOOTLOADER_DATA;
 
-static BOOTLOADER_DATA  __attribute__ ((coherent, aligned(128))) bootloader;
+static BOOTLOADER_DATA __attribute__((coherent, aligned(128))) bootloader;
 
+#define APP_MOUNT_NAME          "/mnt/myDrive1"
+#define APP_DEVICE_NAME         "/dev/mtda1"
+#define APP_FS_TYPE             FAT
+#define APP_OTA_DATABASE_NAME   "image_database.csv"
+#define APP_OTA_DATABASE_PATH   "/mnt/myDrive1/image_database.csv"
+#define APP_FILE_NAME           "factory_reset.txt"
+#define BUFFER_SIZE                (4096U)
+uint8_t CACHE_ALIGN work[SYS_FS_FAT_MAX_SS];
+
+typedef enum {
+    /* The app mounts the disk */
+    APP_MOUNT_DISK = 0,
+
+    /* The disk mount success */
+    APP_MOUNT_SUCCESS,
+
+    /* The app formats the disk. */
+    APP_FORMAT_DISK,
+
+    /* The app opens the file */
+    APP_OPEN_FILE,
+
+    APP_ERROR
+
+} APP_FILE_STATES;
+
+typedef struct {
+    /* SYS_FS File handle */
+    SYS_FS_HANDLE fileHandle;
+
+    /* Application's current state */
+    APP_FILE_STATES state;
+
+} APP_DATA_FILE;
+
+static APP_DATA_FILE CACHE_ALIGN appFile;
 #ifndef SYS_ASSERT
 #define SYS_ASSERT(test, msg)\
 do {\
@@ -89,14 +159,14 @@ do {\
 #endif
 
 #ifndef SYS_INT_Disable
-    #define SYS_INT_Disable()\
+#define SYS_INT_Disable()\
     do {\
         __builtin_disable_interrupts();\
     } while(0);
 #endif
 
 #ifndef SYS_RESET_SoftwareReset
-    #define SYS_RESET_SoftwareReset()\
+#define SYS_RESET_SoftwareReset()\
     do {\
         SYSKEY = 0x00000000;\
         SYSKEY = 0xAA996655;\
@@ -111,7 +181,7 @@ do {\
 #endif
 
 #ifndef EVIC_Deinitialize
-    #define EVIC_Deinitialize()\
+#define EVIC_Deinitialize()\
     do {\
         SYS_INT_Disable();\
         EVIC_SourceDisable(INT_SOURCE_FLASH_CONTROL);\
@@ -125,39 +195,44 @@ do {\
 #endif
 
 //---------------------------------------------------------------------------
-void Bootloader_TraceHeader(void *addr)
-{
+
+void Bootloader_TraceHeader(void *addr) {
     volatile FIRMWARE_IMAGE_HEADER *hdr = (volatile FIRMWARE_IMAGE_HEADER *)addr;
     printf("status    :%02X\n", hdr->status);
     printf("version   :%02X\n", hdr->version);
-    printf("order     :%02X\n", hdr->order);
+    //printf("order     :%02X\n", hdr->order);
     printf("type      :%02X\n", hdr->type);
-    printf("sz        :%08X\n", hdr->sz);
-    printf("slot      :%08X\n", hdr->slot);
+    //printf("sz        :%08X\n", hdr->sz);
+    //printf("slot      :%08X\n", hdr->slot);
     printf("boot_addr :%08X\n", hdr->boot_addr);
-    printf("digest    :%02X %02X %02X %02X %02X %02X %02X %02X\n",
-            hdr->digest[0],hdr->digest[1],hdr->digest[2],hdr->digest[3],
-            hdr->digest[4],hdr->digest[5],hdr->digest[6],hdr->digest[7]);
-    printf("          :%02X %02X %02X %02X %02X %02X %02X %02X\n",
-            hdr->digest[8],hdr->digest[9],hdr->digest[10],hdr->digest[11],
-            hdr->digest[12],hdr->digest[13],hdr->digest[14],hdr->digest[15]);
-    
-    printf("          :%02X %02X %02X %02X %02X %02X %02X %02X\n",
-            hdr->digest[16],hdr->digest[17],hdr->digest[18],hdr->digest[19],
-            hdr->digest[20],hdr->digest[21],hdr->digest[22],hdr->digest[23]);
-    printf("          :%02X %02X %02X %02X %02X %02X %02X %02X\n",
-            hdr->digest[24],hdr->digest[25],hdr->digest[26],hdr->digest[27],
-            hdr->digest[28],hdr->digest[29],hdr->digest[30],hdr->digest[31]);
+
     printf("\n");
 }
 
 
+// *****************************************************************************
+// *****************************************************************************
+// Section: To Initialize OTA bootloader related parameters
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
-void  Bootloader_Initialize(void)
-{
-    memset(&bootloader, 0, sizeof(bootloader));
+/*
+  void Bootloader_Initialize(void)
+ 
+  Description:
+    To Initialize OTA bootloader related parameters
+  
+  Task Parameters:
+    None
+ 
+  Return:
+    None
+ */
+//---------------------------------------------------------------------------
+
+void Bootloader_Initialize(void) {
+    memset(&bootloader, 0, sizeof (bootloader));
     bootloader.current_task = BOOTLOADER_TASK_INIT;
-    bootloader.debug_level  = BOOTLOADER_DEBUG_LEVEL;
     printf("\n");
     printf("***********************************************************\n");
     printf("BOOTLOADER Build %s %s\n", __DATE__, __TIME__);
@@ -165,146 +240,279 @@ void  Bootloader_Initialize(void)
     printf("***********************************************************\n");
 
     INT_Flash_Initialize();
+    appFile.state = APP_MOUNT_DISK;
 }
 
+// *****************************************************************************
+// *****************************************************************************
+// Section: To open a file
+// *****************************************************************************
+// *****************************************************************************
+//---------------------------------------------------------------------------
+/*
+  void open_file(void)
+ 
+  Description:
+    To open a file 
+  
+  Task Parameters:
+    None
+ 
+  Return:
+    None
+ */
+//---------------------------------------------------------------------------
+
+void open_file(void) {
+    SYS_FS_FORMAT_PARAM opt;
+    /*State would have been set by mount_disk() function*/
+    switch (appFile.state) {
+        case APP_FORMAT_DISK:
+        {
+            #ifdef OTA_DEBUG
+            printf("Formating File");
+            #endif
+            opt.fmt = SYS_FS_FORMAT_FAT;
+            opt.au_size = 0;
+
+            if (SYS_FS_DriveFormat(APP_MOUNT_NAME, &opt, (void *) work, SYS_FS_FAT_MAX_SS) != SYS_FS_RES_SUCCESS) {
+                /* Format of the disk failed. */
+                appFile.state = APP_ERROR;
+            } else {
+                /* Format succeeded. Open a file. */
+                appFile.state = APP_OPEN_FILE;
+            }
+            break;
+        }
+        case APP_OPEN_FILE:
+        {
+#ifdef OTA_DEBUG
+            printf("opening File");
+#endif
+            if (bootloader.file_sys.reading_file == true)
+                appFile.fileHandle = SYS_FS_FileOpen(APP_MOUNT_NAME"/"APP_FILE_NAME, (SYS_FS_FILE_OPEN_READ_PLUS));
+            else
+                appFile.fileHandle = SYS_FS_FileOpen(APP_MOUNT_NAME"/"APP_FILE_NAME, (SYS_FS_FILE_OPEN_WRITE_PLUS));
+
+            if (appFile.fileHandle == SYS_FS_HANDLE_INVALID) {
+                /* File open unsuccessful */
+                appFile.state = APP_ERROR;
+            } else {
+                /* File open was successful. Write to the file. */
+#ifdef OTA_DEBUG
+                printf("File Opened");
+#endif
+                bootloader.file_sys.file_opened = true;
+            }
+            break;
+        }
+        case APP_ERROR:
+        {
+            printf("file open error\n");
+            break;
+        }
+        default:
+        {
+            printf("file open error\n");
+            break;
+        }
+    }
+}
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: Mounting Disk in external flash
+// *****************************************************************************
+// *****************************************************************************
+//---------------------------------------------------------------------------
+/*
+  static void mount_disk()
+
+  Description:
+   Mounting Disk in external flash
+
+  Task Parameters:
+    None
+  Return:
+    None
+ */
+//---------------------------------------------------------------------------
+
+static void mount_disk() {
+    
+    switch (appFile.state) {
+        case APP_MOUNT_DISK:
+        {
+            /* Mount the disk */
+            if (SYS_FS_Mount(APP_DEVICE_NAME, APP_MOUNT_NAME, APP_FS_TYPE, 0, NULL) != 0) {
+                /* The disk could not be mounted. Try mounting again until
+                 * the operation succeeds. */
+                appFile.state = APP_MOUNT_DISK;
+            } else {
+                /* Mount was successful. */
+
+                appFile.state = APP_MOUNT_SUCCESS;
+            }
+            break;
+        }
+        case APP_MOUNT_SUCCESS:
+        {
+            bootloader.file_sys.disk_mount = true;
+            appFile.state = APP_OPEN_FILE;
+            break;
+        }
+        case APP_ERROR:
+        {
+            break;
+        }
+        default:
+        {
+
+            break;
+        }
+    }
+}
+#ifdef FACTORY_IMAGE_BACKUP_DISABLE
+// *****************************************************************************
+// *****************************************************************************
+// Section: Formating Disk in external flash
+// *****************************************************************************
+// *****************************************************************************
+//---------------------------------------------------------------------------
+/*
+  static void format_disk()
+
+  Description:
+   Formating Disk in external flash
+
+  Task Parameters:
+    None
+  Return:
+    None
+ */
+//---------------------------------------------------------------------------
+
+static void format_disk() {
+    SYS_FS_FORMAT_PARAM opt;
+    SYS_FS_DriveFormat(APP_MOUNT_NAME, &opt, (void *) work, SYS_FS_FAT_MAX_SS);
+}
+#endif
+// *****************************************************************************
+// *****************************************************************************
+// Section: Return BOOTLOADER_STATUS_SUCCESS if the images on INT/EXT are the same.Otherwise returns BOOTLOADER_STATUS_ERROR
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
 /*
   BOOTLOADER_STATUS Bootloader_Task_CheckImage(void)
 
   Description:
     Return BOOTLOADER_STATUS_SUCCESS if the images on INT/EXT are the same.
-    DOWNLOADED or VALID. Otherwise the function invalidates image and returns
-    BOOTLOADER_STATUS_ERROR
+    Otherwise returns BOOTLOADER_STATUS_ERROR
 
   Task Parameters:
     None
 
   Return:
     A BOOTLOADER_STATUS code describing the current status.
-*/
+ */
 //---------------------------------------------------------------------------
+
 typedef struct {
     uint8_t *buf;
 } BOOTLOADER_CHECK_IMAGE_TASK_CONTEXT;
 
-typedef enum
-{
+typedef enum {
     TASK_STATE_C_INIT = 0,
-    TASK_STATE_C_PARSE_HEADER,
+    TASK_STATE_C_PARSE_DATABASE,
     TASK_STATE_C_INVALIDATE_BOOT_CTL,
     TASK_STATE_C_INVALIDATE_IMAGESTORE,
     TASK_STATE_C_DONE
 } BOOTLOADER_CHECK_IMAGE_TASK_STATE;
 
-static BOOTLOADER_STATUS Bootloader_Task_CheckImage(void)
-{
-    BOOTLOADER_CHECK_IMAGE_TASK_CONTEXT *ctx = (void *)bootloader.task.context;
+static BOOTLOADER_STATUS Bootloader_Task_CheckImage(void) {
+    BOOTLOADER_CHECK_IMAGE_TASK_CONTEXT *ctx = (void *) bootloader.task.context;
 
-    if (bootloader.debug_level  >= 1)
-    {
-        static const char * s[] __attribute__((unused)) = {
-            "TASK_STATE_C_INIT",
-            "TASK_STATE_C_PARSE_HEADER",
-            "TASK_STATE_C_INVALIDATE_BOOT_CTL",
-            "TASK_STATE_C_INVALIDATE_IMAGESTORE",
-            "TASK_STATE_C_DONE" }; 
-
-        if (bootloader.task.state_dbg != bootloader.task.state)
-        {
-            printf("%s\n", &s[bootloader.task.state][11]);
-            bootloader.task.state_dbg = bootloader.task.state;
-        }
-        
-    }
-    
-    SYS_ASSERT(sizeof(*ctx)<sizeof(bootloader.task.context), "Buffer Overflow");
-    
-    switch ( bootloader.task.state )
-    {
+    switch (bootloader.task.state) {
         case TASK_STATE_C_INIT:
         {
-            uint32_t *p = (uint32_t*)APP_IMG_BOOT_CTL;
-            
-            
-            if (p[0] == 0xffffffff && p[1] == 0xffffffff 
-            &&  p[2] == 0xffffffff && p[3] == 0xffffffff )
-            {
+            uint32_t *p = (uint32_t*) APP_IMG_BOOT_CTL;
+            if (p[0] == 0xffffffff && p[1] == 0xffffffff
+                    && p[2] == 0xffffffff && p[3] == 0xffffffff) {
                 //APP_IMG_BOOT_CTL is uninitialized.
+                factory_reset = true;
                 printf("Uninitialized sector\n");
                 return BOOTLOADER_STATUS_ERROR;
             }
-
-            ctx->buf = bootloader.buf;
-            if (APP_IMG_BOOT_CTL->slot >= IMAGESTORE_NUM_SLOT)
-            {
-                printf("Invalid slot #%d\n", APP_IMG_BOOT_CTL->slot);
-                bootloader.task.state = TASK_STATE_C_INVALIDATE_BOOT_CTL;
-                break;
-            }
             
-            IMAGESTORE_Read(APP_IMG_BOOT_CTL->slot, 0, ctx->buf, FLASH_SECTOR_SIZE);
-            bootloader.task.state = TASK_STATE_C_PARSE_HEADER;
+            factory_reset = false;
+            imageDB = OTA_GetDBBuffer();
+            int ret_db_status = OTAGetDb(imageDB, APP_OTA_DATABASE_PATH);
+
+            /*check for error code*/
+            if (ret_db_status > 1)
+                return SYS_STATUS_ERROR;
+            else if (ret_db_status == OTA_DB_NOT_FOUND) {
+                database_found = false;
+#ifdef OTA_DEBUG
+                printf("no database found");
+#endif
+                /*need to load factory reset image*/
+                factory_reset = true;
+                return BOOTLOADER_STATUS_ERROR;
+            } else {
+                database_found = true;
+                
+            }
+            ctx->buf = bootloader.buf;
+            bootloader.task.state = TASK_STATE_C_PARSE_DATABASE;
             break;
         }
-        case TASK_STATE_C_PARSE_HEADER:
+        case TASK_STATE_C_PARSE_DATABASE:
         {
             FIRMWARE_IMAGE_HEADER *img;
-    
-            if (IMAGESTORE_Busy())
-            {
-                break;
-            }
-            
-            img = (FIRMWARE_IMAGE_HEADER *)ctx->buf;
-            
-            if (APP_IMG_BOOT_CTL->status == IMG_STATUS_VALID)
-            {
-                if (img->version == FIRMWARE_IMAGE_HEADER_VERSION
-                &&  img->status == ctx->buf[FIRMWARE_IMAGE_HEADER_SIGNATURE_BYTE]
-                && (memcmp(img->digest, (void*)APP_IMG_BOOT_CTL->digest, sizeof(APP_IMG_BOOT_CTL->digest)) == 0))
-                {
-                    if (img->status == IMG_STATUS_VALID)
-                    {
-                        return BOOTLOADER_STATUS_SUCCESS;
+            img = (FIRMWARE_IMAGE_HEADER *) ctx->buf;
+            if (database_found == true) {
+#ifdef OTA_DEBUG
+                SYS_CONSOLE_DEBUG1("\n\nDatabase found\n\n");
+#endif
+                selected_row = GetImageRow(APP_IMG_BOOT_CTL->version, imageDB);
+                if (selected_row == -1) {
+#ifdef OTA_DEBUG
+                    SYS_CONSOLE_DEBUG1("\n\nImage version is not found\n\n");
+#endif
+                    return SYS_STATUS_ERROR;
+                }
+                if (GetFieldValue(imageDB, OTA_IMAGE_STATUS, selected_row, &img->status) != 0) {
+#ifdef OTA_DEBUG
+                    SYS_CONSOLE_DEBUG1("Image status field not read properly\n");
+#endif
+                    return SYS_STATUS_ERROR;
+                }
+                if (GetFieldValue(imageDB, OTA_IMAGE_VERSION, selected_row, &img->version) != 0) {
+#ifdef OTA_DEBUG
+                    SYS_CONSOLE_DEBUG1("Image version field not read properly\n");
+#endif
+                    return SYS_STATUS_ERROR;
+                }
+
+                /*If highest version is already present in internal flash, no need to copy it again*/
+                if (APP_IMG_BOOT_CTL->status == IMG_STATUS_VALID) {
+                    if (img->version == APP_IMG_BOOT_CTL->version
+                            && img->status == IMG_STATUS_VALID) {
+                        if (img->status == IMG_STATUS_VALID) {
+                            csv_destroy_buffer(imageDB);
+                            return BOOTLOADER_STATUS_SUCCESS;
+                        }
                     }
                 }
-            }
-
-            if (APP_IMG_BOOT_CTL->slot == 0)
-            {
                 bootloader.task.state = TASK_STATE_C_DONE;
-            } else {
-                bootloader.task.state = TASK_STATE_C_INVALIDATE_BOOT_CTL;
             }
-            break;
-        }
-        case TASK_STATE_C_INVALIDATE_BOOT_CTL:
-        {
-            ctx->buf[FIRMWARE_IMAGE_HEADER_SIGNATURE_BYTE] = IMG_STATUS_DISABLED;
-            ctx->buf[FIRMWARE_IMAGE_HEADER_STATUS_BYTE] = IMG_STATUS_DISABLED;
-
-            INT_Flash_Write(APP_IMG_SLOT_ADDR, ctx->buf, FLASH_SECTOR_SIZE);
-            bootloader.task.state = TASK_STATE_C_INVALIDATE_IMAGESTORE;
-            break;
-        }
-        case TASK_STATE_C_INVALIDATE_IMAGESTORE:
-        {
-            if (INT_Flash_Busy())
-            {
-                break;
-            }
-
-            IMAGESTORE_Write(APP_IMG_BOOT_CTL->slot, 0, ctx->buf, FLASH_SECTOR_SIZE);
-            bootloader.task.state = TASK_STATE_C_DONE;
             break;
         }
         case TASK_STATE_C_DONE:
         {
-            if (IMAGESTORE_Busy())
-            {
-                break;
-            }
-            
+
             return BOOTLOADER_STATUS_ERROR;
         }
         default:
@@ -313,9 +521,47 @@ static BOOTLOADER_STATUS Bootloader_Task_CheckImage(void)
             return BOOTLOADER_STATUS_ERROR;
         }
     }
-
     return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
 }
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: convert string digest into hex format
+// *****************************************************************************
+// *****************************************************************************
+//---------------------------------------------------------------------------
+/*
+  SYS_STATUS formulate_digest(void)
+
+  Description:
+    convert string digest into hex format
+
+  Task Parameters:
+    None
+  Return:
+    None
+ */
+//---------------------------------------------------------------------------
+
+static void formulate_digest(void) {
+    int i;
+    int index = 0;
+
+    for (i = 0; i < 32; i++) {
+        strncpy(digest_gl, &digest_str[index], 2);
+        index = index + 2;
+        digest_g[i] = (uint8_t) strtol(digest_gl, NULL, 16);
+#ifdef OTA_DEBUG
+        SYS_CONSOLE_DEBUG1("formulated digest[%d]: %x\n", i, digest_g[i]);
+#endif
+    }
+}
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: Select the higest ranked image from the Image Store
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
 /*
   BOOTLOADER_STATUS Bootloader_Task_SelectImage(void)
@@ -324,140 +570,218 @@ static BOOTLOADER_STATUS Bootloader_Task_CheckImage(void)
     Select the higest ranked image from the Image Store
 
   Task Parameters:
-    (OUT) img   - A copy of the selected images' FIRMWARE_IMAGE_HEADER
+    None
 
   Return:
     BOOTLOADER_STATUS_ERROR_NO_IMAGE_FOUND if no image found,
     BOOTLOADER_STATUS_SUCCESS otherwise.
-*/
+ */
 //---------------------------------------------------------------------------
+
 typedef struct {
     uint8_t *buf;
     uint32_t slot;
     uint32_t selected;
-    uint8_t  order;
+    uint8_t version;
 } BOOTLOADER_SELECT_IMAGE_TASK_CONTEXT;
 
-typedef enum
-{
+typedef enum {
     TASK_STATE_S_INIT = 0,
-    TASK_STATE_S_READ_HEADER,
+    TASK_STATE_S_PARSE_DB,
     TASK_STATE_S_CHECK_IMAGE,
     TASK_STATE_S_SELECT_IMAGE,
     TASK_STATE_S_DONE
 } BOOTLOADER_SELECT_IMAGE_TASK_STATE;
+BOOTLOADER_TASK_PARAM *param = &bootloader.task.param;
 
-static BOOTLOADER_STATUS Bootloader_Task_SelectImage(void)
-{
-    BOOTLOADER_SELECT_IMAGE_TASK_CONTEXT *ctx = (void*)bootloader.task.context;
-    BOOTLOADER_TASK_PARAM *param = &bootloader.task.param;
-
-    if (bootloader.debug_level  >= 1)
+static BOOTLOADER_STATUS Bootloader_Task_SelectImage(void) {
+    BOOTLOADER_SELECT_IMAGE_TASK_CONTEXT *ctx = (void*) bootloader.task.context;
+    if(factory_reset == true)
     {
-        static const char * s[] __attribute__((unused)) = {
-            "TASK_STATE_S_INIT",
-            "TASK_STATE_S_READ_HEADER",
-            "TASK_STATE_S_CHECK_IMAGE",
-            "TASK_STATE_S_SELECT_IMAGE",
-            "TASK_STATE_S_DONE" };
-
-        if (bootloader.task.state_dbg != bootloader.task.state)
-        {
-            printf("%s\n", s[bootloader.task.state]);
-            bootloader.task.state_dbg = bootloader.task.state;
+        /*open factory image file*/
+        if (bootloader.file_sys.file_opened == false) {
+            /*Set the flag to  open file in read mode*/
+            bootloader.file_sys.reading_file = true;
+            open_file();
+            return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
+        } else {
+            bootloader.file_sys.reading_file = false;
         }
+        
+        #ifdef OTA_DEBUG
+            printf("file is opened successfully");
+        #endif
+        SYS_FS_FileDirectoryRemove(APP_OTA_DATABASE_PATH);      
     }
-    SYS_ASSERT(sizeof(*ctx)<sizeof(bootloader.task.context), "Buffer Overflow");
-    
-    switch ( bootloader.task.state )
-    {
+    switch (bootloader.task.state) {
         case TASK_STATE_S_INIT:
         {
-            bootloader.task.state = TASK_STATE_S_READ_HEADER;
-            ctx->slot     = 0;
-            ctx->selected = 0;
-            ctx->order    = 0;
-            ctx->buf      = bootloader.buf;
+#ifdef OTA_DEBUG
+            SYS_CONSOLE_DEBUG1("TASK_STATE_S_INIT\n");
+#endif
+            bootloader.task.state = TASK_STATE_S_PARSE_DB;
+            ctx->buf = bootloader.buf;
             break;
         }
-        case TASK_STATE_S_READ_HEADER:
+        case TASK_STATE_S_PARSE_DB:
         {
-            if (ctx->slot < IMAGESTORE_NUM_SLOT)
-            {
-                IMAGESTORE_Read(ctx->slot, 0, ctx->buf, FLASH_SECTOR_SIZE);
-                
-                bootloader.task.state = TASK_STATE_S_CHECK_IMAGE;
+            if (factory_reset == false) {
+                /*Get the row of the best image in the DB*/
+                uint8_t total_images = GetTotalImgs(imageDB);
+#ifdef OTA_DEBUG
+                SYS_CONSOLE_DEBUG1("total_images : %d\n", total_images);
+#endif
+                selected_row = -1;
+                /*set version variables to zero initially, and go through the image database to 
+                 get the latest version of image */
+                uint8_t ver = 0;
+                param->img.version = 0;
+
+                uint8_t i;
+                /*gothrough the image DB to get the latest and best image version */
+                for (i = 0; i < total_images; i++) {
+                    if (GetFieldValue(imageDB, OTA_IMAGE_VERSION, i, &ver) != 0) {
+#ifdef OTA_DEBUG
+                        SYS_CONSOLE_DEBUG1("Image version field not read properly\n");
+#endif
+                        /*if database file is present , but empty  */
+                        if(total_images == 1)
+                            factory_reset = true;
+                        return SYS_STATUS_ERROR;
+                    }
+                    if (param->img.version < ver) {
+                        if (GetFieldValue(imageDB, OTA_IMAGE_STATUS, i, &param->img.status) != 0) {
+#ifdef OTA_DEBUG
+                            SYS_CONSOLE_DEBUG1("Image status field not read properly\n");
+#endif
+                            return SYS_STATUS_ERROR;
+                        }
+
+                        /*Check if the status of image found is valid , if yes select the row*/
+                        if (param->img.status == IMG_STATUS_DOWNLOADED) {
+                            selected_row = i;
+                            param->img.version = ver;
+                        }
+                        if (param->img.status == IMG_STATUS_VALID) {
+#ifdef OTA_DEBUG
+                            printf("Valid image\n");
+#endif
+                            selected_row = i;
+                            param->img.version = ver;
+                        }
+                    }
+                }
+                if (selected_row == -1) {
+#ifdef OTA_DEBUG
+                    SYS_CONSOLE_DEBUG1("\n\nProper image is not found in external flash :: move to factory reset image\n\n");
+#endif
+                    /*Proper image is not found in external flash :: move to factory reset image, o go on*/
+                    bootloader.task.state = TASK_STATE_S_PARSE_DB;
+                    factory_reset = true;
+                    break;
+                } else {
+
+                    /*Get the name of the selected image*/
+                    char image_name[100];
+                    char image_path[100];
+                    strcpy(image_path, APP_MOUNT_NAME"/");
+                    if (GetFieldString(imageDB, OTA_IMAGE_NAME, selected_row, image_name) != 0) {
+#ifdef OTA_DEBUG
+                        printf("Image name field not read properly\n");
+#endif
+                        return SYS_STATUS_ERROR;
+                    }
+                    strcat(image_path, image_name);
+                    if (GetFieldString(imageDB, OTA_IMAGE_DIGEST, selected_row, digest_str) != 0) {
+#ifdef OTA_DEBUG
+                        SYS_CONSOLE_DEBUG1("Image Digest field not read properly\n");
+#endif
+                        return SYS_STATUS_ERROR;
+                    }
+#ifdef OTA_DEBUG
+                    SYS_CONSOLE_DEBUG1("image digest : %s\n", digest_str);
+                    /*************/
+
+                    SYS_CONSOLE_DEBUG1("image name : %s", image_name);
+                    SYS_CONSOLE_DEBUG1(" image_path: %s", image_path);
+#endif
+                    /*open image file*/
+                    appFile.fileHandle = SYS_FS_FileOpen(image_path, (SYS_FS_FILE_OPEN_READ_PLUS));
+                    if (appFile.fileHandle == SYS_FS_HANDLE_INVALID) {
+#ifdef OTA_DEBUG
+                        /* File open unsuccessful */
+                        SYS_CONSOLE_DEBUG1("File Open Failed");
+#endif
+                        /*select factory reset image*/
+                        bootloader.task.state = TASK_STATE_S_PARSE_DB;
+                        factory_reset = true;
+                        break;
+                    } else {
+                        /* File open was successful. */
+#ifdef OTA_DEBUG
+                        SYS_CONSOLE_DEBUG1("Image File Opened");
+#endif
+                        new_image = true;
+                    }
+                    bootloader.task.state = TASK_STATE_S_CHECK_IMAGE;
+                    break;
+                }
             }
-            else
-            {
-                bootloader.task.state = TASK_STATE_S_SELECT_IMAGE;
+
+#ifdef OTA_DEBUG
+            FIRMWARE_IMAGE_HEADER *img;
+            img = (FIRMWARE_IMAGE_HEADER *) ctx->buf;
+            printf("img->status : %d,img->version : %d\n", img->status, img->version);
+#endif
+            SYS_FS_FileSeek(appFile.fileHandle, 0, SYS_FS_SEEK_SET);
+
+            if (SYS_FS_FileEOF(appFile.fileHandle) != false) {
+#ifdef OTA_DEBUG
+                printf("Factory image is Empty\n");
+#endif
+                return SYS_STATUS_ERROR;
             }
+            SYS_FS_FileRead(appFile.fileHandle, (void *) ctx->buf, FLASH_SECTOR_SIZE);
+#ifdef OTA_DEBUG            
+            Bootloader_TraceHeader((void*) ctx->buf);
+#endif
+            bootloader.task.state = TASK_STATE_S_CHECK_IMAGE;
             break;
         }
         case TASK_STATE_S_CHECK_IMAGE:
         {
-            if (IMAGESTORE_Busy())
-            {
-                break;
-            }
-            
-            memcpy(&param->img, ctx->buf, sizeof(FIRMWARE_IMAGE_HEADER));
-            if (bootloader.debug_level  >= 1)
-            {
-               Bootloader_TraceHeader((void*)ctx->buf);
-            }
-            
-            if ( param->img.status == ctx->buf[FIRMWARE_IMAGE_HEADER_SIGNATURE_BYTE]
-            &&   param->img.version == FIRMWARE_IMAGE_HEADER_VERSION)
-            {
-                if (param->img.status == IMG_STATUS_DOWNLOADED)
-                {
-                    ctx->selected = ctx->slot;
-                    ctx->order = param->img.order;
-                    bootloader.task.state = TASK_STATE_S_SELECT_IMAGE;
+#ifdef OTA_DEBUG 
+            printf("TASK_STATE_S_CHECK_IMAGE\n");
+#endif
+            if (factory_reset == true) {
+                memcpy(&param->img, ctx->buf, sizeof (FIRMWARE_IMAGE_HEADER));
+#ifdef OTA_DEBUG 
+                Bootloader_TraceHeader((void*) ctx->buf);
+#endif
+                if (param->img.status == IMG_STATUS_VALID) {
+                    printf("Valid image\n");
+                    bootloader.task.state = TASK_STATE_S_DONE;
                     break;
                 }
-
-                if (param->img.status == IMG_STATUS_VALID)
-                {
-                    if ( ctx->order == 0
-                    || ((ctx->order - param->img.order) & 0x08))
-                    {
-                        ctx->selected = ctx->slot;
-                        ctx->order = param->img.order;
-                    }
+                return BOOTLOADER_STATUS_ERROR;
+            } else {
+                #ifdef OTA_DEBUG
+                SYS_CONSOLE_DEBUG1("Selected row : %d\n",selected_row);
+                if (GetFieldString(imageDB, OTA_IMAGE_DIGEST, selected_row, digest_str) != 0) {
+                    SYS_CONSOLE_DEBUG1("Image status field not read properly\n");
+                    while(1);
+                    return SYS_STATUS_ERROR;
                 }
+                
+                SYS_CONSOLE_DEBUG1("image digest : %s\n digest_str : %s\n", param->img.digest, digest_str);
+                #endif
+                bootloader.task.state = TASK_STATE_S_DONE;
             }
-            
-            ctx->slot++;
-            bootloader.task.state = TASK_STATE_S_READ_HEADER;
             break;
         }
-        case TASK_STATE_S_SELECT_IMAGE:
-        {
-            IMAGESTORE_Read(ctx->selected, 0,
-                    &param->img, sizeof(FIRMWARE_IMAGE_HEADER));
 
-            bootloader.task.state = TASK_STATE_S_DONE;
-            break;
-        }
         case TASK_STATE_S_DONE:
         {
-            if (IMAGESTORE_Busy())
-            {
-                break;
-            }
-            
-            if (param->img.status != IMG_STATUS_DOWNLOADED
-            &&  param->img.status != IMG_STATUS_VALID)
-            {
-                printf("No image found\n");
-                return BOOTLOADER_STATUS_ERROR_NO_IMAGE_FOUND;
-            }
-            else
-            {
-                printf("Select Image @ %d\n", ctx->selected);
-            }
 
             return BOOTLOADER_STATUS_SUCCESS;
         }
@@ -470,21 +794,27 @@ static BOOTLOADER_STATUS Bootloader_Task_SelectImage(void)
 
     return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
 }
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: Copy selected image to PFM.
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
 /*
   BOOTLOADER_STATUS Bootloader_Task_ProgramImage(void)
 
   Description:
     Copy selected image to PFM.
-    NB: BOOT_CTG is erased, but not programmed by this function
-
+    
   Task Parameters:
-    (IN) img   - A copy of the selected images' FIRMWARE_IMAGE_HEADER
+    None
 
   Return:
     A BOOTLOADER_STATUS code describing the current status.
-*/
+ */
 //---------------------------------------------------------------------------
+
 typedef struct {
     uint8_t *buf;
     uint32_t offset;
@@ -492,56 +822,62 @@ typedef struct {
     uint32_t copy_len;
 } BOOTLOADER_PROGRAM_IMAGE_TASK_CONTEXT;
 
-typedef enum
-{
+typedef enum {
     TASK_STATE_P_INIT = 0,
     TASK_STATE_P_ERASE_SLOT,
     TASK_STATE_P_READ_IMAGE,
     TASK_STATE_P_PROGRAM_IMAGE,
-    TASK_STATE_P_READ_HEADER,
+    TASK_STATE_P_FORMULATE_BOOT_CTL,
     TASK_STATE_P_PROGRAM_BOOT_CTL,
     TASK_STATE_P_DONE
 } BOOTLOADER_PROGRAM_IMAGE_TASK_STATE;
+char boot_ctl[FLASH_SECTOR_SIZE];
 
-static BOOTLOADER_STATUS Bootloader_Task_ProgramImage(void)
-{
-    BOOTLOADER_PROGRAM_IMAGE_TASK_CONTEXT *ctx = (void*)bootloader.task.context;
+static BOOTLOADER_STATUS Bootloader_Task_ProgramImage(void) {
+    BOOTLOADER_PROGRAM_IMAGE_TASK_CONTEXT *ctx = (void*) bootloader.task.context;
     BOOTLOADER_TASK_PARAM *param = &bootloader.task.param;
 
-    if (bootloader.debug_level  >= 1)
-    {
-        static const char * s[] __attribute__((unused)) = {
-            "TASK_STATE_P_INIT",
-            "TASK_STATE_P_ERASE_SLOT",
-            "TASK_STATE_P_READ_IMAGE",
-            "TASK_STATE_P_PROGRAM_IMAGE",
-            "TASK_STATE_P_READ_HEADER",
-            "TASK_STATE_P_PROGRAM_BOOT_CTL",
-            "TASK_STATE_P_DONE" };
-
-        if (bootloader.task.state_dbg != bootloader.task.state)
-        {
-            printf("%s\n", s[bootloader.task.state]);
-            bootloader.task.state_dbg = bootloader.task.state;
-        }
-    }
-    SYS_ASSERT(sizeof(*ctx)<sizeof(bootloader.task.context), "Buffer Overflow");
-    
-    switch ( bootloader.task.state )
-    {
+    switch (bootloader.task.state) {
         case TASK_STATE_P_INIT:
         {
+#ifdef OTA_DEBUG
+            printf("TASK_STATE_P_INIT\n");
+#endif
             ctx->buf = bootloader.buf;
             ctx->len = FLASH_SECTOR_SIZE;
             ctx->offset = FLASH_SECTOR_SIZE;
-            ctx->copy_len = (param->img.sz + FLASH_SECTOR_SIZE-1)/FLASH_SECTOR_SIZE * FLASH_SECTOR_SIZE;
+            if (new_image == true) {
+                /*Get the image file size*/
+                ctx->copy_len = SYS_FS_FileSize(appFile.fileHandle);
+#ifdef OTA_DEBUG
+                printf("ctx->copy_len : %d\n", ctx->copy_len);
+#endif
+                param->img.sz = ctx->copy_len;
+            } else
+                ctx->copy_len = (FACTORY_RESET_IMG_SIZE + FLASH_SECTOR_SIZE - 1) / FLASH_SECTOR_SIZE * FLASH_SECTOR_SIZE;
+
+            /*header area will be used during image verification , copy it in buffer "boot_ctl" */
+            SYS_FS_FileSeek(appFile.fileHandle, 0, SYS_FS_SEEK_SET);
+            SYS_FS_FileRead(appFile.fileHandle, ctx->buf, ctx->len);
+            memcpy(boot_ctl, ctx->buf, ctx->len);
+
+#ifdef OTA_DEBUG
+            int i;
+            for (i = 0; i < 32; i++) {
+                SYS_CONSOLE_DEBUG1("TASK_STATE_P_READ_IMAGE\n");
+                SYS_CONSOLE_DEBUG1("boot_ctl[%d] : %d\n", i, boot_ctl[i]);
+            }
+#endif
+
             bootloader.task.state = TASK_STATE_P_ERASE_SLOT;
             break;
         }
         case TASK_STATE_P_ERASE_SLOT:
         {
-            if (INT_Flash_Erase(APP_IMG_SLOT_ADDR, IMAGESTORE_SLOT_SIZE) == false)
-            {
+#ifdef OTA_DEBUG
+            SYS_CONSOLE_DEBUG1("TASK_STATE_P_ERASE_SLOT\n");
+#endif
+            if (INT_Flash_Erase(APP_IMG_SLOT_ADDR, FACTORY_RESET_IMG_SIZE) == false) {
                 ctx->buf = NULL;
                 return BOOTLOADER_STATUS_ERROR;
             }
@@ -550,178 +886,194 @@ static BOOTLOADER_STATUS Bootloader_Task_ProgramImage(void)
         }
         case TASK_STATE_P_READ_IMAGE:
         {
-            if (IMAGESTORE_Busy() || INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
+#ifdef OTA_DEBUG
+            SYS_CONSOLE_DEBUG1("TASK_STATE_P_READ_IMAGE\n");
+#endif
 
-            IMAGESTORE_Read(param->img.slot, ctx->offset, ctx->buf, ctx->len);
-
+            SYS_FS_FileSeek(appFile.fileHandle, ctx->offset, SYS_FS_SEEK_SET);
+            SYS_FS_FileRead(appFile.fileHandle, ctx->buf, ctx->len);
             bootloader.task.state = TASK_STATE_P_PROGRAM_IMAGE;
             break;
         }
         case TASK_STATE_P_PROGRAM_IMAGE:
         {
-            if (IMAGESTORE_Busy() || INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
-                       
+#ifdef OTA_DEBUG
+            SYS_CONSOLE_DEBUG1("TASK_STATE_P_PROGRAM_IMAGE\n");
+#endif
             INT_Flash_Write(APP_IMG_SLOT_ADDR + ctx->offset, ctx->buf, FLASH_SECTOR_SIZE);
-            
             ctx->offset += ctx->len;
-
-            if (ctx->offset >= ctx->copy_len)
-            {
-                bootloader.task.state = TASK_STATE_P_READ_HEADER;
-            }
-            else
-            {
-                bootloader.task.state = TASK_STATE_P_READ_IMAGE;                
+            if (ctx->offset >= ctx->copy_len) {
+                bootloader.task.state = TASK_STATE_P_FORMULATE_BOOT_CTL;
+            } else {
+                bootloader.task.state = TASK_STATE_P_READ_IMAGE;
             }
             break;
         }
-        case TASK_STATE_P_READ_HEADER:
+        case TASK_STATE_P_FORMULATE_BOOT_CTL:
         {
-            if (IMAGESTORE_Busy() || INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
-            IMAGESTORE_Read(param->img.slot, 0, ctx->buf, FLASH_SECTOR_SIZE);
+#ifdef OTA_DEBUG
+            SYS_CONSOLE_DEBUG1("TASK_STATE_P_READ_HEADER\n");
+#endif
+            if (new_image == true) {
+                memset(ctx->buf, 0, sizeof (FIRMWARE_IMAGE_HEADER));
+                param->img.type = IMG_TYPE_PRODUCTION;
+                param->img.boot_addr = APP_IMG_BOOT_ADDR;
+                memcpy(ctx->buf, &param->img, sizeof (FIRMWARE_IMAGE_HEADER));
+                bootloader.task.state = TASK_STATE_P_PROGRAM_BOOT_CTL;
+                break;
+            }
+
+            /*If factory reset image, extract the header information from factory reset image file*/
+            SYS_FS_FileSeek(appFile.fileHandle, 0, SYS_FS_SEEK_SET);
+            SYS_FS_FileRead(appFile.fileHandle, ctx->buf, FLASH_SECTOR_SIZE);
+#ifdef OTA_DEBUG
+            Bootloader_TraceHeader((void*) ctx->buf);
+#endif
             bootloader.task.state = TASK_STATE_P_PROGRAM_BOOT_CTL;
-            break;    
+            break;
         }
         case TASK_STATE_P_PROGRAM_BOOT_CTL:
         {
-            if (IMAGESTORE_Busy() || INT_Flash_Busy()){
+#ifdef OTA_DEBUG
+            printf("TASK_STATE_P_PROGRAM_BOOT_CTL\n");
+#endif
+            if (INT_Flash_Busy()) {
                 break;
             }
-            if (INT_Flash_Write(APP_IMG_SLOT_ADDR, ctx->buf, FLASH_SECTOR_SIZE) == false)
-            {
+#ifdef OTA_DEBUG            
+            Bootloader_TraceHeader((void*) ctx->buf);
+#endif
+            if (INT_Flash_Write(APP_IMG_SLOT_ADDR, ctx->buf, FLASH_SECTOR_SIZE) == false) {
                 ctx->buf = NULL;
                 return BOOTLOADER_STATUS_ERROR;
             }
-            
             bootloader.task.state = TASK_STATE_P_DONE;
             break;
         }
         case TASK_STATE_P_DONE:
         {
-            if (IMAGESTORE_Busy() || INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
-
+#ifdef OTA_DEBUG
+            printf("TASK_STATE_P_DONE\n");
+#endif
+            /*Close factory reset file*/
+            if(factory_reset == true)
+                SYS_FS_FileClose(appFile.fileHandle);
+            
             ctx->buf = NULL;
             return BOOTLOADER_STATUS_SUCCESS;
         }
         default:
         {
-            SYS_ASSERT(false, "Unknown task state");
             return BOOTLOADER_STATUS_ERROR;
         }
     }
-
     return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
 }
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: Verify the copied image in INT Flash.This example code uses SHA256 for image validation.
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
 /*
-  BOOTLOADER_STATUS Bootloader_Task_VerifyImage(void)
+  static BOOTLOADER_STATUS Bootloader_Task_VerifyImageDigest(void)
 
   Description:
     Verify the copied image in INT Flash..
     This example code uses SHA256 for image validation.
-    NB: BOOT_CFG has not been programmed!
 
   Task Parameters:
     None
 
   Return:
     A BOOTLOADER_STATUS code describing the current status.
-*/
+ */
 //---------------------------------------------------------------------------
-typedef struct
-{
-    CRYPT_SHA256_CTX  sha256; // This has to be 128 bytes aligned !!
+
+typedef struct {
+    CRYPT_SHA256_CTX sha256; // This has to be 128 bytes aligned !!
     uint8_t *buf;
     uint32_t offset;
     uint32_t len;
     uint32_t img_sz;
 } BOOTLOADER_VERIFY_IMAGE_TASK_CONTEXT;
 
-typedef enum
-{
+typedef enum {
     TASK_STATE_V_INIT = 0,
     TASK_STATE_V_READ_IMG,
     TASK_STATE_V_DONE,
 } BOOTLOADER_V_IMAGE_TASK_STATE;
 
-static BOOTLOADER_STATUS Bootloader_Task_VerifyImage(void)
-{
-    BOOTLOADER_VERIFY_IMAGE_TASK_CONTEXT *ctx = (void*)&bootloader.task.context;
+static BOOTLOADER_STATUS Bootloader_Task_VerifyImageDigest(void) {
+    BOOTLOADER_VERIFY_IMAGE_TASK_CONTEXT *ctx = (void*) &bootloader.task.context;
     BOOTLOADER_TASK_PARAM *param = &bootloader.task.param;
 
-    if (bootloader.debug_level  >= 1)
-    {
-        static const char * s[] __attribute__((unused))= {
-            "TASK_STATE_V_INIT",
-            "TASK_STATE_V_READ_IMG",
-            "TASK_STATE_V_DONE" };
-
-        if (bootloader.task.state_dbg != bootloader.task.state)
-        {
-            printf("%s\n", s[bootloader.task.state]);
-            bootloader.task.state_dbg = bootloader.task.state;
-        }
-    }
-    SYS_ASSERT(sizeof(*ctx)<sizeof(bootloader.task.context), "Buffer Overflow");
-    
-    switch ( bootloader.task.state )
-    {
+    switch (bootloader.task.state) {
         case TASK_STATE_V_INIT:
         {
+            /*If factory reset image no verification required*/
+            if (factory_reset == true)
+                return BOOTLOADER_STATUS_SUCCESS;
             ctx->offset = 0;
             ctx->len = FLASH_SECTOR_SIZE;
             ctx->buf = bootloader.buf;
             ctx->img_sz = param->img.sz;
-            
+#ifdef OTA_DEBUG
+            SYS_CONSOLE_DEBUG1("TASK_STATE_V_INIT : ctx->img_sz : %d\n", ctx->img_sz);
+#endif
             CRYPT_SHA256_Initialize(&ctx->sha256);
             CRYPT_SHA256_DataSizeSet(&ctx->sha256, param->img.sz);
-
             INT_Flash_Read(APP_IMG_SLOT_ADDR, ctx->buf, ctx->len);
+#ifdef OTA_DEBUG
+            int i;
+            for (i = 0; i < 32; i++) {
+                SYS_CONSOLE_DEBUG1("TASK_STATE_V_INIT\n");
+                SYS_CONSOLE_DEBUG1("ctx->buf[%d] : %d\n", i, ctx->buf[i]);
+            }
+#endif
             bootloader.task.state = TASK_STATE_V_READ_IMG;
+            formulate_digest();
             break;
         }
         case TASK_STATE_V_READ_IMG:
         {
-            if (INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
-            
-            if (ctx->offset == 0)
-            {
-                FIRMWARE_IMAGE_HEADER * img = (FIRMWARE_IMAGE_HEADER *)ctx->buf;
-                memset(ctx->buf, 0xFF, sizeof(FIRMWARE_IMAGE_HEADER));
-                img->version   = param->img.version;
-                img->sz        = param->img.sz;
-                img->boot_addr = param->img.boot_addr;
+            if (ctx->offset == 0) {
+                memset(ctx->buf, 0, sizeof (FIRMWARE_IMAGE_HEADER));
+#ifdef OTA_DEBUG
+                FIRMWARE_IMAGE_HEADER * img = (FIRMWARE_IMAGE_HEADER *) ctx->buf;
+                img->status = 0xFD;
+                img->version = 0x01; //param->img.version;
+                img->sz = 0xFF; //param->img.sz;
+                img->type = 0x03;
+                img->boot_addr = APP_IMG_BOOT_ADDR;
                 ctx->buf[FIRMWARE_IMAGE_HEADER_SIGNATURE_BYTE] = 0xFF;
+#endif
+                memcpy(ctx->buf, boot_ctl, FLASH_SECTOR_SIZE);
             }
-            
             CRYPT_SHA256_DataAdd(&ctx->sha256, ctx->buf, ctx->len);
             ctx->offset += ctx->len;
-
-            if (ctx->offset < ctx->img_sz)
-            {
-                if ((ctx->offset + ctx->len) > ctx->img_sz)
-                {
+            if (ctx->offset < ctx->img_sz) {
+                if ((ctx->offset + ctx->len) > ctx->img_sz) {
                     ctx->len = ctx->img_sz - ctx->offset;
                 }
                 INT_Flash_Read(APP_IMG_SLOT_ADDR + ctx->offset, ctx->buf, ctx->len);
-            }
-            else
-            {
+            } else {
                 bootloader.task.state = TASK_STATE_V_DONE;
             }
             break;
@@ -729,16 +1081,19 @@ static BOOTLOADER_STATUS Bootloader_Task_VerifyImage(void)
         case TASK_STATE_V_DONE:
         {
             uint8_t digest[CRYPT_SHA256_DIGEST_SIZE];
-
-            if (INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
-            
             CRYPT_SHA256_Finalize(&ctx->sha256, digest);
-
-            if (memcmp(digest, param->img.digest, CRYPT_SHA256_DIGEST_SIZE) != 0)
-            {
+            int i;
+            for (i = 0; i < 32; i++) {
+                param->img.digest[i] = digest_g[i];
+            }
+#ifdef OTA_DEBUG
+            for (i = 0; i < 32; i++)
+                printf("digest : %d \n param->img.digest : %d\n", digest[i], param->img.digest[i]);
+#endif
+            if (memcmp(digest, param->img.digest, CRYPT_SHA256_DIGEST_SIZE) != 0) {
                 printf("Broken Image\n");
                 return BOOTLOADER_STATUS_ERROR;
             }
@@ -746,115 +1101,113 @@ static BOOTLOADER_STATUS Bootloader_Task_VerifyImage(void)
         }
         default:
         {
-            SYS_ASSERT(false, "Unknown task state");
             return BOOTLOADER_STATUS_ERROR;
         }
     }
 
     return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
 }
+// *****************************************************************************
+// *****************************************************************************
+// Section: Mark INT flash image to UNBOOTED.
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
 /*
-  BOOTLOADER_STATUS Bootloader_Task_SignImage(void)
+  BOOTLOADER_STATUS Bootloader_Task_SetImageStatus(void)
 
   Description:
-    Mark INT flash image to VALID.
+    Mark INT flash image to UNBOOTED.
     
   Task Parameters:
     None
 
   Return:
     A BOOTLOADER_STATUS code describing the current status.
-*/
+ */
 //---------------------------------------------------------------------------
-typedef struct
-{
+
+typedef struct {
     uint8_t *buf;
 } BOOTLOADER_SIGN_IMAGE_TASK_CONTEXT;
 
-typedef enum
-{
+typedef enum {
     TASK_STATE_SI_INIT = 0,
-    TASK_STATE_SI_SIGN,
+    TASK_STATE_SI_SET_STATUS,
     TASK_STATE_SI_DONE
 } BOOTLOADER_SIGN_IMAGE_TASK_STATE;
 
-static BOOTLOADER_STATUS Bootloader_Task_SignImage(void)
-{
-    BOOTLOADER_SIGN_IMAGE_TASK_CONTEXT *ctx = (void*)bootloader.task.context;
+static BOOTLOADER_STATUS Bootloader_Task_SetImageStatus(void) {
+    BOOTLOADER_SIGN_IMAGE_TASK_CONTEXT *ctx = (void*) bootloader.task.context;
     BOOTLOADER_TASK_PARAM *param = &bootloader.task.param;
-    
-    switch ( bootloader.task.state )
-    {
+
+    switch (bootloader.task.state) {
         case TASK_STATE_SI_INIT:
         {
             ctx->buf = bootloader.buf;
-            
             INT_Flash_Read(APP_IMG_SLOT_ADDR, ctx->buf, FLASH_SECTOR_SIZE);
-            bootloader.task.state = TASK_STATE_SI_SIGN;
+            bootloader.task.state = TASK_STATE_SI_SET_STATUS;
             break;
         }
-        case TASK_STATE_SI_SIGN:
+        case TASK_STATE_SI_SET_STATUS:
         {
-            if (INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
-            
-            //param->img.status = IMG_STATUS_VALID;
             param->img.status &= IMG_STATUS_UNBOOTED;
-            memcpy(ctx->buf, &param->img, sizeof(FIRMWARE_IMAGE_HEADER));
+            memcpy(ctx->buf, &param->img, sizeof (FIRMWARE_IMAGE_HEADER));
+#ifdef OTA_DEBUG
             ctx->buf[FIRMWARE_IMAGE_HEADER_SIGNATURE_BYTE] = param->img.status;
+#endif
             INT_Flash_Write(APP_IMG_SLOT_ADDR, ctx->buf, FLASH_SECTOR_SIZE);
             bootloader.task.state = TASK_STATE_SI_DONE;
             break;
         }
         case TASK_STATE_SI_DONE:
         {
-            if (INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
-
             return BOOTLOADER_STATUS_SUCCESS;
         }
         default:
         {
-            SYS_ASSERT(false, "Unknown task state");
             return BOOTLOADER_STATUS_ERROR;
         }
     }
 
     return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
 }
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: Invalidate image in Image Store to DISABLED.
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
 /*
   BOOTLOADER_STATUS Bootloader_Task_InvalidateImage(void)
 
   Description:
-    Invaldate image in Image Store to DISABLED.
-
-
+    Invalidate image in Image Store to DISABLED.
+ 
   Task Parameters:
-    (IN) img   - A copy of the selected images' FIRMWARE_IMAGE_HEADER
+    None
 
   Return:
     A BOOTLOADER_STATUS code describing the current status.
-*/
+ */
 //---------------------------------------------------------------------------
-typedef enum
-{
+
+typedef enum {
     TASK_STATE_I_INIT = 0,
     TASK_STATE_I_INVALIDATE,
     TASK_STATE_I_DONE
 } BOOTLOADER_INVALIDATE_IMAGE_TASK_STATE;
 
-static BOOTLOADER_STATUS Bootloader_Task_InvalidateImage(void)
-{
+static BOOTLOADER_STATUS Bootloader_Task_InvalidateImage(void) {
     BOOTLOADER_TASK_PARAM *param = &bootloader.task.param;
-
-    switch ( bootloader.task.state )
-    {
+    switch (bootloader.task.state) {
         case TASK_STATE_I_INIT:
         {
             bootloader.task.state = TASK_STATE_I_INVALIDATE;
@@ -862,177 +1215,74 @@ static BOOTLOADER_STATUS Bootloader_Task_InvalidateImage(void)
         case TASK_STATE_I_INVALIDATE:
         {
             param->img.status = IMG_STATUS_DISABLED;
-            if (param->img.order == 0)
-            {
+            char status[4];
+            sprintf(status, "%x", param->img.status);
+            SetFieldValue(imageDB, OTA_IMAGE_STATUS, selected_row, status);
+            /*if (param->img.order == 0) {
                 printf("The golden image is broken!!\n");
                 bootloader.task.state = TASK_STATE_I_DONE;
                 break;
-            }
-
-            IMAGESTORE_Write(param->img.slot, 0,
-                    &param->img, sizeof(FIRMWARE_IMAGE_HEADER));
-            
+            }*/
             bootloader.task.state = TASK_STATE_I_DONE;
             break;
         }
         case TASK_STATE_I_DONE:
         {
-            if (IMAGESTORE_Busy())
-            {
-                break;
-            }
-            
             return BOOTLOADER_STATUS_SUCCESS;
         }
     }
     return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
 }
 
+// *****************************************************************************
+// *****************************************************************************
+// Section:To jump to application code
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
 /*
   BOOTLOADER_STATUS Bootloader_Task_JumpApplication(void)
 
   Description:
-
+  To jump to application code
 
   Task Parameters:
     None
-
-
   Return:
     A BOOTLOADER_STATUS code describing the current status.
-*/
+ */
 //---------------------------------------------------------------------------
-static BOOTLOADER_STATUS Bootloader_Task_JumpApplication(void)
-{
+
+static BOOTLOADER_STATUS Bootloader_Task_JumpApplication(void) {
     void(*fptr)(void);
-
-	EVIC_Deinitialize();
+    EVIC_Deinitialize();
     fptr = (void(*)(void))(APP_IMG_BOOT_CTL->boot_addr);
-
     fptr();
-
     return BOOTLOADER_STATUS_SUCCESS;
 }
 
-//---------------------------------------------------------------------------
-/*
-  BOOTLOADER_STATUS Bootloader_Task_FlashProgrammer(void)
 
-  Description:
-
-
-  Task Parameters:
-    None
-
-  Return:
-    A BOOTLOADER_STATUS code describing the current status.
-*/
-//---------------------------------------------------------------------------
-/*
-typedef enum
-{
-    TASK_STATE_FP_INIT = 0,
-    TASK_STATE_FP_SERVICE_TASK,
-} BOOTLOADER_FINVALIDATE_IMAGE_TASK_STATE;
-
-static BOOTLOADER_STATUS Bootloader_Task_FlashProgrammer(void)
-{
-    switch (bootloader.task.state)
-    {
-        case TASK_STATE_FP_INIT:
-        {
-            INT_Flash_Close();
-            IMAGESTORE_Close();
-        
-            FlashProgrammer_Initialize();
-            FlashProgrammer_Start();
-            bootloader.task.state = TASK_STATE_FP_SERVICE_TASK;
-            break;
-        }       
-        case TASK_STATE_FP_SERVICE_TASK:
-        {
-            FlashProgrammer_Tasks();
-            break;
-        }
-    }
-    return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
-}
-*/
-//---------------------------------------------------------------------------
-/*
-  BOOTLOADER_STATUS Bootloader_Task_Cleaner(void)
-
-  Description:
-
-
-  Task Parameters:
-    None
-
-  Return:
-    A BOOTLOADER_STATUS code describing the current status.
-*/
-//---------------------------------------------------------------------------
-typedef enum
-{
-    TASK_STATE_CLEANER_INIT = 0,
-    TASK_STATE_CLEANER_ERASE_EXT_FLASH,
-    TASK_STATE_CLEANER_DONE,
-} BOOTLOADER_CLEANER_STATE;
-
-static BOOTLOADER_STATUS Bootloader_Task_Cleaner(void)
-{
-    switch (bootloader.task.state)
-    {
-        case TASK_STATE_CLEANER_INIT:
-        {
-            EXT_Flash_Initialize();
-            if (EXT_Flash_Open() == false)
-            {
-                printf("Fail to open EXT_Flash\n");
-                break;
-            }
-
-            EXT_Flash_Erase(0, EXT_Flash_Capacity());
-            bootloader.task.state = TASK_STATE_CLEANER_ERASE_EXT_FLASH;
-            
-            break;
-        }
-        case TASK_STATE_CLEANER_ERASE_EXT_FLASH:
-        {
-            if (EXT_Flash_Busy())
-            {
-                break;
-            }
-            
-            printf("External Flash is erased\n");
-            bootloader.task.state = TASK_STATE_CLEANER_DONE;
-            break;         
-        }
-        default:
-        {
-            break;
-        }
-    }
-    return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
-}
-
+// *****************************************************************************
+// *****************************************************************************
+// Section: Factory reset task to maintain state machine for factory reset image
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
 /*
   BOOTLOADER_STATUS Bootloader_Task_FactoryReset(void)
 
   Description:
-
+  Factory reset task to maintain state machine for factory reset image
 
   Task Parameters:
     None
 
   Return:
     A BOOTLOADER_STATUS code describing the current status.
-*/
+ */
 //---------------------------------------------------------------------------
-typedef struct
-{
+
+typedef struct {
     uint8_t *buf;
     uint32_t offset;
     uint32_t len;
@@ -1040,113 +1290,94 @@ typedef struct
     uint32_t dbg;
 } BOOTLOADER_FACTORY_RESET_TASK_CONTEXT;
 
-typedef enum
-{
+typedef enum {
     TASK_STATE_FR_INIT = 0,
-    TASK_STATE_FR_ERASE_IMAGESTORE,
     TASK_STATE_FR_READ_IMAGE,
     TASK_STATE_FR_PROGRAM_IMAGE,
     TASK_STATE_FR_ERASE_BOOT_CTL,
     TASK_STATE_FR_DONE,
 } BOOTLOADER_FR_STATE;
 
-static BOOTLOADER_STATUS Bootloader_Task_FactoryReset(void)
-{
-    BOOTLOADER_FACTORY_RESET_TASK_CONTEXT *ctx = (void*)&bootloader.task.context;
-            
-    if (bootloader.debug_level >= 1)
-    {
-        static const char * s[] __attribute__((unused))= {
-            "TASK_STATE_FR_INIT",
-            "TASK_STATE_FR_ERASE_IMAGESTORE",
-            "TASK_STATE_FR_READ_IMAGE",
-            "TASK_STATE_FR_PROGRAM_IMAGE",
-            "TASK_STATE_FR_ERASE_BOOT_CTL",
-            "TASK_STATE_FR_DONE" };
-
-        if (bootloader.task.state_dbg != bootloader.task.state)
-        {
-            printf("%s\n", s[bootloader.task.state]);
-            bootloader.task.state_dbg = bootloader.task.state;
-        }
+static BOOTLOADER_STATUS Bootloader_Task_FactoryReset(void) {
+    BOOTLOADER_FACTORY_RESET_TASK_CONTEXT *ctx = (void*) &bootloader.task.context;
+    /*Open factory reset file*/
+    if (bootloader.file_sys.file_opened == false) {
+        open_file();
+        return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
     }
-    
-    switch (bootloader.task.state)
-    {
+    switch (bootloader.task.state) {
         case TASK_STATE_FR_INIT:
         {
+#ifdef OTA_DEBUG
+            printf("In factory reset init\n");
+#endif
             ctx->buf = bootloader.buf;
-            ctx->copy_len = (APP_IMG_BOOT_CTL->sz + FLASH_SECTOR_SIZE-1) / FLASH_SECTOR_SIZE * FLASH_SECTOR_SIZE;
+            ctx->copy_len = FACTORY_RESET_IMG_SIZE;
+#ifdef OTA_DEBUG
+            printf("ctx->copy_len : %d\n", ctx->copy_len);
+#endif
             ctx->offset = 0;
             ctx->dbg = 0;
-            bootloader.task.state = TASK_STATE_FR_ERASE_IMAGESTORE;
-            IMAGESTORE_EraseAll();
-            break;
-        }
-        case TASK_STATE_FR_ERASE_IMAGESTORE:
-        {
-            if (IMAGESTORE_Busy())
-            {
-                break;
-            }
-            
             bootloader.task.state = TASK_STATE_FR_READ_IMAGE;
-            break;         
+            break;
         }
         case TASK_STATE_FR_READ_IMAGE:
         {
-            if (IMAGESTORE_Busy())
-            {
-                break;
-            }
             INT_Flash_Read(APP_IMG_SLOT_ADDR + ctx->offset, ctx->buf, FLASH_SECTOR_SIZE);
             bootloader.task.state = TASK_STATE_FR_PROGRAM_IMAGE;
             break;
         }
         case TASK_STATE_FR_PROGRAM_IMAGE:
         {
-            if (INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
-            
-            if (ctx->offset == 0)
-            {
+            if (ctx->offset == 0) {
                 FIRMWARE_IMAGE_HEADER *img;
-                img = (FIRMWARE_IMAGE_HEADER *)ctx->buf;
-                img->type = IMG_TYPE_PRODUCTION;
-                img->order = 0;
-                ctx->buf[FIRMWARE_IMAGE_HEADER_SIGNATURE_BYTE] = img->status;
+                img = (FIRMWARE_IMAGE_HEADER *) ctx->buf;
+                img->type = IMG_TYPE_FACTORY_RESET;
+                ctx->buf[FIRMWARE_IMAGE_HEADER_STATUS_BYTE] = 0xF8; //img->status;
             }
-
-            IMAGESTORE_Write(APP_IMG_BOOT_CTL->slot, ctx->offset, ctx->buf, FLASH_SECTOR_SIZE);
-
+            SYS_FS_FileWrite(appFile.fileHandle, ctx->buf, FLASH_SECTOR_SIZE);
             bootloader.task.state = TASK_STATE_FR_READ_IMAGE;
             ctx->offset += FLASH_SECTOR_SIZE;
-            if (ctx->offset >= ctx->copy_len)
-            {
+            if (ctx->offset >= ctx->copy_len) {
                 bootloader.task.state = TASK_STATE_FR_ERASE_BOOT_CTL;
             }
             break;
         }
         case TASK_STATE_FR_ERASE_BOOT_CTL:
         {
-            if (IMAGESTORE_Busy())
-            {
-                break;
-            }
-                        
-            INT_Flash_Erase(APP_IMG_SLOT_ADDR, FLASH_SECTOR_SIZE);
+#ifdef OTA_DEBUG
+            printf("TASK_STATE_FR_ERASE_BOOT_CTL\n");
+#endif
+            /*Set the values for inernal flash header area and write it into flash*/
+            FIRMWARE_IMAGE_HEADER *img;
+            img = (FIRMWARE_IMAGE_HEADER *) ctx->buf;
+            img->type = IMG_TYPE_FACTORY_RESET;
+            img->status = 0xF8;
+            INT_Flash_Write(APP_IMG_SLOT_ADDR, ctx->buf, FLASH_SECTOR_SIZE);
+
             bootloader.task.state = TASK_STATE_FR_DONE;
             break;
         }
         case TASK_STATE_FR_DONE:
         {
-            if (INT_Flash_Busy())
-            {
+            if (INT_Flash_Busy()) {
                 break;
             }
-            printf("\n");
+
+            /*Close factory reset image file*/
+            if (SYS_FS_FileClose(appFile.fileHandle) != 0) {
+#ifdef OTA_DEBUG
+                printf("close error\n\r");
+#endif
+            } else {
+#ifdef OTA_DEBUG
+                printf("File closed\n");
+#endif
+            }
+
             SYS_RESET_SoftwareReset();
             break;
         }
@@ -1157,151 +1388,191 @@ static BOOTLOADER_STATUS Bootloader_Task_FactoryReset(void)
     }
     return BOOTLOADER_STATUS_MORE_PROCESSING_REQUIRED;
 }
+// *****************************************************************************
+// *****************************************************************************
+// Section: To maintain OTA bootloader task state machine
+// *****************************************************************************
+// *****************************************************************************
 //---------------------------------------------------------------------------
-//
-// void Bootloader_Tasks(void)
-//
+/*
+  void Bootloader_Tasks(void)
+ 
+  Description:
+    To maintain OTA bootloader task state machine
+  
+  Task Parameters:
+    None
+ 
+  Return:
+    None
+ */
 //---------------------------------------------------------------------------
-void Bootloader_Tasks(void)
-{
+
+void Bootloader_Tasks(void) {
     BOOTLOADER_TASK_ID next = bootloader.current_task;
     BOOTLOADER_STATUS status;
 
-    switch ( bootloader.current_task )
-    {
+    switch (bootloader.current_task) {
         case BOOTLOADER_TASK_INIT:
         {
-            // This needs IRQ, so can not be called from Bootloader_Initialize()
-            IMAGESTORE_Initialize();
-
-            INT_Flash_Open(); 
-            IMAGESTORE_Open();
-             
-            next = BOOTLOADER_TASK_CHECK_IMAGE;
-
-	        Bootloader_TraceHeader((void*)APP_IMG_BOOT_CTL);
-            if (APP_IMG_BOOT_CTL->status == IMG_STATUS_VALID
-            &&  APP_IMG_BOOT_CTL_SIGNATURE == IMG_STATUS_VALID)
-            {
-                switch (APP_IMG_BOOT_CTL->type)
+#ifdef OTA_DEBUG
+            printf("Init state\r");
+#endif
+            /*Mounting file system disk*/
+            mount_disk();
+            /*Wait till mount disk is successful*/
+            if (bootloader.file_sys.disk_mount == true) {
+                INT_Flash_Open();
+                next = BOOTLOADER_TASK_CHECK_IMAGE;
+                Bootloader_TraceHeader((void*) APP_IMG_BOOT_CTL);
                 {
-                case IMG_TYPE_PRODUCTION:
-                    next = BOOTLOADER_TASK_CHECK_IMAGE;
-                    break;
-
-                case IMG_TYPE_DEBUG:
-                    next = BOOTLOADER_TASK_JUMP_TO_APP;
-                    break;
-
-                case IMG_TYPE_FLASH_PROGRAMMER:
-                    next = BOOTLOADER_TASK_FLASH_PROGRAMMER;
-                    break;
-
-                case IMG_TYPE_FACTORY_RESET:
-                    next = BOOTLOADER_TASK_FACTORY_RESET;
-                    break;
- 
-                default:
-                    //next = BOOTLOADER_TASK_SELECT_IMAGE;
-                    break;
+#ifdef OTA_DEBUG
+                    printf("Inside valid state\r");
+#endif
+                    switch (APP_IMG_BOOT_CTL->type) {
+                        case IMG_TYPE_PRODUCTION:
+                        {
+                            next = BOOTLOADER_TASK_CHECK_IMAGE;
+                            break;
+                        }
+                        case IMG_TYPE_DEBUG:
+                        {
+                            next = BOOTLOADER_TASK_JUMP_TO_APP;
+                            break;
+                        }
+                        case IMG_TYPE_FACTORY_RESET:
+                        {
+                            /*Disabling factory reset backup should only be used for application debug, during development*/
+                            /***User should define FACTORY_IMAGE_BACKUP_DISABLE explicitly to disable factory reset backup***/
+                            /***USE ONLY FOR DEBUG***/
+                            #ifdef FACTORY_IMAGE_BACKUP_DISABLE
+                            format_disk();
+                            next = BOOTLOADER_TASK_JUMP_TO_APP;
+                            break;
+                            #endif
+							
+                            appFile.state = APP_FORMAT_DISK;
+                            next = BOOTLOADER_TASK_FACTORY_RESET;
+                            if (APP_IMG_BOOT_CTL->status == IMG_STATUS_VALID) {
+                                next = BOOTLOADER_TASK_JUMP_TO_APP;
+                            }
+                            break;
+                        }
+                        default:
+                            break;
+                    }
                 }
             }
+
             break;
         }
         case BOOTLOADER_TASK_CHECK_IMAGE:
         {
+#ifdef OTA_DEBUG 
+            printf("new bootloader\n");
+            printf("BOOTLOADER_TASK_CHECK_IMAGE\n");
+#endif
             status = Bootloader_Task_CheckImage();
-            if (status == BOOTLOADER_STATUS_SUCCESS)
-            {
+            if (status == BOOTLOADER_STATUS_SUCCESS) {
                 next = BOOTLOADER_TASK_JUMP_TO_APP;
             }
-            if (status == BOOTLOADER_STATUS_ERROR)
-            {
+            if (status == BOOTLOADER_STATUS_ERROR) {
                 next = BOOTLOADER_TASK_SELECT_IMAGE;
             }
             break;
         }
         case BOOTLOADER_TASK_SELECT_IMAGE:
         {
-            status =  Bootloader_Task_SelectImage();
-            if (status == BOOTLOADER_STATUS_SUCCESS)
-            {
+            status = Bootloader_Task_SelectImage();
+#ifdef OTA_DEBUG
+            printf("Select image status: %d\n", status);
+#endif
+            if (status == BOOTLOADER_STATUS_SUCCESS) {
                 next = BOOTLOADER_TASK_PROGRAM_IMAGE;
             }
-            if (status == BOOTLOADER_STATUS_ERROR_NO_IMAGE_FOUND)
-            {
-                next = BOOTLOADER_TASK_FLASH_PROGRAMMER;
+            if (status == BOOTLOADER_STATUS_ERROR_NO_IMAGE_FOUND) {
+                next = BOOTLOADER_TASK_NO_IMAGE_FOUND;
             }
-            if (status == BOOTLOADER_STATUS_ERROR)
-            {
-                bootloader.task.state = 0;
+            if (status == BOOTLOADER_STATUS_ERROR) {
+                bootloader.task.state = BOOTLOADER_TASK_INIT;
             }
             break;
         }
         case BOOTLOADER_TASK_PROGRAM_IMAGE:
         {
             status = Bootloader_Task_ProgramImage();
-            if (status == BOOTLOADER_STATUS_SUCCESS)
-            {
+            if (status == BOOTLOADER_STATUS_SUCCESS) {
+#ifdef OTA_DEBUG                
+                printf("BOOTLOADER_TASK_PROGRAM_IMAGE success\n");
+#endif
                 next = BOOTLOADER_TASK_VERIFY_IMAGE;
             }
-            if (status == BOOTLOADER_STATUS_ERROR)
-            {
+            if (status == BOOTLOADER_STATUS_ERROR) {
+#ifdef OTA_DEBUG
+                printf("BOOTLOADER_TASK_PROGRAM_IMAGE Fail\n");
+#endif
                 next = BOOTLOADER_TASK_SELECT_IMAGE;
             }
             break;
         }
         case BOOTLOADER_TASK_VERIFY_IMAGE:
         {
-            status = Bootloader_Task_VerifyImage();
-            if (status == BOOTLOADER_STATUS_SUCCESS)
-            {
-                next = BOOTLOADER_TASK_SIGN_BOOT_CTL;
+#ifdef OTA_DEBUG
+            printf("BOOTLOADER_TASK_VERIFY_IMAGE\n");
+#endif
+            status = Bootloader_Task_VerifyImageDigest();
+            if (status == BOOTLOADER_STATUS_SUCCESS) {
+#ifdef OTA_DEBUG
+                printf("BOOTLOADER_TASK_VERIFY_IMAGE success\n");
+#endif
+                next = BOOTLOADER_TASK_SET_IMAGE_STATUS;
             }
-            if (status == BOOTLOADER_STATUS_ERROR)
-            {
+            if (status == BOOTLOADER_STATUS_ERROR) {
+#ifdef OTA_DEBUG
+                printf("BOOTLOADER_TASK_VERIFY_IMAGE fail\n");
+#endif
                 next = BOOTLOADER_TASK_INVALIDATE_IMAGE;
+
             }
             break;
         }
-        case BOOTLOADER_TASK_SIGN_BOOT_CTL:
+        case BOOTLOADER_TASK_SET_IMAGE_STATUS:
         {
-            status = Bootloader_Task_SignImage();
-            if (status == BOOTLOADER_STATUS_SUCCESS)
-            {
+#ifdef OTA_DEBUG
+            printf("BOOTLOADER_TASK_SET_IMAGE_STATUS\n");
+#endif
+            status = Bootloader_Task_SetImageStatus();
+            if (status == BOOTLOADER_STATUS_SUCCESS) {
                 next = BOOTLOADER_TASK_JUMP_TO_APP;
+#ifdef OTA_DEBUG
+                printf("BOOTLOADER_TASK_SET_IMAGE_STATUS success\n");
+#endif
             }
-            if (status == BOOTLOADER_STATUS_ERROR)
-            {
+            if (status == BOOTLOADER_STATUS_ERROR) {
                 next = BOOTLOADER_TASK_INVALIDATE_IMAGE;
+
+#ifdef OTA_DEBUG
+                printf("BOOTLOADER_TASK_SIGN_BOOT_CTL fail\n");
+#endif
             }
             break;
         }
         case BOOTLOADER_TASK_INVALIDATE_IMAGE:
         {
             status = Bootloader_Task_InvalidateImage();
-            if (status == BOOTLOADER_STATUS_SUCCESS)
-            {
+            if (status == BOOTLOADER_STATUS_SUCCESS) {
                 next = BOOTLOADER_TASK_SELECT_IMAGE;
             }
             break;
         }
         case BOOTLOADER_TASK_JUMP_TO_APP:
         {
-            /*GREEN LED OFF*/
-            //SYS_PORTS_PinClear (PORTS_ID_0, PORT_CHANNEL_K, PORTS_BIT_POS_3);
             Bootloader_Task_JumpApplication();
             break;
         }
-        case BOOTLOADER_TASK_FLASH_PROGRAMMER:
+        case BOOTLOADER_TASK_NO_IMAGE_FOUND:
         {
-            //Bootloader_Task_FlashProgrammer();
             SYS_ASSERT(false, "Unexpected state");
-            break;
-        }
-        case BOOTLOADER_TASK_CLEANER:
-        {
-            Bootloader_Task_Cleaner();
             break;
         }
         case BOOTLOADER_TASK_FACTORY_RESET:
@@ -1311,13 +1582,11 @@ void Bootloader_Tasks(void)
         }
         default:
         {
-            SYS_ASSERT(false, "Unknown Task");
             break;
         }
     }
 
-    if (next != bootloader.current_task)
-    {
+    if (next != bootloader.current_task) {
         {
             static const char * s[] __attribute__((unused)) = {
                 "BOOTLOADER_TASK_INIT",
@@ -1327,23 +1596,20 @@ void Bootloader_Tasks(void)
                 "BOOTLOADER_TASK_VERIFY_IMAGE",
                 "BOOTLOADER_TASK_SIGN_BOOT_CTL",
                 "BOOTLOADER_TASK_INVALIDATE_IMAGE",
-                "BOOTLOADER_TASK_FLASH_PROGRAMMER",
+                "BOOTLOADER_TASK_NO_IMAGE_FOUND",
                 "BOOTLOADER_TASK_JUMP_TO_APP",
-                "BOOTLOADER_TASK_CLEANER",
                 "BOOTLOADER_TASK_FACTORY_RESET"
             };
-            
+
             printf("%s\n", s[next]);
-        
+
             if (bootloader.current_task != BOOTLOADER_TASK_INIT
-            &&  next == BOOTLOADER_TASK_JUMP_TO_APP)
-            {
-                Bootloader_TraceHeader((void*)APP_IMG_BOOT_CTL);
+                    && next == BOOTLOADER_TASK_JUMP_TO_APP) {
+                Bootloader_TraceHeader((void*) APP_IMG_BOOT_CTL);
                 printf("***********************************************************\n");
             }
         }
         bootloader.current_task = next;
         bootloader.task.state = 0;
-        bootloader.task.state_dbg = -1;
     }
 }

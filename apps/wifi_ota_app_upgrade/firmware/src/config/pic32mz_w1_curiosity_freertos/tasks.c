@@ -59,6 +59,15 @@
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
+static void _SYS_OTA_Tasks(  void *pvParameters  )
+{
+    while(1)
+    {
+        SYS_OTA_Tasks();
+        vTaskDelay(10/ portTICK_PERIOD_MS);
+    }
+}
+
 
 void _DRV_BA414E_Tasks(  void *pvParameters  )
 {
@@ -68,13 +77,12 @@ void _DRV_BA414E_Tasks(  void *pvParameters  )
     }
 }
 
-
-void _NET_PRES_Tasks(  void *pvParameters  )
+void _DRV_MEMORY_0_Tasks(  void *pvParameters  )
 {
     while(1)
     {
-        NET_PRES_Tasks(sysObj.netPres);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        DRV_MEMORY_Tasks(sysObj.drvMemory0);
+        vTaskDelay(DRV_MEMORY_RTOS_DELAY_IDX0 / portTICK_PERIOD_MS);
     }
 }
 
@@ -109,13 +117,43 @@ void _SYS_CMD_Tasks(  void *pvParameters  )
 }
 
 
+
+void _NET_PRES_Tasks(  void *pvParameters  )
+{
+    while(1)
+    {
+        NET_PRES_Tasks(sysObj.netPres);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+}
+
 static void _WDRV_PIC32MZW1_Tasks(  void *pvParameters  )
 {
     while(1)
     {
+        SYS_STATUS status;
+
         WDRV_PIC32MZW_Tasks(sysObj.drvWifiPIC32MZW1);
+
+        status = WDRV_PIC32MZW_Status(sysObj.drvWifiPIC32MZW1);
+
+        if ((SYS_STATUS_ERROR == status) || (SYS_STATUS_UNINITIALIZED == status))
+        {
+            vTaskDelay(50 / portTICK_PERIOD_MS);
+        }
     }
 }
+
+
+void _SYS_FS_Tasks(  void *pvParameters  )
+{
+    while(1)
+    {
+        SYS_FS_Tasks();
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
+}
+
 
 void _SYS_WIFI_Task(  void *pvParameters  )
 {
@@ -157,9 +195,35 @@ void SYS_Tasks ( void )
 
 
 
+    xTaskCreate( _SYS_FS_Tasks,
+        "SYS_FS_TASKS",
+        SYS_FS_STACK_SIZE,
+        (void*)NULL,
+        SYS_FS_PRIORITY,
+        (TaskHandle_t*)NULL
+    );
+
+
 
     /* Maintain Device Drivers */
-        xTaskCreate( _WDRV_PIC32MZW1_Tasks,
+        xTaskCreate( _SYS_OTA_Tasks,
+        "SYS_OTA_Tasks",
+        SYS_OTA_RTOS_STACK_SIZE,
+        (void*)NULL,
+        SYS_OTA_RTOS_TASK_PRIORITY,
+        (TaskHandle_t*)NULL
+    );
+
+
+    xTaskCreate( _DRV_MEMORY_0_Tasks,
+        "DRV_MEM_0_TASKS",
+        DRV_MEMORY_STACK_SIZE_IDX0,
+        (void*)NULL,
+        DRV_MEMORY_PRIORITY_IDX0,
+        (TaskHandle_t*)NULL
+    );
+
+    xTaskCreate( _WDRV_PIC32MZW1_Tasks,
         "WDRV_PIC32MZW1_Tasks",
         1024,
         (void*)NULL,
@@ -182,21 +246,21 @@ void SYS_Tasks ( void )
 
 
 
-    xTaskCreate( _NET_PRES_Tasks,
-        "NET_PRES_Tasks",
-        NET_PRES_RTOS_STACK_SIZE,
-        (void*)NULL,
-        NET_PRES_RTOS_TASK_PRIORITY,
-        (TaskHandle_t*)NULL
-    );
-
-
-
     xTaskCreate( _TCPIP_STACK_Task,
         "TCPIP_STACK_Tasks",
         TCPIP_RTOS_STACK_SIZE,
         (void*)NULL,
         TCPIP_RTOS_PRIORITY,
+        (TaskHandle_t*)NULL
+    );
+
+
+
+    xTaskCreate( _NET_PRES_Tasks,
+        "NET_PRES_Tasks",
+        NET_PRES_RTOS_STACK_SIZE,
+        (void*)NULL,
+        NET_PRES_RTOS_TASK_PRIORITY,
         (TaskHandle_t*)NULL
     );
 

@@ -50,11 +50,22 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "peripheral/uart/plib_uart1.h"
+#include "system/fs/sys_fs.h"
+#include "system/fs/sys_fs_media_manager.h"
+#include "system/fs/sys_fs_fat_interface.h"
+#include "system/fs/fat_fs/file_system/ff.h"
+#include "system/fs/fat_fs/file_system/ffconf.h"
+#include "system/fs/fat_fs/hardware_access/diskio.h"
+#include "bsp/bsp.h"
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/gpio/plib_gpio.h"
+#include "peripheral/cache/plib_cache.h"
 #include "peripheral/evic/plib_evic.h"
+#include "driver/memory/drv_memory.h"
 #include "peripheral/spi/spi_master/plib_spi1_master.h"
+#include "driver/sst26/drv_sst26.h"
 #include "system/int/sys_int.h"
+#include "system/ports/sys_ports.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
 #include "peripheral/nvm/plib_nvm.h"
@@ -69,6 +80,9 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+
+/* CPU clock frequency */
+#define CPU_CLOCK_FREQUENCY 200000000
 
 // *****************************************************************************
 // *****************************************************************************
@@ -162,25 +176,27 @@ void SYS_Tasks ( void );
 // Section: Type Definitions
 // *****************************************************************************
 // *****************************************************************************
-    
+
 // *****************************************************************************
 /* System Objects
-        
+
 Summary:
     Structure holding the system's object handles
-        
+
 Description:
     This structure contains the object handles for all objects in the
     MPLAB Harmony project's system configuration.
-        
+
 Remarks:
     These handles are returned from the "Initialize" functions for each module
     and must be passed into the "Tasks" function for each module.
 */
-        
+
 typedef struct
 {
-    char RESERVED;
+    SYS_MODULE_OBJ  drvMemory0;
+    SYS_MODULE_OBJ  drvSST26;
+
 } SYSTEM_OBJECTS;
 
 // *****************************************************************************

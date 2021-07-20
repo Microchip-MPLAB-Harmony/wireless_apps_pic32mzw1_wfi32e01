@@ -49,19 +49,21 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "crypto/crypto.h"
+#include "system/ota/sys_ota.h"
+#include "system/ota/framework/ota_app/app_ota.h"
 #include "driver/ba414e/drv_ba414e.h"
-#include "peripheral/nvm/plib_nvm.h"
+#include "driver/memory/drv_memory.h"
+#include "system/net/sys_net.h"
 #include "system/time/sys_time.h"
+#include "peripheral/nvm/plib_nvm.h"
 #include "peripheral/coretimer/plib_coretimer.h"
 #include "peripheral/uart/plib_uart1.h"
 #include "peripheral/tmr/plib_tmr2.h"
 #include "peripheral/rng/plib_rng.h"
-#include "net_pres/pres/net_pres.h"
-#include "net_pres/pres/net_pres_encryptionproviderapi.h"
-#include "net_pres/pres/net_pres_transportapi.h"
-#include "net_pres/pres/net_pres_socketapi.h"
 #include "peripheral/spi/spi_master/plib_spi1_master.h"
 #include "system/int/sys_int.h"
+#include "system/ports/sys_ports.h"
+#include "system/cache/sys_cache.h"
 #include "system/reset/sys_reset.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
@@ -71,14 +73,27 @@
 #include "system/command/sys_command.h"
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/gpio/plib_gpio.h"
+#include "peripheral/cache/plib_cache.h"
 #include "peripheral/evic/plib_evic.h"
+#include "driver/sst26/drv_sst26.h"
 #include "wolfssl/wolfcrypt/port/pic32/crypt_wolfcryptcb.h"
+#include "net_pres/pres/net_pres.h"
+#include "net_pres/pres/net_pres_encryptionproviderapi.h"
+#include "net_pres/pres/net_pres_transportapi.h"
+#include "net_pres/pres/net_pres_socketapi.h"
 #include "driver/wifi/pic32mzw1/include/wdrv_pic32mzw_api.h"
+#include "system/fs/sys_fs.h"
+#include "system/fs/sys_fs_media_manager.h"
+#include "system/fs/sys_fs_fat_interface.h"
+#include "system/fs/fat_fs/file_system/ff.h"
+#include "system/fs/fat_fs/file_system/ffconf.h"
+#include "system/fs/fat_fs/hardware_access/diskio.h"
 #include "system/wifi/sys_wifi.h"
 #include "system/console/sys_console.h"
 #include "system/console/src/sys_console_uart_definitions.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "peripheral/rtcc/plib_rtcc.h"
 #include "app.h"
 
 
@@ -90,6 +105,9 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+
+/* CPU clock frequency */
+#define CPU_CLOCK_FREQUENCY 200000000
 
 // *****************************************************************************
 // *****************************************************************************
@@ -183,35 +201,37 @@ void SYS_Tasks ( void );
 // Section: Type Definitions
 // *****************************************************************************
 // *****************************************************************************
-    
+
 // *****************************************************************************
 /* System Objects
-        
+
 Summary:
     Structure holding the system's object handles
-        
+
 Description:
     This structure contains the object handles for all objects in the
     MPLAB Harmony project's system configuration.
-        
+
 Remarks:
     These handles are returned from the "Initialize" functions for each module
     and must be passed into the "Tasks" function for each module.
 */
-        
+
 typedef struct
 {
 
     SYS_MODULE_OBJ  ba414e;
 
     SYS_MODULE_OBJ  sysTime;
-    SYS_MODULE_OBJ  netPres;
-
+    SYS_MODULE_OBJ  drvMemory0;
     SYS_MODULE_OBJ  sysConsole0;
 
 
     SYS_MODULE_OBJ  tcpip;
+    SYS_MODULE_OBJ  drvSST26;
     SYS_MODULE_OBJ  sysDebug;
+
+    SYS_MODULE_OBJ  netPres;
 
     SYS_MODULE_OBJ  drvWifiPIC32MZW1;
     SYS_MODULE_OBJ  syswifi;

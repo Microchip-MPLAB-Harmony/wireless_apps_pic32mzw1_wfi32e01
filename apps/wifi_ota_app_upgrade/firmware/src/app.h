@@ -32,8 +32,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include "configuration.h"
-#include "ota/ota.h"
-#include "ota/http_client/http_client.h"
+
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -64,11 +63,6 @@ typedef enum
     /* Application's state machine's initial state. */
     APP_STATE_INIT=0,
     APP_STATE_SERVICE_TASKS,
-    APP_STATE_OTA_START,
-    APP_STATE_WAIT_OTA_CMPLT,
-    APP_STATE_OTA_SUCCESS,        
-    APP_STATE_OTA_ERROR,
-    APP_STATE_OTA_COMPLETE,
     /* TODO: Define states used by the application state machine. */
 
 } APP_STATES;
@@ -95,7 +89,6 @@ typedef struct
     /* TODO: Define any additional data used by the application. */
 
 } APP_DATA;
-#define SYS_OTA_URL "http://192.168.43.173:8000/pic32mz_w1_curiosity_freertos.X.production.ota"
 
 // *****************************************************************************
 // *****************************************************************************

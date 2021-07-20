@@ -145,11 +145,66 @@
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+// <editor-fold defaultstate="collapsed" desc="DRV_MEMORY Instance 0 Initialization Data">
+
+static uint8_t gDrvMemory0EraseBuffer[DRV_SST26_ERASE_BUFFER_SIZE] CACHE_ALIGN;
+
+static DRV_MEMORY_CLIENT_OBJECT gDrvMemory0ClientObject[DRV_MEMORY_CLIENTS_NUMBER_IDX0];
+
+static DRV_MEMORY_BUFFER_OBJECT gDrvMemory0BufferObject[DRV_MEMORY_BUFFER_QUEUE_SIZE_IDX0];
+
+const DRV_MEMORY_DEVICE_INTERFACE drvMemory0DeviceAPI = {
+    .Open               = DRV_SST26_Open,
+    .Close              = DRV_SST26_Close,
+    .Status             = DRV_SST26_Status,
+    .SectorErase        = DRV_SST26_SectorErase,
+    .Read               = DRV_SST26_Read,
+    .PageWrite          = DRV_SST26_PageWrite,
+    .EventHandlerSet    = (DRV_MEMORY_DEVICE_EVENT_HANDLER_SET)DRV_SST26_EventHandlerSet,
+    .GeometryGet        = (DRV_MEMORY_DEVICE_GEOMETRY_GET)DRV_SST26_GeometryGet,
+    .TransferStatusGet  = (DRV_MEMORY_DEVICE_TRANSFER_STATUS_GET)DRV_SST26_TransferStatusGet
+};
+
+const DRV_MEMORY_INIT drvMemory0InitData =
+{
+    .memDevIndex                = DRV_SST26_INDEX,
+    .memoryDevice               = &drvMemory0DeviceAPI,
+    .isMemDevInterruptEnabled   = true,
+    .isFsEnabled                = true,
+    .deviceMediaType            = (uint8_t)SYS_FS_MEDIA_TYPE_SPIFLASH,
+    .ewBuffer                   = &gDrvMemory0EraseBuffer[0],
+    .clientObjPool              = (uintptr_t)&gDrvMemory0ClientObject[0],
+    .bufferObj                  = (uintptr_t)&gDrvMemory0BufferObject[0],
+    .queueSize                  = DRV_MEMORY_BUFFER_QUEUE_SIZE_IDX0,
+    .nClientsMax                = DRV_MEMORY_CLIENTS_NUMBER_IDX0
+};
+
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="DRV_SST26 Initialization Data">
+
+const DRV_SST26_PLIB_INTERFACE drvSST26PlibAPI = {
+    .writeRead          = (DRV_SST26_PLIB_WRITE_READ)SPI1_WriteRead,
+    .write              = (DRV_SST26_PLIB_WRITE)SPI1_Write,
+    .read               = (DRV_SST26_PLIB_READ)SPI1_Read,
+    .isBusy             = (DRV_SST26_PLIB_IS_BUSY)SPI1_IsBusy,
+    .callbackRegister   = (DRV_SST26_PLIB_CALLBACK_REGISTER)SPI1_CallbackRegister,
+};
+
+const DRV_SST26_INIT drvSST26InitData =
+{
+    .sst26Plib      = &drvSST26PlibAPI,
+    .chipSelectPin  = DRV_SST26_CHIP_SELECT_PIN
+};
+// </editor-fold>
+
 static CRYPT_RNG_CTX wdrvRngCtx;
 static const WDRV_PIC32MZW_SYS_INIT wdrvPIC32MZW1InitData = {
-    .pCryptRngCtx = &wdrvRngCtx,
-	.pRegDomName  = "GEN"
+    .pCryptRngCtx  = &wdrvRngCtx,
+    .pRegDomName   = "GEN",
+    .powerSaveMode = WDRV_PIC32MZW_POWERSAVE_RUN_MODE,
+    .powerSavePICCorrelation = WDRV_PIC32MZW_POWERSAVE_PIC_ASYNC_MODE
 };
+
 
 
 // *****************************************************************************
@@ -172,6 +227,206 @@ static const DRV_BA414E_INIT_DATA ba414eInitData =
 };
   
  
+
+
+// <editor-fold defaultstate="collapsed" desc="TCP/IP Stack Initialization Data">
+// *****************************************************************************
+// *****************************************************************************
+// Section: TCPIP Data
+// *****************************************************************************
+// *****************************************************************************
+/*** ARP Service Initialization Data ***/
+const TCPIP_ARP_MODULE_CONFIG tcpipARPInitData =
+{ 
+    .cacheEntries       = TCPIP_ARP_CACHE_ENTRIES,     
+    .deleteOld          = TCPIP_ARP_CACHE_DELETE_OLD,    
+    .entrySolvedTmo     = TCPIP_ARP_CACHE_SOLVED_ENTRY_TMO, 
+    .entryPendingTmo    = TCPIP_ARP_CACHE_PENDING_ENTRY_TMO, 
+    .entryRetryTmo      = TCPIP_ARP_CACHE_PENDING_RETRY_TMO, 
+    .permQuota          = TCPIP_ARP_CACHE_PERMANENT_QUOTA, 
+    .purgeThres         = TCPIP_ARP_CACHE_PURGE_THRESHOLD, 
+    .purgeQuanta        = TCPIP_ARP_CACHE_PURGE_QUANTA, 
+    .retries            = TCPIP_ARP_CACHE_ENTRY_RETRIES, 
+    .gratProbeCount     = TCPIP_ARP_GRATUITOUS_PROBE_COUNT,
+};
+
+
+/*** UDP Sockets Initialization Data ***/
+const TCPIP_UDP_MODULE_CONFIG tcpipUDPInitData =
+{
+    .nSockets       = TCPIP_UDP_MAX_SOCKETS,
+    .sktTxBuffSize  = TCPIP_UDP_SOCKET_DEFAULT_TX_SIZE, 
+};
+
+/*** TCP Sockets Initialization Data ***/
+const TCPIP_TCP_MODULE_CONFIG tcpipTCPInitData =
+{
+    .nSockets       = TCPIP_TCP_MAX_SOCKETS,
+    .sktTxBuffSize  = TCPIP_TCP_SOCKET_DEFAULT_TX_SIZE, 
+    .sktRxBuffSize  = TCPIP_TCP_SOCKET_DEFAULT_RX_SIZE,
+};
+
+
+
+/*** SNTP Client Initialization Data ***/
+const TCPIP_SNTP_MODULE_CONFIG tcpipSNTPInitData =
+{
+    .ntp_server             = TCPIP_NTP_SERVER,
+    .ntp_interface          = TCPIP_NTP_DEFAULT_IF,
+    .ntp_connection_type    = TCPIP_NTP_DEFAULT_CONNECTION_TYPE,
+    .ntp_reply_timeout      = TCPIP_NTP_REPLY_TIMEOUT,
+    .ntp_stamp_timeout      = TCPIP_NTP_TIME_STAMP_TMO,
+    .ntp_success_interval   = TCPIP_NTP_QUERY_INTERVAL,
+    .ntp_error_interval     = TCPIP_NTP_FAST_QUERY_INTERVAL,
+};
+
+
+
+/*** DHCP client Initialization Data ***/
+const TCPIP_DHCP_MODULE_CONFIG tcpipDHCPInitData =
+{     
+    .dhcpEnable     = false,   
+    .dhcpTmo        = TCPIP_DHCP_TIMEOUT,
+    .dhcpCliPort    = TCPIP_DHCP_CLIENT_CONNECT_PORT,
+    .dhcpSrvPort    = TCPIP_DHCP_SERVER_LISTEN_PORT,
+
+};
+
+
+/*** ICMP Server Initialization Data ***/
+const TCPIP_ICMP_MODULE_CONFIG tcpipICMPInitData = 
+{
+    0
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*** DNS Client Initialization Data ***/
+const TCPIP_DNS_CLIENT_MODULE_CONFIG tcpipDNSClientInitData =
+{
+    .deleteOldLease         = TCPIP_DNS_CLIENT_DELETE_OLD_ENTRIES,
+    .cacheEntries           = TCPIP_DNS_CLIENT_CACHE_ENTRIES,
+    .entrySolvedTmo         = TCPIP_DNS_CLIENT_CACHE_ENTRY_TMO,    
+    .nIPv4Entries  = TCPIP_DNS_CLIENT_CACHE_PER_IPV4_ADDRESS,
+    .ipAddressType       = TCPIP_DNS_CLIENT_ADDRESS_TYPE,
+    .nIPv6Entries  = TCPIP_DNS_CLIENT_CACHE_PER_IPV6_ADDRESS,
+};
+
+
+
+/*** IPv4 Initialization Data ***/
+
+
+const TCPIP_IPV4_MODULE_CONFIG  tcpipIPv4InitData = 
+{
+    .arpEntries = TCPIP_IPV4_ARP_SLOTS, 
+};
+
+
+
+
+
+
+TCPIP_STACK_HEAP_EXTERNAL_CONFIG tcpipHeapConfig =
+{
+    .heapType = TCPIP_STACK_HEAP_TYPE_EXTERNAL_HEAP,
+    .heapFlags = TCPIP_STACK_HEAP_USE_FLAGS,
+    .heapUsage = TCPIP_STACK_HEAP_USAGE_CONFIG,
+    .malloc_fnc = TCPIP_STACK_MALLOC_FUNC,
+    .calloc_fnc = TCPIP_STACK_CALLOC_FUNC,
+    .free_fnc = TCPIP_STACK_FREE_FUNC,
+};
+
+
+const TCPIP_NETWORK_CONFIG __attribute__((unused))  TCPIP_HOSTS_CONFIGURATION[] =
+{
+    /*** Network Configuration Index 0 ***/
+    {
+        .interface = TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX0,
+        .hostName = TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX0,
+        .macAddr = TCPIP_NETWORK_DEFAULT_MAC_ADDR_IDX0,
+        .ipAddr = TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX0,
+        .ipMask = TCPIP_NETWORK_DEFAULT_IP_MASK_IDX0,
+        .gateway = TCPIP_NETWORK_DEFAULT_GATEWAY_IDX0,
+        .priDNS = TCPIP_NETWORK_DEFAULT_DNS_IDX0,
+        .secondDNS = TCPIP_NETWORK_DEFAULT_SECOND_DNS_IDX0,
+        .powerMode = TCPIP_NETWORK_DEFAULT_POWER_MODE_IDX0,
+        .startFlags = TCPIP_NETWORK_DEFAULT_INTERFACE_FLAGS_IDX0,
+        .pMacObject = &TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX0,
+    },
+};
+
+const size_t TCPIP_HOSTS_CONFIGURATION_SIZE = sizeof (TCPIP_HOSTS_CONFIGURATION) / sizeof (*TCPIP_HOSTS_CONFIGURATION);
+
+const TCPIP_STACK_MODULE_CONFIG TCPIP_STACK_MODULE_CONFIG_TBL [] =
+{
+    {TCPIP_MODULE_IPV4,             &tcpipIPv4InitData},
+
+    {TCPIP_MODULE_ICMP,             0},                             // TCPIP_MODULE_ICMP
+
+    {TCPIP_MODULE_ARP,              &tcpipARPInitData},             // TCPIP_MODULE_ARP
+    {TCPIP_MODULE_UDP,              &tcpipUDPInitData},             // TCPIP_MODULE_UDP
+    {TCPIP_MODULE_TCP,              &tcpipTCPInitData},             // TCPIP_MODULE_TCP
+    {TCPIP_MODULE_DHCP_CLIENT,      &tcpipDHCPInitData},            // TCPIP_MODULE_DHCP_CLIENT
+    {TCPIP_MODULE_DNS_CLIENT,       &tcpipDNSClientInitData},       // TCPIP_MODULE_DNS_CLIENT
+    {TCPIP_MODULE_SNTP,             &tcpipSNTPInitData},            // TCPIP_MODULE_SNTP
+
+    { TCPIP_MODULE_MANAGER,         &tcpipHeapConfig },             // TCPIP_MODULE_MANAGER
+
+// MAC modules
+
+};
+
+const size_t TCPIP_STACK_MODULE_CONFIG_TBL_SIZE = sizeof (TCPIP_STACK_MODULE_CONFIG_TBL) / sizeof (*TCPIP_STACK_MODULE_CONFIG_TBL);
+/*********************************************************************
+ * Function:        SYS_MODULE_OBJ TCPIP_STACK_Init()
+ *
+ * PreCondition:    None
+ *
+ * Input:
+ *
+ * Output:          valid system module object if Stack and its componets are initialized
+ *                  SYS_MODULE_OBJ_INVALID otherwise
+ *
+ * Overview:        The function starts the initialization of the stack.
+ *                  If an error occurs, the SYS_ERROR() is called
+ *                  and the function de-initialize itself and will return false.
+ *
+ * Side Effects:    None
+ *
+ * Note:            This function must be called before any of the
+ *                  stack or its component routines are used.
+ *
+ ********************************************************************/
+
+
+SYS_MODULE_OBJ TCPIP_STACK_Init(void)
+{
+    TCPIP_STACK_INIT    tcpipInit;
+
+    tcpipInit.pNetConf = TCPIP_HOSTS_CONFIGURATION;
+    tcpipInit.nNets = TCPIP_HOSTS_CONFIGURATION_SIZE;
+    tcpipInit.pModConfig = TCPIP_STACK_MODULE_CONFIG_TBL;
+    tcpipInit.nModules = TCPIP_STACK_MODULE_CONFIG_TBL_SIZE;
+    tcpipInit.initCback = 0;
+
+    return TCPIP_STACK_Initialize(0, &tcpipInit.moduleInit);
+}
+// </editor-fold>
 
 /* Net Presentation Layer Data Definitions */
 #include "net_pres/pres/net_pres_enc_glue.h"
@@ -275,16 +530,18 @@ static const NET_PRES_TransportObject netPresTransObject0DC = {
 
 static const NET_PRES_INST_DATA netPresCfgs[] = 
 {  
+        
     {
         .pTransObject_ss = &netPresTransObject0SS,
         .pTransObject_sc = &netPresTransObject0SC,
         .pTransObject_ds = &netPresTransObject0DS,
         .pTransObject_dc = &netPresTransObject0DC,
         .pProvObject_ss = NULL,
-        .pProvObject_sc = NULL,
+        .pProvObject_sc = &net_pres_EncProviderStreamClient0,
         .pProvObject_ds = NULL,
         .pProvObject_dc = NULL,
     },
+        
 };
 
 static const NET_PRES_INIT_DATA netPresInitData = 
@@ -295,192 +552,61 @@ static const NET_PRES_INIT_DATA netPresInitData =
   
  
 
-
-// <editor-fold defaultstate="collapsed" desc="TCP/IP Stack Initialization Data">
-// *****************************************************************************
-// *****************************************************************************
-// Section: TCPIP Data
-// *****************************************************************************
-// *****************************************************************************
-/*** ARP Service Initialization Data ***/
-const TCPIP_ARP_MODULE_CONFIG tcpipARPInitData =
-{ 
-    .cacheEntries       = TCPIP_ARP_CACHE_ENTRIES,     
-    .deleteOld          = TCPIP_ARP_CACHE_DELETE_OLD,    
-    .entrySolvedTmo     = TCPIP_ARP_CACHE_SOLVED_ENTRY_TMO, 
-    .entryPendingTmo    = TCPIP_ARP_CACHE_PENDING_ENTRY_TMO, 
-    .entryRetryTmo      = TCPIP_ARP_CACHE_PENDING_RETRY_TMO, 
-    .permQuota          = TCPIP_ARP_CACHE_PERMANENT_QUOTA, 
-    .purgeThres         = TCPIP_ARP_CACHE_PURGE_THRESHOLD, 
-    .purgeQuanta        = TCPIP_ARP_CACHE_PURGE_QUANTA, 
-    .retries            = TCPIP_ARP_CACHE_ENTRY_RETRIES, 
-    .gratProbeCount     = TCPIP_ARP_GRATUITOUS_PROBE_COUNT,
-};
+// <editor-fold defaultstate="collapsed" desc="File System Initialization Data">
 
 
-/*** UDP Sockets Initialization Data ***/
-const TCPIP_UDP_MODULE_CONFIG tcpipUDPInitData =
+const SYS_FS_MEDIA_MOUNT_DATA sysfsMountTable[SYS_FS_VOLUME_NUMBER] =
 {
-    .nSockets       = TCPIP_UDP_MAX_SOCKETS,
-    .sktTxBuffSize  = TCPIP_UDP_SOCKET_DEFAULT_TX_SIZE, 
+    {NULL}
 };
 
-/*** TCP Sockets Initialization Data ***/
-const TCPIP_TCP_MODULE_CONFIG tcpipTCPInitData =
+const SYS_FS_FUNCTIONS FatFsFunctions =
 {
-    .nSockets       = TCPIP_TCP_MAX_SOCKETS,
-    .sktTxBuffSize  = TCPIP_TCP_SOCKET_DEFAULT_TX_SIZE, 
-    .sktRxBuffSize  = TCPIP_TCP_SOCKET_DEFAULT_RX_SIZE,
+    .mount             = FATFS_mount,
+    .unmount           = FATFS_unmount,
+    .open              = FATFS_open,
+    .read              = FATFS_read,
+    .close             = FATFS_close,
+    .seek              = FATFS_lseek,
+    .fstat             = FATFS_stat,
+    .getlabel          = FATFS_getlabel,
+    .currWD            = FATFS_getcwd,
+    .getstrn           = FATFS_gets,
+    .openDir           = FATFS_opendir,
+    .readDir           = FATFS_readdir,
+    .closeDir          = FATFS_closedir,
+    .chdir             = FATFS_chdir,
+    .chdrive           = FATFS_chdrive,
+    .write             = FATFS_write,
+    .tell              = FATFS_tell,
+    .eof               = FATFS_eof,
+    .size              = FATFS_size,
+    .mkdir             = FATFS_mkdir,
+    .remove            = FATFS_unlink,
+    .setlabel          = FATFS_setlabel,
+    .truncate          = FATFS_truncate,
+    .chmode            = FATFS_chmod,
+    .chtime            = FATFS_utime,
+    .rename            = FATFS_rename,
+    .sync              = FATFS_sync,
+    .putchr            = FATFS_putc,
+    .putstrn           = FATFS_puts,
+    .formattedprint    = FATFS_printf,
+    .testerror         = FATFS_error,
+    .formatDisk        = (FORMAT_DISK)FATFS_mkfs,
+    .partitionDisk     = FATFS_fdisk,
+    .getCluster        = FATFS_getclusters
 };
 
 
-
-
-
-
-/*** DHCP client Initialization Data ***/
-const TCPIP_DHCP_MODULE_CONFIG tcpipDHCPInitData =
-{     
-    .dhcpEnable     = false,   
-    .dhcpTmo        = TCPIP_DHCP_TIMEOUT,
-    .dhcpCliPort    = TCPIP_DHCP_CLIENT_CONNECT_PORT,
-    .dhcpSrvPort    = TCPIP_DHCP_SERVER_LISTEN_PORT,
-
-};
-
-
-/*** ICMP Server Initialization Data ***/
-const TCPIP_ICMP_MODULE_CONFIG tcpipICMPInitData = 
+const SYS_FS_REGISTRATION_TABLE sysFSInit [ SYS_FS_MAX_FILE_SYSTEM_TYPE ] =
 {
-    0
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*** DNS Client Initialization Data ***/
-const TCPIP_DNS_CLIENT_MODULE_CONFIG tcpipDNSClientInitData =
-{
-    .deleteOldLease         = TCPIP_DNS_CLIENT_DELETE_OLD_ENTRIES,
-    .cacheEntries           = TCPIP_DNS_CLIENT_CACHE_ENTRIES,
-    .entrySolvedTmo         = TCPIP_DNS_CLIENT_CACHE_ENTRY_TMO,    
-    .nIPv4Entries  = TCPIP_DNS_CLIENT_CACHE_PER_IPV4_ADDRESS,
-    .ipAddressType       = TCPIP_DNS_CLIENT_ADDRESS_TYPE,
-    .nIPv6Entries  = TCPIP_DNS_CLIENT_CACHE_PER_IPV6_ADDRESS,
-};
-
-
-
-/*** IPv4 Initialization Data ***/
-
-
-const TCPIP_IPV4_MODULE_CONFIG  tcpipIPv4InitData = 
-{
-    .arpEntries = TCPIP_IPV4_ARP_SLOTS, 
-};
-
-
-
-
-
-
-TCPIP_STACK_HEAP_EXTERNAL_CONFIG tcpipHeapConfig =
-{
-    .heapType = TCPIP_STACK_HEAP_TYPE_EXTERNAL_HEAP,
-    .heapFlags = TCPIP_STACK_HEAP_USE_FLAGS,
-    .heapUsage = TCPIP_STACK_HEAP_USAGE_CONFIG,
-    .malloc_fnc = TCPIP_STACK_MALLOC_FUNC,
-    .calloc_fnc = TCPIP_STACK_CALLOC_FUNC,
-    .free_fnc = TCPIP_STACK_FREE_FUNC,
-};
-
-
-const TCPIP_NETWORK_CONFIG __attribute__((unused))  TCPIP_HOSTS_CONFIGURATION[] =
-{
-    /*** Network Configuration Index 0 ***/
     {
-        TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX0,       // interface
-        TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX0,            // hostName
-        TCPIP_NETWORK_DEFAULT_MAC_ADDR_IDX0,             // macAddr
-        TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX0,           // ipAddr
-        TCPIP_NETWORK_DEFAULT_IP_MASK_IDX0,              // ipMask
-        TCPIP_NETWORK_DEFAULT_GATEWAY_IDX0,              // gateway
-        TCPIP_NETWORK_DEFAULT_DNS_IDX0,                  // priDNS
-        TCPIP_NETWORK_DEFAULT_SECOND_DNS_IDX0,           // secondDNS
-        TCPIP_NETWORK_DEFAULT_POWER_MODE_IDX0,           // powerMode
-        TCPIP_NETWORK_DEFAULT_INTERFACE_FLAGS_IDX0,      // startFlags
-       &TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX0,           // pMacObject
-    },
+        .nativeFileSystemType = FAT,
+        .nativeFileSystemFunctions = &FatFsFunctions
+    }
 };
 
-const size_t TCPIP_HOSTS_CONFIGURATION_SIZE = sizeof (TCPIP_HOSTS_CONFIGURATION) / sizeof (*TCPIP_HOSTS_CONFIGURATION);
-
-const TCPIP_STACK_MODULE_CONFIG TCPIP_STACK_MODULE_CONFIG_TBL [] =
-{
-    {TCPIP_MODULE_IPV4,             &tcpipIPv4InitData},
-
-    {TCPIP_MODULE_ICMP,             0},                             // TCPIP_MODULE_ICMP
-
-    {TCPIP_MODULE_ARP,              &tcpipARPInitData},             // TCPIP_MODULE_ARP
-    {TCPIP_MODULE_UDP,              &tcpipUDPInitData},             // TCPIP_MODULE_UDP
-    {TCPIP_MODULE_TCP,              &tcpipTCPInitData},             // TCPIP_MODULE_TCP
-    {TCPIP_MODULE_DHCP_CLIENT,      &tcpipDHCPInitData},            // TCPIP_MODULE_DHCP_CLIENT
-    {TCPIP_MODULE_DNS_CLIENT,       &tcpipDNSClientInitData},       // TCPIP_MODULE_DNS_CLIENT
-
-    { TCPIP_MODULE_MANAGER,         &tcpipHeapConfig },             // TCPIP_MODULE_MANAGER
-
-// MAC modules
-
-};
-
-const size_t TCPIP_STACK_MODULE_CONFIG_TBL_SIZE = sizeof (TCPIP_STACK_MODULE_CONFIG_TBL) / sizeof (*TCPIP_STACK_MODULE_CONFIG_TBL);
-/*********************************************************************
- * Function:        SYS_MODULE_OBJ TCPIP_STACK_Init()
- *
- * PreCondition:    None
- *
- * Input:
- *
- * Output:          valid system module object if Stack and its componets are initialized
- *                  SYS_MODULE_OBJ_INVALID otherwise
- *
- * Overview:        The function starts the initialization of the stack.
- *                  If an error occurs, the SYS_ERROR() is called
- *                  and the function de-initialize itself and will return false.
- *
- * Side Effects:    None
- *
- * Note:            This function must be called before any of the
- *                  stack or its component routines are used.
- *
- ********************************************************************/
-
-
-SYS_MODULE_OBJ TCPIP_STACK_Init(void)
-{
-    TCPIP_STACK_INIT    tcpipInit;
-
-    tcpipInit.pNetConf = TCPIP_HOSTS_CONFIGURATION;
-    tcpipInit.nNets = TCPIP_HOSTS_CONFIGURATION_SIZE;
-    tcpipInit.pModConfig = TCPIP_STACK_MODULE_CONFIG_TBL;
-    tcpipInit.nModules = TCPIP_STACK_MODULE_CONFIG_TBL_SIZE;
-    tcpipInit.initCback = 0;
-
-    return TCPIP_STACK_Initialize(0, &tcpipInit.moduleInit);
-}
 // </editor-fold>
 
 
@@ -490,6 +616,20 @@ SYS_MODULE_OBJ TCPIP_STACK_Init(void)
 // Section: System Initialization
 // *****************************************************************************
 // *****************************************************************************
+
+const SYS_NET_Config g_sSysNetConfig0 =
+{
+	.mode = SYS_NET_INDEX0_MODE, 
+	.intf = SYS_NET_INDEX0_INTF,
+	.port = SYS_NET_INDEX0_PORT,
+	.enable_reconnect = SYS_NET_INDEX0_RECONNECT,
+	.enable_tls = SYS_NET_INDEX0_ENABLE_TLS,
+    .ip_prot = SYS_NET_INDEX0_IPPROT,
+	.host_name = SYS_NET_INDEX0_HOST_NAME,
+};
+
+
+
 // <editor-fold defaultstate="collapsed" desc="SYS_TIME Initialization Data">
 
 const SYS_TIME_PLIB_INTERFACE sysTimePlibAPI = {
@@ -607,10 +747,22 @@ void SYS_Initialize ( void* data )
 
 	SPI1_Initialize();
 
+    RTCC_Initialize();
+
+    sysObj.drvMemory0 = DRV_MEMORY_Initialize((SYS_MODULE_INDEX)DRV_MEMORY_INDEX_0, (SYS_MODULE_INIT *)&drvMemory0InitData);
+
+    sysObj.drvSST26 = DRV_SST26_Initialize((SYS_MODULE_INDEX)DRV_SST26_INDEX, (SYS_MODULE_INIT *)&drvSST26InitData);
 
     /* Initialize the PIC32MZW1 Driver */
-    CRYPT_RNG_Initialize(wdrvPIC32MZW1InitData.pCryptRngCtx);
+    CRYPT_RNG_Initialize(&wdrvRngCtx);
     sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
+
+
+    OTA_Initialize();
+    SYS_OTA_Initialize();
+
+
+    SYS_NET_Initialize();
 
     sysObj.sysTime = SYS_TIME_Initialize(SYS_TIME_INDEX_0, (SYS_MODULE_INIT *)&sysTimeInitData);
     sysObj.sysConsole0 = SYS_CONSOLE_Initialize(SYS_CONSOLE_INDEX_0, (SYS_MODULE_INIT *)&sysConsole0Init);
@@ -627,15 +779,18 @@ void SYS_Initialize ( void* data )
 
     sysObj.ba414e = DRV_BA414E_Initialize(0, (SYS_MODULE_INIT*)&ba414eInitData);
 
-    sysObj.netPres = NET_PRES_Initialize(0, (SYS_MODULE_INIT*)&netPresInitData);
 
-
+	/* Network Presentation Layer Initialization */
+	sysObj.netPres = NET_PRES_Initialize(0, (SYS_MODULE_INIT*)&netPresInitData);
     /* TCPIP Stack Initialization */
     sysObj.tcpip = TCPIP_STACK_Init();
     SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
 
 
     CRYPT_WCCB_Initialize();
+    /*** File System Service Initialization Code ***/
+    SYS_FS_Initialize( (const void *) sysFSInit );
+
 
     APP_Initialize();
 

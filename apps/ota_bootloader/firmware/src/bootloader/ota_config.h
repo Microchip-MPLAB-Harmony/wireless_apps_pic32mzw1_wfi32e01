@@ -1,22 +1,6 @@
-/*******************************************************************************
- Module for Microchip OTA Library
-
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-   ota_config.h
-
-  Summary:
-    The header file defines Bootloader/OTA firmware image layout.
-
-  Description:
-    This file defines the system and application interface.
-*******************************************************************************/
-
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2014-2015 released Microchip Technology Inc.  All rights reserved.
+Copyright (c) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -39,6 +23,24 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 *******************************************************************************/
 // DOM-IGNORE-END
 
+/*******************************************************************************
+ Module for Microchip OTA Library
+
+  Company:
+    Microchip Technology Inc.
+
+  File Name:
+   ota_config.h
+
+  Summary:
+    The header file defines Bootloader/OTA firmware image layout.
+
+  Description:
+    This file defines the system and application interface.
+*******************************************************************************/
+
+
+
 
 #ifndef __INC_OTA_CONFIG_H__
 #define __INC_OTA_CONFIG_H__
@@ -50,25 +52,17 @@ extern "C" {
 
 #define OTA_VERSION               "1.0.0"
 
-#define INT_FLASH_SIZE            0x100000
-#define INT_FLASH_LOGICAL_ADDR    0xb0000000
+
 #define FLASH_SECTOR_SIZE         4096
-
-#define APP_IMG_SLOT_ADDR         0x00010000  // 0x10000(64KB) for loadable proj, otherwise 0.
-#define APP_IMG_BOOT_CTL_OFFSET   0x00000000  // Fixed: BOOT_CTL offset in APP_SLOT
-#define APP_IMG_ENTRY_OFFSET      0x00001000  // Fixed: Entry point offset in APP_SLOT 
-   
-#define IMAGESTORE_ADDR           0x00000000  // IMAGESTORE address in external flash.
-#define IMAGESTORE_NUM_SLOT       3
-#define IMAGESTORE_SLOT_SIZE      0xd0000
-
+#define APP_IMG_SLOT_ADDR         0x00018000  
+#define FACTORY_RESET_IMG_SIZE    0xE5000
 #define OTA_BOOT_CTL_SIZE         FLASH_SECTOR_SIZE
 
 //------------------------------------------------------------------------------    
-#define APP_IMG_ADDR             (APP_IMG_SLOT_ADDR + APP_IMG_ENTRY_OFFSET)
-#define APP_IMG_BOOT_ADDR        (APP_IMG_SLOT_ADDR + APP_IMG_ENTRY_OFFSET + INT_FLASH_LOGICAL_ADDR)
-#define APP_IMG_BOOT_CTL_ADDR    (APP_IMG_SLOT_ADDR + APP_IMG_BOOT_CTL_OFFSET)
-#define APP_IMG_BOOT_CTL         ((volatile const FIRMWARE_IMAGE_HEADER *)(APP_IMG_BOOT_CTL_ADDR + INT_FLASH_LOGICAL_ADDR))
+/*Pointer to image boot control area*/     
+#define APP_IMG_BOOT_CTL         ((volatile const FIRMWARE_IMAGE_HEADER *)0xb0018000)    
+/*Pointer to image boot address*/      
+#define APP_IMG_BOOT_ADDR        0xb0019000     
 //------------------------------------------------------------------------------    
 
 #ifdef  __cplusplus

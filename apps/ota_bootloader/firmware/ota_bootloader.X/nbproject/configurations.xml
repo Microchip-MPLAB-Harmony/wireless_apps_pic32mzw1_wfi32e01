@@ -5,23 +5,45 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="bootloader" displayName="bootloader" projectFiles="true">
-        <itemPath>../src/bootloader/app_sst26vf.h</itemPath>
+        <logicalFolder name="csv" displayName="csv" projectFiles="true">
+          <itemPath>../../../ota_spi/ota_bootloader_115200/firmware/src/bootloader/csv/csv.h</itemPath>
+        </logicalFolder>
         <itemPath>../src/bootloader/bootloader.h</itemPath>
-        <itemPath>../src/bootloader/ext_flash.h</itemPath>
-        <itemPath>../src/bootloader/imagestore.h</itemPath>
         <itemPath>../src/bootloader/int_flash.h</itemPath>
         <itemPath>../src/bootloader/ota_config.h</itemPath>
         <itemPath>../src/bootloader/ota_image.h</itemPath>
         <itemPath>../src/bootloader/sha256.h</itemPath>
+        <itemPath>../../../ota_spi/ota_bootloader_115200/firmware/src/bootloader/ota_database_parser.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="config" projectFiles="true">
         <logicalFolder name="f1" displayName="pic32mzw1" projectFiles="true">
+          <logicalFolder name="f5" displayName="bsp" projectFiles="true">
+            <itemPath>../src/config/pic32mzw1/bsp/bsp.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f4" displayName="driver" projectFiles="true">
+            <logicalFolder name="f1" displayName="memory" projectFiles="true">
+              <itemPath>../src/config/pic32mzw1/driver/memory/drv_memory.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/driver/memory/drv_memory_definitions.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/driver/memory/src/drv_memory_local.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f2" displayName="sst26" projectFiles="true">
+              <itemPath>../src/config/pic32mzw1/driver/sst26/drv_sst26.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/driver/sst26/src/drv_sst26_local.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/driver/sst26/drv_sst26_definitions.h</itemPath>
+            </logicalFolder>
+            <itemPath>../src/config/pic32mzw1/driver/driver.h</itemPath>
+            <itemPath>../src/config/pic32mzw1/driver/driver_common.h</itemPath>
+          </logicalFolder>
           <logicalFolder name="f3" displayName="osal" projectFiles="true">
             <itemPath>../src/config/pic32mzw1/osal/osal.h</itemPath>
             <itemPath>../src/config/pic32mzw1/osal/osal_definitions.h</itemPath>
             <itemPath>../src/config/pic32mzw1/osal/osal_impl_basic.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
+            <logicalFolder name="f7" displayName="cache" projectFiles="true">
+              <itemPath>../src/config/pic32mzw1/peripheral/cache/plib_cache.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f2" displayName="clk" projectFiles="true">
               <itemPath>../src/config/pic32mzw1/peripheral/clk/plib_clk.h</itemPath>
             </logicalFolder>
@@ -49,22 +71,46 @@
             <logicalFolder name="f2" displayName="debug" projectFiles="true">
               <itemPath>../src/config/pic32mzw1/system/debug/sys_debug.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f3" displayName="fs" projectFiles="true">
+              <logicalFolder name="f1" displayName="fat_fs" projectFiles="true">
+                <logicalFolder name="f1" displayName="file_system" projectFiles="true">
+                  <itemPath>../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.h</itemPath>
+                  <itemPath>../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffconf.h</itemPath>
+                </logicalFolder>
+                <logicalFolder name="f2" displayName="hardware_access" projectFiles="true">
+                  <itemPath>../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <itemPath>../src/config/pic32mzw1/system/fs/sys_fs.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/system/fs/src/sys_fs_local.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/system/fs/sys_fs_media_manager.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager_local.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/system/fs/sys_fs_fat_interface.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f1" displayName="int" projectFiles="true">
               <itemPath>../src/config/pic32mzw1/system/int/sys_int.h</itemPath>
               <itemPath>../src/config/pic32mzw1/system/int/sys_int_mapping.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f4" displayName="ports" projectFiles="true">
+              <itemPath>../src/config/pic32mzw1/system/ports/sys_ports.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/system/ports/sys_ports_mapping.h</itemPath>
+            </logicalFolder>
             <itemPath>../src/config/pic32mzw1/system/system.h</itemPath>
             <itemPath>../src/config/pic32mzw1/system/system_common.h</itemPath>
             <itemPath>../src/config/pic32mzw1/system/system_module.h</itemPath>
+            <itemPath>../src/config/pic32mzw1/system/system_media.h</itemPath>
           </logicalFolder>
           <itemPath>../src/config/pic32mzw1/toolchain_specifics.h</itemPath>
           <itemPath>../src/config/pic32mzw1/definitions.h</itemPath>
           <itemPath>../src/config/pic32mzw1/device.h</itemPath>
           <itemPath>../src/config/pic32mzw1/user.h</itemPath>
           <itemPath>../src/config/pic32mzw1/configuration.h</itemPath>
+          <itemPath>../src/config/pic32mzw1/device_cache.h</itemPath>
+          <itemPath>../src/config/pic32mzw1/interrupts.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/app.h</itemPath>
+      <itemPath>../src/csv.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -77,15 +123,34 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="bootloader" displayName="bootloader" projectFiles="true">
-        <itemPath>../src/bootloader/app_sst26vf.c</itemPath>
+        <logicalFolder name="csv" displayName="csv" projectFiles="true">
+          <itemPath>../src/bootloader/csv/csv.c</itemPath>
+        </logicalFolder>
         <itemPath>../src/bootloader/bootloader.c</itemPath>
-        <itemPath>../src/bootloader/ext_flash.c</itemPath>
         <itemPath>../src/bootloader/int_flash.c</itemPath>
         <itemPath>../src/bootloader/sha256.c</itemPath>
+        <itemPath>../src/bootloader/ota_database_parser.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="config" projectFiles="true">
         <logicalFolder name="f1" displayName="pic32mzw1" projectFiles="true">
+          <logicalFolder name="f5" displayName="bsp" projectFiles="true">
+            <itemPath>../src/config/pic32mzw1/bsp/bsp.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f4" displayName="driver" projectFiles="true">
+            <logicalFolder name="f1" displayName="memory" projectFiles="true">
+              <itemPath>../src/config/pic32mzw1/driver/memory/src/drv_memory.c</itemPath>
+              <itemPath>../src/config/pic32mzw1/driver/memory/src/drv_memory_file_system.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f2" displayName="sst26" projectFiles="true">
+              <itemPath>../src/config/pic32mzw1/driver/sst26/src/drv_sst26.c</itemPath>
+            </logicalFolder>
+          </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
+            <logicalFolder name="f7" displayName="cache" projectFiles="true">
+              <itemPath>../src/config/pic32mzw1/peripheral/cache/plib_cache_local.h</itemPath>
+              <itemPath>../src/config/pic32mzw1/peripheral/cache/plib_cache.c</itemPath>
+              <itemPath>../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.S</itemPath>
+            </logicalFolder>
             <logicalFolder name="f2" displayName="clk" projectFiles="true">
               <itemPath>../src/config/pic32mzw1/peripheral/clk/plib_clk.c</itemPath>
             </logicalFolder>
@@ -111,6 +176,23 @@
             <itemPath>../src/config/pic32mzw1/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
           <logicalFolder name="f3" displayName="system" projectFiles="true">
+            <logicalFolder name="cache" displayName="cache" projectFiles="true">
+              <itemPath>../src/config/pic32mzw1/system/cache/sys_cache.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f2" displayName="fs" projectFiles="true">
+              <logicalFolder name="f1" displayName="fat_fs" projectFiles="true">
+                <logicalFolder name="f1" displayName="file_system" projectFiles="true">
+                  <itemPath>../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.c</itemPath>
+                  <itemPath>../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffunicode.c</itemPath>
+                </logicalFolder>
+                <logicalFolder name="f2" displayName="hardware_access" projectFiles="true">
+                  <itemPath>../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.c</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <itemPath>../src/config/pic32mzw1/system/fs/src/sys_fs.c</itemPath>
+              <itemPath>../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager.c</itemPath>
+              <itemPath>../src/config/pic32mzw1/system/fs/src/sys_fs_fat_interface.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f1" displayName="int" projectFiles="true">
               <itemPath>../src/config/pic32mzw1/system/int/src/sys_int.c</itemPath>
             </logicalFolder>
@@ -119,6 +201,8 @@
           <itemPath>../src/config/pic32mzw1/interrupts.c</itemPath>
           <itemPath>../src/config/pic32mzw1/system_pmu_mldo_trim.c</itemPath>
           <itemPath>../src/config/pic32mzw1/tasks.c</itemPath>
+          <itemPath>../src/config/pic32mzw1/exceptions.c</itemPath>
+          <itemPath>../src/config/pic32mzw1/exceptionsHandler.S</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/main.c</itemPath>
@@ -128,8 +212,11 @@
                    displayName="Important Files"
                    projectFiles="false">
       <logicalFolder name="f1" displayName="pic32mzw1.mhc" projectFiles="true">
+        <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/BSP_PIC32MZ_W1_Curiosity.yml</itemPath>
         <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/core.yml</itemPath>
         <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/dfp.yml</itemPath>
+        <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/drv_memory.yml</itemPath>
+        <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/drv_sst26.yml</itemPath>
         <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/GraphSettings.yml</itemPath>
         <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/HarmonyCore.yml</itemPath>
         <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/nvm.yml</itemPath>
@@ -137,6 +224,7 @@
         <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/settings.yml</itemPath>
         <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/spi1.yml</itemPath>
         <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/stdio.yml</itemPath>
+        <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/sys_fs.yml</itemPath>
         <itemPath>../src/config/pic32mzw1/pic32mzw1.mhc/uart1.yml</itemPath>
       </logicalFolder>
       <itemPath>Makefile</itemPath>
@@ -147,6 +235,7 @@
     <Elem>../src</Elem>
     <Elem>../../../ld/H3</Elem>
     <Elem>../../../framework</Elem>
+    <Elem>../../../ota_spi/ota_bootloader_115200/firmware/src/bootloader</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -158,7 +247,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>2.50</languageToolchainVersion>
+        <languageToolchainVersion>3.01</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -200,7 +289,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../../../framework;../src;../src/config/pic32mzw1;../src/packs/PIC32MZ1025W104132_DFP"/>
+                  value="../../../framework;../src;../src/config/pic32mzw1;../src/config/pic32mzw1/system/fs/fat_fs/file_system;../src/config/pic32mzw1/system/fs/fat_fs/hardware_access;../src/packs/PIC32MZ1025W104132_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -266,7 +355,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="512"/>
+        <property key="heap-size" value="8192"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
@@ -298,7 +387,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/pic32mzw1;../src/packs/PIC32MZ1025W104132_DFP"/>
+                  value="../src;../src/config/pic32mzw1;../src/config/pic32mzw1/system/fs/fat_fs/file_system;../src/config/pic32mzw1/system/fs/fat_fs/hardware_access;../src/packs/PIC32MZ1025W104132_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>

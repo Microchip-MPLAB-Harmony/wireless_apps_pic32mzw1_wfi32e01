@@ -1,0 +1,15 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: sysNetPic32mzw1}
+children:
+- type: Symbols
+  children:
+  - type: Boolean
+    attributes: {id: SYS_NET_ENABLE_TLS}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sysOtaPic32mzw1, value: 'true'}
+- type: ElementPosition
+  attributes: {x: '260', y: '20', id: sysNetPic32mzw1}

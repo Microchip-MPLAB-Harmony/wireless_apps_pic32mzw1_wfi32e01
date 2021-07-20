@@ -1,22 +1,6 @@
-/*******************************************************************************
- Module for Microchip OTA Library
-
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-   ota_image.h
-
-  Summary:
-    The header file defines Bootloader/OTA firmware image layout.
-
-  Description:
-    This file defines the system and application interface.
-*******************************************************************************/
-
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2014-2015 released Microchip Technology Inc.  All rights reserved.
+Copyright (c) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -38,6 +22,23 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
 *******************************************************************************/
 // DOM-IGNORE-END
+/*******************************************************************************
+ Module for Microchip OTA Library
+
+  Company:
+    Microchip Technology Inc.
+
+  File Name:
+   ota_image.h
+
+  Summary:
+    The header file defines Bootloader/OTA firmware image layout.
+
+  Description:
+    This file defines the system and application interface.
+*******************************************************************************/
+
+
 
 #ifndef __INC_OTA_IMAGE_H__
 #define __INC_OTA_IMAGE_H__
@@ -67,7 +68,6 @@ typedef struct {
 } FIRMWARE_IMAGE_HEADER;
 
 #define FIRMWARE_IMAGE_HEADER_STATUS_BYTE     (0)
-#define FIRMWARE_IMAGE_HEADER_SIGNATURE_BYTE (4095)
 
 //---------------------------------------------------------------------------
 typedef enum {

@@ -16,7 +16,7 @@
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -128,7 +128,7 @@ typedef enum
     SYS_WIFI_DISCONNECT,
     
     /* Control message type for requesting a Wi-Fi configuration information */
-    SYS_WIFI_GETCONFIG,
+    SYS_WIFI_GETWIFICONFIG,
 
     /* Control message type for updating a Provisioning Wi-Fi configuration 
        information */
@@ -137,10 +137,10 @@ typedef enum
     /* Control message type for registering a Wi-Fi system service 
        client callback */
     SYS_WIFI_REGCALLBACK,
-    
-    /* Control message type for requesting a Wi-Fi scan.In Scan request, 
-       client can set channel number and type of scan(active/passive). */
-    SYS_WIFI_SCANREQ
+
+            
+    /*Control message type for requesting a Wi-Fi driver handle */
+    SYS_WIFI_GETDRVHANDLE,
 
 } SYS_WIFI_CTRLMSG ;
 
@@ -227,7 +227,7 @@ typedef struct
     uint8_t saveConfig;
 
     /* Country Code configuration */
-    uint8_t countryCode[5];
+    uint8_t countryCode[6];
 
 
     /* Wi-Fi station mode configuration structure */
@@ -358,6 +358,7 @@ typedef enum{
     #include "tcpip/tcpip.h"
     #include "definitions.h"
 
+    //User can refer the application "wireless_apps_pic32mzw1_wfi32e01\apps\wifi_easy_config" for more information on how to implement callback.
     APP_DATA appData;
     void WiFiServCallback (uint32_t event, void * data,void *cookie )
     {
@@ -366,8 +367,18 @@ typedef enum{
         {
             case SYS_WIFI_CONNECT:
             {
+                //In STA mode, Wi-Fi service share IP address provided by AP in the callback
                 IPAddr = (IPV4_ADDR *)data;
                 SYS_CONSOLE_PRINT("IP address obtained = %d.%d.%d.%d \\r\\n",IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
+
+                //In AP mode, Wi-Fi service share MAC address and IP address of the connected STA in the callback
+                SYS_WIFI_STA_APP_INFO    *StaConnInfo = (SYS_WIFI_STA_APP_INFO *)data;
+                SYS_CONSOLE_PRINT("STA Connected to AP. Got IP address = %d.%d.%d.%d \r\n", 
+                        StaConnInfo->ipAddr.v[0], StaConnInfo->ipAddr.v[1], StaConnInfo->ipAddr.v[2], StaConnInfo->ipAddr.v[3]);                
+                SYS_CONSOLE_PRINT("STA Connected to AP. Got MAC address = %x:%x:%x:%x:%x:%x \r\n", 
+                        StaConnInfo->macAddr[0], StaConnInfo->macAddr[1], StaConnInfo->macAddr[2],
+                        StaConnInfo->macAddr[3], StaConnInfo->macAddr[4], StaConnInfo->macAddr[5]);
+                
                 break;
             }
             case SYS_WIFI_DISCONNECT:
@@ -689,24 +700,20 @@ uint8_t SYS_WIFI_Tasks (SYS_MODULE_OBJ object);
             memcpy(wifiSrvcConfig.staConfig.psk, WIFI_DEV_PSK, sizeof(WIFI_DEV_PSK));
 
             // sysObj.syswifi return from SYS_WIFI_Initialize() 
-            if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_CtrlMsg (sysObj.syswifi, SYS_WIFI_CONNECT, wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
+            if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_CtrlMsg (sysObj.syswifi, SYS_WIFI_CONNECT, &wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
             {
             
             }
 
-        Details of SYS_WIFI_SCANREQ:
-            
-            // In Scan request, user can set channel number and type of scan.
-            uint8_t buff[2];
 
-            // Scan all the channels 
-            buff[0] = 0 ;
+        Details of SYS_WIFI_GETDRVHANDLE:
 
-            // Set the Scan type as passive: 
-            //  false- passive scan,
-            //  true -active scan) 
-            buff[1] = false;
-            SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_SCANREQ, buff, 2);
+            // Get Wi-Fi Driver handle using control message request.
+            DRV_HANDLE myWifiDrvHandle;
+            if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETDRVHANDLE, &myWifiDrvHandle, sizeof(DRV_HANDLE)))
+            {
+                  //Received the handle
+            }
 
         Details of SYS_WIFI_REGCALLBACK:
 
@@ -714,20 +721,23 @@ uint8_t SYS_WIFI_Tasks (SYS_MODULE_OBJ object);
             // callback registration is a MHC configuration.
             SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_REGCALLBACK, WiFiServCallback, sizeof(uint8_t *));
 
-        Details of SYS_WIFI_GETCONFIG:
+        Details of SYS_WIFI_GETWIFICONFIG:
             
             // Get Wi-Fi Configuration using control message request.
             // The information of configuration is updated in the wifiSrvcConfig.
             
             SYS_WIFI_CONFIG wifiSrvcConfig;
-            if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETCONFIG, &wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
+            if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETWIFICONFIG, &wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
             {
                   //Received the wifiSrvcConfig data
             } 
 
             Details of SYS_WIFI_DISCONNECT:
-                // Device Disconnect request using control message request. 
+                //In STA mode, device disconnect request using control message request. 
                 SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_DISCONNECT, NULL, 0);
+
+                //In AP mode, device disconnect request of the connected STA with MAC address. 
+                SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_DISCONNECT, macAddr, 6);
 
         </code>
 

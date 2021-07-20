@@ -1,14 +1,14 @@
 configName: pic32mz_w1_curiosity_freertos
-folderName: pic32mz_w1_curiosity_freertos
+folderName: wifi_ota_app_upgrade
 format_version: v1.0
-frameworkPath: ..\..\rio2_ofc_repo
+frameworkPath: E:\git_repo\wifi_apps_integration
 processor: PIC32MZ1025W104132
-projectName: wifi_ota_app_upgrade_pic32mz_w1_curiosity_freertos
+projectName: wifi_ota_app_upgrade
 settings:
-  PackageFilter: bsp;core;crypto;cryptoauthlib;csp;net;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_wifi
+  PackageFilter: bsp;core;crypto;cryptoauthlib;csp;csp_B0;net;net_apps_pic32mz;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_apps_pic32mzw1_wfi32e01_original;wireless_system_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01_bp;wireless_wifi;wireless_wifi_B0;wireless_wifi_integration
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'
   CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
-  MERGE_STRATEGY: ALL
+  MERGE_STRATEGY: USER_RECENT
   DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.4.193\atdf\PIC32MZ1025W104132.atdf

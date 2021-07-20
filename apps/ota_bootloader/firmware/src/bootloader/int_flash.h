@@ -1,21 +1,6 @@
-/*******************************************************************************
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-    int_flash.h
-
-  Summary:
-    Internal Flash Driver Interface definition.
-  
-  Description:
-    Internal Flash Driver Interface definition.
-
-*******************************************************************************/
-
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2014-2015 released Microchip Technology Inc.  All rights reserved.
+Copyright (c) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -37,6 +22,22 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
 *******************************************************************************/
 // DOM-IGNORE-END
+/*******************************************************************************
+  Company:
+    Microchip Technology Inc.
+
+  File Name:
+    int_flash.h
+
+  Summary:
+    Internal Flash Driver Interface definition.
+  
+  Description:
+    Internal Flash Driver Interface definition.
+
+*******************************************************************************/
+
+
 
 #ifndef __INC_INT_FLASH_H__
 #define __INC_INT_FLASH_H__
@@ -55,9 +56,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 extern "C" {
 #endif
 
-#ifndef INT_FLASH_SIZE
-  #error "INT_FLASH_SIZE not defined"
-#endif
 
 
 // *****************************************************************************

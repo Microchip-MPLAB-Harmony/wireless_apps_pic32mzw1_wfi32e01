@@ -1,22 +1,6 @@
-/*******************************************************************************
-  MPLAB Harmony Sample Library Module Interface Header
-
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-    bootloader.h
-
-  Summary:
-    Bootloader API definitions.
-
-  Description:
-    This file defines the system and application interface.
-*******************************************************************************/
-
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2014-2015 released Microchip Technology Inc.  All rights reserved.
+Copyright (c) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -38,6 +22,24 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
 *******************************************************************************/
 // DOM-IGNORE-END
+
+/*******************************************************************************
+  MPLAB Harmony Sample Library Module Interface Header
+
+  Company:
+    Microchip Technology Inc.
+
+  File Name:
+    bootloader.h
+
+  Summary:
+    Bootloader API definitions.
+
+  Description:
+    This file defines the system and application interface.
+*******************************************************************************/
+
+
 
 #ifndef __INC_BOOTLOADER_H__
 #define __INC_BOOTLOADER_H__
@@ -121,6 +123,18 @@ void  Bootloader_Initialize(void);
 // *****************************************************************************
 void Bootloader_Tasks(void);
 
+
+typedef enum {
+    /*Error in DB search*/
+    OTA_DB_ERROR = 0,
+            
+    /*OTA DB does not exist*/        
+    OTA_DB_NOT_FOUND,
+            
+    /*OTA DB is present*/        
+    OTA_DB_FOUND,
+    
+}OTA_DB_STATUS; 
 #ifdef  __cplusplus
 }
 #endif
