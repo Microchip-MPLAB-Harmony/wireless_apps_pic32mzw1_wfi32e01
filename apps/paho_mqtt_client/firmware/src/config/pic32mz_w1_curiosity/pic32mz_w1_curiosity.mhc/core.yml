@@ -480,15 +480,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: WDRV_PIC32MZW_TasksRFTimer0ISR}
-  - type: File
-    attributes: {id: EVIC_INT_ASM}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: enabled}
-        children:
-        - {type: Value, value: 'false'}
   - type: Combo
     attributes: {id: EVIC_PRIORITY_1ATTRIBUTE}
     children:
@@ -594,15 +585,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: nvm, value: 'true'}
-  - type: File
-    attributes: {id: INTERRUPTS_ASM}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: enabled}
-        children:
-        - {type: Value, value: 'false'}
   - type: String
     attributes: {id: KEIL_STACK_HEAP_SIZE}
     children:

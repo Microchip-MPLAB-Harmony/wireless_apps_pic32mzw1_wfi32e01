@@ -16,7 +16,7 @@ children:
       - type: Boolean
         attributes: {id: visible}
         children:
-        - {type: Value, value: 'true'}
+        - {type: Value, value: 'false'}
     - type: Values
       children:
       - type: Dynamic
@@ -34,7 +34,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: sys_time, value: core_timer}
+        attributes: {id: sys_time, value: ''}
   - type: Boolean
     attributes: {id: SYS_TIME_USE_SYSTICK}
     children:

@@ -77,6 +77,7 @@ SYS_MODULE_OBJ g_NetAppDbgHdl;
     (status == SYS_NET_STATUS_DNS_RESOLVE_FAILED)?"DNS_RESOLVE_FAILED" : \
     (status == SYS_NET_STATUS_TLS_NEGOTIATION_FAILED)?"TLS_NEGOTIATION_FAILED" : \
     (status == SYS_NET_STATUS_PEER_SENT_FIN)?"PEER_SENT_FIN" : \
+    (status == SYS_NET_STATUS_CONNECTED_LL_DOWN)?"CONNECTED_LOWER_LAYER_DOWN" : \
     (status == SYS_NET_STATUS_DISCONNECTED)?"DISCONNECTED" : "Invalid Status"
 #else
 #define SYS_NET_GET_STATUS_STR(status)  \
@@ -90,6 +91,7 @@ SYS_MODULE_OBJ g_NetAppDbgHdl;
     (status == SYS_NET_STATUS_SOCK_OPEN_FAILED)?"SOCK_OPEN_FAILED" : \
     (status == SYS_NET_STATUS_DNS_RESOLVE_FAILED)?"DNS_RESOLVE_FAILED" : \
     (status == SYS_NET_STATUS_PEER_SENT_FIN)?"PEER_SENT_FIN" : \
+    (status == SYS_NET_STATUS_CONNECTED_LL_DOWN)?"CONNECTED_LOWER_LAYER_DOWN" : \
     (status == SYS_NET_STATUS_DISCONNECTED)?"DISCONNECTED" : "Invalid Status"
 #endif
 
@@ -607,13 +609,6 @@ static bool SYS_NET_Ll_Status(SYS_NET_Handle *hdl)
 static bool SYS_NET_Ll_Link_Status(SYS_NET_Handle *hdl)
 {
     TCPIP_NET_HANDLE hNet = TCPIP_STACK_IndexToNet(hdl->cfg_info.intf);
-
-    /* We Do not Check Lower Layer Status in case of TCP 
-            since KeepAlive takes care of it */
-    if (hdl->cfg_info.ip_prot != SYS_NET_IP_PROT_UDP)
-    {
-        return true;
-    }
 
     /* Check if the Lower Interface is up or not */
     if (TCPIP_STACK_NetIsLinked(hNet) == false)
@@ -1146,7 +1141,24 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         /* Connected State */
     case SYS_NET_STATUS_CONNECTED:
     {
-        if ((!NET_PRES_SocketIsConnected(hdl->socket)) || (!SYS_NET_Ll_Link_Status(hdl)))
+        if (!SYS_NET_Ll_Link_Status(hdl))
+        {
+            SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_CONNECTED_LL_DOWN);
+
+            SYS_NET_GiveSemaphore(hdl);
+
+            /* Call the Application CB to give 'Disconnected' event */
+            if (hdl->callback_fn)
+            {
+                hdl->callback_fn(SYS_NET_EVNT_LL_INTF_DOWN, NULL, hdl->cookie);
+            }
+
+            SYS_NET_TakeSemaphore(hdl);
+
+            break;
+        }
+
+        if (!NET_PRES_SocketIsConnected(hdl->socket)) 
         {
             /* Close socket */
             NET_PRES_SocketClose(hdl->socket);
@@ -1208,6 +1220,28 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         break;
 #endif
 
+        /* Lower Layer is Down */
+    case SYS_NET_STATUS_CONNECTED_LL_DOWN:
+    {
+        if (SYS_NET_Ll_Link_Status(hdl))
+        {
+            SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_CONNECTED);
+
+            SYS_NET_GiveSemaphore(hdl);
+
+            /* Call the Application CB to give 'Disconnected' event */
+            if (hdl->callback_fn)
+            {
+                hdl->callback_fn(SYS_NET_EVNT_LL_INTF_UP, NULL, hdl->cookie);
+            }
+
+            SYS_NET_TakeSemaphore(hdl);
+
+            break;
+        }        
+    }
+    break;
+    
         /* DNS Could not be resolved */
     case SYS_NET_STATUS_DNS_RESOLVE_FAILED:
     {

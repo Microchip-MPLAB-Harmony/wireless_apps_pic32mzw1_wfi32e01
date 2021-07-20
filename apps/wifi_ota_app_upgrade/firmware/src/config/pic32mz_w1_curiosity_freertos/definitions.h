@@ -49,8 +49,6 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "crypto/crypto.h"
-#include "system/ota/sys_ota.h"
-#include "system/ota/framework/ota_app/app_ota.h"
 #include "driver/ba414e/drv_ba414e.h"
 #include "driver/memory/drv_memory.h"
 #include "system/net/sys_net.h"

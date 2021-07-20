@@ -4,15 +4,13 @@ attributes: {id: sys_command}
 children:
 - type: Symbols
   children:
-  - type: Menu
-    attributes: {id: SYS_COMMAND_RTOS_MENU}
+  - type: Integer
+    attributes: {id: SYS_COMMAND_MAX_CMD_ARGS}
     children:
-    - type: Attributes
+    - type: Values
       children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'false'}
+      - type: Dynamic
+        attributes: {id: sysWifiProvPic32mzw1, value: '10'}
   - type: Integer
     attributes: {id: SYS_COMMAND_RTOS_STACK_SIZE}
     children:
@@ -20,15 +18,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: sysWifiPic32mzw1, value: '4096'}
-  - type: File
-    attributes: {id: SYS_COMMAND_SYS_RTOS_TASK}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: enabled}
-        children:
-        - {type: Value, value: 'false'}
   - type: String
     attributes: {id: SYS_CONSOLE_DEVICE}
     children:

@@ -4,7 +4,7 @@
 
 
 project: wifi_touch_demo
-creation_date: 2021-07-19T23:47:00.824+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2021-07-20T13:25:32.486+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.0
@@ -17,7 +17,8 @@ modules:
     - {name: "core", version: "v3.9.2"}
     - {name: "wireless_wifi", version: "v3.5.0"}
     - {name: "dev_packs", version: "v3.9.0"}
-    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "unknown"}
+    - {name: "integration", version: "unknown"}
+    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.5.0-TC1"}
     - {name: "wolfssl", version: "v4.7.0"}
     - {name: "net", version: "v3.7.2"}
     - {name: "crypto", version: "v3.7.1"}

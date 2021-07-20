@@ -502,13 +502,14 @@ static void SYS_WIFIPROV_DataUpdate(uint8_t buffer[])
     struct json_obj root, child, sub;
     SYS_WIFIPROV_CONFIG wifiProvSrvcConfig;
     bool error = false;
-   
+
+    memset(&wifiProvSrvcConfig, 0, sizeof (SYS_WIFIPROV_CONFIG));
+
     if (buffer) 
     {
         /* Creating JSON object to parse incoming JSON data */
         if (!json_create(&root, (const char*) buffer, strlen((const char*) buffer))) 
         {
-            memset(&wifiProvSrvcConfig, 0, sizeof (SYS_WIFIPROV_CONFIG));
             /* Verifying JSON  "mode" field */
             if (!json_find(&root, "mode", &child)) 
             {

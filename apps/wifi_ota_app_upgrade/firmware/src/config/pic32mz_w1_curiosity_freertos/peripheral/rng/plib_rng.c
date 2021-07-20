@@ -50,12 +50,12 @@ void RNG_Initialize (void)
 {
 	/* Setup RNGCON		*/
 	/* PLEN 	= 0	*/
-	/* TRNGEN	= 1		*/
-	/* PRNGEN	= 1		*/
-	/* CONT 	= 1		*/
+	/* TRNGEN	= 0		*/
+	/* PRNGEN	= 0		*/
+	/* CONT 	= 0		*/
 	/* TRNGMODE	= 0 	*/
 	
-	RNGCON = 0x700;
+	RNGCON = 0x0;
 }
 
 void RNG_TrngEnable(void)

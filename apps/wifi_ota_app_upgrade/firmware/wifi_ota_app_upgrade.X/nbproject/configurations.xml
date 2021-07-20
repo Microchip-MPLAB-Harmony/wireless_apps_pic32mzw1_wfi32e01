@@ -278,27 +278,6 @@
             <logicalFolder name="f3" displayName="net" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/net/sys_net.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f1" displayName="ota" projectFiles="true">
-              <logicalFolder name="f1" displayName="framework" projectFiles="true">
-                <logicalFolder name="f1" displayName="cjson" projectFiles="true">
-                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/cjson/cjson.h</itemPath>
-                </logicalFolder>
-                <logicalFolder name="f2" displayName="csv" projectFiles="true">
-                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/csv/csv.h</itemPath>
-                </logicalFolder>
-                <logicalFolder name="f3" displayName="http_client" projectFiles="true">
-                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/http_client/http_client.h</itemPath>
-                </logicalFolder>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota.h</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/downloader.h</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_image.h</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/int_flash.h</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/sha256.h</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_config.h</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_database_parser.h</itemPath>
-              </logicalFolder>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/sys_ota.h</itemPath>
-            </logicalFolder>
             <logicalFolder name="f6" displayName="ports" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ports/sys_ports.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ports/sys_ports_mapping.h</itemPath>
@@ -522,13 +501,16 @@
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfio.h</itemPath>
       </logicalFolder>
       <itemPath>../src/app.h</itemPath>
-      <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_app/app_ota.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="ota_linker" projectFiles="true">
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/ota_linker/p32MZ1025W104132_application.ld</itemPath>
+      <logicalFolder name="f1" displayName="config" projectFiles="true">
+        <logicalFolder name="f1"
+                       displayName="pic32mz_w1_curiosity_freertos"
+                       projectFiles="true">
+          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/p32MZ1025W104132.ld</itemPath>
+        </logicalFolder>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
@@ -690,25 +672,6 @@
             <logicalFolder name="f3" displayName="net" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/net/src/sys_net.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f1" displayName="ota" projectFiles="true">
-              <logicalFolder name="f1" displayName="framework" projectFiles="true">
-                <logicalFolder name="f1" displayName="cjson" projectFiles="true">
-                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/cjson/cjson.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="f2" displayName="csv" projectFiles="true">
-                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/csv/csv.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="f3" displayName="http_client" projectFiles="true">
-                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/http_client/http_client.c</itemPath>
-                </logicalFolder>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota.c</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/downloader.c</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/int_flash.c</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/sha256.c</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_database_parser.c</itemPath>
-              </logicalFolder>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/sys_ota.c</itemPath>
-            </logicalFolder>
             <logicalFolder name="f8" displayName="reset" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/reset/sys_reset.c</itemPath>
             </logicalFolder>
@@ -867,7 +830,6 @@
       </logicalFolder>
       <itemPath>../src/app.c</itemPath>
       <itemPath>../src/main.c</itemPath>
-      <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_app/app_ota.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -952,8 +914,6 @@
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/evp.c</itemPath>
       </logicalFolder>
       <itemPath>Makefile</itemPath>
-      <itemPath>../../tools/hex2bin/hex2bin.exe</itemPath>
-      <itemPath>../../tools/hex2bin/hex2bin.py</itemPath>
       <itemPath>../src/config/pic32mz_w1_curiosity_freertos/harmony-manifest-success.yml</itemPath>
     </logicalFolder>
   </logicalFolder>

@@ -79,20 +79,6 @@ extern "C" {
 // Section: System Service Configuration
 // *****************************************************************************
 // *****************************************************************************
-/*** OTA Configuration ***/
-#define SYS_OTA_RTOS_STACK_SIZE     4096
-#define SYS_OTA_RTOS_TASK_PRIORITY  1
-
-#define SYS_OTA_AUTORESET_ENABLE   			true
-#define SYS_OTA_AUTOUPDATE_ENABLE           true
-#define SYS_OTA_PERODIC_UPDATE   			true
-#define SYS_OTA_APP_VER_NUM                 1
-#define SYS_OTA_TIME_INTERVAL               60
-#define SYS_OTA_URL                         "https://0.0.0.0:4443/ota.json"
-#define SYS_OTA_JSON_FILE_MAXSIZE           1000
-#define SYS_OTA_NUM_IMGS                    2
-#define SYS_OTA_ENFORCE_TLS   			    false
-
 
 #define SYS_NET_SUPP_INTF_WIFI_ONLY
 
@@ -100,14 +86,12 @@ extern "C" {
 #define SYS_NET_INDEX0_MODE       				SYS_NET_MODE_CLIENT
 #define SYS_NET_INDEX0_PORT        				1
 #define SYS_NET_INDEX0_RECONNECT       			1
-#define SYS_NET_INDEX0_ENABLE_TLS        		1
+#define SYS_NET_INDEX0_ENABLE_TLS        		0
 #define SYS_NET_INDEX0_IPPROT       			SYS_NET_IP_PROT_TCP
 #define SYS_NET_INDEX0_HOST_NAME        		"192.168.1.1"
 
 
 
-#define SYS_NET_TLS_ENABLED
-#define WOLFSSL_TLS13_NO_PEEK_HANDSHAKE_DONE
 
 
 #define SYS_NET_CLICMD_ENABLED
@@ -192,7 +176,6 @@ extern "C" {
 /* Memory Driver Instance 0 Configuration */
 #define DRV_MEMORY_INDEX_0                   0
 #define DRV_MEMORY_CLIENTS_NUMBER_IDX0       1
-#define DRV_MEMORY_BUFFER_QUEUE_SIZE_IDX0    1
 
 /* Memory Driver Instance 0 RTOS Configurations*/
 #define DRV_MEMORY_STACK_SIZE_IDX0           1024
@@ -205,7 +188,7 @@ extern "C" {
 #define DRV_SST26_START_ADDRESS         0x0
 #define DRV_SST26_PAGE_SIZE             256
 #define DRV_SST26_ERASE_BUFFER_SIZE     4096
-#define DRV_SST26_CHIP_SELECT_PIN       SYS_PORT_PIN_RA1
+#define DRV_SST26_CHIP_SELECT_PIN       SYS_PORT_PIN_RA0
 
 /*** WiFi PIC32MZW1 Driver Configuration ***/
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
@@ -493,11 +476,9 @@ extern "C" {
 #define WOLFSSL_HAVE_MCHP_BA414E_CRYPTO
 // ---------- CRYPTO HARDWARE MANIFEST END ----------
 // ---------- FUNCTIONAL CONFIGURATION START ----------
-#define WOLFSSL_PIC32MZ_HASH
-#define WOLFSSL_PIC32MZ_HASH
-#define WOLFSSL_PIC32MZ_HASH
-#define HAVE_HKDF
-#define NO_DES3
+#define NO_MD4
+#define WOLFSSL_SHA224
+#define NO_PIC32MZ_HASH
 #define WOLFSSL_AES_128
 #define WOLFSSL_AES_192
 #define WOLFSSL_AES_256
@@ -507,17 +488,15 @@ extern "C" {
 #define HAVE_AES_CBC
 #define WOLFSSL_AES_COUNTER
 #define HAVE_AESGCM
+#define HAVE_AESCCM
 #define NO_RC4
 #define NO_HC128
 #define NO_RABBIT
 #define HAVE_ECC
-#define HAVE_X963_KDF
-#define HAVE_ECC_ENCRYPT
-#define HAVE_DH
+#define NO_DH
 #define NO_DSA
 #define FP_MAX_BITS 4096
 #define USE_CERT_BUFFERS_2048
-#define WC_RSA_PSS
 #define NO_DEV_RANDOM
 #define HAVE_HASHDRBG
 #define WC_NO_HARDEN
@@ -544,12 +523,17 @@ extern "C" {
 
 #define SYS_WIFI_MAX_CBS					2
 #define SYS_WIFI_COUNTRYCODE        	   "GEN"
-#define SYS_WIFI_STA_SSID        			"DEMO_AP"
+#define SYS_WIFI_STA_SSID        			"riodemo139"
 #define SYS_WIFI_STA_PWD        			"password"
 #define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPAWPA2MIXED 
 #define SYS_WIFI_STA_AUTOCONNECT   			true
 
 
+#define SYS_WIFI_AP_SSID					"DEMO_AP_SOFTAP"
+#define SYS_WIFI_AP_PWD        				"password"
+#define SYS_WIFI_AP_AUTHTYPE				SYS_WIFI_WPA2
+#define SYS_WIFI_AP_CHANNEL					1
+#define SYS_WIFI_AP_SSIDVISIBILE   			true
 
 
 

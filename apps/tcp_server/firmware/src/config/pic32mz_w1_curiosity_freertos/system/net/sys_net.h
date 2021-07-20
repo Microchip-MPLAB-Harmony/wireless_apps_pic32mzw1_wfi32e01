@@ -21,7 +21,7 @@
 
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -306,6 +306,9 @@ typedef enum
 
     // Net Instance received FIN from peer
     SYS_NET_STATUS_PEER_SENT_FIN,
+
+    // Net Instance connected to the peer but the lower layer is down
+    SYS_NET_STATUS_CONNECTED_LL_DOWN,
 } SYS_NET_STATUS;
 
 // *****************************************************************************
@@ -337,6 +340,12 @@ typedef enum
 
     // Socket Open Failed
     SYS_NET_EVNT_SOCK_OPEN_FAILED,
+
+    // Received only in Connected State - Lower Layer Down
+    SYS_NET_EVNT_LL_INTF_DOWN,
+
+    // Received only in Connected State - Lower Layer Up
+    SYS_NET_EVNT_LL_INTF_UP,
 } SYS_NET_EVENT;
 
 // *****************************************************************************

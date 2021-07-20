@@ -156,22 +156,6 @@ typedef enum
 
 } DRV_MEMORY_EW_STATE;
 
-typedef enum
-{
-    /* Process the operations queued. */
-    DRV_MEMORY_PROCESS_QUEUE,
-
-    /* Perform the required transfer */
-    DRV_MEMORY_TRANSFER,
-
-    /* Idle state of the driver. */
-    DRV_MEMORY_IDLE,
-
-    /* Error state. */
-    DRV_MEMORY_ERROR
-
-} DRV_MEMORY_STATE;
-
 /**************************************
  * MEMORY Driver Client
  **************************************/
@@ -203,9 +187,6 @@ typedef struct DRV_MEMORY_CLIENT_OBJ_STRUCT
  ******************************************/
 typedef struct _DRV_MEMORY_BUFFER_OBJECT
 {
-    /* Buffer Object array index */
-    uint32_t index;
-
     /* Client that owns this buffer */
     DRV_MEMORY_CLIENT_OBJECT *hClient;
 
@@ -226,9 +207,6 @@ typedef struct _DRV_MEMORY_BUFFER_OBJECT
 
     /* Operation type - read/write/erase/erasewrite */
     DRV_MEMORY_OPERATION_TYPE opType;
-
-    /* Pointer to the next buffer in the queue */
-    struct _DRV_MEMORY_BUFFER_OBJECT *next;
 
 } DRV_MEMORY_BUFFER_OBJECT;
 
@@ -252,8 +230,8 @@ typedef struct
     /* Erase write state */
     DRV_MEMORY_EW_STATE ewState;
 
-    /* MEMORY main task routine's states */
-    DRV_MEMORY_STATE state;
+    /* Flag to check transfer status */
+    volatile bool isTransferDone;
 
     /* Flag to indicate in use  */
     bool inUse;
@@ -310,32 +288,17 @@ typedef struct
     /* Flag to indicate if attached memory device configured to interrupt mode */
     bool isMemDevInterruptEnabled;
 
-    /* Flag to indicate if transfer is complete in interrupt mode */
-    volatile bool isTransferDone;
+    /* Number of milliseconds to poll for transfer status check */
+    uint32_t memDevStatusPollUs;
 
     /* Attached Memory Device functions */
     const DRV_MEMORY_DEVICE_INTERFACE *memoryDevice;
 
-    /* Pointer to Buffer Objects array */
-    DRV_MEMORY_BUFFER_OBJECT *buffObjArr;
-
-    /* Pointer to free list of Buffer Objects */
-    DRV_MEMORY_BUFFER_OBJECT *buffObjFree;
-
-    /* The Buffer Q head pointer */
-    DRV_MEMORY_BUFFER_OBJECT *queueHead;
-
-    /* The Buffer Q tail pointer */
-    DRV_MEMORY_BUFFER_OBJECT *queueTail;
-
     /* Pointer to the current buffer object */
-    DRV_MEMORY_BUFFER_OBJECT *currentBufObj;
+    DRV_MEMORY_BUFFER_OBJECT currentBufObj;
 
     /* Memory pool for Client Objects */
     DRV_MEMORY_CLIENT_OBJECT *clientObjPool;
-
-    /* Buffer Queue Size */
-    size_t queueSize;
 
     /* Number of clients connected to the hardware instance */
     uint8_t numClients;
@@ -354,6 +317,12 @@ typedef struct
 
     /* Mutex to protect the client object pool */
     OSAL_MUTEX_DECLARE(clientMutex);
+
+    /* Semaphore to wait for transfer request to complete. This will be released
+     * from the System timer handler at regular interval expiry.
+    */
+    OSAL_SEM_DECLARE(transferDone);
+
 } DRV_MEMORY_OBJECT;
 
 typedef MEMORY_DEVICE_TRANSFER_STATUS (*DRV_MEMORY_TransferOperation)(
@@ -368,3 +337,4 @@ typedef MEMORY_DEVICE_TRANSFER_STATUS (*DRV_MEMORY_TransferOperation)(
 /*******************************************************************************
  End of File
 */
+
