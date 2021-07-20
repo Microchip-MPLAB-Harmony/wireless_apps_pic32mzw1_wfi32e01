@@ -78,7 +78,7 @@ void TcpClientCallback(uint32_t event, void *data, void* cookie)
     {
         case SYS_NET_EVNT_CONNECTED:
         {
-            char networkBuffer[256];
+            char networkBuffer[512];
             SYS_CONSOLE_PRINT("TcpClientCallback(): Status UP\r\n");
             memset(networkBuffer, 0, sizeof(networkBuffer));
             sprintf(networkBuffer, "GET / HTTP/1.1\r\n"
@@ -97,7 +97,7 @@ void TcpClientCallback(uint32_t event, void *data, void* cookie)
 
         case SYS_NET_EVNT_RCVD_DATA:
         {
-            char networkBuffer[256];
+            char networkBuffer[512];
             memset(networkBuffer, 0, sizeof (networkBuffer));
             SYS_NET_RecvMsg(g_tcpSrvcHandle, (uint8_t*) networkBuffer, sizeof (networkBuffer));
             // Google has stopped obeying the 'connection close' command.  So this is a cheap way to see if we got to the 
