@@ -262,9 +262,9 @@
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system_definitions.h</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/toolchain_specifics.h</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/definitions.h</itemPath>
+          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/interrupts.h</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/config.h</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/FreeRTOSConfig.h</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/interrupts.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f5" displayName="FreeRTOS" projectFiles="true">
@@ -434,6 +434,7 @@
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/pwdbased.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/rabbit.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/random.h</itemPath>
+        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/rc2.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/ripemd.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/rsa.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/selftest.h</itemPath>
@@ -455,7 +456,6 @@
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/sha256.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/sha512.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/wc_port.h</itemPath>
-        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/rc2.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="wolfssl" projectFiles="true">
         <itemPath>../src/third_party/wolfssl/wolfssl/callbacks.h</itemPath>
@@ -471,9 +471,9 @@
         <itemPath>../src/third_party/wolfssl/wolfssl/version.h</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfio.h</itemPath>
       </logicalFolder>
-      <itemPath>../src/app_cert.h</itemPath>
-      <itemPath>../src/app.h</itemPath>
       <itemPath>../src/app_mqtt.h</itemPath>
+      <itemPath>../src/app.h</itemPath>
+      <itemPath>../src/app_cert.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -749,6 +749,7 @@
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/poly1305.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/pwdbased.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/rabbit.c</itemPath>
+        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/rc2.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/ripemd.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/rsa.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/sha3.c</itemPath>
@@ -776,7 +777,6 @@
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/sha.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/sha256.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/sha512.c</itemPath>
-        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/rc2.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="wolfssl" projectFiles="true">
         <itemPath>../src/third_party/wolfssl/src/crl.c</itemPath>
@@ -789,14 +789,14 @@
         <itemPath>../src/third_party/wolfssl/src/wolfio.c</itemPath>
         <itemPath>../src/third_party/wolfssl/src/internal.c</itemPath>
       </logicalFolder>
+      <itemPath>../src/app_mqtt.c</itemPath>
       <itemPath>../src/app.c</itemPath>
       <itemPath>../src/main.c</itemPath>
-      <itemPath>../src/app_mqtt.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false">
-      <logicalFolder name="f2"
+      <logicalFolder name="f1"
                      displayName="pic32mz_w1_curiosity_freertos.mhc"
                      projectFiles="true">
         <logicalFolder name="f1" displayName="System_Configuration" projectFiles="true">
@@ -807,6 +807,7 @@
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcps.yml</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDns.yml</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDnss.yml</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipSntp.yml</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpip_apps_config.yml</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="BASIC_CONFIGURATION" projectFiles="true">
@@ -853,7 +854,6 @@
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_debug.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_time.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tcpipNetConfig.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tcpipSntp.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tcpipStack.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/uart1.yml</itemPath>
         </logicalFolder>
@@ -869,7 +869,7 @@
         <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysWifiProvPic32mzw1.yml</itemPath>
         <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/uart3.yml</itemPath>
       </logicalFolder>
-      <logicalFolder name="f1" displayName="wolfcrypt" projectFiles="true">
+      <logicalFolder name="f2" displayName="wolfcrypt" projectFiles="true">
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/misc.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/evp.c</itemPath>
       </logicalFolder>
@@ -890,7 +890,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>2.50</languageToolchainVersion>
+        <languageToolchainVersion>3.01</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -933,7 +933,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../../../../..;../src;../src/config/pic32mz_w1_curiosity_freertos;../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/;../src/config/pic32mz_w1_curiosity_freertos/library;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/common;../src/packs/PIC32MZ1025W104132_DFP;../src/third_party/paho.mqtt.embedded-c;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/wolfssl;../src/third_party/wolfssl/wolfssl"/>
+                  value="../src;../src/config/pic32mz_w1_curiosity_freertos;../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/;../src/config/pic32mz_w1_curiosity_freertos/library;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/common;../src/packs/PIC32MZ1025W104132_DFP;../src/third_party/paho.mqtt.embedded-c;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/wolfssl;../src/third_party/wolfssl/wolfssl"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -1002,7 +1002,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="150000"/>
+        <property key="heap-size" value="160000"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
@@ -1066,31 +1066,28 @@
         <property key="wpo-lto" value="false"/>
       </C32Global>
       <PICkit3PlatformTool>
-        <property key="ADC" value="true"/>
+        <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="CAN1" value="true"/>
-        <property key="CANFD2" value="true"/>
-        <property key="CHANGE NOTICE A" value="true"/>
-        <property key="CHANGE NOTICE B" value="true"/>
-        <property key="CHANGE NOTICE C" value="true"/>
-        <property key="CHANGE NOTICE K" value="true"/>
-        <property key="CLOCK CONTROL LVDCON" value="true"/>
+        <property key="CHANGE NOTICE" value="true"/>
+        <property key="COMPARATOR" value="true"/>
+        <property key="CTMU" value="true"/>
         <property key="DMA" value="true"/>
-        <property key="ETHERNET CONTROLLER" value="true"/>
         <property key="Freeze All Other Peripherals" value="true"/>
-        <property key="I2C 1" value="true"/>
-        <property key="I2C 2" value="true"/>
+        <property key="I2C1" value="true"/>
+        <property key="I2C2" value="true"/>
         <property key="INPUT CAPTURE 1" value="true"/>
         <property key="INPUT CAPTURE 2" value="true"/>
         <property key="INPUT CAPTURE 3" value="true"/>
         <property key="INPUT CAPTURE 4" value="true"/>
+        <property key="INPUT CAPTURE 5" value="true"/>
         <property key="INTERRUPT CONTROL" value="true"/>
         <property key="OUTPUT COMPARE 1" value="true"/>
         <property key="OUTPUT COMPARE 2" value="true"/>
         <property key="OUTPUT COMPARE 3" value="true"/>
         <property key="OUTPUT COMPARE 4" value="true"/>
+        <property key="OUTPUT COMPARE 5" value="true"/>
+        <property key="PARALLEL MASTER/SLAVE PORT" value="true"/>
         <property key="REAL TIME CLOCK" value="true"/>
-        <property key="REFERENCE CLOCK 1" value="true"/>
         <property key="SPI/I2S 1" value="true"/>
         <property key="SPI/I2S 2" value="true"/>
         <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
@@ -1099,44 +1096,31 @@
         <property key="TIMER3" value="true"/>
         <property key="TIMER4" value="true"/>
         <property key="TIMER5" value="true"/>
-        <property key="TIMER6" value="true"/>
-        <property key="TIMER7" value="true"/>
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART1" value="true"/>
         <property key="UART2" value="true"/>
-        <property key="UART3" value="true"/>
-        <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
-        <property key="memories.configurationmemory2" value="true"/>
-        <property key="memories.dataflash" value="true"/>
         <property key="memories.eeprom" value="true"/>
         <property key="memories.flashdata" value="true"/>
         <property key="memories.id" value="true"/>
-        <property key="memories.instruction.ram" value="true"/>
-        <property key="memories.instruction.ram.ranges"
-                  value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="1d000000-1d003fff"/>
+        <property key="memories.programmemory.end" value="0x1d003fff"/>
+        <property key="memories.programmemory.start" value="0x1d000000"/>
         <property key="poweroptions.powerenable" value="false"/>
         <property key="programmertogo.imagename" value=""/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmspeed" value="2"/>
-        <property key="programoptions.preservedataflash" value="false"/>
-        <property key="programoptions.preservedataflash.ranges"
-                  value="${programoptions.preservedataflash.ranges}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
-        <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges" value=""/>
         <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveprogramrange.end" value="0x1d003fff"/>
+        <property key="programoptions.preserveprogramrange.start" value="0x1d000000"/>
         <property key="programoptions.preserveuserid" value="false"/>
-        <property key="programoptions.programcalmem" value="false"/>
-        <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VPPFirst"/>
         <property key="programoptions.usehighvoltageonmclr" value="false"/>
         <property key="programoptions.uselvpprogramming" value="false"/>
@@ -1144,28 +1128,37 @@
       </PICkit3PlatformTool>
       <Tool>
         <property key="ADC" value="true"/>
+        <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>
         <property key="CAN1" value="true"/>
         <property key="CANFD2" value="true"/>
+        <property key="CHANGE NOTICE" value="true"/>
         <property key="CHANGE NOTICE A" value="true"/>
         <property key="CHANGE NOTICE B" value="true"/>
         <property key="CHANGE NOTICE C" value="true"/>
         <property key="CHANGE NOTICE K" value="true"/>
         <property key="CLOCK CONTROL LVDCON" value="true"/>
+        <property key="COMPARATOR" value="true"/>
+        <property key="CTMU" value="true"/>
         <property key="DMA" value="true"/>
         <property key="ETHERNET CONTROLLER" value="true"/>
         <property key="Freeze All Other Peripherals" value="true"/>
         <property key="I2C 1" value="true"/>
         <property key="I2C 2" value="true"/>
+        <property key="I2C1" value="true"/>
+        <property key="I2C2" value="true"/>
         <property key="INPUT CAPTURE 1" value="true"/>
         <property key="INPUT CAPTURE 2" value="true"/>
         <property key="INPUT CAPTURE 3" value="true"/>
         <property key="INPUT CAPTURE 4" value="true"/>
+        <property key="INPUT CAPTURE 5" value="true"/>
         <property key="INTERRUPT CONTROL" value="true"/>
         <property key="OUTPUT COMPARE 1" value="true"/>
         <property key="OUTPUT COMPARE 2" value="true"/>
         <property key="OUTPUT COMPARE 3" value="true"/>
         <property key="OUTPUT COMPARE 4" value="true"/>
+        <property key="OUTPUT COMPARE 5" value="true"/>
+        <property key="PARALLEL MASTER/SLAVE PORT" value="true"/>
         <property key="REAL TIME CLOCK" value="true"/>
         <property key="REFERENCE CLOCK 1" value="true"/>
         <property key="SPI/I2S 1" value="true"/>
@@ -1182,6 +1175,7 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UpdateOptions"
                   value="ToolFirmwareOption.UseLatest"/>
+        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="ToolFirmwareToolPack"
                   value="Press to select which tool pack to use"/>
         <property key="UART1" value="true"/>
@@ -1194,6 +1188,7 @@
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="freeze.timers" value="false"/>
+        <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
@@ -1206,13 +1201,14 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.end" value="0x1d003fff"/>
         <property key="memories.programmemory.ranges" value="10000000-100fffff"/>
+        <property key="memories.programmemory.start" value="0x1d000000"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="E:/Rio2_H3/Rio2_SW3_1/wireless/apps/paho_mqtt_tls_client/firmware/pic32mz_w1_curiosity_freertos.X/debug/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos_ptg"/>
         <property key="programmerToGoImageName"
                   value="pic32mz_w1_curiosity_freertos_ptg"/>
+        <property key="programmertogo.imagename" value=""/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.ledbrightness" value="5"/>
@@ -1229,11 +1225,14 @@
         <property key="programoptions.preserveeeprom.ranges" value=""/>
         <property key="programoptions.preserveprogram.ranges" value=""/>
         <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveprogramrange.end" value="0x1d003fff"/>
+        <property key="programoptions.preserveprogramrange.start" value="0x1d000000"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
-        <property key="programoptionsedbg.eraseb4program" value="true"/>
+        <property key="programoptions.usehighvoltageonmclr" value="false"/>
+        <property key="programoptions.uselvpprogramming" value="false"/>
         <property key="ptgProgramImage" value="true"/>
         <property key="ptgSendImage" value="true"/>
         <property key="toolpack.updateoptions"

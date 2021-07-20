@@ -56,19 +56,6 @@ children:
       - type: Dynamic
         attributes: {id: uart3, value: '0'}
   - type: Boolean
-    attributes: {id: UART_RING_BUFFER_ENABLE}
-    children:
-    - type: Attributes
-      children:
-      - type: String
-        attributes: {id: label}
-        children:
-        - {type: Value, value: '---'}
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart3, value: 'false'}
-  - type: Boolean
     attributes: {id: UART_RING_BUFFER_MODE_ENABLE}
     children:
     - type: Values
@@ -82,19 +69,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: uart3, value: '8'}
-  - type: Boolean
-    attributes: {id: USART_INTERRUPT_MODE}
-    children:
-    - type: Attributes
-      children:
-      - type: String
-        attributes: {id: label}
-        children:
-        - {type: Value, value: '---'}
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart3, value: 'false'}
 - type: Attachments
   children:
   - type: DirectCapability
@@ -111,4 +85,4 @@ children:
         children:
         - {type: Value, value: UART}
 - type: ElementPosition
-  attributes: {x: '57', y: '172', id: uart3}
+  attributes: {x: '89', y: '177', id: uart3}

@@ -17,8 +17,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: net_Pres, value: '0'}
-      - type: User
-        attributes: {value: '0'}
   - type: Boolean
     attributes: {id: NET_PRES_BLOB_CERT_REPO}
     children:
@@ -42,8 +40,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: net_Pres, value: '1'}
-      - type: User
-        attributes: {value: '1'}
   - type: String
     attributes: {id: NET_PRES_BLOB_CLIENT_CERT_LEN_VARIABLE}
     children:
@@ -226,8 +222,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: net_Pres, value: '0'}
-      - type: User
-        attributes: {value: '0'}
   - type: Boolean
     attributes: {id: NET_PRES_GENERATE_ENC_STUBS}
     children:
@@ -242,8 +236,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: net_Pres, value: '20480'}
-      - type: User
-        attributes: {value: '20480'}
   - type: Boolean
     attributes: {id: NET_PRES_SUPPORT_CLIENT_ENC}
     children:
@@ -276,8 +268,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: net_Pres, value: 'true'}
-      - type: User
-        attributes: {value: 'true'}
   - type: Boolean
     attributes: {id: NET_PRES_SUPPORT_SERVER_ENC}
     children:
@@ -311,4 +301,4 @@ children:
       - type: Dynamic
         attributes: {id: net_Pres, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '20', y: '20', id: net_Pres}
+  attributes: {x: '20', y: '19', id: net_Pres}

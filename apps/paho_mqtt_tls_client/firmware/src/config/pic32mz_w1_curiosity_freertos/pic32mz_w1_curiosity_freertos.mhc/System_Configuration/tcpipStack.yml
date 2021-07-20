@@ -84,8 +84,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: sysWifiPic32mzw1, value: TCPIP_STACK_HEAP_TYPE_EXTERNAL_HEAP}
-      - type: User
-        attributes: {value: TCPIP_STACK_HEAP_TYPE_EXTERNAL_HEAP}
 - type: Attachments
   children:
   - type: DirectDependency
@@ -102,4 +100,4 @@ children:
         children:
         - {type: Value, value: sys_console}
 - type: ElementPosition
-  attributes: {x: '250', y: '480', id: tcpipStack}
+  attributes: {x: '190', y: '420', id: tcpipStack}

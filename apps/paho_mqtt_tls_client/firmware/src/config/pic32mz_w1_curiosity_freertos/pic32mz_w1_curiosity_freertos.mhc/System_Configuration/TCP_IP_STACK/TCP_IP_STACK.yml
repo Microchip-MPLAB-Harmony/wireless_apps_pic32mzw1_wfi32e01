@@ -3,7 +3,7 @@ type: GroupComponent
 attributes: {displayName: TCP/IP STACK, id: TCP/IP STACK}
 children:
 - type: ElementPosition
-  attributes: {x: '480', y: '20', id: TCP/IP STACK}
+  attributes: {x: '570', y: '100', id: TCP/IP STACK}
 - type: Attachments
   children:
   - type: Attachment

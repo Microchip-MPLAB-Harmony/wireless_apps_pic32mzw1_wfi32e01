@@ -515,9 +515,8 @@ extern "C" {
 #define WC_NO_HARDEN
 #define FREERTOS
 #define NO_SIG_WRAPPER
+#define NO_ERROR_STRINGS
 #define NO_WOLFSSL_MEMORY
-#define DEBUG
-#define DEBUG_WOLFSSL
 // ---------- FUNCTIONAL CONFIGURATION END ----------
 
 /* MPLAB Harmony Net Presentation Layer Definitions*/

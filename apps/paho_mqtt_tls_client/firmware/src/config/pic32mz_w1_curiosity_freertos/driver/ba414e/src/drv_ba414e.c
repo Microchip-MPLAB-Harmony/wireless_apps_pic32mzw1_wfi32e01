@@ -897,6 +897,9 @@ void DRV_BA414E_Prepare(DRV_BA414E_ClientData * cd)
     opData.errorInterrupt = 0;    
     switch(cd->currentOp)
     {
+    case DRV_BA414E_OP_NONE:
+        break;
+        
         case DRV_BA414E_OP_ECDSA_SIGN:
             DRV_BA414E_PrepareEcdsaSign(cd);
             break;            
@@ -1161,6 +1164,8 @@ void DRV_BA414E_Process(DRV_BA414E_ClientData * cd)
     SYS_INT_SourceStatusClear(INT_SOURCE_CRYPTO1_FAULT);
     switch(cd->currentOp)
     {
+    case DRV_BA414E_OP_NONE:
+        break;
         case DRV_BA414E_OP_ECDSA_SIGN:
             DRV_BA414E_ProcessEcdsaSign(cd);
             break;            

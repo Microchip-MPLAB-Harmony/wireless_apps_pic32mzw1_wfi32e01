@@ -65,19 +65,6 @@ children:
       - type: Dynamic
         attributes: {id: uart1, value: '2'}
   - type: Boolean
-    attributes: {id: UART_RING_BUFFER_ENABLE}
-    children:
-    - type: Attributes
-      children:
-      - type: String
-        attributes: {id: label}
-        children:
-        - {type: Value, value: '---'}
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart1, value: 'true'}
-  - type: Boolean
     attributes: {id: UART_RING_BUFFER_MODE_ENABLE}
     children:
     - type: Values
@@ -123,9 +110,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: sysWifiPic32mzw1, value: '1024'}
-      - type: User
-        attributes: {value: '4096'}
+        attributes: {id: sysWifiPic32mzw1, value: '2048'}
   - type: Hex
     attributes: {id: UMODE_VALUE}
     children:
@@ -133,19 +118,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: uart1, value: '8'}
-  - type: Boolean
-    attributes: {id: USART_INTERRUPT_MODE}
-    children:
-    - type: Attributes
-      children:
-      - type: String
-        attributes: {id: label}
-        children:
-        - {type: Value, value: '---'}
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart1, value: 'true'}
 - type: Attachments
   children:
   - type: DirectCapability
@@ -162,4 +134,4 @@ children:
         children:
         - {type: Value, value: sys_console_UART_dependency}
 - type: ElementPosition
-  attributes: {x: '340', y: '20', id: uart1}
+  attributes: {x: '300', y: '20', id: uart1}

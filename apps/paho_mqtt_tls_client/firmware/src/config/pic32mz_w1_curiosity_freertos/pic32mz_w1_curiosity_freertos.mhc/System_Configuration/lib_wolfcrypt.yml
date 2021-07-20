@@ -66,13 +66,6 @@ children:
       - type: Dynamic
         attributes: {id: sysNetPic32mzw1, value: 'true'}
   - type: Boolean
-    attributes: {id: wolfcrypt_debug}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: sysNetPic32mzw1, value: 'true'}
-  - type: Boolean
     attributes: {id: wolfcrypt_dh}
     children:
     - type: Values
@@ -81,13 +74,6 @@ children:
         attributes: {id: sysNetPic32mzw1, value: 'true'}
   - type: Boolean
     attributes: {id: wolfcrypt_eccencrypt}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: sysNetPic32mzw1, value: 'true'}
-  - type: Boolean
-    attributes: {id: wolfcrypt_errorstrings}
     children:
     - type: Values
       children:
@@ -257,4 +243,4 @@ children:
       - type: Dynamic
         attributes: {id: lib_wolfcrypt, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '290', y: '100', id: lib_wolfcrypt}
+  attributes: {x: '30', y: '100', id: lib_wolfcrypt}

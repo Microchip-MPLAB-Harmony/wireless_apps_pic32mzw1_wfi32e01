@@ -12,4 +12,4 @@ children:
       - type: User
         attributes: {value: AP}
 - type: ElementPosition
-  attributes: {x: '195', y: '107', id: sysWifiPic32mzw1}
+  attributes: {x: '30', y: '60', id: sysWifiPic32mzw1}

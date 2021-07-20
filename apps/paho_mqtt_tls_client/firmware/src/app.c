@@ -50,7 +50,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-#include "definitions.h"
 #include "app.h"
 #include "app_mqtt.h"
 
@@ -179,7 +178,7 @@ void APP_Tasks(void) {
             /* Application's initial state. */
         case APP_STATE_INIT_DONE:
         {
-            if (SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETCONFIG, &wificonfig, sizeof (wificonfig)) == SYS_WIFI_SUCCESS) {
+            if (SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETWIFICONFIG, &wificonfig, sizeof (wificonfig)) == SYS_WIFI_SUCCESS) {
                 if (SYS_WIFI_STA == wificonfig.mode) {
                     SYS_CONSOLE_PRINT("%s(): Device mode = STA \r\n", __func__);
                     appData.state = APP_STATE_MODE_STA;
@@ -216,7 +215,10 @@ void APP_Tasks(void) {
         }
     }
 
-    APP_MQTT_Tasks();
+	APP_MQTT_Tasks(); 
+#ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME		
+	APP_CheckTimeOut(MQTT_PUB_TIMEOUT_CONST, g_lastPubTimeout);
+#endif
 }
 
 

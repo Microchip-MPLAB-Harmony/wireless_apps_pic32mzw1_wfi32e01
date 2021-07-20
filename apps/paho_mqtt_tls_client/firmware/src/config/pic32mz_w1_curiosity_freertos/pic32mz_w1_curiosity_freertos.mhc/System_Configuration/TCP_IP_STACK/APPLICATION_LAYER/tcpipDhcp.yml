@@ -3,4 +3,4 @@ type: UniqueComponent
 attributes: {id: tcpipDhcp}
 children:
 - type: ElementPosition
-  attributes: {x: '320', y: '20', id: tcpipDhcp}
+  attributes: {x: '300', y: '20', id: tcpipDhcp}

@@ -13,13 +13,6 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'false'}
-  - type: Boolean
-    attributes: {id: DRV_WIFI_PIC32MZW1_REQUIRE_BA414E}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: drvWifiPic32mzw1, value: 'true'}
   - type: Menu
     attributes: {id: DRV_WIFI_PIC32MZW1_RTOS_MENU}
     children:
@@ -29,13 +22,6 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
-  - type: Boolean
-    attributes: {id: DRV_WIFI_PIC32MZW1_SUPPORT_WPA3}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: drvWifiPic32mzw1, value: 'true'}
   - type: File
     attributes: {id: DRV_WIFI_PIC32MZW1_SYS_RTOS_TASK}
     children:
@@ -81,4 +67,4 @@ children:
         children:
         - {type: Value, value: NETCONFIG_MAC_Dependency}
 - type: ElementPosition
-  attributes: {x: '30', y: '440', id: drvWifiPic32mzw1}
+  attributes: {x: '410', y: '300', id: drvWifiPic32mzw1}
