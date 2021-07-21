@@ -57,14 +57,10 @@
 */
 void GPIO_Initialize ( void )
 {
-    /* Disable JTAG since at least one of its pins is configured for Non-JTAG function */
-    CFGCON0bits.JTAGEN = 0;
-
     /* PORTA Initialization */
     ANSELACLR = 0x400; /* Digital Mode Enable */
 
     /* PORTB Initialization */
-    ANSELBCLR = 0x300; /* Digital Mode Enable */
 
     /* PORTC Initialization */
 
@@ -81,10 +77,10 @@ void GPIO_Initialize ( void )
     CFGCON0bits.IOLOCK = 0;
 
     /* PPS Input Remapping */
-    U3RXR = 5;
+    U3RXR = 10;
 
     /* PPS Output Remapping */
-    RPB9R = 1;
+    RPC14R = 1;
 
     /* Lock back the system after PPS configuration */
     CFGCON0bits.IOLOCK = 1;

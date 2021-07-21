@@ -105,7 +105,5 @@ manifest constants
 #define QTM_ACQ_SEQUENTIAL 1u
 #define QTM_ACQ_WINDOWCOMP 2u
 
-#define NULL_POINTER			0u
-
 #define TIMEOUT_OVERHEAD        2
 #endif /* __HCVD_PIC32MZ__ */

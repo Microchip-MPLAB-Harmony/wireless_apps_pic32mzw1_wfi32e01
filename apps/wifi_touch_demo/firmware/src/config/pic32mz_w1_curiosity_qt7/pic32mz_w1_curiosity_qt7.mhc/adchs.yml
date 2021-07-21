@@ -526,5 +526,20 @@ children:
       children:
       - type: Dynamic
         attributes: {id: adchs, value: INT_SOURCE_ADC_DATA0}
+- type: Attachments
+  children:
+  - type: DirectCapability
+    attributes: {id: ADCHS_ADC}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: lib_qtouch}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: Acq_Engine}
 - type: ElementPosition
   attributes: {x: '24', y: '55', id: adchs}

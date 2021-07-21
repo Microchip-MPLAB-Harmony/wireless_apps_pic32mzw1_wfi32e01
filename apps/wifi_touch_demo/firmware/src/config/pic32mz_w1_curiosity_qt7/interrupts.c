@@ -67,9 +67,12 @@ void NVM_InterruptHandler( void );
 void UART1_FAULT_InterruptHandler( void );
 void UART1_RX_InterruptHandler( void );
 void UART1_TX_InterruptHandler( void );
+void DMA0_InterruptHandler( void );
 void WDRV_PIC32MZW_TasksRFSMCISR( void );
 void WDRV_PIC32MZW_TasksRFMACISR( void );
 void WDRV_PIC32MZW_TasksRFTimer0ISR( void );
+void DRV_BA414E_InterruptHandler( void );
+void DRV_BA414E_ErrorInterruptHandler( void );
 void qtm_pic32_cvd_handler_eoc( void );
 
 
@@ -105,6 +108,11 @@ void __ISR(_UART1_TX_VECTOR, ipl1SRS) UART1_TX_Handler (void)
     UART1_TX_InterruptHandler();
 }
 
+void __ISR(_DMA0_VECTOR, ipl1SRS) DMA0_Handler (void)
+{
+    DMA0_InterruptHandler();
+}
+
 void __ISR(_RFSMC_VECTOR, ipl1SRS) RFSMC_Handler (void)
 {
     WDRV_PIC32MZW_TasksRFSMCISR();
@@ -118,6 +126,16 @@ void __ISR(_RFMAC_VECTOR, ipl1SRS) RFMAC_Handler (void)
 void __ISR(_RFTM0_VECTOR, ipl1SRS) RFTM0_Handler (void)
 {
     WDRV_PIC32MZW_TasksRFTimer0ISR();
+}
+
+void __ISR(_CRYPTO1_VECTOR, ipl1SRS) CRYPTO1_Handler (void)
+{
+    DRV_BA414E_InterruptHandler();
+}
+
+void __ISR(_CRYPTO1_FAULT_VECTOR, ipl1SRS) CRYPTO1_FAULT_Handler (void)
+{
+    DRV_BA414E_ErrorInterruptHandler();
 }
 
 void __ISR(_CVD_EVENT_VECTOR, ipl1SRS) CVD_EVENT_Handler (void)

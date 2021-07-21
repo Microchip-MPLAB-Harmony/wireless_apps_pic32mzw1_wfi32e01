@@ -13,6 +13,13 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'false'}
+  - type: Integer
+    attributes: {id: CORE_TIMER_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core_timer, value: '100000000'}
   - type: Boolean
     attributes: {id: CORE_TIMER_INTERRUPT_MODE}
     children:
@@ -33,6 +40,20 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core_timer, value: 'false'}
+  - type: Integer
+    attributes: {id: CORE_TIMER_PERIOD_US}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core_timer, value: '1000'}
+  - type: String
+    attributes: {id: CORE_TIMER_PERIOD_VALUE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core_timer, value: '0x186a0'}
 - type: Attachments
   children:
   - type: DirectCapability

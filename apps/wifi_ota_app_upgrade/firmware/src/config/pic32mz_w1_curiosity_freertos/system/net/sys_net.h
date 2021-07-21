@@ -688,7 +688,10 @@ typedef void (*SYS_NET_CALLBACK)(uint32_t event, void *data, void* cookie);
         </code>
 
   Remarks:
-        This routine should be called everytime a user wants to open a new NET socket
+        This routine should be called everytime a user wants to open a new NET socket. 
+		Also, in case the user is opening a Client Socket, and the under lying network
+		interface is Wifi in AP Mode, it is recommended that the call be made only 
+		after the STA running the server connects to the AP on the Wifi interface.
  */
 
 SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK Net_cb, void *cookie);

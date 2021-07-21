@@ -166,13 +166,6 @@ children:
       - type: User
         attributes: {value: DIGITAL}
   - type: String
-    attributes: {id: BSP_PIN_47_FUNCTION_TYPE}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: U2TX}
-  - type: String
     attributes: {id: BSP_PIN_47_MODE}
     children:
     - type: Values
@@ -208,6 +201,13 @@ children:
       - type: User
         attributes: {value: DIGITAL}
   - type: String
+    attributes: {id: BSP_PIN_69_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: U3RX}
+  - type: String
     attributes: {id: BSP_PIN_69_MODE}
     children:
     - type: Values
@@ -221,6 +221,13 @@ children:
       children:
       - type: User
         attributes: {value: DIGITAL}
+  - type: String
+    attributes: {id: BSP_PIN_74_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: U3TX}
   - type: String
     attributes: {id: BSP_PIN_74_MODE}
     children:
@@ -1258,7 +1265,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '419627796'}
+        attributes: {id: core, value: '419627792'}
   - type: Integer
     attributes: {id: PTG_CLOCK_FREQUENCY}
     children:
@@ -1458,10 +1465,16 @@ children:
   - type: Combo
     attributes: {id: SYS_PORT_PPS_INPUT_FUNCTION_0}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: User
-        attributes: {value: U2RX}
+        attributes: {value: U3RX}
   - type: Combo
     attributes: {id: SYS_PORT_PPS_INPUT_FUNCTION_1}
     children:
@@ -1472,10 +1485,16 @@ children:
   - type: KeyValueSet
     attributes: {id: SYS_PORT_PPS_INPUT_PIN_0}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: User
-        attributes: {value: '47'}
+        attributes: {value: '14'}
   - type: KeyValueSet
     attributes: {id: SYS_PORT_PPS_INPUT_PIN_1}
     children:
@@ -1495,7 +1514,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: '20'}
+        attributes: {value: '19'}
   - type: KeyValueSet
     attributes: {id: SYS_PORT_PPS_OUTPUT_FUNCTION_1}
     children:
@@ -1529,7 +1548,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: RPA11}
+        attributes: {value: RPC14}
   - type: Combo
     attributes: {id: SYS_PORT_PPS_OUTPUT_PIN_1}
     children:
@@ -1719,8 +1738,6 @@ children:
     children:
     - type: Values
       children:
-      - type: Dynamic
-        attributes: {id: uart2, value: 'true'}
       - type: User
         attributes: {value: 'true'}
   - type: Integer
@@ -1731,40 +1748,12 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '100000000'}
   - type: Boolean
-    attributes: {id: UART2_FAULT_INTERRUPT_ENABLE}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart2, value: 'false'}
-  - type: Boolean
     attributes: {id: UART2_FAULT_INTERRUPT_ENABLE_UPDATE}
     children:
     - type: Values
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
-  - type: String
-    attributes: {id: UART2_FAULT_INTERRUPT_HANDLER}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart2, value: UART2_FAULT_Handler}
-  - type: Boolean
-    attributes: {id: UART2_FAULT_INTERRUPT_HANDLER_LOCK}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart2, value: 'false'}
-  - type: Boolean
-    attributes: {id: UART2_RX_INTERRUPT_ENABLE}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart2, value: 'false'}
   - type: Boolean
     attributes: {id: UART2_RX_INTERRUPT_ENABLE_UPDATE}
     children:
@@ -1772,27 +1761,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'false'}
-  - type: String
-    attributes: {id: UART2_RX_INTERRUPT_HANDLER}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart2, value: UART2_RX_Handler}
-  - type: Boolean
-    attributes: {id: UART2_RX_INTERRUPT_HANDLER_LOCK}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart2, value: 'false'}
-  - type: Boolean
-    attributes: {id: UART2_TX_INTERRUPT_ENABLE}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart2, value: 'false'}
   - type: Boolean
     attributes: {id: UART2_TX_INTERRUPT_ENABLE_UPDATE}
     children:
@@ -1800,27 +1768,27 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
-  - type: String
-    attributes: {id: UART2_TX_INTERRUPT_HANDLER}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart2, value: UART2_TX_Handler}
   - type: Boolean
-    attributes: {id: UART2_TX_INTERRUPT_HANDLER_LOCK}
+    attributes: {id: UART3_CLOCK_ENABLE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: uart2, value: 'false'}
+        attributes: {id: uart3, value: 'true'}
   - type: Integer
     attributes: {id: UART3_CLOCK_FREQUENCY}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '0'}
+        attributes: {id: core, value: '100000000'}
+  - type: Boolean
+    attributes: {id: UART3_FAULT_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: 'false'}
   - type: Boolean
     attributes: {id: UART3_FAULT_INTERRUPT_ENABLE_UPDATE}
     children:
@@ -1828,6 +1796,27 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: UART3_FAULT_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: UART3_FAULT_Handler}
+  - type: Boolean
+    attributes: {id: UART3_FAULT_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: 'false'}
+  - type: Boolean
+    attributes: {id: UART3_RX_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: 'false'}
   - type: Boolean
     attributes: {id: UART3_RX_INTERRUPT_ENABLE_UPDATE}
     children:
@@ -1835,6 +1824,27 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: UART3_RX_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: UART3_RX_Handler}
+  - type: Boolean
+    attributes: {id: UART3_RX_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: 'false'}
+  - type: Boolean
+    attributes: {id: UART3_TX_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: 'false'}
   - type: Boolean
     attributes: {id: UART3_TX_INTERRUPT_ENABLE_UPDATE}
     children:
@@ -1842,6 +1852,20 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: UART3_TX_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: UART3_TX_Handler}
+  - type: Boolean
+    attributes: {id: UART3_TX_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart3, value: 'false'}
   - type: Integer
     attributes: {id: USB1_CLOCK_FREQUENCY}
     children:
@@ -1862,7 +1886,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: 'false'}
+        attributes: {value: 'true'}
   - type: Boolean
     attributes: {id: USE_PPS_INPUT_1}
     children:

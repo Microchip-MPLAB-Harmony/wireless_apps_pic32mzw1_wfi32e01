@@ -169,9 +169,12 @@ extern "C" {
 #define TCPIP_DNS_CLIENT_USER_NOTIFICATION   false
 
 
-#define SYS_WIFIPROV_NVMADDR        		0x900FF000
-#define SYS_WIFIPROV_SAVECONFIG        			true
-#define SYS_WIFIPROV_SOCKETPORT        		6666
+
+/* MPLAB Harmony BA414E Driver Definitions*/
+#define DRV_BA414E_NUM_CLIENTS 5
+
+
+
 
 
 /*** ICMPv4 Server Configuration ***/
@@ -184,6 +187,10 @@ extern "C" {
 #define TCPIP_ICMP_ECHO_REQUEST_TIMEOUT        500
 #define TCPIP_ICMP_TASK_TICK_RATE              33
 #define TCPIP_ICMP_COMMAND_ENABLE              false
+
+#define SYS_WIFIPROV_NVMADDR        		0x900FF000
+#define SYS_WIFIPROV_SAVECONFIG        			true
+#define SYS_WIFIPROV_SOCKETPORT        		6666
 
 
 /*** TCP Configuration ***/
@@ -244,11 +251,6 @@ extern "C" {
 
 
 
-	/*** tcpip_cmd Configuration ***/
-	#define TCPIP_STACK_COMMAND_ENABLE
-
-
-
 /* Network Configuration Index 0 */
 #define TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX0	"PIC32MZW1"
 #define TCPIP_IF_PIC32MZW1
@@ -268,6 +270,11 @@ extern "C" {
 													TCPIP_NETWORK_CONFIG_IP_STATIC
 													
 #define TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX0			WDRV_PIC32MZW1_MACObject
+
+
+
+	/*** tcpip_cmd Configuration ***/
+	#define TCPIP_STACK_COMMAND_ENABLE
 
 
 /* MPLAB Harmony Net Presentation Layer Definitions*/
@@ -471,7 +478,7 @@ extern "C" {
 
 
 /* WIFI System Service Configuration Options */
-#define SYS_WIFI_DEVMODE        			SYS_WIFI_STA
+#define SYS_WIFI_DEVMODE        			SYS_WIFI_AP
 
 
 #define SYS_WIFI_MAX_CBS					2
@@ -485,7 +492,7 @@ extern "C" {
 #define SYS_WIFI_AP_SSID					"DEMO_AP_SOFTAP"
 #define SYS_WIFI_AP_PWD        				"password"
 #define SYS_WIFI_AP_AUTHTYPE				SYS_WIFI_WPA2
-#define SYS_WIFI_AP_CHANNEL					1
+#define SYS_WIFI_AP_CHANNEL					6
 #define SYS_WIFI_AP_SSIDVISIBILE   			true
 
 

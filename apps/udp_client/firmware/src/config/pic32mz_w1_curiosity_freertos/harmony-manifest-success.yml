@@ -4,7 +4,7 @@
 
 
 project: udp_client
-creation_date: 2021-07-20T13:14:31.172+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2021-07-21T16:30:48.674+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.0
@@ -17,7 +17,7 @@ modules:
     - {name: "csp", version: "v3.9.1"}
     - {name: "wireless_wifi", version: "v3.5.0"}
     - {name: "dev_packs", version: "v3.9.0"}
-    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.5.0-TC1"}
+    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "unknown"}
     - {name: "wolfssl", version: "v4.7.0"}
     - {name: "net", version: "v3.7.2"}
     - {name: "crypto", version: "v3.7.1"}

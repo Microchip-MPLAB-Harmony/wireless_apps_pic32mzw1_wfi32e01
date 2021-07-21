@@ -521,9 +521,9 @@ void SYS_Initialize ( void* data )
     NVM_Initialize();
 
     CORETIMER_Initialize();
-	UART1_Initialize();
+	UART3_Initialize();
 
-	UART2_Initialize();
+	UART1_Initialize();
 
 
     /* Initialize the PIC32MZW1 Driver */

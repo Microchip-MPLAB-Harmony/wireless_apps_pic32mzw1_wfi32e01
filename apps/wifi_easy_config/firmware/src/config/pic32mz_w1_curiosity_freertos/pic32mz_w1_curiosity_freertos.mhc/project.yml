@@ -720,13 +720,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 9267A222D3FC434302B36A2E42E3D117
-- generatedChecksum: EE22D5C5CCFFF37867D5C23427C722F6
+- generatedChecksum: 4408D1403A4DD9C3E86BEB52CBB132A7
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/gpio
   name: plib_gpio.c
   physicalPath: peripheral/gpio
   security: NON_SECURE
   type: SOURCE
-  userChecksum: EE22D5C5CCFFF37867D5C23427C722F6
+  userChecksum: 4408D1403A4DD9C3E86BEB52CBB132A7
 - generatedChecksum: 302870B553042ED5294917554809F0B6
   logicalPath: config/pic32mz_w1_curiosity_freertos/peripheral/nvm
   name: plib_nvm.c
@@ -3198,13 +3198,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 62F39464265EC34979649F761FB4FE57
-- generatedChecksum: E63A983DDB8F7036DEB0239A89CFCC4D
+- generatedChecksum: 55F687DFD6704F96BF68BE42F8175777
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifi
   name: sys_wifi.h
   physicalPath: system/wifi
   security: NON_SECURE
   type: HEADER
-  userChecksum: E63A983DDB8F7036DEB0239A89CFCC4D
+  userChecksum: 55F687DFD6704F96BF68BE42F8175777
 - generatedChecksum: C2F0EB837C58B06D321B875AD65248BE
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov.h

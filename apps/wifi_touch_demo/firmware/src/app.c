@@ -142,40 +142,6 @@ void APP_Initialize ( void )
     g_tcpServHandle = SYS_NET_Open(&g_tcpServCfg, TcpServCallback, 0); 
     if(g_tcpServHandle != SYS_MODULE_OBJ_INVALID)
     SYS_CONSOLE_PRINT("TCP Service Initialized Successfully\r\n");
-    
-    /* Initialize LED pins */
-    GPIO_PinOutputEnable(GPIO_PIN_RK6); //button 1
-    GPIO_PinClear(GPIO_PIN_RK6);
-    GPIO_PinSet(GPIO_PIN_RK6);
-
-    GPIO_PinOutputEnable(GPIO_PIN_RA5); //button 2
-    GPIO_PinClear(GPIO_PIN_RA5);
-    GPIO_PinSet(GPIO_PIN_RA5);
-    
-    GPIO_PinOutputEnable(GPIO_PIN_RA11); //slider 1
-    GPIO_PinClear(GPIO_PIN_RA11);
-    GPIO_PinSet(GPIO_PIN_RA11);
-    
-    GPIO_PinOutputEnable(GPIO_PIN_RK5); //slider 2
-    GPIO_PinClear(GPIO_PIN_RK5);
-    GPIO_PinSet(GPIO_PIN_RK5);
-    
-    GPIO_PinOutputEnable(GPIO_PIN_RK4); //slider 3
-    GPIO_PinClear(GPIO_PIN_RK4);
-    GPIO_PinSet(GPIO_PIN_RK4);
-
-    GPIO_PinOutputEnable(GPIO_PIN_RB7); //slider 4
-    GPIO_PinClear(GPIO_PIN_RB7);
-    GPIO_PinSet(GPIO_PIN_RB7);
-    
-    GPIO_PinOutputEnable(GPIO_PIN_RA4); //slider 5
-    GPIO_PinClear(GPIO_PIN_RA4);
-    GPIO_PinSet(GPIO_PIN_RA4);
-
-    GPIO_PinOutputEnable(GPIO_PIN_RB12); //slider 6
-    GPIO_PinClear(GPIO_PIN_RB12);
-    GPIO_PinSet(GPIO_PIN_RB12);
-    
 }
 
 
@@ -190,136 +156,145 @@ void APP_Initialize ( void )
 void APP_Tasks ( void )
 {
     uint8_t temp_Button_1, temp_Button_2;
-    char message[20];
+    char message[25];
     
     SYS_CMD_READY_TO_READ();
     SYS_NET_Task(g_tcpServHandle);
     
-    while (!measurement_done_touch) 
+    touch_process();
+    
+    if (measurement_done_touch) 
     {
-        touch_process();
-    }
-    measurement_done_touch = 0;
+        measurement_done_touch = 0;
+        
+        //Print touch sensor deltas over UART
+//        uint8_t i;
+//        for (i = 0; i < DEF_NUM_SENSORS; i++)
+//        {
+//            SYS_CONSOLE_PRINT("%i,", (get_sensor_node_signal(i) - get_sensor_node_reference(i)));
+//        }
+//        SYS_CONSOLE_PRINT("\n");
 
-    temp_Button_1 = (get_sensor_state(0) & 0x80);
-    if (temp_Button_1 != valButton_1)
-    {
-        valButton_1 = temp_Button_1;
-        memset(message, 0, 20);
-        sprintf(message, "{\"Button1\":%d}", valButton_1);
-        if (SYS_NET_STATUS_CONNECTED == SYS_NET_GetStatus(g_tcpServHandle))
+        temp_Button_1 = (get_sensor_state(0) & KEY_TOUCHED_MASK);
+        if (temp_Button_1 != valButton_1)
         {
-            while(SYS_NET_SendMsg(g_tcpServHandle, (uint8_t*)message, strlen(message)) <= 0);
-        }
-    }
-    if(valButton_1)
-    {
-        GPIO_PinClear(GPIO_PIN_RK6);
-    }
-    else
-    {
-        GPIO_PinSet(GPIO_PIN_RK6);
-    }
-
-    temp_Button_2 = (get_sensor_state(1) & 0x80);
-    if (temp_Button_2 != valButton_2)
-    {
-        valButton_2 = temp_Button_2;
-        memset(message, 0, 20);
-        sprintf(message, "{\"Button2\":%d}", valButton_2);
-        if (SYS_NET_STATUS_CONNECTED == SYS_NET_GetStatus(g_tcpServHandle))
-        {
-            while(SYS_NET_SendMsg(g_tcpServHandle, (uint8_t*)message, strlen(message)) <= 0);
-        }
-    }
-    if(valButton_2)
-    {
-        GPIO_PinClear(GPIO_PIN_RA5);
-    }
-    else
-    {
-        GPIO_PinSet(GPIO_PIN_RA5);
-    }
-
-    if(get_scroller_state(0) == 0u)
-    {
-        GPIO_PinSet(GPIO_PIN_RA11);
-        GPIO_PinSet(GPIO_PIN_RK5);
-        GPIO_PinSet(GPIO_PIN_RK4);
-        GPIO_PinSet(GPIO_PIN_RB7);
-        GPIO_PinSet(GPIO_PIN_RA4);
-        GPIO_PinSet(GPIO_PIN_RB12);  
-    }
-    else
-    {
-        position = get_scroller_position(0);
-
-        if (valSlider != position)
-        {
-            valSlider = position;
+            valButton_1 = temp_Button_1;
             memset(message, 0, 20);
-            sprintf(message, "{\"Slider\":%d}", valSlider);
+            sprintf(message, "{\"Button1\":%d}", valButton_1);
             if (SYS_NET_STATUS_CONNECTED == SYS_NET_GetStatus(g_tcpServHandle))
             {
                 while(SYS_NET_SendMsg(g_tcpServHandle, (uint8_t*)message, strlen(message)) <= 0);
             }
         }
-
-        if (position < 42)
+        if(valButton_1)
         {
-            GPIO_PinClear(GPIO_PIN_RA11);
+            GPIO_PinClear(GPIO_PIN_RK6);
+        }
+        else
+        {
+            GPIO_PinSet(GPIO_PIN_RK6);
+        }
+
+        temp_Button_2 = (get_sensor_state(1) & KEY_TOUCHED_MASK);
+        if (temp_Button_2 != valButton_2)
+        {
+            valButton_2 = temp_Button_2;
+            memset(message, 0, 20);
+            sprintf(message, "{\"Button2\":%d}", valButton_2);
+            if (SYS_NET_STATUS_CONNECTED == SYS_NET_GetStatus(g_tcpServHandle))
+            {
+                while(SYS_NET_SendMsg(g_tcpServHandle, (uint8_t*)message, strlen(message)) <= 0);
+            }
+        }
+        if(valButton_2)
+        {
+            GPIO_PinClear(GPIO_PIN_RA5);
+        }
+        else
+        {
+            GPIO_PinSet(GPIO_PIN_RA5);
+        }
+
+        if(get_scroller_state(0) == 0u)
+        {
+            GPIO_PinSet(GPIO_PIN_RA11);
             GPIO_PinSet(GPIO_PIN_RK5);
             GPIO_PinSet(GPIO_PIN_RK4);
             GPIO_PinSet(GPIO_PIN_RB7);
             GPIO_PinSet(GPIO_PIN_RA4);
-            GPIO_PinSet(GPIO_PIN_RB12);
+            GPIO_PinSet(GPIO_PIN_RB12);  
         }
-        else if (position < 85)
+        else
         {
-            GPIO_PinClear(GPIO_PIN_RA11);
-            GPIO_PinClear(GPIO_PIN_RK5);
-            GPIO_PinSet(GPIO_PIN_RK4);
-            GPIO_PinSet(GPIO_PIN_RB7);
-            GPIO_PinSet(GPIO_PIN_RA4);
-            GPIO_PinSet(GPIO_PIN_RB12);
-        }
-        else if (position < 128)
-        {
-            GPIO_PinClear(GPIO_PIN_RA11);
-            GPIO_PinClear(GPIO_PIN_RK5);
-            GPIO_PinClear(GPIO_PIN_RK4);
-            GPIO_PinSet(GPIO_PIN_RB7);
-            GPIO_PinSet(GPIO_PIN_RA4);
-            GPIO_PinSet(GPIO_PIN_RB12);
-        }
-        else if (position < 171)
-        {
-            GPIO_PinClear(GPIO_PIN_RA11);
-            GPIO_PinClear(GPIO_PIN_RK5);
-            GPIO_PinClear(GPIO_PIN_RK4);
-            GPIO_PinClear(GPIO_PIN_RB7);
-            GPIO_PinSet(GPIO_PIN_RA4);
-            GPIO_PinSet(GPIO_PIN_RB12);
-        }
-        else if (position < 214)
-        {
-            GPIO_PinClear(GPIO_PIN_RA11);
-            GPIO_PinClear(GPIO_PIN_RK5);
-            GPIO_PinClear(GPIO_PIN_RK4);
-            GPIO_PinClear(GPIO_PIN_RB7);
-            GPIO_PinClear(GPIO_PIN_RA4);
-            GPIO_PinSet(GPIO_PIN_RB12);
-        }
-        else if (position < 256)
-        {
-            GPIO_PinClear(GPIO_PIN_RA11);
-            GPIO_PinClear(GPIO_PIN_RK5);
-            GPIO_PinClear(GPIO_PIN_RK4);
-            GPIO_PinClear(GPIO_PIN_RB7);
-            GPIO_PinClear(GPIO_PIN_RA4);
-            GPIO_PinClear(GPIO_PIN_RB12);           
-        }
-    }        
+            position = get_scroller_position(0);
+
+            if (valSlider != position)
+            {
+                valSlider = position;
+                memset(message, 0, 20);
+                sprintf(message, "{\"Slider\":%d}", valSlider);
+                if (SYS_NET_STATUS_CONNECTED == SYS_NET_GetStatus(g_tcpServHandle))
+                {
+                    while(SYS_NET_SendMsg(g_tcpServHandle, (uint8_t*)message, strlen(message)) <= 0);
+                }
+            }
+
+            if (position < 42)
+            {
+                GPIO_PinClear(GPIO_PIN_RA11);
+                GPIO_PinSet(GPIO_PIN_RK5);
+                GPIO_PinSet(GPIO_PIN_RK4);
+                GPIO_PinSet(GPIO_PIN_RB7);
+                GPIO_PinSet(GPIO_PIN_RA4);
+                GPIO_PinSet(GPIO_PIN_RB12);
+            }
+            else if (position < 85)
+            {
+                GPIO_PinClear(GPIO_PIN_RA11);
+                GPIO_PinClear(GPIO_PIN_RK5);
+                GPIO_PinSet(GPIO_PIN_RK4);
+                GPIO_PinSet(GPIO_PIN_RB7);
+                GPIO_PinSet(GPIO_PIN_RA4);
+                GPIO_PinSet(GPIO_PIN_RB12);
+            }
+            else if (position < 128)
+            {
+                GPIO_PinClear(GPIO_PIN_RA11);
+                GPIO_PinClear(GPIO_PIN_RK5);
+                GPIO_PinClear(GPIO_PIN_RK4);
+                GPIO_PinSet(GPIO_PIN_RB7);
+                GPIO_PinSet(GPIO_PIN_RA4);
+                GPIO_PinSet(GPIO_PIN_RB12);
+            }
+            else if (position < 171)
+            {
+                GPIO_PinClear(GPIO_PIN_RA11);
+                GPIO_PinClear(GPIO_PIN_RK5);
+                GPIO_PinClear(GPIO_PIN_RK4);
+                GPIO_PinClear(GPIO_PIN_RB7);
+                GPIO_PinSet(GPIO_PIN_RA4);
+                GPIO_PinSet(GPIO_PIN_RB12);
+            }
+            else if (position < 214)
+            {
+                GPIO_PinClear(GPIO_PIN_RA11);
+                GPIO_PinClear(GPIO_PIN_RK5);
+                GPIO_PinClear(GPIO_PIN_RK4);
+                GPIO_PinClear(GPIO_PIN_RB7);
+                GPIO_PinClear(GPIO_PIN_RA4);
+                GPIO_PinSet(GPIO_PIN_RB12);
+            }
+            else if (position < 256)
+            {
+                GPIO_PinClear(GPIO_PIN_RA11);
+                GPIO_PinClear(GPIO_PIN_RK5);
+                GPIO_PinClear(GPIO_PIN_RK4);
+                GPIO_PinClear(GPIO_PIN_RB7);
+                GPIO_PinClear(GPIO_PIN_RA4);
+                GPIO_PinClear(GPIO_PIN_RB12);           
+            }
+        }              
+    }  
 }
 
 

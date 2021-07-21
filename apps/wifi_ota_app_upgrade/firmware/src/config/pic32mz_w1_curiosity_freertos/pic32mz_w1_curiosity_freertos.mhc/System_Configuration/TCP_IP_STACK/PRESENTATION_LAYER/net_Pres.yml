@@ -190,6 +190,13 @@ children:
         children:
         - {type: Value, value: 'true'}
   - type: Boolean
+    attributes: {id: NET_PRES_SUPPORT_DATAGRAM}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: net_Pres, value: 'true'}
+  - type: Boolean
     attributes: {id: NET_PRES_SUPPORT_DATAGRAM_ENC}
     children:
     - type: Attributes
@@ -214,6 +221,13 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: NET_PRES_SUPPORT_STREAM}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: net_Pres, value: 'true'}
   - type: Boolean
     attributes: {id: NET_PRES_SUPPORT_STREAM_ENC}
     children:

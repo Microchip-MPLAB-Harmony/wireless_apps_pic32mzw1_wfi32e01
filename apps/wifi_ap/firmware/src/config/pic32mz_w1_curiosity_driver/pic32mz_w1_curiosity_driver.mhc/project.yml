@@ -475,13 +475,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 62951755A45BA873C9775C77F461A8DF
-- generatedChecksum: 52198AF489E7A38A0A3BDCB7ABE97098
+- generatedChecksum: 86EC4FD6DD677D2CE84592CD0C1A886B
   logicalPath: config/pic32mz_w1_curiosity_driver
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 52198AF489E7A38A0A3BDCB7ABE97098
+  userChecksum: 86EC4FD6DD677D2CE84592CD0C1A886B
 - generatedChecksum: 479A727027F5AD9CBBDC717FD86D8B5E
   logicalPath: wolfcrypt
   name: integer.c
@@ -601,13 +601,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 1D0C683A87116C624525DFB733425B7D
-- generatedChecksum: E517B55D24243C4B63F9AC5BC0CCD0DC
+- generatedChecksum: 4254E1A8E44FF03692F6FC2AFDADB635
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/clk
   name: plib_clk.c
   physicalPath: peripheral/clk
   security: NON_SECURE
   type: SOURCE
-  userChecksum: E517B55D24243C4B63F9AC5BC0CCD0DC
+  userChecksum: 4254E1A8E44FF03692F6FC2AFDADB635
 - generatedChecksum: 2FEFEA0D4E94F5A5F3D76BAEC3D602E5
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/coretimer
   name: plib_coretimer.c
@@ -622,13 +622,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 56758CE43DDF213EC6C2A79B261BC329
-- generatedChecksum: 50500F68B292A6E878A753B9CEACA910
+- generatedChecksum: 4408D1403A4DD9C3E86BEB52CBB132A7
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/gpio
   name: plib_gpio.c
   physicalPath: peripheral/gpio
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 50500F68B292A6E878A753B9CEACA910
+  userChecksum: 4408D1403A4DD9C3E86BEB52CBB132A7
 - generatedChecksum: 302870B553042ED5294917554809F0B6
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/nvm
   name: plib_nvm.c
@@ -643,13 +643,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 82735E0DE6A0621336DAF8E7DEE99C12
-- generatedChecksum: 801F25DCEE2DA8B2D52FF24206645087
+- generatedChecksum: 3A8085264EC615D280B577EF5F3F4AE5
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/uart
-  name: plib_uart2.c
+  name: plib_uart3.c
   physicalPath: peripheral/uart
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 801F25DCEE2DA8B2D52FF24206645087
+  userChecksum: 3A8085264EC615D280B577EF5F3F4AE5
 - generatedChecksum: BE4CB7367E5A5B3DDA671207F469CA45
   logicalPath: wolfcrypt
   name: poly1305.c
@@ -1147,13 +1147,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: A4F262C0B95BF2714B89A586661ED450
-- generatedChecksum: CD1794BE8A9148BA4C835E811CBD7164
+- generatedChecksum: DB5D6981346A30FE7951D66DA5D8EB17
   logicalPath: config/pic32mz_w1_curiosity_driver/stdio
   name: xc32_monitor.c
   physicalPath: stdio
   security: NON_SECURE
   type: SOURCE
-  userChecksum: CD1794BE8A9148BA4C835E811CBD7164
+  userChecksum: DB5D6981346A30FE7951D66DA5D8EB17
 - generatedChecksum: BEE21C246D91A27ED51FACBC8C75DF64
   logicalPath: wolfcrypt/port
   name: CryptoLib_CRT_pb.h
@@ -1805,13 +1805,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 7959E2B94CEE186632B984636D40C252
-- generatedChecksum: 7026B8788A6BDD92919FE37F79F8E177
+- generatedChecksum: 0163839059950F6F58C22625F98B3D80
   logicalPath: config/pic32mz_w1_curiosity_driver
   name: definitions.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 7026B8788A6BDD92919FE37F79F8E177
+  userChecksum: 0163839059950F6F58C22625F98B3D80
 - generatedChecksum: A751C19ADEECD5B90ADA51DD19DB417D
   logicalPath: wolfcrypt
   name: des3.h
@@ -2554,13 +2554,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: D5B124F7B292B92BE6CA0A7BDFD6F62F
-- generatedChecksum: ABEBE7D57FD85725DCF9E71E09924F4A
+- generatedChecksum: C3E172123FA6B8CBAFBC2F6526F4D5A7
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/uart
-  name: plib_uart2.h
+  name: plib_uart3.h
   physicalPath: peripheral/uart
   security: NON_SECURE
   type: HEADER
-  userChecksum: ABEBE7D57FD85725DCF9E71E09924F4A
+  userChecksum: C3E172123FA6B8CBAFBC2F6526F4D5A7
 - generatedChecksum: 67EEAF539A53B6B8FD7B600ACCB3F3CA
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/uart
   name: plib_uart_common.h

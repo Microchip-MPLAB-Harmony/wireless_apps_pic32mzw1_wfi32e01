@@ -740,7 +740,7 @@
         <logicalFolder name="f3" displayName="Group2" projectFiles="true">
           <itemPath>../src/config/pic32mz_w1_curiosity_driver/pic32mz_w1_curiosity_driver.mhc/Group2/Group2.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_driver/pic32mz_w1_curiosity_driver.mhc/Group2/stdio.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_driver/pic32mz_w1_curiosity_driver.mhc/Group2/uart2.yml</itemPath>
+          <itemPath>../src/config/pic32mz_w1_curiosity_driver/pic32mz_w1_curiosity_driver.mhc/Group2/uart3.yml</itemPath>
         </logicalFolder>
         <itemPath>../src/config/pic32mz_w1_curiosity_driver/pic32mz_w1_curiosity_driver.mhc/BSP_PIC32MZ_W1_Curiosity.yml</itemPath>
         <itemPath>../src/config/pic32mz_w1_curiosity_driver/pic32mz_w1_curiosity_driver.mhc/core.yml</itemPath>

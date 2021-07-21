@@ -56,6 +56,33 @@ children:
           - type: Dynamic
             attributes: {id: sys_console, value: '0'}
       - type: File
+        attributes: {id: SYS_CONSOLE_UART_DEFINITIONS_HEADER}
+        children:
+        - type: Attributes
+          children:
+          - type: Boolean
+            attributes: {id: enabled}
+            children:
+            - {type: Value, value: 'true'}
+      - type: File
+        attributes: {id: SYS_CONSOLE_UART_HEADER}
+        children:
+        - type: Attributes
+          children:
+          - type: Boolean
+            attributes: {id: enabled}
+            children:
+            - {type: Value, value: 'true'}
+      - type: File
+        attributes: {id: SYS_CONSOLE_UART_SOURCE}
+        children:
+        - type: Attributes
+          children:
+          - type: Boolean
+            attributes: {id: enabled}
+            children:
+            - {type: Value, value: 'true'}
+      - type: File
         attributes: {id: SYS_CONSOLE_USB_CDC_SOURCE}
         children:
         - type: Attributes

@@ -53,7 +53,7 @@ int _mon_getc(int canblock)
    (void)canblock;
    do
    {
-       success = UART2_Read(&c, 1);                
+       success = UART3_Read(&c, 1);                
    }while( !success);
    return c;
 }
@@ -63,7 +63,7 @@ void _mon_putc(char c)
    bool success = false;
    do
    {
-       success = UART2_Write(&c, 1);
+       success = UART3_Write(&c, 1);
    }while (!success);
 }
 

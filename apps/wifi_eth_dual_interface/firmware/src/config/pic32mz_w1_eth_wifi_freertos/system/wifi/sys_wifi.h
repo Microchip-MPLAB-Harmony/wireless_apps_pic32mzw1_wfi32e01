@@ -591,24 +591,7 @@ SYS_WIFI_RESULT SYS_WIFI_Deinitialize (SYS_MODULE_OBJ object) ;
 
   Example:
         <code>
-        
-        // For example,User want to perform the Scan request when auto connect is disabled.
-        // So user has to make sure service is in right state,
-        // where Wi-Fi service has started and waiting in the Auto connect 
-        // state(SYS_WIFI_STATUS_AUTOCONNECT_WAIT) before making scan request.
-
-        if (SYS_WIFI_STATUS_AUTOCONNECT_WAIT == SYS_WIFI_GetStatus (sysObj.syswifi))
-        {
-            uint8_t buff[2];
-
-           // Scan all the channels
-            buff[0] = 0 ;                                                
-
-           // Set the Scan type as passive (false- passive scan,true -active scan)
-            buff[1] = false;                                            
-            SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_SCANREQ,buff,2);   
-        }
-
+		
         //Wi-Fi system service is in TCPIP ready status, waiting for client request.
         if (SYS_WIFI_STATUS_TCPIP_READY == SYS_WIFI_GetStatus (sysObj.syswifi))
         {
@@ -758,10 +741,12 @@ uint8_t SYS_WIFI_Tasks (SYS_MODULE_OBJ object);
             } 
 
             Details of SYS_WIFI_DISCONNECT:
-                //In STA mode, device disconnect request using control message request. 
+                //In STA mode, device disconnect request using control message. 
                 SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_DISCONNECT, NULL, 0);
 
-                //In AP mode, device disconnect request of the connected STA with MAC address. 
+                // In AP mode, How to disconnect connected STA 
+                // When STA connect to AP mode,application received the callback(SYS_WIFI_CONNECT) with connect STA IP and MAC address.
+                // User same MAC address for disconnect request.
                 SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_DISCONNECT, macAddr, 6);
 
         </code>

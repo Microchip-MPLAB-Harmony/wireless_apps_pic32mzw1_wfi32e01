@@ -87,6 +87,10 @@ SYS_CMD_Tasks();
 
     /* Maintain Middleware & Other Libraries */
     
+DRV_BA414E_Tasks(sysObj.ba414e);
+
+
+
 NET_PRES_Tasks(sysObj.netPres);
 
 

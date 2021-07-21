@@ -8,7 +8,7 @@ class ClientGui:
         self.start_button_val = Tk.IntVar()
         self.serverIP = Tk.StringVar()
         self.serverPort = Tk.StringVar()
-        self.serverIP.set("192.168.0.34")
+        self.serverIP.set("192.168.1.1")
         self.serverPort.set("5555")
         self.start_button = Tk.Checkbutton(master, text="Connect to\nServer", command=lambda: self.manage_start_button(cmd_start, cmd_stop), font="Arial 12", variable=self.start_button_val, indicatoron=False, width=10, height=3)        
         self.IP_label_name = Tk.Label(master, text="TCP Server IP", width=15, font="Arial 12")
@@ -133,15 +133,13 @@ class ThreadedClient:
                     
                 else:
                     if len(data):
-                        #print("-- before parsing --") 
-                        #print(data.decode())
                         dict_str = data.decode()
+                        #print("-- received --") 
+                        print(dict_str)
                         dict_list =  [e+"}" for e in dict_str.split("}") if e]
                         for dict in dict_list:
                             parsed_data = self.parse_recv_data(dict)
                             if parsed_data is not None:
-                                #print("-- received --") 
-                                print(parsed_data)
                                 if "data" in parsed_data:
                                     self.guiClient.greet_func()
                                 elif "Button1" in parsed_data:

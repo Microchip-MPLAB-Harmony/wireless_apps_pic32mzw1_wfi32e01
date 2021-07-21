@@ -76,11 +76,21 @@ void GPIO_Initialize ( void )
     TRISKCLR = 0x70; /* Direction Control */
 
 
+    /* Unlock system for PPS configuration */
+    SYSKEY = 0x00000000;
+    SYSKEY = 0xAA996655;
+    SYSKEY = 0x556699AA;
+    CFGCON0bits.IOLOCK = 0;
 
     /* PPS Input Remapping */
+    U3RXR = 10;
 
     /* PPS Output Remapping */
+    RPC14R = 1;
 
+    /* Lock back the system after PPS configuration */
+    CFGCON0bits.IOLOCK = 1;
+    SYSKEY = 0x00000000;
 
 }
 

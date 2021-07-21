@@ -152,7 +152,7 @@ void CLK_Initialize( void )
 
     PMD1 = 0x20818981;
     PMD2 = 0x7e0f0f;
-    PMD3 = 0x19030314;
+    PMD3 = 0x19030310;
 
 
     /* Lock system since done with clock configuration */

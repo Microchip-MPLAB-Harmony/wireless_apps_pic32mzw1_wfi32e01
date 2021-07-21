@@ -414,7 +414,7 @@ touch_ret_t qtm_cvd_init_acquisition_module(qtm_acquisition_control_t* qtm_acq_c
     uint32_t which_ypins_cvd = 0u;
     uint16_t counter = 0u;
 
-    if (qtm_acq_control_ptr == NULL_POINTER)
+    if (qtm_acq_control_ptr == NULL)
     {
         touch_return_param = TOUCH_INVALID_POINTER;
     }

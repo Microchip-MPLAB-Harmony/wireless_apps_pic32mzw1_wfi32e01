@@ -142,5 +142,20 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+- type: Attachments
+  children:
+  - type: DirectDependency
+    attributes: {id: LIB_CRYPTO_BA414E_Dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: drv_ba414e}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: drv_ba414e}
 - type: ElementPosition
   attributes: {x: '270', y: '100', id: lib_wolfcrypt}

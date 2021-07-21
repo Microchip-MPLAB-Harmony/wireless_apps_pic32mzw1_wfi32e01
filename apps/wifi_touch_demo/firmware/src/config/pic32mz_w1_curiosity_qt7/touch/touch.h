@@ -1,5 +1,5 @@
 /*******************************************************************************
-  Touch Library v3.9.1 Release
+  Touch Library v3.10.0 Release
 
   Company:
     Microchip Technology Inc.
@@ -39,8 +39,8 @@ SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
 *******************************************************************************/
 #ifndef TOUCH_H
 #define TOUCH_H
-
 #include "device.h"
+
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -49,7 +49,7 @@ SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
 
 #endif
 // DOM-IGNORE-END
-
+//PIC32MZW
 
 /*----------------------------------------------------------------------------
  *     include files
@@ -77,12 +77,8 @@ SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
  * Default value: CAL_AUTO_TUNE_NONE.
  */
 
-#define DEF_PTC_CAL_OPTION   CAL_AUTO_TUNE_CSD
+#define DEF_PTC_CAL_OPTION   CAL_AUTO_TUNE_NONE
 
-/* Defines the interrupt priority for the PTC. Set low priority to PTC interrupt for applications having interrupt time
- * constraints.
- */
-#define DEF_PTC_INTERRUPT_PRIORITY 3
 
 /* Calibration option to ensure full charge transfer */
 /* Bits 7:0 = XX | TT SELECT_TAU | X | CAL_OPTION */
@@ -109,33 +105,33 @@ SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
  */
 #define DEF_NUM_CHANNELS (5)
 
+
 /* Defines node parameter setting
  * {X-line, Y-line, Charge Share Delay, 0, NODE_G(Analog Gain , Digital Gain),
  * filter level}
  */
-	
+
 
 #define NODE_0_PARAMS                                                                                               \
 {                                                                                                                  \
-   X(1), Y(14), 20,0, NODE_GAIN(GAIN_1, GAIN_1), FILTER_LEVEL_32                   \
+   X(1), Y(14), 4,0, NODE_GAIN(GAIN_1, GAIN_1), FILTER_LEVEL_64                   \
 }
 #define NODE_1_PARAMS                                                                                               \
 {                                                                                                                  \
-   X(1), Y(2), 20,0, NODE_GAIN(GAIN_1, GAIN_1), FILTER_LEVEL_32                   \
+   X(1), Y(2), 4,0, NODE_GAIN(GAIN_1, GAIN_1), FILTER_LEVEL_64                   \
 }
 #define NODE_2_PARAMS                                                                                               \
 {                                                                                                                  \
-   X(1), Y(17), 20,0, NODE_GAIN(GAIN_1, GAIN_1), FILTER_LEVEL_32                   \
+   X(1), Y(17), 4,0, NODE_GAIN(GAIN_1, GAIN_1), FILTER_LEVEL_64                   \
 }
 #define NODE_3_PARAMS                                                                                               \
 {                                                                                                                  \
-   X(1), Y(15), 20,0, NODE_GAIN(GAIN_1, GAIN_1), FILTER_LEVEL_32                   \
+   X(1), Y(15), 4,0, NODE_GAIN(GAIN_1, GAIN_1), FILTER_LEVEL_64                   \
 }
 #define NODE_4_PARAMS                                                                                               \
 {                                                                                                                  \
-   X(1), Y(8), 20,0, NODE_GAIN(GAIN_1, GAIN_8), FILTER_LEVEL_32                   \
+   X(1), Y(8), 4,0, NODE_GAIN(GAIN_1, GAIN_1), FILTER_LEVEL_64                   \
 }
-
 
 /**********************************************************/
 /***************** Key Params   ******************/
@@ -297,6 +293,7 @@ SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
 
 
 /**********************************************************/
+
 
 
 // DOM-IGNORE-BEGIN
