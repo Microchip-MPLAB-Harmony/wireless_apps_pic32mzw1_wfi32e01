@@ -1,5 +1,5 @@
 ---
-parent: Harmony 3 Wireless Package
+parent: Harmony 3 Wireless application examples for PIC32MZ W1 family
 title: Over The Air (OTA) Upgrade Using Wi-Fi
 has_children: false
 has_toc: false
