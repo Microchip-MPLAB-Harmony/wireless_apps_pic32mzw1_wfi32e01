@@ -9,5 +9,5 @@ settings:
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
-  MERGE_STRATEGY: ALL
+  MERGE_STRATEGY: OVERWRITE
   DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.4.193\atdf\PIC32MZ1025W104132.atdf

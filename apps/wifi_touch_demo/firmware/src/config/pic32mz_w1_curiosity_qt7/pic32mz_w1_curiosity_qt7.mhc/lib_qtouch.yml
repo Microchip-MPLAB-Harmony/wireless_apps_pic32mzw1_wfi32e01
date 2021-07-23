@@ -201,7 +201,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: lib_qtouch, value: 'ADCHS_CLOCK_FREQUENCY:range'}
+        attributes: {id: lib_qtouch, value: 'ADCHS_CLOCK_FREQUENCY:sync'}
   - type: Menu
     attributes: {id: SCROLLER_MENU}
     children:

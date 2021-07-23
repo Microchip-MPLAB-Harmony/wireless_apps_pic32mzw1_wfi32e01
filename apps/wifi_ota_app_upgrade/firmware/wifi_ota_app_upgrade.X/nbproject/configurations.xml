@@ -968,7 +968,7 @@
         <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>2.50</languageToolchainVersion>
         <platform>3</platform>
@@ -987,6 +987,21 @@
         <archiverTool>
         </archiverTool>
         <loading>
+          <makeArtifact PL="../../../ota_bootloader/firmware/ota_bootloader.X"
+                        CT="1"
+                        CN="pic32mzw1"
+                        AC="true"
+                        BL="true"
+                        WD="../../../ota_bootloader/firmware/ota_bootloader.X"
+                        BC="${MAKE}  -f Makefile CONF=pic32mzw1"
+                        DBC="${MAKE}  -f Makefile CONF=pic32mzw1 TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/pic32mzw1&quot; &quot;dist/pic32mzw1&quot;"
+                        OP="dist/pic32mzw1/production/ota_bootloader.X.production.hex"
+                        DOP="dist/pic32mzw1/debug/ota_bootloader.X.debug.elf"
+                        FL="dist/pic32mzw1/production/ota_bootloader.X.production.hex"
+                        PD="dist/pic32mzw1/production/ota_bootloader.X.production.elf"
+                        DD="dist/pic32mzw1/debug/ota_bootloader.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>

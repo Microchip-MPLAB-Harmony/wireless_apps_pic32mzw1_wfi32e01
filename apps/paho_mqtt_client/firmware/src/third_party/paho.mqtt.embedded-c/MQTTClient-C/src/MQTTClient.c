@@ -145,7 +145,6 @@ static int readPacket(MQTTClient* c, Timer* timer)
     rc = header.bits.type;
     if (c->keepAliveInterval > 0)
     {
-        SYS_CONSOLE_PRINT("Received a packet\r\n");
         TimerCountdown(&c->last_received, c->keepAliveInterval); // record the fact that we have successfully received a packet
     }
 exit:
@@ -243,7 +242,6 @@ int keepalive(MQTTClient* c)
             int len = MQTTSerialize_pingreq(c->buf, c->buf_size);
             if (len > 0 && (rc = sendPacket(c, len, &timer)) == SUCCESS) // send the ping packet
             {  
-                SYS_CONSOLE_PRINT("PINGREQ sent\r\n");
                 c->ping_outstanding = 1;
             }
         }

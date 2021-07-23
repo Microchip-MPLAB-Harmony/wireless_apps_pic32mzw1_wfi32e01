@@ -12,4 +12,4 @@ children:
       - type: Dynamic
         attributes: {id: sysOtaPic32mzw1, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '780', y: '20', id: sysNetPic32mzw1}
+  attributes: {x: '237', y: '115', id: sysNetPic32mzw1}

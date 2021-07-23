@@ -457,7 +457,7 @@ extern "C" {
 #define TCPIP_UDP_MAX_SOCKETS		                	10
 #define TCPIP_UDP_SOCKET_DEFAULT_TX_SIZE		    	512
 #define TCPIP_UDP_SOCKET_DEFAULT_TX_QUEUE_LIMIT    	 	3
-#define TCPIP_UDP_SOCKET_DEFAULT_RX_QUEUE_LIMIT			3
+#define TCPIP_UDP_SOCKET_DEFAULT_RX_QUEUE_LIMIT			16
 #define TCPIP_UDP_USE_POOL_BUFFERS   false
 #define TCPIP_UDP_USE_TX_CHECKSUM             			true
 #define TCPIP_UDP_USE_RX_CHECKSUM             			true
@@ -485,6 +485,7 @@ extern "C" {
 #define WOLFSSL_HAVE_MCHP_BA414E_CRYPTO
 // ---------- CRYPTO HARDWARE MANIFEST END ----------
 // ---------- FUNCTIONAL CONFIGURATION START ----------
+#define WOLFSSL_AES_SMALL_TABLES
 #define WOLFSSL_PIC32MZ_HASH
 #define WOLFSSL_PIC32MZ_HASH
 #define WOLFSSL_PIC32MZ_HASH
@@ -498,6 +499,7 @@ extern "C" {
 #define HAVE_AES_ECB
 #define HAVE_AES_CBC
 #define WOLFSSL_AES_COUNTER
+#define WOLFSSL_AES_OFB
 #define HAVE_AESGCM
 #define NO_RC4
 #define NO_HC128

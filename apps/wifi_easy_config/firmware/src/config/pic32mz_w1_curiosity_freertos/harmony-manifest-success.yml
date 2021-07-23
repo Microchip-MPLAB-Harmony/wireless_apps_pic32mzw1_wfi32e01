@@ -4,7 +4,7 @@
 
 
 project: wifi_easy_config
-creation_date: 2021-07-21T16:39:15.424+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2021-07-23T15:34:26.572+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.0
@@ -15,12 +15,12 @@ compiler: XC32 (2.50)
 modules:
     - {name: "core", version: "v3.9.2"}
     - {name: "csp", version: "v3.9.1"}
-    - {name: "wireless_wifi", version: "v3.5.0"}
+    - {name: "wireless_wifi", version: "v3.5.1"}
     - {name: "dev_packs", version: "v3.9.0"}
-    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "unknown"}
+    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.5.0"}
     - {name: "wolfssl", version: "v4.7.0"}
     - {name: "net", version: "v3.7.2"}
     - {name: "bsp", version: "v3.9.0"}
-    - {name: "crypto", version: "v3.7.1"}
+    - {name: "crypto", version: "v3.7.2"}
     - {name: "CMSIS-FreeRTOS", version: "v10.3.1"}
 

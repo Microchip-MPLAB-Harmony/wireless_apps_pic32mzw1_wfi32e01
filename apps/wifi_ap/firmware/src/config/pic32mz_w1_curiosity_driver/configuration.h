@@ -412,6 +412,7 @@ extern "C" {
 #define WOLFSSL_HAVE_MCHP_BA414E_CRYPTO
 // ---------- CRYPTO HARDWARE MANIFEST END ----------
 // ---------- FUNCTIONAL CONFIGURATION START ----------
+#define WOLFSSL_AES_SMALL_TABLES
 #define NO_MD4
 #define WOLFSSL_SHA224
 #define NO_PIC32MZ_HASH
@@ -423,6 +424,7 @@ extern "C" {
 #define HAVE_AES_ECB
 #define HAVE_AES_CBC
 #define WOLFSSL_AES_COUNTER
+#define WOLFSSL_AES_OFB
 #define HAVE_AESGCM
 #define HAVE_AESCCM
 #define NO_RC4

@@ -8,7 +8,36 @@ nav_order: 99
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
-## Harmony 3 Wireless application examples for PIC32MZ W1 family  v3.4.1
+## Harmony 3 Wireless application examples for PIC32MZ W1 family  **v3.5.0**
+
+### Development kit and demo application support
+
+Following table provides number of Wireless examples available for different development kits.
+
+| Development Kits           | MPLABx applications |
+|:--------------------------:|:-------------------:|
+| PIC32MZ W1 Curiosity Board |       17            |
+
+### New Features
+- Please refer to the [system services release notes.](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md)
+
+### Bug fixes and Improvements
+- Please refer to the [system services release notes.](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md)
+- UART3 is now configured to use RK13/RK14 pins.
+
+### Known Issues
+- Due to an underlying issue in the DHCP code in `net` repo, compiler optimization should be turned off in the dual interface project.
+- L2 Bridging is known to have some instabilities when there is high network data traffic.
+
+### Development Tools
+
+- [MPLAB® X IDE v5.50](https://www.microchip.com/mplab/mplab-x-ide)
+- MPLAB® X IDE plug-ins:
+  - MPLAB® Harmony Configurator (MHC) v3.8.0
+- [MPLAB® XC32 C/C++ Compiler v3.01](https://www.microchip.com/mplab/compilers)
+
+
+## Harmony 3 Wireless application examples for PIC32MZ W1 family  **v3.4.1**
 
 ### Development kit and demo application support
 

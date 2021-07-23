@@ -697,6 +697,81 @@
         <itemPath>../src/config/pic32mz_w1_curiosity_driver/pic32mz_w1_curiosity_driver.mhc/project.yml</itemPath>
         <itemPath>../src/config/pic32mz_w1_curiosity_driver/pic32mz_w1_curiosity_driver.mhc/settings.yml</itemPath>
       </logicalFolder>
+      <logicalFolder name="f3"
+                     displayName="pic32mz_w1_curiosity_freertos.mhc"
+                     projectFiles="true">
+        <logicalFolder name="f1" displayName="System_Configuration" projectFiles="true">
+          <logicalFolder name="f1" displayName="TCP_IP_STACK" projectFiles="true">
+            <logicalFolder name="f1" displayName="APPLICATION_LAYER" projectFiles="true">
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/APPLICATION_LAYER.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcp.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDns.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipSntp.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpip_apps_config.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f2" displayName="BASIC_CONFIGURATION" projectFiles="true">
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/BASIC_CONFIGURATION.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpipCmd.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpip_basic_config.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f3" displayName="DRIVER_LAYER" projectFiles="true">
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/DRIVER_LAYER.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/tcpip_driver_config.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f4" displayName="NETWORK_LAYER" projectFiles="true">
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/NETWORK_LAYER.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipArp.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIcmp.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIPv4.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpip_network_config.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f5" displayName="PRESENTATION_LAYER" projectFiles="true">
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/net_Pres.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/PRESENTATION_LAYER.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f6" displayName="TRANSPORT_LAYER" projectFiles="true">
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipTcp.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipUdp.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpip_transport_config.yml</itemPath>
+              <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/TRANSPORT_LAYER.yml</itemPath>
+            </logicalFolder>
+            <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TCP_IP_STACK.yml</itemPath>
+          </logicalFolder>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/core_timer.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drvWifiPic32mzw1.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drv_ba414e.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drv_memory.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drv_sst26.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/FreeRTOS.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/HarmonyCore.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/lib_crypto.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/lib_wolfcrypt.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/lib_wolfssl.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/nvm.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/rng.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/rtcc.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/spi1.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/System_Configuration.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_command.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_console.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_debug.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_fs.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_time.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tcpipNetConfig.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tcpipStack.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tmr2.yml</itemPath>
+          <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/uart1.yml</itemPath>
+        </logicalFolder>
+        <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/core.yml</itemPath>
+        <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/dfp.yml</itemPath>
+        <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/project.yml</itemPath>
+        <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/settings.yml</itemPath>
+        <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysNetPic32mzw1.yml</itemPath>
+        <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysOtaPic32mzw1.yml</itemPath>
+        <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysWifiPic32mzw1.yml</itemPath>
+        <itemPath>../../../wifi_ota_app_upgrade/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysWifiProvPic32mzw1.yml</itemPath>
+      </logicalFolder>
       <logicalFolder name="f1" displayName="wolfcrypt" projectFiles="true">
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/misc.c</itemPath>
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/evp.c</itemPath>
@@ -716,7 +791,7 @@
         <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>3.01</languageToolchainVersion>
         <platform>3</platform>
