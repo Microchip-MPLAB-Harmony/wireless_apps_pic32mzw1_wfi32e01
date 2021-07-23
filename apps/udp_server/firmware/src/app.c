@@ -106,6 +106,26 @@ void UdpServCallback(uint32_t event, void *data, void* cookie)
             
             break;
         }
+        
+        case SYS_NET_EVNT_LL_INTF_DOWN:
+        {
+            /* 
+            ** User needs to take a decision if they want to close the socket or
+            ** wait for the Lower layer to come up
+             */
+            SYS_CONSOLE_PRINT("UdpServCallback(): Lower Layer Down\r\n");
+            break;
+        }
+        
+        case SYS_NET_EVNT_LL_INTF_UP:
+        {
+            /* 
+            ** The lower layer was down and now it has come up again. 
+            ** The socket was in connected state all this while
+             */
+            SYS_CONSOLE_PRINT("UdpServCallback(): Lower Layer Up\r\n");
+            break;
+        }                
     }
 }
 
