@@ -1,0 +1,76 @@
+{
+	"metaDataVersion": "1.0.0",
+	"category": "com.microchip.ide.project",
+	"content": {
+		"metaDataVersion": "1.1.0",
+		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_wifi_eth_dual_interface",
+		"version": "3.5.0",
+		"displayName": "Wi-Fi Ethernet dual interface",
+		"projectName": "wifi_eth_dual_interface_pic32mz_w1_curiosity",
+		"shortDescription": "This example application acts as a Soft AP with both Wi-Fi and ethernet interface enabled.",
+		"ide": {
+			"name": "MPLABX",
+			"semverRange": ">=5.50.0"
+		},
+		"compiler": [
+			{
+				"name": "XC32",
+				"semverRange": ">=3.1.0"
+			}
+		],
+		"dfp": {
+			"name": "PIC32MZ-W_DFP",
+			"semverRange": "^1.4.193"
+		},
+		"configurator": {
+			"name": "MHC",
+			"semverRange": ">=3.7.2"
+		},
+		"device": {
+			"metaDataVersion": "1.0.0",
+			"category": "com.microchip.portal.contentRef",
+			"content": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.device",
+				"name": "PIC32MZ1025W104132",
+				"versionRange": "*"
+			}
+		},
+		"author": "Microchip",
+		"subcategories": [
+			[
+				"Development Kit",
+				"PIC32MZ W1 Curiosity Board"
+			],
+			[
+				"Wireless",
+				"Wi-Fi"
+			]
+		],
+		"peripherals": [
+			"Wi-Fi"
+		],
+		"keywords": [
+			"MHC",
+			"Harmony",
+			"PIC32MZ1025W104132",
+			"WFI32",
+			"WFI32E01",
+			"PIC32MZ W1 Family",
+			"wireless",
+			"dual interface",
+			"wi-fi ethernet"			
+		],
+		"additionalData": {
+			"longDescription": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.portal.fileRef",
+				"content": {
+					"metaDataVersion": "1.0.0",
+					"fileName": "./../../readme.md",
+					"mimeType": "text/markdown"
+				}
+			}
+		}
+	}
+}
