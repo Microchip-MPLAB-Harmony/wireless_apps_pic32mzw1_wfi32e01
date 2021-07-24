@@ -179,19 +179,10 @@ void APP_Tasks(void) {
         case APP_STATE_INIT_DONE:
         {
             if (SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETWIFICONFIG, &wificonfig, sizeof (wificonfig)) == SYS_WIFI_SUCCESS) {
-                if (SYS_WIFI_STA == wificonfig.mode) {
-                    SYS_CONSOLE_PRINT("%s(): Device mode = STA \r\n", __func__);
+                if ((SYS_WIFI_STA == wificonfig.mode) && (SYS_WIFI_GetStatus(sysObj.syswifi) == SYS_WIFI_STATUS_TCPIP_READY)) {
                     appData.state = APP_STATE_MODE_STA;
-                } else {
-                    SYS_CONSOLE_PRINT("%s(): Device mode = AP \r\n", __func__);
-                    appData.state = APP_STATE_MODE_AP;
-                }
+                } 
             }
-            break;
-        }
-
-        case APP_STATE_MODE_AP:
-        {
             break;
         }
 
@@ -215,10 +206,7 @@ void APP_Tasks(void) {
         }
     }
 
-	APP_MQTT_Tasks(); 
-#ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME		
-	APP_CheckTimeOut(MQTT_PUB_TIMEOUT_CONST, g_lastPubTimeout);
-#endif
+    APP_MQTT_Tasks(); 
 }
 
 
