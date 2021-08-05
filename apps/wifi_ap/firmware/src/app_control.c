@@ -340,6 +340,7 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
             }
 
             app_controlData.wlanConfig.wepIdx = strtol(WEPIdx, NULL, 0);
+            memset(app_controlData.wlanConfig.wepKey, 0, sizeof(app_controlData.wlanConfig.wepKey));
             memcpy(app_controlData.wlanConfig.wepKey, (unsigned char *)WEPKey, strlen(WEPKey));
         }
 
