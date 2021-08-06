@@ -4,7 +4,7 @@
 
 
 project: wifi_ap
-creation_date: 2021-07-23T15:31:08.059+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2021-08-06T13:28:25.492+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.0
@@ -20,5 +20,5 @@ modules:
     - {name: "wolfssl", version: "v4.7.0"}
     - {name: "net", version: "v3.7.2"}
     - {name: "bsp", version: "v3.9.0"}
-    - {name: "crypto", version: "v3.7.2"}
+    - {name: "crypto", version: "v3.7.3"}
 

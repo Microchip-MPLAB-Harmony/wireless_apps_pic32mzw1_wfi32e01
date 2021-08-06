@@ -581,6 +581,7 @@ const SYS_MQTT_Config g_sSysMqttConfig =
 	.sBrokerConfig.autoConnect = SYS_MQTT_INDEX0_RECONNECT,
 	.sBrokerConfig.tlsEnabled = SYS_MQTT_INDEX0_ENABLE_TLS,
 	.sBrokerConfig.clientId = SYS_MQTT_INDEX0_CLIENT_ID,
+	.sBrokerConfig.cleanSession = SYS_MQTT_INDEX0_CLEAN_SESSION,
 	.subscribeCount = SYS_MQTT_INDEX0_SUB_TOPIC_COUNT,
 	.sSubscribeConfig[0].topicName = SYS_MQTT_INDEX0_TOPIC_NAME,
 	.sSubscribeConfig[0].qos = SYS_MQTT_INDEX0_SUB_QOS,

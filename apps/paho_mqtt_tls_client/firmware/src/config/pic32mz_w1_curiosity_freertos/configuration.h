@@ -115,6 +115,7 @@ extern "C" {
 #define SYS_MQTT_INDEX0_BROKER_NAME        				"test.mosquitto.org"
 #define SYS_MQTT_INDEX0_ENABLE_TLS        				true
 #define SYS_MQTT_INDEX0_RECONNECT        				false
+#define SYS_MQTT_INDEX0_CLEAN_SESSION					true
 #define SYS_MQTT_INDEX0_CLIENT_ID        				""
 #define SYS_MQTT_INDEX0_KEEPALIVE_INTERVAL 				60
 #define SYS_MQTT_INDEX0_MQTT_INTF        				SYS_MQTT_INTF_WIFI

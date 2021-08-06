@@ -321,13 +321,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: D81BD277BA41FC9B0E4C4A8B0AF30F86
-- generatedChecksum: 3274138230A6DBF50769B43C71D37248
+- generatedChecksum: EB475E2EA67DC49378663AFB93216E4A
   logicalPath: wolfcrypt
   name: ecc.c
   physicalPath: ../../third_party/wolfssl/wolfssl/wolfcrypt/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 3274138230A6DBF50769B43C71D37248
+  userChecksum: EB475E2EA67DC49378663AFB93216E4A
 - generatedChecksum: 5308B82A0AA0A9BB91151DC9112DA0C2
   logicalPath: wolfcrypt
   name: ecc_fp.c
@@ -1952,13 +1952,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 3E3E734C734720F661C02A4746724A85
-- generatedChecksum: 21E1E0A29DE1719AA1D377A987C3156F
+- generatedChecksum: 25B9739127523D7C7149AFA9DBDB039F
   logicalPath: wolfcrypt
   name: ecc.h
   physicalPath: ../../third_party/wolfssl/wolfssl/wolfcrypt
   security: NON_SECURE
   type: HEADER
-  userChecksum: 21E1E0A29DE1719AA1D377A987C3156F
+  userChecksum: 25B9739127523D7C7149AFA9DBDB039F
 - generatedChecksum: 5360177A7918D3563592BCC61CF2FAC1
   logicalPath: wolfcrypt
   name: ed25519.h
@@ -3163,13 +3163,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: FA212DEAE39D4E86EF4E6CB440610FE9
-- generatedChecksum: C1F6DA86F23A983F77A2198775ABDB14
+- generatedChecksum: CA8D9CC28FDE2D7169ED3DD85B3599A4
   logicalPath: wolfcrypt
   name: types.h
   physicalPath: ../../third_party/wolfssl/wolfssl/wolfcrypt
   security: NON_SECURE
   type: HEADER
-  userChecksum: C1F6DA86F23A983F77A2198775ABDB14
+  userChecksum: CA8D9CC28FDE2D7169ED3DD85B3599A4
 - generatedChecksum: 23248DE45F9EC71D5484DF1895031B07
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: udp.h
