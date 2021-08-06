@@ -4,7 +4,7 @@
         <Dependency name="bsp" version="v3.9.0"/>
         <Dependency name="CMSIS-FreeRTOS" version="v10.3.1"/>
         <Dependency name="core" version="v3.9.2"/>
-        <Dependency name="crypto" version="v3.7.2"/>
+        <Dependency name="crypto" version="v3.7.3"/>
         <Dependency name="cryptoauthlib" version="v3.3.2"/>
         <Dependency name="csp" version="v3.9.1"/>
         <Dependency name="dev_packs" version="v3.9.0"/>
@@ -12,7 +12,7 @@
         <Dependency name="paho.mqtt.embedded-c" version="v1.2.3"/>
         <Dependency name="usb" version="v3.8.0"/>
         <Dependency name="wireless_wifi" version="v3.5.1"/>
-        <Dependency name="wireless_system_pic32mzw1_wfi32e01" version="v3.5.0"/>
+        <Dependency name="wireless_system_pic32mzw1_wfi32e01" version="v3.5.1"/>
         <Dependency name="wolfssl" version="v4.7.0"/>
 </Dependencies>
 </Package>
