@@ -447,7 +447,7 @@ static int SYS_WIFIPROV_CMDProcess
             len = strlen((const char *) argv[4])+1; 
             if (len <= sizeof (wifiProvSrvcConfig.countryCode)) 
             {
-                strncpy((char *)wifiProvSrvcConfig.countryCode,argv[4],len);
+                memcpy((char *)wifiProvSrvcConfig.countryCode,argv[4],len);
             } 
             else 
             {
@@ -459,7 +459,7 @@ static int SYS_WIFIPROV_CMDProcess
             len = strlen((const char *) argv[8])+1;
             if (len <= sizeof (wifiProvSrvcConfig.staConfig.ssid)) 
             {
-                strncpy((char *)wifiProvSrvcConfig.staConfig.ssid,argv[8],len);
+                memcpy((char *)wifiProvSrvcConfig.staConfig.ssid,argv[8],len);
             } 
             else 
             {
@@ -471,7 +471,7 @@ static int SYS_WIFIPROV_CMDProcess
                 len = strlen((const char *) argv[9])+1;
                 if (len <= sizeof (wifiProvSrvcConfig.staConfig.psk)) 
                 {
-                    strncpy((char *)wifiProvSrvcConfig.staConfig.psk,argv[9],len);
+                    memcpy((char *)wifiProvSrvcConfig.staConfig.psk,argv[9],len);
                 } 
                 else
                 {
@@ -502,7 +502,7 @@ static int SYS_WIFIPROV_CMDProcess
             len = strlen((const char *) argv[4])+1; 
             if (len <= sizeof (wifiProvSrvcConfig.countryCode)) 
             {
-                strncpy((char *)wifiProvSrvcConfig.countryCode,argv[4],len);
+                memcpy((char *)wifiProvSrvcConfig.countryCode,argv[4],len);
             } 
             else 
             {
@@ -514,7 +514,7 @@ static int SYS_WIFIPROV_CMDProcess
             len = strlen((const char *) argv[8])+1;
             if (len <= sizeof (wifiProvSrvcConfig.apConfig.ssid)) 
             {
-                strncpy((char *)wifiProvSrvcConfig.apConfig.ssid,argv[8],len);
+                memcpy((char *)wifiProvSrvcConfig.apConfig.ssid,argv[8],len);
             } 
             else 
             {
@@ -526,7 +526,7 @@ static int SYS_WIFIPROV_CMDProcess
                 len = strlen((const char *) argv[9])+1;
                 if (len <= sizeof(wifiProvSrvcConfig.apConfig.psk))
                 {
-                     strncpy((char *)wifiProvSrvcConfig.apConfig.psk,argv[9],len);
+                     memcpy((char *)wifiProvSrvcConfig.apConfig.psk,argv[9],len);
                 } 
                 else 
                 {

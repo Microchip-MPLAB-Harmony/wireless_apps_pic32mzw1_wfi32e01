@@ -937,13 +937,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 963F14A74D0F3AE45C67CD73BD85D638
-- generatedChecksum: F606ABFAF08983C1209DC6F39BF2E92C
+- generatedChecksum: 624B5498D1F4A6FDC581A33B073B2BB1
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov.c
   physicalPath: system/wifiprov/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: F606ABFAF08983C1209DC6F39BF2E92C
+  userChecksum: 624B5498D1F4A6FDC581A33B073B2BB1
 - generatedChecksum: 9A49A2339A0774ACCBC2178A9EE76586
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: system_pmu_mldo_trim.c

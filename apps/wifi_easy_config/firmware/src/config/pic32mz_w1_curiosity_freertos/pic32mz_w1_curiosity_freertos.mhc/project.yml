@@ -1063,13 +1063,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 657AE85A63760DE3C04CA3154C314595
-- generatedChecksum: 225C642B0F632D52B28999DA925BB0C4
+- generatedChecksum: 34628827007945BEEBDAB673F2390D71
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov.c
   physicalPath: system/wifiprov/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 225C642B0F632D52B28999DA925BB0C4
+  userChecksum: 34628827007945BEEBDAB673F2390D71
 - generatedChecksum: 73953E96E08B075980D5A933ED18C28E
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov_json.c
