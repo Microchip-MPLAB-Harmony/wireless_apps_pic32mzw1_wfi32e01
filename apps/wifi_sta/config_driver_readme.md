@@ -90,6 +90,7 @@ The following table shows the target hardware for the application projects.
 | wlan scan_options \<num_slots> \<active_slot_time in ms> \<probes_per_slot> \<passive_scan_time in ms> \<stop_on_first> | Configure scan parameters |
 | wlan scan \<active / passive> \<channel> | Runs either a active or passive scan (as per the input) on the channel number specified for the time set in "wlan scan_options". Note: If no time is set, default value is used |
 | wlan scan_ssidlist \<channel> \<num_ssids> \<ssid_list> | Scan a list of known SSID's (Maximum SSID is 4) |
+| wlan set channel_mask \<channel_mask> | Sets the channel mask for channel 1-13. Note: 1 for enable and 0 for disable |
 | wlan get rssi | Gets the RSSI of current association |
 | wlan save config |	Stores the WLAN configurations given in command “wlan config” to flash memory. On restart an attempt is made to establish a connection to the AP based on the credentials stored in flash memory. |
 | wlan set regdomain <reg_domain_name>| Sets the regulatory domain. |
