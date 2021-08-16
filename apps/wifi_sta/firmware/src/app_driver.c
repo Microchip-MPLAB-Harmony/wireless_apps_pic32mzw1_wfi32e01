@@ -382,6 +382,18 @@ void APP_ScanSSIDList(uint8_t channel, uint8_t numSSIDs, char *ssid)
     }
 }
 
+void APP_ChannelMaskSet(uint16_t channelMask)
+{
+    if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetEnabledChannels24(appData.wdrvHandle, channelMask))
+    {
+        SYS_CONSOLE_MESSAGE("APP Error: Setting channel mask. Using the value set already \r\n");
+    }
+    else
+    {
+        SYS_CONSOLE_MESSAGE("APP: Channel mask set successfully \r\n");
+    }
+}
+
 void APP_RSSIGet()
 {
     if(!appData.isConnected)
@@ -437,7 +449,6 @@ static bool APP_WIFI_Config()
         SYS_CONSOLE_PRINT("APP: channel set fail %d \r\n", app_controlData.wlanConfig.channel);
         return false;
     }
-
     
     switch (authMode) 
     {

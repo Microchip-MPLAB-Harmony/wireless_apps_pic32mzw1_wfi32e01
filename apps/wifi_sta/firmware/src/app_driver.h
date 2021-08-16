@@ -196,6 +196,7 @@ void APP_DRIVER_Tasks( void );
 void APP_Scan(uint8_t channel, SCAN_TYPE scanType);
 void APP_ScanOptions(uint8_t numSlots, uint8_t activeSlotTime, uint16_t passiveScanTime, uint8_t numProbes, int8_t stopOnFirst);
 void APP_ScanSSIDList(uint8_t channel, uint8_t numSSIDs, char *ssid);
+void APP_ChannelMaskSet(uint16_t channelMask);
 void APP_RSSIGet();
 void APP_RegDomainGet(uint8_t regDomainSelect);
 

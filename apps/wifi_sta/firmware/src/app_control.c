@@ -369,22 +369,55 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
     }
     else if(!strcmp("set", argv[1]))
     {
-        if (argc < 4)
+        if (argc < 3)
         {
             SYS_CONSOLE_MESSAGE("usage: wlan set regdomain <reg_domain_name>\r\n");
+            SYS_CONSOLE_MESSAGE("usage: wlan set channel_mask <channel_mask>\r\n");
             return;
         }
         
         if (!strcmp("regdomain", argv[2]))
         {
-            int length;
-            length = strlen(argv[3]);
-
-            if (length < 7)
+            if (argc < 4)
             {
-                memset(app_controlData.regDomName, 0, 7);
-                strcpy(app_controlData.regDomName, argv[3]);
-                app_controlData.regDomChanged = true;
+                SYS_CONSOLE_MESSAGE("usage: wlan set regdomain <reg_domain_name>\r\n");
+                return;
+            }
+            else
+            {
+                int length;
+                length = strlen(argv[3]);
+
+                if (length < 7)
+                {
+                    memset(app_controlData.regDomName, 0, 7);
+                    strcpy(app_controlData.regDomName, argv[3]);
+                    app_controlData.regDomChanged = true;
+                }
+            }
+        }
+        else if (!strcmp("channel_mask", argv[2]))
+        {
+            if (argc < 4)
+            {
+                SYS_CONSOLE_MESSAGE("usage: wlan set channel_mask <channel_mask>\r\n");
+                SYS_CONSOLE_MESSAGE("Ex: wlan set channel_mask 2045 - Enables channel 1 and 3-11. Disables channel 2\r\n");
+                return;
+            }
+            else
+            {
+                unsigned int channelMask;
+                channelMask = strtoul(argv[3],0,10);
+                
+                if(0 == channelMask)
+                {
+                    SYS_CONSOLE_MESSAGE("Channel mask invalid \r\n");
+                    return;
+                }
+                else
+                {
+                    APP_ChannelMaskSet(channelMask);
+                }
             }
         }
     }
