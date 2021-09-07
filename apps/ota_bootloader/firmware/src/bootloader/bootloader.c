@@ -489,7 +489,7 @@ static BOOTLOADER_STATUS Bootloader_Task_CheckImage(void) {
 #endif
                     return SYS_STATUS_ERROR;
                 }
-                if (GetFieldValue(imageDB, OTA_IMAGE_VERSION, selected_row, &img->version) != 0) {
+                if (GetFieldValue_32Bit(imageDB, OTA_IMAGE_VERSION, selected_row, &img->version) != 0) {
 #ifdef OTA_DEBUG
                     SYS_CONSOLE_DEBUG1("Image version field not read properly\n");
 #endif
@@ -582,7 +582,7 @@ typedef struct {
     uint8_t *buf;
     uint32_t slot;
     uint32_t selected;
-    uint8_t version;
+    uint32_t version;
 } BOOTLOADER_SELECT_IMAGE_TASK_CONTEXT;
 
 typedef enum {
@@ -634,13 +634,13 @@ static BOOTLOADER_STATUS Bootloader_Task_SelectImage(void) {
                 selected_row = -1;
                 /*set version variables to zero initially, and go through the image database to 
                  get the latest version of image */
-                uint8_t ver = 0;
+                uint32_t ver = 0;
                 param->img.version = 0;
 
                 uint8_t i;
                 /*gothrough the image DB to get the latest and best image version */
                 for (i = 0; i < total_images; i++) {
-                    if (GetFieldValue(imageDB, OTA_IMAGE_VERSION, i, &ver) != 0) {
+                    if (GetFieldValue_32Bit(imageDB, OTA_IMAGE_VERSION, i, &ver) != 0) {
 #ifdef OTA_DEBUG
                         SYS_CONSOLE_DEBUG1("Image version field not read properly\n");
 #endif

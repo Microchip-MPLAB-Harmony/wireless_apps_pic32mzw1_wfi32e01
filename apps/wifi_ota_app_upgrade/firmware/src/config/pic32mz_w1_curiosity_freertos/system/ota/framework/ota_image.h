@@ -53,12 +53,12 @@ extern "C" {
 
 typedef struct {
     uint8_t     status;
-    uint8_t     version;
+    uint8_t     slot;
     uint8_t     order;
     uint8_t     type;
 
     uint32_t    sz;
-    uint32_t    slot;
+    uint32_t    version;
     uint32_t    boot_addr;
 
     uint8_t     digest[32];

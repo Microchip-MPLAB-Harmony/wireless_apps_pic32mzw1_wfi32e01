@@ -61,7 +61,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 
 #define BOOT_ADDRESS    0xB0018000 + 0x00001000
-#define APP_IMG_BOOT_CTL_BLANK      { 0xFF,             0x01, 0xFF, 0x03,                     0xFFFFFFFF,        0xFFFFFFFF, BOOT_ADDRESS }
+#define APP_IMG_BOOT_CTL_BLANK      { 0xFF, 0xFF, 0xFF, 0x03, 0xFFFFFFFF,  0x00000001   ,  BOOT_ADDRESS  }
 #define OTA_DOWNLOADER_TIMEOUT 1000
 #define __woraround_unused_variable(x) ((void)x)
 #define APP_MOUNT_NAME          "/mnt/myDrive1"
@@ -105,7 +105,7 @@ typedef enum {
 
 typedef struct {
     uint32_t slot;
-    uint8_t version;
+    uint32_t version;
     uint8_t abort;
     uint8_t img_status;
     uint8_t pfm_status;
@@ -144,7 +144,7 @@ static uint8_t selected_row;
 static uint32_t offset;
 static SYS_FS_HANDLE dirHandle;
 static SYS_FS_FSTAT stat;
-static uint8_t erase_ver;
+static uint32_t erase_ver;
 static bool ota_isTls_request;
 CACHE_COHERENCY ota_original_cache_policy;
 #if (OTA_NVM_INT_CALLBACK_ENABLE == false)
@@ -319,13 +319,13 @@ void OTA_GetImageDbInfo(void)
         return;
     }
     uint8_t i;
-    uint8_t ver;
+    uint32_t ver;
     char digest_str[66];
     char image_name[100];
     uint8_t status;
     SYS_CONSOLE_PRINT("\tImage name\t\tStatus\t\tVersion\t\tDigest\n\r");
     for (i = 0; i < total_images; i++) {
-        GetFieldValue(otaimageDB, OTA_IMAGE_VERSION, i, &ver);
+        GetFieldValue_32Bit(otaimageDB, OTA_IMAGE_VERSION, i, &ver);
         GetFieldString(otaimageDB, OTA_IMAGE_NAME, i, image_name);
         GetFieldString(otaimageDB, OTA_IMAGE_DIGEST, i, digest_str);
         GetFieldValue(otaimageDB, OTA_IMAGE_STATUS, i, &status);
@@ -1214,7 +1214,7 @@ static SYS_STATUS OTA_Task_SetImageStatus(void) {
 #endif
                 return SYS_STATUS_ERROR;
             }
-            if (GetFieldValue(imageDB, OTA_IMAGE_VERSION, selected_row, &ctx->img.version) != 0) {
+            if (GetFieldValue_32Bit(imageDB, OTA_IMAGE_VERSION, selected_row, &ctx->img.version) != 0) {
 #if (SERVICE_TYPE == OTA_DEBUG)
                 SYS_CONSOLE_PRINT("SYS OTA : Image version field not read properly\r\n");
 #endif
@@ -1652,7 +1652,7 @@ SYS_STATUS OTA_FactoryReset(void) {
 // *****************************************************************************
 //---------------------------------------------------------------------------
 /*
-  SYS_STATUS OTA_EraseImage(uint8_t version)
+  SYS_STATUS OTA_EraseImage(uint32_t version)
  
   Description:
     API for upper layer to Erase a particular version of image 
@@ -1665,7 +1665,7 @@ SYS_STATUS OTA_FactoryReset(void) {
  */
 //---------------------------------------------------------------------------
 
-SYS_STATUS OTA_EraseImage(uint8_t version) {
+SYS_STATUS OTA_EraseImage(uint32_t version) {
     if (ota.current_task != OTA_TASK_IDLE) {
 #if (SERVICE_TYPE == OTA_DEBUG)
         SYS_CONSOLE_PRINT("OTA not in idle : %d\r\n", ota.current_task);
@@ -1685,7 +1685,7 @@ SYS_STATUS OTA_EraseImage(uint8_t version) {
 // *****************************************************************************
 //---------------------------------------------------------------------------
 /*
-  SYS_STATUS OTA_EraseImage(uint8_t version)
+  SYS_STATUS OTA_EraseImage(uint32_t version)
  
   Description:
     Erase a particular version of image 
@@ -1698,7 +1698,7 @@ SYS_STATUS OTA_EraseImage(uint8_t version) {
  */
 //---------------------------------------------------------------------------
 
-SYS_STATUS OTA_Task_EraseImage(uint8_t version) {
+SYS_STATUS OTA_Task_EraseImage(uint32_t version) {
     selected_row = -1;
     imageDB = OTA_GetDBBuffer();
     if (OTAGetDb(imageDB, APP_MOUNT_NAME"/image_database.csv") > 1) {

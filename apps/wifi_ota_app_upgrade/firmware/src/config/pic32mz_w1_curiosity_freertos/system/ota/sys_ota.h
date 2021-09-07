@@ -404,7 +404,7 @@ extern "C" {
         uint32_t periodic_check_interval;
 
         /*Application version*/
-        uint8_t app_version;
+        uint32_t app_version;
 
         /*ota server url*/
         char *json_url;
@@ -660,7 +660,7 @@ extern "C" {
 
             if(ota_app_reg_cb() == true)
                 {
-                    uint8_t version = 2;
+                    uint32_t version = 2;
                     char *digest = "ef90bf8bf7fd96205c3240c31e1a378430e7a8f053a300e5c91ebe64fefea197";
                     SYS_OTA_SET_PARAMETERS("http://192.168.43.173:8000/wifi_ota_demo.bin", version , digest);
                     appData.state = APP_STATE_SERVICE_TASKS;
@@ -672,7 +672,7 @@ extern "C" {
         None
      */
 
-    void SYS_OTA_SET_PARAMETERS(char *url, uint8_t version, char *digest);
+    void SYS_OTA_SET_PARAMETERS(char *url, uint32_t version, char *digest);
 
     // *****************************************************************************
 

@@ -812,7 +812,7 @@ SYS_OTA_RESULT SYS_OTA_CtrlMsg(uint32_t event, void *buffer, uint32_t length) {
 // Section: To set OTA image related parameters 
 // *****************************************************************************
 // *****************************************************************************
-void SYS_OTA_SET_PARAMETERS(char *url, uint8_t version, char *digest)
+void SYS_OTA_SET_PARAMETERS(char *url, uint32_t version, char *digest)
 {
     memcpy(ota_params.ota_server_url, url, strlen(url) + 1);
     ota_params.version = version;

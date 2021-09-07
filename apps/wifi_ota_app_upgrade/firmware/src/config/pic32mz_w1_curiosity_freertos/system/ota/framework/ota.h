@@ -146,10 +146,10 @@ typedef struct OTA_PARAMS {
         char    serv_app_digest_string[66];
         char    *image_name;
         char    *status;
-        uint8_t version;
+        uint32_t version;
         char    *type;
         char    *digest;
-        uint8_t delete_img_version;
+        uint32_t delete_img_version;
         uint32_t total_data_downloaded; 
         uint32_t server_image_length; 
 } OTA_PARAMS;
@@ -390,7 +390,7 @@ SYS_STATUS OTA_FactoryReset(void);
 // *****************************************************************************
 /*
   Function:
-    SYS_STATUS OTA_EraseImage(uint8_t version);
+    SYS_STATUS OTA_EraseImage(uint32_t version);
 
   Summary:
     Perform image erase.
@@ -408,7 +408,7 @@ SYS_STATUS OTA_FactoryReset(void);
     SYS_STATUS code.
 */
 // *****************************************************************************
-SYS_STATUS OTA_EraseImage(uint8_t version);
+SYS_STATUS OTA_EraseImage(uint32_t version);
 
 // *****************************************************************************
 /*

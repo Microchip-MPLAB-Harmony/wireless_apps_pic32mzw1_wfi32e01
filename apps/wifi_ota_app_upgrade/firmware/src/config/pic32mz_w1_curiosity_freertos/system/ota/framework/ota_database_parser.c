@@ -69,7 +69,7 @@ OTA_DB_BUFFER *OTA_GetDBBuffer() {
 /*
  ** Get row nuber of a particular image
  */
-int GetImageRow(uint8_t ImgVersion, OTA_DB_BUFFER *imageDB) {
+int GetImageRow(uint32_t ImgVersion, OTA_DB_BUFFER *imageDB) {
     int selected_row = -1;
     size_t csv_field_read_size = 30;
     char *csv_field_read = OSAL_Malloc(csv_field_read_size + 1);
@@ -77,11 +77,11 @@ int GetImageRow(uint8_t ImgVersion, OTA_DB_BUFFER *imageDB) {
         return -1;
     uint8_t num_rows = csv_get_height((CSV_BUFFER *) imageDB);
     int r;
-    uint8_t ver = 0;
+    uint32_t ver = 0;
     for (r = 0; r < num_rows; r++) {
 
         csv_get_field(csv_field_read, csv_field_read_size, (CSV_BUFFER *) imageDB, r, OTA_IMAGE_VERSION);
-        ver = (uint8_t) strtol(csv_field_read, NULL, 16);
+        ver = strtol(csv_field_read, NULL, 16);
         if (ver == ImgVersion) {
             selected_row = r;
         }
@@ -128,11 +128,11 @@ int OTADbNewEntry(char *file_name, OTA_DB_ENTRY *image_data) {
             #ifdef OTA_DB_DEBUG
             SYS_CONSOLE_PRINT("SYS_OTA_DB : total_images : %d\r\n", total_images);
             #endif
-            uint8_t ver = 0;
-            uint8_t version_l = 255;
+            uint32_t ver = 0;
+            uint32_t version_l = 65535;
             uint8_t i;
             for (i = 0; i < total_images; i++) {
-                if (GetFieldValue((OTA_DB_BUFFER *)imageDB, OTA_IMAGE_VERSION, i, &ver) != 0) {
+                if (GetFieldValue_32Bit((OTA_DB_BUFFER *)imageDB, OTA_IMAGE_VERSION, i, &ver) != 0) {
                     #ifdef OTA_DB_DEBUG
                     SYS_CONSOLE_PRINT("SYS_OTA_DB : Image version field not read properly\r\n");
                     #endif
@@ -199,6 +199,27 @@ uint8_t GetFieldValue(OTA_DB_BUFFER *imageDB, OTA_DB_FIELD_TYPE field, uint8_t s
     if (csv_get_field(csv_field_read, csv_field_read_size, (CSV_BUFFER *) imageDB, selected_row, (size_t) field) == 0) {
         field_status = 0;
         *field_value = (uint8_t) strtol(csv_field_read, NULL, 16);
+        #ifdef OTA_DB_DEBUG
+        SYS_CONSOLE_PRINT("SYS_OTA_DB : ctx->img.status : %x\r\n", (uint8_t) strtol(csv_field_read, NULL, 16));
+        SYS_CONSOLE_PRINT("SYS_OTA_DB : *field_value : %x\r\n", *field_value);
+        #endif
+    } else {
+        field_status = 1;
+    }
+    OSAL_Free(csv_field_read);
+    return field_status;
+}
+
+/*
+ ** Get Image 32 bit Field value 
+ */
+uint8_t GetFieldValue_32Bit(OTA_DB_BUFFER *imageDB, OTA_DB_FIELD_TYPE field, uint8_t selected_row, uint32_t *field_value) {
+    uint8_t field_status = 0;
+    size_t csv_field_read_size = 30;
+    char *csv_field_read = OSAL_Malloc(csv_field_read_size + 1);
+    if (csv_get_field(csv_field_read, csv_field_read_size, (CSV_BUFFER *) imageDB, selected_row, (size_t) field) == 0) {
+        field_status = 0;
+        *field_value =  strtol(csv_field_read, NULL, 16);
         #ifdef OTA_DB_DEBUG
         SYS_CONSOLE_PRINT("SYS_OTA_DB : ctx->img.status : %x\r\n", (uint8_t) strtol(csv_field_read, NULL, 16));
         SYS_CONSOLE_PRINT("SYS_OTA_DB : *field_value : %x\r\n", *field_value);

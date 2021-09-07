@@ -5,10 +5,10 @@ frameworkPath: D:\H3_releaseTest
 processor: PIC32MZ1025W104132
 projectName: wifi_ota_app_upgrade
 settings:
-  PackageFilter: bsp;core;core_apps_pic32mz_w1;crypto;cryptoauthlib;csp;csp_apps_pic32mz_w1;net;quick_docs;touch;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_wifi
+  PackageFilter: bsp;classb_pic32mzw1_wfi32e01;classb_pic32mzw1_wfi32e01_bp;core;core_apps_pic32mz_w1;core_B0;crypto;cryptoauthlib;csp;csp_apps_pic32mz_w1;csp_B0;net;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01_3_5_1;wireless_wifi;wireless_wifi_B0
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'
   CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
-  MERGE_STRATEGY: ALL
+  MERGE_STRATEGY: USER_RECENT
   DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.4.193\atdf\PIC32MZ1025W104132.atdf

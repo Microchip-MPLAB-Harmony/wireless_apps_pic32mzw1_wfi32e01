@@ -86,9 +86,9 @@ extern "C" {
 #define SYS_OTA_AUTORESET_ENABLE   			true
 #define SYS_OTA_AUTOUPDATE_ENABLE           true
 #define SYS_OTA_PERODIC_UPDATE   			true
-#define SYS_OTA_APP_VER_NUM                 1
-#define SYS_OTA_TIME_INTERVAL               60
-#define SYS_OTA_URL                         "http://192.168.43.173:8000/ota.json"
+#define SYS_OTA_APP_VER_NUM                 3
+#define SYS_OTA_TIME_INTERVAL               10
+#define SYS_OTA_URL                         "http://192.168.0.103:8000/ota.json"
 #define SYS_OTA_JSON_FILE_MAXSIZE           1000
 #define SYS_OTA_NUM_IMGS                    2
 #define SYS_OTA_ENFORCE_TLS   			    false
@@ -546,8 +546,8 @@ extern "C" {
 
 #define SYS_WIFI_MAX_CBS					2
 #define SYS_WIFI_COUNTRYCODE        	   "GEN"
-#define SYS_WIFI_STA_SSID        			"DEMO_AP"
-#define SYS_WIFI_STA_PWD        			"password"
+#define SYS_WIFI_STA_SSID        			"Pranjal"
+#define SYS_WIFI_STA_PWD        			"krishnaguru123"
 #define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPAWPA2MIXED 
 #define SYS_WIFI_STA_AUTOCONNECT   			true
 

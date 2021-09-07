@@ -66,7 +66,7 @@ typedef struct OTA_DB_BUFFER {
 typedef struct OTA_DB_ENTRY {
         char *image_name;
         char *status;
-        uint8_t version;
+        uint32_t version;
         char *type;
         char *digest;
         bool db_full;
@@ -129,7 +129,7 @@ typedef enum {
  /*
  ** Get row nuber of a particular image
  */
-int GetImageRow(uint8_t ImgVersion, OTA_DB_BUFFER *imageDB);
+int GetImageRow(uint32_t ImgVersion, OTA_DB_BUFFER *imageDB);
 
 
 /*
@@ -151,6 +151,11 @@ uint8_t GetTotalImgs();
  ** Get Image Field value
  */
 uint8_t GetFieldValue(OTA_DB_BUFFER *imageDB, OTA_DB_FIELD_TYPE field, uint8_t selected_row, uint8_t *field_value );
+
+/*
+ ** Get Image 32 bit Field value 
+ */
+uint8_t GetFieldValue_32Bit(OTA_DB_BUFFER *imageDB, OTA_DB_FIELD_TYPE field, uint8_t selected_row, uint32_t *field_value);
 
 /*
  ** Set Image Field value
