@@ -1,0 +1,6 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: sysWifiProvPic32mzw1}
+children:
+- type: ElementPosition
+  attributes: {x: '20', y: '20', id: sysWifiProvPic32mzw1}
