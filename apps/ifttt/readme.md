@@ -16,7 +16,7 @@ This example application demosntrates how we can generate a trigger to IFTTT web
 
 ## Description
 
-IFTTT is short for "If This Then That". IFTTT uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA  mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the switch1 on the Curiosity Board is pressed.
+IFTTT is short for "If This Then That". IFTTT uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA  mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the button (SW1) on the Curiosity Board is pressed.
 
 ## Downloading and building the application
 
@@ -80,10 +80,10 @@ IFTTT is a free web platform, and one can create an applet of his/her own. More 
     ![Console](images/Console_STA_Connected.png)
 
 
-10. Every time the switch (SW1) is pressed
+10. Every time the button/ switch (SW1) is pressed
 
     
-    ![Switch](images/Curiosity_Board.jpg), 
+    ![Switch](images/Curiosity_Board.png), 
     
     it shall connect to maker.ifttt.com and send the trigger.
 
@@ -91,3 +91,4 @@ IFTTT is a free web platform, and one can create an applet of his/her own. More 
 
 11. This Trigger will be received by the ifttt server which will invoke the applet. Let us assume the user created an applet using webhooks which shall 'send an email' as an action. The email could look something like this:
 ![Action](images/Applet_Email.png)
+12. Every time a trigger is being sent by the Curiosity Board, the red LED on the board will be ON, and it will go OFF once the trigger request has been successfully trasmitted to IFTTT server. Any new request while the LED is ON will not be honoured. Hence, it is receommended to press the button for a new request only when the red LED has gone OFF.
