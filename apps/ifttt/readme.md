@@ -16,7 +16,7 @@ This example application demosntrates how we can generate a trigger to IFTTT web
 
 ## Description
 
-IFTTT is short for "If This Then That". IFTTT uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA  mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the button (SW1) on the Curiosity Board is pressed.
+IFTTT is short for "If This Then That". IFTTT is a third-party web platform which uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA  mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the button (SW1) on the Curiosity Board is pressed.
 
 ## Downloading and building the application
 
@@ -33,12 +33,12 @@ To build the application, refer to the following table and open the project usin
 |||
 
 ## Creating an Applet on IFTTT web platform.
-IFTTT is a free web platform, and one can create an applet of his/her own. More details on how one can use IFTTT and create their own applets can be found at https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet
+IFTTT is a third-party web platform, and one can create an applet of their own. More details on how one can use IFTTT and create their own applets can be found at https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet
 
 
 ## Setting up PIC32MZ W1 Curiosity Board
 
-- Connect the Debug USB port on the board to the computer using a micro USB cable
+- Connect the Debug USB port on the board to the computer using a micro USB cable to power on the board.
 - On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter
 - Home AP (Wi-Fi Access Point with internet connection)
 
@@ -55,20 +55,20 @@ IFTTT is a free web platform, and one can create an applet of his/her own. More 
 
 | Parameter Name | Default   Value | Description |
 |-|-|-|
-| IFTTT_EVENT_TYPE | IFTTT_EVENT<br>_BUTTON_PRESS | The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board, or by running a timer and sending the trigger periodically. Currently the application assumes the button press to be the event to trigger the applet. |
-| IFTTT_EVENT_PERIOIDC<br>_TIMER_TIMEOUT | 100 sec | This parameter is used for setting the timeperiod in sec, after which a periodic itrigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER  |
-| IFTTT_EVENT | "YOUR_EVENT" | This is a mandatory parameter to be filled in by the user, and is the the 'event' which triggers the applet. This 'event' was used while creating the applet at the IFTTT web platform.  |
+| IFTTT_EVENT_TYPE | IFTTT_EVENT<br>_BUTTON_PRESS | The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board (IFTTT_EVENT_BUTTON_PRESS), or by running a timer (IFTTT_EVENT_PERIODIC_TIMER) and sending the trigger periodically. The default event type is button press to trigger the applet. |
+| IFTTT_EVENT_PERIOIDC<br>_TIMER_TIMEOUT | 100 sec | This parameter is used for setting the timeperiod in sec, after which a periodic trigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER  |
+| IFTTT_EVENT | "YOUR_EVENT" | This is a mandatory parameter to be filled in by the user, and is the 'event' which triggers the applet. This 'event' was used while creating the applet at the IFTTT web platform.  |
 | IFTTT_KEY | "YOUR_KEY" | This is a mandatory parameter to be filled in by the user, and is the the 'key' which is generated after the creation of the applet at the IFTTT web platform. |
 | IFTTT_NUM_OF_VALUES | 1 | The IFTTT applet can use upto 3 values/ data while performing an action. This parameter indicates the number of values which this application needs to send along with the trigger. |
-| IFTTT_VALUE1 | "Value1" | Data that needs to be sent along with the trigger. |
-| IFTTT_VALUE2 | "Value2" | Data that needs to be sent along with the trigger. |
-| IFTTT_VALUE3 | "Value3" | Data that needs to be sent along with the trigger. |
-| IFTTT_USER_CALLBACK | NULL | In case the user wants to processing of some data and based on the result wants to dynamically decide if the trigger needs to be sent or not, he/ she will need to map this parameter to APP_IFTTT_Callback() and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the 'Value1' and sent.  |
+| IFTTT_VALUE1 | "Value1" | Data Value1 that needs to be sent along with the trigger. |
+| IFTTT_VALUE2 | "Value2" | Data Value2 that needs to be sent along with the trigger. |
+| IFTTT_VALUE3 | "Value3" | Data Value3 that needs to be sent along with the trigger. |
+| IFTTT_USER_CALLBACK | NULL | In case users want to process some data and based on the result want to dynamically decide if the trigger needs to be sent or not, they will need to map this parameter to APP_IFTTT_Callback() function and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the 'Value1' and sent.  |
 | IFTTT_USER_CALLBACK_CTX | NULL | Callback context/ parameter which will be passed on to APP_IFTTT_Callback(). This could a structure pointer which contains the data to be processed and decide if the trigger needs to be sent. |
 
-6.	Build and program the generated image into the hardware using its IDE
-7. Open the Terminal application (Ex.:Tera term) on the computer
-8. Connect to the "USB to UART" COM port and configure the serial settings as follows:
+6. Build and program the generated image into the hardware using the IDE.
+7. Open the terminal application (Ex.:Tera term) on the computer.
+8. Connect to the COM port related to the external USB-UART connected to the GPIO heade and configure the serial settings as follows:
     - Baud : 115200
     - Data : 8 Bits
     - Parity : None
