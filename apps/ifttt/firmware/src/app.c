@@ -65,28 +65,28 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-#define IFTTT_EVENT_BUTTON_PRESS    0
-#define IFTTT_EVENT_PERIODIC_TIMER  1
+#define APP_IFTTT_EVENT_BUTTON_PRESS    0
+#define APP_IFTTT_EVENT_PERIODIC_TIMER  1
 
 //IFTTT related configuration
-#define IFTTT_EVENT_TYPE            IFTTT_EVENT_BUTTON_PRESS //Event Type - Button Press/ Periodic Trigger
-#define IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT   100 //in Sec; Valid only when Event Type is Periodic Timer
-#define IFTTT_EVENT                 "YOUR_EVENT" //Event
-#define IFTTT_KEY                   "YOUR_KEY" //Key
-#define IFTTT_NUM_OF_VALUES         1 //Number of values/ data that needs to be sent
-#define IFTTT_VALUE1                "Value1"
-#define IFTTT_VALUE2                "Value2"
-#define IFTTT_VALUE3                "Value3"
-#define IFTTT_USER_CALLBACK         NULL //APP_IFTTT_Callback - called before sending the trigger
-#define IFTTT_USER_CALLBACK_CTX     NULL
+#define APP_IFTTT_EVENT_TYPE            APP_IFTTT_EVENT_BUTTON_PRESS //Event Type - Button Press/ Periodic Trigger
+#define APP_IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT   100 //in Sec; Valid only when Event Type is Periodic Timer
+#define APP_IFTTT_EVENT                 "YOUR_EVENT" //Event
+#define APP_IFTTT_KEY                   "YOUR_KEY" //Key
+#define APP_IFTTT_NUM_OF_VALUES         1 //Number of values/ data that needs to be sent
+#define APP_IFTTT_VALUE1                "Value1"
+#define APP_IFTTT_VALUE2                "Value2"
+#define APP_IFTTT_VALUE3                "Value3"
+#define APP_IFTTT_USER_CALLBACK         NULL //APP_IFTTT_Callback - called before sending the trigger
+#define APP_IFTTT_USER_CALLBACK_CTX     NULL
 
 SYS_MODULE_OBJ g_tcpSrvcHandle = SYS_MODULE_OBJ_INVALID;
 APP_DATA appData;
 bool APP_IFTTT_Callback(void*);
 static bool g_swPressed = false;
 static uint32_t g_lastTriggerTimeout = 0;
-static uint32_t g_sendingTrigger = 0;
-#define IFTTT_TRIGGER_TIMEOUT_CONST (IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT * SYS_TMR_TickCounterFrequencyGet())
+static bool g_sendingTrigger = false;
+#define APP_IFTTT_TRIGGER_TIMEOUT_CONST (APP_IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT * SYS_TMR_TickCounterFrequencyGet())
 
 typedef bool(*userCallback)(void *);
 
@@ -135,7 +135,7 @@ iftttConfig g_sIftttCfg;
 
 void APP_PinEventHandler(GPIO_PIN pin, uintptr_t context)
 {
-    if (SWITCH1_STATE_PRESSED == SWITCH1_Get() && g_sendingTrigger != 1) {
+    if (SWITCH1_STATE_PRESSED == SWITCH1_Get() && g_sendingTrigger == false) {
         g_swPressed = true;
     }
 }
@@ -168,7 +168,7 @@ APP_IFTTT_SendTrigger(void)
 {
     char networkBuffer[512];
     char finalTrigger[256];
-    int numOfValues = IFTTT_NUM_OF_VALUES;
+    int numOfValues = APP_IFTTT_NUM_OF_VALUES;
 
     memset(finalTrigger, 0, sizeof (finalTrigger));
     memset(networkBuffer, 0, sizeof (networkBuffer));
@@ -195,8 +195,8 @@ APP_IFTTT_SendTrigger(void)
         break;
     }
 
-    sprintf(networkBuffer, "POST %s"
-            " HTTP/1.1\r\n"
+    sprintf(networkBuffer, "POST %s "
+            "HTTP/1.1\r\n"
             "Host: %s" "\r\n"
             "Connection: close\r\n\r\n", finalTrigger, g_sIftttCfg.server);
 
@@ -205,7 +205,7 @@ APP_IFTTT_SendTrigger(void)
     while (SYS_NET_SendMsg(g_tcpSrvcHandle, (uint8_t*) networkBuffer,
             strlen(networkBuffer)) == 0);
 
-    g_sendingTrigger = 0;
+    g_sendingTrigger = false;
 
     LED_RED_Off();
 }
@@ -289,7 +289,7 @@ void APP_CheckTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut)
     }
 
     if (SYS_TMR_TickCountGet() - lastTimeOut > timeOutValue) {
-        if (g_sendingTrigger != 1) {
+        if (g_sendingTrigger == false) {
             g_swPressed = true;
         }
 
@@ -320,35 +320,35 @@ APP_IFTTT_Initialize(void)
 {
     memset(&g_sIftttCfg, 0, sizeof (g_sIftttCfg));
 
-    g_sIftttCfg.eventType = IFTTT_EVENT_TYPE;
+    g_sIftttCfg.eventType = APP_IFTTT_EVENT_TYPE;
 
     memcpy(g_sIftttCfg.server, g_sSysNetConfig0.host_name,
             sizeof (g_sSysNetConfig0.host_name));
 
-    memcpy(g_sIftttCfg.key, IFTTT_KEY, sizeof (IFTTT_KEY));
+    memcpy(g_sIftttCfg.key, APP_IFTTT_KEY, sizeof (APP_IFTTT_KEY));
 
-    memcpy(g_sIftttCfg.event, IFTTT_EVENT, sizeof (IFTTT_EVENT));
+    memcpy(g_sIftttCfg.event, APP_IFTTT_EVENT, sizeof (APP_IFTTT_EVENT));
 
-    g_sIftttCfg.numOfValues = IFTTT_NUM_OF_VALUES;
+    g_sIftttCfg.numOfValues = APP_IFTTT_NUM_OF_VALUES;
 
-    g_sIftttCfg.userCb = IFTTT_USER_CALLBACK;
+    g_sIftttCfg.userCb = APP_IFTTT_USER_CALLBACK;
 
-    g_sIftttCfg.userCbCtx = IFTTT_USER_CALLBACK_CTX;
+    g_sIftttCfg.userCbCtx = APP_IFTTT_USER_CALLBACK_CTX;
 
     switch (g_sIftttCfg.numOfValues) {
     case 3:
     {
-        memcpy(g_sIftttCfg.value3, IFTTT_VALUE3, sizeof (IFTTT_VALUE3));
+        memcpy(g_sIftttCfg.value3, APP_IFTTT_VALUE3, sizeof (APP_IFTTT_VALUE3));
     }
 
     case 2:
     {
-        memcpy(g_sIftttCfg.value2, IFTTT_VALUE2, sizeof (IFTTT_VALUE2));
+        memcpy(g_sIftttCfg.value2, APP_IFTTT_VALUE2, sizeof (APP_IFTTT_VALUE2));
     }
 
     case 1:
     {
-        memcpy(g_sIftttCfg.value1, IFTTT_VALUE1, sizeof (IFTTT_VALUE1));
+        memcpy(g_sIftttCfg.value1, APP_IFTTT_VALUE1, sizeof (APP_IFTTT_VALUE1));
     }
         break;
     }
@@ -356,7 +356,7 @@ APP_IFTTT_Initialize(void)
     sprintf(g_sIftttCfg.trigger, "https://%s/trigger/%s/with/key/%s",
             g_sIftttCfg.server, g_sIftttCfg.event, g_sIftttCfg.key);
 
-    if (g_sIftttCfg.eventType == IFTTT_EVENT_BUTTON_PRESS) {
+    if (g_sIftttCfg.eventType == APP_IFTTT_EVENT_BUTTON_PRESS) {
         GPIO_PinInterruptCallbackRegister(GPIO_PIN_RA10, APP_PinEventHandler,
                 (uintptr_t) NULL);
 
@@ -394,11 +394,7 @@ APP_Tasks(void)
         /* Application's initial state. */
     case APP_STATE_INIT:
     {
-        bool appInitialized = true;
-
-        if (appInitialized) {
-            appData.state = APP_STATE_SERVICE_TASKS;
-        }
+        appData.state = APP_STATE_SERVICE_TASKS;
         break;
     }
 
@@ -412,7 +408,7 @@ APP_Tasks(void)
             /* In case the user has defined a callback */
             if (g_sIftttCfg.userCb) {
                 if (g_sIftttCfg.userCb(g_sIftttCfg.userCbCtx) == true) {
-                    g_sendingTrigger = 1;
+                    g_sendingTrigger = true;
 
                     g_tcpSrvcHandle = SYS_NET_Open(NULL,
                             APP_TcpClientCallback, 0);
@@ -420,7 +416,7 @@ APP_Tasks(void)
                     LED_RED_On();
                 }
             } else {
-                g_sendingTrigger = 1;
+                g_sendingTrigger = true;
 
                 g_tcpSrvcHandle = SYS_NET_Open(NULL,
                         APP_TcpClientCallback, 0);
@@ -445,8 +441,8 @@ APP_Tasks(void)
 
     SYS_NET_Task(g_tcpSrvcHandle);
 
-    if (g_sIftttCfg.eventType == IFTTT_EVENT_PERIODIC_TIMER) {
-        APP_CheckTimeOut(IFTTT_TRIGGER_TIMEOUT_CONST, g_lastTriggerTimeout);
+    if (g_sIftttCfg.eventType == APP_IFTTT_EVENT_PERIODIC_TIMER) {
+        APP_CheckTimeOut(APP_IFTTT_TRIGGER_TIMEOUT_CONST, g_lastTriggerTimeout);
     }
 }
 
