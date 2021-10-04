@@ -403,11 +403,6 @@ int         TCPIP_STACK_MacToNetIndex(TCPIP_MAC_HANDLE hMac);
 
 const uint8_t*  TCPIP_STACK_NetUpMACAddressGet(TCPIP_NET_IF* pNetIf);
 
-static __inline__ const uint8_t*  __attribute__((always_inline)) _TCPIPStackNetMACAddress(TCPIP_NET_IF* pNetIf)
-{
-    return pNetIf->netMACAddr.v;
-}
-
 static __inline__ uint32_t  __attribute__((always_inline)) _TCPIPStackNetAddress(TCPIP_NET_IF* pNetIf)
 {
     return pNetIf->netIPAddr.Val;
@@ -441,6 +436,10 @@ static __inline__ TCPIP_NET_IF*  __attribute__((always_inline)) _TCPIPStackHandl
     // if #debug enabled, etc
     return (TCPIP_NET_IF*)hNet; 
 }
+
+// more checking, for user passed handles
+TCPIP_NET_IF*  TCPIP_Stack_UserHandleToNet(TCPIP_NET_HANDLE hNet);
+
 
 static __inline__ bool  __attribute__((always_inline)) TCPIP_STACK_NetworkIsUp(TCPIP_NET_IF* pNetIf)
 {

@@ -126,6 +126,15 @@ void TcpServCallback(uint32_t event, void *data, void* cookie)
             SYS_CONSOLE_PRINT("TcpServCallback(): Lower Layer Up\r\n");
             break;
         }                
+        
+        case SYS_NET_EVNT_SERVER_AWAITING_CONNECTION:
+        {
+            /* 
+            ** The server is awaiting connection from the client
+             */
+            SYS_CONSOLE_PRINT("TcpServCallback(): Server Awaiting Connection\r\n");
+            break;
+        }                
     }
 }
 
