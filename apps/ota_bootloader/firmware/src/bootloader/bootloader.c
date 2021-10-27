@@ -116,7 +116,7 @@ static BOOTLOADER_DATA __attribute__((coherent, aligned(128))) bootloader;
 #define APP_FS_TYPE             FAT
 #define APP_OTA_DATABASE_NAME   "image_database.csv"
 #define APP_OTA_DATABASE_PATH   "/mnt/myDrive1/image_database.csv"
-#define APP_FILE_NAME           "factory_reset.txt"
+#define APP_FILE_NAME           "factory_reset.bin"
 #define BUFFER_SIZE                (4096U)
 uint8_t CACHE_ALIGN work[SYS_FS_FAT_MAX_SS];
 
