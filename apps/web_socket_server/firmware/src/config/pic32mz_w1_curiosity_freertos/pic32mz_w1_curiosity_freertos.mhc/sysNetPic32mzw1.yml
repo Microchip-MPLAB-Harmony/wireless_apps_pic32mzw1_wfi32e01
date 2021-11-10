@@ -1,0 +1,15 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: sysNetPic32mzw1}
+children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: SYS_NET_SUPP_NO_OF_SOCKS}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sysWssPic32mzw1, value: '3'}
+- type: ElementPosition
+  attributes: {x: '540', y: '20', id: sysNetPic32mzw1}

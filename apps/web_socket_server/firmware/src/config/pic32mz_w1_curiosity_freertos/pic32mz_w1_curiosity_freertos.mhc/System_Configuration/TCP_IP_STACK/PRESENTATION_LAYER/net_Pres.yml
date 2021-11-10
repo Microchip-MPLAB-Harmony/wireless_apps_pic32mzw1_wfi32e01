@@ -1,0 +1,15 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: net_Pres}
+children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: NET_PRES_RTOS_STACK_SIZE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: net_Pres, value: '20480'}
+- type: ElementPosition
+  attributes: {x: '20', y: '20', id: net_Pres}
