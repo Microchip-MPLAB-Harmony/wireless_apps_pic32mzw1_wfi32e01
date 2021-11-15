@@ -450,7 +450,6 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/ipv4.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/dhcps.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/tcpip_heap_alloc.c</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/tcpip_heap_internal.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/dhcp.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/dns.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/hash_fnv.c</itemPath>
@@ -462,6 +461,7 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/tcpip_packet.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/sntp.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/udp.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_driver/library/tcpip/src/tcpip_heap_external.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
