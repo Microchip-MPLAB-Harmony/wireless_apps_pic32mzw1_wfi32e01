@@ -2,6 +2,24 @@ format_version: v1.0
 type: UniqueComponent
 attributes: {id: sys_fs}
 children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: SYS_FS_MAX_FILES}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sysOtaPic32mzw1, value: '5'}
+      - type: User
+        attributes: {value: '5'}
+  - type: Integer
+    attributes: {id: SYS_FS_RTOS_DELAY}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sysOtaPic32mzw1, value: '1'}
 - type: Attachments
   children:
   - type: MultiCapability

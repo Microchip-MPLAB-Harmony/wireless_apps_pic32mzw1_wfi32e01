@@ -675,7 +675,8 @@ void SYS_NET_NetPres_Signal(NET_PRES_SKT_HANDLE_T handle, NET_PRES_SIGNAL_HANDLE
 
         SYS_NETDEBUG_DBG_PRINT(g_NetAppDbgHdl, NET_CFG, "Received FIN from Peer\r\n");
 
-        SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_PEER_SENT_FIN);
+        if(hdl->status == SYS_NET_STATUS_CONNECTED)
+            SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_PEER_SENT_FIN);
     }
 }
 

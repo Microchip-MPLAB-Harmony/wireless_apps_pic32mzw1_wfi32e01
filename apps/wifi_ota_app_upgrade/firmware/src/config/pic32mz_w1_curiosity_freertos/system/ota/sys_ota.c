@@ -91,6 +91,7 @@ static DRV_HANDLE downloader;
 /*variable to check TLS request*/
 static bool sys_ota_tls;
 
+extern size_t field_content_length;
 #ifdef SYS_OTA_CLICMD_ENABLED
 /*************************************************************/
 static uint32_t g_u32SysOtaInitDone = 0;
@@ -229,6 +230,38 @@ static bool SYS_OTA_Update_Check();
 void _OTACallback(uint32_t event, void * data, void *cookies) {
 
     switch (event) {
+        
+#ifdef SYS_OTA_PATCH_ENABLE
+        case OTA_RESULT_PATCH_BASEVERSION_NOTFOUND:
+        {
+#ifdef SYS_OTA_APPDEBUG_ENABLED
+            SYS_CONSOLE_PRINT("SYS OTA : OTA_RESULT_PATCH_BASEVERSION_NOTFOUND\r\n");
+#endif
+            SYS_OTA_SetOtaServicStatus(SYS_OTA_PATCH_BASEVERSION_NOTFOUND);
+            sys_otaData.state = SYS_OTA_UPDATE_USER;
+            break;
+        }
+        case OTA_RESULT_PATCH_EVENT_START:
+        {
+#ifdef SYS_OTA_APPDEBUG_ENABLED
+            SYS_CONSOLE_PRINT("SYS OTA : OTA_RESULT_PATCH_EVENT_START\r\n");
+#endif
+            SYS_OTA_SetOtaServicStatus(SYS_OTA_PATCH_EVENT_START);
+            sys_otaData.state = SYS_OTA_UPDATE_USER;
+            break;
+        }
+        
+        case OTA_RESULT_PATCH_EVENT_COMPLETED:
+        {
+#ifdef SYS_OTA_APPDEBUG_ENABLED
+            SYS_CONSOLE_PRINT("SYS OTA : OTA_RESULT_PATCH_EVENT_COMPLETED\r\n");
+#endif
+            SYS_OTA_SetOtaServicStatus(SYS_OTA_PATCH_EVENT_COMPLETED);
+            sys_otaData.state = SYS_OTA_UPDATE_USER;
+            break;
+        }
+#endif
+        
         case OTA_RESULT_IMAGE_DOWNLOAD_START:
         {
 #ifdef SYS_OTA_APPDEBUG_ENABLED
@@ -276,11 +309,40 @@ void _OTACallback(uint32_t event, void * data, void *cookies) {
 #endif
             break;
         }
+        
+#ifdef SYS_OTA_PATCH_ENABLE
+        case OTA_RESULT_PATCH_IMAGE_DIGEST_VERIFY_START:
+        {
+            SYS_OTA_SetOtaServicStatus(SYS_OTA_PATCH_IMAGE_DIGEST_VERIFY_START);
+            sys_otaData.state = SYS_OTA_UPDATE_USER;
+            break;
+        }
+        case OTA_RESULT_PATCH_IMAGE_DIGEST_VERIFY_SUCCESS:
+        {
+            SYS_OTA_SetOtaServicStatus(SYS_OTA_PATCH_IMAGE_DIGEST_VERIFY_SUCCESS);
+            sys_otaData.state = SYS_OTA_UPDATE_USER;
+#ifdef SYS_OTA_APPDEBUG_ENABLED
+            SYS_CONSOLE_PRINT("SYS OTA : SYS OTA Patch Image verification success\r\n");
+#endif
+            break;
+        }
+        case OTA_RESULT_PATCH_IMAGE_DIGEST_VERIFY_FAILED:
+        {
+            sys_otaData.otaFwInProgress = false;
+            SYS_OTA_SetOtaServicStatus(SYS_OTA_PATCH_IMAGE_DIGEST_VERIFY_FAILED);
+            sys_otaData.state = SYS_OTA_UPDATE_USER;
+#ifdef SYS_OTA_APPDEBUG_ENABLED
+            SYS_CONSOLE_PRINT("SYS OTA : SYS OTA Image verification failed\r\n");
+#endif
+            break;
+        }
+#endif
         case OTA_RESULT_IMAGE_STATUS_SET:
         {
 #ifdef SYS_OTA_APPDEBUG_ENABLED
             SYS_CONSOLE_PRINT("OTA_RESULT_IMAGE_STATUS_SET\r\n");
 #endif
+            
             if (SYS_OTA_IsOtaInProgress() == true) {
                 SYS_OTA_SetOtaServicStatus(SYS_OTA_DB_ENTRY_SUCCESS);
                 sys_otaData.state = SYS_OTA_UPDATE_USER;
@@ -398,6 +460,10 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
     cJSON *ota_url_l = cJSON_GetObjectItem(server_data, "URL");
     cJSON *ota_image_version = cJSON_GetObjectItem(server_data, "Version");
     cJSON *erasever = cJSON_GetObjectItem(server_data, "EraseVer");
+    
+#ifdef SYS_OTA_PATCH_ENABLE    
+    cJSON *patch_array = cJSON_GetObjectItem(server_data, "Patch");
+#endif    
 
     /*go through json array for mandatory fields*/
     if (erasever != NULL) {
@@ -448,18 +514,125 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
                 SYS_CONSOLE_PRINT("SYS OTA : Mandatory JSON fields does not exist\r\n");
                 return false;
             }
+            
+#ifdef SYS_OTA_PATCH_ENABLE
+            if(patch_array != NULL)
+            {
+                int patch_array_count = cJSON_GetArraySize(patch_array);
+                int i;
+                for(i=(patch_array_count-1);i>= 0;i-- )
+                {
+                    cJSON *patch_data = cJSON_GetArrayItem(patch_array, i);
+                    cJSON *base_ver = cJSON_GetObjectItem(patch_data, "BaseVersion");
+                    cJSON *base_ver_digest = cJSON_GetObjectItem(patch_data, "BaseVerDigest");
+                    cJSON *patch_url = cJSON_GetObjectItem(patch_data, "PatchURL");
+                    cJSON *patch_digest = cJSON_GetObjectItem(patch_data, "PatchDigest");
+                    cJSON *target_digest = cJSON_GetObjectItem(patch_data, "TargetDigest");
+                    if (base_ver != NULL) {    
+                        if (cJSON_IsString(base_ver_digest) && (base_ver_digest->valuestring != NULL)) {
+                            if(SYS_STATUS_READY == OTA_Search_ImageVersion((uint32_t) base_ver->valuedouble,  base_ver_digest->valuestring))
+                            {
+                                char *serv_app_patch_digest;
+                                char *serv_app_base_digest;
+                                char *serv_app_target_digest;
+                                if (cJSON_IsString(patch_digest) && (patch_digest->valuestring != NULL)) {
+                                        ota_params.patch_base_version = ((int) base_ver->valuedouble);
+                                        
+                                        serv_app_base_digest = base_ver_digest->valuestring;
+                                        strncpy(ota_params.serv_app_base_digest_string, serv_app_base_digest, 64);
+                                        
+                                        SYS_CONSOLE_PRINT("    Server app patch Digest \"%s\"\r\n", patch_digest->valuestring);
+                                        
+                                        serv_app_patch_digest = patch_digest->valuestring;
+                                        strncpy(ota_params.serv_app_patch_digest_string, serv_app_patch_digest, 64);
+                                        if (cJSON_IsString(patch_url) && (patch_url->valuestring != NULL)) {
+                                            SYS_CONSOLE_PRINT("    Server app URL \"%s\"\r\n", patch_url->valuestring);
+                                            ota_url = patch_url->valuestring;
 
-            if (cJSON_IsString(ota_url_l) && (ota_url_l->valuestring != NULL)) {
-                SYS_CONSOLE_PRINT("    Server app URL \"%s\"\r\n", ota_url_l->valuestring);
-                ota_url = ota_url_l->valuestring;
-
-                memcpy(ota_params.ota_server_url, ota_url, strlen(ota_url) + 1);
-
-            } else {
-                SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app URL\r\n");
-                err = true;
+                                            memcpy(ota_params.ota_server_url, ota_url, strlen(ota_url) + 1);
+                                            sys_otaData.patch_request = true;
+                                        } else {
+                                            SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app URL\r\n");
+                                            err = true;
+                                        }
+                                        
+                                        if (cJSON_IsString(target_digest) && (target_digest->valuestring != NULL)) {
+                                            SYS_CONSOLE_PRINT("    Server app target Digest \"%s\"\r\n", target_digest->valuestring);
+                                            serv_app_target_digest = target_digest->valuestring;
+                                            strncpy(ota_params.serv_app_target_digest_string, serv_app_target_digest, 64);
+                                        } else {
+                                            SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app target Digest\r\n");
+                                            err = true;
+                                        }
+                                        
+                                    } else {
+                                        SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app patch Digest\r\n");
+                                        err = true;
+                                    }
+                                    break;
+                            }
+                            else{
+                                SYS_CONSOLE_PRINT("SYS OTA : Base Image version not found\n\r");
+                            }
+                            
+                        } else {
+                            SYS_CONSOLE_PRINT("SYS OTA : For Patch functionality , mandatory \"BaseVersionDigest\" field is not present in Manifest\r\n");
+                            return false;
+                        }
+                    }
+                    else {
+                        SYS_CONSOLE_PRINT("SYS OTA : For Patch functionality , mandatory \"BaseVersion\" field is not present in Manifest\r\n");
+                        return false;
+                    }
+                }                
             }
 
+            if(sys_otaData.patch_request == false)
+            {
+            
+                if (cJSON_IsString(ota_url_l) && (ota_url_l->valuestring != NULL)) {
+                    SYS_CONSOLE_PRINT("    Server app URL \"%s\"\r\n", ota_url_l->valuestring);
+                    ota_url = ota_url_l->valuestring;
+
+                    memcpy(ota_params.ota_server_url, ota_url, strlen(ota_url) + 1);
+
+                } else {
+                    SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app URL\r\n");
+                    err = true;
+                }
+            }
+            else
+            {
+                ota_params.patch_request = true;
+            }
+#else
+            if (cJSON_IsString(ota_url_l) && (ota_url_l->valuestring != NULL)) {
+                    SYS_CONSOLE_PRINT("    Server app URL \"%s\"\r\n", ota_url_l->valuestring);
+                    ota_url = ota_url_l->valuestring;
+
+                    memcpy(ota_params.ota_server_url, ota_url, strlen(ota_url) + 1);
+
+            } else {
+                    SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app URL\r\n");
+                    err = true;
+            }
+#endif
+
+#ifdef SYS_OTA_PATCH_ENABLE            
+            if(sys_otaData.patch_request == false){
+                char *serv_app_digest;
+                if (cJSON_IsString(serv_digest) && (serv_digest->valuestring != NULL)) {
+                    SYS_CONSOLE_PRINT("    Server app Digest \"%s\"\r\n", serv_digest->valuestring);
+                    serv_app_digest = serv_digest->valuestring;
+                    strncpy(ota_params.serv_app_digest_string, serv_app_digest, 64);
+                } else {
+                    SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app Digest\r\n");
+                    err = true;
+                }
+            }else{
+                strncpy(ota_params.serv_app_digest_string, ota_params.serv_app_target_digest_string, 64);
+            }
+#else
             char *serv_app_digest;
             if (cJSON_IsString(serv_digest) && (serv_digest->valuestring != NULL)) {
                 SYS_CONSOLE_PRINT("    Server app Digest \"%s\"\r\n", serv_digest->valuestring);
@@ -469,6 +642,7 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
                 SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app Digest\r\n");
                 err = true;
             }
+#endif
 
             if (cJSON_IsNumber(ota_image_version) && (ota_image_version->valueint != 0)) {
                 SYS_CONSOLE_PRINT("    Server app version: %d\r\n", (int) ota_image_version->valuedouble);
@@ -477,6 +651,7 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
                 SYS_CONSOLE_PRINT("SYS OTA : Error parsing  version\r\n");
                 err = true;
             }
+            
             if (err == true) {
                 sys_otaData.update_check_state = SYS_OTA_UPDATE_CHECK_READ_JSON;
                 return false;
@@ -492,6 +667,7 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
             break;
         }
     }
+    
 }
 
 // *****************************************************************************
@@ -525,8 +701,9 @@ static bool SYS_OTA_Update_Check() {
         case SYS_OTA_UPDATE_CHECK_READ_JSON:
         {
             int rx_len = 0;
+            static int rx_len_l = 0;
             if (SYS_OTA_ConnectedToNtwrk() == true) {
-                rx_len = DOWNLOADER_Read(downloader, (uint8_t*) & sys_otaData.json_buf[0], SYS_OTA_JSON_FILE_MAXSIZE - 10);
+                rx_len = DOWNLOADER_Read(downloader, (uint8_t*) & sys_otaData.json_buf[0 + rx_len_l], (SYS_OTA_JSON_FILE_MAXSIZE - 10) - rx_len_l);
                 if (downloader_no_data_read_cnt >= MAX_DOWNLOADER_READ_COUNT) {
                     if (downloader != DRV_HANDLE_INVALID) {
                         downloader_no_data_read_cnt = 0;
@@ -550,12 +727,16 @@ static bool SYS_OTA_Update_Check() {
                     }
                     break;
                 }
-                sys_otaData.json_buf[rx_len + 1] = '\0';
+                rx_len_l += rx_len;
+                if(rx_len_l<field_content_length)
+                    break;
+                sys_otaData.json_buf[rx_len_l + 1] = '\0';
                 #ifdef SYS_OTA_APPDEBUG_ENABLED
                 SYS_CONSOLE_PRINT("SYS OTA : downloader_no_data_read_cnt : %d\r\n",downloader_no_data_read_cnt);
                 #endif
                 downloader_no_data_read_cnt = 0;
                 sys_otaData.update_check_state = SYS_OTA_UPDATE_CHECK_JSON_CONTENT;
+                rx_len_l = 0;
             }
             break;
         }
@@ -654,10 +835,16 @@ static void SYS_OTA_Command_Process(int argc, char *argv[]) {
         else{
             if((!strcmp((char*) argv[2], "info"))){
                 OTA_GetDownloadStatus(&ota_params);
+#ifdef SYS_OTA_PATCH_ENABLE                
+                OTA_GetPatchStatus(&ota_params);
+#endif
                 SYS_CONSOLE_PRINT("*******************************************\n\r");
                 SYS_CONSOLE_PRINT("Status: %s\n\r", SYS_OTA_GET_STATUS_STR(sys_otaData.ota_srvc_status));
                 SYS_CONSOLE_PRINT("Total data to download : %d bytes\n\r", ota_params.server_image_length);
                 SYS_CONSOLE_PRINT("Data downloaded : %d bytes \r\n", ota_params.total_data_downloaded);
+#ifdef SYS_OTA_PATCH_ENABLE
+                SYS_CONSOLE_PRINT("Patch progress : %d percent \r\n", ota_params.patch_progress_status);
+#endif
                 SYS_CONSOLE_PRINT("Json-server url : %s\n\r", g_SysOtaConfig.json_url);
                 SYS_CONSOLE_PRINT("Periodic check : %d (1=Enable, 0=Disable )\n\r", g_SysOtaConfig.ota_periodic_check);
                 SYS_CONSOLE_PRINT("Periodic interval : %d sec\n\r", g_SysOtaConfig.periodic_check_interval);

@@ -3,13 +3,13 @@
     Microchip Technology Inc.
 
   File Name:
-    database_parser.c
+    ota_database_parser.h
     
   Summary:
-    Interface for the Bootloader library.
+    Interface for the CSV library.
 
   Description:
-    This file contains the interface definition for the OTA library.
+    This file contains the interface for the OTA CSV library.
 *******************************************************************************/
 
 // DOM-IGNORE-BEGIN

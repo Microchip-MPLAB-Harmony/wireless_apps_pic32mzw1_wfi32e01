@@ -50,9 +50,13 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "crypto/crypto.h"
 #include "system/ota/framework/csv/csv.h"
 
+#ifdef SYS_OTA_PATCH_ENABLE
+#include "ota_patch.h"
+#endif
+
 #define OTA_DEBUG   1
 #define OTA_MAIN_CODE   2
-
+#define SYS_OTA_APPDEBUG_ENABLED
 #ifdef SYS_OTA_APPDEBUG_ENABLED
 #define SERVICE_TYPE    OTA_DEBUG  
 #else
@@ -60,16 +64,17 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #endif
 
 
+
 #define BOOT_ADDRESS    0xB0018000 + 0x00001000
 #define APP_IMG_BOOT_CTL_BLANK      { 0xFF, 0xFF, 0xFF, 0x03, 0xFFFFFFFF,  0x00000001   ,  BOOT_ADDRESS  }
 #define OTA_DOWNLOADER_TIMEOUT 1000
 #define __woraround_unused_variable(x) ((void)x)
 #define APP_MOUNT_NAME          "/mnt/myDrive1"
-#define APP_DIR_NAME            "/mnt/myDrive1/"
+#define APP_DIR_NAME            "/mnt/myDrive1/ota"
 #define OTA_DB_NAME             "image_database.csv"
 #define APP_DEVICE_NAME         "/dev/mtda1"
 #define APP_FS_TYPE             FAT
-
+#define FACTORY_IMAGE           "factory_reset.bin"
 
 
 #ifdef SYS_OTA_FREE_SECTOR_CHECK_ENABLE
@@ -94,8 +99,15 @@ typedef enum {
     OTA_TASK_IDLE,
     OTA_TASK_ALLOCATE_SLOT,
     OTA_TASK_CHECK_DB,
+#ifdef SYS_OTA_PATCH_ENABLE            
+    OTA_TASK_SEARCH_PATCH_BASEVERSION,
+#endif
     OTA_TASK_DOWNLOAD_IMAGE,
     OTA_TASK_VERIFY_IMAGE_DIGEST,
+#ifdef SYS_OTA_PATCH_ENABLE
+    OTA_TASK_VERIFY_PATCH_IMAGE_DIGEST,
+    OTA_TASK_PATCH_BUILD_IMAGE,
+#endif
     OTA_TASK_DATABASE_ENTRY,
     OTA_TASK_SET_IMAGE_STATUS,
     OTA_TASK_FACTORY_RESET,
@@ -138,9 +150,14 @@ static OTA_DB_BUFFER *imageDB;
 extern size_t field_content_length;
 static char image_name[100];
 static bool disk_mount = false;
+#ifdef SYS_OTA_PATCH_ENABLE
+static bool patch_verification = false;
+static uint8_t serv_app_patch_digest_g[32];
+static char serv_app_patch_digest_gl[4];
+#endif
 static uint8_t serv_app_digest_g[32];
 static char serv_app_digest_gl[4];
-static uint8_t selected_row;
+static int8_t selected_row;
 static uint32_t offset;
 static SYS_FS_HANDLE dirHandle;
 static SYS_FS_FSTAT stat;
@@ -181,8 +198,9 @@ typedef struct {
 } APP_DATA_FILE;
 APP_DATA_FILE CACHE_ALIGN appFile;
 
-
-
+#ifdef SYS_OTA_PATCH_ENABLE
+OTA_PATCH_PARAMS_t patch_param;
+#endif
 // *****************************************************************************
 // *****************************************************************************
 // Section: To check if image download request is via TLS connection 
@@ -297,6 +315,29 @@ void OTA_GetDownloadStatus(OTA_PARAMS *result) {
     result->total_data_downloaded = ota_params.total_data_downloaded;
 }
 
+// *****************************************************************************
+// *****************************************************************************
+// Section:  To get download status 
+// *****************************************************************************
+// *****************************************************************************
+//---------------------------------------------------------------------------
+/*
+  void OTA_GetPatchStatus(OTA_PARAMS *result)
+
+  Description:
+   To get patch progress status 
+
+  Task Parameters:
+    pointer of type ota_params 
+  Return:
+    None
+ */
+//---------------------------------------------------------------------------
+#ifdef SYS_OTA_PATCH_ENABLE
+void OTA_GetPatchStatus(OTA_PARAMS *result) {
+    result->patch_progress_status = OTA_PatchProgressStatus();
+}
+#endif
 void OTA_GetImageDbInfo(void)
 {
     if(ota.current_task == OTA_TASK_DOWNLOAD_IMAGE){
@@ -306,7 +347,7 @@ void OTA_GetImageDbInfo(void)
     OTA_DB_BUFFER *otaimageDB;
     
     otaimageDB = OTA_GetDBBuffer();
-    int ret_db_status = OTAGetDb(otaimageDB, APP_MOUNT_NAME"/image_database.csv");
+    int ret_db_status = OTAGetDb(otaimageDB, APP_DIR_NAME"/image_database.csv");
     
     if(ret_db_status >= 1){
         SYS_CONSOLE_PRINT("NO info found\n\r");
@@ -403,9 +444,17 @@ static void mount_disk() {
 
 static bool create_image_file() {
 
-    strcpy(image_name, APP_MOUNT_NAME);
+    strcpy(image_name, APP_DIR_NAME);
     strcat(image_name, (strrchr(ota_params.ota_server_url, '/')));
+    
+#ifdef SYS_OTA_PATCH_ENABLE    
+    if(ota_params.patch_request == true)
+        strcpy((strrchr(image_name, '.') + 1), "patch");
+    else
+        strcpy((strrchr(image_name, '.') + 1), "bin");
+#else
     strcpy((strrchr(image_name, '.') + 1), "bin");
+#endif    
 
 #if (SERVICE_TYPE == OTA_DEBUG)
     SYS_CONSOLE_PRINT("SYS OTA : file path:%s\r\n", image_name);
@@ -427,6 +476,47 @@ static bool create_image_file() {
     }
 }
 
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: Building images path (source file, patch file & target file) , required for patch-ota 
+// *****************************************************************************
+// *****************************************************************************
+//---------------------------------------------------------------------------
+/*
+  static void OTA_patch_build_image_path()
+
+  Description:
+   Building images path (source file, patch file & target file) , required for patch-ota
+
+  Task Parameters:
+    None
+  Return:
+    None
+ */
+//---------------------------------------------------------------------------
+#ifdef SYS_OTA_PATCH_ENABLE
+static void OTA_patch_build_image_path() {
+
+#if (SERVICE_TYPE == OTA_DEBUG)
+    SYS_CONSOLE_PRINT("OTA : image name:%s\n\r",image_name); 
+#endif
+    
+    strcpy(patch_param.patch_file, image_name);
+
+#if (SERVICE_TYPE == OTA_DEBUG)
+    SYS_CONSOLE_PRINT("OTA : patch_param.patch_file:%s\n\r",patch_param.patch_file);
+#endif
+    
+    strcpy(patch_param.target_file, APP_DIR_NAME);
+    strcat(patch_param.target_file, (strrchr(image_name, '/')));
+    strcpy((strrchr(patch_param.target_file, '.') + 1), "bin");
+#if (SERVICE_TYPE == OTA_DEBUG)
+    SYS_CONSOLE_PRINT("OTA : patch_param.target_file:%s\n\r",patch_param.target_file);
+#endif
+    strcpy((strrchr(image_name, '.') + 1), "bin");
+}
+#endif
 // *****************************************************************************
 // *****************************************************************************
 // Section: convert string digest into hex format
@@ -461,6 +551,22 @@ static void formulate_digest() {
         SYS_CONSOLE_PRINT("SYS OTA : formulated digest[%d]: %x\r\n", i, serv_app_digest_g[i]);
 #endif
     }
+    
+#ifdef SYS_OTA_PATCH_ENABLE
+    if(ota_params.patch_request == true){
+        index = 0;
+        
+        for (i = 0; i < 32; i++) {
+
+                strncpy(serv_app_patch_digest_gl, &ota_params.serv_app_patch_digest_string[index], 2);
+                index = index + 2;
+                serv_app_patch_digest_g[i] = (uint8_t) strtol(serv_app_patch_digest_gl, NULL, 16);
+        #if (SERVICE_TYPE == OTA_DEBUG)
+                SYS_CONSOLE_PRINT("SYS OTA : formulated patch digest[%d]: %x\r\n", i, serv_app_patch_digest_g[i]);
+        #endif
+        }
+    }
+#endif
 }
 
 // *****************************************************************************
@@ -586,7 +692,7 @@ static OTA_DB_STATUS OTA_Task_DbEntryCheck(void) {
 
     imageDB = OTA_GetDBBuffer();
     /*Check if max number of images defined by user reached*/
-    uint8_t ret = OTAGetDb(imageDB, APP_MOUNT_NAME"/image_database.csv");
+    uint8_t ret = OTAGetDb(imageDB, APP_DIR_NAME"/image_database.csv");
     if (ret > 0) {
         csv_destroy_buffer((CSV_BUFFER *) imageDB);
         return OTA_DB_ERROR;
@@ -642,7 +748,7 @@ static void OTA_CleanUp(void) {
     } else {
         imageDB = OTA_GetDBBuffer();
         /*Get DB to local buffer*/
-        uint8_t ret = OTAGetDb(imageDB, APP_MOUNT_NAME"/image_database.csv");
+        uint8_t ret = OTAGetDb(imageDB, APP_DIR_NAME"/image_database.csv");
         if (ret > 0) {
             /*error during opening of file*/
             csv_destroy_buffer((CSV_BUFFER *) imageDB);
@@ -684,37 +790,41 @@ static void OTA_CleanUp(void) {
 #endif
             SYS_FS_RESULT res;
             /*if no DB is present, remove the file(may bepartial image)*/
-            if (no_db == true) {
-                res = SYS_FS_FileDirectoryRemove(stat.fname);
-                if (res == SYS_FS_RES_FAILURE) {
-                    SYS_CONSOLE_PRINT("SYS OTA : File remove operation failed : clean up\r\n");
-                } else {
-                    /*Do nothing File is removed successfully*/
-                    SYS_CONSOLE_PRINT("SYS OTA : Removed file : %s\r\n", stat.fname);
-                }
-            } else {
-                /*initialize flag to false in every iteration*/
-                bool image_found = false;
-                /*search the image in the DB*/
-                for (i = 0; i < total_images; i++) {
-                    char image_name[100];
-                    /*Check for image name in the DB*/
-                    if (GetFieldString(imageDB, OTA_IMAGE_NAME, i, image_name) == 0) {
-                        if (!strncmp(image_name, stat.fname, strlen(stat.fname))) {
-                            /*if image is present in the DB set the flag and break from loop*/
-                            image_found = true;
-                            break;
+            if(strncmp(FACTORY_IMAGE,stat.fname,strlen(FACTORY_IMAGE)) != 0){
+                if (no_db == true) {
+                    if(strncmp(FACTORY_IMAGE,stat.fname,strlen(FACTORY_IMAGE)) != 0){    
+                        res = SYS_FS_FileDirectoryRemove(stat.fname);
+                        if (res == SYS_FS_RES_FAILURE) {
+                            SYS_CONSOLE_PRINT("SYS OTA : File remove operation failed : clean up\r\n");
+                        } else {
+                                /*Do nothing File is removed successfully*/
+                            SYS_CONSOLE_PRINT("SYS OTA : Removed file : %s\r\n", stat.fname);
                         }
                     }
-                }
-                /*if image not found remove file from directory*/
-                if (image_found == false) {
-                    res = SYS_FS_FileDirectoryRemove(stat.fname);
-                    if (res == SYS_FS_RES_FAILURE) {
-                        SYS_CONSOLE_PRINT("SYS OTA : File remove operation failed : clean up\r\n");
-                    } else {
-                        /*Do nothing File is removed successfully*/
-                        SYS_CONSOLE_PRINT("SYS OTA : Removed file : %s\r\n", stat.fname);
+                } else {
+                    /*initialize flag to false in every iteration*/
+                    bool image_found = false;
+                    /*search the image in the DB*/
+                    for (i = 0; i < total_images; i++) {
+                        char image_name[100];
+                        /*Check for image name in the DB*/
+                        if (GetFieldString(imageDB, OTA_IMAGE_NAME, i, image_name) == 0) {
+                            if (!strncmp(image_name, stat.fname, strlen(stat.fname))) {
+                                /*if image is present in the DB set the flag and break from loop*/
+                                image_found = true;
+                                break;
+                            }
+                        }
+                    }
+                    /*if image not found remove file from directory*/
+                    if (image_found == false) {
+                        res = SYS_FS_FileDirectoryRemove(stat.fname);
+                        if (res == SYS_FS_RES_FAILURE) {
+                            SYS_CONSOLE_PRINT("SYS OTA : File remove operation failed : clean up\r\n");
+                        } else {
+                            /*Do nothing File is removed successfully*/
+                            SYS_CONSOLE_PRINT("SYS OTA : Removed file : %s\r\n", stat.fname);
+                        }
                     }
                 }
             }
@@ -748,12 +858,21 @@ static void OTA_Task_UpdateUser(void) {
     OTA_COMPLETION_CALLBACK callback = ota.callback;
 
     /*if callback is for image download start , downloader should not be closed*/
-    if (ota.ota_result != OTA_RESULT_IMAGE_DOWNLOAD_START) {
+#ifdef SYS_OTA_PATCH_ENABLE    
+    if ((ota.ota_result != OTA_RESULT_IMAGE_DOWNLOAD_START) && (ota.ota_result != OTA_RESULT_PATCH_EVENT_START)) {
         if (ota.downloader != DRV_HANDLE_INVALID) {
             DOWNLOADER_Close(ota.downloader);
             ota.downloader = DRV_HANDLE_INVALID;
         }
     }
+#else
+    if ((ota.ota_result != OTA_RESULT_IMAGE_DOWNLOAD_START)) {
+        if (ota.downloader != DRV_HANDLE_INVALID) {
+            DOWNLOADER_Close(ota.downloader);
+            ota.downloader = DRV_HANDLE_INVALID;
+        }
+    }
+#endif
     ota.status = SYS_STATUS_READY;
     if (callback != NULL) {
         callback(ota.ota_result, NULL, NULL);
@@ -1049,6 +1168,12 @@ static SYS_STATUS OTA_Task_VerifyImage(void) {
             CRYPT_SHA256_Initialize(ctx->sha256);
 
             ctx->img_sz = field_content_length;
+            
+#ifdef SYS_OTA_PATCH_ENABLE              
+            if(ota_params.patch_request == true)
+                ctx->img_sz = SYS_FS_FileSize(appFile.fileHandle1);
+#endif            
+            
             offset = 0;
             if (SYS_FS_FileSeek(appFile.fileHandle1, 0, SYS_FS_SEEK_SET) == -1) {
                 /* File seek caused an error */
@@ -1062,7 +1187,14 @@ static SYS_STATUS OTA_Task_VerifyImage(void) {
                 return SYS_STATUS_ERROR;
             }
             ota.task.state = TASK_STATE_V_READ;
+#ifdef SYS_OTA_PATCH_ENABLE              
+            if(patch_verification == true)
+                ota.ota_result = OTA_RESULT_PATCH_IMAGE_DIGEST_VERIFY_START ;
+            else
+                ota.ota_result = OTA_RESULT_IMAGE_DIGEST_VERIFY_START;
+#else
             ota.ota_result = OTA_RESULT_IMAGE_DIGEST_VERIFY_START;
+#endif
             OTA_Task_UpdateUser();
             break;
         }
@@ -1102,10 +1234,24 @@ static SYS_STATUS OTA_Task_VerifyImage(void) {
                 CRYPT_SHA256_Finalize(ctx->sha256, digest);
                 img = (FIRMWARE_IMAGE_HEADER*) ctx->buf;
                 int i;
-                for (i = 0; i < 32; i++) {
-                    img->digest[i] = serv_app_digest_g[i];
+#ifdef SYS_OTA_PATCH_ENABLE                 
+                if(patch_verification == false)
+                {
+                    for (i = 0; i < 32; i++) {
+                        img->digest[i] = serv_app_digest_g[i];
+                    }
                 }
-
+                else
+                {
+                    for (i = 0; i < 32; i++) {
+                        img->digest[i] = serv_app_patch_digest_g[i];
+                    }
+                }
+#else
+                for (i = 0; i < 32; i++) {
+                        img->digest[i] = serv_app_digest_g[i];
+                    }
+#endif
 #if (SERVICE_TYPE == OTA_DEBUG)
                 for (i = 0; i < 32; i++) {
                     SYS_CONSOLE_PRINT("SYS OTA : digest[%d] = %d, img->digest[%d] = %d\r\n", i, digest[i], i, img->digest[i]);
@@ -1190,7 +1336,7 @@ static SYS_STATUS OTA_Task_SetImageStatus(void) {
                 return SYS_STATUS_ERROR;
             }
             imageDB = OTA_GetDBBuffer();
-            if (OTAGetDb(imageDB, APP_MOUNT_NAME"/image_database.csv") > 1)
+            if (OTAGetDb(imageDB, APP_DIR_NAME"/image_database.csv") > 1)
                 return SYS_STATUS_ERROR;
             if (ota.new_downloaded_img == false || ota.ota_rollback_initiated == true) {
                 selected_row = GetImageRow(ota.task.param.version, imageDB);
@@ -1228,7 +1374,7 @@ static SYS_STATUS OTA_Task_SetImageStatus(void) {
                 char status[10];
                 sprintf(status, "%x", param->img_status);
                 SetFieldValue(imageDB, OTA_IMAGE_STATUS, selected_row, status);
-                OTASaveDb(imageDB, APP_MOUNT_NAME"/image_database.csv");
+                OTASaveDb(imageDB, APP_DIR_NAME"/image_database.csv");
                 ota.task.state = TASK_STATE_S_WRITE_BOOT_CONTROL;
             } else {
                 ota.task.state = TASK_STATE_S_WRITE_BOOT_CONTROL;
@@ -1304,7 +1450,7 @@ static SYS_STATUS OTA_Task_DataEntry() {
         image_data.db_full = true;
     else
         image_data.db_full = false;
-    if (OTADbNewEntry(APP_MOUNT_NAME"/image_database.csv", &image_data) == -1) {
+    if (OTADbNewEntry(APP_DIR_NAME"/image_database.csv", &image_data) == -1) {
         return SYS_STATUS_ERROR;
     }
     return SYS_STATUS_READY;
@@ -1360,7 +1506,7 @@ static SYS_STATUS OTA_Task_FactoryReset(void) {
             SYS_CONSOLE_PRINT("Removing \r\n");
 #endif
             SYS_FS_RESULT res;
-            res = SYS_FS_FileDirectoryRemove(APP_MOUNT_NAME"/image_database.csv");
+            res = SYS_FS_FileDirectoryRemove(APP_DIR_NAME"/image_database.csv");
             if (res == SYS_FS_RES_FAILURE) {
                 // Directory remove operation failed
 #if (SERVICE_TYPE == OTA_DEBUG)
@@ -1451,7 +1597,7 @@ static bool OTA_IsDisk_Full(void){
     
   uint32_t totalSectors, freeSectors;
   SYS_FS_RESULT res;  
-  res = SYS_FS_DriveSectorGet(APP_MOUNT_NAME, &totalSectors, &freeSectors);
+  res = SYS_FS_DriveSectorGet(APP_DIR_NAME, &totalSectors, &freeSectors);
   if(res == SYS_FS_RES_FAILURE)
   {
         //Sector information get operation failed.
@@ -1541,39 +1687,31 @@ SYS_STATUS OTA_Start(OTA_PARAMS *param) {
     strncpy(ota_params.serv_app_digest_string, param->serv_app_digest_string, 64);
     memcpy(ota_params.ota_server_url, param->ota_server_url, strlen(param->ota_server_url) + 1);
     ota_params.version = param->version;
+    
+#ifdef SYS_OTA_PATCH_ENABLE      
+    if(param->patch_request == true)
+    {
+        ota_params.patch_request = true;
+        ota_params.patch_base_version = param->patch_base_version;
+        strncpy(ota_params.serv_app_patch_digest_string, param->serv_app_patch_digest_string, 64);
+        strncpy(ota_params.serv_app_base_digest_string, param->serv_app_base_digest_string, 64);
+    }
 
+    if(param->patch_request == true)
+        ota.current_task = OTA_TASK_SEARCH_PATCH_BASEVERSION;
+    else
+        ota.current_task = OTA_TASK_DOWNLOAD_IMAGE;
+#else
     ota.current_task = OTA_TASK_DOWNLOAD_IMAGE;
+#endif
+    
     ota.status = SYS_STATUS_BUSY;
     ota.task.param.img_status = IMG_STATUS_DOWNLOADED;
     ota.task.param.pfm_status = IMG_STATUS_DISABLED;
     ota.task.param.abort = 0;
     return SYS_STATUS_READY;
 }
-//---------------------------------------------------------------------------
 
-SYS_STATUS OTA_Abort(void) {
-
-
-    /*************************implementation is not completed********************/
-    SYS_STATUS status;
-
-    do {
-        if (ota.current_task == OTA_TASK_ALLOCATE_SLOT
-                || ota.current_task == OTA_TASK_DOWNLOAD_IMAGE
-                || ota.current_task == OTA_TASK_VERIFY_IMAGE_DIGEST
-                || ota.current_task == OTA_TASK_SET_IMAGE_STATUS) {
-            ota.task.param.abort = 1;
-            status = SYS_STATUS_BUSY;
-            break;
-        }
-        // OTA was not kicked off or already completed.
-        status = SYS_STATUS_READY;
-    } while (0);
-
-
-
-    return status;
-}
 //---------------------------------------------------------------------------
 
 // *****************************************************************************
@@ -1701,7 +1839,7 @@ SYS_STATUS OTA_EraseImage(uint32_t version) {
 SYS_STATUS OTA_Task_EraseImage(uint32_t version) {
     selected_row = -1;
     imageDB = OTA_GetDBBuffer();
-    if (OTAGetDb(imageDB, APP_MOUNT_NAME"/image_database.csv") > 1) {
+    if (OTAGetDb(imageDB, APP_DIR_NAME"/image_database.csv") > 1) {
 #if (SERVICE_TYPE == OTA_DEBUG)
         SYS_CONSOLE_PRINT("SYS_OTA : DB load failed\r\n");
 #endif
@@ -1734,7 +1872,7 @@ SYS_STATUS OTA_Task_EraseImage(uint32_t version) {
         return SYS_STATUS_ERROR;
     }
 
-    OTASaveDb(imageDB, APP_MOUNT_NAME"/image_database.csv");
+    OTASaveDb(imageDB, APP_DIR_NAME"/image_database.csv");
     SYS_FS_RESULT res;
     res = SYS_FS_FileDirectoryRemove(image_name);
     if (res == SYS_FS_RES_FAILURE) {
@@ -1751,7 +1889,7 @@ SYS_STATUS OTA_Task_EraseImage(uint32_t version) {
  #if (SERVICE_TYPE == OTA_DEBUG)   
     csv_destroy_buffer((CSV_BUFFER *) imageDB);
     imageDB = OTA_GetDBBuffer();
-    if (OTAGetDb(imageDB, APP_MOUNT_NAME"/image_database.csv") > 1) {
+    if (OTAGetDb(imageDB, APP_DIR_NAME"/image_database.csv") > 1) {
         SYS_CONSOLE_PRINT("SYS_OTA : DB load failed\r\n");
     }
     size_t my_string_size = 30;
@@ -1775,6 +1913,67 @@ SYS_STATUS OTA_Task_EraseImage(uint32_t version) {
     return SYS_STATUS_READY;
 }
 
+// *****************************************************************************
+// *****************************************************************************
+// Section: Search for Patch Base image version in OTA DB, based on user input(Manifest information) 
+// *****************************************************************************
+// *****************************************************************************
+//---------------------------------------------------------------------------
+/*
+  SYS_STATUS OTA_Search_ImageVersion(uint32_t version)
+ 
+  Description:
+    Search for Patch Base image version in OTA DB, based on user input(Manifest information)  
+  
+  Task Parameters:
+    Base version of image 
+ 
+  Return:
+     A SYS_STATUS code describing the current status.
+ */
+//---------------------------------------------------------------------------
+#ifdef SYS_OTA_PATCH_ENABLE 
+SYS_STATUS OTA_Search_ImageVersion(uint32_t version,char *base_ver_digest) {
+    char source_file[500];
+    char image_digest[500];
+    char server_base_ver_digest[500];
+    int8_t selected_row = -1;
+    imageDB = OTA_GetDBBuffer();
+    if (OTAGetDb(imageDB, APP_DIR_NAME"/image_database.csv") > 1) {
+#if (SERVICE_TYPE == OTA_DEBUG)
+        SYS_CONSOLE_PRINT("SYS_OTA : DB load failed\r\n");
+#endif
+        return SYS_STATUS_ERROR;
+    }
+    selected_row = GetImageRow(version, imageDB);
+    
+    if (selected_row == -1) {
+#if (SERVICE_TYPE == OTA_DEBUG)
+        SYS_CONSOLE_PRINT("\n\nSYS_OTA : Image version is not found\n\n");
+#endif
+        return SYS_STATUS_ERROR;
+    }
+    GetFieldString(imageDB,OTA_IMAGE_NAME,selected_row,source_file);
+#if (SERVICE_TYPE == OTA_DEBUG)
+    SYS_CONSOLE_PRINT("\n\nSYS_OTA : selected_row : %d\r\n",selected_row);
+#endif
+    strcpy(server_base_ver_digest,base_ver_digest);
+    GetFieldString(imageDB,OTA_IMAGE_DIGEST,selected_row,image_digest);
+    SYS_CONSOLE_PRINT("\n\rimage_digest : %s\n\r",image_digest);
+    SYS_CONSOLE_PRINT("\n\rserver_base_ver_digest : %s\n\r",server_base_ver_digest);
+    if(strncmp(image_digest,server_base_ver_digest,64) != 0)
+        return SYS_STATUS_ERROR;
+    strcpy(patch_param.source_file,APP_DIR_NAME);
+    strcat(patch_param.source_file,"/");
+    strcat(patch_param.source_file,source_file);
+#if (SERVICE_TYPE == OTA_DEBUG)
+    SYS_CONSOLE_PRINT("\n\nSYS_OTA : patch base image : %s\r\n",patch_param.source_file);
+#endif
+    
+
+    return SYS_STATUS_READY;
+}
+#endif
 // *****************************************************************************
 // *****************************************************************************
 // Section: To check if OTA state is idel
@@ -1888,13 +2087,42 @@ void OTA_Tasks(void) {
             ota.ota_idle = false;
             ota.current_task = OTA_TASK_IDLE;
             if (ota.ota_result == OTA_RESULT_IMAGE_DOWNLOADED) {
+#ifdef SYS_OTA_PATCH_ENABLE                 
+                if(ota_params.patch_request == true){
+                    ota.current_task = OTA_TASK_VERIFY_PATCH_IMAGE_DIGEST;
+                    ota.task.state = OTA_TASK_INIT;
+                    
+                }else{
+                    ota.current_task = OTA_TASK_VERIFY_IMAGE_DIGEST;
+                    ota.task.state = OTA_TASK_INIT;
+                }
+#else
                 ota.current_task = OTA_TASK_VERIFY_IMAGE_DIGEST;
                 ota.task.state = OTA_TASK_INIT;
+#endif
             }
+            
+#ifdef SYS_OTA_PATCH_ENABLE               
+            if (ota.ota_result == OTA_RESULT_PATCH_IMAGE_DIGEST_VERIFY_SUCCESS) {
+                ota.current_task = OTA_TASK_PATCH_BUILD_IMAGE;
+                ota.task.state = OTA_TASK_INIT;
+            }
+#endif
             if (ota.ota_result == OTA_RESULT_IMAGE_DIGEST_VERIFY_SUCCESS) {
                 ota.current_task = OTA_TASK_DATABASE_ENTRY;
                 ota.task.state = OTA_TASK_INIT;
             }
+#ifdef SYS_OTA_PATCH_ENABLE               
+            if (ota.ota_result == OTA_RESULT_PATCH_EVENT_START){
+                ota.current_task = OTA_TASK_DOWNLOAD_IMAGE;
+                ota.task.state = OTA_TASK_INIT;
+            }
+            
+            if (ota.ota_result == OTA_RESULT_PATCH_EVENT_COMPLETED){
+                ota.current_task = OTA_TASK_VERIFY_IMAGE_DIGEST;
+                ota.task.state = OTA_TASK_INIT;
+            }
+#endif
             OTA_Task_UpdateUser();
             break;
         }
@@ -1924,6 +2152,25 @@ void OTA_Tasks(void) {
             break;
         }
 #endif
+        
+#ifdef SYS_OTA_PATCH_ENABLE        
+        case OTA_TASK_SEARCH_PATCH_BASEVERSION:
+        {
+            ota.ota_idle = false;
+#if (SERVICE_TYPE == OTA_DEBUG)
+            SYS_CONSOLE_MESSAGE("SYS OTA : OTA_TASK_SEARCH_PATCH_BASEVERSION\r\n");
+#endif
+            ota.status = OTA_Search_ImageVersion(ota_params.patch_base_version,ota_params.serv_app_base_digest_string);      
+            if (ota.status == SYS_STATUS_ERROR) {
+                ota.ota_result = OTA_RESULT_PATCH_BASEVERSION_NOTFOUND;
+                ota.current_task = OTA_TASK_UPDATE_USER;
+            } else {
+                ota.ota_result = OTA_RESULT_PATCH_EVENT_START;
+                ota.current_task = OTA_TASK_UPDATE_USER;
+            }
+            break;
+        }
+#endif        
         case OTA_TASK_DOWNLOAD_IMAGE:
         {
             ota.ota_idle = false;
@@ -1938,6 +2185,7 @@ void OTA_Tasks(void) {
                 ota.ota_result = OTA_RESULT_IMAGE_DOWNLOADED;
                 ota.current_task = OTA_TASK_UPDATE_USER;
                 ota.task.state = OTA_TASK_INIT;
+                
             }
 
             if (ota.status == SYS_STATUS_ERROR) {
@@ -1952,11 +2200,49 @@ void OTA_Tasks(void) {
 
             break;
         }
+        
+#ifdef SYS_OTA_PATCH_ENABLE        
+        case OTA_TASK_PATCH_BUILD_IMAGE:
+        {           
+            SYS_FS_FileClose(appFile.fileHandle1);
+            OTA_patch_build_image_path();
+            ota.status = OTA_ProcessPatch(&patch_param);
+            
+            SYS_FS_RESULT res;
+            /*Remove patch file*/
+            res = SYS_FS_FileDirectoryRemove(patch_param.patch_file);
+            if (res == SYS_FS_RES_FAILURE) {
+                SYS_CONSOLE_PRINT("SYS OTA : File remove operation failed\r\n");
+            } else {
+                    /*Do nothing File is removed successfully*/
+            }
+#if (SERVICE_TYPE == OTA_DEBUG)
+            SYS_CONSOLE_PRINT("SYS OTA : OTA_TASK_PATCH_BUILD_IMAGE\r\n");
+#endif
+            if (ota.status == SYS_STATUS_READY) {
+                appFile.fileHandle1 = SYS_FS_FileOpen(patch_param.target_file, (SYS_FS_FILE_OPEN_READ));
+    #if (SERVICE_TYPE == OTA_DEBUG)
+                SYS_CONSOLE_PRINT("appFile.fileHandle1 : %d , %s\n\r",appFile.fileHandle1,patch_param.target_file);
+    #endif
+                ota.ota_result = OTA_RESULT_PATCH_EVENT_COMPLETED;
+                ota.current_task = OTA_TASK_UPDATE_USER;
+                ota.task.state = OTA_TASK_INIT;
+            }
+            else if (ota.status == SYS_STATUS_ERROR) {
+                ota.ota_result = OTA_RESULT_PATCH_IMAGE_FAILED;
+                ota.current_task = OTA_TASK_UPDATE_USER;
+                ota.task.state = OTA_TASK_INIT;
+            }
+            break;
+        }
+#endif
         case OTA_TASK_VERIFY_IMAGE_DIGEST:
         {
             ota.ota_idle = false;
+#ifdef SYS_OTA_PATCH_ENABLE            
+            patch_verification = false;
+#endif
             ota.status = OTA_Task_VerifyImage();
-
             if (ota.status == SYS_STATUS_READY) {
 
 #if (SERVICE_TYPE == OTA_DEBUG)
@@ -1986,6 +2272,41 @@ void OTA_Tasks(void) {
             }
             break;
         }
+        
+#ifdef SYS_OTA_PATCH_ENABLE        
+        case OTA_TASK_VERIFY_PATCH_IMAGE_DIGEST:
+        {
+            ota.ota_idle = false;
+            patch_verification = true;
+            ota.status = OTA_Task_VerifyImage();
+            
+            if (ota.status == SYS_STATUS_READY) {
+#if (SERVICE_TYPE == OTA_DEBUG)
+                SYS_CONSOLE_PRINT("SYS OTA : Verified patch image\r\n");
+#endif
+                ota.ota_result = OTA_RESULT_PATCH_IMAGE_DIGEST_VERIFY_SUCCESS;
+                ota.current_task = OTA_TASK_UPDATE_USER;
+                ota.task.state = OTA_TASK_INIT;
+                
+            }
+            if (ota.status == SYS_STATUS_ERROR) {
+#if (SERVICE_TYPE == OTA_DEBUG)
+                SYS_CONSOLE_PRINT("SYS OTA : patch Image verification error\r\n");
+#endif
+                ota.ota_result = OTA_RESULT_PATCH_IMAGE_DIGEST_VERIFY_FAILED;
+                ota.current_task = OTA_TASK_UPDATE_USER;
+                SYS_FS_FileClose(appFile.fileHandle1);
+                SYS_FS_RESULT res;
+                res = SYS_FS_FileDirectoryRemove(image_name);
+                if (res == SYS_FS_RES_FAILURE) {
+                    SYS_CONSOLE_PRINT("SYS OTA : File remove operation failed\r\n");
+                } else {
+                    /*Do nothing File is removed successfully*/
+                }
+            }
+            break;
+        }
+#endif
         case OTA_TASK_DATABASE_ENTRY:
         {
             ota.ota_idle = false;

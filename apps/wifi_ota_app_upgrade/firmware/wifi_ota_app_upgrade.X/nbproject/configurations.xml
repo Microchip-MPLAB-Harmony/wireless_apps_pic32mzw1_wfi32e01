@@ -289,6 +289,9 @@
                 <logicalFolder name="f3" displayName="http_client" projectFiles="true">
                   <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/http_client/http_client.h</itemPath>
                 </logicalFolder>
+                <logicalFolder name="f4" displayName="patch" projectFiles="true">
+                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/patch/janpatch.h</itemPath>
+                </logicalFolder>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/downloader.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_image.h</itemPath>
@@ -296,6 +299,7 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/sha256.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_config.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_database_parser.h</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_patch.h</itemPath>
               </logicalFolder>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/sys_ota.h</itemPath>
             </logicalFolder>
@@ -706,6 +710,7 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/int_flash.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/sha256.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_database_parser.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_patch.c</itemPath>
               </logicalFolder>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/sys_ota.c</itemPath>
             </logicalFolder>
@@ -1497,8 +1502,6 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="10000000-100fffff"/>
         <property key="memories.rww" value="true"/>
-        <property key="programmerToGoFilePath"
-                  value="E:/ota_new_festeure/ota_version control/wifi_ota_app_upgrade/firmware/wifi_ota_app_upgrade.X/debug/pic32mz_w1_curiosity_freertos/wifi_ota_app_upgrade_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>

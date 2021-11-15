@@ -20,13 +20,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: null
-- generatedChecksum: 58FB0E73A2590605D12D14C70B5369DC
+- generatedChecksum: 2A7B75584FE64EFAA8C40C175D027DD8
   logicalPath: ''
   name: app_ota.c
   physicalPath: system/ota/framework/ota_app
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 58FB0E73A2590605D12D14C70B5369DC
+  userChecksum: 2A7B75584FE64EFAA8C40C175D027DD8
 - generatedChecksum: 928C0B9FF116D4D3994879848B3D46F8
   logicalPath: wolfcrypt
   name: arc4.c
@@ -720,20 +720,27 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 8FDD6248506F28B32C4F5FD9AA0D9C6F
-- generatedChecksum: 0D814BE67B6972942677A19E49975D04
+- generatedChecksum: FC9E5528B62E95E515AF85B37FAE7BF8
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
   name: ota.c
   physicalPath: system/ota/framework
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 0D814BE67B6972942677A19E49975D04
-- generatedChecksum: B12B5181C107344C53B87DCDE5BB0524
+  userChecksum: A502688D8EACF9A2CB317257024FB080
+- generatedChecksum: D80CFEAF51952AA3B46D49C574BD07E4
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
   name: ota_database_parser.c
   physicalPath: system/ota/framework
   security: NON_SECURE
   type: SOURCE
-  userChecksum: B12B5181C107344C53B87DCDE5BB0524
+  userChecksum: D80CFEAF51952AA3B46D49C574BD07E4
+- generatedChecksum: 7BA120C5AB38F6322AB602FAAE549224
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: ota_patch.c
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 7BA120C5AB38F6322AB602FAAE549224
 - generatedChecksum: 257FD8DA385CB8BD2ECBD68395BB7D76
   logicalPath: wolfcrypt/port
   name: pic32mz-crypt.c
@@ -1153,14 +1160,14 @@ files:
   physicalPath: system/net/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 977B0DEC1FC8475ADEADC9A438FC5A13
-- generatedChecksum: 22814FB95A7B36EF513BBF0239CCE9D1
+  userChecksum: 3143C060D9B46E47A51071FAA25288AC
+- generatedChecksum: 694D38BDBD0CDDDA13045AE8057A66AC
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota
   name: sys_ota.c
   physicalPath: system/ota
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 22814FB95A7B36EF513BBF0239CCE9D1
+  userChecksum: 694D38BDBD0CDDDA13045AE8057A66AC
 - generatedChecksum: 21B531192E183E11DCAD9BC1B63C6D66
   logicalPath: config/pic32mz_w1_curiosity_freertos/system
   name: sys_random_h2_adapter.c
@@ -1217,13 +1224,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 9A49A2339A0774ACCBC2178A9EE76586
-- generatedChecksum: D9461BEBD08A34B62709294D502D5382
+- generatedChecksum: BBE21888F43FD57AE9E5851C0F3ECD68
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: tasks.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: D9461BEBD08A34B62709294D502D5382
+  userChecksum: BBE21888F43FD57AE9E5851C0F3ECD68
 - generatedChecksum: 87C1B24DE55D66ED21AF304756588897
   logicalPath: config/pic32mz_w1_curiosity_freertos/library/tcpip/src
   name: tcp.c
@@ -1910,13 +1917,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 15AB6693CC2E1EE7AB845EE42A6AC762
-- generatedChecksum: B147A7D9C9E06D4C4B80FCE51F46A2DF
+- generatedChecksum: E3043F262279824BA93634EDFA5BF890
   logicalPath: config/pic32mz_w1_curiosity_freertos
   name: configuration.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9F83FC8372F21E5D38E0AFE4A28234DC
+  userChecksum: E3043F262279824BA93634EDFA5BF890
 - generatedChecksum: 66CDC9B1DAB0393100A835676816E8BF
   logicalPath: wolfcrypt
   name: cpuid.h
@@ -2470,13 +2477,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 2D3A9FC37968F5000CB45C6B4AD965D6
-- generatedChecksum: 4E1DC558E64EF7706189FC3224899E86
+- generatedChecksum: EAA70A6618017990D1F7479A458C5707
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/fs/fat_fs/file_system
   name: ffconf.h
   physicalPath: system/fs/fat_fs/file_system
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4E1DC558E64EF7706189FC3224899E86
+  userChecksum: EAA70A6618017990D1F7479A458C5707
 - generatedChecksum: 8016A8BEE5B269941D8362B249B001FC
   logicalPath: wolfcrypt
   name: fips_test.h
@@ -2764,6 +2771,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 061DE00A92364E78F280B2917ECE2F60
+- generatedChecksum: 3CAA5D3EBE928735FD54F5CC26A15D9F
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework/patch
+  name: janpatch.h
+  physicalPath: system/ota/framework/patch
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 3CAA5D3EBE928735FD54F5CC26A15D9F
 - generatedChecksum: F2C9FCDD2BC6947D734604AD47740798
   logicalPath: config/pic32mz_w1_curiosity_freertos/library/tcpip/src
   name: link_list.h
@@ -3016,13 +3030,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 9D6F205ECFDB2028C5CF766B52B5B7B2
-- generatedChecksum: AB95843EBCBAB066933EEEBFFD994819
+- generatedChecksum: 8781782A93AFF7E1AC5672EC9DF52660
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
   name: ota.h
   physicalPath: system/ota/framework
   security: NON_SECURE
   type: HEADER
-  userChecksum: AB95843EBCBAB066933EEEBFFD994819
+  userChecksum: 8781782A93AFF7E1AC5672EC9DF52660
 - generatedChecksum: 168C4E317B1E4387D1C1440677672A72
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
   name: ota_config.h
@@ -3030,13 +3044,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 168C4E317B1E4387D1C1440677672A72
-- generatedChecksum: E98042227498CFE1688314C94F3C22DD
+- generatedChecksum: 5518C74449A7424F0444D8ADF02DF748
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
   name: ota_database_parser.h
   physicalPath: system/ota/framework
   security: NON_SECURE
   type: HEADER
-  userChecksum: E98042227498CFE1688314C94F3C22DD
+  userChecksum: 5518C74449A7424F0444D8ADF02DF748
 - generatedChecksum: B8DC1E69ECEAEFA48265845A41AC7A4B
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
   name: ota_image.h
@@ -3044,6 +3058,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: B8DC1E69ECEAEFA48265845A41AC7A4B
+- generatedChecksum: 63DFC50BA6017769938438C73D130AC5
+  logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota/framework
+  name: ota_patch.h
+  physicalPath: system/ota/framework
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 63DFC50BA6017769938438C73D130AC5
 - generatedChecksum: F50BC9DA4605913EE5CE1322D54A5C67
   logicalPath: wolfcrypt/port
   name: pic32mz-crypt.h
@@ -3548,13 +3569,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: E41E937E520B7716FF4AE4CA7316C438
-- generatedChecksum: 9D367E2108F4180E69B491AFBE8DBD0A
+- generatedChecksum: FCF1605EC05DCED6893B523A6DA89116
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ota
   name: sys_ota.h
   physicalPath: system/ota
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9D367E2108F4180E69B491AFBE8DBD0A
+  userChecksum: FCF1605EC05DCED6893B523A6DA89116
 - generatedChecksum: 5D12C990BEEF029AF81885587A366CA5
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/ports
   name: sys_ports.h

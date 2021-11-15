@@ -121,6 +121,24 @@ void sys_ota_cb(uint32_t event, void * data, void *cookie) {
             SYS_CONSOLE_PRINT("SYS_OTA_ROLLBACK_FAILED\r\n");
             break;
         }
+        case SYS_OTA_PATCH_BASEVERSION_NOTFOUND:
+        {
+            /*Base image version for patching is not found in OTA DB . Developer can build their own custom logic*/
+            SYS_CONSOLE_PRINT("SYS_OTA_PATCH_BASEVERSION_NOTFOUND\r\n");
+            break;
+        }
+        case SYS_OTA_PATCH_EVENT_START:
+        {
+            /*Patch event initiated, now onwards all callback will be in patch event context. Developer can build their own custom logic*/
+            SYS_CONSOLE_PRINT("SYS_OTA_PATCH_EVENT_START\r\n");
+            break;
+        }
+        case SYS_OTA_PATCH_EVENT_COMPLETED:
+        {
+            /*Patch event completed. Developer can build their own custom logic*/
+            SYS_CONSOLE_PRINT("SYS_OTA_PATCH_EVENT_COMPLETED\r\n");
+            break;
+        }
         case SYS_OTA_DOWNLOAD_START:
         {
             /*OTA image download start . Developer can build their own custom logic*/
@@ -155,6 +173,24 @@ void sys_ota_cb(uint32_t event, void * data, void *cookie) {
         {
             /*OTA image digest verify failed . Developer can build their own custom logic*/
             SYS_CONSOLE_PRINT("SYS_OTA_IMAGE_VERIFICATION_FAILED\r\n");
+            break;
+        }
+        case SYS_OTA_PATCH_IMAGE_DIGEST_VERIFY_START:
+        {
+            /*Patch image digest verify start . Developer can build their own custom logic*/
+            SYS_CONSOLE_PRINT("SYS_OTA_PATCH_IMAGE_DIGEST_VERIFY_START\r\n");
+            break;
+        }
+        case SYS_OTA_PATCH_IMAGE_DIGEST_VERIFY_SUCCESS:
+        {
+            /*Patch OTA image digest verify success . Developer can build their own custom logic*/
+            SYS_CONSOLE_PRINT("SYS_OTA_PATCH_IMAGE_DIGEST_VERIFY_SUCCESS\r\n");
+            break;
+        }
+        case SYS_OTA_PATCH_IMAGE_DIGEST_VERIFY_FAILED:
+        {
+            /*Patch OTA image digest verify failed . Developer can build their own custom logic*/
+            SYS_CONSOLE_PRINT("SYS_OTA_PATCH_IMAGE_DIGEST_VERIFY_FAILED\r\n");
             break;
         }
         case SYS_OTA_DB_ENTRY_SUCCESS:

@@ -64,7 +64,7 @@ static void _SYS_OTA_Tasks(  void *pvParameters  )
     while(1)
     {
         SYS_OTA_Tasks();
-        vTaskDelay(10/ portTICK_PERIOD_MS);
+        vTaskDelay(1/ portTICK_PERIOD_MS);
     }
 }
 
@@ -150,7 +150,7 @@ void _SYS_FS_Tasks(  void *pvParameters  )
     while(1)
     {
         SYS_FS_Tasks();
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(1 / portTICK_PERIOD_MS);
     }
 }
 
