@@ -141,6 +141,7 @@ typedef enum
             
     /*Control message type for requesting a Wi-Fi driver handle */
     SYS_WIFI_GETDRVHANDLE,
+    
     /*Control message type for requesting a Assoc handle */
     SYS_WIFI_GETDRVASSOCHANDLE,
 

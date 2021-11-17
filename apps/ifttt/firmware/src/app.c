@@ -98,7 +98,7 @@ typedef struct {
     char server[32];
 
     //ifttt applet key
-    char key[64];
+    char key[128];
 
     //ifttt applet event
     char event[32];
@@ -107,16 +107,16 @@ typedef struct {
     int numOfValues;
 
     //ifttt value1
-    char value1[8];
+    char value1[12];
 
     //ifttt value2
-    char value2[8];
+    char value2[12];
 
     //ifttt value3
-    char value3[8];
+    char value3[12];
 
     //ifttt trigger
-    char trigger[128];
+    char trigger[256];
 
     //user callback
     userCallback userCb;
@@ -167,7 +167,7 @@ void
 APP_IFTTT_SendTrigger(void)
 {
     char networkBuffer[512];
-    char finalTrigger[256];
+    char finalTrigger[300];
     int numOfValues = APP_IFTTT_NUM_OF_VALUES;
 
     memset(finalTrigger, 0, sizeof (finalTrigger));
