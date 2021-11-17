@@ -11,5 +11,14 @@ children:
       children:
       - type: User
         attributes: {value: '3'}
+  - type: Menu
+    attributes: {id: WSS_RTOS}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
 - type: ElementPosition
   attributes: {x: '127', y: '107', id: sysWssPic32mzw1}

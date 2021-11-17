@@ -154,7 +154,7 @@ extern "C"
   Remarks:
     None.
  */
-#define SYS_NET_MAX_NUM_OF_SOCKETS     2			// umber of Instances Supported by the NET System Service
+#define SYS_NET_MAX_NUM_OF_SOCKETS     SYS_NET_SUPP_NUM_OF_SOCKS			// umber of Instances Supported by the NET System Service
 
 // *****************************************************************************
 /* SYS_NET_DEFAULT_TLS_ENABLE
@@ -346,6 +346,9 @@ typedef enum
 
     // Received only in Connected State - Lower Layer Up
     SYS_NET_EVNT_LL_INTF_UP,
+
+    // TCP Server is awaiting connection
+    SYS_NET_EVNT_SERVER_AWAITING_CONNECTION,
 } SYS_NET_EVENT;
 
 // *****************************************************************************

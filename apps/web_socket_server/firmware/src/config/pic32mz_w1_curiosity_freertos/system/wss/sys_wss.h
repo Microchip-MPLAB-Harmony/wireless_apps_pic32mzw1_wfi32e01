@@ -399,7 +399,7 @@ extern "C" {
         bool upgradeWebSocket;   //If upgrade websocket field specified in the client handshake
         bool origin;            //If origin field specified in the client handshake
         bool connectionUpgrade; //If upgrade field present in the client handshake
-        bool connectionClose;  // Persistent connection support based on the HTTP version
+        bool iskey;             //If websocket key is present in the client handshake
         char clientKey[SYS_WSS_CLIENT_KEY_SIZE + 1]; //Client key
         char serverKey[SYS_WSS_SERVER_KEY_SIZE + 1]; // Server key
     } SYS_WSS_HANDSHAKE_CTXT;

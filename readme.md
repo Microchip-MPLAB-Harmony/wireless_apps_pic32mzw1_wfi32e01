@@ -56,6 +56,7 @@ The following applications are provided to demonstrate the typical or interestin
 |[Wi-Fi STA (service mode)](apps/wifi_sta/readme.md)|WiFi STA service mode example|
 |[Wi-Fi touch demo](apps/wifi_touch_demo/readme.md)|Wi-Fi + CVD based touch demo|
 |[IFTTT demo](apps/ifttt/readme.md)|IFTTT example application|
+|[Web Socket Server demo](apps/web_socket_server/readme.md)|Web Socket Server demo|
 
 
 

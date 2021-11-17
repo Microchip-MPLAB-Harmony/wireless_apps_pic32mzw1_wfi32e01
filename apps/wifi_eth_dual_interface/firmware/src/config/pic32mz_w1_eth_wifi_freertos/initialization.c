@@ -138,6 +138,10 @@
 #pragma config SOSCEN =    OFF
 
 
+/*** FCPN0 ***/
+#pragma config CP =    OFF
+
+
 
 
 // *****************************************************************************
@@ -145,13 +149,16 @@
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+/* Forward declaration of MAC initialization data */
+const TCPIP_MODULE_MAC_PIC32INT_CONFIG tcpipMACPIC32INTInitData;
 
 
-/* MIIM Driver Configuration */
-static const DRV_MIIM_INIT drvMiimInitData =
-{
-    .ethphyId = DRV_MIIM_ETH_MODULE_ID,
-};
+/* Forward declaration of MIIM initialization data */
+static const DRV_MIIM_INIT drvMiimInitData;
+
+
+/* Forward declaration of PHY initialization data */
+const DRV_ETHPHY_INIT tcpipPhyInitData_LAN8740;
 
 static CRYPT_RNG_CTX wdrvRngCtx;
 static const WDRV_PIC32MZW_SYS_INIT wdrvPIC32MZW1InitData = {
@@ -183,6 +190,25 @@ static const DRV_BA414E_INIT_DATA ba414eInitData =
 };
   
  
+
+/*** ETH MAC Initialization Data ***/
+const TCPIP_MODULE_MAC_PIC32INT_CONFIG tcpipMACPIC32INTInitData =
+{ 
+    .nTxDescriptors         = TCPIP_EMAC_TX_DESCRIPTORS,
+    .rxBuffSize             = TCPIP_EMAC_RX_BUFF_SIZE,
+    .nRxDescriptors         = TCPIP_EMAC_RX_DESCRIPTORS,
+    .nRxDedicatedBuffers    = TCPIP_EMAC_RX_DEDICATED_BUFFERS,
+    .nRxInitBuffers         = TCPIP_EMAC_RX_INIT_BUFFERS,
+    .rxLowThreshold         = TCPIP_EMAC_RX_LOW_THRESHOLD,
+    .rxLowFill              = TCPIP_EMAC_RX_LOW_FILL,
+    .linkInitDelay          = TCPIP_INTMAC_PHY_LINK_INIT_DELAY,
+    .ethFlags               = TCPIP_EMAC_ETH_OPEN_FLAGS,
+    .ethModuleId            = TCPIP_INTMAC_MODULE_ID,
+    .pPhyBase               = &DRV_ETHPHY_OBJECT_BASE_Default,
+    .pPhyInit               = &tcpipPhyInitData_LAN8740,
+};
+
+
 
 
 // <editor-fold defaultstate="collapsed" desc="TCP/IP Stack Initialization Data">
@@ -251,44 +277,6 @@ const TCPIP_ICMP_MODULE_CONFIG tcpipICMPInitData =
 
 
 
-/*** ETH PHY Initialization Data ***/
-
-
-
-const DRV_ETHPHY_INIT tcpipPhyInitData =
-{    
-    .ethphyId               = TCPIP_INTMAC_MODULE_ID,
-    .phyAddress             = TCPIP_INTMAC_PHY_ADDRESS,
-    .phyFlags               = TCPIP_INTMAC_PHY_CONFIG_FLAGS,
-    .pPhyObject             = &DRV_ETHPHY_OBJECT_SMSC_LAN8740,
-    .resetFunction          = 0,
-    .pMiimObject            = &DRV_MIIM_OBJECT_BASE_Default,
-    .pMiimInit              = &drvMiimInitData,
-    .miimIndex              = DRV_MIIM_DRIVER_INDEX,
-
-};
-
-/*** ETH MAC Initialization Data ***/
-const TCPIP_MODULE_MAC_PIC32INT_CONFIG tcpipMACPIC32INTInitData =
-{ 
-    .nTxDescriptors         = TCPIP_EMAC_TX_DESCRIPTORS,
-    .rxBuffSize             = TCPIP_EMAC_RX_BUFF_SIZE,
-    .nRxDescriptors         = TCPIP_EMAC_RX_DESCRIPTORS,
-    .nRxDedicatedBuffers    = TCPIP_EMAC_RX_DEDICATED_BUFFERS,
-    .nRxInitBuffers         = TCPIP_EMAC_RX_INIT_BUFFERS,
-    .rxLowThreshold         = TCPIP_EMAC_RX_LOW_THRESHOLD,
-    .rxLowFill              = TCPIP_EMAC_RX_LOW_FILL,
-    .linkInitDelay          = TCPIP_INTMAC_PHY_LINK_INIT_DELAY,
-    .ethFlags               = TCPIP_EMAC_ETH_OPEN_FLAGS,
-    .ethModuleId            = TCPIP_INTMAC_MODULE_ID,
-    .pPhyBase               = &DRV_ETHPHY_OBJECT_BASE_Default,
-    .pPhyInit               = &tcpipPhyInitData,
-};
-
-
-
-
-
 
 
 
@@ -297,6 +285,7 @@ TCPIP_DHCPS_ADDRESS_CONFIG DHCP_POOL_CONFIG[]=
 {
     {
         .interfaceIndex     = TCPIP_DHCP_SERVER_INTERFACE_INDEX_IDX0,
+		.poolIndex          = TCPIP_DHCP_SERVER_POOL_INDEX_IDX0,
         .serverIPAddress    = TCPIP_DHCPS_DEFAULT_SERVER_IP_ADDRESS_IDX0,
         .startIPAddRange    = TCPIP_DHCPS_DEFAULT_IP_ADDRESS_RANGE_START_IDX0,
         .ipMaskAddress      = TCPIP_DHCPS_DEFAULT_SERVER_NETMASK_ADDRESS_IDX0,
@@ -309,6 +298,7 @@ const TCPIP_DHCPS_MODULE_CONFIG tcpipDHCPSInitData =
 {
     .enabled            = true,
     .deleteOldLease     = TCPIP_DHCP_SERVER_DELETE_OLD_ENTRIES,
+	.dhcpServerCnt		= TCPIP_DHCPS_MAX_NUMBER_INSTANCES,
     .leaseEntries       = TCPIP_DHCPS_LEASE_ENTRIES_DEFAULT,
     .entrySolvedTmo     = TCPIP_DHCPS_LEASE_SOLVED_ENTRY_TMO,
     .dhcpServer         = (TCPIP_DHCPS_ADDRESS_CONFIG*)DHCP_POOL_CONFIG,
@@ -453,6 +443,29 @@ SYS_MODULE_OBJ TCPIP_STACK_Init(void)
 }
 // </editor-fold>
 
+/* MIIM Driver Configuration */
+static const DRV_MIIM_INIT drvMiimInitData =
+{
+	.ethphyId = DRV_MIIM_ETH_MODULE_ID,
+};
+
+
+    
+    
+
+/*** ETH PHY Initialization Data ***/
+const DRV_ETHPHY_INIT tcpipPhyInitData_LAN8740 =
+{    
+    .ethphyId               = TCPIP_INTMAC_MODULE_ID,
+    .phyAddress             = TCPIP_INTMAC_PHY_ADDRESS,
+    .phyFlags               = TCPIP_INTMAC_PHY_CONFIG_FLAGS,
+    .pPhyObject             = &DRV_ETHPHY_OBJECT_LAN8740,
+    .resetFunction          = 0,
+    .pMiimObject            = &DRV_MIIM_OBJECT_BASE_Default,
+    .pMiimInit              = &drvMiimInitData,
+    .miimIndex              = DRV_MIIM_DRIVER_INDEX,
+};
+
 
 
 // *****************************************************************************
@@ -579,8 +592,8 @@ void SYS_Initialize ( void* data )
 
 
   
-    CLK_Initialize();
-	SYS_PMU_MLDO_TRIM();
+    PMU_Initialize();
+	CLK_Initialize();
 
     /* Configure Wait States */
     PRECONbits.PFMWS = 5;
@@ -622,9 +635,9 @@ void SYS_Initialize ( void* data )
     sysObj.ba414e = DRV_BA414E_Initialize(0, (SYS_MODULE_INIT*)&ba414eInitData);
 
 
-    /* TCPIP Stack Initialization */
-    sysObj.tcpip = TCPIP_STACK_Init();
-    SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
+/* TCPIP Stack Initialization */
+sysObj.tcpip = TCPIP_STACK_Init();
+SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
 
 
     CRYPT_WCCB_Initialize();

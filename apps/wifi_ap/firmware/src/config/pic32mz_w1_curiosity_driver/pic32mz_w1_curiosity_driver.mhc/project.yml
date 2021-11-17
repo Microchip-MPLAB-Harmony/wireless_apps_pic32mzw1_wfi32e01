@@ -27,13 +27,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 928C0B9FF116D4D3994879848B3D46F8
-- generatedChecksum: 296C1553168144A2F636B616C80C5472
+- generatedChecksum: DB27CC7BEBE332059EE229D6F933E7B6
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: arp.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 296C1553168144A2F636B616C80C5472
+  userChecksum: DB27CC7BEBE332059EE229D6F933E7B6
 - generatedChecksum: 401D3E9C340CBD65F24003D4197C3A54
   logicalPath: wolfcrypt
   name: asm.c
@@ -307,20 +307,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 211722118EDD4698FE10D65C9B352A26
-- generatedChecksum: C6CB8C6893C38EA34EEED52155373362
+- generatedChecksum: 2E8B98E39992C1D42DF8E80A7434CD72
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: dhcps.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: C6CB8C6893C38EA34EEED52155373362
-- generatedChecksum: AE84DCDFFF8163C1C783B51DBDB02503
+  userChecksum: 2E8B98E39992C1D42DF8E80A7434CD72
+- generatedChecksum: 47635753828B814A05048B66B1AF534B
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: dns.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: AE84DCDFFF8163C1C783B51DBDB02503
+  userChecksum: 47635753828B814A05048B66B1AF534B
 - generatedChecksum: FBF53FFC458037E3BD44D4F66DBDED56
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1
   name: drv_pic32mzw1_crypto.c
@@ -447,13 +447,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 9A555048379522BACA8216BFA898FC4A
-- generatedChecksum: F47C9E7119EA3074588F2531D1800801
+- generatedChecksum: 10E0F557204916FC4EBA9DEB6F35095F
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src/common
   name: helpers.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: F47C9E7119EA3074588F2531D1800801
+  userChecksum: 10E0F557204916FC4EBA9DEB6F35095F
 - generatedChecksum: EF20A104939F627E3C0AE7DC97963334
   logicalPath: wolfcrypt
   name: hmac.c
@@ -461,13 +461,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: EF20A104939F627E3C0AE7DC97963334
-- generatedChecksum: 2AAEA12E884DD3B07F94C6AE7FEAACEA
+- generatedChecksum: B1136FF8AC09787EF20F04CC1F9F1678
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: icmp.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 2AAEA12E884DD3B07F94C6AE7FEAACEA
+  userChecksum: B1136FF8AC09787EF20F04CC1F9F1678
 - generatedChecksum: 62951755A45BA873C9775C77F461A8DF
   logicalPath: wolfcrypt
   name: idea.c
@@ -475,13 +475,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 62951755A45BA873C9775C77F461A8DF
-- generatedChecksum: 71D82845F1D6817A5C674ECC8C56425E
+- generatedChecksum: EFB56600D6D68972D019AADA66BF90AC
   logicalPath: config/pic32mz_w1_curiosity_driver
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 71D82845F1D6817A5C674ECC8C56425E
+  userChecksum: EFB56600D6D68972D019AADA66BF90AC
 - generatedChecksum: 479A727027F5AD9CBBDC717FD86D8B5E
   logicalPath: wolfcrypt
   name: integer.c
@@ -510,13 +510,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: C4562A27983E222E942F8C6A72E7B80C
-- generatedChecksum: A40F0AFC67E19C6D4E8DEA7BB26DFD9E
+- generatedChecksum: 083BF1AC46285D9800AD528C6BBC5750
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: ipv4.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: A40F0AFC67E19C6D4E8DEA7BB26DFD9E
+  userChecksum: 083BF1AC46285D9800AD528C6BBC5750
 - generatedChecksum: CBAF0F878E6CDF39AA78EC88E8AE5410
   logicalPath: wolfssl
   name: keys.c
@@ -566,13 +566,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 52F75EAFA4A39D3765C80411D22A10D4
-- generatedChecksum: 417DA77DBD58024F50AC993F8D468570
+- generatedChecksum: 38E04B82DD4C8CCB7E85D66976CE7071
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: oahash.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 417DA77DBD58024F50AC993F8D468570
+  userChecksum: 38E04B82DD4C8CCB7E85D66976CE7071
 - generatedChecksum: 6694E3C4C6D7826F9546713775119B84
   logicalPath: wolfssl
   name: ocsp.c
@@ -580,7 +580,7 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 6694E3C4C6D7826F9546713775119B84
-- generatedChecksum: 251FC22A8A3373859C11B253505E43E9
+- generatedChecksum: 257FD8DA385CB8BD2ECBD68395BB7D76
   logicalPath: wolfcrypt/port
   name: pic32mz-crypt.c
   physicalPath: ../../third_party/wolfssl/wolfssl/wolfcrypt/src/port/pic32
@@ -601,13 +601,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 1D0C683A87116C624525DFB733425B7D
-- generatedChecksum: 4254E1A8E44FF03692F6FC2AFDADB635
+- generatedChecksum: 885190EA0A9643759ED5A506314BDBAC
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/clk
   name: plib_clk.c
   physicalPath: peripheral/clk
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 4254E1A8E44FF03692F6FC2AFDADB635
+  userChecksum: 885190EA0A9643759ED5A506314BDBAC
 - generatedChecksum: 2FEFEA0D4E94F5A5F3D76BAEC3D602E5
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/coretimer
   name: plib_coretimer.c
@@ -650,6 +650,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 3A8085264EC615D280B577EF5F3F4AE5
+- generatedChecksum: 290251D6FF0845DC4259E0EF74DCB657
+  logicalPath: config/pic32mz_w1_curiosity_driver
+  name: pmu_init.c
+  physicalPath: ''
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 290251D6FF0845DC4259E0EF74DCB657
 - generatedChecksum: BE4CB7367E5A5B3DDA671207F469CA45
   logicalPath: wolfcrypt
   name: poly1305.c
@@ -825,13 +832,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: EBDCB29A49EBD9C1AF7BD6FA0178E954
-- generatedChecksum: B272B2EB06FC4376B9EEB88671E27D74
+- generatedChecksum: 844B5535563F8399C03E2105085D14EB
   logicalPath: config/pic32mz_w1_curiosity_driver/system/command
   name: sys_command.c
   physicalPath: system/command/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: B272B2EB06FC4376B9EEB88671E27D74
+  userChecksum: 844B5535563F8399C03E2105085D14EB
 - generatedChecksum: 20C22A19D5DC74DEBFC4CCCA83B6F603
   logicalPath: config/pic32mz_w1_curiosity_driver/system/console
   name: sys_console.c
@@ -916,13 +923,6 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: F849420C740D2B32346B4B4D9F46C136
-- generatedChecksum: 9A49A2339A0774ACCBC2178A9EE76586
-  logicalPath: config/pic32mz_w1_curiosity_driver
-  name: system_pmu_mldo_trim.c
-  physicalPath: ''
-  security: NON_SECURE
-  type: SOURCE
-  userChecksum: 9A49A2339A0774ACCBC2178A9EE76586
 - generatedChecksum: 4B879A46666C6B65373DC6D989E8849C
   logicalPath: config/pic32mz_w1_curiosity_driver
   name: tasks.c
@@ -930,20 +930,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 4B879A46666C6B65373DC6D989E8849C
-- generatedChecksum: 87C1B24DE55D66ED21AF304756588897
+- generatedChecksum: B8810AC22D73CE43E5661105B6D3C8EB
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcp.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 87C1B24DE55D66ED21AF304756588897
-- generatedChecksum: 9C582CD50826BA6B41D456A04C26D0B1
+  userChecksum: B8810AC22D73CE43E5661105B6D3C8EB
+- generatedChecksum: 56CC52ADDAD81C9B99CE68AA8CBF8749
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_commands.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 9C582CD50826BA6B41D456A04C26D0B1
+  userChecksum: 56CC52ADDAD81C9B99CE68AA8CBF8749
 - generatedChecksum: 0911DB28A8AA8D2EDEC039BD1BA1CED1
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_heap_alloc.c
@@ -965,20 +965,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 41E9DA13FC2CC263ACF1F2373500E7F4
-- generatedChecksum: 6AA21E1761439974EC4DD7A49D480BF5
+- generatedChecksum: 874F75411FA9C7408FC45C666503F518
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_helpers.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 6AA21E1761439974EC4DD7A49D480BF5
-- generatedChecksum: 7F61E622C3094CF0386268DFB4C829BF
+  userChecksum: 874F75411FA9C7408FC45C666503F518
+- generatedChecksum: 62D4E18C45A36ED0C64EBCE28874D10D
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_manager.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 7F61E622C3094CF0386268DFB4C829BF
+  userChecksum: 62D4E18C45A36ED0C64EBCE28874D10D
 - generatedChecksum: 5A25A79EFC070534190D40826D08046B
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_notify.c
@@ -986,13 +986,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 5A25A79EFC070534190D40826D08046B
-- generatedChecksum: D4FC3460FFCC726F3A663E70B0062C3E
+- generatedChecksum: 1B541BCAB76578E4E5ED23B2DB34D608
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_packet.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: D4FC3460FFCC726F3A663E70B0062C3E
+  userChecksum: 1B541BCAB76578E4E5ED23B2DB34D608
 - generatedChecksum: 7456AECE16D5C2AB16D083034728BDD0
   logicalPath: wolfcrypt
   name: tfm.c
@@ -1014,13 +1014,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 3540F78A9086FE2C48E475CC87580A0D
-- generatedChecksum: 2C2FA7E7403519DE845E674E86A776CC
+- generatedChecksum: BFBA4BFB6A144D47EBE4D6F3D59B3A9F
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: udp.c
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 2C2FA7E7403519DE845E674E86A776CC
+  userChecksum: BFBA4BFB6A144D47EBE4D6F3D59B3A9F
 - generatedChecksum: 589F903BB9E8BC49A0D781032EBFA915
   logicalPath: wolfcrypt
   name: wc_dsp.c
@@ -1049,13 +1049,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: F1955CEEEEFDA0A4DAAB50BBB0E6DC60
-- generatedChecksum: 017A6ED6D373CF1314EA176B51A1ECB8
+- generatedChecksum: CE786CFA4D2675F116B70FFC45C8C05C
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1
   name: wdrv_pic32mzw.c
   physicalPath: driver/wifi/pic32mzw1
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 017A6ED6D373CF1314EA176B51A1ECB8
+  userChecksum: CE786CFA4D2675F116B70FFC45C8C05C
 - generatedChecksum: 5C2A427D83E5CCA5D980D9FEC6D02E5D
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1
   name: wdrv_pic32mzw_assoc.c
@@ -1091,6 +1091,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: AD0C80A98DDE953B1EE944053106F00D
+- generatedChecksum: B60AB572D9C87A15CD157590DD0539DB
+  logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1
+  name: wdrv_pic32mzw_custie.c
+  physicalPath: driver/wifi/pic32mzw1
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: B60AB572D9C87A15CD157590DD0539DB
 - generatedChecksum: F77B6BFF992F5CD75D3B2644173ABC49
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1
   name: wdrv_pic32mzw_int.c
@@ -1112,13 +1119,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 43B5981117B70DF6811763F381D74BA2
-- generatedChecksum: D8FFF43C16932F3DB5EF6FA4C46FADB4
+- generatedChecksum: 606A22D5DD232CCE4D08A9938426F7BF
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1
   name: wdrv_pic32mzw_softap.c
   physicalPath: driver/wifi/pic32mzw1
   security: NON_SECURE
   type: SOURCE
-  userChecksum: B24D3957D3EA41FD44E02373FCDE25FE
+  userChecksum: 606A22D5DD232CCE4D08A9938426F7BF
 - generatedChecksum: 4DF46D44AEC32DB0BA3B78B64F975C4A
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1
   name: wdrv_pic32mzw_sta.c
@@ -1441,13 +1448,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: F18EBACF5A587D5E164EFFDFADEC07AE
-- generatedChecksum: 98728009D49AEDEBECC28140AF59DB54
+- generatedChecksum: 46B5526438A89806D96BF165338101C1
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: arp.h
   physicalPath: library/tcpip
   security: NON_SECURE
   type: HEADER
-  userChecksum: 98728009D49AEDEBECC28140AF59DB54
+  userChecksum: 46B5526438A89806D96BF165338101C1
 - generatedChecksum: 07F35B7ECD80D544D58903ABE1F64F86
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: arp_manager.h
@@ -1455,13 +1462,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 07F35B7ECD80D544D58903ABE1F64F86
-- generatedChecksum: 95E6C92780ECEF554D27B0C15E3ADF3B
+- generatedChecksum: D0C763149DFEA26198F5F598DD308663
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: arp_private.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: 95E6C92780ECEF554D27B0C15E3ADF3B
+  userChecksum: D0C763149DFEA26198F5F598DD308663
 - generatedChecksum: 53AD660A5E0B2834C105637C495C71AF
   logicalPath: wolfcrypt
   name: asn.h
@@ -1476,20 +1483,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 3DE5BE06F587E5BB1F331E2EDF5B350B
-- generatedChecksum: 4D5B02D44EF03BD1C8E8B1D40392CBFD
+- generatedChecksum: 135BC6BCC6E6BB5B47D0D3D1477113DA
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: berkeley_api.h
   physicalPath: library/tcpip
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4D5B02D44EF03BD1C8E8B1D40392CBFD
-- generatedChecksum: D24505F81C0F11274D502E0135E16982
+  userChecksum: 135BC6BCC6E6BB5B47D0D3D1477113DA
+- generatedChecksum: 7774A96BC3229FF92454D22B75D94FA3
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: berkeley_manager.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: D24505F81C0F11274D502E0135E16982
+  userChecksum: 7774A96BC3229FF92454D22B75D94FA3
 - generatedChecksum: 1A67F67E9EC3D162A8128ACD5B9A2523
   logicalPath: wolfcrypt
   name: blake2-impl.h
@@ -1581,13 +1588,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 15AB6693CC2E1EE7AB845EE42A6AC762
-- generatedChecksum: 4AE24DA2F0AF697F111B013C1ED70341
+- generatedChecksum: 8EDF8042ABAF59D85BE2CD63A8FCE743
   logicalPath: config/pic32mz_w1_curiosity_driver
   name: configuration.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4AE24DA2F0AF697F111B013C1ED70341
+  userChecksum: 8EDF8042ABAF59D85BE2CD63A8FCE743
 - generatedChecksum: 66CDC9B1DAB0393100A835676816E8BF
   logicalPath: wolfcrypt
   name: cpuid.h
@@ -1854,13 +1861,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: AB99E6635C9C3A2E448487057AB59432
-- generatedChecksum: BF0A01B5943F9E5AAE23E5CBF99D2DFB
+- generatedChecksum: E1D8C77E0B7F57C8A5F614C38EBA5EB1
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: dhcps.h
   physicalPath: library/tcpip
   security: NON_SECURE
   type: HEADER
-  userChecksum: BF0A01B5943F9E5AAE23E5CBF99D2DFB
+  userChecksum: E1D8C77E0B7F57C8A5F614C38EBA5EB1
 - generatedChecksum: E4B4C8DE8FA457275D1BB5F0200142E7
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: dhcps_manager.h
@@ -1868,13 +1875,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: E4B4C8DE8FA457275D1BB5F0200142E7
-- generatedChecksum: 825A2C0B9CFEA1C03AA7B7177F74F0BB
+- generatedChecksum: 6F3792EACF9CEA5B0CD4A4AF9D1D02D7
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: dhcps_private.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: 825A2C0B9CFEA1C03AA7B7177F74F0BB
+  userChecksum: 6F3792EACF9CEA5B0CD4A4AF9D1D02D7
 - generatedChecksum: 00F1A25D4FAE40690DED25BCAD3A935F
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: dhcpv6.h
@@ -1952,13 +1959,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: CC7DFCC51CD25171A3E400E18969354F
-- generatedChecksum: E176579009BB7DFABB267ABC3551E5FE
+- generatedChecksum: 2F179FF9CCD93B68A7C23A2768F96AD6
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
   name: drv_pic32mzw1.h
   physicalPath: driver/wifi/pic32mzw1/include
   security: NON_SECURE
   type: HEADER
-  userChecksum: E176579009BB7DFABB267ABC3551E5FE
+  userChecksum: 2F179FF9CCD93B68A7C23A2768F96AD6
 - generatedChecksum: DDD131AAE2C978645E64A718960A8B77
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
   name: drv_pic32mzw1_crypto.h
@@ -2183,13 +2190,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: C4D437BDABCF208DD607105E4EDDE9E3
-- generatedChecksum: D98AB89DE2B9050DC7ED19B6611C3091
+- generatedChecksum: 1440F95D128CE7918C74E46AC16A42E3
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: icmpv6_manager.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: D98AB89DE2B9050DC7ED19B6611C3091
+  userChecksum: 1440F95D128CE7918C74E46AC16A42E3
 - generatedChecksum: 16B92289AA9606720627C1461F3B7FBD
   logicalPath: wolfcrypt
   name: idea.h
@@ -2211,13 +2218,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 25C07C460FA1705F6B3CDE09928E1D3C
-- generatedChecksum: 325F6720BE02981E762B093B7405AB23
+- generatedChecksum: E483D94FDF38E11A37653D16DCF2261A
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: igmp_private.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: 325F6720BE02981E762B093B7405AB23
+  userChecksum: E483D94FDF38E11A37653D16DCF2261A
 - generatedChecksum: C492FEAFD776B304917664DD0F4F8C11
   logicalPath: wolfcrypt
   name: integer.h
@@ -2253,13 +2260,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 4D85CCC6B81B358A4BBA15FFDB03BD23
-- generatedChecksum: 4AF5AFEB8DD29C37B7F92636F3F7109E
+- generatedChecksum: 27E94F52D3AE95A9A4F5A71E78D246F4
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: ipv4.h
   physicalPath: library/tcpip
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4AF5AFEB8DD29C37B7F92636F3F7109E
+  userChecksum: 27E94F52D3AE95A9A4F5A71E78D246F4
 - generatedChecksum: CD30466652A3555A714C4366A01ADCA4
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: ipv4_manager.h
@@ -2267,20 +2274,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: CD30466652A3555A714C4366A01ADCA4
-- generatedChecksum: FF5AF83CBBAE19018842FF9269D4B6D4
+- generatedChecksum: 6AA4A9FE7C4B54249D77C0A84C75A1B8
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: ipv4_private.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: FF5AF83CBBAE19018842FF9269D4B6D4
-- generatedChecksum: 60F0C9CE1871A3B85F04CE67BA983C26
+  userChecksum: 6AA4A9FE7C4B54249D77C0A84C75A1B8
+- generatedChecksum: 882FE98ABC43412C37B5C5B942696054
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: ipv6.h
   physicalPath: library/tcpip
   security: NON_SECURE
   type: HEADER
-  userChecksum: 60F0C9CE1871A3B85F04CE67BA983C26
+  userChecksum: 882FE98ABC43412C37B5C5B942696054
 - generatedChecksum: 5A8BAED78CF961169B211E15AE4C94FC
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: ipv6_manager.h
@@ -2323,13 +2330,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 3BB97AA63C2C749A8E0E0CCB71069EE5
-- generatedChecksum: A7A8FCDA6746F7EEC2CAFD8F9AAC56CC
+- generatedChecksum: 38843E3789FC642552BCA71C39116136
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: lldp_tlv.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: A7A8FCDA6746F7EEC2CAFD8F9AAC56CC
+  userChecksum: 38843E3789FC642552BCA71C39116136
 - generatedChecksum: 2348BF7387F890D25AAB0E4B4F107215
   logicalPath: wolfcrypt
   name: logging.h
@@ -2414,13 +2421,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: E81B3F9FF5B79705C997CC58E4FEB816
-- generatedChecksum: C02DED9E2EE5944C74BE6FBE2097D7A9
+- generatedChecksum: 21FB337F6D1F4C064D3603A92A88E3DE
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: ndp_manager.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: C02DED9E2EE5944C74BE6FBE2097D7A9
+  userChecksum: 21FB337F6D1F4C064D3603A92A88E3DE
 - generatedChecksum: 6E73DB6B8412D0A3D6A5948633037D9B
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: ndp_private.h
@@ -2512,13 +2519,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 2E757CB67732FBEE91D6E85E70DDF36E
-- generatedChecksum: 9238A3759A2C6748FE493370DE35B5E0
+- generatedChecksum: F4C7B8A950B1D12FF6EC959D0A996B5B
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/clk
   name: plib_clk.h
   physicalPath: peripheral/clk
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9238A3759A2C6748FE493370DE35B5E0
+  userChecksum: F4C7B8A950B1D12FF6EC959D0A996B5B
 - generatedChecksum: 49EF1C56EBDEE25C8E46F029F020AB21
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/coretimer
   name: plib_coretimer.h
@@ -2533,13 +2540,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 2B5072810107E051495C4B6379DEDA4E
-- generatedChecksum: 3C52CEA231878411E3950ADD556AF20C
+- generatedChecksum: BFA90471A89ED563A27D8E3D12373D5E
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/gpio
   name: plib_gpio.h
   physicalPath: peripheral/gpio
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3C52CEA231878411E3950ADD556AF20C
+  userChecksum: BFA90471A89ED563A27D8E3D12373D5E
 - generatedChecksum: FBB2DEFAADE0488ACAFA5C5FB807B149
   logicalPath: config/pic32mz_w1_curiosity_driver/peripheral/nvm
   name: plib_nvm.h
@@ -2911,34 +2918,34 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 1C75A8A6B60598A2FD0D533F57839B72
-- generatedChecksum: F779E377BF46D856247D545681CD753A
+- generatedChecksum: 3994BECFD7FB92AB29BC3499BEC66F40
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: tcp.h
   physicalPath: library/tcpip
   security: NON_SECURE
   type: HEADER
-  userChecksum: F779E377BF46D856247D545681CD753A
-- generatedChecksum: CFFB51E0D54B26C90B61FEEDE2A1CF68
+  userChecksum: 3994BECFD7FB92AB29BC3499BEC66F40
+- generatedChecksum: 503C152D38F9AC23E029DE786FFE29EA
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcp_manager.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: CFFB51E0D54B26C90B61FEEDE2A1CF68
-- generatedChecksum: 2CAF6C5D06D5DBE937D8FA1E3A2A37A2
+  userChecksum: 503C152D38F9AC23E029DE786FFE29EA
+- generatedChecksum: B08B1392542365A5E9A327B6C21155EC
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcp_private.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: 2CAF6C5D06D5DBE937D8FA1E3A2A37A2
-- generatedChecksum: 5ED3D436477B656B89F8FC48571252E9
+  userChecksum: B08B1392542365A5E9A327B6C21155EC
+- generatedChecksum: AF1E92EF8F1160D4E520A60381E49106
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: tcpip.h
   physicalPath: library/tcpip
   security: NON_SECURE
   type: HEADER
-  userChecksum: 5ED3D436477B656B89F8FC48571252E9
+  userChecksum: AF1E92EF8F1160D4E520A60381E49106
 - generatedChecksum: 60B94F95E8C1F65E61E54288D55B0319
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: tcpip_announce.h
@@ -3009,13 +3016,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 3FB4AF6DF0E1AFAAC7AB7D042672EC20
-- generatedChecksum: B90EBC1B69964AC96DD2A9961156627E
+- generatedChecksum: 86B8FA64501DF0D11AB6BB027665E69A
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: tcpip_mac.h
   physicalPath: library/tcpip
   security: NON_SECURE
   type: HEADER
-  userChecksum: B90EBC1B69964AC96DD2A9961156627E
+  userChecksum: 86B8FA64501DF0D11AB6BB027665E69A
 - generatedChecksum: F7969FE2EDC637424E363FD8D5F894E4
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: tcpip_mac_bridge.h
@@ -3037,13 +3044,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 2E946E4B94B4E221CBF8379C477C8C0F
-- generatedChecksum: 4A677072FE7CB4B37767226CF9F19E5C
+- generatedChecksum: 6A790F9F331FF58F80B14C201FBCCED9
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: tcpip_mac_object.h
   physicalPath: library/tcpip
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4A677072FE7CB4B37767226CF9F19E5C
+  userChecksum: 6A790F9F331FF58F80B14C201FBCCED9
 - generatedChecksum: DF4A57443EEF976E1564F28FE4FDBD52
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip
   name: tcpip_manager.h
@@ -3051,13 +3058,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: DF4A57443EEF976E1564F28FE4FDBD52
-- generatedChecksum: B5B45B6AB4198A8677CFC7207BA8A8C1
+- generatedChecksum: D02CAA83FD840AF5B7E6B6E844434614
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_manager_control.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: B5B45B6AB4198A8677CFC7207BA8A8C1
+  userChecksum: D02CAA83FD840AF5B7E6B6E844434614
 - generatedChecksum: 5851ABD4B6100EED203CA27DFB90C598
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_module_manager.h
@@ -3072,13 +3079,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: B35526101B0CB88DB7C403BE62AEEAAF
-- generatedChecksum: 1550A33FF53B128BB73DD937F610E51B
+- generatedChecksum: 3DBAA4F039E31AF2D181FA01A817E728
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_packet.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: 1550A33FF53B128BB73DD937F610E51B
+  userChecksum: 3DBAA4F039E31AF2D181FA01A817E728
 - generatedChecksum: BB0F365262C610BF775CA8C3084D1F39
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: tcpip_private.h
@@ -3177,13 +3184,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 93955E68585F91EE382E3EFCEDB120EE
-- generatedChecksum: FA212DEAE39D4E86EF4E6CB440610FE9
+- generatedChecksum: CAC44960D20AEC03CF4B325A1CD2877C
   logicalPath: config/pic32mz_w1_curiosity_driver
   name: toolchain_specifics.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: FA212DEAE39D4E86EF4E6CB440610FE9
+  userChecksum: CAC44960D20AEC03CF4B325A1CD2877C
 - generatedChecksum: CA8D9CC28FDE2D7169ED3DD85B3599A4
   logicalPath: wolfcrypt
   name: types.h
@@ -3198,20 +3205,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 23248DE45F9EC71D5484DF1895031B07
-- generatedChecksum: 4FCF3368C518DD173D08099B1DFB89D5
+- generatedChecksum: 1D7FBFA79EAE512971BD54237F6F71F4
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: udp_manager.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4FCF3368C518DD173D08099B1DFB89D5
-- generatedChecksum: C99E758A00938DD4FF1F7209697D49E5
+  userChecksum: 1D7FBFA79EAE512971BD54237F6F71F4
+- generatedChecksum: AC8B4990C73D805BE60579039E7A3D49
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: udp_private.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: C99E758A00938DD4FF1F7209697D49E5
+  userChecksum: AC8B4990C73D805BE60579039E7A3D49
 - generatedChecksum: null
   logicalPath: config/pic32mz_w1_curiosity_driver
   name: user.h
@@ -3296,13 +3303,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 11A8BA738A4BD2266387CE4481CF079C
-- generatedChecksum: 86A0933691BA3C54C54500767AB4178F
+- generatedChecksum: 334B232FEE0909337FC8F0E14EF9610A
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
   name: wdrv_pic32mzw_cfg.h
   physicalPath: driver/wifi/pic32mzw1/include
   security: NON_SECURE
   type: HEADER
-  userChecksum: 86A0933691BA3C54C54500767AB4178F
+  userChecksum: 334B232FEE0909337FC8F0E14EF9610A
 - generatedChecksum: FAF3A540B4398D7EC136E4B050B0553E
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
   name: wdrv_pic32mzw_client_api.h
@@ -3317,6 +3324,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: D9C32D56B6C15A91CB0E4B90A01278BC
+- generatedChecksum: C22A35B572E432056D8BFE17208F7C15
+  logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
+  name: wdrv_pic32mzw_custie.h
+  physicalPath: driver/wifi/pic32mzw1/include
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: C22A35B572E432056D8BFE17208F7C15
 - generatedChecksum: 72E9F045ACD0A287CE37BCCF6B212756
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
   name: wdrv_pic32mzw_debug.h
@@ -3324,13 +3338,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 72E9F045ACD0A287CE37BCCF6B212756
-- generatedChecksum: F6D0FAF2F95D33271D9A7AC05A3D8034
+- generatedChecksum: 94B9E2F0B10B2535CFB50856C02672B0
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
   name: wdrv_pic32mzw_mac.h
   physicalPath: driver/wifi/pic32mzw1/include
   security: NON_SECURE
   type: HEADER
-  userChecksum: F6D0FAF2F95D33271D9A7AC05A3D8034
+  userChecksum: 94B9E2F0B10B2535CFB50856C02672B0
 - generatedChecksum: D3902837652382E379C419F8C7F5C2D6
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
   name: wdrv_pic32mzw_ps.h
@@ -3345,13 +3359,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: EB43FE6B568A7A787C5DABD46F3B5EBF
-- generatedChecksum: E3921C21D88F8B1CC47633401CC1B686
+- generatedChecksum: E76FC8F36DDEBDD1ACB54987FEEAA64F
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
   name: wdrv_pic32mzw_softap.h
   physicalPath: driver/wifi/pic32mzw1/include
   security: NON_SECURE
   type: HEADER
-  userChecksum: E3921C21D88F8B1CC47633401CC1B686
+  userChecksum: E76FC8F36DDEBDD1ACB54987FEEAA64F
 - generatedChecksum: 09995F4D93DBFCAA09C33260BC36F132
   logicalPath: config/pic32mz_w1_curiosity_driver/driver/wifi/pic32mzw1/include
   name: wdrv_pic32mzw_sta.h
@@ -3394,13 +3408,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 0E950005D87D16C0541FF1A9A2B6F3D0
-- generatedChecksum: FB4820371DD01C777345A47950B59C25
+- generatedChecksum: 69D1F5AD6F50719F20AB32B4D1308C5F
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: zero_conf_link_local_private.h
   physicalPath: library/tcpip/src
   security: NON_SECURE
   type: HEADER
-  userChecksum: FB4820371DD01C777345A47950B59C25
+  userChecksum: 69D1F5AD6F50719F20AB32B4D1308C5F
 - generatedChecksum: E7D07DA850B2609D51D1BF383B3DCA73
   logicalPath: config/pic32mz_w1_curiosity_driver/library/tcpip/src
   name: zero_conf_manager.h
@@ -3415,13 +3429,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: CFA727A2AB910B5B462D51A388146811
-- generatedChecksum: 38B8D278EA69C81FF16A6EEA4989D1D1
+- generatedChecksum: C24B1DDDFF40F7DDFC8B469DD39FDEDE
   logicalPath: config/pic32mz_w1_curiosity_driver
   name: p32MZ1025W104132.ld
   physicalPath: ''
   security: NON_SECURE
   type: LINKER
-  userChecksum: 38B8D278EA69C81FF16A6EEA4989D1D1
+  userChecksum: C24B1DDDFF40F7DDFC8B469DD39FDEDE
 - generatedChecksum: D0A155C957A5AB326FFCFB27C332B88A
   logicalPath: wolfcrypt
   name: evp.c
@@ -3471,7 +3485,7 @@ settings:
   delimiter: ;
   key: extra-include-directories
   security: NON_SECURE
-  value: ../src;../src/config/pic32mz_w1_curiosity_driver;../src/packs/PIC32MZ1025W104132_DFP;
+  value: ../src;../src/config/pic32mz_w1_curiosity_driver;
 - append: false
   category: C32
   delimiter: ''
@@ -3513,7 +3527,7 @@ settings:
   delimiter: ;
   key: extra-include-directories
   security: NON_SECURE
-  value: ../src;../src/config/pic32mz_w1_curiosity_driver;../src/packs/PIC32MZ1025W104132_DFP;
+  value: ../src;../src/config/pic32mz_w1_curiosity_driver;
 - append: false
   category: C32CPP
   delimiter: ''

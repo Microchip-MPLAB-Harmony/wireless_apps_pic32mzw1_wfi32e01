@@ -56,7 +56,7 @@
 */
 
 #include "user.h"
-#include "toolchain_specifics.h"
+#include "device.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -127,7 +127,8 @@ extern "C" {
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
 #define WDRV_PIC32MZW_WPA3_SUPPORT
 #define WDRV_PIC32MZW_BA414E_SUPPORT
-
+#define WDRV_PIC32MZW_ALARM_PERIOD_1MS          390
+#define WDRV_PIC32MZW_ALARM_PERIOD_MAX          168
 
 
 // *****************************************************************************

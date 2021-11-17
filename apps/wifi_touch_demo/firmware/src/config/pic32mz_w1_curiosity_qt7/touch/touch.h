@@ -1,5 +1,5 @@
 /*******************************************************************************
-  Touch Library v3.10.0 Release
+  Touch Library v3.11.0 Release
 
   Company:
     Microchip Technology Inc.
@@ -290,6 +290,8 @@ SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
 /***************** Communication - Data Streamer ******************/
 /**********************************************************/
 #define DEF_TOUCH_DATA_STREAMER_ENABLE 0u
+
+#define DEF_TOUCH_TUNE_ENABLE 0u
 
 
 /**********************************************************/

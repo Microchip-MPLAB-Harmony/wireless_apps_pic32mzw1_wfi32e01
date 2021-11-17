@@ -42,6 +42,13 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+  - type: String
+    attributes: {id: TCPIP_STACK_NET_INTERFACE_NAME_IDX0}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcpipStack, value: PIC32MZW1}
   - type: Integer
     attributes: {id: TCPIP_STACK_SECURE_PORT_ENTRIES}
     children:

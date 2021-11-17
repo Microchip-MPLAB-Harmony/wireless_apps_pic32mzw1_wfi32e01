@@ -56,7 +56,7 @@
 */
 
 #include "user.h"
-#include "toolchain_specifics.h"
+#include "device.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -92,9 +92,10 @@ extern "C" {
 #define SYS_OTA_JSON_FILE_MAXSIZE           1000
 #define SYS_OTA_NUM_IMGS                    2
 #define SYS_OTA_ENFORCE_TLS   			    false
-   	
- 	
+
+
 #define SYS_NET_SUPP_INTF_WIFI_ONLY
+#define SYS_NET_SUPP_NUM_OF_SOCKS        		2
 
 #define SYS_NET_INDEX0_INTF       				SYS_NET_INTF_WIFI
 #define SYS_NET_INDEX0_MODE       				SYS_NET_MODE_CLIENT
@@ -159,7 +160,6 @@ extern "C" {
 #define SYS_FS_USE_LFN                    1
 #define SYS_FS_FILE_NAME_LEN              255
 #define SYS_FS_CWD_STRING_LEN             1024
-#define SYS_FS_ALIGNED_BUFFER_LEN         512
 
 /* File System RTOS Configurations*/
 #define SYS_FS_STACK_SIZE                 1024
@@ -169,6 +169,8 @@ extern "C" {
 #define SYS_FS_FAT_READONLY               false
 #define SYS_FS_FAT_CODE_PAGE              437
 #define SYS_FS_FAT_MAX_SS                 SYS_FS_MEDIA_MAX_BLOCK_SIZE
+#define SYS_FS_FAT_ALIGNED_BUFFER_LEN     512
+
 
 
 
@@ -211,7 +213,8 @@ extern "C" {
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
 #define WDRV_PIC32MZW_WPA3_SUPPORT
 #define WDRV_PIC32MZW_BA414E_SUPPORT
-
+#define WDRV_PIC32MZW_ALARM_PERIOD_1MS          0
+#define WDRV_PIC32MZW_ALARM_PERIOD_MAX          0
 
 
 // *****************************************************************************

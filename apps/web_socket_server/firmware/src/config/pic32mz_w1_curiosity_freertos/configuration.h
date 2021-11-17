@@ -81,7 +81,7 @@ extern "C" {
 // *****************************************************************************
 
 #define SYS_NET_SUPP_INTF_WIFI_ONLY
-#define SYS_NET_SUPP_NUM_OF_SOCKS        		2
+#define SYS_NET_SUPP_NUM_OF_SOCKS        		3
 
 #define SYS_NET_INDEX0_INTF       				SYS_NET_INTF_WIFI
 #define SYS_NET_INDEX0_MODE       				SYS_NET_MODE_CLIENT
@@ -139,7 +139,7 @@ extern "C" {
 #define SYS_WSS_ENABLE_TLS   			    false
 #define SYS_WSS_ENABLE_DEBUG   			    0
 #define SYS_WSS_MAX_RX_BUFFER               1400
-#define SYS_WSS_MAX_NUM_CLIENTS             2
+#define SYS_WSS_MAX_NUM_CLIENTS             3
 #define SYS_WSS_START_AT_BOOT   			1
 #define SYS_WSS_CLIENT_TIMEOUT              30000
 

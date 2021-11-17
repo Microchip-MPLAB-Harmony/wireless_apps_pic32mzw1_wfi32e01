@@ -844,4 +844,4 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '0'}
 - type: ElementPosition
-  attributes: {x: '860', y: '20', id: core}
+  attributes: {x: '820', y: '20', id: core}

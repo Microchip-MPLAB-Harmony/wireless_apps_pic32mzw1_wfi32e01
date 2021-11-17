@@ -56,7 +56,7 @@
 */
 
 #include "user.h"
-#include "toolchain_specifics.h"
+#include "device.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -122,7 +122,8 @@ extern "C" {
 // *****************************************************************************
 /*** WiFi PIC32MZW1 Driver Configuration ***/
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
-
+#define WDRV_PIC32MZW_ALARM_PERIOD_1MS          195
+#define WDRV_PIC32MZW_ALARM_PERIOD_MAX          336
 
 
 // *****************************************************************************

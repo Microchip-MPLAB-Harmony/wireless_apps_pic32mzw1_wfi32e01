@@ -138,6 +138,10 @@
 #pragma config SOSCEN =    OFF
 
 
+/*** FCPN0 ***/
+#pragma config CP =    OFF
+
+
 
 
 // *****************************************************************************
@@ -259,13 +263,15 @@ const SYS_FS_FUNCTIONS FatFsFunctions =
 };
 
 
+
 const SYS_FS_REGISTRATION_TABLE sysFSInit [ SYS_FS_MAX_FILE_SYSTEM_TYPE ] =
 {
     {
         .nativeFileSystemType = FAT,
         .nativeFileSystemFunctions = &FatFsFunctions
-    }
+    },
 };
+
 
 // </editor-fold>
 
@@ -327,8 +333,8 @@ void SYS_Initialize ( void* data )
 
 
   
-    CLK_Initialize();
-	SYS_PMU_MLDO_TRIM();
+    PMU_Initialize();
+	CLK_Initialize();
 
     /* Configure Wait States */
     PRECONbits.PFMWS = 5;

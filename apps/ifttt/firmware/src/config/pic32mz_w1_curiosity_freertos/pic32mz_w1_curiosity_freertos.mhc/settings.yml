@@ -5,10 +5,10 @@ frameworkPath: ..\..\..
 processor: PIC32MZ1025W104132
 projectName: ifttt_pic32mz_w1_curiosity_freertos
 settings:
-  PackageFilter: bootloader;bootloader_apps_uart;bsp;core;crypto;cryptoauthlib;crypto_dev;csp;net;net_apps_pic32mz;net_dev;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_apps_winc1500;wireless_apps_winc3400;wireless_system_pic32mzw1_wfi32e01;wireless_wifi
+  PackageFilter: bsp;core;crypto;cryptoauthlib;csp;dev_packs;net;quick_docs;touch;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_wifi
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'
-  CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
-  MERGE_STRATEGY: USER_ALL
-  DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.4.193\atdf\PIC32MZ1025W104132.atdf
+  CMSISPath: .\dev_packs\arm\CMSIS\5.8.0
+  MERGE_STRATEGY: OVERWRITE
+  DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.5.203\atdf\PIC32MZ1025W104132.atdf

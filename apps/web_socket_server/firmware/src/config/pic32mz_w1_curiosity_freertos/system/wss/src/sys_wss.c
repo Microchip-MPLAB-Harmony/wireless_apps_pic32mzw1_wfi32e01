@@ -56,9 +56,7 @@ typedef struct {
     SYS_WSS_CALLBACK userCallback;
     void * userCookie;
     SYS_WSS_HANDSHAKE_CTXT wssHandshake;
-    //TODO: move to malloc+Queue approach
     uint8_t recv_buffer[SYS_WSS_MAX_RX_BUFFER + 1];
-    //TODOD: dont use a global.
     char sHandshake[256];
     uint32_t kaTimerCount;
 } SYS_WSS_OBJ;
@@ -159,8 +157,9 @@ static size_t wssFormatFrameHeader(bool fin, SYS_WSS_FRAME type, size_t payloadL
     } else if (payloadLen <= 65535) {
         header->payloadLen = 126;
         frameLen += sizeof (uint16_t);
-        header->extPayloadLen[0] = payloadLen & 0xff;
-        header->extPayloadLen[1] = payloadLen >>8 ;
+        header->extPayloadLen[1] = payloadLen & 0xff;
+        header->extPayloadLen[0] = payloadLen >>8 ;
+        
     } else {
         header->payloadLen = 127;
         frameLen += sizeof (uint64_t);
@@ -170,7 +169,6 @@ static size_t wssFormatFrameHeader(bool fin, SYS_WSS_FRAME type, size_t payloadL
     return frameLen;
 }
 
-//TODO: will be called when application requests it via control message
 
 static SYS_WSS_RESULT wssCloseConnection(SYS_WSS_STATUS_CODE stausCode, uint8_t *data, size_t dataLen, int32_t clientIndex) {
     SYS_WSS_RESULT result = SYS_WSS_SUCCESS;
@@ -179,7 +177,7 @@ static SYS_WSS_RESULT wssCloseConnection(SYS_WSS_STATUS_CODE stausCode, uint8_t 
     frameLen = wssFormatFrameHeader(1, SYS_WSS_FRAME_CLOSE, (dataLen+SYS_WSS_STATUS_CODE_LEN), (uint8_t *) buffer);
     *(buffer + frameLen) = (uint8_t) ((stausCode & 0xFF00) >> 8);
     *(buffer + frameLen + 1) = (uint8_t) (stausCode & 0x00FF);
-    WSS_DEBUG_PRINT("  close frame = %d %d\r\n", *(buffer + frameLen), *(buffer + frameLen + 1));
+    WSS_DEBUG_PRINT(" \r\n close frame = %d %d\r\n", *(buffer + frameLen), *(buffer + frameLen + 1));
    if((NULL!=data) && (0!=dataLen)){
         bufferOffset = (buffer + frameLen + sizeof (uint16_t));
         memcpy(bufferOffset, data, dataLen);
@@ -198,7 +196,8 @@ static SYS_WSS_RESULT wssSendResponse(bool fin, SYS_WSS_FRAME type, uint8_t *dat
 
     result=SYS_NET_SendMsg(g_wssSrvcObj[clientIndex].wssNetHandle, buffer, (dataLen + frameLen));
     if (0 > result){
-        result = SYS_WSS_FAILURE;   
+        result = SYS_WSS_FAILURE;  
+        WSS_DEBUG_PRINT("\r\nWSS:Sending response to the client failed\r\n");
     }
     return result;
 }
@@ -210,13 +209,13 @@ static SYS_WSS_RESULT wssSendPongMessage( uint8_t *data, size_t dataLen, int32_t
     frameLen = wssFormatFrameHeader(1, SYS_WSS_FRAME_PONG, dataLen, (uint8_t *) buffer);
     memcpy((buffer + frameLen), data, dataLen);
     WSS_DEBUG_PRINT("\r\nWSS: Pong Response %s , with length %d..\r\n", data, dataLen);
-    SYS_CONSOLE_PRINT("\r\nWSS: Pong Response %s , with length %d..\r\n", data, dataLen);
+    
     result = SYS_NET_SendMsg(g_wssSrvcObj[clientIndex].wssNetHandle, buffer, (dataLen + frameLen));
     if (0 > result){
         result = SYS_WSS_FAILURE;  
-        SYS_CONSOLE_PRINT("\r\nWSS: Sending Pong message failed \r\n" );
+        WSS_DEBUG_PRINT("\r\nWSS: Sending Pong message failed \r\n" );
     }
-    SYS_CONSOLE_PRINT("\r\nWSS: Pong message sent \r\n" );
+    
     return result;
 }
 
@@ -228,7 +227,6 @@ static SYS_WSS_RESULT wssSendPingMessage( uint8_t *data, size_t dataLen, int32_t
     frameLen = wssFormatFrameHeader(1, SYS_WSS_FRAME_PING, dataLen, (uint8_t *) buffer);
     memcpy((buffer + frameLen), data, dataLen);
     WSS_DEBUG_PRINT("\r\nWSS: Response %s , with length %d..\r\n", data, dataLen);
-    SYS_CONSOLE_PRINT("\r\nWSS: Response %s , with length %d..\r\n", data, dataLen);
     result = SYS_NET_SendMsg(g_wssSrvcObj[clientIndex].wssNetHandle, buffer, (dataLen + frameLen));
     if (0 > result){
         result = SYS_WSS_FAILURE;   
@@ -293,9 +291,8 @@ static SYS_WSS_RESULT validateClientHandshake(int32_t clientIndex) {
         WSS_DEBUG_PRINT(" Invalid connection upgrade field \r\n");
         result = SYS_WSS_ERROR_INVALID_REQUEST;
     }
-    /*TODO : What is this check*/
-    if (g_wssSrvcObj[clientIndex].wssHandshake.clientKey[0] == 0) {
-        WSS_DEBUG_PRINT(" Invalid clientkey[0] \r\n");
+    if (g_wssSrvcObj[clientIndex].wssHandshake.iskey != true) {
+        WSS_DEBUG_PRINT(" Invalid clientkey field \r\n");
         result = SYS_WSS_ERROR_INVALID_REQUEST;
     }
     if (SYS_WSS_SUCCESS == result) {
@@ -339,20 +336,15 @@ static SYS_WSS_RESULT parseHandshake(void *buffer, uint16_t length, int32_t clie
     if (token == NULL) {
         // version number is WS_HTTP_VERSION_0_9
         g_wssSrvcObj[clientIndex].wssHandshake.http_version = SYS_WSS_HTTP_VERSION_0_9;
-        //Persistent connections are not supported
-        g_wssSrvcObj[clientIndex].wssHandshake.connectionClose = true;
     }//HTTP version 1.0?
     else if (!strcasecmp(token, "HTTP/1.0")) {
         //Save version number
         g_wssSrvcObj[clientIndex].wssHandshake.http_version = SYS_WSS_HTTP_VERSION_1_0;
-        //By default connections are not persistent
-        g_wssSrvcObj[clientIndex].wssHandshake.connectionClose = true;
+
     }//HTTP version 1.1?
     else if (!strcasecmp(token, "HTTP/1.1")) {
         //Save version number
         g_wssSrvcObj[clientIndex].wssHandshake.http_version = SYS_WSS_HTTP_VERSION_1_1;
-        //HTTP 1.1 makes persistent connections the default
-        g_wssSrvcObj[clientIndex].wssHandshake.connectionClose = false;
     }//HTTP version not supported?
     else {
         //Report an error
@@ -382,7 +374,7 @@ static SYS_WSS_RESULT parseHandshake(void *buffer, uint16_t length, int32_t clie
         } else if (!strcasecmp(token, "Sec-WebSocket-Key:")) {
             token = strtok(NULL, " \r\n");
             strcpy(g_wssSrvcObj[clientIndex].wssHandshake.clientKey, token);
-
+            g_wssSrvcObj[clientIndex].wssHandshake.iskey = true;
             WSS_DEBUG_PRINT("\r\nIn parseHandshake TOKEN7: %s", g_wssSrvcObj[clientIndex].wssHandshake.clientKey);
         } else if (!strcasecmp(token, "Sec-WebSocket-Version:")) {
             token = strtok(NULL, " \r\n");
@@ -521,7 +513,6 @@ void processData(void *buffer, uint16_t length, int32_t clientIndex) {
             } else {
                 /*Client message shall always  be masked*/
                 WSS_DEBUG_PRINT("\r\nClient message received without masking, invalid frame");
-                SYS_CONSOLE_PRINT("In processData: INVALID FRAME ,fragmented control message\r\n");
                 wssUserCallback(SYS_WSS_EVENT_ERR_INVALID_FRAME, NULL, clientIndex);
                 g_wssSrvcObj[clientIndex].wssState = SYS_WSS_STATE_CLOSING;
                 wssCloseConnection(SYS_WSS_STATUS_CODE_PROTOCOL_ERROR, NULL, 0, clientIndex);
@@ -581,7 +572,6 @@ static void wssNetCallback(uint32_t event, void *data, void *cookie) {
     switch (event) {
         case SYS_NET_EVNT_CONNECTED:
         {
-            //TODO: provide a callback to application
             wssUserCallback(SYS_WSS_EVENT_CLIENT_CONNECTING, NULL, clientIndex);
             g_wssSrvcObj[clientIndex].wssState = SYS_WSS_STATE_CONNECTING;
             break;
@@ -595,12 +585,10 @@ static void wssNetCallback(uint32_t event, void *data, void *cookie) {
         case SYS_NET_EVNT_RCVD_DATA:
         {
             len = SYS_NET_RecvMsg(g_wssSrvcObj[clientIndex].wssNetHandle, g_wssSrvcObj[clientIndex].recv_buffer, SYS_WSS_MAX_RX_BUFFER);
+            WSS_DEBUG_PRINT("\r\n Data received from lower layer of length : %u ",len);
             if (len > 0) {
-                if (len < SYS_WSS_MAX_RX_BUFFER) {
-                    //TODO: Why? why? Why????? - dont consider this as a string.
-                   // g_wssSrvcObj[clientIndex].recv_buffer[len] = '\0';
-                    processData(g_wssSrvcObj[clientIndex].recv_buffer, len + 1, clientIndex);
-                }
+
+                    processData(g_wssSrvcObj[clientIndex].recv_buffer, len ,clientIndex);
             }
             break;
         }
@@ -673,23 +661,58 @@ SYS_MODULE_OBJ SYS_WSS_Initialize(SYS_WSS_CONFIG *config, SYS_WSS_CALLBACK callb
 SYS_WSS_RESULT SYS_WSS_PingClient( uint8_t *data, size_t dataLen, int32_t clientIndex) {
     
     SYS_WSS_RESULT result = SYS_WSS_SUCCESS;
-    result = wssSendPingMessage( data, dataLen, clientIndex);
+    int i=0;
+    WSS_DEBUG_PRINT("\r\n ClientIndex %d",clientIndex);
+    if ( clientIndex < 0 ){
+	    WSS_DEBUG_PRINT("\r\n Send ping message to all clients");
+        for (i = 0; i < SYS_WSS_MAX_NUM_CLIENTS; i++) {
+            if(SYS_WSS_STATE_CONNECTED == g_wssSrvcObj[i].wssState){
+                result = wssSendPingMessage( data, dataLen, i);
+            }
+        }
+    }
+    else{
+        result = wssSendPingMessage( data, dataLen, clientIndex);
+    }
     return result;
 }
 SYS_WSS_RESULT SYS_WSS_sendMessage(bool fin, SYS_WSS_FRAME type, uint8_t *data, size_t dataLen, int32_t clientIndex){
-    //if clientIndex = -1, send this message to all connected clients. 
-    //call sendResponse only to clients in the correct connection state.
+
     SYS_WSS_RESULT result = SYS_WSS_SUCCESS;
-   result= wssSendResponse(fin, type, data, dataLen, clientIndex);
+    int i=0;
+    WSS_DEBUG_PRINT("\r\n ClientIndex %d",clientIndex);
+    if ( clientIndex < 0 ){
+	    WSS_DEBUG_PRINT("\r\n Send message to all clients");
+        for (i = 0; i < SYS_WSS_MAX_NUM_CLIENTS; i++) {
+            if(SYS_WSS_STATE_CONNECTED == g_wssSrvcObj[i].wssState){
+                result= wssSendResponse(fin, type, data, dataLen, i);
+            }
+        }
+    }    
+    else{
+            result = wssSendResponse(fin, type, data, dataLen, clientIndex);
+    }   
    return result;
 }
 
 SYS_WSS_RESULT SYS_WSS_CloseConnection(SYS_WSS_STATUS_CODE code, uint8_t *data, size_t dataLen, int32_t clientIndex) {
     SYS_WSS_RESULT result =SYS_WSS_SUCCESS;
-    //if clientIndex = -1, send this message to all connected clients. 
-    //call sendResponse only to clients in the correct connection state.
-    
-    result = wssCloseConnection(code, data,  dataLen,clientIndex);
+    int i=0;
+    WSS_DEBUG_PRINT("\r\n ClientIndex %d",clientIndex);
+    if ( clientIndex < 0 )    {
+	    WSS_DEBUG_PRINT("\r\n Close the connection to all clients");
+        for (i = 0; i < SYS_WSS_MAX_NUM_CLIENTS; i++) {
+            if(SYS_WSS_STATE_CONNECTED == g_wssSrvcObj[i].wssState){
+                g_wssSrvcObj[i].wssState = SYS_WSS_STATE_CLOSING;
+                result = wssCloseConnection(code, data,  dataLen,i);
+            }
+        }
+    }
+    else{
+        WSS_DEBUG_PRINT("\r\n Close the connection to the client %d",clientIndex);
+        g_wssSrvcObj[clientIndex].wssState = SYS_WSS_STATE_CLOSING;
+        result = wssCloseConnection(code, data,  dataLen,clientIndex);
+    }    
     return result;
 }
 

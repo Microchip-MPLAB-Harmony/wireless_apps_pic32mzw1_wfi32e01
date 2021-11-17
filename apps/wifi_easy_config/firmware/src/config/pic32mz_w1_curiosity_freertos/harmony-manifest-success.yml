@@ -4,23 +4,23 @@
 
 
 project: wifi_easy_config
-creation_date: 2021-08-09T12:42:46.164+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2021-11-17T19:35:50.278+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
-mhc_version: v3.8.0
+mhc_version: v3.8.2
 mplabx_version: v5.50        # if MPLAB X plugin only
 plugin_version: v3.6.4        # if MPLAB X plugin only
-compiler: XC32 (2.50)
+compiler: XC32 (3.01)
 
 modules:
-    - {name: "core", version: "v3.9.2"}
-    - {name: "csp", version: "v3.9.1"}
-    - {name: "wireless_wifi", version: "v3.5.1"}
-    - {name: "dev_packs", version: "v3.9.0"}
-    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.5.1"}
+    - {name: "core", version: "v3.10.0"}
+    - {name: "csp", version: "v3.10.0"}
+    - {name: "wireless_wifi", version: "v3.6.0"}
+    - {name: "dev_packs", version: "v3.10.0"}
+    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.6.0"}
     - {name: "wolfssl", version: "v4.7.0"}
-    - {name: "net", version: "v3.7.2"}
-    - {name: "bsp", version: "v3.9.0"}
-    - {name: "crypto", version: "v3.7.3"}
+    - {name: "net", version: "v3.7.4"}
+    - {name: "bsp", version: "v3.10.0"}
+    - {name: "crypto", version: "v3.7.4"}
     - {name: "CMSIS-FreeRTOS", version: "v10.3.1"}
 

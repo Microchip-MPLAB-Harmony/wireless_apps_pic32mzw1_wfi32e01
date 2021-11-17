@@ -675,7 +675,8 @@ void SYS_NET_NetPres_Signal(NET_PRES_SKT_HANDLE_T handle, NET_PRES_SIGNAL_HANDLE
 
         SYS_NETDEBUG_DBG_PRINT(g_NetAppDbgHdl, NET_CFG, "Received FIN from Peer\r\n");
 
-        SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_PEER_SENT_FIN);
+        if(hdl->status == SYS_NET_STATUS_CONNECTED)
+            SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_PEER_SENT_FIN);
     }
 }
 
@@ -702,7 +703,7 @@ bool SYS_NET_Set_Sock_Option(SYS_NET_Handle *hdl)
 
 bool SYS_NET_Socket_Bind_And_Connect(SYS_NET_Handle *hdl)
 {
-#ifdef SYS_NET_SUPP_INTF_WIFI_ETHERNET    
+#if defined SYS_NET_SUPP_INTF_WIFI_ETHERNET  || defined SYS_NET_SUPP_INTF_ETHERNET
     TCPIP_NET_HANDLE hNet = TCPIP_STACK_IndexToNet(hdl->cfg_info.intf);
     IP_MULTI_ADDRESS localIp;
 
@@ -819,7 +820,7 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK net_cb, void *
 
     hdl->callback_fn = net_cb;
 
-#ifndef SYS_NET_SUPP_INTF_WIFI_ETHERNET
+#ifdef SYS_NET_SUPP_INTF_WIFI
     /* Validate for Interface */
     if (hdl->cfg_info.intf != SYS_NET_INTF_WIFI)
     {
@@ -866,9 +867,12 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK net_cb, void *
         return (SYS_MODULE_OBJ) hdl;
     }
 
-    if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
+    if (hdl->cfg_info.intf == SYS_NET_INTF_ETHERNET)
     {
-        SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
+        if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
+        {
+            SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
+        }
     }
 
     if (SYS_NET_Set_Sock_Option(hdl) == false)
@@ -885,11 +889,27 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK net_cb, void *
     /* Wait for Connection */
     SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_SERVER_AWAITING_CONNECTION);
 
+    /* Call the Application CB to give 'Server Awaiting Connection' event */
+    if (hdl->callback_fn)
+    {
+        hdl->callback_fn(SYS_NET_EVNT_SERVER_AWAITING_CONNECTION, hdl, hdl->cookie);
+    }
+    
     return (SYS_MODULE_OBJ) hdl;
 }
 
 static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
 {
+    if ((SYS_MODULE_OBJ)hdl == SYS_MODULE_OBJ_INVALID)
+    {
+        return;
+    }
+    
+    if (hdl->status == SYS_NET_STATUS_IDLE)
+    {
+        return;
+    }
+    
     if (SYS_NET_TakeSemaphore(hdl) == 0)
     {
         return;
@@ -1179,6 +1199,16 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
             {
                 SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_LOWER_LAYER_DOWN);
             }
+            else
+            {
+                /* Delete Semaphore */
+                OSAL_SEM_Delete(&hdl->InstSemaphore);
+
+                /* Free the handle */
+                SYS_NET_FreeHandle(hdl);
+                
+                return;
+            }
 
             break;
         }
@@ -1335,6 +1365,16 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
                 SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "Handler Registration failed!\r\n");
             }
         }
+        else
+        {
+            /* Delete Semaphore */
+            OSAL_SEM_Delete(&hdl->InstSemaphore);
+
+            /* Free the handle */
+            SYS_NET_FreeHandle(hdl);
+
+            return;
+        }
     }
         break;
 
@@ -1349,6 +1389,16 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
 
 static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
 {
+    if ((SYS_MODULE_OBJ)hdl == SYS_MODULE_OBJ_INVALID)
+    {
+        return;
+    }
+    
+    if (hdl->status == SYS_NET_STATUS_IDLE)
+    {
+        return;
+    }
+    
     if (SYS_NET_TakeSemaphore(hdl) == 0)
     {
         return;
@@ -1406,6 +1456,12 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
         SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_SERVER_AWAITING_CONNECTION);
 
         SYS_NET_GiveSemaphore(hdl);
+
+        /* Call the Application CB to give 'Server Awaiting Connection' event */
+        if (hdl->callback_fn)
+        {
+            hdl->callback_fn(SYS_NET_EVNT_SERVER_AWAITING_CONNECTION, hdl, hdl->cookie);
+        }
 
         return;
     }
@@ -1557,6 +1613,10 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
                 if (hdl->socket == INVALID_SOCKET)
                 {
                     SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "SYS_NET_TCPIP_ServerOpen failed!\r\n");
+
+                    SYS_NET_GiveSemaphore(hdl);
+
+                    return;
                 }
                 else
                     SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_SERVER_AWAITING_CONNECTION);
@@ -1577,7 +1637,28 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
                 {
                     SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "Handler Registration failed!\r\n");
                 }
+
+                SYS_NET_GiveSemaphore(hdl);
+
+                /* Call the Application CB to give 'Server Awaiting Connection' event */
+                if (hdl->callback_fn)
+                {
+                    hdl->callback_fn(SYS_NET_EVNT_SERVER_AWAITING_CONNECTION, hdl, hdl->cookie);
+                }
+
+                return;
             }
+            else
+            {
+                /* Delete Semaphore */
+                OSAL_SEM_Delete(&hdl->InstSemaphore);
+
+                /* Free the handle */
+                SYS_NET_FreeHandle(hdl);
+                
+                return;
+            }
+
             SYS_NET_GiveSemaphore(hdl);
             return;
         }
@@ -1641,6 +1722,10 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
             if (hdl->socket == INVALID_SOCKET)
             {
                 SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "SYS_NET_TCPIP_ServerOpen failed!\r\n");
+
+                SYS_NET_GiveSemaphore(hdl);
+
+                return;
             }
             else
             {
@@ -1663,6 +1748,26 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
             {
                 SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "Handler Registration failed!\r\n");
             }
+
+            SYS_NET_GiveSemaphore(hdl);
+
+            /* Call the Application CB to give 'Server Awaiting Connection' event */
+            if (hdl->callback_fn)
+            {
+                hdl->callback_fn(SYS_NET_EVNT_SERVER_AWAITING_CONNECTION, hdl, hdl->cookie);
+            }
+
+            return;
+        }
+        else
+        {
+            /* Delete Semaphore */
+            OSAL_SEM_Delete(&hdl->InstSemaphore);
+
+            /* Free the handle */
+            SYS_NET_FreeHandle(hdl);
+
+            return;
         }
 
         SYS_NET_GiveSemaphore(hdl);
@@ -1830,6 +1935,16 @@ int32_t SYS_NET_CtrlMsg(SYS_MODULE_OBJ obj,
                 /* Changing the status to lower layer down as 
                  * DNS needs to be resolved */
                 SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_LOWER_LAYER_DOWN);
+            }
+            else
+            {
+                /* Delete Semaphore */
+                OSAL_SEM_Delete(&hdl->InstSemaphore);
+
+                /* Free the handle */
+                SYS_NET_FreeHandle(hdl);
+                
+                return SYS_NET_SUCCESS;
             }
 
             ret_val = SYS_NET_SUCCESS;

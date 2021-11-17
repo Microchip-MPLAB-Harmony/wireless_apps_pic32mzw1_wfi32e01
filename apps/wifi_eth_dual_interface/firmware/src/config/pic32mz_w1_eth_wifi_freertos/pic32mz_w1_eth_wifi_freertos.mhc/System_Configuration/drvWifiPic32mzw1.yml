@@ -4,6 +4,20 @@ attributes: {id: drvWifiPic32mzw1}
 children:
 - type: Symbols
   children:
+  - type: Integer
+    attributes: {id: DRV_WIFI_PIC32MZW1_ALARM_PERIOD_1MS}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: drvWifiPic32mzw1, value: '390'}
+  - type: Integer
+    attributes: {id: DRV_WIFI_PIC32MZW1_ALARM_PERIOD_MAX}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: drvWifiPic32mzw1, value: '168'}
   - type: Combo
     attributes: {id: DRV_WIFI_PIC32MZW1_LOG_LEVEL}
     children:

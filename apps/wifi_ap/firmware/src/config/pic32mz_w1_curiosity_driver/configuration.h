@@ -56,7 +56,7 @@
 */
 
 #include "user.h"
-#include "toolchain_specifics.h"
+#include "device.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -122,7 +122,8 @@ extern "C" {
 // *****************************************************************************
 /*** WiFi PIC32MZW1 Driver Configuration ***/
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
-
+#define WDRV_PIC32MZW_ALARM_PERIOD_1MS          390
+#define WDRV_PIC32MZW_ALARM_PERIOD_MAX          168
 
 
 // *****************************************************************************
@@ -279,11 +280,12 @@ extern "C" {
 
 /*** DHCP Server Configuration ***/
 #define TCPIP_STACK_USE_DHCP_SERVER
-#define TCPIP_DHCPS_TASK_PROCESS_RATE                               200
-#define TCPIP_DHCPS_LEASE_ENTRIES_DEFAULT                           15
-#define TCPIP_DHCPS_LEASE_SOLVED_ENTRY_TMO                          1200
-#define TCPIP_DHCPS_LEASE_REMOVED_BEFORE_ACK                        5
-#define TCPIP_DHCP_SERVER_DELETE_OLD_ENTRIES                        true
+#define TCPIP_DHCPS_TASK_PROCESS_RATE                     	200
+#define TCPIP_DHCPS_MAX_NUMBER_INSTANCES					1
+#define TCPIP_DHCPS_LEASE_ENTRIES_DEFAULT                   15
+#define TCPIP_DHCPS_LEASE_SOLVED_ENTRY_TMO                  1200
+#define TCPIP_DHCPS_LEASE_REMOVED_BEFORE_ACK                5
+#define TCPIP_DHCP_SERVER_DELETE_OLD_ENTRIES              	true
 #define TCPIP_DHCPS_LEASE_DURATION	TCPIP_DHCPS_LEASE_SOLVED_ENTRY_TMO
 
 /*** DHCP Server Instance 0 Configuration ***/
@@ -302,6 +304,8 @@ extern "C" {
 #define TCPIP_DHCP_SERVER_INTERFACE_INDEX_IDX0                      0
 
 #define TCPIP_DHCP_SERVER_POOL_ENABLED_IDX0                         true
+
+#define TCPIP_DHCP_SERVER_POOL_INDEX_IDX0								0
 
 
 

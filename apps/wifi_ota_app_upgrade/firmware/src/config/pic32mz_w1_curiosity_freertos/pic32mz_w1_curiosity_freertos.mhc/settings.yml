@@ -5,10 +5,10 @@ frameworkPath: D:\H3_releaseTest
 processor: PIC32MZ1025W104132
 projectName: wifi_ota_app_upgrade
 settings:
-  PackageFilter: bsp;classb_pic32mzw1_wfi32e01;classb_pic32mzw1_wfi32e01_bp;core;core_3_10_0;core_apps_pic32mz_w1;core_B0;crypto;cryptoauthlib;csp;csp_3_10_0;csp_apps_pic32mz_w1;csp_B0;dev_packs_3_10_0;net;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_apps_pic32mzw1_wfi32e01_ota;wireless_system_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01_3_5_1;wireless_system_pic32mzw1_wfi32e01_ver_32;wireless_wifi;wireless_wifi_throuhput;wireless_wifi_tpc
+  PackageFilter: bsp;core;crypto;cryptoauthlib;csp;dev_packs;net;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_wifi
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'
-  CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
-  MERGE_STRATEGY: USER_RECENT
-  DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.4.193\atdf\PIC32MZ1025W104132.atdf
+  CMSISPath: .\dev_packs\arm\CMSIS\5.8.0
+  MERGE_STRATEGY: OVERWRITE
+  DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.5.203\atdf\PIC32MZ1025W104132.atdf

@@ -170,7 +170,7 @@ typedef enum
 typedef struct 
 {
     /* Wi-Fi station mode SSID */
-    uint8_t ssid[32];
+    uint8_t ssid[33];
 
     /* Wi-Fi station mode passphrase */
     uint8_t psk[64];

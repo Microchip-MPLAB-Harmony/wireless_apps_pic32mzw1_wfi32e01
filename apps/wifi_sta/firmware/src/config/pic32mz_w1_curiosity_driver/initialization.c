@@ -138,6 +138,10 @@
 #pragma config SOSCEN =    OFF
 
 
+/*** FCPN0 ***/
+#pragma config CP =    OFF
+
+
 
 
 // *****************************************************************************
@@ -238,11 +242,6 @@ const TCPIP_ICMP_MODULE_CONFIG tcpipICMPInitData =
 {
     0
 };
-
-
-
-
-
 
 
 
@@ -494,8 +493,8 @@ void SYS_Initialize ( void* data )
 
 
   
-    CLK_Initialize();
-	SYS_PMU_MLDO_TRIM();
+    PMU_Initialize();
+	CLK_Initialize();
 
     /* Configure Wait States */
     PRECONbits.PFMWS = 5;
@@ -527,9 +526,9 @@ void SYS_Initialize ( void* data )
 
 
 
-    /* TCPIP Stack Initialization */
-    sysObj.tcpip = TCPIP_STACK_Init();
-    SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
+/* TCPIP Stack Initialization */
+sysObj.tcpip = TCPIP_STACK_Init();
+SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
 
 
     CRYPT_WCCB_Initialize();

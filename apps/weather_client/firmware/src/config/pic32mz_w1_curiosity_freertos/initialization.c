@@ -138,6 +138,10 @@
 #pragma config SOSCEN =    OFF
 
 
+/*** FCPN0 ***/
+#pragma config CP =    OFF
+
+
 
 
 // *****************************************************************************
@@ -246,11 +250,6 @@ const TCPIP_ICMP_MODULE_CONFIG tcpipICMPInitData =
 {
     0
 };
-
-
-
-
-
 
 
 
@@ -485,7 +484,7 @@ static const NET_PRES_INST_DATA netPresCfgs[] =
         .pTransObject_ds = &netPresTransObject0DS,
         .pTransObject_dc = &netPresTransObject0DC,
         .pProvObject_ss = NULL,
-        .pProvObject_sc = &net_pres_EncProviderStreamClient0,
+        .pProvObject_sc = NULL,
         .pProvObject_ds = NULL,
         .pProvObject_dc = NULL,
     },
@@ -640,8 +639,8 @@ void SYS_Initialize ( void* data )
 
 
   
-    CLK_Initialize();
-	SYS_PMU_MLDO_TRIM();
+    PMU_Initialize();
+	CLK_Initialize();
 
     /* Configure Wait States */
     PRECONbits.PFMWS = 5;
@@ -682,11 +681,11 @@ void SYS_Initialize ( void* data )
     sysObj.ba414e = DRV_BA414E_Initialize(0, (SYS_MODULE_INIT*)&ba414eInitData);
 
 
-	/* Network Presentation Layer Initialization */
-	sysObj.netPres = NET_PRES_Initialize(0, (SYS_MODULE_INIT*)&netPresInitData);
-    /* TCPIP Stack Initialization */
-    sysObj.tcpip = TCPIP_STACK_Init();
-    SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
+/* Network Presentation Layer Initialization */
+sysObj.netPres = NET_PRES_Initialize(0, (SYS_MODULE_INIT*)&netPresInitData);
+/* TCPIP Stack Initialization */
+sysObj.tcpip = TCPIP_STACK_Init();
+SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
 
 
     CRYPT_WCCB_Initialize();

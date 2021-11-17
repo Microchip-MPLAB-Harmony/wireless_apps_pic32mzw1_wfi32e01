@@ -141,6 +141,9 @@ typedef enum
             
     /*Control message type for requesting a Wi-Fi driver handle */
     SYS_WIFI_GETDRVHANDLE,
+    
+    /*Control message type for requesting a Assoc handle */
+    SYS_WIFI_GETDRVASSOCHANDLE,
 
 } SYS_WIFI_CTRLMSG ;
 
@@ -180,7 +183,7 @@ typedef enum
 typedef struct 
 {
     /* Wi-Fi station mode SSID */
-    uint8_t ssid[32];
+    uint8_t ssid[33];
 
     /* Wi-Fi station mode passphrase */
     uint8_t psk[64];

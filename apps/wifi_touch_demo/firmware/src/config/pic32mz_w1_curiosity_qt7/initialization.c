@@ -138,6 +138,10 @@
 #pragma config SOSCEN =    OFF
 
 
+/*** FCPN0 ***/
+#pragma config CP =    OFF
+
+
 
 
 // *****************************************************************************
@@ -377,16 +381,12 @@ const TCPIP_ICMP_MODULE_CONFIG tcpipICMPInitData =
 
 
 
-
-
-
-
-
 /*** DHCP server initialization data ***/
 TCPIP_DHCPS_ADDRESS_CONFIG DHCP_POOL_CONFIG[]=
 {
     {
         .interfaceIndex     = TCPIP_DHCP_SERVER_INTERFACE_INDEX_IDX0,
+		.poolIndex          = TCPIP_DHCP_SERVER_POOL_INDEX_IDX0,
         .serverIPAddress    = TCPIP_DHCPS_DEFAULT_SERVER_IP_ADDRESS_IDX0,
         .startIPAddRange    = TCPIP_DHCPS_DEFAULT_IP_ADDRESS_RANGE_START_IDX0,
         .ipMaskAddress      = TCPIP_DHCPS_DEFAULT_SERVER_NETMASK_ADDRESS_IDX0,
@@ -399,6 +399,7 @@ const TCPIP_DHCPS_MODULE_CONFIG tcpipDHCPSInitData =
 {
     .enabled            = true,
     .deleteOldLease     = TCPIP_DHCP_SERVER_DELETE_OLD_ENTRIES,
+	.dhcpServerCnt		= TCPIP_DHCPS_MAX_NUMBER_INSTANCES,
     .leaseEntries       = TCPIP_DHCPS_LEASE_ENTRIES_DEFAULT,
     .entrySolvedTmo     = TCPIP_DHCPS_LEASE_SOLVED_ENTRY_TMO,
     .dhcpServer         = (TCPIP_DHCPS_ADDRESS_CONFIG*)DHCP_POOL_CONFIG,
@@ -670,8 +671,8 @@ void SYS_Initialize ( void* data )
 
 
   
-    CLK_Initialize();
-	SYS_PMU_MLDO_TRIM();
+    PMU_Initialize();
+	CLK_Initialize();
 
     /* Configure Wait States */
     PRECONbits.PFMWS = 5;
@@ -723,9 +724,9 @@ void SYS_Initialize ( void* data )
     sysObj.netPres = NET_PRES_Initialize(0, (SYS_MODULE_INIT*)&netPresInitData);
 
 
-    /* TCPIP Stack Initialization */
-    sysObj.tcpip = TCPIP_STACK_Init();
-    SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
+/* TCPIP Stack Initialization */
+sysObj.tcpip = TCPIP_STACK_Init();
+SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
 
 
     CRYPT_WCCB_Initialize();

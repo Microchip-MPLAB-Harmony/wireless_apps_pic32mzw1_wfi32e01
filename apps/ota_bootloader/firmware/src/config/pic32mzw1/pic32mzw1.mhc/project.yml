@@ -13,13 +13,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 436FA3197E9DC5B765726AF9D212B505
-- generatedChecksum: A3E17273BDAD8A51FDF695EBF9AD9A77
+- generatedChecksum: 65F5B99DAB8ECAC3CB0624E73CA6E0A0
   logicalPath: config/pic32mzw1/system/fs/fat_fs/hardware_access
   name: diskio.c
   physicalPath: system/fs/fat_fs/hardware_access
   security: NON_SECURE
   type: SOURCE
-  userChecksum: A3E17273BDAD8A51FDF695EBF9AD9A77
+  userChecksum: 65F5B99DAB8ECAC3CB0624E73CA6E0A0
 - generatedChecksum: 257ACC61A57EA8DE78BA7E1F78DB85A3
   logicalPath: config/pic32mzw1/driver/memory
   name: drv_memory.c
@@ -69,13 +69,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 9E153A6D4F8E0EA1F6901BAED7DD80FD
-- generatedChecksum: FE97FDBA31084F1C7BBBD90D78EECA4B
+- generatedChecksum: 86E09AC05C0217939C40863418A26AFE
   logicalPath: config/pic32mzw1
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: FE97FDBA31084F1C7BBBD90D78EECA4B
+  userChecksum: 86E09AC05C0217939C40863418A26AFE
 - generatedChecksum: C149AA317F488B0B2CBFA94C50026091
   logicalPath: config/pic32mzw1
   name: interrupts.c
@@ -111,13 +111,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 0DA10C8889278A796D0EE4C6096B57C3
-- generatedChecksum: 0D38A2F87F5E30AD0AB80EB7EF046831
+- generatedChecksum: 5097907D9E3B8AEBDF79522667A5D67A
   logicalPath: config/pic32mzw1/peripheral/clk
   name: plib_clk.c
   physicalPath: peripheral/clk
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 0D38A2F87F5E30AD0AB80EB7EF046831
+  userChecksum: 5097907D9E3B8AEBDF79522667A5D67A
 - generatedChecksum: 87D111F225C0BF574D9D05B1D5AEEAE9
   logicalPath: config/pic32mzw1/peripheral/evic
   name: plib_evic.c
@@ -139,13 +139,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 302870B553042ED5294917554809F0B6
-- generatedChecksum: 45DCEF7AAB178A6AC21DC2CFCB79A2AF
+- generatedChecksum: CA7F2C954C9E5F7F34F3A3E6EC1E3932
   logicalPath: config/pic32mzw1/peripheral/spi/spi_master
   name: plib_spi1_master.c
   physicalPath: peripheral/spi/spi_master
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 45DCEF7AAB178A6AC21DC2CFCB79A2AF
+  userChecksum: CA7F2C954C9E5F7F34F3A3E6EC1E3932
 - generatedChecksum: 960695694D392B781C1CA96648DBBFC0
   logicalPath: config/pic32mzw1/peripheral/uart
   name: plib_uart1.c
@@ -153,20 +153,27 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 960695694D392B781C1CA96648DBBFC0
-- generatedChecksum: 3264162F2E16F6BA5E8E17711849DBD5
+- generatedChecksum: 290251D6FF0845DC4259E0EF74DCB657
+  logicalPath: config/pic32mzw1
+  name: pmu_init.c
+  physicalPath: ''
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 290251D6FF0845DC4259E0EF74DCB657
+- generatedChecksum: 64197587C5A197FD05E94AB039A2DD66
   logicalPath: config/pic32mzw1/system/fs
   name: sys_fs.c
   physicalPath: system/fs/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 3264162F2E16F6BA5E8E17711849DBD5
-- generatedChecksum: 960D10B91B76FD2F25499454166A3C9A
+  userChecksum: 64197587C5A197FD05E94AB039A2DD66
+- generatedChecksum: 1F79CD9E378D98E657FCEB0552B2B659
   logicalPath: config/pic32mzw1/system/fs
   name: sys_fs_fat_interface.c
   physicalPath: system/fs/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 960D10B91B76FD2F25499454166A3C9A
+  userChecksum: 1F79CD9E378D98E657FCEB0552B2B659
 - generatedChecksum: 1115692CC0E3DF70C0007627FCAC6FFA
   logicalPath: config/pic32mzw1/system/fs
   name: sys_fs_media_manager.c
@@ -181,13 +188,6 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: C95CE0ABB86E6B11CF77E8891D294510
-- generatedChecksum: 9A49A2339A0774ACCBC2178A9EE76586
-  logicalPath: config/pic32mzw1
-  name: system_pmu_mldo_trim.c
-  physicalPath: ''
-  security: NON_SECURE
-  type: SOURCE
-  userChecksum: 9A49A2339A0774ACCBC2178A9EE76586
 - generatedChecksum: 22CA1BA8315F3E404A8BD8B5BD0C04CF
   logicalPath: config/pic32mzw1
   name: tasks.c
@@ -216,13 +216,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: D4C6E928D289C9C949F1D14FE0887451
-- generatedChecksum: 01DA478BE77226290A3DBB023D9E5D43
+- generatedChecksum: 56CACCBF790A3692C158B88B75A5738E
   logicalPath: config/pic32mzw1
   name: configuration.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 01DA478BE77226290A3DBB023D9E5D43
+  userChecksum: 56CACCBF790A3692C158B88B75A5738E
 - generatedChecksum: 383BA5CF473387BAE52014903E35F158
   logicalPath: config/pic32mzw1
   name: definitions.h
@@ -363,13 +363,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 3D2558D7758EF020BBF792820203C0A2
-- generatedChecksum: 9238A3759A2C6748FE493370DE35B5E0
+- generatedChecksum: F4C7B8A950B1D12FF6EC959D0A996B5B
   logicalPath: config/pic32mzw1/peripheral/clk
   name: plib_clk.h
   physicalPath: peripheral/clk
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9238A3759A2C6748FE493370DE35B5E0
+  userChecksum: F4C7B8A950B1D12FF6EC959D0A996B5B
 - generatedChecksum: 2B5072810107E051495C4B6379DEDA4E
   logicalPath: config/pic32mzw1/peripheral/evic
   name: plib_evic.h
@@ -377,13 +377,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 2B5072810107E051495C4B6379DEDA4E
-- generatedChecksum: F342288057B1DA1774434CE705A8E3EA
+- generatedChecksum: DDFA543BE7E4B124096E1FC790DBFF05
   logicalPath: config/pic32mzw1/peripheral/gpio
   name: plib_gpio.h
   physicalPath: peripheral/gpio
   security: NON_SECURE
   type: HEADER
-  userChecksum: F342288057B1DA1774434CE705A8E3EA
+  userChecksum: DDFA543BE7E4B124096E1FC790DBFF05
 - generatedChecksum: FBB2DEFAADE0488ACAFA5C5FB807B149
   logicalPath: config/pic32mzw1/peripheral/nvm
   name: plib_nvm.h
@@ -391,13 +391,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: FBB2DEFAADE0488ACAFA5C5FB807B149
-- generatedChecksum: 8B538ED26B7B1F9177E6F490AAE66B57
+- generatedChecksum: A9C21E81CB403E638EEB811A7780088B
   logicalPath: config/pic32mzw1/peripheral/spi/spi_master
   name: plib_spi1_master.h
   physicalPath: peripheral/spi/spi_master
   security: NON_SECURE
   type: HEADER
-  userChecksum: 8B538ED26B7B1F9177E6F490AAE66B57
+  userChecksum: A9C21E81CB403E638EEB811A7780088B
 - generatedChecksum: CFA758C8B7258190473EF7C60C4BA4E9
   logicalPath: config/pic32mzw1/peripheral/spi/spi_master
   name: plib_spi_master_common.h
@@ -426,13 +426,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 6972608768DDBE6E37A2D81B83DF490B
-- generatedChecksum: DDC1AA937FC332670372DC2E7B5CA1F2
+- generatedChecksum: 4A8DA7BC60B438CE161462CB299CCC9D
   logicalPath: config/pic32mzw1/system/fs
   name: sys_fs.h
   physicalPath: system/fs
   security: NON_SECURE
   type: HEADER
-  userChecksum: DDC1AA937FC332670372DC2E7B5CA1F2
+  userChecksum: 4A8DA7BC60B438CE161462CB299CCC9D
 - generatedChecksum: 0D9FE9035E3AA8082C5657240106F2DC
   logicalPath: config/pic32mzw1/system/fs
   name: sys_fs_fat_interface.h
@@ -517,13 +517,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 1C75A8A6B60598A2FD0D533F57839B72
-- generatedChecksum: FA212DEAE39D4E86EF4E6CB440610FE9
+- generatedChecksum: CAC44960D20AEC03CF4B325A1CD2877C
   logicalPath: config/pic32mzw1
   name: toolchain_specifics.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: FA212DEAE39D4E86EF4E6CB440610FE9
+  userChecksum: CAC44960D20AEC03CF4B325A1CD2877C
 - generatedChecksum: null
   logicalPath: config/pic32mzw1
   name: user.h
@@ -539,7 +539,7 @@ settings:
   delimiter: ;
   key: extra-include-directories
   security: NON_SECURE
-  value: ../src;../src/config/pic32mzw1;../src/packs/PIC32MZ1025W104132_DFP;
+  value: ../src;../src/config/pic32mzw1;
 - append: true
   category: C32
   delimiter: ;
@@ -575,7 +575,7 @@ settings:
   delimiter: ;
   key: extra-include-directories
   security: NON_SECURE
-  value: ../src;../src/config/pic32mzw1;../src/packs/PIC32MZ1025W104132_DFP;
+  value: ../src;../src/config/pic32mzw1;
 - append: true
   category: C32CPP
   delimiter: ;

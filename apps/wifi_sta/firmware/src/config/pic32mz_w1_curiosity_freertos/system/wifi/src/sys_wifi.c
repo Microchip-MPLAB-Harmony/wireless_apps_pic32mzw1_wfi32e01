@@ -551,7 +551,8 @@ static SYS_WIFI_RESULT SYS_WIFI_SetConfig
 {
     /* When user has enabled Save config option,request Wi-Fi provisioning service 
        to store the configuration before making the connection request to user */
-    if (true == SYS_WIFI_GetSaveConfig()) 
+    //if (true == SYS_WIFI_GetSaveConfig())
+    if(wifi_config->saveConfig == true)
     {
         return SYS_WIFIPROV_CtrlMsg(g_wifiSrvcProvObj,SYS_WIFIPROV_SETCONFIG,wifi_config,sizeof(SYS_WIFI_CONFIG));
     } 
@@ -758,7 +759,7 @@ static void SYS_WIFI_WIFIPROVCallBack
 
                             /* Auto connected is enable by user and Auto connect 
                                retry has not reach to maximum limit */
-                            if((true == SYS_WIFI_GetAutoConnect()) && (g_wifiSrvcAutoConnectRetry == MAX_AUTO_CONNECT_RETRY))
+                            if((true == SYS_WIFI_GetAutoConnect()) && (g_wifiSrvcAutoConnectRetry < MAX_AUTO_CONNECT_RETRY))
                             {
                                 SYS_WIFI_SetTaskstatus(SYS_WIFI_STATUS_CONNECT_REQ);
                                 g_wifiSrvcAutoConnectRetry = 0;
@@ -942,7 +943,12 @@ SYS_WIFI_RESULT SYS_WIFI_CtrlMsg
                     {
                         if ((buffer) && (length == sizeof (SYS_WIFI_CONFIG)))
                         {
-                            ret = SYS_WIFI_SetConfig((SYS_WIFI_CONFIG *) buffer, SYS_WIFI_STATUS_CONNECT_REQ);
+                            SYS_WIFI_STATUS wifiStatus = ((SYS_WIFI_OBJ *)object)->wifiSrvcStatus;
+                            if(wifiStatus >= SYS_WIFI_STATUS_CONNECT_REQ)
+                            { 
+                                wifiStatus = SYS_WIFI_STATUS_CONNECT_REQ; 
+                            }
+                            ret = SYS_WIFI_SetConfig((SYS_WIFI_CONFIG *) buffer, wifiStatus);
                         }
                     } 
                     else
@@ -1001,6 +1007,21 @@ SYS_WIFI_RESULT SYS_WIFI_CtrlMsg
                         /* Client has requested Wi-Fi driver handle,
                         Copy driver handle into client structure */
                         *(DRV_HANDLE *)buffer = g_wifiSrvcObj.wifiSrvcDrvHdl;
+                        ret = SYS_WIFI_SUCCESS;
+                    }
+                    else
+                    {
+                        ret = SYS_WIFI_FAILURE;
+                    }
+                    break;
+                }
+                case SYS_WIFI_GETDRVASSOCHANDLE:
+                {
+                    if ((buffer) && (length == sizeof (WDRV_PIC32MZW_ASSOC_HANDLE))) 
+                    {
+                        /* Client has requested Assoc handle,
+                        Copy Assoc handle into client structure */
+                        *(WDRV_PIC32MZW_ASSOC_HANDLE *)buffer = g_wifiSrvcDrvAssocHdl;
                         ret = SYS_WIFI_SUCCESS;
                     }
                     else
