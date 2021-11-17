@@ -47,10 +47,8 @@ SYS_APPDEBUG_CONFIG g_sMqttAppDbgCfg;
     (status == SYS_MQTT_STATUS_MQTT_DISCONNECTING)?"MQTT_DISCONNECTING" : \
     (status == SYS_MQTT_STATUS_MQTT_DISCONNECTED)?"MQTT_DISCONNECTED" : \
     (status == SYS_MQTT_STATUS_WAIT_FOR_MQTT_CONACK)?"WAIT_FOR_MQTT_CONACK" : \
-    (status == SYS_MQTT_STATUS_SEND_MQTT_CONN)?"SEND_MQTT_CONN" : \
     (status == SYS_MQTT_STATUS_WAIT_FOR_MQTT_SUBACK)?"WAIT_FOR_MQTT_SUBACK" : \
     (status == SYS_MQTT_STATUS_WAIT_FOR_MQTT_PUBACK)?"WAIT_FOR_MQTT_PUBACK" : \
-    (status == SYS_MQTT_STATUS_MQTT_CONN_FAILED)?"MQTT_CONN_FAILED" : \
     (status == SYS_MQTT_STATUS_WAIT_FOR_MQTT_UNSUBACK)?"WAIT_FOR_MQTT_UNSUBACK" : "Invalid Status"
 
 #ifdef SYS_MQTT_CLICMD_ENABLED
@@ -548,6 +546,23 @@ int32_t SYS_MQTT_Initialize()
 
     g_u32SysMqttInitDone = 1;
 
+    return SYS_MQTT_SUCCESS;
+}
+
+int32_t SYS_MQTT_Deinitialize()
+{
+    g_u32SysMqttInitDone = 0;
+
+    /* 
+     ** Delete the Semaphore created during initialization of the Service 
+     */
+    if (OSAL_SEM_Delete(&g_SysMqttSemaphore) != OSAL_RESULT_TRUE)
+    {
+        SYS_CONSOLE_MESSAGE("NET_SRVC: Failed to Deinitialize Service as Semaphore NOT deleted\r\n");
+
+        return SYS_MQTT_FAILURE;
+    }
+    
     return SYS_MQTT_SUCCESS;
 }
 
