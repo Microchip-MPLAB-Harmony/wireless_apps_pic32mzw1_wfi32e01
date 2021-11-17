@@ -201,13 +201,13 @@ void APP_MQTT_Initialize(void) {
 
     memset(&g_sTmpSysMqttCfg, 0, sizeof (g_sTmpSysMqttCfg));
     psMqttCfg = &g_sTmpSysMqttCfg;
-    psMqttCfg->sBrokerConfig.autoConnect = false;
+    psMqttCfg->sBrokerConfig.autoConnect = true;
     psMqttCfg->sBrokerConfig.tlsEnabled = false;
     strcpy(psMqttCfg->sBrokerConfig.brokerName, "test.mosquitto.org");
     psMqttCfg->sBrokerConfig.serverPort = 1883;
-    psMqttCfg->subscribeCount = 1;
-    psMqttCfg->sSubscribeConfig[0].qos = 1;
-    strcpy(psMqttCfg->sSubscribeConfig[0].topicName, "MCHP/sample/b");
+    psMqttCfg->sBrokerConfig.cleanSession = false;
+    psMqttCfg->sBrokerConfig.keepAliveInterval = 60;
+    psMqttCfg->subscribeCount = 0; 
     g_sSysMqttHandle = SYS_MQTT_Connect(&g_sTmpSysMqttCfg, MqttCallback, NULL);
 #else    
     g_sSysMqttHandle = SYS_MQTT_Connect(NULL, /* NULL value means that the MHC configuration should be used for this connection */
