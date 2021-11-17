@@ -8,6 +8,36 @@ nav_order: 99
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+## Harmony 3 Wireless application examples for PIC32MZ W1 family  **v3.6.0**
+
+### Development kit and demo application support
+
+Following table provides number of Wireless examples available for different development kits.
+
+| Development Kits           | MPLABx applications |
+|:--------------------------:|:-------------------:|
+| PIC32MZ W1 Curiosity Board |       19            |
+
+### New Features
+- New IFTTT and Web Socket Server demos added
+- Please refer to the [system services release notes.](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md)
+
+### Bug fixes and Improvements
+- Please refer to the [system services release notes.](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md)
+
+
+### Known Issues
+- Due to an underlying issue in the underlying `net` repo, you need to turn off `-Werror` for the `icmp.c` file in your projects.
+- L2 Bridging is known to have some instabilities when there is high network data traffic.
+
+### Development Tools
+
+- [MPLAB® X IDE v5.50](https://www.microchip.com/mplab/mplab-x-ide)
+- MPLAB® X IDE plug-ins:
+  - MPLAB® Harmony Configurator (MHC) v3.8.0
+- [MPLAB® XC32 C/C++ Compiler v3.01](https://www.microchip.com/mplab/compilers)
+- **DFP 1.5.203**
+
 ## Harmony 3 Wireless application examples for PIC32MZ W1 family  **v3.5.1**
 
 **Note** : This is an incremental release. All notes under the `v3.5.0` release are applicable to this release as well.
