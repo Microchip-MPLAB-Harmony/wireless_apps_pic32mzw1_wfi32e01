@@ -30,6 +30,13 @@ children:
       - type: Dynamic
         attributes: {id: sysNetPic32mzw1, value: Heap_3}
   - type: Integer
+    attributes: {id: FREERTOS_PERIPHERAL_CLOCK_HZ}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: FreeRTOS, value: '100000000'}
+  - type: Integer
     attributes: {id: FREERTOS_TOTAL_HEAP_SIZE}
     children:
     - type: Attributes
