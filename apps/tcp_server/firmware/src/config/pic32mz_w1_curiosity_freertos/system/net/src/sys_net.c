@@ -703,7 +703,7 @@ bool SYS_NET_Set_Sock_Option(SYS_NET_Handle *hdl)
 
 bool SYS_NET_Socket_Bind_And_Connect(SYS_NET_Handle *hdl)
 {
-#ifdef SYS_NET_SUPP_INTF_WIFI_ETHERNET    
+#if defined SYS_NET_SUPP_INTF_WIFI_ETHERNET  || defined SYS_NET_SUPP_INTF_ETHERNET
     TCPIP_NET_HANDLE hNet = TCPIP_STACK_IndexToNet(hdl->cfg_info.intf);
     IP_MULTI_ADDRESS localIp;
 
@@ -820,7 +820,7 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK net_cb, void *
 
     hdl->callback_fn = net_cb;
 
-#ifndef SYS_NET_SUPP_INTF_WIFI_ETHERNET
+#ifdef SYS_NET_SUPP_INTF_WIFI
     /* Validate for Interface */
     if (hdl->cfg_info.intf != SYS_NET_INTF_WIFI)
     {
@@ -867,9 +867,12 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK net_cb, void *
         return (SYS_MODULE_OBJ) hdl;
     }
 
-    if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
+    if (hdl->cfg_info.intf == SYS_NET_INTF_ETHERNET)
     {
-        SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
+        if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
+        {
+            SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
+        }
     }
 
     if (SYS_NET_Set_Sock_Option(hdl) == false)
