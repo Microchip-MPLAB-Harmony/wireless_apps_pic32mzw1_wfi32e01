@@ -20,11 +20,11 @@
 		],
 		"dfp": {
 			"name": "PIC32MZ-W_DFP",
-			"semverRange": "^1.4.193"
+			"semverRange": "^1.5.203"
 		},
 		"configurator": {
 			"name": "MHC",
-			"semverRange": ">=3.7.2"
+			"semverRange": ">=3.8.2"
 		},
 		"device": {
 			"metaDataVersion": "1.0.0",

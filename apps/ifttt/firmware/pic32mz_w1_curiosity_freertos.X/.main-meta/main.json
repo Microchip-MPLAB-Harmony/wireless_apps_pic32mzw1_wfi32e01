@@ -3,11 +3,11 @@
 	"category": "com.microchip.ide.project",
 	"content": {
 		"metaDataVersion": "1.1.0",
-		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_wifi_sta_driver",
+		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_ifttt",
 		"version": "3.6.0",
-		"displayName": "Wi-Fi Station(STA) Mode (Driver)",
-		"projectName": "wifi_sta_driver_pic32mz_w1_curiosity",
-		"shortDescription": "This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and exchange data directly using the WLAN driver APIs.",
+		"displayName": "IFTTT demo application",
+		"projectName": "ifttt_pic32mz_w1_curiosity_freertos",
+		"shortDescription": "This example application demonstrate the usage of IFTTT with PIC32MZW1.",
 		"ide": {
 			"name": "MPLABX",
 			"semverRange": ">=5.50.0"
@@ -58,7 +58,7 @@
 			"WFI32E01",
 			"PIC32MZ W1 Family",
 			"wireless",
-			"Wi-Fi STA"
+			"IFTTT"
 		],
 		"additionalData": {
 			"longDescription": {

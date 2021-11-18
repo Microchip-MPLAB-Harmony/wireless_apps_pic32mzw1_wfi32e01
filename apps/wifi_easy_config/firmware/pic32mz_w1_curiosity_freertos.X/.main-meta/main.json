@@ -4,7 +4,7 @@
 	"content": {
 		"metaDataVersion": "1.1.0",
 		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_wifi_easy_config_freertos",
-		"version": "3.5.0",
+		"version": "3.6.0",
 		"displayName": "Wi-Fi Easy Configuration (RTOS)",
 		"projectName": "wifi_easy_config_freertos_pic32mz_w1_curiosity",
 		"shortDescription": "This FreRTOS example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket and HTTP.",
@@ -20,11 +20,11 @@
 		],
 		"dfp": {
 			"name": "PIC32MZ-W_DFP",
-			"semverRange": "^1.4.193"
+			"semverRange": "^1.5.203"
 		},
 		"configurator": {
 			"name": "MHC",
-			"semverRange": ">=3.7.2"
+			"semverRange": ">=3.8.2"
 		},
 		"device": {
 			"metaDataVersion": "1.0.0",

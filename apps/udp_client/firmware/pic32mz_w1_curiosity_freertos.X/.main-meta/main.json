@@ -4,7 +4,7 @@
 	"content": {
 		"metaDataVersion": "1.1.0",
 		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_udp_client",
-		"version": "3.5.0",
+		"version": "3.6.0",
 		"displayName": "UDP Client",
 		"projectName": "udp_client_pic32mz_w1_curiosity",
 		"shortDescription": "This example application acts as a UDP Client which connects to a UDP Server and exchanges data in a non-blocking manner.",
@@ -20,11 +20,11 @@
 		],
 		"dfp": {
 			"name": "PIC32MZ-W_DFP",
-			"semverRange": "^1.4.193"
+			"semverRange": "^1.5.203"
 		},
 		"configurator": {
 			"name": "MHC",
-			"semverRange": ">=3.7.2"
+			"semverRange": ">=3.8.2"
 		},
 		"device": {
 			"metaDataVersion": "1.0.0",

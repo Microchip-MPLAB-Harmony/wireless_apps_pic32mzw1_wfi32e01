@@ -4,7 +4,7 @@
 	"content": {
 		"metaDataVersion": "1.1.0",
 		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_wifi_ota_bootloader",
-		"version": "3.5.0",
+		"version": "3.6.0",
 		"displayName": "Over The Air (OTA) Firmware Upgrade Bootloader",
 		"projectName": "wifi_ota_bootloader_pic32mz_w1_curiosity",
 		"shortDescription": "Bootloader to enable over the air upgrade of firmware",
@@ -20,11 +20,11 @@
 		],
 		"dfp": {
 			"name": "PIC32MZ-W_DFP",
-			"semverRange": "^1.4.193"
+			"semverRange": "^1.5.203"
 		},
 		"configurator": {
 			"name": "MHC",
-			"semverRange": ">=3.7.2"
+			"semverRange": ">=3.8.2"
 		},
 		"device": {
 			"metaDataVersion": "1.0.0",
