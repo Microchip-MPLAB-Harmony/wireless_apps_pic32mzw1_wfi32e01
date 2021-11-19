@@ -105,7 +105,7 @@ To build the application, refer to the following table and open the project usin
 ### Provisioning using Command line
 - User can enter the below command to switch mode to STA and set desired SSID,passphase and security .
 
-- wifiprov set 0 1 \<country_code\> \<channel\> \<authtype\> \<ssid_name\> \<psk_name\>
+- wifiprov set 0 1 \<countryCode\> \<channel\> \<autoConnect\> \<authtype\> \<ssid_name\> \<psk_name\>
 
 - For more details follow the steps available in page: [Wi-Fi provisioning using CLI](https://microchip-mplab-harmony.github.io/wireless_system_pic32mzw1_wfi32e01/system/wifiprov/docs/usage.html#command-line)
 
