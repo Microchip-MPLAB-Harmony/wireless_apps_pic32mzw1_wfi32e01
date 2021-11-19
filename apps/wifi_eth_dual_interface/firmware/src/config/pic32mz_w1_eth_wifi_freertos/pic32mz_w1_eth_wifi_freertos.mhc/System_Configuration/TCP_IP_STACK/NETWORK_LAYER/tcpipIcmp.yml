@@ -50,6 +50,6 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: sysWifiPic32mzw1, value: 'true'}
+        attributes: {id: tcpipDhcps, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '440', y: '20', id: tcpipIcmp}
+  attributes: {x: '560', y: '20', id: tcpipIcmp}

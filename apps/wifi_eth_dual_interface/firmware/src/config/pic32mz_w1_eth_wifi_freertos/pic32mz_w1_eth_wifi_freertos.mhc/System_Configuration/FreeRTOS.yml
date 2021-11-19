@@ -29,15 +29,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: sysWifiPic32mzw1, value: Heap_3}
-      - type: User
-        attributes: {value: Heap_3}
-  - type: Integer
-    attributes: {id: FREERTOS_PERIPHERAL_CLOCK_HZ}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: FreeRTOS, value: '100000000'}
   - type: Integer
     attributes: {id: FREERTOS_TOTAL_HEAP_SIZE}
     children:
@@ -48,4 +39,4 @@ children:
         children:
         - {type: Value, value: 'false'}
 - type: ElementPosition
-  attributes: {x: '210', y: '300', id: FreeRTOS}
+  attributes: {x: '250', y: '400', id: FreeRTOS}

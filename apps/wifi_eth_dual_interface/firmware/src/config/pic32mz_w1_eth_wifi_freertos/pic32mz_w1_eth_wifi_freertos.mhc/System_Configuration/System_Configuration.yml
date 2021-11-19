@@ -3,4 +3,4 @@ type: GroupComponent
 attributes: {displayName: System Configuration, id: System Configuration}
 children:
 - type: ElementPosition
-  attributes: {x: '428', y: '239', id: System Configuration}
+  attributes: {x: '460', y: '20', id: System Configuration}

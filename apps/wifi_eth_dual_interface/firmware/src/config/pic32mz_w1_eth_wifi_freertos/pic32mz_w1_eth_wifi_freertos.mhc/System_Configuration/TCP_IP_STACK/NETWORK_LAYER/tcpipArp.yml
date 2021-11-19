@@ -12,4 +12,4 @@ children:
       - type: Dynamic
         attributes: {id: tcpipArp, value: '444'}
 - type: ElementPosition
-  attributes: {x: '580', y: '20', id: tcpipArp}
+  attributes: {x: '420', y: '20', id: tcpipArp}

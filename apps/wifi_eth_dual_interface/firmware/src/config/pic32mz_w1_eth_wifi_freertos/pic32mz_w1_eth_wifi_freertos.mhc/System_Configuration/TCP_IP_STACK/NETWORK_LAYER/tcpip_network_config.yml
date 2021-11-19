@@ -17,7 +17,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: sysWifiPic32mzw1, value: 'true'}
+        attributes: {id: tcpip_network_config, value: 'true'}
   - type: Boolean
     attributes: {id: TCPIP_AUTOCONFIG_ENABLE_IPV4}
     children:

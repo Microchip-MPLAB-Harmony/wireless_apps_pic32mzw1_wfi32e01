@@ -11,20 +11,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: tcpipNetConfig, value: '2'}
-  - type: Integer
-    attributes: {id: TCPIP_STACK_NETWORK_MAC_BRIDGE_COUNT}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: tcpipNetConfig, value: '0'}
-  - type: Boolean
-    attributes: {id: TCPIP_STACK_USE_MAC_BRIDGE}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: tcpipNetConfig, value: 'false'}
 - type: Instances
   children:
   - type: InstanceComponent
@@ -74,6 +60,20 @@ children:
           children:
           - type: Dynamic
             attributes: {id: tcpipNetConfig_0, value: WDRV_PIC32MZW1_MACObject}
+      - type: KeyValueSet
+        attributes: {id: TCPIP_NETWORK_INTERFACE_FLAG_DHCP_IDX0}
+        children:
+        - type: Values
+          children:
+          - type: User
+            attributes: {value: '1'}
+      - type: KeyValueSet
+        attributes: {id: TCPIP_NETWORK_INTERFACE_FLAG_DNS_IDX0}
+        children:
+        - type: Values
+          children:
+          - type: User
+            attributes: {value: '2'}
       - type: Boolean
         attributes: {id: TCPIP_NETWORK_MACBRIDGE_ADD_IDX0}
         children:
@@ -172,7 +172,7 @@ children:
         - type: Values
           children:
           - type: User
-            attributes: {value: '1'}
+            attributes: {value: '2'}
       - type: Boolean
         attributes: {id: TCPIP_STACK_NETWORK_CONFIG_IDX1}
         children:
@@ -203,4 +203,4 @@ children:
             children:
             - {type: Value, value: libdrvPic32mEthmac}
 - type: ElementPosition
-  attributes: {x: '402', y: '368', id: tcpipNetConfig}
+  attributes: {x: '570', y: '300', id: tcpipNetConfig}

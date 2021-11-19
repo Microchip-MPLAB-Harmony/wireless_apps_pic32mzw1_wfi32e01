@@ -336,7 +336,7 @@ void CLK_Initialize( void )
 
     PMD1 = 0x20018981;
     PMD2 = 0x7e0f0f;
-    PMD3 = 0x19030302;
+    PMD3 = 0x19030306;
 
     CFGCON0bits.PMDLOCK = 1;
 

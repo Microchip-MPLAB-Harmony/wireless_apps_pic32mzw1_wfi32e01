@@ -250,17 +250,6 @@ const TCPIP_TCP_MODULE_CONFIG tcpipTCPInitData =
 
 
 
-/*** SNTP Client Initialization Data ***/
-const TCPIP_SNTP_MODULE_CONFIG tcpipSNTPInitData =
-{
-    .ntp_server             = TCPIP_NTP_SERVER,
-    .ntp_interface          = TCPIP_NTP_DEFAULT_IF,
-    .ntp_connection_type    = TCPIP_NTP_DEFAULT_CONNECTION_TYPE,
-    .ntp_reply_timeout      = TCPIP_NTP_REPLY_TIMEOUT,
-    .ntp_stamp_timeout      = TCPIP_NTP_TIME_STAMP_TMO,
-    .ntp_success_interval   = TCPIP_NTP_QUERY_INTERVAL,
-    .ntp_error_interval     = TCPIP_NTP_FAST_QUERY_INTERVAL,
-};
 
 
 
@@ -293,6 +282,16 @@ TCPIP_DHCPS_ADDRESS_CONFIG DHCP_POOL_CONFIG[]=
         .secondDNS          = TCPIP_DHCPS_DEFAULT_SERVER_SECONDARY_DNS_ADDRESS_IDX0,
         .poolEnabled        = TCPIP_DHCP_SERVER_POOL_ENABLED_IDX0,
     },
+    {
+        .interfaceIndex     = TCPIP_DHCP_SERVER_INTERFACE_INDEX_IDX1,
+		.poolIndex          = TCPIP_DHCP_SERVER_POOL_INDEX_IDX1,
+        .serverIPAddress    = TCPIP_DHCPS_DEFAULT_SERVER_IP_ADDRESS_IDX1,
+        .startIPAddRange    = TCPIP_DHCPS_DEFAULT_IP_ADDRESS_RANGE_START_IDX1,
+        .ipMaskAddress      = TCPIP_DHCPS_DEFAULT_SERVER_NETMASK_ADDRESS_IDX1,
+        .priDNS             = TCPIP_DHCPS_DEFAULT_SERVER_PRIMARY_DNS_ADDRESS_IDX1,
+        .secondDNS          = TCPIP_DHCPS_DEFAULT_SERVER_SECONDARY_DNS_ADDRESS_IDX1,
+        .poolEnabled        = TCPIP_DHCP_SERVER_POOL_ENABLED_IDX1,
+    },
 };
 const TCPIP_DHCPS_MODULE_CONFIG tcpipDHCPSInitData =
 {
@@ -306,16 +305,6 @@ const TCPIP_DHCPS_MODULE_CONFIG tcpipDHCPSInitData =
 
 
 
-/*** DNS Client Initialization Data ***/
-const TCPIP_DNS_CLIENT_MODULE_CONFIG tcpipDNSClientInitData =
-{
-    .deleteOldLease         = TCPIP_DNS_CLIENT_DELETE_OLD_ENTRIES,
-    .cacheEntries           = TCPIP_DNS_CLIENT_CACHE_ENTRIES,
-    .entrySolvedTmo         = TCPIP_DNS_CLIENT_CACHE_ENTRY_TMO,    
-    .nIPv4Entries  = TCPIP_DNS_CLIENT_CACHE_PER_IPV4_ADDRESS,
-    .ipAddressType       = TCPIP_DNS_CLIENT_ADDRESS_TYPE,
-    .nIPv6Entries  = TCPIP_DNS_CLIENT_CACHE_PER_IPV6_ADDRESS,
-};
 
 /*** DNS Server Initialization Data ***/
 const TCPIP_DNSS_MODULE_CONFIG tcpipDNSServerInitData =
@@ -395,9 +384,7 @@ const TCPIP_STACK_MODULE_CONFIG TCPIP_STACK_MODULE_CONFIG_TBL [] =
     {TCPIP_MODULE_UDP,              &tcpipUDPInitData},             // TCPIP_MODULE_UDP
     {TCPIP_MODULE_TCP,              &tcpipTCPInitData},             // TCPIP_MODULE_TCP
     {TCPIP_MODULE_DHCP_SERVER,      &tcpipDHCPSInitData},           // TCPIP_MODULE_DHCP_SERVER
-    {TCPIP_MODULE_DNS_CLIENT,       &tcpipDNSClientInitData},       // TCPIP_MODULE_DNS_CLIENT
     {TCPIP_MODULE_DNS_SERVER,       &tcpipDNSServerInitData},       // TCPIP_MODULE_DNS_SERVER
-    {TCPIP_MODULE_SNTP,             &tcpipSNTPInitData},            // TCPIP_MODULE_SNTP
 
     { TCPIP_MODULE_MANAGER,         &tcpipHeapConfig },             // TCPIP_MODULE_MANAGER
 
@@ -550,26 +537,6 @@ const SYS_DEBUG_INIT debugInit =
 // *****************************************************************************
 // *****************************************************************************
 
-/*******************************************************************************
-  Function:
-    void STDIO_BufferModeSet ( void )
-
-  Summary:
-    Sets the buffering mode for stdin and stdout
-
-  Remarks:
- ********************************************************************************/
-static void STDIO_BufferModeSet(void)
-{
-
-    /* Make stdin unbuffered */
-    setbuf(stdin, NULL);
-
-    /* Make stdout unbuffered */
-    setbuf(stdout, NULL);
-}
-
-
 
 
 /*******************************************************************************
@@ -588,9 +555,6 @@ void SYS_Initialize ( void* data )
     /* Start out with interrupts disabled before configuring any modules */
     __builtin_disable_interrupts();
 
-    STDIO_BufferModeSet();
-
-
   
     PMU_Initialize();
 	CLK_Initialize();
@@ -605,8 +569,6 @@ void SYS_Initialize ( void* data )
     NVM_Initialize();
 
     CORETIMER_Initialize();
-	UART3_Initialize();
-
 	UART1_Initialize();
 
 
