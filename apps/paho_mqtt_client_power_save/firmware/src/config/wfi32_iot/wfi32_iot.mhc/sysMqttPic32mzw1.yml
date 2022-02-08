@@ -1,0 +1,36 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: sysMqttPic32mzw1}
+children:
+- type: Symbols
+  children:
+  - type: Boolean
+    attributes: {id: SYS_MQTT_PUB_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: String
+    attributes: {id: SYS_MQTT_PUB_TOPIC_NAME}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: MCHP/Sample/a}
+  - type: Boolean
+    attributes: {id: SYS_MQTT_SUB_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: String
+    attributes: {id: SYS_MQTT_SUB_TOPIC_NAME}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: MCHP/Sample/b}
+- type: ElementPosition
+  attributes: {x: '62', y: '346', id: sysMqttPic32mzw1}

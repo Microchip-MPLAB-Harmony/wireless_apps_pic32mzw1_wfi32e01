@@ -1,0 +1,22 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: tcpipSntp}
+children:
+- type: Symbols
+  children:
+  - type: String
+    attributes: {id: TCPIP_NTP_DEFAULT_IF}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcpipSntp, value: PIC32MZW1}
+  - type: Integer
+    attributes: {id: TCPIP_NTP_TASK_TICK_RATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sysWifiPic32mzw1, value: '10'}
+- type: ElementPosition
+  attributes: {x: '126', y: '359', id: tcpipSntp}
