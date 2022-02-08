@@ -41,6 +41,7 @@ The following applications are provided to demonstrate the typical or interestin
 |[OTA Bootloader](apps/ota_bootloader/readme.md)|OTA bootloader for PIC32MZW1 devices|
 |[Wi-Fi OTA upgrade](apps/wifi_ota_app_upgrade/readme.md)|Wi-Fi OTA image upgrade demo|
 |[Paho MQTT Client](apps/paho_mqtt_client/readme.md)|Paho MQTT client example application|
+|[Paho MQTT Client Power save](apps/paho_mqtt_client/readme.md)|Paho MQTT Client Power save example application|
 |[Paho MQTT TLS Client](apps/paho_mqtt_tls_client/readme.md)|Paho MQTT TLS client example application|
 |[TCP Client](apps/tcp_client/readme.md)|TCP Client example application|
 |[TCP Server](apps/tcp_server/readme.md)|TCP Server example application|

@@ -85,16 +85,14 @@ extern "C" {
 
 #define SYS_NET_INDEX0_INTF       				SYS_NET_INTF_WIFI
 #define SYS_NET_INDEX0_MODE       				SYS_NET_MODE_CLIENT
-#define SYS_NET_INDEX0_PORT        				443
+#define SYS_NET_INDEX0_PORT        				80
 #define SYS_NET_INDEX0_RECONNECT       			0
-#define SYS_NET_INDEX0_ENABLE_TLS        		1
+#define SYS_NET_INDEX0_ENABLE_TLS        		0
 #define SYS_NET_INDEX0_IPPROT       			SYS_NET_IP_PROT_TCP
 #define SYS_NET_INDEX0_HOST_NAME        		"maker.ifttt.com"
 
 
 
-#define SYS_NET_TLS_ENABLED
-#define WOLFSSL_TLS13_NO_PEEK_HANDSHAKE_DONE
 
 
 #define SYS_NET_CLICMD_ENABLED
@@ -428,7 +426,7 @@ extern "C" {
 #define TCPIP_NTP_SERVER_MAX_LENGTH				30
 #define TCPIP_NTP_QUERY_INTERVAL				600
 #define TCPIP_NTP_FAST_QUERY_INTERVAL	    	14
-#define TCPIP_NTP_TASK_TICK_RATE				1100
+#define TCPIP_NTP_TASK_TICK_RATE				10
 #define TCPIP_NTP_RX_QUEUE_LIMIT				2
 
 

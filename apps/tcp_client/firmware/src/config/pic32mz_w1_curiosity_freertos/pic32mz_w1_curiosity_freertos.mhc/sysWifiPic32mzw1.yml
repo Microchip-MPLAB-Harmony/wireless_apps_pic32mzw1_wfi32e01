@@ -4,6 +4,13 @@ attributes: {id: sysWifiPic32mzw1}
 children:
 - type: Symbols
   children:
+  - type: Integer
+    attributes: {id: SYS_WIFI_RTOS_DELAY}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: sysWifiPic32mzw1, value: '4'}
   - type: String
     attributes: {id: SYS_WIFI_STA_PWD_NAME}
     children:

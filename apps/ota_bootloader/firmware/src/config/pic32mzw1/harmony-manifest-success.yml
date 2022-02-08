@@ -4,11 +4,11 @@
 
 
 project: ota_bootloader
-creation_date: 2021-11-17T20:43:38.076+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2022-02-07T13:59:36.371+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.2
-mplabx_version: v5.50        # if MPLAB X plugin only
+mplabx_version: v6.00        # if MPLAB X plugin only
 plugin_version: v3.6.4        # if MPLAB X plugin only
 compiler: XC32 (3.01)
 

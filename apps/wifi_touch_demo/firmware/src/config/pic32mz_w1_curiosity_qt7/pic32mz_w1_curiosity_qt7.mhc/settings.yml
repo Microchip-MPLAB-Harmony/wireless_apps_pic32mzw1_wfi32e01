@@ -9,6 +9,6 @@ settings:
   DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.5.203\atdf\PIC32MZ1025W104132.atdf
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
-  MERGE_STRATEGY: OVERWRITE
-  PackageFilter: bsp;core;crypto;cryptoauthlib;csp;dev_packs;net;quick_docs;touch;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_wifi
+  MERGE_STRATEGY: ALL
+  PackageFilter: bsp;core;core_apps_pic32mz_w1;crypto;cryptoauthlib;csp;csp_apps_pic32mz_w1;dev_packs;net;quick_docs;touch;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_apps_pic32mzw1_wfi32e01_old;wireless_system_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01_last;wireless_system_pic32mzw1_wfi32e01_old;wireless_wifi
   TRUSTZONE: 'false'

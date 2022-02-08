@@ -133,7 +133,7 @@ To build the application, refer to the following table and open the project usin
 3. Configuring server url :
     ![MHC](images/srvr_confg_in_mhc.png)
 
-3.  As a part of OTA process device will try to connect to user defined HTTP server. If device is able to connect to server without any error, it will try to fetch json manifest information .
+4.  As a part of OTA process device will try to connect to user defined HTTP server. If device is able to connect to server without any error, it will try to fetch json manifest information .
     - User can use any HTTP server.
     - User may also use python command to create a local http server using below steps:
                 
@@ -152,7 +152,7 @@ To build the application, refer to the following table and open the project usin
     
 5.  Generate the code using MHC.    
 
-5.  To create factory reset image , It is required to integrate the bootloader and ota application image and create a single unified HEX file. To integrate 2 images we can use hexmate tool, which is readily available with MPLABX package as part of the standard installation. To combine the hex files -
+6.  To create factory reset image , It is required to integrate the bootloader and ota application image and create a single unified HEX file. To integrate 2 images we can use hexmate tool, which is readily available with MPLABX package as part of the standard installation. To combine the hex files -
 
     -  User should load the "ota_bootloader" project located in the  apps folder of "wireless_apps_pic32mzw1_wfi32e01" repo and include it into "wifi_ota_app_upgrade" project as a "Loadable" component. For this, right click on the "wifi_ota_app_upgrade" project, click on "properties" and  select "ota_bootloader" project. User need to make sure that the steps mentioned in "ota_bootloader" reference document is followed, before this step.
 
@@ -164,7 +164,7 @@ To build the application, refer to the following table and open the project usin
 
         ![imageloading](images/project_loading_2.PNG)
 
-6.  It is required to perform a "post-build" step to create ota image with file extension ".bin" (which can be placed in the server and downloaded during OTA process). 
+7.  It is required to perform a "post-build" step to create ota image with file extension ".bin" (which can be placed in the server and downloaded during OTA process). 
     -   All required files for post-build process will be generated (during `step 5)`, mentioned above) automatically in "tools" folder, created inside project folder.
 
         ![tools](images/tools_folder.PNG)
@@ -183,44 +183,50 @@ To build the application, refer to the following table and open the project usin
     
         **For more details , Please follow documentation provided in [link](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/tree/master/system/ota/docs)**         
 
-7.  Build and program the application.
+8.  Build and program the application.
 
-8.  Place the `.bin` image into the HTTP server. The `.bin` image can be found in below path which is generated during "wifi_ota_app_upgrade" project build :
-  `..\firmware\wifi_ota_app_upgrade.X\dist\pic32mz_w1_curiosity_freertos\production` 
-
-6.  Connect to a USB to UART converter to UART1 and Open a Terminal application (Ex.:Tera term) on the computer. Configure the serial settings as follows:
+9.  Connect to a USB to UART converter to UART1 and Open a Terminal application (Ex.:Tera term) on the computer. Configure the serial settings as follows:
     - Baud : 115200
     - Data : 8 Bits
     - Parity : None
     - Stop : 1 Bit
     - Flow Control : None
 
-7.	The device will connect to the Home AP and print the IP address obtained.
+10.	The device will connect to the Home AP and print the IP address obtained.
 
     ![console](images/wifi_sta_log1.png)
 
-9.  Once IP address is obtained the device will initiate OTA process and try to fetch json manifest content, periodically for every 60 sec .
+11.  Once IP address is obtained the device will initiate OTA process and try to fetch json manifest content, periodically for every 60 sec .
 
-10. User should make sure that both HTTP server and the PIC32MZW1 device are part of same wifi network (or connected to same Home AP). 
-    
-11. User can see periodical messages as shown in belo screen shot :
+12. User should make sure that both HTTP server and the PIC32MZW1 device are part of same wifi network (or connected to same Home AP). 
+
+13. User can see periodical messages as shown in belo screen shot :
 
     ![otaperiodicalmsg](images/ota_peridocal_msg.png)
 
-11. Once image is downloaded successfully, the application will print a message in the console. User need to reset the device to load the new image.
+14. For the `.bin` image to be downloded, user can use the same project "wifi_ota_app_upgrade":
+    - User should change the "version number" in the OTA component in the MHC higher than currently running image. Ensure the same version number is there in the json file also.<br>
+    - Compile the project.<br>
+    - Update the "Digest" in the json file corresponding to the ota image to be downloaded. The "Digest" is printed in the compilation logs.<br>
+    - Place the `.bin` image to be downloded, into the HTTP server. The `.bin` image can be found in below path which is generated during "wifi_ota_app_upgrade" project build :
+  `..\firmware\wifi_ota_app_upgrade.X\dist\pic32mz_w1_curiosity_freertos\production` 
+
+15. In case the user wants to download any other '.bin' image, they need to ensure that the digest corresponding to the image is calculated and updated in the json file.
+
+16. Once image is downloaded successfully, the application will print a message in the console. User need to reset the device to load the new image.
 
     ![otasuccess](images/ota_process_pass.png)
 
-12. If OTA upgrade fails, user need to reset the device to initiate OTA process again.
+17. If OTA upgrade fails, user need to reset the device to initiate OTA process again.
 
 
-13. During reset, device will check if any newly downloaded image is available in the external flash(sst26vf):
+18. During reset, device will check if any newly downloaded image is available in the external flash(sst26vf):
     -   if yes, bootloader will program new image to program-flash area of the device from external flash.
         - if programming is successful bootloader will hand over control and application will start executing.
     -   if no new image is available then bootloader will hand over control without programming any image and application image already present in the program-flash area will start executing     
  
 
-15. User will come to know if new image is running by checking the version number in console print 
+19. User will come to know if new image is running by checking the version number in console print 
 
 
 

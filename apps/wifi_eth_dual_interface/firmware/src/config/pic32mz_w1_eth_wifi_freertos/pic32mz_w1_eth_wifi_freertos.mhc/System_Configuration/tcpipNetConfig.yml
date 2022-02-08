@@ -11,6 +11,20 @@ children:
       children:
       - type: Dynamic
         attributes: {id: tcpipNetConfig, value: '2'}
+  - type: Integer
+    attributes: {id: TCPIP_STACK_NETWORK_MAC_BRIDGE_COUNT}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcpipNetConfig, value: '0'}
+  - type: Boolean
+    attributes: {id: TCPIP_STACK_USE_MAC_BRIDGE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcpipNetConfig, value: 'false'}
 - type: Instances
   children:
   - type: InstanceComponent

@@ -930,20 +930,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: F849420C740D2B32346B4B4D9F46C136
-- generatedChecksum: 0869DE37EDFFF98BA1977019FCB7D1F0
+- generatedChecksum: 0D03B55F5A00AB1574E95B16EFBDFE0A
   logicalPath: config/pic32mz_w1_curiosity_qt7/system/wifi
   name: sys_wifi.c
   physicalPath: system/wifi/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 0869DE37EDFFF98BA1977019FCB7D1F0
-- generatedChecksum: C53220D077F48289938CC97D5117097E
+  userChecksum: 0D03B55F5A00AB1574E95B16EFBDFE0A
+- generatedChecksum: A763CFBEEEAC471484B350C50C14DB7E
   logicalPath: config/pic32mz_w1_curiosity_qt7/system/wifiprov
   name: sys_wifiprov.c
   physicalPath: system/wifiprov/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: C53220D077F48289938CC97D5117097E
+  userChecksum: A763CFBEEEAC471484B350C50C14DB7E
 - generatedChecksum: 73953E96E08B075980D5A933ED18C28E
   logicalPath: config/pic32mz_w1_curiosity_qt7/system/wifiprov
   name: sys_wifiprov_json.c
@@ -1595,13 +1595,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 15AB6693CC2E1EE7AB845EE42A6AC762
-- generatedChecksum: 1C8CA4D3CB80C72FF92A53411094A8DA
+- generatedChecksum: A305F065C0129A1E1061C7A86DA328D1
   logicalPath: config/pic32mz_w1_curiosity_qt7
   name: configuration.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 1C8CA4D3CB80C72FF92A53411094A8DA
+  userChecksum: A305F065C0129A1E1061C7A86DA328D1
 - generatedChecksum: 66CDC9B1DAB0393100A835676816E8BF
   logicalPath: wolfcrypt
   name: cpuid.h
@@ -2981,20 +2981,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 62F39464265EC34979649F761FB4FE57
-- generatedChecksum: 69AF78E051351BF49234F6BB3FA3B3DE
+- generatedChecksum: 1DA23E7024483D7039E1120552DED23B
   logicalPath: config/pic32mz_w1_curiosity_qt7/system/wifi
   name: sys_wifi.h
   physicalPath: system/wifi
   security: NON_SECURE
   type: HEADER
-  userChecksum: 69AF78E051351BF49234F6BB3FA3B3DE
-- generatedChecksum: 3D563D574EC6700B6C0AE26B7EF9449C
+  userChecksum: 1DA23E7024483D7039E1120552DED23B
+- generatedChecksum: 35C300C929E095838DC1822BC563FA7C
   logicalPath: config/pic32mz_w1_curiosity_qt7/system/wifiprov
   name: sys_wifiprov.h
   physicalPath: system/wifiprov
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3D563D574EC6700B6C0AE26B7EF9449C
+  userChecksum: 35C300C929E095838DC1822BC563FA7C
 - generatedChecksum: C28F8B3FC84CB966B6D30E3DBE83605F
   logicalPath: config/pic32mz_w1_curiosity_qt7/system/wifiprov
   name: sys_wifiprov_json.h

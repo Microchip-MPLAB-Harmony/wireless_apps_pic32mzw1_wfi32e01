@@ -141,7 +141,6 @@ typedef enum
             
     /*Control message type for requesting a Wi-Fi driver handle */
     SYS_WIFI_GETDRVHANDLE,
-    
     /*Control message type for requesting a Assoc handle */
     SYS_WIFI_GETDRVASSOCHANDLE,
 
@@ -201,6 +200,9 @@ typedef struct
       value 0- Don't connect to AP, wait for client request.
       value 1- Connect to AP immediately */
     bool autoConnect;
+    
+    /* Wi-Fi station mode IP address */
+    IPV4_ADDR ipAddr;
 
 } SYS_WIFI_STA_CONFIG;
 
@@ -273,6 +275,8 @@ typedef enum
     /* Wi-Fi system service is in Wi-Fi connect request status */
     SYS_WIFI_STATUS_CONNECT_REQ,
 
+    /* Wi-Fi system service is in station mode IP address received status*/        
+    SYS_WIFI_STATUS_STA_IP_RECIEVED,
  
     /* Wi-Fi system service is in TCPIP ready status, waiting for client request.*/
     SYS_WIFI_STATUS_TCPIP_READY,

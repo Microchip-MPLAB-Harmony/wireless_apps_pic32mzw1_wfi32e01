@@ -979,20 +979,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: F849420C740D2B32346B4B4D9F46C136
-- generatedChecksum: 72E9575BCE2AEA6B6B8029271A2ADECE
+- generatedChecksum: ABAA15444F97CB79839D8EEC70A1208E
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifi
   name: sys_wifi.c
   physicalPath: system/wifi/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 72E9575BCE2AEA6B6B8029271A2ADECE
-- generatedChecksum: C53220D077F48289938CC97D5117097E
+  userChecksum: ABAA15444F97CB79839D8EEC70A1208E
+- generatedChecksum: A763CFBEEEAC471484B350C50C14DB7E
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov.c
   physicalPath: system/wifiprov/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: C53220D077F48289938CC97D5117097E
+  userChecksum: A763CFBEEEAC471484B350C50C14DB7E
 - generatedChecksum: 73953E96E08B075980D5A933ED18C28E
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov_json.c
@@ -3072,20 +3072,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 62F39464265EC34979649F761FB4FE57
-- generatedChecksum: 69AF78E051351BF49234F6BB3FA3B3DE
+- generatedChecksum: 1DA23E7024483D7039E1120552DED23B
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifi
   name: sys_wifi.h
   physicalPath: system/wifi
   security: NON_SECURE
   type: HEADER
-  userChecksum: 69AF78E051351BF49234F6BB3FA3B3DE
-- generatedChecksum: 3D563D574EC6700B6C0AE26B7EF9449C
+  userChecksum: 1DA23E7024483D7039E1120552DED23B
+- generatedChecksum: 35C300C929E095838DC1822BC563FA7C
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov.h
   physicalPath: system/wifiprov
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3D563D574EC6700B6C0AE26B7EF9449C
+  userChecksum: 35C300C929E095838DC1822BC563FA7C
 - generatedChecksum: C28F8B3FC84CB966B6D30E3DBE83605F
   logicalPath: config/pic32mz_w1_curiosity_freertos/system/wifiprov
   name: sys_wifiprov_json.h

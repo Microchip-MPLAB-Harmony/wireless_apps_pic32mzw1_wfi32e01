@@ -1,99 +1,99 @@
 {"0": {
-    "doc": "Wi-Fi STA (driver mode)",
-    "title": "WLAN STA",
-    "content": "This example application shows how to use the PIC32MZW1 WLAN APIs to configure the device in STA mode directly using the WLAN driver APIs. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#wlan-sta",
-    "relUrl": "/apps/wifi_sta/config_driver_readme.html#wlan-sta"
-  },"1": {
-    "doc": "Wi-Fi STA (driver mode)",
-    "title": "Description",
-    "content": "This application shows the various commands to be used for STA mode of PIC32MZW1 device. The user can use these commands in configuring the device that it wants to connect, scan operations, etc… . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#description",
-    "relUrl": "/apps/wifi_sta/config_driver_readme.html#description"
-  },"2": {
-    "doc": "Wi-Fi STA (driver mode)",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository and click . Path of the application within the repository is apps/wifi_sta/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_driver.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/wifi_sta/config_driver_readme.html#downloading-and-building-the-application"
-  },"3": {
-    "doc": "Wi-Fi STA (driver mode)",
-    "title": "Configuring the Application",
-    "content": "Setting up a regulatory region . The available regulatory domains are - GEN, USA, EMEA, CUST1 and CUST2. One of these regulatory domains must be selected as an active domain. This selection can be done in two ways. Using MHC . Figure below shows how to set the regulatory domain in MHC and the path is: TCPIP &amp; SYS_CONSOLE -&gt; TCP/IP STACK -&gt; BASIC CONFIGURATION -&gt; PIC32MZW1 . Using command . wlan set regdomain &lt;reg_domain_name&gt; is the command used to set the regulatory domain. (wlan set regdomain USA – sets the regulatory domain to USA). ++Note++: User can change the regulatory domain using this command only if the current setting is “None” (cofigured using MHC) . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#configuring-the-application",
-    "relUrl": "/apps/wifi_sta/config_driver_readme.html#configuring-the-application"
-  },"4": {
-    "doc": "Wi-Fi STA (driver mode)",
-    "title": "Setting up the hardware",
-    "content": "The following table shows the target hardware for the application projects. | Project Name | Board | . | pic32mz_w1_curiosity_driver.X | PIC32MZ W1 Curiosity Board | . |   |   | . Setting up PIC32MZ W1 Curiosity Board . | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter like USB UART click respectively | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#setting-up-the-hardware",
-    "relUrl": "/apps/wifi_sta/config_driver_readme.html#setting-up-the-hardware"
-  },"5": {
-    "doc": "Wi-Fi STA (driver mode)",
-    "title": "Running the Application",
-    "content": ". | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | Build and Program the application project using its IDE | Console displays the initialization messages and WLAN config if already saved in NVM | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#running-the-application",
-    "relUrl": "/apps/wifi_sta/config_driver_readme.html#running-the-application"
-  },"6": {
-    "doc": "Wi-Fi STA (driver mode)",
-    "title": "Supported Commands",
-    "content": "| Command | Description | . | wlan config &lt;ssid&gt; &lt;ssid_length&gt; &lt;channel&gt; &lt;open/wpa2/wpam/wpa3/wep&gt; &lt;password&gt; | Configures the SSID, SSID length, channel number and the security of the AP that DUT wants to connect. NOTE: Valid channel numbers are in range 1-13 and 0 or 255 - scans all channels | . | wlan connect | Connects the device to the AP configured in the command “wlan config” | . | wlan scan_options &lt;num_slots&gt; &lt;active_slot_time in ms&gt; &lt;probes_per_slot&gt; &lt;passive_scan_time in ms&gt; &lt;stop_on_first&gt; | Configure scan parameters | . | wlan scan &lt;active / passive&gt; &lt;channel&gt; | Runs either a active or passive scan (as per the input) on the channel number specified for the time set in “wlan scan_options”. Note: If no time is set, default value is used | . | wlan scan_ssidlist &lt;channel&gt; &lt;num_ssids&gt; &lt;ssid_list&gt; | Scan a list of known SSID’s (Maximum SSID is 4) | . | wlan set channel_mask &lt;channel_mask&gt; | Sets the channel mask for channel 1-13. Note: 1 for enable and 0 for disable | . | wlan get rssi | Gets the RSSI of current association | . | wlan save config | Stores the WLAN configurations given in command “wlan config” to flash memory. On restart an attempt is made to establish a connection to the AP based on the credentials stored in flash memory. | . | wlan set regdomain | Sets the regulatory domain. | . | wlan get regdomain &lt;all / current&gt; | Displays the regulatory domain all – request all regulatory domains; current - request current regulatory domain | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#supported-commands",
-    "relUrl": "/apps/wifi_sta/config_driver_readme.html#supported-commands"
-  },"7": {
-    "doc": "Wi-Fi STA (driver mode)",
-    "title": "Wi-Fi STA (driver mode)",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html",
-    "relUrl": "/apps/wifi_sta/config_driver_readme.html"
-  },"8": {
     "doc": "Wi-Fi Soft AP (driver mode)",
     "title": "WLAN AP",
     "content": "This example application shows how to use the PIC32MZW1 WLAN APIs to configure the device in AP mode directly using the WLAN driver APIs. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html#wlan-ap",
     "relUrl": "/apps/wifi_ap/config_driver_readme.html#wlan-ap"
-  },"9": {
+  },"1": {
     "doc": "Wi-Fi Soft AP (driver mode)",
     "title": "Description",
     "content": "This application shows the various commands to be used for AP mode of PIC32MZW1 device. The user can use these commands in configuring the device as AP, start or stop the device as AP, scan operations etc… . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html#description",
     "relUrl": "/apps/wifi_ap/config_driver_readme.html#description"
-  },"10": {
+  },"2": {
     "doc": "Wi-Fi Soft AP (driver mode)",
     "title": "Downloading and building the application",
     "content": "To download or clone this application from Github, go to the top level of the repository and click . Path of the application within the repository is apps/wifi_ap/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_driver.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html#downloading-and-building-the-application",
     "relUrl": "/apps/wifi_ap/config_driver_readme.html#downloading-and-building-the-application"
-  },"11": {
+  },"3": {
     "doc": "Wi-Fi Soft AP (driver mode)",
     "title": "Configuring the Application",
     "content": "Setting up a regulatory region . The available regulatory domains are - GEN, USA, EMEA, CUST1 and CUST2. One of these regulatory domains must be selected as an active domain. This selection can be done in two ways. Using MHC . Figure below shows how to set the regulatory domain in MHC and the path is: TCPIP &amp; SYS_CONSOLE -&gt; TCP/IP STACK -&gt; BASIC CONFIGURATION -&gt; PIC32MZW1 . Using command . wlan set regdomain &lt;reg_domain_name&gt; is the command used to set the regulatory domain. (wlan set regdomain USA – sets the regulatory domain to USA). ++Note++: User can change the regulatory domain using this command only if the current setting is “None” (cofigured using MHC) . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html#configuring-the-application",
     "relUrl": "/apps/wifi_ap/config_driver_readme.html#configuring-the-application"
-  },"12": {
+  },"4": {
     "doc": "Wi-Fi Soft AP (driver mode)",
     "title": "Setting up the hardware",
     "content": "The following table shows the target hardware for the application projects. | Project Name | Board | . | pic32mz_w1_curiosity_driver.X | PIC32MZ W1 Curiosity Board | . |   |   | . Setting up PIC32MZ W1 Curiosity Board . | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter like USB UART click respectively | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html#setting-up-the-hardware",
     "relUrl": "/apps/wifi_ap/config_driver_readme.html#setting-up-the-hardware"
-  },"13": {
+  },"5": {
     "doc": "Wi-Fi Soft AP (driver mode)",
     "title": "Running the Application",
     "content": ". | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | Build and Program the application project using its IDE | Console displays the initialization messages and WLAN config if already saved in NVM | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html#running-the-application",
     "relUrl": "/apps/wifi_ap/config_driver_readme.html#running-the-application"
-  },"14": {
+  },"6": {
     "doc": "Wi-Fi Soft AP (driver mode)",
     "title": "Supported Commands",
     "content": "| Command | Description | . | wlan config &lt;ssid&gt; &lt;ssid_length&gt; &lt;ssid_visible&gt; &lt;channel&gt; &lt;open/wpa2/wpam/wpa3/wpa3m/wep&gt; &lt;password&gt; | Configures the SSID, SSID length, SSID visibility, channel number and the security of the AP that DUT wants to connect. NOTE: Valid channel numbers are in range 1-13 | . | wlan ap start | Start the AP | . | wlan ap stop | Stop the AP | . | wlan show devices | The connected devices are shown – MAC and IP addresses are displayed | . | wlan scan &lt;active / passive&gt; &lt;channel&gt; | Runs either a active or passive scan (as per the input) on the channel number specified | . | wlan save config | Stores the WLAN configurations given in command “wlan config” to flash memory. On restart DUT is started as AP with the credentials stored in flash. | . | wlan set regdomain | Sets the regulatory domain | . | wlan get regdomain &lt;all / current&gt; | Displays the regulatory domain all – request all regulatory domains; current - request current regulatory domain | . |   |   | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html#supported-commands",
     "relUrl": "/apps/wifi_ap/config_driver_readme.html#supported-commands"
-  },"15": {
+  },"7": {
     "doc": "Wi-Fi Soft AP (driver mode)",
     "title": "Wi-Fi Soft AP (driver mode)",
     "content": ". ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html",
     "relUrl": "/apps/wifi_ap/config_driver_readme.html"
+  },"8": {
+    "doc": "Wi-Fi STA (driver mode)",
+    "title": "WLAN STA",
+    "content": "This example application shows how to use the PIC32MZW1 WLAN APIs to configure the device in STA mode directly using the WLAN driver APIs. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#wlan-sta",
+    "relUrl": "/apps/wifi_sta/config_driver_readme.html#wlan-sta"
+  },"9": {
+    "doc": "Wi-Fi STA (driver mode)",
+    "title": "Description",
+    "content": "This application shows the various commands to be used for STA mode of PIC32MZW1 device. The user can use these commands in configuring the device that it wants to connect, scan operations, etc… . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#description",
+    "relUrl": "/apps/wifi_sta/config_driver_readme.html#description"
+  },"10": {
+    "doc": "Wi-Fi STA (driver mode)",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository and click . Path of the application within the repository is apps/wifi_sta/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_driver.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/wifi_sta/config_driver_readme.html#downloading-and-building-the-application"
+  },"11": {
+    "doc": "Wi-Fi STA (driver mode)",
+    "title": "Configuring the Application",
+    "content": "Setting up a regulatory region . The available regulatory domains are - GEN, USA, EMEA, CUST1 and CUST2. One of these regulatory domains must be selected as an active domain. This selection can be done in two ways. Using MHC . Figure below shows how to set the regulatory domain in MHC and the path is: TCPIP &amp; SYS_CONSOLE -&gt; TCP/IP STACK -&gt; BASIC CONFIGURATION -&gt; PIC32MZW1 . Using command . wlan set regdomain &lt;reg_domain_name&gt; is the command used to set the regulatory domain. (wlan set regdomain USA – sets the regulatory domain to USA). ++Note++: User can change the regulatory domain using this command only if the current setting is “None” (cofigured using MHC) . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#configuring-the-application",
+    "relUrl": "/apps/wifi_sta/config_driver_readme.html#configuring-the-application"
+  },"12": {
+    "doc": "Wi-Fi STA (driver mode)",
+    "title": "Setting up the hardware",
+    "content": "The following table shows the target hardware for the application projects. | Project Name | Board | . | pic32mz_w1_curiosity_driver.X | PIC32MZ W1 Curiosity Board | . |   |   | . Setting up PIC32MZ W1 Curiosity Board . | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter like USB UART click respectively | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#setting-up-the-hardware",
+    "relUrl": "/apps/wifi_sta/config_driver_readme.html#setting-up-the-hardware"
+  },"13": {
+    "doc": "Wi-Fi STA (driver mode)",
+    "title": "Running the Application",
+    "content": ". | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | Build and Program the application project using its IDE | Console displays the initialization messages and WLAN config if already saved in NVM | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#running-the-application",
+    "relUrl": "/apps/wifi_sta/config_driver_readme.html#running-the-application"
+  },"14": {
+    "doc": "Wi-Fi STA (driver mode)",
+    "title": "Supported Commands",
+    "content": "| Command | Description | . | wlan config &lt;ssid&gt; &lt;ssid_length&gt; &lt;channel&gt; &lt;open/wpa2/wpam/wpa3/wep&gt; &lt;password&gt; | Configures the SSID, SSID length, channel number and the security of the AP that DUT wants to connect. NOTE: Valid channel numbers are in range 1-13 and 0 or 255 - scans all channels | . | wlan connect | Connects the device to the AP configured in the command “wlan config” | . | wlan scan_options &lt;num_slots&gt; &lt;active_slot_time in ms&gt; &lt;probes_per_slot&gt; &lt;passive_scan_time in ms&gt; &lt;stop_on_first&gt; | Configure scan parameters | . | wlan scan &lt;active / passive&gt; &lt;channel&gt; | Runs either a active or passive scan (as per the input) on the channel number specified for the time set in “wlan scan_options”. Note: If no time is set, default value is used | . | wlan scan_ssidlist &lt;channel&gt; &lt;num_ssids&gt; &lt;ssid_list&gt; | Scan a list of known SSID’s (Maximum SSID is 4) | . | wlan set channel_mask &lt;channel_mask&gt; | Sets the channel mask for channel 1-13. Note: 1 for enable and 0 for disable | . | wlan get rssi | Gets the RSSI of current association | . | wlan save config | Stores the WLAN configurations given in command “wlan config” to flash memory. On restart an attempt is made to establish a connection to the AP based on the credentials stored in flash memory. | . | wlan set regdomain | Sets the regulatory domain. | . | wlan get regdomain &lt;all / current&gt; | Displays the regulatory domain all – request all regulatory domains; current - request current regulatory domain | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html#supported-commands",
+    "relUrl": "/apps/wifi_sta/config_driver_readme.html#supported-commands"
+  },"15": {
+    "doc": "Wi-Fi STA (driver mode)",
+    "title": "Wi-Fi STA (driver mode)",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html",
+    "relUrl": "/apps/wifi_sta/config_driver_readme.html"
   },"16": {
     "doc": "License",
     "title": "License",
@@ -101,657 +101,699 @@
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/mplab_harmony_license.html",
     "relUrl": "/mplab_harmony_license.html"
   },"17": {
+    "doc": "Paho MQTT Client Power Save",
+    "title": "Paho MQTT Client Power Save",
+    "content": "This example application shows how to use WFI32-IoT device low power modes, Extreme Deep sleep mode (XDS) , Deep sleep mode (DS), Sleep mode, and Idle mode along with Wi-Fi sleep mode(WSM) and Wi-Fi power off(WOFF). ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client_power_save/readme.html#paho-mqtt-client-power-save",
+    "relUrl": "/apps/paho_mqtt_client_power_save/readme.html#paho-mqtt-client-power-save"
+  },"18": {
+    "doc": "Paho MQTT Client Power Save",
+    "title": "Description",
+    "content": "This example application demonstrates below functionalities, . | How to read room temperature data periodically using WFI32-IoT Board. | Connect to unsecured MQTT Broker using Paho MQTT Client and publishes temperature data to topic every 5 minutes. | The Device enters into configured sleep mode after receiving the publishes acknowledgement from MQTT Broker. | Device can wake-up from sleep modes using RTCC or Button Press(SW1). | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client_power_save/readme.html#description",
+    "relUrl": "/apps/paho_mqtt_client_power_save/readme.html#description"
+  },"19": {
+    "doc": "Paho MQTT Client Power Save",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/paho_mqtt_client_power_save/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | wfi32_iot.X | MPLABX project for WFI32-IoT board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client_power_save/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/paho_mqtt_client_power_save/readme.html#downloading-and-building-the-application"
+  },"20": {
+    "doc": "Paho MQTT Client Power Save",
+    "title": "Setting up WFI32 IOT Board",
+    "content": ". | Connect the USB port(J200) on the board to the computer using a micro-USB cable. | Home AP (Wi-Fi Access Point with internet connection) | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client_power_save/readme.html#setting-up-wfi32-iot-board",
+    "relUrl": "/apps/paho_mqtt_client_power_save/readme.html#setting-up-wfi32-iot-board"
+  },"21": {
+    "doc": "Paho MQTT Client Power Save",
+    "title": "Running the Application",
+    "content": ". | Open the project and launch Harmony3 configurator. | Configure home AP credentials for STA Mode. | Currently MQTT Service is configured to run a MQTT Client in unsecured mode to connect to test.mosquitto.org on the mqtt port (1883). In case the user wants to change this config, please make the changes in the MQTT Service Module configurations as shown below: . | By default, application is configured to run into deep sleep modes (DS). Power peripheral library configuration details for DS mode as shown in below Harmony3 configurator project graph. | In case, user want to enable only extreme deep sleep modes (XDS) then below Harmony3 configurator modification is needed. | As extreme deep sleep modes (XDS) only support wakeup source as EXT INT0(Button Press (SW1)). | Disable RTCC functionality in Power peripheral library as shown in below Harmony3 configurator project graph | . | For all other supported sleep modes, user doesn’t require any Harmony3 configurator (MHC) changes. | . | Supported MCU Power save modes: . | Extreme deep sleep mode (XDS) (LOW_POWER_DEEP_SLEEP_MODE) and Step 5 above. | Deep sleep mode (DS) (LOW_POWER_DEEP_SLEEP_MODE). | Sleep mode (LOW_POWER_SLEEP_MODE). | Idle mode (LOW_POWER_IDLE_MODE). | . Note: Configuration to change MCU power save mode is “g_mcuSleepMode = MCU Power save mode” in application in apps_mqtt.c file, . | Supported Wi-Fi Power save modes: . | WIFI_WSM (Wi-Fi Sleep mode) | WIFI_WOFF (Wi-Fi Power OFF) | . Note: Configuration to change MCU power save mode is “g_wiFiSleepMode = Wi-Fi power save mode” in application in apps_mqtt.c file. | . | Save configurations and generate code via Harmony3 configurator (MHC). | Build and program the generated code into the hardware using its IDE. | Open the Terminal application (Ex.:Tera term) on the computer. | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The Board will start reading room temperature data every 5 second using on board temperature sensor. | The Board will connect to AP and then as per the default MQTT Service configuration, it shall connect to test.mosquitto.org and publish room temperature data on the topic ‘MCHP/Sample/a’ after 5 Minute. It also subscribes to topic ‘MCHP/Sample/b’ . | If any third party MQTT Client connects to test.mosquitto.org and subscribes to the topic ‘MCHP/Sample/a’, it will receive the periodic room temperature data being published by the MQTT Client running on the WFI32-IoT board. The default application will publish periodic room temperature data to a topic every 5 Minutes. | After receiving the publishes acknowledgement from MQTT Broker, device enter into sleep mode (XDS or DS),Sleep or idle mode along with Wi-Fi power save(WSM). | . | User can start performing the power measurement when the device prints the above console message “Published Msg Temperature =value in C” and UART console stop printing new messages. | The information on how to perform the power measurement with the WFI32-IoT board is available at https://microchipsupport.force.com/s/article/How-to-perform-the-low-power-measurement-on-WFI32-IoT-Board | The information on how to Design Low Power Application with WFI32 board is available at https://microchipsupport.force.com/s/article/How-to-design-low-power-application-using-WFI32-IoT-board | . | In default application, device will wake-up after 1 minute using RTCC as wake-up source. | User can press WFI32-IoT Board SW1 button to wake-up device at any time. | . | Details of wake-up source supported in low power modes. | Supported Wake-up sources: . | XDS : . | EXT INT0(button press using SW1) | . | DS, Sleep and Idle mode: . | EXT INT0(button press using SW1) and RTCC | Note: RTCC default application wakeup time is 1 Minute. | . | . | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client_power_save/readme.html#running-the-application",
+    "relUrl": "/apps/paho_mqtt_client_power_save/readme.html#running-the-application"
+  },"22": {
+    "doc": "Paho MQTT Client Power Save",
+    "title": "Paho MQTT Client Power Save",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client_power_save/readme.html",
+    "relUrl": "/apps/paho_mqtt_client_power_save/readme.html"
+  },"23": {
     "doc": "Paho MQTT TLS Client",
     "title": "Paho MQTT TLS Client",
     "content": "This example application acts as a Paho MQTT TLS Client to connect to Secured MQTT Broker and publishes and subscribes to data on subtopics. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_tls_client/readme.html#paho-mqtt-tls-client",
     "relUrl": "/apps/paho_mqtt_tls_client/readme.html#paho-mqtt-tls-client"
-  },"18": {
+  },"24": {
     "doc": "Paho MQTT TLS Client",
     "title": "Description",
     "content": "This application demonstrates how a user can use the Paho MQTT Client to connect to a Secured MQTT Broker. The application shall come up in AP Provisioing mode, and user will need to configure the Wi-Fi credentials for the Home AP. The default application will try to establish MQTT TLS connection with test.mosquitto.org and publishes message to a topic every 30 sec. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_tls_client/readme.html#description",
     "relUrl": "/apps/paho_mqtt_tls_client/readme.html#description"
-  },"19": {
+  },"25": {
     "doc": "Paho MQTT TLS Client",
     "title": "Downloading and building the application",
     "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/paho_mqtt_tls_client/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_tls_client/readme.html#downloading-and-building-the-application",
     "relUrl": "/apps/paho_mqtt_tls_client/readme.html#downloading-and-building-the-application"
-  },"20": {
+  },"26": {
     "doc": "Paho MQTT TLS Client",
     "title": "Setting up PIC32MZ W1 Curiosity Board",
     "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_tls_client/readme.html#setting-up-pic32mz-w1-curiosity-board",
     "relUrl": "/apps/paho_mqtt_tls_client/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"21": {
+  },"27": {
     "doc": "Paho MQTT TLS Client",
     "title": "Running the Application",
     "content": ". | Open the project and launch Harmony3 configurator. | Currently MQTT Service is configured to run a MQTT Client in Secured mode to connect to test.mosquitto.org on the mqtt secured port (8883). In case the user wants to change this config, please make the changes in the MQTT Service Module configurations as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will come up in AP Provisioning mode, and wait for Home AP credentials to be configured into it. | Provision the device using the following CLI Command “wifiprov set 0 1 “GEN” 0 1 3 “DEMO_AP” “password”” for Home AP with SSID DEMO_AP, and password as ‘password’. More details on the CLI command can be found here. | The Board will connect to Home AP and then as per the default MQTT Service configuration, it shall connect to test.mosquitto.org and publish messages on the topic ‘MCHP/Sample/a’ periodically every 30 sec. It also subscribes to topic ‘MCHP/Sample/b’ . | If any third party MQTT Client connects to test.mosquitto.org and subscribes to the topic ‘MCHP/Sample/a’, it will receive the periodic messages being published by the MQTT Client running on the PIC32MZW1. | In case the Third Party MQTT Client publishes onto the topic ‘MCHP/Sample/b’, the Paho MQTT Client running on the PIC32MZW1 shall receive the messages being published onto this topic since it has subscribed to it. | . Note: The secured tcp connection may require the user to modify WolfSSL component settings in MHC depending on the security settings of the site/ server he is trying to access. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_tls_client/readme.html#running-the-application",
     "relUrl": "/apps/paho_mqtt_tls_client/readme.html#running-the-application"
-  },"22": {
+  },"28": {
     "doc": "Paho MQTT TLS Client",
     "title": "Paho MQTT TLS Client",
     "content": ". ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_tls_client/readme.html",
     "relUrl": "/apps/paho_mqtt_tls_client/readme.html"
-  },"23": {
+  },"29": {
     "doc": "Secured TCP Client",
     "title": "Secured TCP Client",
     "content": "The PIC32MZW1 example application acts as a TCP Client to connect to Secured TCP Server and exchange data in a non-blocking manner. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_client/readme.html#secured-tcp-client",
     "relUrl": "/apps/tcp_client/readme.html#secured-tcp-client"
-  },"24": {
+  },"30": {
     "doc": "Secured TCP Client",
     "title": "Description",
     "content": "This application demonstrates how a user can use a TLS TCP client to connect to a TCP server. The user would need to configure the Wi-Fi credentials for the Home AP and the TLS server details. The default application will try to establish a TLS connection with www.google.com and send a POST request to it. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_client/readme.html#description",
     "relUrl": "/apps/tcp_client/readme.html#description"
-  },"25": {
+  },"31": {
     "doc": "Secured TCP Client",
     "title": "Downloading and building the application",
     "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/tcp_client/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_client/readme.html#downloading-and-building-the-application",
     "relUrl": "/apps/tcp_client/readme.html#downloading-and-building-the-application"
-  },"26": {
+  },"32": {
     "doc": "Secured TCP Client",
     "title": "Setting up PIC32MZ W1 Curiosity Board",
     "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_client/readme.html#setting-up-pic32mz-w1-curiosity-board",
     "relUrl": "/apps/tcp_client/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"27": {
+  },"33": {
     "doc": "Secured TCP Client",
     "title": "Running the Application",
     "content": ". | Open the project and launch Harmony3 configurator. | Configure home AP credentials for STA Mode. | Currently Net Service is configured to run a TCP Client in Secured mode to connect to www.google.com on the https port (443). In case the user wants to change this config, please make the changes in the Net Service Module configurations as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will connect to the Home AP and print the IP address obtained. | The Board will connect to Home AP and then as per the default Net Service configuration, it shall connect to www.google.com and do data exchange: | . Note: The secured tcp connection may require the user to modify WolfSSL component settings in MHC depending on the security settings of the site/ server he is trying to access. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_client/readme.html#running-the-application",
     "relUrl": "/apps/tcp_client/readme.html#running-the-application"
-  },"28": {
+  },"34": {
     "doc": "Secured TCP Client",
     "title": "Secured TCP Client",
     "content": ". ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_client/readme.html",
     "relUrl": "/apps/tcp_client/readme.html"
-  },"29": {
+  },"35": {
     "doc": "TCP Server",
     "title": "TCP Server",
     "content": "This example application acts as a TCP Server to which a TCP Client can connect and exchange data in a non-blocking manner. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_server/readme.html#tcp-server",
     "relUrl": "/apps/tcp_server/readme.html#tcp-server"
-  },"30": {
+  },"36": {
     "doc": "TCP Server",
     "title": "Description",
     "content": "This application demonstrates how a user can start a TCP server on the device which is running in Soft AP Mode. The user would need to configure the Wi-Fi settings for the Soft AP and the port number at which the TCP server would be started. The Application will come up as a Soft AP with the TCP Server running on it. A third-party STA will connect to the Soft AP device. The TCP Client on the third -party STA will then connect to the TCP Server running on the device. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_server/readme.html#description",
     "relUrl": "/apps/tcp_server/readme.html#description"
-  },"31": {
+  },"37": {
     "doc": "TCP Server",
     "title": "Downloading and building the application",
     "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/tcp_server/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_server/readme.html#downloading-and-building-the-application",
     "relUrl": "/apps/tcp_server/readme.html#downloading-and-building-the-application"
-  },"32": {
+  },"38": {
     "doc": "TCP Server",
     "title": "Setting up PIC32MZ W1 Curiosity Board",
     "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Laptop/ Mobile (to run the TCP Client on it) | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_server/readme.html#setting-up-pic32mz-w1-curiosity-board",
     "relUrl": "/apps/tcp_server/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"33": {
+  },"39": {
     "doc": "TCP Server",
     "title": "Running the Application",
     "content": ". | Open the project and launch Harmony3 configurator. | Currently Net Service is configured to run as TCP Server running on port 5555. In case the user wants to change this config, please make the changes in the Net Service Module as shown below: . | Currently Net Service is configured to run a TCP Server which awaits connection from a TCP Client on port 5555. In case the user wants to change this config, please make the changes in the Net Service Module configurations as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device shall come up as SoftAP and then as per the default Net Service configuration, the TCP Server shall come up, awaiting a connection from a TCP Client. | Connect a Laptop to the Soft AP (with ssid DEMO_AP_SOFTAP) running on the DUT | Start a TCP Client (python script) on laptop, giving the server IP as the IP of the Board, and the port as 5555: | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_server/readme.html#running-the-application",
     "relUrl": "/apps/tcp_server/readme.html#running-the-application"
-  },"34": {
+  },"40": {
     "doc": "TCP Server",
     "title": "TCP Server",
     "content": ". ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_server/readme.html",
     "relUrl": "/apps/tcp_server/readme.html"
-  },"35": {
+  },"41": {
     "doc": "UDP Client",
     "title": "UDP Client",
     "content": "This example application acts as a UDP Client which connects to a UDP Server and exchanges data in a non-blocking manner. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_client/readme.html#udp-client",
     "relUrl": "/apps/udp_client/readme.html#udp-client"
-  },"36": {
+  },"42": {
     "doc": "UDP Client",
     "title": "Description",
     "content": "This application demonstrates how a user can use a UDP client to connect to a UDP server. The user would need to configure the Wi-Fi credentials for the Home AP and the UDP server details. The default application will send a string to the UDP server. Any standard UDP server can be used to enable the device to connect as a UDP client. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_client/readme.html#description",
     "relUrl": "/apps/udp_client/readme.html#description"
-  },"37": {
+  },"43": {
     "doc": "UDP Client",
     "title": "Downloading and building the application",
     "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/udp_client/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_client/readme.html#downloading-and-building-the-application",
     "relUrl": "/apps/udp_client/readme.html#downloading-and-building-the-application"
-  },"38": {
+  },"44": {
     "doc": "UDP Client",
     "title": "Setting up PIC32MZ W1 Curiosity Board",
     "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Laptop/ Mobile (to run the UDP Server on it) | Access Point | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_client/readme.html#setting-up-pic32mz-w1-curiosity-board",
     "relUrl": "/apps/udp_client/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"39": {
+  },"45": {
     "doc": "UDP Client",
     "title": "Running the Application",
     "content": ". | Open the project and launch Harmony3 configurator. | Configure Home AP credentials for STA Mode. | Currently Net Service is configured to run as UDP Client, which connects to a UDP Server running on port 4444. In case the user wants to change this config, please make the changes in the Net Service Module as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | User can run any third party utility or a udp_server python script to act as UDP Server running on the Laptop . | The Board shall connect to Home AP and then as per the default Net Service configuration, it shall bring up the UDP Client which shall connect to a UDP Server. | . Note: TLS Connection is not supported for UDP Client configuration . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_client/readme.html#running-the-application",
     "relUrl": "/apps/udp_client/readme.html#running-the-application"
-  },"40": {
+  },"46": {
     "doc": "UDP Client",
     "title": "UDP Client",
     "content": ". ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_client/readme.html",
     "relUrl": "/apps/udp_client/readme.html"
-  },"41": {
-    "doc": "UDP Server",
-    "title": "UDP Server",
-    "content": "This example application acts as a UDP Server to which a UDP Client can connect and exchange data in a non-blocking manner. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#udp-server",
-    "relUrl": "/apps/udp_server/readme.html#udp-server"
-  },"42": {
-    "doc": "UDP Server",
-    "title": "Description",
-    "content": "This application demonstrates how a user can start a UDP server on the device. The user would need to configure the Wi-Fi credentials for the Home AP and the port number at which the UDP server should be started. Any standard UDP client can be used to connect to the device which is operating as a UDP server. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#description",
-    "relUrl": "/apps/udp_server/readme.html#description"
-  },"43": {
-    "doc": "UDP Server",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/udp_server/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/udp_server/readme.html#downloading-and-building-the-application"
-  },"44": {
-    "doc": "UDP Server",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Laptop/ Mobile (to run the UDP Client on it) | Home AP (Wi-Fi Access Point) | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/udp_server/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"45": {
-    "doc": "UDP Server",
-    "title": "Running the Application",
-    "content": ". | Open the project and launch Harmony3 configurator. | Configure Home AP credentials for STA Mode. | Currently Net Service is configured to run as UDP Server running on port 3333. In case the user wants to change this config, please make the changes in the Net Service Module as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The Board shall connect to Home AP and then as per the default Net Service configuration, it shall bring up the UDP Server which shall await connection from a UDP Client.. | User can run any third party utility or a udp_client python script to act as UDP Client running on the Laptop | . Note: TLS Connection is not supported for UDP Server configuration . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#running-the-application",
-    "relUrl": "/apps/udp_server/readme.html#running-the-application"
-  },"46": {
-    "doc": "UDP Server",
-    "title": "UDP Server",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html",
-    "relUrl": "/apps/udp_server/readme.html"
   },"47": {
-    "doc": "Weather Client",
-    "title": "Weather Client",
-    "content": "This example demonstrates the use of the PIC32MZW1 to retrieve weather information from a weather server (api.openweathermap.org). ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#weather-client",
-    "relUrl": "/apps/weather_client/readme.html#weather-client"
-  },"48": {
-    "doc": "Weather Client",
-    "title": "Description",
-    "content": "This application demonstrates how a user can use a TCP client to connect to a Weather server. The user would need to configure the Wi-Fi credentials for the Home AP.The default application will try to establish a TCP Client connection with api.openweathermap.org and send a POST request to it. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#description",
-    "relUrl": "/apps/weather_client/readme.html#description"
-  },"49": {
-    "doc": "Weather Client",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/weather_client/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/weather_client/readme.html#downloading-and-building-the-application"
-  },"50": {
-    "doc": "Weather Client",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/weather_client/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"51": {
-    "doc": "Weather Client",
-    "title": "Running the Application",
-    "content": ". | Open the project and launch Harmony3 configurator. | Configure home AP credentials for STA Mode. | Currently Net Service is configured to run a TCP Client in non-Secured mode to connect to api.openweathermap.org on the http port (80). In case the user wants to change this config, please make the changes in the Net Service Module configurations as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will connect to the Home AP and print the IP address obtained. | The Board will connect to Home AP and then as per the default Net Service configuration, it shall connect to api.openweathermap.org and do data exchange: | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#running-the-application",
-    "relUrl": "/apps/weather_client/readme.html#running-the-application"
-  },"52": {
-    "doc": "Weather Client",
-    "title": "Weather Client",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html",
-    "relUrl": "/apps/weather_client/readme.html"
-  },"53": {
     "doc": "Paho MQTT Client",
     "title": "Paho MQTT Client",
     "content": "This example application acts as a Paho MQTT Client to connect to unsecured MQTT Broker and publishes and subscribes to data on topics. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/readme.html#paho-mqtt-client",
     "relUrl": "/apps/paho_mqtt_client/readme.html#paho-mqtt-client"
-  },"54": {
+  },"48": {
     "doc": "Paho MQTT Client",
     "title": "Description",
     "content": "This application demonstrates how a user can use the Paho MQTT Client to connect to a MQTT Broker. The system shall run in bare metal mode, and the application shall come up in STA mode. User will need to configure the Wi-Fi credentials for the Home AP and MQTT Service. The default application will try to establish MQTT connection with test.mosquitto.org and publishes message to a topic every 30 sec. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/readme.html#description",
     "relUrl": "/apps/paho_mqtt_client/readme.html#description"
-  },"55": {
+  },"49": {
     "doc": "Paho MQTT Client",
     "title": "Downloading and building the application",
     "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/paho_mqtt_client/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/readme.html#downloading-and-building-the-application",
     "relUrl": "/apps/paho_mqtt_client/readme.html#downloading-and-building-the-application"
-  },"56": {
+  },"50": {
     "doc": "Paho MQTT Client",
     "title": "Setting up PIC32MZ W1 Curiosity Board",
     "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/readme.html#setting-up-pic32mz-w1-curiosity-board",
     "relUrl": "/apps/paho_mqtt_client/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"57": {
+  },"51": {
     "doc": "Paho MQTT Client",
     "title": "Running the Application",
     "content": ". | Open the project and launch Harmony3 configurator. | Configure home AP credentials for STA Mode. | Currently MQTT Service is configured to run a MQTT Client in unsecured mode to connect to test.mosquitto.org on the mqtt port (1883). In case the user wants to change this config, please make the changes in the MQTT Service Module configurations as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The Board will connect to Home AP and then as per the default MQTT Service configuration, it shall connect to test.mosquitto.org and publish messages on the topic ‘MCHP/Sample/a’ periodically every 30 sec. It also subscribes to topic ‘MCHP/Sample/b’ . | If any third party MQTT Client connects to test.mosquitto.org and subscribes to the topic ‘MCHP/Sample/a’, it will receive the periodic messages being published by the MQTT Client running on thr PIC32MZW1. | In case the Third Party MQTT Client publishes onto the topic ‘MCHP/Sample/b’, the Paho MQTT Client running on the PIC32MZW1 shall receive the messages being published onto this topic since it has subscribed to it. | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/readme.html#running-the-application",
     "relUrl": "/apps/paho_mqtt_client/readme.html#running-the-application"
-  },"58": {
+  },"52": {
     "doc": "Paho MQTT Client",
     "title": "Paho MQTT Client",
     "content": ". ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/readme.html",
     "relUrl": "/apps/paho_mqtt_client/readme.html"
+  },"53": {
+    "doc": "Weather Client",
+    "title": "Weather Client",
+    "content": "This example demonstrates the use of the PIC32MZW1 to retrieve weather information from a weather server (api.openweathermap.org). ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#weather-client",
+    "relUrl": "/apps/weather_client/readme.html#weather-client"
+  },"54": {
+    "doc": "Weather Client",
+    "title": "Description",
+    "content": "This application demonstrates how a user can use a TCP client to connect to a Weather server. The user would need to configure the Wi-Fi credentials for the Home AP.The default application will try to establish a TCP Client connection with api.openweathermap.org and send a POST request to it. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#description",
+    "relUrl": "/apps/weather_client/readme.html#description"
+  },"55": {
+    "doc": "Weather Client",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/weather_client/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/weather_client/readme.html#downloading-and-building-the-application"
+  },"56": {
+    "doc": "Weather Client",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/weather_client/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"57": {
+    "doc": "Weather Client",
+    "title": "Running the Application",
+    "content": ". | Open the project and launch Harmony3 configurator. | Configure home AP credentials for STA Mode. | Currently Net Service is configured to run a TCP Client in non-Secured mode to connect to api.openweathermap.org on the http port (80). In case the user wants to change this config, please make the changes in the Net Service Module configurations as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will connect to the Home AP and print the IP address obtained. | The Board will connect to Home AP and then as per the default Net Service configuration, it shall connect to api.openweathermap.org and do data exchange: | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html#running-the-application",
+    "relUrl": "/apps/weather_client/readme.html#running-the-application"
+  },"58": {
+    "doc": "Weather Client",
+    "title": "Weather Client",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html",
+    "relUrl": "/apps/weather_client/readme.html"
   },"59": {
-    "doc": "IFTTT Demo",
-    "title": "IFTTT Demo",
-    "content": "This example application demosntrates how we can generate a trigger to IFTTT web platform to make it perform a specific action like sending a mail/ sms etc using an applet. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#ifttt-demo",
-    "relUrl": "/apps/ifttt/readme.html#ifttt-demo"
-  },"60": {
-    "doc": "IFTTT Demo",
-    "title": "Description",
-    "content": "IFTTT is short for “If This Then That”. IFTTT is a third-party web platform which uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the button (SW1) on the Curiosity Board is pressed. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#description",
-    "relUrl": "/apps/ifttt/readme.html#description"
-  },"61": {
-    "doc": "IFTTT Demo",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/ifttt/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/ifttt/readme.html#downloading-and-building-the-application"
-  },"62": {
-    "doc": "IFTTT Demo",
-    "title": "Creating an Applet on IFTTT web platform.",
-    "content": "IFTTT is a third-party web platform, and one can create an applet of their own. More details on how one can use IFTTT and create their own applets can be found at https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#creating-an-applet-on-ifttt-web-platform",
-    "relUrl": "/apps/ifttt/readme.html#creating-an-applet-on-ifttt-web-platform"
-  },"63": {
-    "doc": "IFTTT Demo",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable to power on the board. | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/ifttt/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"64": {
-    "doc": "IFTTT Demo",
-    "title": "Running the Application",
-    "content": ". | Open the project and launch Harmony3 configurator. | Configure home AP credentials for STA Mode. | Save configurations and generate code via MHC. | Currently application expects the user to create an applet at the IFTTT web platform and configure the relevant details related to the applet in the app.c file. These details will help in creating the trigger which we send to make the applet perform the action. | The user would need to populate the following | . | Parameter Name | Default Value | Description | . | IFTTT_EVENT_TYPE | IFTTT_EVENT_BUTTON_PRESS | The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board (IFTTT_EVENT_BUTTON_PRESS), or by running a timer (IFTTT_EVENT_PERIODIC_TIMER) and sending the trigger periodically. The default event type is button press to trigger the applet. | . | IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT | 100 sec | This parameter is used for setting the timeperiod in sec, after which a periodic trigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER | . | IFTTT_EVENT | “YOUR_EVENT” | This is a mandatory parameter to be filled in by the user, and is the ‘event’ which triggers the applet. This ‘event’ was used while creating the applet at the IFTTT web platform. | . | IFTTT_KEY | “YOUR_KEY” | This is a mandatory parameter to be filled in by the user, and is the the ‘key’ which is generated after the creation of the applet at the IFTTT web platform. | . | IFTTT_NUM_OF_VALUES | 1 | The IFTTT applet can use upto 3 values/ data while performing an action. This parameter indicates the number of values which this application needs to send along with the trigger. | . | IFTTT_VALUE1 | “Value1” | Data Value1 that needs to be sent along with the trigger. | . | IFTTT_VALUE2 | “Value2” | Data Value2 that needs to be sent along with the trigger. | . | IFTTT_VALUE3 | “Value3” | Data Value3 that needs to be sent along with the trigger. | . | IFTTT_USER_CALLBACK | NULL | In case users want to process some data and based on the result want to dynamically decide if the trigger needs to be sent or not, they will need to map this parameter to APP_IFTTT_Callback() function and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the ‘Value1’ and sent. | . | IFTTT_USER_CALLBACK_CTX | NULL | Callback context/ parameter which will be passed on to APP_IFTTT_Callback(). This could a structure pointer which contains the data to be processed and decide if the trigger needs to be sent. | . | Build and program the generated image into the hardware using the IDE. | Open the terminal application (Ex.:Tera term) on the computer. | Connect to the COM port related to the external USB-UART connected to the GPIO heade and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The Board will connect to Home AP. | Every time the button/ switch (SW1) is pressed . , . it shall connect to maker.ifttt.com and send the trigger. | This Trigger will be received by the ifttt server which will invoke the applet. Let us assume the user created an applet using webhooks which shall ‘send an email’ as an action. The email could look something like this: | Every time a trigger is being sent by the Curiosity Board, the red LED on the board will be ON, and it will go OFF once the trigger request has been successfully trasmitted to IFTTT server. Any new request while the LED is ON will not be honoured. Hence, it is receommended to press the button for a new request only when the red LED has gone OFF. | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#running-the-application",
-    "relUrl": "/apps/ifttt/readme.html#running-the-application"
-  },"65": {
-    "doc": "IFTTT Demo",
-    "title": "IFTTT Demo",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html",
-    "relUrl": "/apps/ifttt/readme.html"
-  },"66": {
-    "doc": "Wi-Fi Soft AP (Service mode)",
-    "title": "Wi-Fi Access Point(AP) Mode",
-    "content": "This example application acts as a Wi-Fi Access point(AP) to connect to Laptop/Mobile(STA) and exchange data. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#wi-fi-access-pointap-mode",
-    "relUrl": "/apps/wifi_ap/readme.html#wi-fi-access-pointap-mode"
-  },"67": {
-    "doc": "Wi-Fi Soft AP (Service mode)",
-    "title": "Description",
-    "content": "This application demonstrates how a user can configure the device to operate in SoftAP mode.The device will come up in SoftAP mode and any other device(STA) can connect as a STA to the SoftAP. The third party device should be assigned an IP by the SoftAP. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#description",
-    "relUrl": "/apps/wifi_ap/readme.html#description"
-  },"68": {
-    "doc": "Wi-Fi Soft AP (Service mode)",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_ap/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/wifi_ap/readme.html#downloading-and-building-the-application"
-  },"69": {
-    "doc": "Wi-Fi Soft AP (Service mode)",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/wifi_ap/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"70": {
-    "doc": "Wi-Fi Soft AP (Service mode)",
-    "title": "Running the Application",
-    "content": ". | Open the project and launch Harmony3 configurator. | Configure softAP credentials as required. | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will boot in softAP mode. | Connect to the softAP from a laptop or a Mobile Phone. User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it . | From DUT, user can ping the connected device. | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#running-the-application",
-    "relUrl": "/apps/wifi_ap/readme.html#running-the-application"
-  },"71": {
-    "doc": "Wi-Fi Soft AP (Service mode)",
-    "title": "Wi-Fi Soft AP (Service mode)",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html",
-    "relUrl": "/apps/wifi_ap/readme.html"
-  },"72": {
-    "doc": "Wi-Fi Easy Configuration",
-    "title": "Wi-Fi Easy Configuration",
-    "content": "This example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket and HTTP. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#wi-fi-easy-configuration",
-    "relUrl": "/apps/wifi_easy_config/readme.html#wi-fi-easy-configuration"
-  },"73": {
-    "doc": "Wi-Fi Easy Configuration",
-    "title": "Description",
-    "content": "This application demonstrates how a user can configure the device with the credentials of the Home AP. The device will come up in SoftAP mode, the user will connect to the SoftAP via a third party STA. User will then send the Home AP credentials to the device and the device will store the credentials in the NVM. The device will auto reboot. Upon reboot, the device will come up in STA mode, it will connect to the Home AP and acquire an IP address. DUT will act either in AP mode or STA mode. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#description",
-    "relUrl": "/apps/wifi_easy_config/readme.html#description"
-  },"74": {
-    "doc": "Wi-Fi Easy Configuration",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_easy_config/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX FreeRTOS project for PIC32MZ W1 Curiosity Board | . | pic32mz_w1_curiosity | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/wifi_easy_config/readme.html#downloading-and-building-the-application"
-  },"75": {
-    "doc": "Wi-Fi Easy Configuration",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/wifi_easy_config/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"76": {
-    "doc": "Wi-Fi Easy Configuration",
-    "title": "Running the Application",
-    "content": ". | Open the project and launch Harmony3 configurator. | Configure SoftAP credentials as required. | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will boot in SoftAP mode. | . Provisioning using TCP Socket . | Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it. | Using a TCP Client tool like Packet Sender installed in the laptop connected to the softAP, send the following JSON file to AP’s provisioning port (192.168.1.1:6666) . | Note: User would need to edit the default JSON file as per their home AP settings. | . { \"mode\": 0, \"save_config\": 1,\"countrycode\":\"GEN\", \"STA\": { \"ch\": 0, \"auto\": 1, \"auth\": 3, \"SSID\": \"dlink\", \"PWD\":\"password\"}, \"AP\": {\"ch\": 2, \"ssidv\": 1, \"auth\": 4, \"SSID\": \"DEMO_AP_SOFTAP\", \"PWD\": \"password\" } } . | For more details follow the steps available in page: * Wi-Fi provisioning Using JSON Format | . Provisioning using Mobile Application . | Connect to the SoftAP from a mobile phone.User may have to enter password on mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it. | For more details follow the steps available in page: Wi-Fi provisioning Using Mobile Application . | . Provisioning using HTTP(webpage) . | Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it. | For more details follow the steps available in page:Wi-Fi provisioning using HTTP . | . Provisioning using Command line . | User can enter the below command to switch mode to STA and set desired SSID,passphase and security . | wifiprov set 0 1 &lt;country_code&gt; &lt;channel&gt; &lt;authtype&gt; &lt;ssid_name&gt; &lt;psk_name&gt; . | For more details follow the steps available in page: Wi-Fi provisioning using CLI . | . The device will switch from AP mode to STA mode. The device will now connect to the configured AP. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#running-the-application",
-    "relUrl": "/apps/wifi_easy_config/readme.html#running-the-application"
-  },"77": {
-    "doc": "Wi-Fi Easy Configuration",
-    "title": "Wi-Fi Easy Configuration",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html",
-    "relUrl": "/apps/wifi_easy_config/readme.html"
-  },"78": {
-    "doc": "Wi-Fi ethernet dual interface",
-    "title": "Wifi-ethernet dual interface",
-    "content": "This example application acts as a Soft AP with both wifi and ethernet interface enabled. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#wifi-ethernet-dual-interface",
-    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#wifi-ethernet-dual-interface"
-  },"79": {
-    "doc": "Wi-Fi ethernet dual interface",
-    "title": "Description",
-    "content": "This application demonstrates how a user can enable both wifi and ethernet interface. The system shall run in freertos mode, and the application shall come up in AP mode. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#description",
-    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#description"
-  },"80": {
-    "doc": "Wi-Fi ethernet dual interface",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_eth_dual_interface/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#downloading-and-building-the-application"
-  },"81": {
-    "doc": "Wi-Fi ethernet dual interface",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Laptop (connect the ethernet cable between laptop and curiosity board) | Mobile (wifi-interface) | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"82": {
-    "doc": "Wi-Fi ethernet dual interface",
-    "title": "Running the Application",
-    "content": ". | Open the project and launch Harmony3 configurator. | Configure credentials for AP Mode. | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The Board will come up in AP mode with AP mode IP address: . | Connect wifi interface to “pic32mzw1” AP. Once wifi interface is connected, the assigned IP address will be visible in UART console: . | User can verify the connectivity status by pinging pic32mzw1 from laptop or mobile to respective interface ( ethernet or wifi ) : | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#running-the-application",
-    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#running-the-application"
-  },"83": {
-    "doc": "Wi-Fi ethernet dual interface",
-    "title": "Wi-Fi ethernet dual interface",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html",
-    "relUrl": "/apps/wifi_eth_dual_interface/readme.html"
-  },"84": {
-    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "title": "Over The Air (OTA) Programming Using Wi-Fi",
-    "content": "This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and perform OTA application update process to download an image present in the user defined OTA-HTTP server. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#over-the-air-ota-programming-using-wi-fi",
-    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#over-the-air-ota-programming-using-wi-fi"
-  },"85": {
-    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "title": "Description",
-    "content": "This application demonstrates how a user can perform OTA application upgrade using Wi-Fi. The user would need to configure the Home AP credentials (like SSID and security items). The Wi-Fi service will use the credentials to connect to the Home AP and acquire an IP address. Once the IP address is obtained application will perform OTA update process. Application will try to connect with the defined server address and download the new image. The downloaded image will be stored in the external flash (sst26vf) initially. Application will reset the device to run new image once image is successfully downloaded from server. When device is reset ,bootloader will try to program the image from the external flash and if programming is successful ,downloaded image from the server will be executed . It is required to build “ota_bootloader” project located in the apps folder of wireless_apps_pic32mzw1_wfi32e01 repo first before building this application as the image of the bootloader application will be used to integrate with the “wifi_ota_app_upgrade” application image. A unified hex file will be built using Hexmate tool and the unified HEX image will be loaded to the device. More details about this can be found in “Running Application” section below. This application uses File System, a harmony component which internally use SPI protocol to place the newly downloaded image to the external flash. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#description",
-    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#description"
-  },"86": {
-    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "title": "OTA Application framework Architecture",
-    "content": "Over the Air (OTA) firmware upgrade feature is designed with a two step process, Image Downloading and Image Programming process. Image Downloading process is done by OTA SERVICE, harmony componet and ota_bootloader will take care of programming process. Abstraction model: . User Application: This is where the customer application logic is built. OTA Service: This layer includes the service level logic implementation. This is a Harmony component which provides certain user configurable parameters(ex- Version, Periodic update check etc.) . Based on user configuration, generated code will be activated with required functionalities. OTA software platform / OTA Core : This is the platform layer that consist of the main OTA logic implementation. When OTA process is triggered , this layer will communicate with the transport layer to connect to OTA server. If new image is available , it will initiate download using transport layer. If successfully downloaded, it will store the new image into the File System . File System : The architecture is designed to provide flexibility for the customer to choose the storage medium (ex- SST26 SPI flash, SD card, USB MSD in host mode etc.). Any medium supported by the Harmony3 file system can be used with the OTA service. Bootloader : This layer consists of the logic to safely program images from the file system (external) into program the program memory (NVM) of the device. At device boot, the bootloader will check if a new image is available in the external image store and transfer it to the NVM. For more details , Please follow documentation provided in link . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#ota-application-framework-architecture",
-    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#ota-application-framework-architecture"
-  },"87": {
-    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "title": "OTA server JSON manifest",
-    "content": "The Application expects the HTTP based OTA server to provide metadata of images available in the server in json format. During update checks, the OTA service will download and parse this manifest file. Each entry in the manifest file should include the following fields : . | Version indicates the application version number. It is a integer value. | URL contains the image path from which the application image can be downloaded. It is a string variable. | Digest contain the SHA256 digest of image to be downloaded. It is a 64 byte string variable an should not include whitespaces . | EraseVer This optional field provides a capability to trigger an erase of an version which was downloaded earlier. Customer may want to remove an image from the image store due to various reason, application with bug, may be one of them. It is a bool variable. | If user configures this field as “true”, OTA serice will delete image version mentioned in “Version” field. | If user configures this field as “false”, OTA service will follow image downwload logic. | . | . Sample JSON . { \"ota\": [ { \"Version\": 3, \"URL\": \"http://192.168.43.173:8000/wifi_ota103.bin\", \"Digest\": \"745189cbb24b752a0175de1f9d5d61433ba47d89aff5b5a3686f54ca2d5dfb22\", \"EraseVer\": false }, { \"Version\": 6, \"URL\": \"http://192.168.43.173:8000/wifi_ota100.bin\", \"Digest\": \"885189cbb24b7b1a0175deef9d5d61f53c247d89a095b5a3686f54ca2d5dfbaa\", \"EraseVer\": false } ] } . OTA service will download json file from server first when update check process is triggered by application, try to fetch information and proceed further . For more details , Please follow documentation provided in link . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#ota-server-json-manifest",
-    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#ota-server-json-manifest"
-  },"88": {
-    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "title": "OTA image generation",
-    "content": "Please refer Generating OTA image section in usage manual present in link . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#ota-image-generation",
-    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#ota-image-generation"
-  },"89": {
-    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_ota_app_upgrade/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#downloading-and-building-the-application"
-  },"90": {
-    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | HTTP server. | python 3.9.0 . | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"91": {
-    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "title": "Running the Application",
-    "content": ". | Open the project “wifi_ota_app_upgrade”. | Demo is configured with the default wifi credentials shown in the image below. To change the configurations launch the Harmony 3 configurator and update the home AP credentials for STA Mode and generate code. | Configuring server url : . | As a part of OTA process device will try to connect to user defined HTTP server. If device is able to connect to server without any error, it will try to fetch json manifest information . | User can use any HTTP server. | User may also use python command to create a local http server using below steps: . | Open command prompt and change driectory to the folder where ota image is present. | Use below python command in command prompt: . python -m http.server 8000 . | . | . | Generate the code using MHC. | To create factory reset image , It is required to integrate the bootloader and ota application image and create a single unified HEX file. To integrate 2 images we can use hexmate tool, which is readily available with MPLABX package as part of the standard installation. To combine the hex files - . | User should load the “ota_bootloader” project located in the apps folder of “wireless_apps_pic32mzw1_wfi32e01” repo and include it into “wifi_ota_app_upgrade” project as a “Loadable” component. For this, right click on the “wifi_ota_app_upgrade” project, click on “properties” and select “ota_bootloader” project. User need to make sure that the steps mentioned in “ota_bootloader” reference document is followed, before this step. | Click on “Apply” button to make the applied changes effective: . | . | It is required to perform a “post-build” step to create ota image with file extension “.bin” (which can be placed in the server and downloaded during OTA process). | All required files for post-build process will be generated (during step 5), mentioned above) automatically in “tools” folder, created inside project folder. | Right click on the “wifi_ota_app_upgrade” project and click on properties. | Select “building”, insert below command and click “OK”: ../../tools/hex2bin/hex2bin.exe . Note: python should be present in the system variable path. For more details , Please follow documentation provided in link . | . | Build and program the application. | Place the .bin image into the HTTP server. The .bin image can be found in below path which is generated during “wifi_ota_app_upgrade” project build : ..\\firmware\\wifi_ota_app_upgrade.X\\dist\\pic32mz_w1_curiosity_freertos\\production . | Connect to a USB to UART converter to UART1 and Open a Terminal application (Ex.:Tera term) on the computer. Configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will connect to the Home AP and print the IP address obtained. | Once IP address is obtained the device will initiate OTA process and try to fetch json manifest content, periodically for every 60 sec . | User should make sure that both HTTP server and the PIC32MZW1 device are part of same wifi network (or connected to same Home AP). | User can see periodical messages as shown in belo screen shot : . | Once image is downloaded successfully, the application will print a message in the console. User need to reset the device to load the new image. | If OTA upgrade fails, user need to reset the device to initiate OTA process again. | During reset, device will check if any newly downloaded image is available in the external flash(sst26vf): . | if yes, bootloader will program new image to program-flash area of the device from external flash. | if programming is successful bootloader will hand over control and application will start executing. | . | if no new image is available then bootloader will hand over control without programming any image and application image already present in the program-flash area will start executing | . | User will come to know if new image is running by checking the version number in console print | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#running-the-application",
-    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#running-the-application"
-  },"92": {
-    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "title": "Over The Air (OTA) Upgrade Using Wi-Fi",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html",
-    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html"
-  },"93": {
-    "doc": "OTA Boot Loader",
-    "title": "OTA Boot Loader",
-    "content": "This example acts as loader of OTA image (downloaded using OTA process) to load it to device memory . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#ota-boot-loader",
-    "relUrl": "/apps/ota_bootloader/readme.html#ota-boot-loader"
-  },"94": {
-    "doc": "OTA Boot Loader",
-    "title": "Description",
-    "content": "This bootloader project can be used by user to program an image , which is downloaded through OTA process. It is required to build this project first using its IDE (MPLABX) before building OTA application, as the image of the bootloader will be integrated with the “wifi_ota_app_upgrade” application image. During boot-up, bootloader will check if any new valid image available in the external flash. If available, it chooses the newly (latest downloaded) available image in the External flash (sst26vf) and program it to Program-Flash area of the device. Bootloader uses SPI protocol to program the image from the external flash. If there is no new downloaded image present in the external flash, bootloader will handover the control to current application present in the program-flash area and application will start executing. For more details , Please follow documentation provided in link . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#description",
-    "relUrl": "/apps/ota_bootloader/readme.html#description"
-  },"95": {
-    "doc": "OTA Boot Loader",
-    "title": "Downloading and Generating Bootloader Code",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the project within the repository is apps/ota_bootloader/firmware. To genearte code, refer to the following table and open the project using its IDE. | Project Name | Description | . | ota_bootloader.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#downloading-and-generating-bootloader-code",
-    "relUrl": "/apps/ota_bootloader/readme.html#downloading-and-generating-bootloader-code"
-  },"96": {
-    "doc": "OTA Boot Loader",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/ota_bootloader/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"97": {
-    "doc": "OTA Boot Loader",
-    "title": "Generating BootLoader Code",
-    "content": ". | Open “ota_bootloader” project and launch Harmony3 configurator. Path of the application within the repository is apps/ota_bootloader/firmware. | Generate code via MHC. | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#generating-bootloader-code",
-    "relUrl": "/apps/ota_bootloader/readme.html#generating-bootloader-code"
-  },"98": {
-    "doc": "OTA Boot Loader",
-    "title": "OTA Boot Loader",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html",
-    "relUrl": "/apps/ota_bootloader/readme.html"
-  },"99": {
-    "doc": "Wi-Fi STA (service mode)",
-    "title": "Wi-Fi Station(STA) Mode",
-    "content": "This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and exchange data. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#wi-fi-stationsta-mode",
-    "relUrl": "/apps/wifi_sta/readme.html#wi-fi-stationsta-mode"
-  },"100": {
-    "doc": "Wi-Fi STA (service mode)",
-    "title": "Description",
-    "content": "This application demonstrates how a user can connect to the Home AP. The user would need to configure the Home AP credentials (like SSID and security items). The Wi-Fi service will use the credentials to connect to the Home AP and acquire an IP address.The default application will try to establish a connection to AP “DEMO_AP” with WPA2 security and password as a “password”. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#description",
-    "relUrl": "/apps/wifi_sta/readme.html#description"
-  },"101": {
-    "doc": "Wi-Fi STA (service mode)",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_sta/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/wifi_sta/readme.html#downloading-and-building-the-application"
-  },"102": {
-    "doc": "Wi-Fi STA (service mode)",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/wifi_sta/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"103": {
-    "doc": "Wi-Fi STA (service mode)",
-    "title": "Running the Application",
-    "content": ". | Open the project and launch Harmony3 configurator. | Configure home AP credentials for STA Mode. | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will connect to the Home AP and print the IP address obtained. | From the DUT(Device Under Test), user can ping the Gateway IP address. | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#running-the-application",
-    "relUrl": "/apps/wifi_sta/readme.html#running-the-application"
-  },"104": {
-    "doc": "Wi-Fi STA (service mode)",
-    "title": "Wi-Fi STA (service mode)",
-    "content": ". ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html",
-    "relUrl": "/apps/wifi_sta/readme.html"
-  },"105": {
-    "doc": "WiFi Touch Demo",
-    "title": "Wi-Fi Touch Demo",
-    "content": "This example application acts as a TCP Server to which a TCP Client can connect and visualize QT7 Touch Xpro data. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#wi-fi-touch-demo",
-    "relUrl": "/apps/wifi_touch_demo/readme.html#wi-fi-touch-demo"
-  },"106": {
-    "doc": "WiFi Touch Demo",
-    "title": "Description",
-    "content": "This application demonstrates how a user can implement a Wi-Fi based Touch application using PIC32MZ-W1’s internal hardware CVD Controller and QT7 Xplained Pro self-capacitance touch evaluation kit. This demo will start a TCP server on the device which is running in Soft AP Mode. The Application will come up as a Soft AP and wait for a device to connect. Afterwards the TCP Server will start running on it. A python script to emulate a dummy TCP client is provided which will display real-time sensor operations on QT7 Xpro board. ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#description",
-    "relUrl": "/apps/wifi_touch_demo/readme.html#description"
-  },"107": {
-    "doc": "WiFi Touch Demo",
-    "title": "Downloading and building the application",
-    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_touch_demo/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | PIC32_WFI32E_Curiosity_QT7_Touch_Example.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#downloading-and-building-the-application",
-    "relUrl": "/apps/wifi_touch_demo/readme.html#downloading-and-building-the-application"
-  },"108": {
-    "doc": "WiFi Touch Demo",
-    "title": "Setting up PIC32MZ W1 Curiosity Board",
-    "content": ". | Connect a programmer tools such as SNAP, ICD4, etc to ICSP header. | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | QT7 Xpro board is connected to Curiosity Xpro header | Laptop / Mobile (to run the TCP Client on it) | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#setting-up-pic32mz-w1-curiosity-board",
-    "relUrl": "/apps/wifi_touch_demo/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"109": {
-    "doc": "WiFi Touch Demo",
-    "title": "Jumper &amp; Resistor Configuration",
-    "content": ". | Jumper J211 is connected between pins 2-3 (closer to xpro header) | Jumper J209 is disconnected | Jumpers J301 are disconnected (to use external programmer tool) | Remove resistor R220 as it is pulling up the pin used by the 3rd slider segment on the QT7 | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#jumper--resistor-configuration",
-    "relUrl": "/apps/wifi_touch_demo/readme.html#jumper--resistor-configuration"
-  },"110": {
-    "doc": "WiFi Touch Demo",
-    "title": "Running the Application",
-    "content": ". | Open the project and launch Harmony3 configurator. | Currently the Wi-Fi Service is configured as AP mode with default values for SSID, Auth type, etc. | . | Currently Net Service is configured to run as TCP Server running on port 5555. In case the user wants to change this config, please make the changes in the Net Service Module as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device shall come up as a Soft AP and then as per the Net Service configuration, the TCP Server shall come up, awaiting a connection from a TCP Client. | Connect a PC to this Soft AP (using params from step 2) and run the provided python script. (tested with Python v3.8 and Windows 10) | Connect the python client giving the server IP (the IP of the Board) and the port as 5555. All operations from the QT7 Xpro board will now be visible real-time on the GUI: | . ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#running-the-application",
-    "relUrl": "/apps/wifi_touch_demo/readme.html#running-the-application"
-  },"111": {
-    "doc": "WiFi Touch Demo",
-    "title": "Known Issues:",
-    "content": " ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#known-issues",
-    "relUrl": "/apps/wifi_touch_demo/readme.html#known-issues"
-  },"112": {
-    "doc": "WiFi Touch Demo",
-    "title": "WiFi Touch Demo",
-    "content": " ",
-    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html",
-    "relUrl": "/apps/wifi_touch_demo/readme.html"
-  },"113": {
     "doc": "Web Socket Server",
     "title": "Web Socket Server",
     "content": "This example application acts as a web socket server enabled enabled with wifi station mode. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/web_socket_server/readme.html#web-socket-server",
     "relUrl": "/apps/web_socket_server/readme.html#web-socket-server"
-  },"114": {
+  },"60": {
     "doc": "Web Socket Server",
     "title": "Description",
     "content": "This application demonstrates how a user can enable and utilize the Web Socket Server System service. The system shall run in freertos mode, and the application shall come up in STA mode. ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/web_socket_server/readme.html#description",
     "relUrl": "/apps/web_socket_server/readme.html#description"
-  },"115": {
+  },"61": {
     "doc": "Web Socket Server",
     "title": "Downloading and building the application",
     "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wss_server/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/web_socket_server/readme.html#downloading-and-building-the-application",
     "relUrl": "/apps/web_socket_server/readme.html#downloading-and-building-the-application"
-  },"116": {
+  },"62": {
     "doc": "Web Socket Server",
     "title": "Setting up PIC32MZ W1 Curiosity Board",
     "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Laptop (connect the ethernet cable between laptop and curiosity board) | Mobile (wifi-interface) | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/web_socket_server/readme.html#setting-up-pic32mz-w1-curiosity-board",
     "relUrl": "/apps/web_socket_server/readme.html#setting-up-pic32mz-w1-curiosity-board"
-  },"117": {
+  },"63": {
     "doc": "Web Socket Server",
     "title": "Running the Application",
     "content": ". | Open the project and launch Harmony3 configurator. | Configure the SSID and the credential of the for AP to be connected. | Configure the port for the client connections. | Save configurations and generate code via MHC. | Build and program the generated code into the hardware using its IDE. | Open the Terminal application (Ex.:Tera term) on the computer. | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The Board will come up in STA mode and it will get connected automatically to the configured AP: . | Connect the computer also to the same AP as that of the device and run the python script wss_client/wss_client.py. The script will be used to send data to server. The server will act as a echo server and send the data back to the client. | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/web_socket_server/readme.html#running-the-application",
     "relUrl": "/apps/web_socket_server/readme.html#running-the-application"
-  },"118": {
+  },"64": {
     "doc": "Web Socket Server",
     "title": "Web Socket Server",
     "content": ". ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/web_socket_server/readme.html",
     "relUrl": "/apps/web_socket_server/readme.html"
+  },"65": {
+    "doc": "OTA Boot Loader",
+    "title": "OTA Boot Loader",
+    "content": "This example acts as loader of OTA image (downloaded using OTA process) to load it to device memory . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#ota-boot-loader",
+    "relUrl": "/apps/ota_bootloader/readme.html#ota-boot-loader"
+  },"66": {
+    "doc": "OTA Boot Loader",
+    "title": "Description",
+    "content": "This bootloader project can be used by user to program an image , which is downloaded through OTA process. It is required to build this project first using its IDE (MPLABX) before building OTA application, as the image of the bootloader will be integrated with the “wifi_ota_app_upgrade” application image. During boot-up, bootloader will check if any new valid image available in the external flash. If available, it chooses the newly (latest downloaded) available image in the External flash (sst26vf) and program it to Program-Flash area of the device. Bootloader uses SPI protocol to program the image from the external flash. If there is no new downloaded image present in the external flash, bootloader will handover the control to current application present in the program-flash area and application will start executing. For more details , Please follow documentation provided in link . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#description",
+    "relUrl": "/apps/ota_bootloader/readme.html#description"
+  },"67": {
+    "doc": "OTA Boot Loader",
+    "title": "Downloading and Generating Bootloader Code",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the project within the repository is apps/ota_bootloader/firmware. To genearte code, refer to the following table and open the project using its IDE. | Project Name | Description | . | ota_bootloader.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#downloading-and-generating-bootloader-code",
+    "relUrl": "/apps/ota_bootloader/readme.html#downloading-and-generating-bootloader-code"
+  },"68": {
+    "doc": "OTA Boot Loader",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/ota_bootloader/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"69": {
+    "doc": "OTA Boot Loader",
+    "title": "Generating BootLoader Code",
+    "content": ". | Open “ota_bootloader” project and launch Harmony3 configurator. Path of the application within the repository is apps/ota_bootloader/firmware. | Generate code via MHC. | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html#generating-bootloader-code",
+    "relUrl": "/apps/ota_bootloader/readme.html#generating-bootloader-code"
+  },"70": {
+    "doc": "OTA Boot Loader",
+    "title": "OTA Boot Loader",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html",
+    "relUrl": "/apps/ota_bootloader/readme.html"
+  },"71": {
+    "doc": "Wi-Fi Soft AP (Service mode)",
+    "title": "Wi-Fi Access Point(AP) Mode",
+    "content": "This example application acts as a Wi-Fi Access point(AP) to connect to Laptop/Mobile(STA) and exchange data. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#wi-fi-access-pointap-mode",
+    "relUrl": "/apps/wifi_ap/readme.html#wi-fi-access-pointap-mode"
+  },"72": {
+    "doc": "Wi-Fi Soft AP (Service mode)",
+    "title": "Description",
+    "content": "This application demonstrates how a user can configure the device to operate in SoftAP mode.The device will come up in SoftAP mode and any other device(STA) can connect as a STA to the SoftAP. The third party device should be assigned an IP by the SoftAP. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#description",
+    "relUrl": "/apps/wifi_ap/readme.html#description"
+  },"73": {
+    "doc": "Wi-Fi Soft AP (Service mode)",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_ap/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/wifi_ap/readme.html#downloading-and-building-the-application"
+  },"74": {
+    "doc": "Wi-Fi Soft AP (Service mode)",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/wifi_ap/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"75": {
+    "doc": "Wi-Fi Soft AP (Service mode)",
+    "title": "Running the Application",
+    "content": ". | Open the project and launch Harmony3 configurator. | Configure softAP credentials as required. | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will boot in softAP mode. | Connect to the softAP from a laptop or a Mobile Phone. User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it . | From DUT, user can ping the connected device. | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html#running-the-application",
+    "relUrl": "/apps/wifi_ap/readme.html#running-the-application"
+  },"76": {
+    "doc": "Wi-Fi Soft AP (Service mode)",
+    "title": "Wi-Fi Soft AP (Service mode)",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html",
+    "relUrl": "/apps/wifi_ap/readme.html"
+  },"77": {
+    "doc": "Wi-Fi Easy Configuration",
+    "title": "Wi-Fi Easy Configuration",
+    "content": "This example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket and HTTP. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#wi-fi-easy-configuration",
+    "relUrl": "/apps/wifi_easy_config/readme.html#wi-fi-easy-configuration"
+  },"78": {
+    "doc": "Wi-Fi Easy Configuration",
+    "title": "Description",
+    "content": "This application demonstrates how a user can configure the device with the credentials of the Home AP. The device will come up in SoftAP mode, the user will connect to the SoftAP via a third party STA. User will then send the Home AP credentials to the device and the device will store the credentials in the NVM. The device will auto reboot. Upon reboot, the device will come up in STA mode, it will connect to the Home AP and acquire an IP address. DUT will act either in AP mode or STA mode. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#description",
+    "relUrl": "/apps/wifi_easy_config/readme.html#description"
+  },"79": {
+    "doc": "Wi-Fi Easy Configuration",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_easy_config/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX FreeRTOS project for PIC32MZ W1 Curiosity Board | . | pic32mz_w1_curiosity | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/wifi_easy_config/readme.html#downloading-and-building-the-application"
+  },"80": {
+    "doc": "Wi-Fi Easy Configuration",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/wifi_easy_config/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"81": {
+    "doc": "Wi-Fi Easy Configuration",
+    "title": "Running the Application",
+    "content": ". | Open the project and launch Harmony3 configurator. | Configure SoftAP credentials as required. | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will boot in SoftAP mode. | . Provisioning using TCP Socket . | Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it. | Using a TCP Client tool like Packet Sender installed in the laptop connected to the softAP, send the following JSON file to AP’s provisioning port (192.168.1.1:6666) . | Note: User would need to edit the default JSON file as per their home AP settings. | . { \"mode\": 0, \"save_config\": 1,\"countrycode\":\"GEN\", \"STA\": { \"ch\": 0, \"auto\": 1, \"auth\": 3, \"SSID\": \"dlink\", \"PWD\":\"password\"}, \"AP\": {\"ch\": 2, \"ssidv\": 1, \"auth\": 4, \"SSID\": \"DEMO_AP_SOFTAP\", \"PWD\": \"password\" } } . | For more details follow the steps available in page: * Wi-Fi provisioning Using JSON Format | . Provisioning using Mobile Application . | Connect to the SoftAP from a mobile phone.User may have to enter password on mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it. | For more details follow the steps available in page: Wi-Fi provisioning Using Mobile Application . | . Provisioning using HTTP(webpage) . | Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it. | For more details follow the steps available in page:Wi-Fi provisioning using HTTP . | . Provisioning using Command line . | User can enter the below command to switch mode to STA and set desired SSID,passphase and security . | wifiprov set 0 1 &lt;countryCode&gt; &lt;channel&gt; &lt;autoConnect&gt; &lt;authtype&gt; &lt;ssid_name&gt; &lt;psk_name&gt; . | For more details follow the steps available in page: Wi-Fi provisioning using CLI . | . The device will switch from AP mode to STA mode. The device will now connect to the configured AP. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html#running-the-application",
+    "relUrl": "/apps/wifi_easy_config/readme.html#running-the-application"
+  },"82": {
+    "doc": "Wi-Fi Easy Configuration",
+    "title": "Wi-Fi Easy Configuration",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html",
+    "relUrl": "/apps/wifi_easy_config/readme.html"
+  },"83": {
+    "doc": "Wi-Fi ethernet dual interface",
+    "title": "Wifi-ethernet dual interface",
+    "content": "This example application acts as a Soft AP with both wifi and ethernet interface enabled. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#wifi-ethernet-dual-interface",
+    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#wifi-ethernet-dual-interface"
+  },"84": {
+    "doc": "Wi-Fi ethernet dual interface",
+    "title": "Description",
+    "content": "This application demonstrates how a user can enable both wifi and ethernet interface. The system shall run in freertos mode, and the application shall come up in AP mode. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#description",
+    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#description"
+  },"85": {
+    "doc": "Wi-Fi ethernet dual interface",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_eth_dual_interface/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#downloading-and-building-the-application"
+  },"86": {
+    "doc": "Wi-Fi ethernet dual interface",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Laptop (connect the ethernet cable between laptop and curiosity board) | Mobile (wifi-interface) | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"87": {
+    "doc": "Wi-Fi ethernet dual interface",
+    "title": "Running the Application",
+    "content": ". | Open the project and launch Harmony3 configurator. | Configure credentials for AP Mode. | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The Board will come up in AP mode with AP mode IP address: . | Connect wifi interface to “pic32mzw1” AP. Once wifi interface is connected, the assigned IP address will be visible in UART console: . | User can verify the connectivity status by pinging pic32mzw1 from laptop or mobile to respective interface ( ethernet or wifi ) : | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html#running-the-application",
+    "relUrl": "/apps/wifi_eth_dual_interface/readme.html#running-the-application"
+  },"88": {
+    "doc": "Wi-Fi ethernet dual interface",
+    "title": "Wi-Fi ethernet dual interface",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html",
+    "relUrl": "/apps/wifi_eth_dual_interface/readme.html"
+  },"89": {
+    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "title": "Over The Air (OTA) Programming Using Wi-Fi",
+    "content": "This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and perform OTA application update process to download an image present in the user defined OTA-HTTP server. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#over-the-air-ota-programming-using-wi-fi",
+    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#over-the-air-ota-programming-using-wi-fi"
+  },"90": {
+    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "title": "Description",
+    "content": "This application demonstrates how a user can perform OTA application upgrade using Wi-Fi. The user would need to configure the Home AP credentials (like SSID and security items). The Wi-Fi service will use the credentials to connect to the Home AP and acquire an IP address. Once the IP address is obtained application will perform OTA update process. Application will try to connect with the defined server address and download the new image. The downloaded image will be stored in the external flash (sst26vf) initially. Application will reset the device to run new image once image is successfully downloaded from server. When device is reset ,bootloader will try to program the image from the external flash and if programming is successful ,downloaded image from the server will be executed . It is required to build “ota_bootloader” project located in the apps folder of wireless_apps_pic32mzw1_wfi32e01 repo first before building this application as the image of the bootloader application will be used to integrate with the “wifi_ota_app_upgrade” application image. A unified hex file will be built using Hexmate tool and the unified HEX image will be loaded to the device. More details about this can be found in “Running Application” section below. This application uses File System, a harmony component which internally use SPI protocol to place the newly downloaded image to the external flash. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#description",
+    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#description"
+  },"91": {
+    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "title": "OTA Application framework Architecture",
+    "content": "Over the Air (OTA) firmware upgrade feature is designed with a two step process, Image Downloading and Image Programming process. Image Downloading process is done by OTA SERVICE, harmony componet and ota_bootloader will take care of programming process. Abstraction model: . User Application: This is where the customer application logic is built. OTA Service: This layer includes the service level logic implementation. This is a Harmony component which provides certain user configurable parameters(ex- Version, Periodic update check etc.) . Based on user configuration, generated code will be activated with required functionalities. OTA software platform / OTA Core : This is the platform layer that consist of the main OTA logic implementation. When OTA process is triggered , this layer will communicate with the transport layer to connect to OTA server. If new image is available , it will initiate download using transport layer. If successfully downloaded, it will store the new image into the File System . File System : The architecture is designed to provide flexibility for the customer to choose the storage medium (ex- SST26 SPI flash, SD card, USB MSD in host mode etc.). Any medium supported by the Harmony3 file system can be used with the OTA service. Bootloader : This layer consists of the logic to safely program images from the file system (external) into program the program memory (NVM) of the device. At device boot, the bootloader will check if a new image is available in the external image store and transfer it to the NVM. For more details , Please follow documentation provided in link . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#ota-application-framework-architecture",
+    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#ota-application-framework-architecture"
+  },"92": {
+    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "title": "OTA server JSON manifest",
+    "content": "The Application expects the HTTP based OTA server to provide metadata of images available in the server in json format. During update checks, the OTA service will download and parse this manifest file. Each entry in the manifest file should include the following fields : . | Version indicates the application version number. It is a integer value. | URL contains the image path from which the application image can be downloaded. It is a string variable. | Digest contain the SHA256 digest of image to be downloaded. It is a 64 byte string variable an should not include whitespaces . | EraseVer This optional field provides a capability to trigger an erase of an version which was downloaded earlier. Customer may want to remove an image from the image store due to various reason, application with bug, may be one of them. It is a bool variable. | If user configures this field as “true”, OTA serice will delete image version mentioned in “Version” field. | If user configures this field as “false”, OTA service will follow image downwload logic. | . | . Sample JSON . { \"ota\": [ { \"Version\": 3, \"URL\": \"http://192.168.43.173:8000/wifi_ota103.bin\", \"Digest\": \"745189cbb24b752a0175de1f9d5d61433ba47d89aff5b5a3686f54ca2d5dfb22\", \"EraseVer\": false }, { \"Version\": 6, \"URL\": \"http://192.168.43.173:8000/wifi_ota100.bin\", \"Digest\": \"885189cbb24b7b1a0175deef9d5d61f53c247d89a095b5a3686f54ca2d5dfbaa\", \"EraseVer\": false } ] } . OTA service will download json file from server first when update check process is triggered by application, try to fetch information and proceed further . For more details , Please follow documentation provided in link . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#ota-server-json-manifest",
+    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#ota-server-json-manifest"
+  },"93": {
+    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "title": "OTA image generation",
+    "content": "Please refer Generating OTA image section in usage manual present in link . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#ota-image-generation",
+    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#ota-image-generation"
+  },"94": {
+    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_ota_app_upgrade/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#downloading-and-building-the-application"
+  },"95": {
+    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | HTTP server. | python 3.9.0 . | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"96": {
+    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "title": "Running the Application",
+    "content": ". | Open the project “wifi_ota_app_upgrade”. | Demo is configured with the default wifi credentials shown in the image below. To change the configurations launch the Harmony 3 configurator and update the home AP credentials for STA Mode and generate code. | Configuring server url : . | As a part of OTA process device will try to connect to user defined HTTP server. If device is able to connect to server without any error, it will try to fetch json manifest information . | User can use any HTTP server. | User may also use python command to create a local http server using below steps: . | Open command prompt and change driectory to the folder where ota image is present. | Use below python command in command prompt: . python -m http.server 8000 . | . | . | Generate the code using MHC. | To create factory reset image , It is required to integrate the bootloader and ota application image and create a single unified HEX file. To integrate 2 images we can use hexmate tool, which is readily available with MPLABX package as part of the standard installation. To combine the hex files - . | User should load the “ota_bootloader” project located in the apps folder of “wireless_apps_pic32mzw1_wfi32e01” repo and include it into “wifi_ota_app_upgrade” project as a “Loadable” component. For this, right click on the “wifi_ota_app_upgrade” project, click on “properties” and select “ota_bootloader” project. User need to make sure that the steps mentioned in “ota_bootloader” reference document is followed, before this step. | Click on “Apply” button to make the applied changes effective: . | . | It is required to perform a “post-build” step to create ota image with file extension “.bin” (which can be placed in the server and downloaded during OTA process). | All required files for post-build process will be generated (during step 5), mentioned above) automatically in “tools” folder, created inside project folder. | Right click on the “wifi_ota_app_upgrade” project and click on properties. | Select “building”, insert below command and click “OK”: ../../tools/hex2bin/hex2bin.exe . Note: python should be present in the system variable path. For more details , Please follow documentation provided in link . | . | Build and program the application. | Connect to a USB to UART converter to UART1 and Open a Terminal application (Ex.:Tera term) on the computer. Configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will connect to the Home AP and print the IP address obtained. | Once IP address is obtained the device will initiate OTA process and try to fetch json manifest content, periodically for every 60 sec . | User should make sure that both HTTP server and the PIC32MZW1 device are part of same wifi network (or connected to same Home AP). | User can see periodical messages as shown in belo screen shot : . | For the .bin image to be downloded, user can use the same project “wifi_ota_app_upgrade”: . | User should change the “version number” in the OTA component in the MHC higher than currently running image. Ensure the same version number is there in the json file also. | Compile the project. | Update the “Digest” in the json file corresponding to the ota image to be downloaded. The “Digest” is printed in the compilation logs. | Place the .bin image to be downloded, into the HTTP server. The .bin image can be found in below path which is generated during “wifi_ota_app_upgrade” project build : ..\\firmware\\wifi_ota_app_upgrade.X\\dist\\pic32mz_w1_curiosity_freertos\\production | . | In case the user wants to download any other ‘.bin’ image, they need to ensure that the digest corresponding to the image is calculated and updated in the json file. | Once image is downloaded successfully, the application will print a message in the console. User need to reset the device to load the new image. | If OTA upgrade fails, user need to reset the device to initiate OTA process again. | During reset, device will check if any newly downloaded image is available in the external flash(sst26vf): . | if yes, bootloader will program new image to program-flash area of the device from external flash. | if programming is successful bootloader will hand over control and application will start executing. | . | if no new image is available then bootloader will hand over control without programming any image and application image already present in the program-flash area will start executing | . | User will come to know if new image is running by checking the version number in console print | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html#running-the-application",
+    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html#running-the-application"
+  },"97": {
+    "doc": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "title": "Over The Air (OTA) Upgrade Using Wi-Fi",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html",
+    "relUrl": "/apps/wifi_ota_app_upgrade/readme.html"
+  },"98": {
+    "doc": "UDP Server",
+    "title": "UDP Server",
+    "content": "This example application acts as a UDP Server to which a UDP Client can connect and exchange data in a non-blocking manner. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#udp-server",
+    "relUrl": "/apps/udp_server/readme.html#udp-server"
+  },"99": {
+    "doc": "UDP Server",
+    "title": "Description",
+    "content": "This application demonstrates how a user can start a UDP server on the device. The user would need to configure the Wi-Fi credentials for the Home AP and the port number at which the UDP server should be started. Any standard UDP client can be used to connect to the device which is operating as a UDP server. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#description",
+    "relUrl": "/apps/udp_server/readme.html#description"
+  },"100": {
+    "doc": "UDP Server",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/udp_server/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/udp_server/readme.html#downloading-and-building-the-application"
+  },"101": {
+    "doc": "UDP Server",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Laptop/ Mobile (to run the UDP Client on it) | Home AP (Wi-Fi Access Point) | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/udp_server/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"102": {
+    "doc": "UDP Server",
+    "title": "Running the Application",
+    "content": ". | Open the project and launch Harmony3 configurator. | Configure Home AP credentials for STA Mode. | Currently Net Service is configured to run as UDP Server running on port 3333. In case the user wants to change this config, please make the changes in the Net Service Module as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The Board shall connect to Home AP and then as per the default Net Service configuration, it shall bring up the UDP Server which shall await connection from a UDP Client.. | User can run any third party utility or a udp_client python script to act as UDP Client running on the Laptop | . Note: TLS Connection is not supported for UDP Server configuration . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html#running-the-application",
+    "relUrl": "/apps/udp_server/readme.html#running-the-application"
+  },"103": {
+    "doc": "UDP Server",
+    "title": "UDP Server",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html",
+    "relUrl": "/apps/udp_server/readme.html"
+  },"104": {
+    "doc": "Wi-Fi STA (service mode)",
+    "title": "Wi-Fi Station(STA) Mode",
+    "content": "This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and exchange data. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#wi-fi-stationsta-mode",
+    "relUrl": "/apps/wifi_sta/readme.html#wi-fi-stationsta-mode"
+  },"105": {
+    "doc": "Wi-Fi STA (service mode)",
+    "title": "Description",
+    "content": "This application demonstrates how a user can connect to the Home AP. The user would need to configure the Home AP credentials (like SSID and security items). The Wi-Fi service will use the credentials to connect to the Home AP and acquire an IP address.The default application will try to establish a connection to AP “DEMO_AP” with WPA2 security and password as a “password”. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#description",
+    "relUrl": "/apps/wifi_sta/readme.html#description"
+  },"106": {
+    "doc": "Wi-Fi STA (service mode)",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_sta/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/wifi_sta/readme.html#downloading-and-building-the-application"
+  },"107": {
+    "doc": "Wi-Fi STA (service mode)",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/wifi_sta/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"108": {
+    "doc": "Wi-Fi STA (service mode)",
+    "title": "Running the Application",
+    "content": ". | Open the project and launch Harmony3 configurator. | Configure home AP credentials for STA Mode. | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device will connect to the Home AP and print the IP address obtained. | From the DUT(Device Under Test), user can ping the Gateway IP address. | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html#running-the-application",
+    "relUrl": "/apps/wifi_sta/readme.html#running-the-application"
+  },"109": {
+    "doc": "Wi-Fi STA (service mode)",
+    "title": "Wi-Fi STA (service mode)",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html",
+    "relUrl": "/apps/wifi_sta/readme.html"
+  },"110": {
+    "doc": "WiFi Touch Demo",
+    "title": "Wi-Fi Touch Demo",
+    "content": "This example application acts as a TCP Server to which a TCP Client can connect and visualize QT7 Touch Xpro data. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#wi-fi-touch-demo",
+    "relUrl": "/apps/wifi_touch_demo/readme.html#wi-fi-touch-demo"
+  },"111": {
+    "doc": "WiFi Touch Demo",
+    "title": "Description",
+    "content": "This application demonstrates how a user can implement a Wi-Fi based Touch application using PIC32MZ-W1’s internal hardware CVD Controller and QT7 Xplained Pro self-capacitance touch evaluation kit. This demo will start a TCP server on the device which is running in Soft AP Mode. The Application will come up as a Soft AP and wait for a device to connect. Afterwards the TCP Server will start running on it. A python script to emulate a dummy TCP client is provided which will display real-time sensor operations on QT7 Xpro board. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#description",
+    "relUrl": "/apps/wifi_touch_demo/readme.html#description"
+  },"112": {
+    "doc": "WiFi Touch Demo",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/wifi_touch_demo/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | PIC32_WFI32E_Curiosity_QT7_Touch_Example.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/wifi_touch_demo/readme.html#downloading-and-building-the-application"
+  },"113": {
+    "doc": "WiFi Touch Demo",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect a programmer tools such as SNAP, ICD4, etc to ICSP header. | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | QT7 Xpro board is connected to Curiosity Xpro header | Laptop / Mobile (to run the TCP Client on it) | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/wifi_touch_demo/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"114": {
+    "doc": "WiFi Touch Demo",
+    "title": "Jumper &amp; Resistor Configuration",
+    "content": ". | Jumper J211 is connected between pins 2-3 (closer to xpro header) | Jumper J209 is disconnected | Jumpers J301 are disconnected (to use external programmer tool) | Remove resistor R220 as it is pulling up the pin used by the 3rd slider segment on the QT7 | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#jumper--resistor-configuration",
+    "relUrl": "/apps/wifi_touch_demo/readme.html#jumper--resistor-configuration"
+  },"115": {
+    "doc": "WiFi Touch Demo",
+    "title": "Running the Application",
+    "content": ". | Open the project and launch Harmony3 configurator. | Currently the Wi-Fi Service is configured as AP mode with default values for SSID, Auth type, etc. | . | Currently Net Service is configured to run as TCP Server running on port 5555. In case the user wants to change this config, please make the changes in the Net Service Module as shown below: . | Save configurations and generate code via MHC | Build and program the generated code into the hardware using its IDE | Open the Terminal application (Ex.:Tera term) on the computer | Connect to the “USB to UART” COM port and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The device shall come up as a Soft AP and then as per the Net Service configuration, the TCP Server shall come up, awaiting a connection from a TCP Client. | Connect a PC to this Soft AP (using params from step 2) and run the provided python script. (tested with Python v3.8 and Windows 10) | Connect the python client giving the server IP (the IP of the Board) and the port as 5555. All operations from the QT7 Xpro board will now be visible real-time on the GUI: | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#running-the-application",
+    "relUrl": "/apps/wifi_touch_demo/readme.html#running-the-application"
+  },"116": {
+    "doc": "WiFi Touch Demo",
+    "title": "Known Issues:",
+    "content": " ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html#known-issues",
+    "relUrl": "/apps/wifi_touch_demo/readme.html#known-issues"
+  },"117": {
+    "doc": "WiFi Touch Demo",
+    "title": "WiFi Touch Demo",
+    "content": " ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html",
+    "relUrl": "/apps/wifi_touch_demo/readme.html"
+  },"118": {
+    "doc": "IFTTT Demo",
+    "title": "IFTTT Demo",
+    "content": "This example application demosntrates how we can generate a trigger to IFTTT web platform to make it perform a specific action like sending a mail/ sms etc using an applet. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#ifttt-demo",
+    "relUrl": "/apps/ifttt/readme.html#ifttt-demo"
   },"119": {
+    "doc": "IFTTT Demo",
+    "title": "Description",
+    "content": "IFTTT is short for “If This Then That”. IFTTT is a third-party web platform which uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the button (SW1) on the Curiosity Board is pressed. ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#description",
+    "relUrl": "/apps/ifttt/readme.html#description"
+  },"120": {
+    "doc": "IFTTT Demo",
+    "title": "Downloading and building the application",
+    "content": "To download or clone this application from Github, go to the top level of the repository . Path of the application within the repository is apps/ifttt/firmware . To build the application, refer to the following table and open the project using its IDE. | Project Name | Description | . | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board | . |   |   | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#downloading-and-building-the-application",
+    "relUrl": "/apps/ifttt/readme.html#downloading-and-building-the-application"
+  },"121": {
+    "doc": "IFTTT Demo",
+    "title": "Creating an Applet on IFTTT web platform.",
+    "content": "IFTTT is a third-party web platform, and one can create an applet of their own. More details on how one can use IFTTT and create their own applets can be found at https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#creating-an-applet-on-ifttt-web-platform",
+    "relUrl": "/apps/ifttt/readme.html#creating-an-applet-on-ifttt-web-platform"
+  },"122": {
+    "doc": "IFTTT Demo",
+    "title": "Setting up PIC32MZ W1 Curiosity Board",
+    "content": ". | Connect the Debug USB port on the board to the computer using a micro USB cable to power on the board. | On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter | Home AP (Wi-Fi Access Point with internet connection) | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#setting-up-pic32mz-w1-curiosity-board",
+    "relUrl": "/apps/ifttt/readme.html#setting-up-pic32mz-w1-curiosity-board"
+  },"123": {
+    "doc": "IFTTT Demo",
+    "title": "Running the Application",
+    "content": ". | Open the project and launch Harmony3 configurator. | Configure home AP credentials for STA Mode. | Save configurations and generate code via MHC. | Currently application expects the user to create an applet at the IFTTT web platform and configure the relevant details related to the applet in the app.c file. These details will help in creating the trigger which we send to make the applet perform the action. | The user would need to populate the following | . | Parameter Name | Default Value | Description | . | IFTTT_EVENT_TYPE | IFTTT_EVENT_BUTTON_PRESS | The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board (IFTTT_EVENT_BUTTON_PRESS), or by running a timer (IFTTT_EVENT_PERIODIC_TIMER) and sending the trigger periodically. The default event type is button press to trigger the applet. | . | IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT | 100 sec | This parameter is used for setting the timeperiod in sec, after which a periodic trigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER | . | IFTTT_EVENT | “YOUR_EVENT” | This is a mandatory parameter to be filled in by the user, and is the ‘event’ which triggers the applet. This ‘event’ was used while creating the applet at the IFTTT web platform. | . | IFTTT_KEY | “YOUR_KEY” | This is a mandatory parameter to be filled in by the user, and is the the ‘key’ which is generated after the creation of the applet at the IFTTT web platform. | . | IFTTT_NUM_OF_VALUES | 1 | The IFTTT applet can use upto 3 values/ data while performing an action. This parameter indicates the number of values which this application needs to send along with the trigger. | . | IFTTT_VALUE1 | “Value1” | Data Value1 that needs to be sent along with the trigger. | . | IFTTT_VALUE2 | “Value2” | Data Value2 that needs to be sent along with the trigger. | . | IFTTT_VALUE3 | “Value3” | Data Value3 that needs to be sent along with the trigger. | . | IFTTT_USER_CALLBACK | NULL | In case users want to process some data and based on the result want to dynamically decide if the trigger needs to be sent or not, they will need to map this parameter to APP_IFTTT_Callback() function and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the ‘Value1’ and sent. | . | IFTTT_USER_CALLBACK_CTX | NULL | Callback context/ parameter which will be passed on to APP_IFTTT_Callback(). This could a structure pointer which contains the data to be processed and decide if the trigger needs to be sent. | . | Build and program the generated image into the hardware using the IDE. | Open the terminal application (Ex.:Tera term) on the computer. | Connect to the COM port related to the external USB-UART connected to the GPIO heade and configure the serial settings as follows: . | Baud : 115200 | Data : 8 Bits | Parity : None | Stop : 1 Bit | Flow Control : None | . | The Board will connect to Home AP. | Every time the button/ switch (SW1) is pressed . , . it shall connect to maker.ifttt.com and send the trigger. | This Trigger will be received by the ifttt server which will invoke the applet. Let us assume the user created an applet using webhooks which shall ‘send an email’ as an action. The email could look something like this: | Every time a trigger is being sent by the Curiosity Board, the red LED on the board will be ON, and it will go OFF once the trigger request has been successfully trasmitted to IFTTT server. Any new request while the LED is ON will not be honoured. Hence, it is receommended to press the button for a new request only when the red LED has gone OFF. | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html#running-the-application",
+    "relUrl": "/apps/ifttt/readme.html#running-the-application"
+  },"124": {
+    "doc": "IFTTT Demo",
+    "title": "IFTTT Demo",
+    "content": ". ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html",
+    "relUrl": "/apps/ifttt/readme.html"
+  },"125": {
     "doc": "Release notes",
     "title": "Microchip MPLAB® Harmony 3 Release Notes",
     "content": " ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/release_notes.html#microchip-mplab-harmony-3-release-notes",
     "relUrl": "/release_notes.html#microchip-mplab-harmony-3-release-notes"
-  },"120": {
+  },"126": {
+    "doc": "Release notes",
+    "title": "Harmony 3 Wireless application examples for PIC32MZ W1 family  v3.6.1",
+    "content": "Development kit and demo application support . Following table provides number of Wireless examples available for different development kits. | Development Kits | MPLABx applications | . | PIC32MZ W1 Curiosity Board | 20 | . New Features . | . | New Low power save demo added. | . | Please refer to the system services release notes. | . Bug fixes and Improvements . | Please refer to the system services release notes. | . Known Issues . | Due to an underlying issue in the underlying net repo, you need to turn off -Werror for the icmp.c file in your projects. | While programming the image into hardware, user may observe the “Target Device ID is an Invalid Device Id” warning which needs to be ignored. The issue will be resolved with new DFP package release. | . Development Tools . | MPLAB® X IDE v6.00 | MPLAB® X IDE plug-ins: . | MPLAB® Harmony Configurator (MHC) v3.8.2 | . | MPLAB® XC32 C/C++ Compiler v3.01 | DFP 1.5.203 | . ",
+    "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v361",
+    "relUrl": "/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v361"
+  },"127": {
     "doc": "Release notes",
     "title": "Harmony 3 Wireless application examples for PIC32MZ W1 family  v3.6.0",
     "content": "Development kit and demo application support . Following table provides number of Wireless examples available for different development kits. | Development Kits | MPLABx applications | . | PIC32MZ W1 Curiosity Board | 19 | . New Features . | New IFTTT and Web Socket Server demos added | Please refer to the system services release notes. | . Bug fixes and Improvements . | Please refer to the system services release notes. | . Known Issues . | Due to an underlying issue in the underlying net repo, you need to turn off -Werror for the icmp.c file in your projects. | L2 Bridging is known to have some instabilities when there is high network data traffic. | . Development Tools . | MPLAB® X IDE v5.50 | MPLAB® X IDE plug-ins: . | MPLAB® Harmony Configurator (MHC) v3.8.0 | . | MPLAB® XC32 C/C++ Compiler v3.01 | DFP 1.5.203 | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v360",
     "relUrl": "/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v360"
-  },"121": {
+  },"128": {
     "doc": "Release notes",
     "title": "Harmony 3 Wireless application examples for PIC32MZ W1 family  v3.5.1",
     "content": "Note : This is an incremental release. All notes under the v3.5.0 release are applicable to this release as well. Development kit and demo application support . Following table provides number of Wireless examples available for different development kits. | Development Kits | MPLABx applications | . | PIC32MZ W1 Curiosity Board | 17 | . New Features . | Please refer to the system services release notes. | . Bug fixes and Improvements . | Please refer to the system services release notes. | . Known Issues . | Due to an underlying issue in the DHCP code in net repo, compiler optimization should be turned off in the dual interface project. | L2 Bridging is known to have some instabilities when there is high network data traffic. | . Development Tools . | MPLAB® X IDE v5.50 | MPLAB® X IDE plug-ins: . | MPLAB® Harmony Configurator (MHC) v3.8.0 | . | MPLAB® XC32 C/C++ Compiler v3.01 | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v351",
     "relUrl": "/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v351"
-  },"122": {
+  },"129": {
     "doc": "Release notes",
     "title": "Harmony 3 Wireless application examples for PIC32MZ W1 family  v3.5.0",
     "content": "Development kit and demo application support . Following table provides number of Wireless examples available for different development kits. | Development Kits | MPLABx applications | . | PIC32MZ W1 Curiosity Board | 17 | . New Features . | Please refer to the system services release notes. | . Bug fixes and Improvements . | Please refer to the system services release notes. | UART3 is now configured to use RK13/RK14 pins. | . Known Issues . | Due to an underlying issue in the DHCP code in net repo, compiler optimization should be turned off in the dual interface project. | L2 Bridging is known to have some instabilities when there is high network data traffic. | . Development Tools . | MPLAB® X IDE v5.50 | MPLAB® X IDE plug-ins: . | MPLAB® Harmony Configurator (MHC) v3.8.0 | . | MPLAB® XC32 C/C++ Compiler v3.01 | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v350",
     "relUrl": "/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v350"
-  },"123": {
+  },"130": {
     "doc": "Release notes",
     "title": "Harmony 3 Wireless application examples for PIC32MZ W1 family  v3.4.1",
     "content": "Development kit and demo application support . Following table provides number of Wireless examples available for different development kits. | Development Kits | MPLABx applications | . | PIC32MZ W1 Curiosity Board | 17 | . New Features . | Split wireless apps into a seperate repo | . Bug fixes . | None | . Known Issues . | None | . Development Tools . | MPLAB® X IDE v5.40 | MPLAB® X IDE plug-ins: . | MPLAB® Harmony Configurator (MHC) v3.6.2 | . | MPLAB® XC32 C/C++ Compiler v2.50 | . ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v341",
     "relUrl": "/release_notes.html#harmony-3-wireless-application-examples-for-pic32mz-w1-family--v341"
-  },"124": {
+  },"131": {
     "doc": "Release notes",
     "title": "Release notes",
     "content": ". ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/release_notes.html",
     "relUrl": "/release_notes.html"
-  },"125": {
+  },"132": {
     "doc": "Harmony 3 Wireless application examples for PIC32MZ W1 family",
     "title": "Harmony 3 Wireless application examples for PIC32MZ W1 family",
-    "content": "[![MCHP](https://www.microchip.com/ResourcePackages/Microchip/assets/dist/images/logo.png)](https://www.microchip.com) # Harmony 3 Wireless application examples for PIC32MZ W1 family MPLAB® Harmony 3 is an extension of the MPLAB® ecosystem for creating embedded firmware solutions for Microchip 32-bit SAM and PIC® microcontroller and microprocessor devices. Refer to the following links for more information. - [Microchip 32-bit MCUs](https://www.microchip.com/design-centers/32-bit) - [Microchip 32-bit MPUs](https://www.microchip.com/design-centers/32-bit-mpus) - [Microchip MPLAB X IDE](https://www.microchip.com/mplab/mplab-x-ide) - [Microchip MPLAB® Harmony](https://www.microchip.com/mplab/mplab-harmony) - [Microchip MPLAB® Harmony Pages](https://microchip-mplab-harmony.github.io/) This repository contains the MPLAB® Harmony 3 Wireless application examples for PIC32MZ W1 family - [Release Notes](/wireless_apps_pic32mzw1_wfi32e01/release_notes.html) - [MPLAB® Harmony License](/wireless_apps_pic32mzw1_wfi32e01/mplab_harmony_license.html) To clone or download these applications from Github, go to the [main page of this repository](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01) and then click **Clone** button to clone this repository or download as zip file. This content can also be downloaded using content manager by following these [instructions](https://github.com/Microchip-MPLAB-Harmony/contentmanager/wiki). ## Contents Summary | Folder | Description | --- | --- | apps | Contains Wireless service example applications. | docs | Contains documentation in html format for offline viewing (to be used only after cloning this repository onto a local machine). Use [github pages](https://microchip-mplab-harmony.github.io/wireless_apps_pic32mzw1_wfi32e01/) of this repository for viewing it online. | ## Code Examples The following applications are provided to demonstrate the typical or interesting usage models of one or more wireless usecases. | Name | Description | ---- | ----------- |[OTA Bootloader](/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html)|OTA bootloader for PIC32MZW1 devices|[Wi-Fi OTA upgrade](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html)|Wi-Fi OTA image upgrade demo|[Paho MQTT Client](/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/readme.html)|Paho MQTT client example application|[Paho MQTT TLS Client](/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_tls_client/readme.html)|Paho MQTT TLS client example application|[TCP Client](/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_client/readme.html)|TCP Client example application|[TCP Server](/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_server/readme.html)|TCP Server example application|[UDP Client](/wireless_apps_pic32mzw1_wfi32e01/apps/udp_client/readme.html)|UDP Client example application|[UDP Server](/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html)|UDP Server example application|[Weather Client](/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html)|Weather Client example application|[Wi-Fi Soft AP (driver mode)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html)|Wi-Fi Soft AP driver mode example aplication|[Wi-Fi Soft AP (service mode)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html)|WiFi Soft AP service mode example|[Wi-Fi easy config (bare metal)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html)|Bare metal HTTP server / web-page based Wi-Fi provisioning example.|[Wi-Fi easy config (RTOS)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html)|RTOS based HTTP server / web-page based Wi-Fi provisioning example.|[Dual interface (Wi-Fi + Ethernet)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html)|Dual interface example application with Wi-Fi and Ethernet interfaces|[Wi-Fi STA (driver mode)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html)|Wi-Fi STA driver mode example aplication|[Wi-Fi STA (service mode)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html)|WiFi STA service mode example|[Wi-Fi touch demo](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html)|Wi-Fi + CVD based touch demo|[IFTTT demo](/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html)|IFTTT example application|[Web Socket Server demo](/wireless_apps_pic32mzw1_wfi32e01/apps/web_socket_server/readme.html)|Web Socket Server demo| ____ [![License](https://img.shields.io/badge/license-Harmony%20license-orange.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01/blob/master/mplab_harmony_license.md) [![Latest release](https://img.shields.io/github/release/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01/releases/latest) [![Latest release date](https://img.shields.io/github/release-date/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01/releases/latest) [![Commit activity](https://img.shields.io/github/commit-activity/y/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01/graphs/commit-activity) [![Contributors](https://img.shields.io/github/contributors-anon/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg)]() ____ [![Follow us on Youtube](https://img.shields.io/badge/Youtube-Follow%20us%20on%20Youtube-red.svg)](https://www.youtube.com/user/MicrochipTechnology) [![Follow us on LinkedIn](https://img.shields.io/badge/LinkedIn-Follow%20us%20on%20LinkedIn-blue.svg)](https://www.linkedin.com/company/microchip-technology) [![Follow us on Facebook](https://img.shields.io/badge/Facebook-Follow%20us%20on%20Facebook-blue.svg)](https://www.facebook.com/microchiptechnology/) [![Follow us on Twitter](https://img.shields.io/twitter/follow/MicrochipTech.svg?style=social)](https://twitter.com/MicrochipTech) [![](https://img.shields.io/github/stars/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg?style=social)]() [![](https://img.shields.io/github/watchers/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg?style=social)]() ",
+    "content": "[![MCHP](https://www.microchip.com/ResourcePackages/Microchip/assets/dist/images/logo.png)](https://www.microchip.com) # Harmony 3 Wireless application examples for PIC32MZ W1 family MPLAB® Harmony 3 is an extension of the MPLAB® ecosystem for creating embedded firmware solutions for Microchip 32-bit SAM and PIC® microcontroller and microprocessor devices. Refer to the following links for more information. - [Microchip 32-bit MCUs](https://www.microchip.com/design-centers/32-bit) - [Microchip 32-bit MPUs](https://www.microchip.com/design-centers/32-bit-mpus) - [Microchip MPLAB X IDE](https://www.microchip.com/mplab/mplab-x-ide) - [Microchip MPLAB® Harmony](https://www.microchip.com/mplab/mplab-harmony) - [Microchip MPLAB® Harmony Pages](https://microchip-mplab-harmony.github.io/) This repository contains the MPLAB® Harmony 3 Wireless application examples for PIC32MZ W1 family - [Release Notes](/wireless_apps_pic32mzw1_wfi32e01/release_notes.html) - [MPLAB® Harmony License](/wireless_apps_pic32mzw1_wfi32e01/mplab_harmony_license.html) To clone or download these applications from Github, go to the [main page of this repository](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01) and then click **Clone** button to clone this repository or download as zip file. This content can also be downloaded using content manager by following these [instructions](https://github.com/Microchip-MPLAB-Harmony/contentmanager/wiki). ## Contents Summary | Folder | Description | --- | --- | apps | Contains Wireless service example applications. | docs | Contains documentation in html format for offline viewing (to be used only after cloning this repository onto a local machine). Use [github pages](https://microchip-mplab-harmony.github.io/wireless_apps_pic32mzw1_wfi32e01/) of this repository for viewing it online. | ## Code Examples The following applications are provided to demonstrate the typical or interesting usage models of one or more wireless usecases. | Name | Description | ---- | ----------- |[OTA Bootloader](/wireless_apps_pic32mzw1_wfi32e01/apps/ota_bootloader/readme.html)|OTA bootloader for PIC32MZW1 devices|[Wi-Fi OTA upgrade](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/readme.html)|Wi-Fi OTA image upgrade demo|[Paho MQTT Client](/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/readme.html)|Paho MQTT client example application|[Paho MQTT Client Power save](/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/readme.html)|Paho MQTT Client Power save example application|[Paho MQTT TLS Client](/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_tls_client/readme.html)|Paho MQTT TLS client example application|[TCP Client](/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_client/readme.html)|TCP Client example application|[TCP Server](/wireless_apps_pic32mzw1_wfi32e01/apps/tcp_server/readme.html)|TCP Server example application|[UDP Client](/wireless_apps_pic32mzw1_wfi32e01/apps/udp_client/readme.html)|UDP Client example application|[UDP Server](/wireless_apps_pic32mzw1_wfi32e01/apps/udp_server/readme.html)|UDP Server example application|[Weather Client](/wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/readme.html)|Weather Client example application|[Wi-Fi Soft AP (driver mode)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/config_driver_readme.html)|Wi-Fi Soft AP driver mode example aplication|[Wi-Fi Soft AP (service mode)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ap/readme.html)|WiFi Soft AP service mode example|[Wi-Fi easy config (bare metal)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html)|Bare metal HTTP server / web-page based Wi-Fi provisioning example.|[Wi-Fi easy config (RTOS)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_easy_config/readme.html)|RTOS based HTTP server / web-page based Wi-Fi provisioning example.|[Dual interface (Wi-Fi + Ethernet)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_eth_dual_interface/readme.html)|Dual interface example application with Wi-Fi and Ethernet interfaces|[Wi-Fi STA (driver mode)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/config_driver_readme.html)|Wi-Fi STA driver mode example aplication|[Wi-Fi STA (service mode)](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_sta/readme.html)|WiFi STA service mode example|[Wi-Fi touch demo](/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_touch_demo/readme.html)|Wi-Fi + CVD based touch demo|[IFTTT demo](/wireless_apps_pic32mzw1_wfi32e01/apps/ifttt/readme.html)|IFTTT example application|[Web Socket Server demo](/wireless_apps_pic32mzw1_wfi32e01/apps/web_socket_server/readme.html)|Web Socket Server demo| ____ [![License](https://img.shields.io/badge/license-Harmony%20license-orange.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01/blob/master/mplab_harmony_license.md) [![Latest release](https://img.shields.io/github/release/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01/releases/latest) [![Latest release date](https://img.shields.io/github/release-date/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01/releases/latest) [![Commit activity](https://img.shields.io/github/commit-activity/y/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01/graphs/commit-activity) [![Contributors](https://img.shields.io/github/contributors-anon/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg)]() ____ [![Follow us on Youtube](https://img.shields.io/badge/Youtube-Follow%20us%20on%20Youtube-red.svg)](https://www.youtube.com/user/MicrochipTechnology) [![Follow us on LinkedIn](https://img.shields.io/badge/LinkedIn-Follow%20us%20on%20LinkedIn-blue.svg)](https://www.linkedin.com/company/microchip-technology) [![Follow us on Facebook](https://img.shields.io/badge/Facebook-Follow%20us%20on%20Facebook-blue.svg)](https://www.facebook.com/microchiptechnology/) [![Follow us on Twitter](https://img.shields.io/twitter/follow/MicrochipTech.svg?style=social)](https://twitter.com/MicrochipTech) [![](https://img.shields.io/github/stars/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg?style=social)]() [![](https://img.shields.io/github/watchers/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01.svg?style=social)]() ",
     "url": "http://localhost:4000/wireless_apps_pic32mzw1_wfi32e01/",
     "relUrl": "/"
   }

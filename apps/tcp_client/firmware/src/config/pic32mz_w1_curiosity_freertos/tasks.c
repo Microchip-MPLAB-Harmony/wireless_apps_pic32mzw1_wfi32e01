@@ -76,6 +76,7 @@ void _APP_PIC32MZW1_Tasks(  void *pvParameters  )
     while(1)
     {
         APP_PIC32MZW1_Tasks();
+        vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
 
@@ -85,7 +86,7 @@ void _TCPIP_STACK_Task(  void *pvParameters  )
     while(1)
     {
         TCPIP_STACK_Task(sysObj.tcpip);
-        vTaskDelay(1 / portTICK_PERIOD_MS);
+        vTaskDelay(4 / portTICK_PERIOD_MS);
     }
 }
 
@@ -131,7 +132,7 @@ void _SYS_WIFI_Task(  void *pvParameters  )
     while(1)
     {
         SYS_WIFI_Tasks(sysObj.syswifi);
-        vTaskDelay(1 / portTICK_PERIOD_MS);
+        vTaskDelay(4 / portTICK_PERIOD_MS);
     }
 }
 

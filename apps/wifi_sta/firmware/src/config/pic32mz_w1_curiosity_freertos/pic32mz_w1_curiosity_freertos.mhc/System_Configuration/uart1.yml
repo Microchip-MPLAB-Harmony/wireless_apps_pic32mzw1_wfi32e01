@@ -124,6 +124,8 @@ children:
       children:
       - type: Dynamic
         attributes: {id: sysWifiPic32mzw1, value: '1024'}
+      - type: User
+        attributes: {value: '4096'}
   - type: Hex
     attributes: {id: UMODE_VALUE}
     children:

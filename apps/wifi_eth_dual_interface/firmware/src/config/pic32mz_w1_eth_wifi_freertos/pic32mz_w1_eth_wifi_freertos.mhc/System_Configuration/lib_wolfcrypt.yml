@@ -44,6 +44,15 @@ children:
         children:
         - {type: Value, value: 'true'}
   - type: Boolean
+    attributes: {id: wolfcrypt_hmac}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
     attributes: {id: wolfcrypt_hw}
     children:
     - type: Values

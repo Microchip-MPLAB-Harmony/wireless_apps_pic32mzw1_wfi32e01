@@ -11,6 +11,8 @@ children:
       children:
       - type: Dynamic
         attributes: {id: sysWifiPic32mzw1, value: '256'}
+      - type: User
+        attributes: {value: '4096'}
   - type: Integer
     attributes: {id: SYS_CONSOLE_UART_CONNECTION_COUNTER}
     children:

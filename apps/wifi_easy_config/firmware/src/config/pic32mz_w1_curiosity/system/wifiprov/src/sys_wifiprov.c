@@ -485,11 +485,26 @@ static int SYS_WIFIPROV_CMDProcess
 
             if ((!error) && (!SYS_WIFIPROV_ConfigValidate(wifiProvSrvcConfig))) 
             {
-                g_wifiProvSrvcConfig.mode = wifiProvSrvcConfig.mode;
-                g_wifiProvSrvcConfig.saveConfig = wifiProvSrvcConfig.saveConfig;
-                memcpy(&g_wifiProvSrvcConfig.staConfig, &wifiProvSrvcConfig.staConfig, sizeof(SYS_WIFIPROV_STA_CONFIG));
-                SYS_WIFIPROV_WriteConfig();
-                //SYS_WIFIPROV_PrintConfig();
+                if(((g_wifiProvSrvcConfig.mode == wifiProvSrvcConfig.mode) &&( wifiProvSrvcConfig.mode == SYS_WIFIPROV_STA)) &&
+                   (!(strcmp((const char*) &g_wifiProvSrvcConfig.countryCode,(const char*)&wifiProvSrvcConfig.countryCode))) &&
+                    (g_wifiProvSrvcConfig.saveConfig == wifiProvSrvcConfig.saveConfig) &&
+                   (!(strcmp((const char*) &g_wifiProvSrvcConfig.staConfig.ssid,(const char*)&wifiProvSrvcConfig.staConfig.ssid)))&&
+                   (g_wifiProvSrvcConfig.staConfig.authType == wifiProvSrvcConfig.staConfig.authType)&& 
+                   (g_wifiProvSrvcConfig.staConfig.autoConnect == wifiProvSrvcConfig.staConfig.autoConnect)&&
+                   (g_wifiProvSrvcConfig.staConfig.channel == wifiProvSrvcConfig.staConfig.channel)&&
+                   !(strcmp((const char*)&g_wifiProvSrvcConfig.staConfig.psk,(const char*)&wifiProvSrvcConfig.staConfig.psk)))
+                {
+                    SYS_CONSOLE_PRINT(" AP details already stored\n");
+                }
+                else
+                {
+                    
+                    g_wifiProvSrvcConfig.mode = wifiProvSrvcConfig.mode;
+                    g_wifiProvSrvcConfig.saveConfig = wifiProvSrvcConfig.saveConfig;
+                    memcpy(&g_wifiProvSrvcConfig.staConfig, &wifiProvSrvcConfig.staConfig, sizeof(SYS_WIFIPROV_STA_CONFIG));
+                    SYS_WIFIPROV_WriteConfig();
+                    //SYS_WIFIPROV_PrintConfig();
+                }
             } 
             else 
             {

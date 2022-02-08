@@ -776,9 +776,7 @@
             </logicalFolder>
             <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/System_Configuration/TCP_IP_STACK/TCP_IP_STACK.yml</itemPath>
           </logicalFolder>
-          <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/System_Configuration/core.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/System_Configuration/core_timer.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/System_Configuration/dfp.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/System_Configuration/drvExtPhyLan8740.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/System_Configuration/drvMiim.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/System_Configuration/drvPic32mEthmac.yml</itemPath>
@@ -798,6 +796,8 @@
           <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/System_Configuration/tcpipStack.yml</itemPath>
           <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/System_Configuration/uart1.yml</itemPath>
         </logicalFolder>
+        <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/core.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/dfp.yml</itemPath>
         <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/GraphSettings.yml</itemPath>
         <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/project.yml</itemPath>
         <itemPath>../src/config/pic32mz_w1_eth_wifi_freertos/pic32mz_w1_eth_wifi_freertos.mhc/settings.yml</itemPath>
@@ -823,9 +823,9 @@
         <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>2.00</languageToolchainVersion>
+        <languageToolchainVersion>2.50</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>

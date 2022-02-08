@@ -353,7 +353,7 @@ APP_IFTTT_Initialize(void)
         break;
     }
 
-    sprintf(g_sIftttCfg.trigger, "https://%s/trigger/%s/with/key/%s",
+    sprintf(g_sIftttCfg.trigger, "http://%s/trigger/%s/with/key/%s",
             g_sIftttCfg.server, g_sIftttCfg.event, g_sIftttCfg.key);
 
     if (g_sIftttCfg.eventType == APP_IFTTT_EVENT_BUTTON_PRESS) {

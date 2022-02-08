@@ -119,6 +119,9 @@ static    char                  g_wifiSrvcProvCookieVal = 100;
 /* Wi-Fi Provision Service Object */
 static    SYS_MODULE_OBJ        g_wifiSrvcProvObj;
 
+/* RegDomain set status */
+bool      g_isRegDomainSetReq = false;
+
 /* Semaphore for Critical Section */
 static    OSAL_SEM_HANDLE_TYPE  g_wifiSrvcSemaphore;
 // *****************************************************************************
@@ -423,7 +426,7 @@ static void SYS_WIFI_APConnCallBack
 
 
 /* Wi-Fi driver callback received on setting Regulatory domain */
-static void SYS_WIFI_SetRegDomainCallback
+static void SYS_WIFI_RegDomainCallback
 (
     DRV_HANDLE handle, 
     uint8_t index, 
@@ -435,7 +438,12 @@ static void SYS_WIFI_SetRegDomainCallback
     if ((1 != index) || (1 != ofTotal) || (false == isCurrent) || (NULL == pRegDomInfo)) 
     {
         SYS_CONSOLE_MESSAGE("Regulatory domain set unsuccessful\r\n");
-    } 
+    }  
+    if(!memcmp(pRegDomInfo,SYS_WIFI_GetCountryCode(),strlen((const char *)pRegDomInfo)))
+    {
+        g_isRegDomainSetReq = true;
+    }
+
 }
 
 
@@ -657,7 +665,11 @@ static uint32_t SYS_WIFI_ExecuteBlock
                     wifiSrvcObj->wifiSrvcDrvHdl = WDRV_PIC32MZW_Open(0, 0);
                     if (DRV_HANDLE_INVALID != wifiSrvcObj->wifiSrvcDrvHdl) 
                     {
-                        wifiSrvcObj->wifiSrvcStatus = SYS_WIFI_STATUS_AUTOCONNECT_WAIT;
+                        if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_RegDomainGet(wifiSrvcObj->wifiSrvcDrvHdl,WDRV_PIC32MZW_REGDOMAIN_SELECT_CURRENT,SYS_WIFI_RegDomainCallback))
+                        {
+                            SYS_WIFI_PrintWifiConfig();
+                            wifiSrvcObj->wifiSrvcStatus = SYS_WIFI_STATUS_AUTOCONNECT_WAIT;
+                        }
                     }
                     OSAL_SEM_Post(&g_wifiSrvcSemaphore);
                 }
@@ -670,13 +682,19 @@ static uint32_t SYS_WIFI_ExecuteBlock
                 {
                     /* When user has enabled the auto connect feature of the Wi-Fi service in MHC(STA mode).
                        or in AP mode, below condition will be always true */
+
                     if (true == SYS_WIFI_GetAutoConnect()) 
                     {
-                        if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_RegDomainSet(wifiSrvcObj->wifiSrvcDrvHdl, SYS_WIFI_GetCountryCode(), SYS_WIFI_SetRegDomainCallback)) 
+                        if(g_isRegDomainSetReq == true)
                         {
-                            SYS_WIFI_PrintWifiConfig();
-                            wifiSrvcObj->wifiSrvcStatus = SYS_WIFI_STATUS_TCPIP_WAIT_FOR_TCPIP_INIT;
+
+                            if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_RegDomainSet(wifiSrvcObj->wifiSrvcDrvHdl, SYS_WIFI_GetCountryCode(), SYS_WIFI_RegDomainCallback)) 
+                            {
+                                
+                                g_isRegDomainSetReq = false;
+                            }
                         }
+                        wifiSrvcObj->wifiSrvcStatus = SYS_WIFI_STATUS_TCPIP_WAIT_FOR_TCPIP_INIT;
                     }
                     OSAL_SEM_Post(&g_wifiSrvcSemaphore);
                 }
@@ -724,6 +742,8 @@ static uint32_t SYS_WIFI_ExecuteBlock
                 }
                 break;
             }
+
+
             case SYS_WIFI_STATUS_WAIT_FOR_AP_IP:
             {
                 apIpAddr.Val = TCPIP_STACK_NetAddress(netHdl);
@@ -1078,8 +1098,8 @@ SYS_WIFI_RESULT SYS_WIFI_CtrlMsg
                     }
                     break;
                 }
-                    }
-                    }
+            }
+        }
         OSAL_SEM_Post(&g_wifiSrvcSemaphore);
     }
     return ret;
