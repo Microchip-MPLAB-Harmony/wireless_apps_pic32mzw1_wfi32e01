@@ -419,6 +419,9 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
             if(g_wiFiSleepMode == WIFI_WOFF)
             {
                 PMUCLKCTRLbits.WLDOOFF = 1;
+                
+                APP_SetMCUSleepMode();
+                
                 SYS_WIFI_Deinitialize(sysObj.syswifi);
                 WDRV_PIC32MZW_Deinitialize(sysObj.drvWifiPIC32MZW1);
             }
