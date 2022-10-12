@@ -28,6 +28,7 @@
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/sst26/drv_sst26.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/sst26/src/drv_sst26_local.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/sst26/drv_sst26_definitions.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/sst26/src/drv_sst26_spi_interface.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="wifi" projectFiles="true">
               <logicalFolder name="f1" displayName="pic32mzw1" projectFiles="true">
@@ -50,6 +51,8 @@
                   <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_sta.h</itemPath>
                   <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_ps.h</itemPath>
                   <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_custie.h</itemPath>
+                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/drv_pic32mzw1_tls.h</itemPath>
+                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_ie.h</itemPath>
                 </logicalFolder>
               </logicalFolder>
             </logicalFolder>
@@ -135,6 +138,8 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/lldp_tlv.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/tcpip_mac_bridge_manager.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/tcpip_mac_bridge_private.h</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/dhcp_server_private.h</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/dhcp_server_manager.h</itemPath>
               </logicalFolder>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip_common_ports.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip_mac.h</itemPath>
@@ -181,6 +186,7 @@
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip_mac_bridge.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip_ethernet.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/dhcp_server.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f6" displayName="net_pres" projectFiles="true">
@@ -558,6 +564,7 @@
             </logicalFolder>
             <logicalFolder name="f3" displayName="sst26" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/sst26/src/drv_sst26.c</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/sst26/src/drv_sst26_spi_interface.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="wifi" projectFiles="true">
               <logicalFolder name="f1" displayName="pic32mzw1" projectFiles="true">
@@ -574,6 +581,8 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/wdrv_pic32mzw_sta.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/wdrv_pic32mzw_ps.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/wdrv_pic32mzw_custie.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/drv_pic32mzw1_tls.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/wdrv_pic32mzw_ie.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -875,9 +884,9 @@
       <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/ota/framework/ota_app/app_ota.c</itemPath>
       <itemPath>../src/app.c</itemPath>
       <itemPath>../src/main.c</itemPath>
-      <itemPath>../../tools/ecdsaSign.py</itemPath>
-      <itemPath>../../tools/hex2bin/hex2bin.py</itemPath>
       <itemPath>../../tools/hex2bin/hex2bin.exe</itemPath>
+      <itemPath>../../tools/hex2bin/hex2bin.py</itemPath>
+      <itemPath>../../tools/ecdsaSign.py</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -888,74 +897,67 @@
         <logicalFolder name="f1" displayName="System_Configuration" projectFiles="true">
           <logicalFolder name="f1" displayName="TCP_IP_STACK" projectFiles="true">
             <logicalFolder name="f1" displayName="APPLICATION_LAYER" projectFiles="true">
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/APPLICATION_LAYER.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcp.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDns.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipSntp.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpip_apps_config.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/APPLICATION_LAYER.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcp.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDns.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipSntp.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpip_apps_config.yml</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="BASIC_CONFIGURATION" projectFiles="true">
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/BASIC_CONFIGURATION.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpipCmd.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpip_basic_config.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/BASIC_CONFIGURATION.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpipCmd.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpip_basic_config.yml</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="DRIVER_LAYER" projectFiles="true">
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/DRIVER_LAYER.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/tcpip_driver_config.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/DRIVER_LAYER.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/tcpip_driver_config.yml</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="NETWORK_LAYER" projectFiles="true">
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/NETWORK_LAYER.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipArp.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIcmp.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIPv4.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpip_network_config.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/NETWORK_LAYER.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipArp.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIcmp.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIPv4.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpip_network_config.yml</itemPath>
             </logicalFolder>
             <logicalFolder name="f5" displayName="PRESENTATION_LAYER" projectFiles="true">
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/net_Pres.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/PRESENTATION_LAYER.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/net_Pres.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/PRESENTATION_LAYER.yml</itemPath>
             </logicalFolder>
             <logicalFolder name="f6" displayName="TRANSPORT_LAYER" projectFiles="true">
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipTcp.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipUdp.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpip_transport_config.yml</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/TRANSPORT_LAYER.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipTcp.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipUdp.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpip_transport_config.yml</itemPath>
+              <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/TRANSPORT_LAYER.yml</itemPath>
             </logicalFolder>
-            <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TCP_IP_STACK.yml</itemPath>
+            <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/TCP_IP_STACK/TCP_IP_STACK.yml</itemPath>
           </logicalFolder>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/core_timer.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drvWifiPic32mzw1.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drv_ba414e.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drv_memory.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drv_sst26.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/FreeRTOS.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/HarmonyCore.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/lib_crypto.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/lib_wolfcrypt.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/lib_wolfssl.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/nvm.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/rng.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/rtcc.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/spi1.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/System_Configuration.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_command.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_console.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_debug.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_fs.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_time.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tcpipNetConfig.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tcpipStack.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tmr2.yml</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/uart1.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/core_timer.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drvWifiPic32mzw1.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/drv_ba414e.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/FreeRTOS.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/HarmonyCore.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/lib_crypto.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/lib_wolfcrypt.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/nvm.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/System_Configuration.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_command.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_console.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_debug.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/sys_time.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tcpipNetConfig.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/tcpipStack.yml</itemPath>
+          <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/System_Configuration/uart1.yml</itemPath>
         </logicalFolder>
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/core.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/dfp.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/GraphSettings.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/project.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/settings.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysNetPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysOtaPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysWifiPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysWifiProvPic32mzw1.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/core.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/dfp.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/project.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/settings.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/stdio.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysNetPic32mzw1.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysWifiPic32mzw1.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/sysWifiProvPic32mzw1.yml</itemPath>
+        <itemPath>../../../../../../wireless_apps_pic32mzw1_wfi32e01/apps/weather_client/firmware/src/config/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos.mhc/uart3.yml</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="wolfcrypt" projectFiles="true">
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/misc.c</itemPath>
@@ -965,6 +967,8 @@
       <itemPath>../../tools/hex2bin/hex2bin.exe</itemPath>
       <itemPath>../../tools/hex2bin/hex2bin.py</itemPath>
       <itemPath>../src/config/pic32mz_w1_curiosity_freertos/harmony-manifest-success.yml</itemPath>
+      <itemPath>../../tools/ecdsaSign.py</itemPath>
+      <itemPath>../src/config/pic32mz_w1_curiosity_freertos/harmony-manifest-failure.yml</itemPath>
       <itemPath>wifi_ota_app_upgrade.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
@@ -985,7 +989,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC32MZ-W_DFP" vendor="Microchip" version="1.5.203"/>
+        <pack name="PIC32MZ-W_DFP" vendor="Microchip" version="1.6.220"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -998,20 +1002,20 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="../../../ota_bootloader/firmware/ota_bootloader.X"
+          <makeArtifact PL="../../../ota_bootloader/firmware/ota_bootloader_wolfcrypt.X"
                         CT="1"
-                        CN="pic32mzw1"
+                        CN="pic32mz_w1_curiosity_wolfcrypt"
                         AC="true"
                         BL="true"
-                        WD="../../../ota_bootloader/firmware/ota_bootloader.X"
-                        BC="${MAKE}  -f Makefile CONF=pic32mzw1"
-                        DBC="${MAKE}  -f Makefile CONF=pic32mzw1 TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/pic32mzw1&quot; &quot;dist/pic32mzw1&quot;"
-                        OP="dist/pic32mzw1/production/ota_bootloader.X.production.hex"
-                        DOP="dist/pic32mzw1/debug/ota_bootloader.X.debug.elf"
-                        FL="dist/pic32mzw1/production/ota_bootloader.X.production.hex"
-                        PD="dist/pic32mzw1/production/ota_bootloader.X.production.elf"
-                        DD="dist/pic32mzw1/debug/ota_bootloader.X.debug.elf">
+                        WD="../../../ota_bootloader/firmware/ota_bootloader_wolfcrypt.X"
+                        BC="${MAKE}  -f Makefile CONF=pic32mz_w1_curiosity_wolfcrypt"
+                        DBC="${MAKE}  -f Makefile CONF=pic32mz_w1_curiosity_wolfcrypt TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/pic32mz_w1_curiosity_wolfcrypt&quot; &quot;dist/pic32mz_w1_curiosity_wolfcrypt&quot;"
+                        OP="dist/pic32mz_w1_curiosity_wolfcrypt/production/ota_bootloader_wolfcrypt.X.production.hex"
+                        DOP="dist/pic32mz_w1_curiosity_wolfcrypt/debug/ota_bootloader_wolfcrypt.X.debug.elf"
+                        FL="dist/pic32mz_w1_curiosity_wolfcrypt/production/ota_bootloader_wolfcrypt.X.production.hex"
+                        PD="dist/pic32mz_w1_curiosity_wolfcrypt/production/ota_bootloader_wolfcrypt.X.production.elf"
+                        DD="dist/pic32mz_w1_curiosity_wolfcrypt/debug/ota_bootloader_wolfcrypt.X.debug.elf">
           </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
@@ -1185,7 +1189,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src/config/pic32mz_w1_curiosity_freertos/library;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/common;../src;../src/config/pic32mz_w1_curiosity_freertos;;../src/third_party/wolfssl;../src/third_party/wolfssl/wolfssl;../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/;;;../src/config/pic32mz_w1_curiosity_freertos/system/fs/fat_fs/file_system;../src/config/pic32mz_w1_curiosity_freertos/system/fs/fat_fs/hardware_access;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;;"/>
+                  value="../src;../src/config/pic32mz_w1_curiosity_freertos;../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/;../src/config/pic32mz_w1_curiosity_freertos/library;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/common;../src/config/pic32mz_w1_curiosity_freertos/system/fs/fat_fs/file_system;../src/config/pic32mz_w1_curiosity_freertos/system/fs/fat_fs/hardware_access;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/wolfssl;../src/third_party/wolfssl/wolfssl"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -1195,7 +1199,7 @@
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
         <property key="preprocessor-macros"
-                  value="HAVE_CONFIG_H;WOLFSSL_IGNORE_FILE_WARN;"/>
+                  value="HAVE_CONFIG_H;WOLFSSL_IGNORE_FILE_WARN"/>
         <property key="strict-ansi" value="false"/>
         <property key="support-ansi" value="false"/>
         <property key="tentative-definitions" value=""/>
@@ -1215,9 +1219,9 @@
         <property key="exclude-floating-point-library" value="false"/>
         <property key="expand-macros" value="false"/>
         <property key="extra-include-directories-for-assembler"
-                  value="../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/pic32mz_w1_curiosity_freertos;;"/>
+                  value="../src/config/pic32mz_w1_curiosity_freertos;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ"/>
         <property key="extra-include-directories-for-preprocessor"
-                  value="../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/pic32mz_w1_curiosity_freertos;;"/>
+                  value="../src/config/pic32mz_w1_curiosity_freertos;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ"/>
         <property key="false-conditionals" value="false"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
@@ -1265,9 +1269,9 @@
         <property key="no-device-startup-code" value="true"/>
         <property key="no-startup-files" value="false"/>
         <property key="oXC32ld-extra-opts"
-                  value="-mreserve=prog@0x100FF000:0x100FFFFF;"/>
+                  value="-mreserve=prog@0x100FF000:0x100FFFFF;-mreserve=prog@0x100ff000:0x100fffff"/>
         <property key="optimization-level" value=""/>
-        <property key="preprocessor-macros" value=";"/>
+        <property key="preprocessor-macros" value=""/>
         <property key="remove-unused-sections" value="true"/>
         <property key="report-memory-usage" value="false"/>
         <property key="serial-length" value=""/>
@@ -1290,7 +1294,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/pic32mz_w1_curiosity_freertos;;;../src/config/pic32mz_w1_curiosity_freertos/system/fs/fat_fs/file_system;../src/config/pic32mz_w1_curiosity_freertos/system/fs/fat_fs/hardware_access;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;;"/>
+                  value="../src;../src/config/pic32mz_w1_curiosity_freertos;../src/config/pic32mz_w1_curiosity_freertos/system/fs/fat_fs/file_system;../src/config/pic32mz_w1_curiosity_freertos/system/fs/fat_fs/hardware_access;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -1321,100 +1325,30 @@
         <property key="stack-smashing" value=""/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
-      <PICkit3PlatformTool>
-        <property key="ADC 1" value="true"/>
-        <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="CHANGE NOTICE" value="true"/>
-        <property key="COMPARATOR" value="true"/>
-        <property key="CTMU" value="true"/>
-        <property key="DMA" value="true"/>
-        <property key="Freeze All Other Peripherals" value="true"/>
-        <property key="I2C1" value="true"/>
-        <property key="I2C2" value="true"/>
-        <property key="INPUT CAPTURE 1" value="true"/>
-        <property key="INPUT CAPTURE 2" value="true"/>
-        <property key="INPUT CAPTURE 3" value="true"/>
-        <property key="INPUT CAPTURE 4" value="true"/>
-        <property key="INPUT CAPTURE 5" value="true"/>
-        <property key="INTERRUPT CONTROL" value="true"/>
-        <property key="OUTPUT COMPARE 1" value="true"/>
-        <property key="OUTPUT COMPARE 2" value="true"/>
-        <property key="OUTPUT COMPARE 3" value="true"/>
-        <property key="OUTPUT COMPARE 4" value="true"/>
-        <property key="OUTPUT COMPARE 5" value="true"/>
-        <property key="PARALLEL MASTER/SLAVE PORT" value="true"/>
-        <property key="REAL TIME CLOCK" value="true"/>
-        <property key="SPI/I2S 1" value="true"/>
-        <property key="SPI/I2S 2" value="true"/>
-        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
-        <property key="TIMER1" value="true"/>
-        <property key="TIMER2" value="true"/>
-        <property key="TIMER3" value="true"/>
-        <property key="TIMER4" value="true"/>
-        <property key="TIMER5" value="true"/>
-        <property key="ToolFirmwareFilePath"
-                  value="Press to browse for a specific firmware version"/>
-        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
-        <property key="UART1" value="true"/>
-        <property key="UART2" value="true"/>
-        <property key="hwtoolclock.frcindebug" value="false"/>
-        <property key="memories.aux" value="false"/>
-        <property key="memories.bootflash" value="true"/>
-        <property key="memories.configurationmemory" value="true"/>
-        <property key="memories.eeprom" value="true"/>
-        <property key="memories.flashdata" value="true"/>
-        <property key="memories.id" value="true"/>
-        <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.end" value="0x1d003fff"/>
-        <property key="memories.programmemory.start" value="0x1d000000"/>
-        <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmertogo.imagename" value=""/>
-        <property key="programoptions.donoteraseauxmem" value="false"/>
-        <property key="programoptions.eraseb4program" value="true"/>
-        <property key="programoptions.pgmspeed" value="2"/>
-        <property key="programoptions.preserveeeprom" value="false"/>
-        <property key="programoptions.preserveprogramrange" value="false"/>
-        <property key="programoptions.preserveprogramrange.end" value="0x1d003fff"/>
-        <property key="programoptions.preserveprogramrange.start" value="0x1d000000"/>
-        <property key="programoptions.preserveuserid" value="false"/>
-        <property key="programoptions.testmodeentrymethod" value="VPPFirst"/>
-        <property key="programoptions.usehighvoltageonmclr" value="false"/>
-        <property key="programoptions.uselvpprogramming" value="false"/>
-        <property key="voltagevalue" value="3.25"/>
-      </PICkit3PlatformTool>
       <Tool>
         <property key="ADC" value="true"/>
-        <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>
         <property key="CAN1" value="true"/>
         <property key="CANFD2" value="true"/>
-        <property key="CHANGE NOTICE" value="true"/>
         <property key="CHANGE NOTICE A" value="true"/>
         <property key="CHANGE NOTICE B" value="true"/>
         <property key="CHANGE NOTICE C" value="true"/>
         <property key="CHANGE NOTICE K" value="true"/>
         <property key="CLOCK CONTROL LVDCON" value="true"/>
-        <property key="COMPARATOR" value="true"/>
-        <property key="CTMU" value="true"/>
         <property key="DMA" value="true"/>
         <property key="ETHERNET CONTROLLER" value="true"/>
         <property key="Freeze All Other Peripherals" value="true"/>
         <property key="I2C 1" value="true"/>
         <property key="I2C 2" value="true"/>
-        <property key="I2C1" value="true"/>
-        <property key="I2C2" value="true"/>
         <property key="INPUT CAPTURE 1" value="true"/>
         <property key="INPUT CAPTURE 2" value="true"/>
         <property key="INPUT CAPTURE 3" value="true"/>
         <property key="INPUT CAPTURE 4" value="true"/>
-        <property key="INPUT CAPTURE 5" value="true"/>
         <property key="INTERRUPT CONTROL" value="true"/>
         <property key="OUTPUT COMPARE 1" value="true"/>
         <property key="OUTPUT COMPARE 2" value="true"/>
         <property key="OUTPUT COMPARE 3" value="true"/>
         <property key="OUTPUT COMPARE 4" value="true"/>
-        <property key="OUTPUT COMPARE 5" value="true"/>
-        <property key="PARALLEL MASTER/SLAVE PORT" value="true"/>
         <property key="REAL TIME CLOCK" value="true"/>
         <property key="REFERENCE CLOCK 1" value="true"/>
         <property key="SPI/I2S 1" value="true"/>
@@ -1431,7 +1365,6 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UpdateOptions"
                   value="ToolFirmwareOption.UseLatest"/>
-        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="ToolFirmwareToolPack"
                   value="Press to select which tool pack to use"/>
         <property key="UART1" value="true"/>
@@ -1441,10 +1374,11 @@
         <property key="communication.interface" value=""/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="freeze.timers" value="false"/>
-        <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
@@ -1457,15 +1391,11 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.end" value="0x1d003fff"/>
         <property key="memories.programmemory.ranges" value="10000000-100fffff"/>
-        <property key="memories.programmemory.start" value="0x1d000000"/>
-        <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
         <property key="programmerToGoFilePath"
-                  value="E:/ota_new_festeure/ota_version control/wifi_ota_app_upgrade/firmware/wifi_ota_app_upgrade.X/debug/pic32mz_w1_curiosity_freertos/wifi_ota_app_upgrade_ptg"/>
+                  value="D:/Microchip/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/firmware/wifi_ota_app_upgrade.X/debug/pic32mz_w1_curiosity_freertos/wifi_ota_app_upgrade_ptg"/>
         <property key="programmerToGoImageName" value="wifi_ota_app_upgrade_ptg"/>
-        <property key="programmertogo.imagename" value=""/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.ledbrightness" value="5"/>
@@ -1482,14 +1412,11 @@
         <property key="programoptions.preserveeeprom.ranges" value=""/>
         <property key="programoptions.preserveprogram.ranges" value=""/>
         <property key="programoptions.preserveprogramrange" value="false"/>
-        <property key="programoptions.preserveprogramrange.end" value="0x1d003fff"/>
-        <property key="programoptions.preserveprogramrange.start" value="0x1d000000"/>
         <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
-        <property key="programoptions.usehighvoltageonmclr" value="false"/>
-        <property key="programoptions.uselvpprogramming" value="false"/>
         <property key="ptgProgramImage" value="true"/>
         <property key="ptgSendImage" value="true"/>
         <property key="toolpack.updateoptions"
@@ -1547,6 +1474,8 @@
         <property key="communication.interface" value=""/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="freeze.timers" value="false"/>
@@ -1563,8 +1492,9 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="10000000-100fffff"/>
-        <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="D:/Microchip/wireless_apps_pic32mzw1_wfi32e01/apps/wifi_ota_app_upgrade/firmware/wifi_ota_app_upgrade.X/debug/pic32mz_w1_curiosity_freertos/wifi_ota_app_upgrade_ptg"/>
         <property key="programmerToGoImageName" value="wifi_ota_app_upgrade_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
@@ -1583,6 +1513,7 @@
         <property key="programoptions.preserveprogram.ranges" value=""/>
         <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
@@ -1594,89 +1525,6 @@
                   value="Press to select which tool pack to use"/>
         <property key="voltagevalue" value="3.25"/>
       </pk4hybrid>
-      <snap>
-        <property key="ADC" value="true"/>
-        <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="CAN1" value="true"/>
-        <property key="CANFD2" value="true"/>
-        <property key="CHANGE NOTICE A" value="true"/>
-        <property key="CHANGE NOTICE B" value="true"/>
-        <property key="CHANGE NOTICE C" value="true"/>
-        <property key="CHANGE NOTICE K" value="true"/>
-        <property key="CLOCK CONTROL LVDCON" value="true"/>
-        <property key="DMA" value="true"/>
-        <property key="ETHERNET CONTROLLER" value="true"/>
-        <property key="Freeze All Other Peripherals" value="true"/>
-        <property key="I2C 1" value="true"/>
-        <property key="I2C 2" value="true"/>
-        <property key="INPUT CAPTURE 1" value="true"/>
-        <property key="INPUT CAPTURE 2" value="true"/>
-        <property key="INPUT CAPTURE 3" value="true"/>
-        <property key="INPUT CAPTURE 4" value="true"/>
-        <property key="INTERRUPT CONTROL" value="true"/>
-        <property key="OUTPUT COMPARE 1" value="true"/>
-        <property key="OUTPUT COMPARE 2" value="true"/>
-        <property key="OUTPUT COMPARE 3" value="true"/>
-        <property key="OUTPUT COMPARE 4" value="true"/>
-        <property key="REAL TIME CLOCK" value="true"/>
-        <property key="REFERENCE CLOCK 1" value="true"/>
-        <property key="SPI/I2S 1" value="true"/>
-        <property key="SPI/I2S 2" value="true"/>
-        <property key="TIMER1" value="true"/>
-        <property key="TIMER2" value="true"/>
-        <property key="TIMER3" value="true"/>
-        <property key="TIMER4" value="true"/>
-        <property key="TIMER5" value="true"/>
-        <property key="TIMER6" value="true"/>
-        <property key="TIMER7" value="true"/>
-        <property key="ToolFirmwareFilePath"
-                  value="Press to browse for a specific firmware version"/>
-        <property key="ToolFirmwareOption.UpdateOptions"
-                  value="ToolFirmwareOption.UseLatest"/>
-        <property key="ToolFirmwareToolPack"
-                  value="Press to select which tool pack to use"/>
-        <property key="UART1" value="true"/>
-        <property key="UART2" value="true"/>
-        <property key="UART3" value="true"/>
-        <property key="communication.interface" value=""/>
-        <property key="communication.interface.jtag" value="2wire"/>
-        <property key="communication.speed" value="${communication.speed.default}"/>
-        <property key="debugoptions.simultaneous.debug" value="false"/>
-        <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="freeze.timers" value="false"/>
-        <property key="memories.aux" value="false"/>
-        <property key="memories.bootflash" value="true"/>
-        <property key="memories.configurationmemory" value="true"/>
-        <property key="memories.configurationmemory2" value="true"/>
-        <property key="memories.dataflash" value="true"/>
-        <property key="memories.eeprom" value="true"/>
-        <property key="memories.exclude.configurationmemory" value="true"/>
-        <property key="memories.flashdata" value="true"/>
-        <property key="memories.id" value="true"/>
-        <property key="memories.instruction.ram.ranges"
-                  value="${memories.instruction.ram.ranges}"/>
-        <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="10000000-100fffff"/>
-        <property key="memories.rww" value="true"/>
-        <property key="programoptions.donoteraseauxmem" value="false"/>
-        <property key="programoptions.eraseb4program" value="true"/>
-        <property key="programoptions.pgmentry.voltage" value="low"/>
-        <property key="programoptions.pgmspeed" value="Med"/>
-        <property key="programoptions.preservedataflash" value="false"/>
-        <property key="programoptions.preservedataflash.ranges"
-                  value="${memories.dataflash.default}"/>
-        <property key="programoptions.preserveeeprom" value="false"/>
-        <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges" value=""/>
-        <property key="programoptions.preserveprogramrange" value="false"/>
-        <property key="programoptions.programcalmem" value="false"/>
-        <property key="programoptions.programuserotp" value="false"/>
-        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
-        <property key="toolpack.updateoptions"
-                  value="toolpack.updateoptions.uselatestoolpack"/>
-        <property key="toolpack.updateoptions.packversion"
-                  value="Press to select which tool pack to use"/>
-      </snap>
     </conf>
   </confs>
 </configurationDescriptor>

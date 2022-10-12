@@ -181,8 +181,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: sysWifiPic32mzw1, value: '4000'}
-      - type: User
-        attributes: {value: '10'}
   - type: Boolean
     attributes: {id: GEN_APP_RTOS_TASK_0_USE_DELAY}
     children:

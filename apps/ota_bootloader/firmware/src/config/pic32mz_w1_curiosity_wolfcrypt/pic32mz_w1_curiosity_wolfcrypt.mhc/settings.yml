@@ -1,0 +1,14 @@
+configName: pic32mz_w1_curiosity_wolfcrypt
+folderName: ota_bootloader_wolfcrypt
+format_version: v1.0
+frameworkPath: ..\..\git_repo\release_3_6_0
+processor: PIC32MZ1025W104132
+projectName: ota_bootloader_wolfcrypt
+settings:
+  PackageFilter: bsp;core;core_apps_pic32mz_w1;crypto;cryptoauthlib;csp;csp_apps_pic32mz_w1;dev_packs;net;quick_docs;touch;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01_3_6_0;wireless_wifi
+  FORCE_OPTIMIZATION: 'false'
+  GENERATE_BACKUP: 'true'
+  TRUSTZONE: 'false'
+  CMSISPath: .\dev_packs\arm\CMSIS\5.8.0
+  MERGE_STRATEGY: USER_ALL
+  DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.5.203\atdf\PIC32MZ1025W104132.atdf

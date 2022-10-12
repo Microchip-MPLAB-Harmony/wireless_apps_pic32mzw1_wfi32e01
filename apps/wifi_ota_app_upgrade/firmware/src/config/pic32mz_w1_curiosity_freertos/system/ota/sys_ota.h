@@ -85,6 +85,7 @@ extern "C" {
     /*json url max length*/
     #define JSON_URL_MAX_LEN    1000
 #endif
+    #define FACTORY_IMAGE_SIGNATURE_MAX_LEN    1000
     // *****************************************************************************
 
     /* Application states
@@ -434,6 +435,8 @@ extern "C" {
         /*json url while taking input from CLI command*/
         char json_url_cli[JSON_URL_MAX_LEN];
 #endif
+        /*factory image signature*/
+        char factory_image_signature[FACTORY_IMAGE_SIGNATURE_MAX_LEN];
 
     } SYS_OTA_Config;
 

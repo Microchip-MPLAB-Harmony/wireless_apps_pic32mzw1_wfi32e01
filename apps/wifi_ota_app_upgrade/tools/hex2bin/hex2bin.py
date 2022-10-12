@@ -142,6 +142,7 @@ def hex2bin(input_file, output_file, upper_limit, lower_limit, trim_tailing_spac
         bin = open(output_file, "wb")
         if trim_tailing_space == 0:
             address_highest = upper_limit
+            prog[0] = 0xF8
         print(Fore.GREEN+"Generating %s (%08X ~ %08X %d bytes)\n" %
               (output_file, lower_limit, address_highest, (address_highest - lower_limit)))
         for i in range(0, address_highest - lower_limit):
@@ -175,9 +176,11 @@ if __name__ == "__main__":
     parser.add_argument('-i', '--input-hex', dest='production_hex', action='store', metavar='',
                         help='Location of the hex file to convert to OTA bin', type=lambda x: is_valid_file(parser, x))
     parser.add_argument('-z', '--slot-size', dest='IMAGESTORE_SLOT_SIZE', action='store',
-                        metavar='', help='Max slot size of the image in hex', default="0xE5000")
+                        metavar='', help='Max slot size of the image in hex', default="0xDF000")
     parser.add_argument('-s', '--start-addr', dest='APP_IMG_SLOT_START', action='store',
-                        metavar='', help='Start address of application image in hex', default="0x10018000")
+                        metavar='', help='Start address of application image in hex', default="0x10020000")
+    parser.add_argument('-f', '--factory-image', dest='FACTORY_IMAGE_FLAG', action='store',
+                        metavar='', help='Start address of application image in hex', default="0x01")                    
     parser.add_argument('-o', '--output-bin', dest='production_bin',
                         action='store', metavar='', help='Location of the output ota bin file')
     args = parser.parse_args()
@@ -204,9 +207,9 @@ if __name__ == "__main__":
         production_bin = os.path.splitext(production_hex)[0]+'.bin'
     else:
         production_bin = args.production_bin
-
+    #print("FACTORY_IMAGE_FLAG : ",args.FACTORY_IMAGE_FLAG)    
     ret=hex2bin(production_hex, production_bin, APP_IMG_SLOT_END,
-            int(args.APP_IMG_SLOT_START, base=16), 1)
+            int(args.APP_IMG_SLOT_START, base=16), int(args.FACTORY_IMAGE_FLAG, base=16))
 
     if not ret: 
         with open(production_bin,"rb") as f:

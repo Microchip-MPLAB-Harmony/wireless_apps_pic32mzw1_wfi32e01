@@ -73,7 +73,7 @@ The Application expects the HTTP based OTA server to provide metadata of images 
 
     -   If user configures this field as "true", OTA serice will delete image version mentioned in "Version" field.
 
-    -   If user configures this field as "false", OTA service will follow image downwload logic. **Sample JSON**
+    -   If user configures this field as "false", OTA service will follow image downwload logic.<br />**Sample JSON**
 
 
 ```json
@@ -201,8 +201,10 @@ To build the application, refer to the following table and open the project usin
 13. User can see periodical messages as shown in belo screen shot :
 
     ![ota_peridocal_msg](images/GUID-13EA1555-6FD0-4EC3-B434-DE51E642E0B6-low.png)
+
 14. In case , secure-ota is enabled please store `Factory image` signature into system \(External flash\). Please follow steps provided in `Verification of factory image` section of [usage](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/system/ota/docs/usage.md) manual, which is part of `ota` system component.
-15.  It is required to perform a "post-build" step to create ota image with file extension ".bin" \(which can be placed in the server and downloaded during OTA process\).
+
+15. It is required to perform a "post-build" step to create ota image with file extension ".bin" \(which can be placed in the server and downloaded during OTA process\).
 
     -   All required files for post-build process will be generated \(during `step 5)`, mentioned above\) automatically in "tools" folder, created inside project folder.
 
@@ -230,12 +232,11 @@ To build the application, refer to the following table and open the project usin
 
     -   Update the "Digest" and other relevant fields in the json file corresponding to the ota image to be downloaded. The "Digest" is printed in the compilation logs.
 
-    -   Place the `.bin` image to be downloded, into the HTTP server. The `.bin` image can be found in below path which is generated during "wifi\_ota\_app\_upgrade" project build : `..\firmware\wifi_ota_app_upgrade.X\dist\pic32mz_w1_curiosity_freertos\production`
+    -   Place the `.bin` image to be downloded, into the HTTP server. The `.bin` image can be found in below path which is generated during "wifi\_ota\_app\_upgrade" project build :<br />`..\firmware\wifi_ota_app_upgrade.X\dist\pic32mz_w1_curiosity_freertos\production`
 
         Please follow `OTA server JSON manifest` section of [usage](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/system/ota/docs/usage.md) manual, which is part of `ota` system component.
 
 17. In case the user wants to download any other '.bin' image, they need to ensure that the digest corresponding to the image is calculated and updated in the json file.
-
 
 18. Once image is downloaded successfully, the application will print a message in the console. User need to reset the device to load the new image.
 

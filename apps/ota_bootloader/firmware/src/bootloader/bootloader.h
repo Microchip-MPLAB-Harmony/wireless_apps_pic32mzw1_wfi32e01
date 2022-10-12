@@ -121,6 +121,7 @@ void  Bootloader_Initialize(void);
     This function is normally not called directly by an application.
 */
 // *****************************************************************************
+
 void Bootloader_Tasks(void);
 
 
@@ -135,6 +136,9 @@ typedef enum {
     OTA_DB_FOUND,
     
 }OTA_DB_STATUS; 
+
+//#define SYS_OTA_SECURE_BOOT_ENABLED
+
 #ifdef  __cplusplus
 }
 #endif

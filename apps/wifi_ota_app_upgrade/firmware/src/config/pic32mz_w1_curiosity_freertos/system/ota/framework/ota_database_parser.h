@@ -69,6 +69,7 @@ typedef struct OTA_DB_ENTRY {
         uint32_t version;
         char *type;
         char *digest;
+        char *digest_sign;
         bool db_full;
 } OTA_DB_ENTRY;
 typedef enum {

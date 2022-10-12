@@ -65,7 +65,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 
 
-#define BOOT_ADDRESS    0xB0018000 + 0x00001000
+#define BOOT_ADDRESS    0xB0020000 + 0x00001000
 #define APP_IMG_BOOT_CTL_BLANK      { 0xFF, 0xFF, 0xFF, 0x03, 0xFFFFFFFF,  0x00000001   ,  BOOT_ADDRESS  }
 #define OTA_DOWNLOADER_TIMEOUT 1000
 #define __woraround_unused_variable(x) ((void)x)
@@ -149,6 +149,9 @@ static OTA_PARAMS ota_params;
 static OTA_DB_BUFFER *imageDB;
 extern size_t field_content_length;
 static char image_name[100];
+#ifdef SYS_OTA_SECURE_BOOT_ENABLED
+static char image_signature_file_name[100];
+#endif
 static bool disk_mount = false;
 #ifdef SYS_OTA_PATCH_ENABLE
 static bool patch_verification = false;
@@ -315,6 +318,41 @@ void OTA_GetDownloadStatus(OTA_PARAMS *result) {
     result->total_data_downloaded = ota_params.total_data_downloaded;
 }
 
+// *****************************************************************************
+// *****************************************************************************
+// Section:  To store factory image signature 
+// *****************************************************************************
+// *****************************************************************************
+//---------------------------------------------------------------------------
+/*
+  void OTA_StoreFactoryImageSignature(void *buf)
+
+  Description:
+   To store factory image signature
+
+  Task Parameters:
+    pointer to signature string 
+  Return:
+    None
+ */
+//---------------------------------------------------------------------------
+#ifdef SYS_OTA_SECURE_BOOT_ENABLED
+void OTA_StoreFactoryImageSignature(void *buf) {
+    OTA_DB_ENTRY image_data;
+    image_data.digest_sign = buf;
+    SYS_CONSOLE_PRINT("\n\rfactory image signature : %s\n\r", image_data.digest_sign);
+    //image_data.digest_sign = ota_params.serv_app_digest_sign_string;
+    //strcpy(image_data.digest_sign, buf);
+    strcpy(image_signature_file_name, APP_DIR_NAME);
+    strcat(image_signature_file_name, "/factory_image_sign.txt");
+    
+    //if(ota_params.signature_verification == true){
+        appFile.fileHandle1 = SYS_FS_FileOpen(image_signature_file_name, (SYS_FS_FILE_OPEN_WRITE_PLUS));
+        SYS_FS_FileWrite(appFile.fileHandle1, image_data.digest_sign, strlen(image_data.digest_sign));
+        SYS_FS_FileClose(appFile.fileHandle1);
+    //}
+}
+#endif
 // *****************************************************************************
 // *****************************************************************************
 // Section:  To get download status 
@@ -792,8 +830,13 @@ static void OTA_CleanUp(void) {
             /*if no DB is present, remove the file(may bepartial image)*/
             if(strncmp(FACTORY_IMAGE,stat.fname,strlen(FACTORY_IMAGE)) != 0){
                 if (no_db == true) {
-                    if(strncmp(FACTORY_IMAGE,stat.fname,strlen(FACTORY_IMAGE)) != 0){    
-                        res = SYS_FS_FileDirectoryRemove(stat.fname);
+                    if(strncmp(FACTORY_IMAGE,stat.fname,strlen(FACTORY_IMAGE)) != 0){   
+                        char file_to_remove[100];
+                        
+                        strcpy(file_to_remove,APP_DIR_NAME);
+                        strcat(file_to_remove,"/");
+                        strcat(file_to_remove,stat.fname);
+                        res = SYS_FS_FileDirectoryRemove(file_to_remove);
                         if (res == SYS_FS_RES_FAILURE) {
                             SYS_CONSOLE_PRINT("SYS OTA : File remove operation failed : clean up\r\n");
                         } else {
@@ -818,13 +861,43 @@ static void OTA_CleanUp(void) {
                     }
                     /*if image not found remove file from directory*/
                     if (image_found == false) {
-                        res = SYS_FS_FileDirectoryRemove(stat.fname);
-                        if (res == SYS_FS_RES_FAILURE) {
+                        char file_to_remove[100];
+                        
+                        strcpy(file_to_remove,APP_DIR_NAME);
+                        strcat(file_to_remove,"/");
+                        strcat(file_to_remove,stat.fname);
+                        res = SYS_FS_FileDirectoryRemove(file_to_remove);
+						#if (SERVICE_TYPE == OTA_DEBUG)
+                        SYS_CONSOLE_PRINT("File to be removed : %s\n\r",file_to_remove);
+                        #endif
+						if (res == SYS_FS_RES_FAILURE) {
                             SYS_CONSOLE_PRINT("SYS OTA : File remove operation failed : clean up\r\n");
+                            
                         } else {
                             /*Do nothing File is removed successfully*/
                             SYS_CONSOLE_PRINT("SYS OTA : Removed file : %s\r\n", stat.fname);
                         }
+#ifdef SYS_OTA_SECURE_BOOT_ENABLED        
+                        
+                        if(ota_params.signature_verification == true){
+                            char image_signature_file[100];
+                            strcpy(image_signature_file, file_to_remove);
+                            strcpy((strrchr(image_signature_file, '.') ), "_sign.txt");
+                            res = SYS_FS_FileDirectoryRemove(image_signature_file);
+                            #if (SERVICE_TYPE == OTA_DEBUG)
+                            SYS_CONSOLE_PRINT("File to be removed : %s\n\r",image_signature_file);
+                            #endif
+                            if (res == SYS_FS_RES_FAILURE) {
+
+                                SYS_CONSOLE_PRINT("SYS OTA : File remove operation failed : clean up\r\n");
+
+                            } else {
+                                /*Do nothing File is removed successfully*/
+                                SYS_CONSOLE_PRINT("SYS OTA : Removed file : %s\r\n", image_signature_file);
+
+                            }
+                        }
+#endif
                     }
                 }
             }
@@ -1446,6 +1519,16 @@ static SYS_STATUS OTA_Task_DataEntry() {
     image_data.version = ota_params.version;
     image_data.status = IMAGE_STATUS_DOWNLOADED;
     image_data.digest = ota_params.serv_app_digest_string;
+	
+#ifdef SYS_OTA_SECURE_BOOT_ENABLED	
+    if(ota_params.signature_verification == true){
+        image_data.digest_sign = ota_params.serv_app_digest_sign_string;
+
+        strcpy(image_signature_file_name, APP_DIR_NAME);
+        strcat(image_signature_file_name, (strrchr(ota_params.ota_server_url, '/')));
+        strcpy((strrchr(image_signature_file_name, '.') ), "_sign.txt");
+    }
+#endif
     if (ota.db_full == true)
         image_data.db_full = true;
     else
@@ -1453,6 +1536,14 @@ static SYS_STATUS OTA_Task_DataEntry() {
     if (OTADbNewEntry(APP_DIR_NAME"/image_database.csv", &image_data) == -1) {
         return SYS_STATUS_ERROR;
     }
+    
+#ifdef SYS_OTA_SECURE_BOOT_ENABLED   
+    if(ota_params.signature_verification == true){
+        appFile.fileHandle1 = SYS_FS_FileOpen(image_signature_file_name, (SYS_FS_FILE_OPEN_WRITE_PLUS));
+        SYS_FS_FileWrite(appFile.fileHandle1, image_data.digest_sign, strlen(image_data.digest_sign));
+        SYS_FS_FileClose(appFile.fileHandle1);
+    }
+#endif	
     return SYS_STATUS_READY;
 }
 
@@ -1685,7 +1776,12 @@ SYS_STATUS OTA_Start(OTA_PARAMS *param) {
     }
 
     strncpy(ota_params.serv_app_digest_string, param->serv_app_digest_string, 64);
-    memcpy(ota_params.ota_server_url, param->ota_server_url, strlen(param->ota_server_url) + 1);
+#ifdef SYS_OTA_SECURE_BOOT_ENABLED	
+    ota_params.signature_verification = param->signature_verification;
+    if(ota_params.signature_verification == true)
+        strncpy(ota_params.serv_app_digest_sign_string, param->serv_app_digest_sign_string, 96);
+#endif    
+	memcpy(ota_params.ota_server_url, param->ota_server_url, strlen(param->ota_server_url) + 1);
     ota_params.version = param->version;
     
 #ifdef SYS_OTA_PATCH_ENABLE      
@@ -1874,7 +1970,13 @@ SYS_STATUS OTA_Task_EraseImage(uint32_t version) {
 
     OTASaveDb(imageDB, APP_DIR_NAME"/image_database.csv");
     SYS_FS_RESULT res;
-    res = SYS_FS_FileDirectoryRemove(image_name);
+    char file_to_remove[100];
+                        
+    strcpy(file_to_remove,APP_DIR_NAME);
+    strcat(file_to_remove,"/");
+    strcat(file_to_remove,image_name);
+    res = SYS_FS_FileDirectoryRemove(file_to_remove);
+    
     if (res == SYS_FS_RES_FAILURE) {
         // image remove operation failed
 #if (SERVICE_TYPE == OTA_DEBUG)
@@ -2317,12 +2419,14 @@ void OTA_Tasks(void) {
 #endif
                 ota.current_task = OTA_TASK_SET_IMAGE_STATUS;
                 ota.task.state = OTA_TASK_INIT;
+                
             }
 
             if (ota.status == SYS_STATUS_ERROR) {
 #if (SERVICE_TYPE == OTA_DEBUG)
                 SYS_CONSOLE_MESSAGE("SYS OTA : Database entry error\r\n");
 #endif
+                
                 ota.ota_result = OTA_RESULT_IMAGE_DB_ENTRY_FAILED;
                 ota.current_task = OTA_TASK_UPDATE_USER;
             }

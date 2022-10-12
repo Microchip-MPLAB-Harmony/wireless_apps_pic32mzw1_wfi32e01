@@ -82,7 +82,7 @@ OPTIONAL("vector_offset_init.o")
  *   xc32-gcc src.c -Wl,--defsym=_ebase_address=0x9D001000
  *************************************************************************/
 PROVIDE(_vector_spacing = 0x0001);
-PROVIDE(_ebase_address = 0x90020000);
+PROVIDE(_ebase_address = 0x90030000);
 
 /*************************************************************************
  * Memory Address Equates
@@ -93,8 +93,8 @@ PROVIDE(_ebase_address = 0x90020000);
  * _CACHE_ERR_EXCPT_ADDR          -- Cache-error Exception Vector
  * _GEN_EXCPT_ADDR                -- General Exception Vector
  *************************************************************************/
-_RESET_ADDR                    = 0x90019000;
-_BEV_EXCPT_ADDR                = 0x90019380;
+_RESET_ADDR                    = 0x90021000;
+_BEV_EXCPT_ADDR                = 0x90021380;
 _DBG_EXCPT_ADDR                = 0xBFC00480;
 _SIMPLE_TLB_REFILL_EXCPT_ADDR  = _ebase_address + 0;
 _CACHE_ERR_EXCPT_ADDR          = _ebase_address + 0x100;
@@ -116,10 +116,10 @@ _GEN_EXCPT_ADDR                = _ebase_address + 0x180;
 
 MEMORY
 {
-  kseg0_program_mem     (rx)  : ORIGIN = 0x9001A000, LENGTH = 0x000FE000 - 0x1A000
+  kseg0_program_mem     (rx)  : ORIGIN = 0x90022000, LENGTH = 0x000FE000 - 0x22000
   kseg0_boot_mem              : ORIGIN = 0x9FC00000, LENGTH = 0x0
-  kseg1_boot_mem              : ORIGIN = 0x90019000, LENGTH = 0x480
-  kseg1_boot_mem_4B0          : ORIGIN = 0x900194B0, LENGTH = 0xFB50
+  kseg1_boot_mem              : ORIGIN = 0x90021000, LENGTH = 0x480
+  kseg1_boot_mem_4B0          : ORIGIN = 0x900214B0, LENGTH = 0xFB50
   config_BFC55E88             : ORIGIN = 0xBFC55E88, LENGTH = 0x4
   config_BFC55E8C             : ORIGIN = 0xBFC55E8C, LENGTH = 0x4
   config_BFC55E90             : ORIGIN = 0xBFC55E90, LENGTH = 0x4
@@ -141,7 +141,7 @@ MEMORY
   configsfrs_BFC55F88         : ORIGIN = 0xBFC55F88, LENGTH = 0x18
   configsfrs_BFC55FBC         : ORIGIN = 0xBFC55FBC, LENGTH = 0x4
   
-  ota_boot_control            : ORIGIN = 0xB0018000, LENGTH = 0x1000
+  ota_boot_control            : ORIGIN = 0xB0020000, LENGTH = 0x1000
 }
 
 /*************************************************************************

@@ -236,7 +236,7 @@ uint8_t GetFieldValue_32Bit(OTA_DB_BUFFER *imageDB, OTA_DB_FIELD_TYPE field, uin
  */
 uint8_t GetFieldString(OTA_DB_BUFFER *imageDB, OTA_DB_FIELD_TYPE field, uint8_t selected_row, char *field_value) {
     uint8_t field_status = 0;
-    size_t csv_field_read_size = 70;
+    size_t csv_field_read_size = 100;
     char *csv_field_read = OSAL_Malloc(csv_field_read_size + 1);
     if (csv_get_field(csv_field_read, csv_field_read_size, (CSV_BUFFER *) imageDB, selected_row, (size_t) field) == 0) {
         field_status = 0;

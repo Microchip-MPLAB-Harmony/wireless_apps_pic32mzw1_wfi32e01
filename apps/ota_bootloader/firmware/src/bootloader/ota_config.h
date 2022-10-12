@@ -54,15 +54,15 @@ extern "C" {
 
 
 #define FLASH_SECTOR_SIZE         4096
-#define APP_IMG_SLOT_ADDR         0x00018000  
-#define FACTORY_RESET_IMG_SIZE    0xE5000
+#define APP_IMG_SLOT_ADDR         0x00020000  
+#define FACTORY_RESET_IMG_SIZE    0xDF000
 #define OTA_BOOT_CTL_SIZE         FLASH_SECTOR_SIZE
 
 //------------------------------------------------------------------------------    
 /*Pointer to image boot control area*/     
-#define APP_IMG_BOOT_CTL         ((volatile const FIRMWARE_IMAGE_HEADER *)0xb0018000)    
+#define APP_IMG_BOOT_CTL         ((volatile const FIRMWARE_IMAGE_HEADER *)0xb0020000)    
 /*Pointer to image boot address*/      
-#define APP_IMG_BOOT_ADDR        0xb0019000     
+#define APP_IMG_BOOT_ADDR        0xb0021000     
 //------------------------------------------------------------------------------    
 
 #ifdef  __cplusplus

@@ -76,7 +76,7 @@ typedef enum {
     OTA_IMAGE_STATUS,
     OTA_IMAGE_VERSION,
     OTA_IMAGE_TYPE,
-    OTA_IMAGE_DIGEST
+    OTA_IMAGE_DIGEST        
 } OTA_DB_FIELD_TYPE;
 /*******************************************************************************
   Function:

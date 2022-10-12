@@ -55,12 +55,12 @@ extern "C" {
 
        
 /*Pointer to boot control area*/    
-#define APP_IMG_BOOT_CTL         ((volatile const FIRMWARE_IMAGE_HEADER *)0xb0018000)
+#define APP_IMG_BOOT_CTL         ((volatile const FIRMWARE_IMAGE_HEADER *)0xb0020000)
 
 /*Pointer to image boot address*/      
-#define APP_IMG_BOOT_ADDR        0xb0019000  
+#define APP_IMG_BOOT_ADDR        0xb0021000  
     
-#define APP_IMG_BOOT_CTL_WR      0x00018000    
+#define APP_IMG_BOOT_CTL_WR      0x00020000    
 /*To Do : End*/   
 //------------------------------------------------------------------------------    
 

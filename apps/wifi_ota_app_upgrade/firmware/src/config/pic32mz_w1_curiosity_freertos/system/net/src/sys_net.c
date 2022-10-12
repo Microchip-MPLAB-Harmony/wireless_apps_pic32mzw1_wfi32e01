@@ -1067,13 +1067,14 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         /* Waiting for SNTP updates */
     case SYS_NET_STATUS_WAIT_FOR_SNTP:
     {
+#ifdef SYS_NET_TLS_CERT_VERIFY_ENABLED		
         uint32_t time = TCPIP_SNTP_UTCSecondsGet();
         if (time == 0)
         {
             /* SNTP Time Stamp NOT Available */
             break;
         }
-
+#endif
         if (NET_PRES_SocketEncryptSocket(hdl->socket) != true)
         {
             SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "SSL Connection Negotiation Failed; Aborting\r\n");
@@ -1492,13 +1493,14 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
         /* Waiting for SNTP updates */
     case SYS_NET_STATUS_WAIT_FOR_SNTP:
     {
+#ifdef SYS_NET_TLS_CERT_VERIFY_ENABLED		
         uint32_t time = TCPIP_SNTP_UTCSecondsGet();
         if (time == 0)
         {
             /* SNTP Time Stamp NOT Available */
             break;
         }
-
+#endif
         if (NET_PRES_SocketEncryptSocket(hdl->socket) != true)
         {
             SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "SSL Connection Negotiation Failed; Aborting\r\n");

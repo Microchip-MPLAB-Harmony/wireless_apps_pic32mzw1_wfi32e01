@@ -455,8 +455,10 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
     int server_array_count = cJSON_GetArraySize(server_array);
     char *ota_url;
     cJSON *server_data = cJSON_GetArrayItem(server_array, server_array_count - 1);
-
-    cJSON *serv_digest = cJSON_GetObjectItem(server_data, "Digest");
+    cJSON *serv_digest = cJSON_GetObjectItem(server_data, "Digest");	
+    #ifdef SYS_OTA_SECURE_BOOT_ENABLED
+    cJSON *serv_digest_sign = cJSON_GetObjectItem(server_data, "Signature");
+    #endif
     cJSON *ota_url_l = cJSON_GetObjectItem(server_data, "URL");
     cJSON *ota_image_version = cJSON_GetObjectItem(server_data, "Version");
     cJSON *erasever = cJSON_GetObjectItem(server_data, "EraseVer");
@@ -642,6 +644,21 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
                 SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app Digest\r\n");
                 err = true;
             }
+#ifdef SYS_OTA_SECURE_BOOT_ENABLED            
+            char *serv_app_digest_sign;
+            if(serv_digest_sign != NULL)
+            {
+                if (cJSON_IsString(serv_digest_sign) && (serv_digest_sign->valuestring != NULL)) {
+                    SYS_CONSOLE_PRINT("    Server app Signature \"%s\"\r\n", serv_digest_sign->valuestring);
+                    serv_app_digest_sign = serv_digest_sign->valuestring;
+                    strncpy(ota_params.serv_app_digest_sign_string, serv_app_digest_sign, 96);
+                    ota_params.signature_verification = true;
+                } else {
+                    SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app Digest Signature\r\n");
+                    err = true;
+                }
+            }
+#endif
 #endif
 
             if (cJSON_IsNumber(ota_image_version) && (ota_image_version->valueint != 0)) {
@@ -670,6 +687,17 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
     
 }
 
+// *****************************************************************************
+// *****************************************************************************
+// Section:  SYS OTA Control Message Interface
+// *****************************************************************************
+// *****************************************************************************
+#ifdef SYS_OTA_SECURE_BOOT_ENABLED
+void SYS_OTA_StoreFactoryImageSignature(void *buffer){
+    
+    OTA_StoreFactoryImageSignature(buffer);
+}
+#endif
 // *****************************************************************************
 // *****************************************************************************
 // Section: OTA update check with server, JSON content parsing
@@ -800,7 +828,15 @@ static void SYS_OTA_Command_Process(int argc, char *argv[]) {
             SYS_CONSOLE_PRINT("\n\r\t* auto update\t\t\t- 0 (disable)/ 1 (enable)");
             SYS_CONSOLE_PRINT("\n\r\t* periodic interval\t\t- n second");
             SYS_CONSOLE_PRINT("\n\r\t* server url  \t\t\t- http://<server addr>//<file name>");
-        } else {
+        }else if((argc == 5) && (!strcmp((char*) argv[2], "factory")) && (!strcmp((char*) argv[3], "sign"))){
+            #ifdef SYS_OTA_SECURE_BOOT_ENABLED
+            strcpy(g_SysOtaConfig.factory_image_signature,argv[4]);
+            SYS_OTA_StoreFactoryImageSignature(g_SysOtaConfig.factory_image_signature);
+            #else
+            SYS_CONSOLE_PRINT("\n\rSecure OTA is not enabled\n\r");
+            #endif
+        }
+        else {
 
             g_SysOtaConfig.ota_periodic_check = strtoul(argv[2], 0, 10);
             SYS_CONSOLE_PRINT("\n\rperiodic check : %d\n\r", g_SysOtaConfig.ota_periodic_check);
@@ -903,6 +939,7 @@ static int SYS_OTA_CMDHelp(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv) {
     SYS_CONSOLE_PRINT("\n\r\t\t* server url  \t\t\t- http://<server addr>//<file name>");
     
     SYS_CONSOLE_PRINT("\n\r\t2. sysota get info");
+    SYS_CONSOLE_PRINT("\n\r\t3. sysota set factory sign <signature> ");
     return 0;
 }
 static const SYS_CMD_DESCRIPTOR g_SysOtaCmdTbl[] = {
@@ -931,6 +968,7 @@ static inline SYS_OTA_RESULT SYS_OTA_REGCB(SYS_OTA_CALLBACK callback) {
 
     return ret;
 }
+
 // *****************************************************************************
 // *****************************************************************************
 // Section:  SYS OTA Control Message Interface
@@ -1174,6 +1212,8 @@ void SYS_OTA_Tasks(void) {
                 SYS_OTA_RTCset();
                 sys_otaData.state = SYS_OTA_WAIT_FOR_OTA_TIMER_TRIGGER;
             } else {
+                
+#ifdef  SYS_OTA_TLS_ENABLED
                 if(sys_ota_tls == true){
                     uint32_t time = TCPIP_SNTP_UTCSecondsGet();
                     if (time == 0)
@@ -1182,6 +1222,7 @@ void SYS_OTA_Tasks(void) {
                         break;
                     }
                 }
+#endif
                 sys_otaData.state = SYS_OTA_STATE_IDLE;
             }
             break;
@@ -1274,12 +1315,15 @@ void SYS_OTA_Tasks(void) {
         }
         case SYS_OTA_TRIGGER_OTA:
         {
+            
+#ifdef  SYS_OTA_TLS_ENABLED
             if(SYS_OTA_IsTls_Request(ota_params.ota_server_url) == true){
                 uint32_t time = TCPIP_SNTP_UTCSecondsGet();
                 if (time == 0){
                     break;
                 }
             }
+#endif
             SYS_STATUS status;
             /*start OTA only if device connected to network, OTA is not already in progress, new image is not already downloaded*/
             if ((SYS_OTA_ConnectedToNtwrk() == true) && (SYS_OTA_IsOtaInProgress() == false) && (SYS_OTA_IsDownloadSuccess() == false)) {

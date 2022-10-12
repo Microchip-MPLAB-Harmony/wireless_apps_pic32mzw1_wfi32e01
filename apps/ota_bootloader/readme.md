@@ -18,7 +18,7 @@ We have implemented 2 configurations of OTA Bootloader to perform signature veri
 
 1.  **In software using Wolfcrypt \(ota\_booloader\_wolfcrypt.x\)**
 
-    -   This configuration uses `wolfcrypt` library, to verify siganture of image. ![wolfcrypt](images/GUID-372868FA-B3F9-464A-99C8-123DA4FA8113-low.png)
+    -   This configuration uses `wolfcrypt` library, to verify siganture of image.<br />![wolfcrypt](images/GUID-372868FA-B3F9-464A-99C8-123DA4FA8113-low.png)
 
     -   User need to provide public key in the form of array in `pub_key.h` file. Array holds the `DER` encoded public key. The name of the array should be `pubKey[]`.
 
@@ -28,7 +28,7 @@ We have implemented 2 configurations of OTA Bootloader to perform signature veri
 
         -   Copy the `key2heder.py` file and file containing public key to a particular folder.
 
-        -   Use below command from command prompt: `python key2header.py [file containing public key]`
+        -   Use below command from command prompt:<br />`python key2header.py [file containing public key]`
 
             e.g. : python key2header.py ECC\_prime256v1.pub
 
@@ -40,7 +40,7 @@ We have implemented 2 configurations of OTA Bootloader to perform signature veri
 
     -   This configuration requires `trustflex` device for signature verification. For provisioning of trust flex device and other hardware details please follow `Provisioning TrustFlex parts for OTA FW Verification` below.
 
-    -   In MHC, `ATECC608` component is configured for signature verification. ![ATECC608](images/GUID-7A952D0E-CAFF-49D5-A6C0-46BE28F8B994-low.png)
+    -   In MHC, `ATECC608` component is configured for signature verification.<br />![ATECC608](images/GUID-7A952D0E-CAFF-49D5-A6C0-46BE28F8B994-low.png)
 
 
 ## Provisioning TrustFlex parts for OTA FW Verification
@@ -63,19 +63,21 @@ ATECC608 based Trustflex can be used to perform secure firmware verification. Th
 
 3.  Device Firmware
 
-    TPDS talks to the trust elements using the KitProtocol. So, before using TPDS to provision TrustFlex with the Rio2 device , we need to flash the [KitProtocol firmware](https://github.com/MicrochipTech/PIC32MZW1_Projects/tree/main/pic32mzw1_kitprotocol) into the dev-board.
+    TPDS talks to the trust elements using the KitProtocol. So, before using TPDS to provision TrustFlex with the PIC32MZW1 device , we need to flash the [KitProtocol firmware](https://github.com/MicrochipTech/PIC32MZW1_Projects/tree/main/pic32mzw1_kitprotocol) into the dev-board.
 
     -   To update the kit-protocol firmware to use I2C1 instead of the default I2C2 \(connected to the onboard TnG module\), change HAL\_I2C\_I2C2 defined in hal\_i2c\_harmony.h file of the kit protocol project to HAL\_I2C\_I2C1.
 
     -   When the firmware boots-up, the UART console \(15008N1\) will display the devices detected.
 
-        ![trust_flex_image2](images/GUID-F930392E-306C-44E3-B8E5-2902320382CF-low.png) ![trust_flex_image3](images/GUID-28D24819-347C-43B2-81D0-640327534D58-low.png)
+        ![trust_flex_image2](images/GUID-F930392E-306C-44E3-B8E5-2902320382CF-low.png)
+
+        ![trust_flex_image3](images/GUID-28D24819-347C-43B2-81D0-640327534D58-low.png)
 
 4.  Loading the Public Key for FW verification \(Provisioning\)
 
-    -   Open TPDS and select ATECC608-TFXTLS configurator under the "Select Security Solution" Tab.
+    -   Open TPDS and select ATECC608-TFXTLS configurator under the "Configurators" Tab.
 
-        ![trust_flex_image4](images/GUID-DC9DD2C5-2D0C-4470-B492-F4F8D14BFB5F-low.png)
+        ![SelectTrustFlexConfigurator](images/GUID-B6CA860A-97E8-445E-9386-768C29E71DB9-low.png)
 
     -   Select the Firmware Validation \(Secure Boot\) usecase from the next screen
 
@@ -87,7 +89,7 @@ ATECC608 based Trustflex can be used to perform secure firmware verification. Th
 
     -   Generate a provisioning package and use it to provision the sample.
 
-        -   The attached kit with the trustFlex device mounted on it will be automatically detected and provisioned. ![trust_flex_image7](images/GUID-2F66428B-B8C9-4F39-AEA5-FE343BF63FEE-low.png) ![trust_flex_image8](images/GUID-7237F582-F85B-41C0-9EE0-9FCD0D5ACCB8-low.png)
+        -   The attached kit with the trustFlex device mounted on it will be automatically detected and provisioned.<br />![trust_flex_image7](images/GUID-2F66428B-B8C9-4F39-AEA5-FE343BF63FEE-low.png)<br />![trust_flex_image8](images/GUID-7237F582-F85B-41C0-9EE0-9FCD0D5ACCB8-low.png)
 
 5.  You can now use the device to verify image signatures in the bootloader.
 
@@ -98,7 +100,7 @@ By default, `secure ota` option will be disabled. To enable it , user need to fo
 
 1.  Enable `Secure OTA Functionality` as described in `configure Advances Configuration` section of [link](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/system/ota/docs/configuration.md).
 
-2.  Define "SYS\_OTA\_SECURE\_BOOT\_ENABLED" in "bootloader.h" of bootloader project. User can simply uncomment line of code in "bootloader.h" as shown in below image : ![define_secure_boot](images/GUID-64E3542B-D374-42B0-97FF-CF5992F28496-low.png)
+2.  Define "SYS\_OTA\_SECURE\_BOOT\_ENABLED" in "bootloader.h" of bootloader project. User can simply uncomment line of code in "bootloader.h" as shown in below image :<br />![define_secure_boot](images/GUID-64E3542B-D374-42B0-97FF-CF5992F28496-low.png)
 
 3.  Follow steps describe in `Required steps for Secure-ota` of this document.
 
@@ -109,9 +111,9 @@ For generating signature please refer `Generating Signature` section of [usage](
 
 ## Required steps for Secure-ota
 
-1.  Generate `private key` using command `openssl ecparam -genkey -name prime256v1 -noout -out ECC_prime256v1.key`
+1.  Generate `private key` using command<br />`openssl ecparam -genkey -name prime256v1 -noout -out ECC_prime256v1.key`
 
-2.  Generate `public key` using command `openssl.exe ec -in ECC_prime256v1.key -pubout -out ECC_prime256v1.pub`
+2.  Generate `public key` using command<br />`openssl.exe ec -in ECC_prime256v1.key -pubout -out ECC_prime256v1.pub`
 
 3.  In case of `ota_booloader_wolfcrypt.x`, public key should be provided in `pub_key.h` header file , as described above in `Securing OTA by verifying Images in Bootloader` section.
 

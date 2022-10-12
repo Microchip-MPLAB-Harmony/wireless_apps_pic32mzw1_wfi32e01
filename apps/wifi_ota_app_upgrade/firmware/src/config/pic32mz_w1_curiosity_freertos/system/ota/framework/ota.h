@@ -58,6 +58,7 @@ extern "C" {
 #endif
 #define     IMAGE_TYPE                  "0x01"
 #define     IMAGE_STATUS_DOWNLOADED     "0xFE"
+  
 // *****************************************************************************
 // *****************************************************************************
 // Section: Data Types
@@ -165,6 +166,9 @@ typedef struct
 typedef struct OTA_PARAMS {
         char    ota_server_url[OTA_URL_SIZE];
         char    serv_app_digest_string[66];
+#ifdef SYS_OTA_SECURE_BOOT_ENABLED		
+        char    serv_app_digest_sign_string[98];
+#endif		
 #ifdef SYS_OTA_PATCH_ENABLE        
         char    serv_app_patch_digest_string[66];
         char    serv_app_base_digest_string[66];
@@ -182,6 +186,9 @@ typedef struct OTA_PARAMS {
         uint32_t delete_img_version;
         uint32_t total_data_downloaded; 
         uint32_t server_image_length; 
+        
+        /*set/reset this variable, as per signature field in manifest file is present/absent*/
+        bool signature_verification;
 #ifdef SYS_OTA_PATCH_ENABLE        
         uint8_t patch_progress_status;
 #endif
@@ -207,6 +214,26 @@ typedef struct OTA_PARAMS {
 */
 // *****************************************************************************
 void OTA_GetDownloadStatus(OTA_PARAMS *result);
+
+// *****************************************************************************
+/*
+  Function:
+    OTA_StoreFactoryImageSignature(void *buf) 
+
+  Summary:
+    To store factory image signature.
+
+  Description:
+    To store factory image signature.
+
+  Parameters:
+    pointer of type void.
+
+  Returns:
+    None.
+*/
+// *****************************************************************************
+void OTA_StoreFactoryImageSignature(void *buf); 
 // *****************************************************************************
 /*
   Function:
