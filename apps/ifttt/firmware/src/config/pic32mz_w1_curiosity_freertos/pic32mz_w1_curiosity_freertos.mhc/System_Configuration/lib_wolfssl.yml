@@ -80,6 +80,13 @@ children:
       - type: Dynamic
         attributes: {id: lib_wolfssl, value: 'true'}
   - type: Boolean
+    attributes: {id: wolfsslTlsSni}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: net_Pres, value: 'true'}
+  - type: Boolean
     attributes: {id: wolfsslUseFastMath}
     children:
     - type: Values

@@ -102,7 +102,9 @@ bool ADCHS_ChannelResultIsReady(ADCHS_CHANNEL_NUM channel);
 uint16_t ADCHS_ChannelResultGet(ADCHS_CHANNEL_NUM channel);
 
 
+
 bool ADCHS_EOSStatusGet(void);
+
 
 // *****************************************************************************
 

@@ -71,6 +71,26 @@ APP_DATA appData;
 /* TODO:  Add any necessary local functions.
 */
 
+/*******************************************************************************
+  Function:
+    void* APP_Calloc(size_t nElems,size_t elemSize)
+
+  Remarks:
+    See prototype in app.h.
+ */
+void* APP_Calloc(size_t nElems,size_t elemSize)
+{
+    size_t nBytes = nElems * elemSize;
+    
+    /* Call the OSAL_Malloc() and initialized the assigned memory with zero*/
+    void* ptr = OSAL_Malloc(nBytes);
+    if(ptr)
+    {
+        memset(ptr, 0, nBytes);
+    }
+    return ptr;
+
+}
 
 // *****************************************************************************
 // *****************************************************************************

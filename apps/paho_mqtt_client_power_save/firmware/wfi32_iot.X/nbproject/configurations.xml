@@ -835,6 +835,7 @@
       </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/wfi32_iot/harmony-manifest-success.yml</itemPath>
+      <itemPath>paho_mqtt_client_power_save_wfi32_iot.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

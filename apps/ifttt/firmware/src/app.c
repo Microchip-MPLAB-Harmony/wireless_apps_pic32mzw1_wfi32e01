@@ -216,14 +216,14 @@ APP_TcpClientCallback(uint32_t event, void *data, void* cookie)
     switch (event) {
     case SYS_NET_EVNT_CONNECTED:
     {
-        SYS_CONSOLE_PRINT("APP_TcpClientCallback(): Status UP\r\n");
+        SYS_CONSOLE_PRINT("\nAPP_TcpClientCallback(): Status UP\r\n");
         APP_IFTTT_SendTrigger();
         break;
     }
 
     case SYS_NET_EVNT_DISCONNECTED:
     {
-        SYS_CONSOLE_PRINT("APP_TcpClientCallback(): Status DOWN\r\n");
+        SYS_CONSOLE_PRINT("\nAPP_TcpClientCallback(): Status DOWN\r\n");
         break;
     }
 
@@ -233,25 +233,25 @@ APP_TcpClientCallback(uint32_t event, void *data, void* cookie)
         memset(networkBuffer, 0, sizeof (networkBuffer));
         SYS_NET_RecvMsg(g_tcpSrvcHandle, (uint8_t*) networkBuffer,
                 sizeof (networkBuffer));
-        SYS_CONSOLE_PRINT("Received: %s", networkBuffer);
+        SYS_CONSOLE_PRINT("\nReceived: %s", networkBuffer);
         break;
     }
 
     case SYS_NET_EVNT_SSL_FAILED:
     {
-        SYS_CONSOLE_PRINT("APP_TcpClientCallback(): SSL Negotiation Failed\r\n");
+        SYS_CONSOLE_PRINT("\nAPP_TcpClientCallback(): SSL Negotiation Failed\r\n");
         break;
     }
 
     case SYS_NET_EVNT_DNS_RESOLVE_FAILED:
     {
-        SYS_CONSOLE_PRINT("APP_TcpClientCallback(): DNS Resolution Failed\r\n");
+        SYS_CONSOLE_PRINT("\nAPP_TcpClientCallback(): DNS Resolution Failed\r\n");
         break;
     }
 
     case SYS_NET_EVNT_SOCK_OPEN_FAILED:
     {
-        SYS_CONSOLE_PRINT("APP_TcpClientCallback(): Socket Open Failed\r\n");
+        SYS_CONSOLE_PRINT("\nAPP_TcpClientCallback(): Socket Open Failed\r\n");
         break;
     }
 
@@ -261,7 +261,7 @@ APP_TcpClientCallback(uint32_t event, void *data, void* cookie)
          ** User needs to take a decision if they want to close the socket or
          ** wait for the Lower layer to come up
          */
-        SYS_CONSOLE_PRINT("APP_TcpClientCallback(): Lower Layer Down\r\n");
+        SYS_CONSOLE_PRINT("\nAPP_TcpClientCallback(): Lower Layer Down\r\n");
         break;
     }
 
@@ -271,7 +271,7 @@ APP_TcpClientCallback(uint32_t event, void *data, void* cookie)
          ** The lower layer was down and now it has come up again. 
          ** The socket was in connected state all this while
          */
-        SYS_CONSOLE_PRINT("APP_TcpClientCallback(): Lower Layer Up\r\n");
+        SYS_CONSOLE_PRINT("\nAPP_TcpClientCallback(): Lower Layer Up\r\n");
         break;
     }
     }
@@ -353,7 +353,7 @@ APP_IFTTT_Initialize(void)
         break;
     }
 
-    sprintf(g_sIftttCfg.trigger, "http://%s/trigger/%s/with/key/%s",
+    sprintf(g_sIftttCfg.trigger, "https://%s/trigger/%s/with/key/%s",
             g_sIftttCfg.server, g_sIftttCfg.event, g_sIftttCfg.key);
 
     if (g_sIftttCfg.eventType == APP_IFTTT_EVENT_BUTTON_PRESS) {

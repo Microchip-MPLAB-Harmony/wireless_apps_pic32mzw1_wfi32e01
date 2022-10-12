@@ -50,6 +50,7 @@ typedef struct
     uint8_t status; /* Current state of the service */
     IP_MULTI_ADDRESS server_ip; /* Server IP received after Resolving DNS */
     NET_PRES_SKT_T sock_type;
+    IP_ADDRESS_TYPE addr_type;
     SYS_NET_TimerInfo timerInfo;
 } SYS_NET_Handle;
 
@@ -623,14 +624,15 @@ static bool SYS_NET_Ll_Link_Status(SYS_NET_Handle *hdl)
 
 TCPIP_DNS_RESULT SYS_NET_DNS_Resolve(SYS_NET_Handle *hdl)
 {
-    TCPIP_DNS_RESULT result = TCPIP_DNS_Resolve(hdl->cfg_info.host_name, TCPIP_DNS_TYPE_A);
+    TCPIP_DNS_RESULT result = TCPIP_DNS_Resolve(hdl->cfg_info.host_name, TCPIP_DNS_TYPE_ANY);
     if (result == TCPIP_DNS_RES_NAME_IS_IPADDRESS)
     {
         /* If Host Name is IP Address itself */
 
-        if ((TCPIP_Helper_StringToIPAddress(hdl->cfg_info.host_name, &hdl->server_ip.v4Add)) ||
-                (TCPIP_Helper_StringToIPv6Address(hdl->cfg_info.host_name, &hdl->server_ip.v6Add)))
+        if (TCPIP_Helper_StringToIPAddress(hdl->cfg_info.host_name, &hdl->server_ip.v4Add))
         {
+            hdl->addr_type = IP_ADDRESS_TYPE_IPV4;
+            
             /* In case the Host Name is the IP Address itself */
             SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "DNS Resolved; IP = %s", hdl->cfg_info.host_name);
 
@@ -638,7 +640,19 @@ TCPIP_DNS_RESULT SYS_NET_DNS_Resolve(SYS_NET_Handle *hdl)
 
             return (SYS_MODULE_OBJ) hdl;
         }
+        
+        if (TCPIP_Helper_StringToIPv6Address(hdl->cfg_info.host_name, &hdl->server_ip.v6Add))
+        {
+            hdl->addr_type = IP_ADDRESS_TYPE_IPV6;
+            
+            /* In case the Host Name is the IP Address itself */
+            SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "DNS Resolved; IP = %s", hdl->cfg_info.host_name);
 
+            SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_DNS_RESOLVED);
+
+            return (SYS_MODULE_OBJ) hdl;
+        }
+        
         /* In case the Host Name is the IP Address itself; This should never come */
         SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_DNS_RESOLVE_FAILED);
 
@@ -699,40 +713,6 @@ bool SYS_NET_Set_Sock_Option(SYS_NET_Handle *hdl)
     ret = NET_PRES_SocketOptionsSet(hdl->socket, TCP_OPTION_KEEP_ALIVE, &sKeepAliveData);
 
     return ret;
-}
-
-bool SYS_NET_Socket_Bind_And_Connect(SYS_NET_Handle *hdl)
-{
-#if defined SYS_NET_SUPP_INTF_WIFI_ETHERNET  || defined SYS_NET_SUPP_INTF_ETHERNET
-    TCPIP_NET_HANDLE hNet = TCPIP_STACK_IndexToNet(hdl->cfg_info.intf);
-    IP_MULTI_ADDRESS localIp;
-
-    localIp.v4Add.Val = TCPIP_STACK_NetAddress(hNet);
-
-    if (hdl->cfg_info.mode == SYS_NET_MODE_CLIENT)
-    {
-        if (NET_PRES_SocketBind(hdl->socket, IP_ADDRESS_TYPE_IPV4,
-                                0, (NET_PRES_ADDRESS *) & localIp) == false)
-        {
-            SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "Bind Failed\r\n");
-            return false;
-        }
-
-        return NET_PRES_SocketConnect(hdl->socket);
-    }
-    else
-    {
-        if (NET_PRES_SocketBind(hdl->socket, IP_ADDRESS_TYPE_IPV4,
-                                hdl->cfg_info.port, (NET_PRES_ADDRESS *) & localIp) == false)
-        {
-            SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "Bind Failed\r\n");
-            return false;
-        }
-        return true;
-    }
-#else
-    return true;
-#endif //SYS_NET_SUPP_INTF_WIFI_ETHERNET
 }
 
 SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK net_cb, void *cookie)
@@ -851,10 +831,12 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK net_cb, void *
         return (SYS_MODULE_OBJ) hdl;
     }
 
+    hdl->addr_type = IP_ADDRESS_TYPE_ANY;
+    
     /* In case the Mode is NET Server, Open Socket and Wait for Connection */
     hdl->socket = NET_PRES_SocketOpen(0,
                                       hdl->sock_type,
-                                      TCPIP_DNS_TYPE_A,
+                                      hdl->addr_type,
                                       hdl->cfg_info.port,
                                       0,
                                       NULL);
@@ -865,14 +847,6 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK net_cb, void *
         SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_SOCK_OPEN_FAILED);
 
         return (SYS_MODULE_OBJ) hdl;
-    }
-
-    if (hdl->cfg_info.intf == SYS_NET_INTF_ETHERNET)
-    {
-        if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
-        {
-            SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
-        }
     }
 
     if (SYS_NET_Set_Sock_Option(hdl) == false)
@@ -933,15 +907,32 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         /* Waiting for DNS Client to resolve the Host Name */
     case SYS_NET_STATUS_RESOLVING_DNS:
     {
+        IPV4_ADDR hostIPv4;
+        IPV6_ADDR hostIPv6;
+        
+        hostIPv4.Val = 0;
+        memset(&hostIPv6, 0 , sizeof(hostIPv6));
+                
         TCPIP_DNS_RESULT result =
-                TCPIP_DNS_IsResolved(hdl->cfg_info.host_name,
-                                     &hdl->server_ip,
-                                     TCPIP_DNS_TYPE_A);
+                TCPIP_DNS_IsNameResolved(hdl->cfg_info.host_name,
+                                     &hostIPv4,
+                                     &hostIPv6);
         switch (result)
         {
             /* DNS Resolved */
         case TCPIP_DNS_RES_OK:
         {
+            if(hostIPv4.Val)
+            {
+                hdl->addr_type = IP_ADDRESS_TYPE_IPV4;
+                hdl->server_ip.v4Add.Val = hostIPv4.Val;
+            }
+            else
+            {
+                hdl->addr_type = IP_ADDRESS_TYPE_IPV6;
+                memcpy(&hdl->server_ip.v6Add, &hostIPv6, sizeof(hostIPv6));
+            }
+            
             SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_DNS_RESOLVED);
         }
             break;
@@ -981,7 +972,7 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         /* We now have an IPv4 Address; Open a socket */
         hdl->socket = NET_PRES_SocketOpen(0,
                                           hdl->sock_type,
-                                          TCPIP_DNS_TYPE_A,
+                                          hdl->addr_type,
                                           hdl->cfg_info.port,
                                           (NET_PRES_ADDRESS *) & hdl->server_ip,
                                           NULL);
@@ -1009,12 +1000,6 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
             SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "Could not create socket - aborting\r\n");
 
             return;
-        }
-
-        /* Bind the Socket to Network Interface */
-        if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
-        {
-            SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
         }
 
         /* Set Socket option for KeepAlive Timer */
@@ -1337,7 +1322,7 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         {
             hdl->socket = NET_PRES_SocketOpen(0,
                                               hdl->sock_type,
-                                              TCPIP_DNS_TYPE_A,
+                                              hdl->addr_type,
                                               hdl->cfg_info.port,
                                               (NET_PRES_ADDRESS*) & hdl->server_ip,
                                               NULL);
@@ -1351,12 +1336,6 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
             if (SYS_NET_Set_Sock_Option(hdl) == false)
             {
                 SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Sock Option Failed\r\n");
-            }
-
-            /* Bind the Socket to Network Interface */
-            if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
-            {
-                SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
             }
 
             /* Register the CB with NetPres */
@@ -1416,10 +1395,12 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
             return;
         }
 
+        hdl->addr_type = IP_ADDRESS_TYPE_ANY;
+        
         /* In case the Mode is NET Server, Open Socket and Wait for Connection */
         hdl->socket = NET_PRES_SocketOpen(0,
                                           hdl->sock_type,
-                                          TCPIP_DNS_TYPE_A,
+                                          hdl->addr_type,
                                           hdl->cfg_info.port,
                                           0,
                                           NULL);
@@ -1433,12 +1414,6 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
             SYS_NET_GiveSemaphore(hdl);
 
             return;
-        }
-
-        /* Bind the Socket to Network Interface */
-        if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
-        {
-            SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
         }
 
         if (SYS_NET_Set_Sock_Option(hdl) == false)
@@ -1606,7 +1581,7 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
                 /* In case the Mode is NET Server, Open Socket and Wait for Connection */
                 hdl->socket = NET_PRES_SocketOpen(0,
                                                   hdl->sock_type,
-                                                  TCPIP_DNS_TYPE_A,
+                                                  hdl->addr_type ,
                                                   hdl->cfg_info.port,
                                                   0,
                                                   NULL);
@@ -1620,12 +1595,6 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
                 }
                 else
                     SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_SERVER_AWAITING_CONNECTION);
-
-                /* Bind the Socket to Network Interface */
-                if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
-                {
-                    SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
-                }
 
                 if (SYS_NET_Set_Sock_Option(hdl) == false)
                 {
@@ -1715,7 +1684,7 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
             /* In case the Mode is NET Server, Open Socket and Wait for Connection */
             hdl->socket = NET_PRES_SocketOpen(0,
                                               hdl->sock_type,
-                                              TCPIP_DNS_TYPE_A,
+                                              hdl->addr_type,
                                               hdl->cfg_info.port,
                                               0,
                                               NULL);
@@ -1730,12 +1699,6 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
             else
             {
                 SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_SERVER_AWAITING_CONNECTION);
-            }
-
-            /* Bind the Socket to Network Interface */
-            if (SYS_NET_Socket_Bind_And_Connect(hdl) == false)
-            {
-                SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "Set Net Intf Failed\r\n");
             }
 
             if (SYS_NET_Set_Sock_Option(hdl) == false)

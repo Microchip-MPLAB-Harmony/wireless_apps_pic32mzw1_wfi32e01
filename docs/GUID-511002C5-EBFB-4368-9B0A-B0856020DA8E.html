@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
+<meta name="DC.rights.owner" content="(C) Copyright 2022" />
+<meta name="DC.type" content="topic" />
+<meta name="DC.title" content="IFTTT Demo" />
+<meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="ifttt-demo" />
+<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>IFTTT Demo</title>
+<meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-ifttt-demo" />
+<meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 01/2022" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+        function cpy(id, button) {
+        
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                    button.textContent = "Copy";
+                    button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+              console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style></head>
+<body id="ifttt-demo">
+<h1 class="title topictitle1" id="ariaid-title1">IFTTT Demo</h1><div class="body"><p class="p">This example application demosntrates how we can generate a trigger to IFTTT web platform to make it perform a specific action like sending a mail/ sms etc using an applet.</p>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html">Harmony 3 Wireless application examples for PIC32MZ W1 family</a></div>
+</div>
+</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2">Description</h2><div class="body"><p class="p">IFTTT is short for "If This Then That". IFTTT is a third-party web platform which uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA  mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the button (SW1) on the Curiosity Board is pressed.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="downloading-and-building-the-application"><h2 class="title topictitle2" id="ariaid-title3">Downloading and building the application</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a></p>
+<p class="p">Path of the application within the repository is <strong class="ph b">apps/ifttt/firmware</strong> .</p>
+<p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e47"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e49"><span>Description</span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e47 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e49 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e47 "><span> </span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e49 "><span> </span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title4" id="creating-an-applet-on-ifttt-web-platform"><h2 class="title topictitle2" id="ariaid-title4">Creating an Applet on IFTTT web platform</h2><div class="body"><p class="p">IFTTT is a third-party web platform, and one can create an applet of their own. More details on how one can use IFTTT and create their own applets can be found at <a class="xref" href="https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet" target="_blank">https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet</a></p>
+<p class="p">More details on how to use a webhook applet in IFTTT can be found in the Appendix of this document.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title5" id="setting-up-pic32mz-w1-curiosity-board"><h2 class="title topictitle2" id="ariaid-title5">Setting up PIC32MZ W1 Curiosity Board</h2><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable to power on the board.</p>
+</li>
+<li class="li"><p class="p">On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter</p>
+</li>
+<li class="li"><p class="p">Home AP (Wi-Fi Access Point with internet connection)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title6" id="running-the-application"><h2 class="title topictitle2" id="ariaid-title6">Running the Application</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open the project and launch Harmony3 configurator.</p>
+</li>
+<li class="li"><span class="indent-level-default">2.</span><p class="p">Configure home AP credentials for STA Mode.</p>
+<br /><img class="image" src="GUID-75A79677-9EF2-45D6-9C0A-229A66AEC86A-low.png" alt="MHC_SSID_Configuration" /><br /></li>
+<li class="li"><span class="indent-level-default">3.</span><p class="p">Save configurations and generate code via MHC.</p>
+</li>
+<li class="li"><span class="indent-level-default">4.</span><p class="p">Currently application expects the user to create an applet at the IFTTT web platform and configure the relevant details related to the applet in the app.c file. These details will help in creating the trigger which we send to make the applet perform the action.</p>
+</li>
+<li class="li"><span class="indent-level-default">5.</span><p class="p">The user would need to populate the following</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e115"><span>Parameter Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e117"><span>Default Value</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e119"><span>Description</span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_EVENT_TYPE</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>IFTTT_EVENT_BUTTON_PRESS</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board (IFTTT_EVENT_BUTTON_PRESS), or by running a timer (IFTTT_EVENT_PERIODIC_TIMER) and sending the trigger periodically. The default event type is button press to trigger the applet.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>100 sec</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>This parameter is used for setting the timeperiod in sec, after which a periodic trigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_EVENT</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"YOUR_EVENT"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>This is a mandatory parameter to be filled in by the user, and is the 'event' which triggers the applet. This 'event' was used while creating the applet at the IFTTT web platform.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_KEY</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"YOUR_KEY"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>This is a mandatory parameter to be filled in by the user, and is the the 'key' which is generated after the creation of the applet at the IFTTT web platform.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_NUM_OF_VALUES</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>1</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>The IFTTT applet can use upto 3 values/ data while performing an action. This parameter indicates the number of values which this application needs to send along with the trigger.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_VALUE1</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"Value1"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>Data Value1 that needs to be sent along with the trigger.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_VALUE2</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"Value2"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>Data Value2 that needs to be sent along with the trigger.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_VALUE3</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"Value3"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>Data Value3 that needs to be sent along with the trigger.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_USER_CALLBACK</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>NULL</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>In case users want to process some data and based on the result want to dynamically decide if the trigger needs to be sent or not, they will need to map this parameter to APP_IFTTT_Callback() function and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the 'Value1' and sent.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_USER_CALLBACK_CTX</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>NULL</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>Callback context/ parameter which will be passed on to APP_IFTTT_Callback(). This could a structure pointer which contains the data to be processed and decide if the trigger needs to be sent.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span> </span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span> </span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span> </span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="li"><span class="indent-level-default">6.</span><p class="p">Build and program the generated image into the hardware using the IDE.</p>
+</li>
+<li class="li"><span class="indent-level-default">7.</span><p class="p">Open the terminal application(Ex:Tera term) on the computer.</p>
+</li>
+<li class="li"><span class="indent-level-default">8.</span><p class="p">Connect to the COM port related to the external USB-UART connected to the GPIO heade and configure the serial settings as follows:</p>
+<ul class="ul"><li class="li"><p class="p">Baud : 115200</p>
+</li>
+<li class="li"><p class="p">Data : 8 Bits</p>
+</li>
+<li class="li"><p class="p">Parity : None</p>
+</li>
+<li class="li"><p class="p">Stop : 1 Bit</p>
+</li>
+<li class="li"><p class="p">Flow Control : None</p>
+</li>
+</ul>
+</li>
+<li class="li"><span class="indent-level-default">9.</span><p class="p">The Board will connect to Home AP.</p>
+<br /><img class="image" src="GUID-C311498A-7404-4F67-886A-A38B9AFE8563-low.png" alt="Console_STA_Connected" /><br /></li>
+<li class="li"><span class="indent-level-default">10.</span><p class="p">Every time the button/ switch (SW1) is pressed</p>
+<p class="p"><img class="image" src="GUID-843C5638-0F7B-4920-8FC7-0FE6E96805B9-low.png" alt="Curiosity_Board" /><br />,</p>
+<p class="p">it shall connect to maker.ifttt.com and send the trigger.</p>
+<br /><img class="image" src="GUID-587A8EE4-8BB3-4D5E-A495-2C72FB81742C-low.png" alt="Console_Trigger_Sent" /><br /></li>
+<li class="li"><span class="indent-level-default">11.</span><p class="p">This Trigger will be received by the ifttt server which will invoke the applet. Let us assume the user created an applet using webhooks which shall 'send an email' as an action. The email could look something like this:</p>
+<br /><img class="image" src="GUID-D313EBCD-FAA5-4A48-8352-99D607BBE3B3-low.png" alt="Applet_Email" /><br /></li>
+<li class="li"><span class="indent-level-default">12.</span><p class="p">Every time a trigger is being sent by the Curiosity Board, the red LED on the board will be ON, and it will go OFF once the trigger request has been successfully trasmitted to IFTTT server. Any new request while the LED is ON will not be honoured. Hence, it is receommended to press the button for a new request only when the red LED has gone OFF.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title7" id="appendix"><h2 class="title topictitle2" id="ariaid-title7">Appendix</h2><div class="body"></div>
+<div class="topic nested2" aria-labelledby="ariaid-title8" id="creating-a-webhook-applet-on-ifttt-web-platform"><h3 class="title topictitle3" id="ariaid-title8">Creating a Webhook applet on IFTTT web platform.</h3><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Create an IFTTT account.</p>
+</li>
+<li class="li"><span class="indent-level-default">2.</span><p class="p">Sign in to the account.</p>
+</li>
+<li class="li"><span class="indent-level-default">3.</span><p class="p">Click "Create" on the right side toolbar to create an applet</p>
+<br /><img class="image" src="GUID-EF14E9DA-E72F-4BF8-896F-F93B2B946B9B-low.png" alt="applet_create" /><br /></li>
+<li class="li"><span class="indent-level-default">4.</span><p class="p">Clock on 'Add' and choose "webhooks"</p>
+<br /><img class="image" src="GUID-39023696-28FC-4C56-8EEB-CD34B5AA7A3D-low.png" alt="applet_choose_service" /><br /><br /><img class="image" src="GUID-BA1CE8F9-5FB8-431B-8401-B64F5CAC54C6-low.png" alt="applet_choose_webhooks" /><br /></li>
+<li class="li"><span class="indent-level-default">5.</span><p class="p">Choose a trigger - 'Receive a webrequest'</p>
+<br /><img class="image" src="GUID-D772B504-0BEE-4702-82FE-6DA9D5E76442-low.png" alt="applet_trigger" /><br /></li>
+<li class="li"><span class="indent-level-default">6.</span><p class="p">Fill in the event name and create a 'trigger'.Copy the event and past it to parameter IFTTT_EVENT in the demo code.</p>
+<br /><img class="image" src="GUID-9FF82895-D914-46B6-BB59-500A8C2023D8-low.png" alt="applet_trigger_create" /><br /></li>
+<li class="li"><span class="indent-level-default">7.</span><p class="p">Add the action - could be sending an 'email'</p>
+<br /><img class="image" src="GUID-578E8CC2-3882-4E42-B235-907DC3892469-low.png" alt="applet_action_add" /><br /><br /><img class="image" src="GUID-6D9D2247-D609-4579-8CF2-DE95F11AC271-low.png" alt="applet_action_email" /><br /></li>
+<li class="li"><span class="indent-level-default">8.</span><p class="p">Set the action fields. In case of 'email' it could be subject and body of the mail.</p>
+<br /><img class="image" src="GUID-A6572774-7C50-47DB-A0E5-BC57E8FA3612-low.png" alt="applet_action_fields" /><br /></li>
+<li class="li"><span class="indent-level-default">9.</span><p class="p">'Finish' the applet.</p>
+<br /><img class="image" src="GUID-BB28D174-0DD7-4B70-ABB0-EB0B1C4EB95D-low.png" alt="applet_finish" /><br /></li>
+<li class="li"><span class="indent-level-default">10.</span><p class="p">Goto webhooks settings (https://ifttt.com/maker_webhooks/setting)</p>
+<br /><img class="image" src="GUID-3009DB01-AA1A-4613-A8F6-A4E9B012BCA7-low.png" alt="applet_webhook_settings" /><br /></li>
+<li class="li"><span class="indent-level-default">11.</span><p class="p">The string after the https://maker.ifttt.com/use/ in the URL is the 'Key' needed by the Demo Application. Copy the key and pasted it to parameter IFTTT_KEY in the demo code.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</body>
+</html>

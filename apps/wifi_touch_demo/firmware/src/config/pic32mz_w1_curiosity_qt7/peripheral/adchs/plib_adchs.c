@@ -52,6 +52,7 @@
 
 
 
+
 void ADCHS_Initialize()
 {
     ADCCON1bits.ON = 0;
@@ -82,6 +83,13 @@ void ADCHS_Initialize()
     ADCCSS1 = 0x0;
     
 
+
+
+
+
+
+
+
     /* Turn ON ADC */
     ADCCON1bits.ON = 1;
     while(!ADCCON2bits.BGVRRDY); // Wait until the reference voltage is ready
@@ -91,6 +99,8 @@ void ADCHS_Initialize()
     ADCANCONbits.ANEN7 = 1;      // Enable the clock to analog bias
     while(!ADCANCONbits.WKRDY7); // Wait until ADC is ready
     ADCCON3bits.DIGEN7 = 1;      // Enable ADC
+
+
 }
 
 
@@ -163,6 +173,9 @@ uint16_t ADCHS_ChannelResultGet(ADCHS_CHANNEL_NUM channel)
     return (uint16_t) (*((&ADCDATA0) + (channel << 2)));
 
 }
+
+
+
 
 
 bool ADCHS_EOSStatusGet(void)

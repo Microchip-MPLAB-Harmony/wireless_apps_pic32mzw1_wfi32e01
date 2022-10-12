@@ -4,6 +4,20 @@ attributes: {id: sysNetPic32mzw1}
 children:
 - type: Symbols
   children:
+  - type: Boolean
+    attributes: {id: SYS_NET_ENABLE_SNI}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: SYS_NET_ENABLE_TLS}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
   - type: String
     attributes: {id: SYS_NET_HOST_NAME}
     children:
@@ -17,7 +31,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: '80'}
+        attributes: {value: '443'}
   - type: Boolean
     attributes: {id: SYS_NET_RECONNECT}
     children:

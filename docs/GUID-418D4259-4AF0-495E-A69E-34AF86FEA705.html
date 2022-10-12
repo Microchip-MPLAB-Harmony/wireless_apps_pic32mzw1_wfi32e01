@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
+<meta name="DC.rights.owner" content="(C) Copyright 2022" />
+<meta name="DC.type" content="topic" />
+<meta name="DC.title" content="WLAN STA" />
+<meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="wlan-sta" />
+<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>WLAN STA</title>
+<meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-wlan-sta" />
+<meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 01/2022" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+        function cpy(id, button) {
+        
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                    button.textContent = "Copy";
+                    button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+              console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?GUID-418D4259-4AF0-495E-A69E-34AF86FEA705"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style></head>
+<body id="wlan-sta">
+<h1 class="title topictitle1" id="ariaid-title1">WLAN STA</h1><div class="body"><p class="p">This example application shows how to use the PIC32MZW1 WLAN APIs to configure the device in STA mode directly using the WLAN driver APIs.</p>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html">Harmony 3 Wireless application examples for PIC32MZ W1 family</a></div>
+</div>
+</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2">Description</h2><div class="body"><p class="p">This application shows the various commands to be used for STA mode of PIC32MZW1 device. The user can use these commands in configuring the device that it wants to connect, scan operations, etc...</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="downloading-and-building-the-application"><h2 class="title topictitle2" id="ariaid-title3">Downloading and building the application</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a> and click</p>
+<br /><img class="image" src="GUID-3E635D54-42F2-42D5-BFD9-B6E43E0DDAB3-low.png" alt="clone" /><br /><p class="p">Path of the application within the repository is <strong class="ph b">apps/wifi_sta/firmware</strong> .</p>
+<p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d3567e51"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d3567e53"><span>Description</span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e51 "><span>pic32mz_w1_curiosity_driver.X</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e53 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title4" id="configuring-the-application"><h2 class="title topictitle2" id="ariaid-title4">Configuring the Application</h2><div class="body"></div>
+<div class="topic nested2" aria-labelledby="ariaid-title5" id="setting-up-a-regulatory-region"><h3 class="title topictitle3" id="ariaid-title5">Setting up a regulatory region</h3><div class="body"><p class="p">The available regulatory domains are  - GEN, USA, EMEA, CUST1 and CUST2. One of these regulatory domains must be selected as an active domain. This selection can be done in two ways.</p>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title6" id="using-mhc"><h3 class="title topictitle3" id="ariaid-title6">Using MHC</h3><div class="body"><p class="p">Figure below shows how to set the regulatory domain in MHC and the path is: TCPIP &amp; SYS_CONSOLE -&gt; TCP/IP STACK -&gt; BASIC CONFIGURATION -&gt; PIC32MZW1</p>
+<br /><img class="image" src="GUID-4F636DB8-52DD-425D-8D38-93440B8CC459-low.png" alt="mhc_regulatory" /><br /></div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title7" id="using-command"><h3 class="title topictitle3" id="ariaid-title7">Using command</h3><div class="body"><p class="p"><strong class="ph b">wlan set regdomain &lt;reg_domain_name&gt;</strong> is the command used to set the regulatory domain. (wlan set regdomain USA – sets the regulatory domain to USA).</p>
+<p class="p">Note: User can change the regulatory domain using this command only if the current setting is "None" (cofigured using MHC)</p>
+</div>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title8" id="setting-up-the-hardware"><h2 class="title topictitle2" id="ariaid-title8">Setting up the hardware</h2><div class="body"><p class="p">The following table shows the target hardware for the application projects.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d3567e102"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d3567e104"><span>Board</span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d3567e102 "><span>pic32mz_w1_curiosity_driver.X</span></td>
+<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d3567e104 "><span>PIC32MZ W1 Curiosity Board</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title9" id="setting-up-pic32mz-w1-curiosity-board"><h3 class="title topictitle3" id="ariaid-title9">Setting up PIC32MZ W1 Curiosity Board</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable</p>
+</li>
+<li class="li"><p class="p">On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter like <a class="xref" href="https://www.mikroe.com/usb-uart-click" target="_blank">USB UART click</a> respectively</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title10" id="running-the-application"><h2 class="title topictitle2" id="ariaid-title10">Running the Application</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open the Terminal application (Ex.:Tera term) on the computer</p>
+</li>
+<li class="li"><span class="indent-level-default">2.</span><p class="p">Connect to the "USB to UART" COM port and configure the serial settings as follows:</p>
+<ul class="ul"><li class="li"><p class="p">Baud : 115200</p>
+</li>
+<li class="li"><p class="p">Data : 8 Bits</p>
+</li>
+<li class="li"><p class="p">Parity : None</p>
+</li>
+<li class="li"><p class="p">Stop : 1 Bit</p>
+</li>
+<li class="li"><p class="p">Flow Control : None</p>
+</li>
+</ul>
+</li>
+<li class="li"><span class="indent-level-default">3.</span><p class="p">Build and Program the application project using its IDE</p>
+</li>
+<li class="li"><span class="indent-level-default">4.</span><p class="p">Console displays the initialization messages and WLAN config if already saved in NVM</p>
+</li>
+</ol>
+<br /><img class="image" src="GUID-BBEA4901-0498-4B26-BC56-BED07F1D03A3-low.png" alt="output" /><br /></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title11" id="supported-commands"><h2 class="title topictitle2" id="ariaid-title11">Supported Commands</h2><div class="body">
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d3567e173"><span>Command</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d3567e175"><span>Description</span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan config &lt;ssid&gt; &lt;ssid_length&gt; &lt;channel&gt; &lt;open/wpa2/wpam/wpa3/wep&gt; &lt;password&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Configures the SSID, SSID length, channel number and the security of the AP that DUT wants to connect. NOTE: Valid channel numbers are in range 1-13 and 0 or 255 - scans all channels</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan connect</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Connects the device to the AP configured in the command “wlan config”</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan scan_options &lt;num_slots&gt; &lt;active_slot_time in ms&gt; &lt;probes_per_slot&gt; &lt;passive_scan_time in ms&gt; &lt;stop_on_first&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Configure scan parameters</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan scan &lt;active / passive&gt; &lt;channel&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Runs either a active or passive scan (as per the input) on the channel number specified for the time set in "wlan scan_options". Note: If no time is set, default value is used</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan scan_ssidlist &lt;channel&gt; &lt;num_ssids&gt; &lt;ssid_list&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Scan a list of known SSID's (Maximum SSID is 4)</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan set channel_mask &lt;channel_mask&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Sets the channel mask for channel 1-13. Note: 1 for enable and 0 for disable</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan get rssi</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Gets the RSSI of current association</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan save config</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Stores the WLAN configurations given in command “wlan config” to flash memory. On restart an attempt is made to establish a connection to the AP based on the credentials stored in flash memory.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan set regdomain &lt;reg_domain_name&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Sets the regulatory domain.</span></td>
+</tr>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e173 "><span>wlan get regdomain &lt;all / current&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3567e175 "><span>Displays the regulatory domain all – request all regulatory domains; current - request current regulatory domain</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -28,6 +28,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <stdbool.h>
 #include <string.h>
 
+
 #ifdef SYS_OTA_APPDEBUG_ENABLED
 #define OTA_CSV_DEBUG  
 #endif
@@ -377,7 +378,7 @@ int csv_load(CSV_BUFFER *buffer, char *file_name) {
     } else {
         /* File open was successful. Write to the file. */
         #ifdef OTA_CSV_DEBUG
-        SYS_CONSOLE_PRINT("\r\nSYS_OTA_CSV : File Opened");
+        SYS_CONSOLE_PRINT("\r\nSYS_OTA_CSV : File Opened\n\r");
         #endif
     }
 
@@ -542,7 +543,7 @@ int csv_save(char *file_name, CSV_BUFFER *buffer) {
                 read_byte_cnt++;
                 SYS_FS_FileSeek(fileHandle2, read_byte_cnt, SYS_FS_SEEK_SET);
                 #ifdef OTA_CSV_DEBUG
-                SYS_CONSOLE_PRINT("SYS_OTA_CSV : writing field delimeter %c", field_delim);
+                SYS_CONSOLE_PRINT("SYS_OTA_CSV : writing field delimeter %c\n\r", field_delim);
                 #endif
             }                //fputc(field_delim, fp);
             else if (i < buffer->rows - 1) {
@@ -551,7 +552,7 @@ int csv_save(char *file_name, CSV_BUFFER *buffer) {
                 read_byte_cnt++;
                 SYS_FS_FileSeek(fileHandle2, read_byte_cnt, SYS_FS_SEEK_SET);
                 #ifdef OTA_CSV_DEBUG
-                SYS_CONSOLE_PRINT("SYS_OTA_CSV : writing ne line %c", ch);
+                SYS_CONSOLE_PRINT("SYS_OTA_CSV : writing ne line %c\n\r", ch);
                 #endif
             }
             //fputc('\n', fp);
@@ -561,9 +562,9 @@ int csv_save(char *file_name, CSV_BUFFER *buffer) {
     #ifdef OTA_CSV_DEBUG
     fileHandle2 = SYS_FS_FileOpen(file_name, (SYS_FS_FILE_OPEN_READ));
     SYS_FS_FileSeek(fileHandle2, 0, SYS_FS_SEEK_SET);
-    SYS_FS_FileRead(fileHandle2, read_buf1, 100);
+    SYS_FS_FileRead(fileHandle2, read_buf1, 200);
     
-    SYS_CONSOLE_PRINT("SYS_OTA_CSV : reading file content affter modification %s\n", read_buf1);
+    SYS_CONSOLE_PRINT("SYS_OTA_CSV : reading file content affter modification %s\n\r", read_buf1);
     
     SYS_FS_FileClose(fileHandle2);
     #endif

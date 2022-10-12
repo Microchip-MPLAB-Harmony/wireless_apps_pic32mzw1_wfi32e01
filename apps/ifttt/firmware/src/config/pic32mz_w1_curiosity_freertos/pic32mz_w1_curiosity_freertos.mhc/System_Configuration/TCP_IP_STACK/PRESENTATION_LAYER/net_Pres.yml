@@ -7,6 +7,12 @@ children:
   - type: KeyValueSet
     attributes: {id: NET_PRES_BLOB_CERT}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: Dynamic
@@ -150,6 +156,12 @@ children:
   - type: KeyValueSet
     attributes: {id: NET_PRES_ENC_PROVIDE}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: Dynamic
@@ -169,6 +181,15 @@ children:
       - type: Dynamic
         attributes: {id: net_Pres, value: '20480'}
   - type: Boolean
+    attributes: {id: NET_PRES_SUPPORT_CLIENT_ENC}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
     attributes: {id: NET_PRES_SUPPORT_DATAGRAM}
     children:
     - type: Values
@@ -176,12 +197,44 @@ children:
       - type: Dynamic
         attributes: {id: net_Pres, value: 'true'}
   - type: Boolean
+    attributes: {id: NET_PRES_SUPPORT_DATAGRAM_ENC}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
     attributes: {id: NET_PRES_SUPPORT_ENCRYPTION}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: net_Pres, value: 'false'}
+        attributes: {id: net_Pres, value: 'true'}
+  - type: Boolean
+    attributes: {id: NET_PRES_SUPPORT_SERVER_ENC}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: NET_PRES_SUPPORT_SNI}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: net_Pres, value: 'true'}
+  - type: String
+    attributes: {id: NET_PRES_SUPPORT_SNI_HOST_NAME}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: net_Pres, value: maker.ifttt.com}
   - type: Boolean
     attributes: {id: NET_PRES_SUPPORT_STREAM}
     children:
@@ -189,6 +242,15 @@ children:
       children:
       - type: Dynamic
         attributes: {id: net_Pres, value: 'true'}
+  - type: Boolean
+    attributes: {id: NET_PRES_SUPPORT_STREAM_ENC}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
   - type: Boolean
     attributes: {id: NET_PRES_USE_WOLF_SSL}
     children:

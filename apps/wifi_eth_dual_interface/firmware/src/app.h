@@ -31,7 +31,10 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
+#include "osal/osal.h"
 #include "configuration.h"
+
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -89,6 +92,45 @@ typedef struct
     /* TODO: Define any additional data used by the application. */
 
 } APP_DATA;
+
+
+/*******************************************************************************
+  Function:
+    void* APP_Calloc(size_t nElems,size_t elemSize)
+
+  Summary:
+    Allocates memory using the OSAL default allocator and initializes with zero.
+
+  Description:
+     This function allocates a block of memory from using the OSAL_Malloc() call 
+     and initializes the memory with zero.
+
+  Precondition:
+    None.
+
+  Parameters:
+    nElems      - Number of elements to be allocated with memory
+    elemSize    - Size of a single element
+
+  Returns:
+     Pointer to the block of allocated memory. NULL is returned if memory could
+     not be allocated.
+
+  Example:
+  <code>
+    // create a working array
+    uint8_t* pData;
+
+     pData = APP_Calloc(5,sizeof(uint8_t));
+     if (pData != NULL)
+     {
+        ...
+     }
+  </code>
+  Remarks:
+    None
+*/
+void* APP_Calloc(size_t nElems,size_t elemSize);
 
 // *****************************************************************************
 // *****************************************************************************
