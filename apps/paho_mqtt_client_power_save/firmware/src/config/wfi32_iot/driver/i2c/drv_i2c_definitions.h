@@ -112,6 +112,9 @@ typedef enum
     /* Transfer Successful */
     DRV_I2C_ERROR_NACK,
 
+    /* Bus Error */
+    DRV_I2C_ERROR_BUS,
+
 } DRV_I2C_ERROR;
 
 
@@ -123,6 +126,8 @@ typedef bool (* DRV_I2C_PLIB_WRITE)( uint16_t, uint8_t *, uint32_t );
 
 
 typedef bool (* DRV_I2C_PLIB_WRITE_READ)( uint16_t, uint8_t *, uint32_t, uint8_t *, uint32_t );
+
+typedef void (* DRV_I2C_PLIB_TRANSFER_ABORT) (void);
 
 typedef DRV_I2C_ERROR (* DRV_I2C_PLIB_ERROR_GET)( void );
 
@@ -177,6 +182,9 @@ typedef struct
 
     /* I2C PLib writeRead API */
     DRV_I2C_PLIB_WRITE_READ                     writeRead;
+    
+    /* I2C PLib transfer Abort API */
+    DRV_I2C_PLIB_TRANSFER_ABORT                 transferAbort;
 
     /* I2C PLib transfer */
     DRV_I2C_PLIB_ERROR_GET                      errorGet;

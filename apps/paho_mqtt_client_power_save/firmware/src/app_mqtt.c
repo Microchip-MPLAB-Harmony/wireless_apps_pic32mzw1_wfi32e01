@@ -63,11 +63,17 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 // *****************************************************************************
-volatile APP_DATA g_appData;
 
+DRV_HANDLE g_sSyswifiSrvcDrvHdl = DRV_HANDLE_INVALID ;
 SYS_MODULE_OBJ g_sSysMqttHandle = SYS_MODULE_OBJ_INVALID;
 SYS_MQTT_Config g_sTmpSysMqttCfg;
-
+volatile unsigned int g_sPllconValue = 0;
+volatile bool g_mQttPubStatus = false, g_wIfisleepStatus = false;
+void WiFiServCallback(uint32_t event, void * data, void *cookie);
+static void APP_Configure_BUCKPSMMode(void);
+static void APP_Configure_BUCKPWMMode(void);
+static void  APP_Configure_LPMode_Entry(void);
+static void APP_Configure_LPMode_Exit(void);
 // *****************************************************************************
 /*
  * Note: Note: Please do not overwrite the file during code re-generation 
@@ -77,27 +83,15 @@ SYS_MQTT_Config g_sTmpSysMqttCfg;
 /*RTCC as a wakeup source*/
 #define RTCC 
 
-/*Supported PIC/MCU Sleep Modes: 
- * Sleep (LOW_POWER_SLEEP_MODE),
- * Idle (LOW_POWER_IDLE_MODE) ,
- * Deep sleep mode(LOW_POWER_DEEP_SLEEP_MODE) and 
- * Extreme sleep mode(LOW_POWER_DEEP_SLEEP_MODE) and modify MHC configuration
+/*
+ * Supported PIC/MCU Sleep Modes: 
 */
-static POWER_LOW_POWER_MODE g_mcuSleepMode = LOW_POWER_DEEP_SLEEP_MODE;
+static POWER_LOW_POWER_MODE g_mcuSleepMode = SYS_WIFI_PIC_MODE;  
 
 /*
  * Supported Wi-Fi sleep Modes
- *  WSM(WIFI_WSM),
- * WOFF(WIFI_WOFF)
  */
-typedef enum 
-{
-
-    WIFI_WSM = 1,
-    WIFI_WOFF
-
-} WIFI_SLEEP_MODE ;
-static WIFI_SLEEP_MODE g_wiFiSleepMode = WIFI_WSM;
+static uint8_t g_wiFiSleepMode = SYS_WIFI_WIFI_POWERSAVE_MODE;
 
 #ifdef RTCC
 struct tm sys_time;
@@ -119,26 +113,27 @@ void RTCC_Callback( uintptr_t context)
 
 
 int32_t APP_MQTT_PublishMsg(char *message) {
-	SYS_MQTT_PublishTopicCfg	sMqttTopicCfg;
-	int32_t retVal = SYS_MQTT_FAILURE;
+    SYS_MQTT_PublishTopicCfg sMqttTopicCfg;
+    int32_t retVal = SYS_MQTT_FAILURE;
 
-	strcpy(sMqttTopicCfg.topicName, SYS_MQTT_DEF_PUB_TOPIC_NAME);
-	sMqttTopicCfg.topicLength = strlen(SYS_MQTT_DEF_PUB_TOPIC_NAME);
-	sMqttTopicCfg.retain = SYS_MQTT_DEF_PUB_RETAIN;
-	sMqttTopicCfg.qos = SYS_MQTT_DEF_PUB_QOS;
+    strcpy(sMqttTopicCfg.topicName, SYS_MQTT_DEF_PUB_TOPIC_NAME);
+    sMqttTopicCfg.topicLength = strlen(SYS_MQTT_DEF_PUB_TOPIC_NAME);
+    sMqttTopicCfg.retain = SYS_MQTT_DEF_PUB_RETAIN;
+    sMqttTopicCfg.qos = SYS_MQTT_DEF_PUB_QOS;
 
-	retVal = SYS_MQTT_Publish(g_sSysMqttHandle,
-			&sMqttTopicCfg,
-			message,
-			strlen(message));
-	if (retVal != SYS_MQTT_SUCCESS) {
-		SYS_CONSOLE_PRINT("\nPublish_PeriodicMsg(): Failed (%d)\r\n", retVal);
-	}
-	return retVal;
+    retVal = SYS_MQTT_Publish(g_sSysMqttHandle,
+            &sMqttTopicCfg,
+            message,
+            strlen(message));
+    if (retVal != SYS_MQTT_SUCCESS) {
+        SYS_CONSOLE_PRINT("\nPublish_PeriodicMsg(): Failed (%d)\r\n", retVal);
+    }
+    return retVal;
 }
 
 static void APP_INT_StatusClear()
 {
+ 
     SYS_INT_SourceStatusClear(INT_SOURCE_TIMER_1);
     SYS_INT_SourceStatusClear(INT_SOURCE_TIMER_3);
 
@@ -172,8 +167,9 @@ static void APP_INT_StatusClear()
 
 static void APP_INT_SourceDisable()
 {
-           
+#ifndef TIMER_WAKEUP           
     SYS_INT_SourceDisable(INT_SOURCE_TIMER_1);
+#endif
     SYS_INT_SourceDisable(INT_SOURCE_TIMER_3);
 
     SYS_INT_SourceDisable(INT_SOURCE_UART1_FAULT);
@@ -248,68 +244,71 @@ static void APP_SetMCUSleepMode()
 #endif
     APP_INT_StatusClear();
     APP_INT_SourceDisable();
+    RNGCONbits.TRNGEN = 0;
+    RNGCONbits.PRNGEN = 0;
+
+    APP_Configure_BUCKPSMMode();
+    APP_Configure_LPMode_Entry();
     POWER_LowPowerModeEnter(g_mcuSleepMode);
+
+
+    APP_Configure_BUCKPWMMode();
+    RNGCONbits.TRNGEN = 1;
+    RNGCONbits.PRNGEN = 1;
+
+    APP_Configure_LPMode_Exit();
+    UART3_Initialize();
+    UART1_Initialize();
     APP_INT_SourceRestore();
 }
-#if 00
-void configureBUCKPSMmode(void)
+
+static void APP_DelayMs ( uint32_t delay_ms)
 {
-    unsigned int O_BUCKEN, O_MLDOEN, O_BUCKMODE, OVEREN;
+    uint32_t startCount, endCount;
+    /* Calculate the end count for the given delay */
+    endCount=(CORE_TIMER_FREQ/1000)*delay_ms;
+    startCount=_CP0_GET_COUNT();
+    while((_CP0_GET_COUNT()-startCount)<endCount);
+}
+
+static void APP_Configure_BUCKPSMMode(void)
+{
+    unsigned int O_BUCKEN, O_MLDOEN, O_BUCKMODE;
     unsigned int vreg1 = 0x0;
     unsigned int vreg2 = 0x0;
     unsigned int vreg3 = 0x0;
     unsigned int vreg4 = 0x0;
-    unsigned int buckRegVal;
 
     PMUOVERCTRLbits.PHWC = 1;
-    SYS_CONSOLE_PRINT("Switch to BUCK PSM start PMUCMODE: %x \n", PMUCMODE);
     O_BUCKEN = 1;
     O_MLDOEN = 0;
     O_BUCKMODE = 0;// PMU-Buck PSM Mode
-    /*OVEREN = 1; 
-    PMUOVERCTRL = ((O_BUCKEN << 31) | (O_MLDOEN << 30) | (O_BUCKMODE << 29) |
-            (OVEREN << 23) | (vreg1 << 24) | (vreg2 <<16) | (vreg3 << 8) | vreg4); */
     PMUMODECTRL2 = ((O_BUCKEN << 31) | (O_MLDOEN << 30) | (O_BUCKMODE << 29) |
            (vreg1 << 24) | (vreg2 <<16) | (vreg3 << 8) | vreg4);
-    
     PMUOVERCTRLbits.OVEREN = 0;
-    
-    //DelayMs(30);
-        // Trigger PMU Mode Change, with CLKCTRL.BACWD=0
-    //printf("Trigger PMU Mode Change, with CLKCTRL.BACWD=0\n");
     PMUOVERCTRLbits.PHWC = 0;
-    //DelayMs(10);
-    // Poll for Buck switching to be complete
-    /*while (!((PMUCMODEbits.CBUCKEN) && !(PMUCMODEbits.CBUCKMODE) && !(PMUCMODEbits.CMLDOEN)));
-    printf(" Switch to BUCK PSM complete PMUCMODE: %x \n", PMUCMODE);
-    
-    DelayMs(10);
-
-                PMUCLKCTRLbits.BUCKSRC = 2;*/
     PMUCLKCTRLbits.BUCKSRC = 2;
     PMUCLKCTRLbits.BUCKCLKDIV = 0x08;
-    //DelayMs(10);
+
 }
 
-void configureBUCKPWMmode(void)
+static void APP_Configure_BUCKPWMMode(void)
 {
     unsigned int O_BUCKEN, O_MLDOEN, O_BUCKMODE, OVEREN;
     unsigned int vreg1 = 0x0;
     unsigned int vreg2 = 0x0;
     unsigned int vreg3 = 0x0;
     unsigned int vreg4 = 0x0;
-    unsigned int buckRegVal;
     unsigned int *otp_treg3_data = (unsigned int *)0xBFC56FFC;
     unsigned int otp_treg_val;
 
-#define VREG1_BITS 0x0000001F
-#define VREG2_BITS 0x00001F00
-#define VREG3_BITS 0x001F0000
-#define VREG4_BITS 0x1F000000
-#define TREG_DEFAULT 0x16161616
+    #define VREG1_BITS 0x0000001F
+    #define VREG2_BITS 0x00001F00
+    #define VREG3_BITS 0x001F0000
+    #define VREG4_BITS 0x1F000000
+    #define TREG_DEFAULT 0x16161616
 
     PMUOVERCTRLbits.PHWC = 1;
-    //printf("Switch to BUCK PSM start PMUCMODE: %x \n", PMUCMODE);
    
     otp_treg_val = *otp_treg3_data;
     if((otp_treg_val == 0xFFFFFFFF) || (otp_treg_val == 0x00000000))
@@ -320,31 +319,65 @@ void configureBUCKPWMmode(void)
     vreg3 = (otp_treg_val & VREG2_BITS) >> 8;
     vreg2 = (otp_treg_val & VREG3_BITS) >> 16;
     vreg1 = (otp_treg_val & VREG4_BITS) >> 24;
+    
+    O_BUCKEN = 1;
+    O_MLDOEN = 0;
+    O_BUCKMODE = 1;
+    OVEREN = 0; // PMU-Buck PWM Mode
+    PMUOVERCTRL = ((O_BUCKEN << 31) | (O_MLDOEN << 30) | (O_BUCKMODE << 29) |
+            (OVEREN << 23) | (vreg1 << 24) | (vreg2 <<16) | (vreg3 << 8) | vreg4);
 
-    
-        O_BUCKEN = 1;
-        O_MLDOEN = 0;
-        O_BUCKMODE = 1;
-        OVEREN = 0; // PMU-Buck PWM Mode
-        PMUOVERCTRL = ((O_BUCKEN << 31) | (O_MLDOEN << 30) | (O_BUCKMODE << 29) |
-                (OVEREN << 23) | (vreg1 << 24) | (vreg2 <<16) | (vreg3 << 8) | vreg4);
-
-    
-    //PMUOVERCTRLbits.OVEREN = 1;
-    
-    
-    //DelayMs(30);
-        // Trigger PMU Mode Change, with CLKCTRL.BACWD=0
-    //printf("Trigger PMU Mode Change, with CLKCTRL.BACWD=0\n");
     PMUOVERCTRLbits.PHWC = 0;
-    //DelayMs(10);
-    // Poll for Buck switching to be complete
     if ((PMUCMODEbits.CBUCKMODE) );
        SYS_CONSOLE_PRINT(" Switch to BUCK PWM complete \n");
-    
-    
 }
-#endif
+
+static void  APP_Configure_LPMode_Entry(void)
+{
+    volatile unsigned int *PLLDBG = (unsigned int*) 0xBF8000E0;
+
+    /* unlock system for clock configuration */
+    SYSKEY = 0x00000000;
+    SYSKEY = 0xAA996655;
+    SYSKEY = 0x556699AA;
+
+    /* switch SPLL to FRC */
+    g_sPllconValue = SPLLCON;
+    SPLLCON = 0x40496861;
+    CFGCON0bits.SPLLHWMD = 1;
+    OSCCON = 0x103;
+    while (((OSCCON) & 0x1));
+    APP_DelayMs(5);
+
+    /*Disable ethernet clk */
+    CFGCON0bits.ETHPLLHWMD = 1;
+    EWPLLCONbits.ETHCLKOUTEN = 0;
+    while(!((*PLLDBG) & 0x4));
+    APP_DelayMs(3);
+}
+
+static void APP_Configure_LPMode_Exit(void)
+{
+    volatile unsigned int *PLLDBG = (unsigned int*) 0xBF8000E0;
+
+    /* unlock system for clock configuration */
+    SYSKEY = 0x00000000;
+    SYSKEY = 0xAA996655;
+    SYSKEY = 0x556699AA;
+
+    /* switch SPLL back to POSC */
+    SPLLCON = g_sPllconValue;
+    CFGCON0bits.SPLLHWMD = 1;
+    OSCCON = 0x103;
+    while (((OSCCON) & 0x1));
+    APP_DelayMs(5);
+
+    /* Enable ethernet clk */
+    CFGCON0bits.ETHPLLHWMD = 1;
+    EWPLLCONbits.ETHCLKOUTEN = 1;
+    while(!((*PLLDBG) & 0x4));
+    APP_DelayMs(3);
+}
 // *****************************************************************************
 // Section: Application Initialization and State Machine Functions
 // *****************************************************************************
@@ -356,30 +389,28 @@ void configureBUCKPWMmode(void)
 
   Remarks:
     Callback function registered with the SYS_MQTT_Connect() API. For more details 
-	check https://microchip-mplab-harmony.github.io/wireless/system/mqtt/docs/interface.html
+    check https://microchip-mplab-harmony.github.io/wireless/system/mqtt/docs/interface.html
  */
 int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, void* cookie) {
     switch (eEventType) {
         case SYS_MQTT_EVENT_MSG_RCVD:
         {
-			/* Message received on Subscribed Topic */
+            /* Message received on Subscribed Topic */
             SYS_MQTT_PublishConfig	*psMsg = (SYS_MQTT_PublishConfig	*)data;
             psMsg->message[psMsg->messageLength] = 0;
             psMsg->topicName[psMsg->topicLength] = 0;
             SYS_CONSOLE_PRINT("\nMqttCallback(): Msg received on Topic: %s ; Msg: %s\r\n", 
                 psMsg->topicName, psMsg->message);
         }
-            break;
+        break;
 
         case SYS_MQTT_EVENT_MSG_DISCONNECTED:
         {
                 
             SYS_CONSOLE_PRINT("\n MqttCallback(): SYS_MQTT_EVENT_MSG_DISCONNECTED\r\n");
-            if(g_wiFiSleepMode == WIFI_WOFF)
+            if(g_wiFiSleepMode == APP_WIFI_WOFF_MODE)
             {
                 
-                //APP_SetMCUSleepMode();
-
                 static const WDRV_PIC32MZW_SYS_INIT wdrvPIC32MZW1InitData = {
                          .pCryptRngCtx  = NULL,
                          .pRegDomName   = "GEN",
@@ -389,76 +420,101 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
                      PMUCLKCTRLbits.WLDOOFF = 0;
                      sysObj.syswifi = SYS_WIFI_Initialize(NULL,NULL,NULL);
                      sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
+                     SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_REGCALLBACK, WiFiServCallback, sizeof (uint8_t *));
+
             }
+
         }
-            break;
+        break;
 
         case SYS_MQTT_EVENT_MSG_CONNECTED:
         {
-			SYS_CONSOLE_PRINT("\nMqttCallback(): Connected\r\n");
+            SYS_CONSOLE_PRINT("\nMqttCallback(): Connected\r\n");
         }
-            break;
+        break;
 
         case SYS_MQTT_EVENT_MSG_SUBSCRIBED:
         {
             SYS_MQTT_SubscribeConfig	*psMqttSubCfg = (SYS_MQTT_SubscribeConfig	*)data;
             SYS_CONSOLE_PRINT("\nMqttCallback(): Subscribed to Topic '%s'\r\n", psMqttSubCfg->topicName);
         }
-            break;
+        break;
 
         case SYS_MQTT_EVENT_MSG_UNSUBSCRIBED:
         {
-			/* MQTT Topic Unsubscribed; Now the Client will not receive any messages for this Topic */
+            /* MQTT Topic Unsubscribed; Now the Client will not receive any messages for this Topic */
         }
-            break;
+        break;
 
         case SYS_MQTT_EVENT_MSG_PUBLISHED:
         {
-            SYS_CONSOLE_PRINT("SYS_MQTT_EVENT_MSG_PUBLISHED \r\n");
-
-            if(g_wiFiSleepMode == WIFI_WOFF)
+            SYS_CONSOLE_PRINT("SYS_MQTT_EVENT_MSG_PUBLISHED g_wiFiSleepMode=%d\r\n",g_wiFiSleepMode);
+            g_mQttPubStatus = true;
+#if 00
+            if(g_wiFiSleepMode == APP_WIFI_WOFF_MODE)
             {
+                SYS_CONSOLE_PRINT("APP_WIFI_WOFF_MODE mode \r\n");
                 PMUCLKCTRLbits.WLDOOFF = 1;
-                
                 APP_SetMCUSleepMode();
-                
                 SYS_WIFI_Deinitialize(sysObj.syswifi);
                 WDRV_PIC32MZW_Deinitialize(sysObj.drvWifiPIC32MZW1);
             }
             else
             {
+                SYS_CONSOLE_PRINT("normal mode \r\n");
                 APP_SetMCUSleepMode();
-            }    
+            }
+#endif
         }
-            break;
+        break;
 
         case SYS_MQTT_EVENT_MSG_CONNACK_TO:
         {
-			/* MQTT Client ConnAck TimeOut; User will need to reconnect again */
+            /* MQTT Client ConnAck TimeOut; User will need to reconnect again */
         }
-            break;
+        break;
 
         case SYS_MQTT_EVENT_MSG_SUBACK_TO:
         {
-			/* MQTT Client SubAck TimeOut; User will need to subscribe again */
+            /* MQTT Client SubAck TimeOut; User will need to subscribe again */
         }
-            break;
+        break;
 
         case SYS_MQTT_EVENT_MSG_PUBACK_TO:
         {
-			/* MQTT Client PubAck TimeOut; User will need to publish again */
+            /* MQTT Client PubAck TimeOut; User will need to publish again */
         }
-            break;
+        break;
 
         case SYS_MQTT_EVENT_MSG_UNSUBACK_TO:
         {
-			/* MQTT Client UnSubAck TimeOut; User will need to Unsubscribe again */
+            /* MQTT Client UnSubAck TimeOut; User will need to Unsubscribe again */
         }
-            break;
+        break;
 
     }
     SYS_CONSOLE_PRINT("\nMqttCallback(): event '%d'\r\n", eEventType);
     return SYS_MQTT_SUCCESS;
+}
+
+
+void WiFiPSCallback(DRV_HANDLE handle,WDRV_PIC32MZW_POWERSAVE_MODE psMode,bool bSleepEntry,uint32_t u32SleepDurationMs)
+{
+    if(psMode == WDRV_PIC32MZW_POWERSAVE_WSM_MODE)
+    {
+        if(bSleepEntry == true)
+        {
+            g_wIfisleepStatus=true;
+        }
+
+    }
+    else if(psMode == WDRV_PIC32MZW_POWERSAVE_WDS_MODE)
+    {
+        if(bSleepEntry == true)
+        {
+            g_wIfisleepStatus=true;
+        }
+    }
 }
 
 void WiFiServCallback(uint32_t event, void * data, void *cookie) 
@@ -467,15 +523,28 @@ void WiFiServCallback(uint32_t event, void * data, void *cookie)
     {
         case SYS_WIFI_CONNECT:
         {
-            //SYS_CONSOLE_PRINT("\n MCU Sleep mode=%d (Idel=0,sleep=1, XDS/DS=3) Wi-Fi sleep mode = %d (WSM=1,WOFF=2)\r\n",g_mcuSleepMode,g_wiFiSleepMode);
-            
-            /*Enable Wi-Fi WSM mode*/
-            DRV_HANDLE wifiSrvcDrvHdl ;
-            SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_GETDRVHANDLE,&wifiSrvcDrvHdl,sizeof (DRV_HANDLE));
-            WDRV_PIC32MZW_PowerSaveBroadcastTrackingSet(wifiSrvcDrvHdl,true);
-            WDRV_PIC32MZW_PowerSaveModeSet(wifiSrvcDrvHdl,WDRV_PIC32MZW_POWERSAVE_WSM_MODE,WDRV_PIC32MZW_POWERSAVE_PIC_ASYNC_MODE);
+
+            SYS_CONSOLE_PRINT("\n MCU Sleep mode=%d (Idel=0,sleep=1, dream=2, DS=3, XDS=4) Wi-Fi sleep mode = %d (RUN=0, WSM=1, WDS=2, WOFF=3)\r\n",g_mcuSleepMode,g_wiFiSleepMode);
+            //SYS_CONSOLE_PRINT("\n SOSCEN=%x POSCMOD=%x TRNGEN=%x PRNGEN=%x\r\n",CFGCON4bits.SOSCEN, CFGCON2bits.POSCMOD,RNGCONbits.TRNGEN,RNGCONbits.PRNGEN);
+
+            SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_GETDRVHANDLE,&g_sSyswifiSrvcDrvHdl,sizeof (DRV_HANDLE));
+#ifdef SYS_WIFI_WAKEUP_DTIM
+            WDRV_PIC32MZW_PowerSaveBroadcastTrackingSet(g_sSyswifiSrvcDrvHdl,true);
+#else
+            WDRV_PIC32MZW_PowerSaveBroadcastTrackingSet(g_sSyswifiSrvcDrvHdl,false);
+#endif
+            /*Wi-Fi WOFF mode is handled by Application code*/
+            if(g_wiFiSleepMode == APP_WIFI_WOFF_MODE)
+            {
+                WDRV_PIC32MZW_PowerSaveModeSet(g_sSyswifiSrvcDrvHdl,WDRV_PIC32MZW_POWERSAVE_WSM_MODE,SYS_PIC_WIFI_CORRELATION_MODE,WiFiPSCallback);
+            }
+            else
+            {
+                WDRV_PIC32MZW_PowerSaveModeSet(g_sSyswifiSrvcDrvHdl,g_wiFiSleepMode,SYS_PIC_WIFI_CORRELATION_MODE,WiFiPSCallback);
+            }
             
             break;
+            
         }
         default:
         {
@@ -492,38 +561,33 @@ void WiFiServCallback(uint32_t event, void * data, void *cookie)
     See prototype in app.h.
  */
 void APP_MQTT_Initialize(void) {
-    
+
     RCON_RESET_CAUSE resetCause;
-    
     resetCause = RCON_ResetCauseGet();
-    
-    POWER_ReleaseGPIO();
-    
+    POWER_DS_ReleaseGPIO();
+
     /* Check if RESET was after deep sleep wakeup */
     if (((resetCause & RCON_RESET_CAUSE_DPSLP) == RCON_RESET_CAUSE_DPSLP))
     {
         RCON_ResetCauseClear(RCON_RESET_CAUSE_DPSLP);
     }
 
-    if (POWER_WakeupSourceGet() == POWER_WAKEUP_SOURCE_DSRTC)
+    if (POWER_DS_WakeupSourceGet() == POWER_DS_WAKEUP_SOURCE_DSRTC)
     {
         SYS_CONSOLE_PRINT("\r\n\r\nDevice woke up after XDS/DS mode Using RTCC\r\n");
     }
-    else if (POWER_WakeupSourceGet() == POWER_WAKEUP_SOURCE_DSINT0)
+    else if (POWER_DS_WakeupSourceGet() == POWER_DS_WAKEUP_SOURCE_DSINT0)
     {
         SYS_CONSOLE_PRINT("\r\n\r\nDevice woke up after XDS/DS mode Using EXT INT0(SW1 button press)\r\n");
     }
      
     /* INT0 interrupt is used to wake up from Deep Sleep */
     EVIC_ExternalInterruptEnable(EXTERNAL_INT_0);
-    //EVIC_ExternalInterruptEnable(INT_SOURCE_RFSMC);
     
     /* CN interrupt is used to wake up from Idle or Sleep mode */
     GPIO_PinInterruptEnable(CN_INT_PIN);
-    //GPIO_PinInterruptEnable(INT_SOURCE_RFSMC);
-    
-#ifdef RTCC   
 
+#ifdef RTCC   
     // Time setting 31-12-2018 23:59:55 Monday
     sys_time.tm_hour = 23;
     sys_time.tm_min = 59;
@@ -557,15 +621,14 @@ void APP_MQTT_Initialize(void) {
         /* Error setting up alarm */
         while(1);
     }
-
-#endif    
-	/*
-	** For more details check https://microchip-mplab-harmony.github.io/wireless/system/mqtt/docs/interface.html
-	*/
+#endif
+    /*
+    ** For more details check https://microchip-mplab-harmony.github.io/wireless/system/mqtt/docs/interface.html
+    */
 #ifdef APP_CFG_WITH_MQTT_API
 
-	/* In case the user does not want to use the configuration given in the MHC */
-	
+    /* In case the user does not want to use the configuration given in the MHC */
+
     SYS_MQTT_Config *psMqttCfg;
 
     memset(&g_sTmpSysMqttCfg, 0, sizeof (g_sTmpSysMqttCfg));
@@ -580,8 +643,8 @@ void APP_MQTT_Initialize(void) {
     g_sSysMqttHandle = SYS_MQTT_Connect(&g_sTmpSysMqttCfg, MqttCallback, NULL);
 #else    
     g_sSysMqttHandle = SYS_MQTT_Connect(NULL, /* NULL value means that the MHC configuration should be used for this connection */
-										MqttCallback, 
-										NULL);
+                                        MqttCallback, 
+                                        NULL);
 #endif
     SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_REGCALLBACK, WiFiServCallback, sizeof (uint8_t *));
 }
@@ -593,10 +656,26 @@ void APP_MQTT_Initialize(void) {
   Remarks:
     See prototype in app.h.
  */
-void APP_MQTT_Tasks(void) {
-  
+void APP_MQTT_Tasks(void) 
+{
     SYS_MQTT_Task(g_sSysMqttHandle);
-   
+    if(g_mQttPubStatus && g_wIfisleepStatus)
+    {
+        g_mQttPubStatus =false;
+        g_wIfisleepStatus=false;
+        if(g_wiFiSleepMode == APP_WIFI_WOFF_MODE)
+        {
+            PMUCLKCTRLbits.WLDOOFF = 1;
+            APP_SetMCUSleepMode();
+            SYS_WIFI_Deinitialize(sysObj.syswifi);
+            WDRV_PIC32MZW_Deinitialize(sysObj.drvWifiPIC32MZW1);
+        }
+        else
+        {
+            APP_SetMCUSleepMode();
+        }
+    }
+
 }
 
 /******************************************************************************
@@ -606,8 +685,8 @@ void APP_MQTT_Tasks(void) {
   Remarks:
     See prototype in app.h.
  */
-int32_t APP_MQTT_GetStatus(void *p) {
-
+int32_t APP_MQTT_GetStatus(void *p) 
+{
     return SYS_MQTT_GetStatus(g_sSysMqttHandle);
 }
 

@@ -55,14 +55,10 @@
 // ****************************************************************************
 // ****************************************************************************
 
-
-
-
 /*** FBCFG0 ***/
 #pragma config BUHSWEN =    OFF
 #pragma config PCSCMODE =    DUAL
 #pragma config BOOTISA =    MIPS32
-
 
 
 /*** DEVCFG0 ***/
@@ -108,7 +104,6 @@
 #pragma config WDTPSS =    PSS1
 
 
-
 /*** DEVCFG2 ***/
 #pragma config DMTINTV =    WIN_63_64
 #pragma config POSCMOD =    HS
@@ -126,7 +121,6 @@
 #pragma config DMTEN =    OFF
 
 
-
 /*** DEVCFG4 ***/
 #pragma config SOSCCFG =    0
 #pragma config VBZPBOREN =    ON
@@ -140,6 +134,7 @@
 
 /*** FCPN0 ***/
 #pragma config CP =    OFF
+
 
 
 
@@ -169,6 +164,9 @@ const DRV_I2C_PLIB_INTERFACE drvI2C0PLibAPI = {
 
     /* I2C PLib Transfer Write Read Add function */
     .writeRead = (DRV_I2C_PLIB_WRITE_READ)I2C1_WriteRead,
+
+    /*I2C PLib Transfer Abort function */
+    .transferAbort = (DRV_I2C_PLIB_TRANSFER_ABORT)I2C1_TransferAbort,
 
     /* I2C PLib Transfer Status function */
     .errorGet = (DRV_I2C_PLIB_ERROR_GET)I2C1_ErrorGet,
@@ -459,7 +457,7 @@ TCPIP_DHCPS_ADDRESS_CONFIG DHCP_POOL_CONFIG[]=
 {
     {
         .interfaceIndex     = TCPIP_DHCP_SERVER_INTERFACE_INDEX_IDX0,
-		.poolIndex          = TCPIP_DHCP_SERVER_POOL_INDEX_IDX0,
+        .poolIndex          = TCPIP_DHCP_SERVER_POOL_INDEX_IDX0,
         .serverIPAddress    = TCPIP_DHCPS_DEFAULT_SERVER_IP_ADDRESS_IDX0,
         .startIPAddRange    = TCPIP_DHCPS_DEFAULT_IP_ADDRESS_RANGE_START_IDX0,
         .ipMaskAddress      = TCPIP_DHCPS_DEFAULT_SERVER_NETMASK_ADDRESS_IDX0,
@@ -472,7 +470,7 @@ const TCPIP_DHCPS_MODULE_CONFIG tcpipDHCPSInitData =
 {
     .enabled            = true,
     .deleteOldLease     = TCPIP_DHCP_SERVER_DELETE_OLD_ENTRIES,
-	.dhcpServerCnt		= TCPIP_DHCPS_MAX_NUMBER_INSTANCES,
+    .dhcpServerCnt      = TCPIP_DHCPS_MAX_NUMBER_INSTANCES,
     .leaseEntries       = TCPIP_DHCPS_LEASE_ENTRIES_DEFAULT,
     .entrySolvedTmo     = TCPIP_DHCPS_LEASE_SOLVED_ENTRY_TMO,
     .dhcpServer         = (TCPIP_DHCPS_ADDRESS_CONFIG*)DHCP_POOL_CONFIG,
@@ -752,6 +750,8 @@ static void STDIO_BufferModeSet(void)
 
 void SYS_Initialize ( void* data )
 {
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 2.2 deviated in this file.  Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1 */
 
     STDIO_BufferModeSet();
 
@@ -770,6 +770,7 @@ void SYS_Initialize ( void* data )
 
 	GPIO_Initialize();
 	POWER_Initialize();
+
 
     I2C1_Initialize();
 
@@ -832,6 +833,7 @@ SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
     __builtin_enable_interrupts();
 
 
+    /* MISRAC 2012 deviation block end */
 }
 
 

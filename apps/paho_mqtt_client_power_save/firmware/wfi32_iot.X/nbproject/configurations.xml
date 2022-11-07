@@ -42,6 +42,8 @@
                   <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_sta.h</itemPath>
                   <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_ps.h</itemPath>
                   <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_custie.h</itemPath>
+                  <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_ie.h</itemPath>
+                  <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/include/drv_pic32mzw1_tls.h</itemPath>
                 </logicalFolder>
               </logicalFolder>
             </logicalFolder>
@@ -127,6 +129,8 @@
                 <itemPath>../src/config/wfi32_iot/library/tcpip/src/lldp_tlv.h</itemPath>
                 <itemPath>../src/config/wfi32_iot/library/tcpip/src/tcpip_mac_bridge_manager.h</itemPath>
                 <itemPath>../src/config/wfi32_iot/library/tcpip/src/tcpip_mac_bridge_private.h</itemPath>
+                <itemPath>../src/config/wfi32_iot/library/tcpip/src/dhcp_server_manager.h</itemPath>
+                <itemPath>../src/config/wfi32_iot/library/tcpip/src/dhcp_server_private.h</itemPath>
               </logicalFolder>
               <itemPath>../src/config/wfi32_iot/library/tcpip/tcpip_common_ports.h</itemPath>
               <itemPath>../src/config/wfi32_iot/library/tcpip/tcpip_mac.h</itemPath>
@@ -173,6 +177,7 @@
               <itemPath>../src/config/wfi32_iot/library/tcpip/tcpip.h</itemPath>
               <itemPath>../src/config/wfi32_iot/library/tcpip/tcpip_mac_bridge.h</itemPath>
               <itemPath>../src/config/wfi32_iot/library/tcpip/tcpip_ethernet.h</itemPath>
+              <itemPath>../src/config/wfi32_iot/library/tcpip/dhcp_server.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f4" displayName="net_pres" projectFiles="true">
@@ -495,6 +500,8 @@
                 <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/wdrv_pic32mzw_sta.c</itemPath>
                 <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/wdrv_pic32mzw_ps.c</itemPath>
                 <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/wdrv_pic32mzw_custie.c</itemPath>
+                <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/drv_pic32mzw1_tls.c</itemPath>
+                <itemPath>../src/config/wfi32_iot/driver/wifi/pic32mzw1/wdrv_pic32mzw_ie.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -522,8 +529,8 @@
                 <itemPath>../src/config/wfi32_iot/library/tcpip/src/tcpip_packet.c</itemPath>
                 <itemPath>../src/config/wfi32_iot/library/tcpip/src/udp.c</itemPath>
                 <itemPath>../src/config/wfi32_iot/library/tcpip/src/dnss.c</itemPath>
-                <itemPath>../src/config/wfi32_iot/library/tcpip/src/tcpip_heap_external.c</itemPath>
                 <itemPath>../src/config/wfi32_iot/library/tcpip/src/sntp.c</itemPath>
+                <itemPath>../src/config/wfi32_iot/library/tcpip/src/tcpip_heap_external.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -855,7 +862,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC32MZ-W_DFP" vendor="Microchip" version="1.5.203"/>
+        <pack name="PIC32MZ-W_DFP" vendor="Microchip" version="1.6.220"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -888,6 +895,7 @@
       <C32>
         <property key="additional-warnings" value="true"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="enable-app-io" value="false"/>
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-symbols" value="true"/>
@@ -945,6 +953,7 @@
         <property key="additional-options-use-response-files" value="false"/>
         <property key="additional-options-write-sla" value="false"/>
         <property key="allocate-dinit" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="code-dinit" value="false"/>
         <property key="ebase-addr" value=""/>
         <property key="enable-check-sections" value="false"/>
@@ -969,7 +978,8 @@
         <property key="map-file" value="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"/>
         <property key="no-device-startup-code" value="true"/>
         <property key="no-startup-files" value="false"/>
-        <property key="oXC32ld-extra-opts" value="-mreserve=prog@0x100ff000:0x100fffff"/>
+        <property key="oXC32ld-extra-opts"
+                  value="-mreserve=prog@0x100FF000:0x100FFFFF;-mreserve=prog@0x100ff000:0x100fffff"/>
         <property key="optimization-level" value=""/>
         <property key="preprocessor-macros" value=""/>
         <property key="remove-unused-sections" value="true"/>
@@ -984,6 +994,7 @@
       <C32CPP>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="check-new" value="false"/>
         <property key="eh-specs" value="true"/>
         <property key="enable-app-io" value="false"/>
@@ -1159,6 +1170,8 @@
         <property key="communication.interface" value=""/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="freeze.timers" value="false"/>
@@ -1198,6 +1211,7 @@
         <property key="programoptions.preserveprogramrange.end" value="0x1d003fff"/>
         <property key="programoptions.preserveprogramrange.start" value="0x1d000000"/>
         <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
@@ -1256,6 +1270,8 @@
         <property key="communication.interface" value=""/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="freeze.timers" value="false"/>
@@ -1272,9 +1288,6 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="10000000-100fffff"/>
-        <property key="memories.rww" value="true"/>
-        <property key="programmerToGoFilePath"
-                  value="D:/h3_3.6/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client_power_save/firmware/wfi32_iot.X/debug/wfi32_iot/wfi32_iot_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
@@ -1287,6 +1300,7 @@
         <property key="programoptions.preserveprogram.ranges" value=""/>
         <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
