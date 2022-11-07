@@ -135,7 +135,7 @@ THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 #define _TCPIP_DHCPS_ARP_INJECT_TMO         1000   // milliseconds
 
 // debugging
-#define _TCPIP_DHCPS_DEBUG_MASK_BASIC           (0x0001)    // print sout addertions and conditions
+#define _TCPIP_DHCPS_DEBUG_MASK_BASIC           (0x0001)    // prints out assertions and conditions
 #define _TCPIP_DHCPS_DEBUG_MASK_STATUS          (0x0002)    // prints out current server status
 #define _TCPIP_DHCPS_DEBUG_MASK_ERROR_EVENT     (0x0004)    // prints out error events
 #define _TCPIP_DHCPS_DEBUG_MASK_CLIENT_EVENT    (0x0008)    // prints out client events
@@ -427,12 +427,8 @@ typedef struct  _TAG_DHCPS_HASH_ENTRY
 {
     OA_HASH_ENTRY   hEntry; // hash header;
     struct _tag_TCPIP_DHCPS_INTERFACE_DCPT* parent;    // interface descriptor it belongs to
-    union
-    {
-        uint32_t        leaseStartTime; // time when bound or when offer was sent
-        uint32_t        probeStartTimeMs; // ms time when echo probe was sent
-        uint32_t        timeSec;          // generic time, seconds
-    };
+    uint32_t        leaseStartTime;     // time when bound or when offer was sent, seconds
+    uint32_t        probeStartTimeMs;   // ms time when echo probe was sent
     uint32_t        leaseEndTime;       // leaseStartTime + cliLeaseDuration, seconds;
     uint32_t        cliLeaseTime;       // lease time to be sent to the client, seconds;
     uint32_t        ciaddr;             // Client IP in the request we're serving

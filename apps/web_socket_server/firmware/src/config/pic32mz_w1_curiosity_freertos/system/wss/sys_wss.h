@@ -231,6 +231,12 @@ extern "C" {
         SYS_WSS_EVENT_ERR_INVALID_FRAME,             //Reports the reception of an invalid frame
       //  SYS_WSS_EVENT_DOWN,                         
         SYS_WSS_EVENT_CLIENT_TIMEOUT,                //Reports the client connection timeout
+#if SYS_WSS_ENABLE_TLS == true
+        SYS_WSS_EVENT_SSL_FAILED,                    //Reports the SSL failure
+#endif //(SYS_WSS_ENABLE_TLS == true)
+        SYS_WSS_EVENT_SOCK_OPEN_FAILED,              //Reports socket open failure
+        SYS_WSS_EVENT_LL_INTF_DOWN,                  //Reports that lower interface is down
+        SYS_WSS_EVENT_LL_INTF_UP                     //Reports that lower interface is up
     } SYS_WSS_EVENTS;
 
 // *****************************************************************************

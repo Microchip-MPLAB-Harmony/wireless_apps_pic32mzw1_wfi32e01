@@ -164,10 +164,6 @@ extern "C" {
 #define DRV_BA414E_RTOS_TASK_PRIORITY             1	
 
 
-#define SYS_WIFIPROV_NVMADDR        		0x900FF000
-#define SYS_WIFIPROV_SAVECONFIG        			true
-#define SYS_WIFIPROV_SOCKETPORT        		6666
-
 
 /*** ICMPv4 Server Configuration ***/
 #define TCPIP_STACK_USE_ICMP_SERVER
@@ -179,6 +175,10 @@ extern "C" {
 #define TCPIP_ICMP_TASK_TICK_RATE              33
 #define TCPIP_STACK_MAX_CLIENT_ECHO_REQUESTS   4
 #define TCPIP_ICMP_COMMAND_ENABLE              false
+
+#define SYS_WIFIPROV_NVMADDR        		0x900FF000
+#define SYS_WIFIPROV_SAVECONFIG        			true
+#define SYS_WIFIPROV_SOCKETPORT        		6666
 
 /*** TCPIP MAC Configuration ***/
 #define TCPIP_EMAC_TX_DESCRIPTORS				    8
@@ -539,6 +539,7 @@ extern "C" {
 #define SYS_WIFI_AP_AUTHTYPE				SYS_WIFI_WPA2
 #define SYS_WIFI_AP_CHANNEL					1
 #define SYS_WIFI_AP_SSIDVISIBILE   			true
+
 
 
 

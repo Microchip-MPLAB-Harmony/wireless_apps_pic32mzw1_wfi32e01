@@ -50,7 +50,6 @@ typedef struct
     uint8_t status; /* Current state of the service */
     IP_MULTI_ADDRESS server_ip; /* Server IP received after Resolving DNS */
     NET_PRES_SKT_T sock_type;
-    IP_ADDRESS_TYPE addr_type;
     SYS_NET_TimerInfo timerInfo;
 } SYS_NET_Handle;
 
@@ -624,15 +623,13 @@ static bool SYS_NET_Ll_Link_Status(SYS_NET_Handle *hdl)
 
 TCPIP_DNS_RESULT SYS_NET_DNS_Resolve(SYS_NET_Handle *hdl)
 {
-    TCPIP_DNS_RESULT result = TCPIP_DNS_Resolve(hdl->cfg_info.host_name, TCPIP_DNS_TYPE_ANY);
+    TCPIP_DNS_RESULT result = TCPIP_DNS_Resolve(hdl->cfg_info.host_name, TCPIP_DNS_TYPE_A);
     if (result == TCPIP_DNS_RES_NAME_IS_IPADDRESS)
     {
         /* If Host Name is IP Address itself */
 
         if (TCPIP_Helper_StringToIPAddress(hdl->cfg_info.host_name, &hdl->server_ip.v4Add))
         {
-            hdl->addr_type = IP_ADDRESS_TYPE_IPV4;
-            
             /* In case the Host Name is the IP Address itself */
             SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "DNS Resolved; IP = %s", hdl->cfg_info.host_name);
 
@@ -640,19 +637,7 @@ TCPIP_DNS_RESULT SYS_NET_DNS_Resolve(SYS_NET_Handle *hdl)
 
             return (SYS_MODULE_OBJ) hdl;
         }
-        
-        if (TCPIP_Helper_StringToIPv6Address(hdl->cfg_info.host_name, &hdl->server_ip.v6Add))
-        {
-            hdl->addr_type = IP_ADDRESS_TYPE_IPV6;
-            
-            /* In case the Host Name is the IP Address itself */
-            SYS_NETDEBUG_INFO_PRINT(g_NetAppDbgHdl, NET_CFG, "DNS Resolved; IP = %s", hdl->cfg_info.host_name);
 
-            SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_DNS_RESOLVED);
-
-            return (SYS_MODULE_OBJ) hdl;
-        }
-        
         /* In case the Host Name is the IP Address itself; This should never come */
         SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_DNS_RESOLVE_FAILED);
 
@@ -831,12 +816,10 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK net_cb, void *
         return (SYS_MODULE_OBJ) hdl;
     }
 
-    hdl->addr_type = IP_ADDRESS_TYPE_ANY;
-    
     /* In case the Mode is NET Server, Open Socket and Wait for Connection */
     hdl->socket = NET_PRES_SocketOpen(0,
                                       hdl->sock_type,
-                                      hdl->addr_type,
+                                      TCPIP_DNS_TYPE_A,
                                       hdl->cfg_info.port,
                                       0,
                                       NULL);
@@ -907,32 +890,15 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         /* Waiting for DNS Client to resolve the Host Name */
     case SYS_NET_STATUS_RESOLVING_DNS:
     {
-        IPV4_ADDR hostIPv4;
-        IPV6_ADDR hostIPv6;
-        
-        hostIPv4.Val = 0;
-        memset(&hostIPv6, 0 , sizeof(hostIPv6));
-                
         TCPIP_DNS_RESULT result =
-                TCPIP_DNS_IsNameResolved(hdl->cfg_info.host_name,
-                                     &hostIPv4,
-                                     &hostIPv6);
+                TCPIP_DNS_IsResolved(hdl->cfg_info.host_name,
+                                     &hdl->server_ip,
+                                     TCPIP_DNS_TYPE_A);
         switch (result)
         {
             /* DNS Resolved */
         case TCPIP_DNS_RES_OK:
         {
-            if(hostIPv4.Val)
-            {
-                hdl->addr_type = IP_ADDRESS_TYPE_IPV4;
-                hdl->server_ip.v4Add.Val = hostIPv4.Val;
-            }
-            else
-            {
-                hdl->addr_type = IP_ADDRESS_TYPE_IPV6;
-                memcpy(&hdl->server_ip.v6Add, &hostIPv6, sizeof(hostIPv6));
-            }
-            
             SYS_NET_SetInstStatus(hdl, SYS_NET_STATUS_DNS_RESOLVED);
         }
             break;
@@ -972,7 +938,7 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         /* We now have an IPv4 Address; Open a socket */
         hdl->socket = NET_PRES_SocketOpen(0,
                                           hdl->sock_type,
-                                          hdl->addr_type,
+                                          TCPIP_DNS_TYPE_A,
                                           hdl->cfg_info.port,
                                           (NET_PRES_ADDRESS *) & hdl->server_ip,
                                           NULL);
@@ -1067,13 +1033,14 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         /* Waiting for SNTP updates */
     case SYS_NET_STATUS_WAIT_FOR_SNTP:
     {
+#ifdef SYS_NET_TLS_CERT_VERIFY_ENABLED		
         uint32_t time = TCPIP_SNTP_UTCSecondsGet();
         if (time == 0)
         {
             /* SNTP Time Stamp NOT Available */
             break;
         }
-
+#endif
         if (NET_PRES_SocketEncryptSocket(hdl->socket) != true)
         {
             SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "SSL Connection Negotiation Failed; Aborting\r\n");
@@ -1322,7 +1289,7 @@ static void SYS_NET_Client_Task(SYS_NET_Handle *hdl)
         {
             hdl->socket = NET_PRES_SocketOpen(0,
                                               hdl->sock_type,
-                                              hdl->addr_type,
+                                              TCPIP_DNS_TYPE_A,
                                               hdl->cfg_info.port,
                                               (NET_PRES_ADDRESS*) & hdl->server_ip,
                                               NULL);
@@ -1395,12 +1362,10 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
             return;
         }
 
-        hdl->addr_type = IP_ADDRESS_TYPE_ANY;
-        
         /* In case the Mode is NET Server, Open Socket and Wait for Connection */
         hdl->socket = NET_PRES_SocketOpen(0,
                                           hdl->sock_type,
-                                          hdl->addr_type,
+                                          TCPIP_DNS_TYPE_A,
                                           hdl->cfg_info.port,
                                           0,
                                           NULL);
@@ -1492,13 +1457,14 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
         /* Waiting for SNTP updates */
     case SYS_NET_STATUS_WAIT_FOR_SNTP:
     {
+#ifdef SYS_NET_TLS_CERT_VERIFY_ENABLED		
         uint32_t time = TCPIP_SNTP_UTCSecondsGet();
         if (time == 0)
         {
             /* SNTP Time Stamp NOT Available */
             break;
         }
-
+#endif
         if (NET_PRES_SocketEncryptSocket(hdl->socket) != true)
         {
             SYS_NETDEBUG_ERR_PRINT(g_NetAppDbgHdl, NET_CFG, "SSL Connection Negotiation Failed; Aborting\r\n");
@@ -1581,7 +1547,7 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
                 /* In case the Mode is NET Server, Open Socket and Wait for Connection */
                 hdl->socket = NET_PRES_SocketOpen(0,
                                                   hdl->sock_type,
-                                                  hdl->addr_type ,
+                                                  TCPIP_DNS_TYPE_A,
                                                   hdl->cfg_info.port,
                                                   0,
                                                   NULL);
@@ -1684,7 +1650,7 @@ static void SYS_NET_Server_Task(SYS_NET_Handle *hdl)
             /* In case the Mode is NET Server, Open Socket and Wait for Connection */
             hdl->socket = NET_PRES_SocketOpen(0,
                                               hdl->sock_type,
-                                              hdl->addr_type,
+                                              TCPIP_DNS_TYPE_A,
                                               hdl->cfg_info.port,
                                               0,
                                               NULL);

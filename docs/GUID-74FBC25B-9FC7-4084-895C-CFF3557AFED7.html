@@ -11,9 +11,8 @@
 <meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
 <meta name="DC.format" content="XHTML" />
 <meta name="DC.identifier" content="ota-boot-loader" />
-<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>OTA Boot Loader</title>
+<title>OTA Boot Loader</title>
 <meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-ota-boot-loader" />
 <meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
 <meta name="Microsoft.Help.TocOrder" content="0" />
@@ -62,10 +61,9 @@
 			}
 
 		</script><script language="javascript">
-        function cpy(id, button) {
-        
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
+         
+         function copyContent(content, button) {
+         
             var textArea = document.createElement("textarea");
             
             // Place in the top-left corner of screen regardless of scroll position.
@@ -89,7 +87,6 @@
             // Avoid flash of the white box if rendered for any reason.
             textArea.style.background = 'transparent';
             
-            
             textArea.value = content;
             
             document.body.appendChild(textArea);
@@ -103,16 +100,49 @@
                   button.textContent = "Copied";
                   button.classList.add("copied");
                   setTimeout(function(){
-                    button.textContent = "Copy";
-                    button.classList.remove("copied");
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
                   },1000);
                }
             } catch (err) {
-              console.log('Oops, unable to copy');
+               console.log('Oops, unable to copy');
             }
             
             document.body.removeChild(textArea);
-        }
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
       </script><script language="javascript">
           
           // Add the MathML namespace to html
@@ -151,7 +181,7 @@
           window.top.location = Default;
           }       
           
-        </script><style xml:space="">
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
         
           button.copy-code{
             display:none;
@@ -193,7 +223,7 @@
           }
         
         
-      </style></head>
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="ota-boot-loader">
 <h1 class="title topictitle1" id="ariaid-title1">OTA Boot Loader</h1><div class="body"><p class="p">This example acts as loader of OTA image (downloaded using OTA process) to load it to device memory .</p>
 </div>
@@ -253,18 +283,16 @@
 </ul>
 </li>
 <li class="li"><span class="indent-level-default">3.</span><p class="p">Device Firmware</p>
-<p class="p">TPDS talks to the trust elements using the KitProtocol. So, before using TPDS to provision TrustFlex with the Rio2 device , we need to flash the <a class="xref" href="https://github.com/MicrochipTech/PIC32MZW1_Projects/tree/main/pic32mzw1_kitprotocol" target="_blank">KitProtocol firmware</a> into the dev-board.</p>
+<p class="p">TPDS talks to the trust elements using the KitProtocol. So, before using TPDS to provision TrustFlex with the PIC32MZW1 device , we need to flash the <a class="xref" href="https://github.com/MicrochipTech/PIC32MZW1_Projects/tree/main/pic32mzw1_kitprotocol" target="_blank">KitProtocol firmware</a> into the dev-board.</p>
 <ul class="ul"><li class="li"><p class="p">To update the kit-protocol firmware to use I2C1 instead of the default I2C2 (connected to the onboard TnG module), change HAL_I2C_I2C2 defined in hal_i2c_harmony.h file of the kit protocol project to HAL_I2C_I2C1.</p>
 </li>
-<li class="li"><p class="p">When the firmware boots-up, the UART console (15008N1) will display the devices detected.</p>
-<p class="p"><img class="image" src="GUID-F930392E-306C-44E3-B8E5-2902320382CF-low.png" alt="trust_flex_image2" /><br />
-<img class="image" src="GUID-28D24819-347C-43B2-81D0-640327534D58-low.png" alt="trust_flex_image3" /><br /></p>
-</li>
+<li class="li with-image"><p class="p">When the firmware boots-up, the UART console (15008N1) will display the devices detected.</p>
+<br /><img class="image" src="GUID-F930392E-306C-44E3-B8E5-2902320382CF-low.png" alt="trust_flex_image2" /><br /><br /><img class="image" src="GUID-28D24819-347C-43B2-81D0-640327534D58-low.png" alt="trust_flex_image3" /><br /></li>
 </ul>
 </li>
 <li class="li"><span class="indent-level-default">4.</span><p class="p">Loading the Public Key for FW verification (Provisioning)</p>
-<ul class="ul"><li class="li with-image"><p class="p">Open TPDS  and select ATECC608-TFXTLS configurator under the "Select Security Solution" Tab.</p>
-<br /><img class="image" src="GUID-DC9DD2C5-2D0C-4470-B492-F4F8D14BFB5F-low.png" alt="trust_flex_image4" /><br /></li>
+<ul class="ul"><li class="li with-image"><p class="p">Open TPDS  and select ATECC608-TFXTLS configurator under the "Configurators" Tab.</p>
+<br /><img class="image" src="GUID-B6CA860A-97E8-445E-9386-768C29E71DB9-low.png" alt="SelectTrustFlexConfigurator" /><br /></li>
 <li class="li with-image"><p class="p">Select the Firmware Validation (Secure Boot) usecase from the next screen</p>
 <br /><img class="image" src="GUID-50BD1C0B-B8AC-47CC-822A-2F88C8EADE05-low.png" alt="trust_flex_image5" /><br /></li>
 <li class="li with-image"><p class="p">Load the public key into Slot 15</p>
@@ -324,18 +352,17 @@
 <p class="p">Path of the project within the repository is <strong class="ph b">apps/ota_bootloader/firmware</strong>.</p>
 <p class="p">To genearte code, refer to the following table and open the project using its IDE.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d7178e406"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d7178e408"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d7183e404"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d7183e406"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d7178e406 "><span>ota_booloader_trustflex.x</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d7178e408 "><span>MPLABX project for PIC32MZ W1 Curiosity Board using trustflex click board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d7183e404 "><span>ota_booloader_trustflex.x</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d7183e406 "><span>MPLABX project for PIC32MZ W1 Curiosity Board using trustflex click board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d7178e406 "><span>ota_booloader_wolfcrypt.x</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d7178e408 "><span>MPLABX project for PIC32MZ W1 Curiosity Board using wolfcrypt library</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d7183e404 "><span>ota_booloader_wolfcrypt.x</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d7183e406 "><span>MPLABX project for PIC32MZ W1 Curiosity Board using wolfcrypt library</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d7178e406 "><span> </span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d7178e408 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d7183e404 d7183e406 "><span> </span></td>
 </tr>
 </tbody>
 </table>

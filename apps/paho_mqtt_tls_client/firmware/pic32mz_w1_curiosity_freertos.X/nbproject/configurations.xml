@@ -40,6 +40,8 @@
                   <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_sta.h</itemPath>
                   <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_ps.h</itemPath>
                   <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_custie.h</itemPath>
+                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_ie.h</itemPath>
+                  <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/drv_pic32mzw1_tls.h</itemPath>
                 </logicalFolder>
               </logicalFolder>
             </logicalFolder>
@@ -125,6 +127,8 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/lldp_tlv.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/tcpip_mac_bridge_manager.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/tcpip_mac_bridge_private.h</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/dhcp_server_private.h</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/dhcp_server_manager.h</itemPath>
               </logicalFolder>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip_common_ports.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip_mac.h</itemPath>
@@ -171,6 +175,7 @@
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip_mac_bridge.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/tcpip_ethernet.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/dhcp_server.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f6" displayName="net_pres" projectFiles="true">
@@ -518,6 +523,8 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/wdrv_pic32mzw_sta.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/wdrv_pic32mzw_ps.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/wdrv_pic32mzw_custie.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/drv_pic32mzw1_tls.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/wdrv_pic32mzw_ie.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -968,7 +975,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC32MZ-W_DFP" vendor="Microchip" version="1.5.203"/>
+        <pack name="PIC32MZ-W_DFP" vendor="Microchip" version="1.6.220"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -1153,7 +1160,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src/config/pic32mz_w1_curiosity_freertos/library;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/common;../src;../src/config/pic32mz_w1_curiosity_freertos;;../src/third_party/wolfssl;../src/third_party/wolfssl/wolfssl;../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/;;../src/third_party/paho.mqtt.embedded-c;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;;"/>
+                  value="../src;../src/config/pic32mz_w1_curiosity_freertos;../src/config/pic32mz_w1_curiosity_freertos/driver/wifi/pic32mzw1/include/;../src/config/pic32mz_w1_curiosity_freertos/library;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src;../src/config/pic32mz_w1_curiosity_freertos/library/tcpip/src/common;../src/third_party/paho.mqtt.embedded-c;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/wolfssl;../src/third_party/wolfssl/wolfssl"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -1163,7 +1170,7 @@
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
         <property key="preprocessor-macros"
-                  value="HAVE_CONFIG_H;WOLFSSL_IGNORE_FILE_WARN;"/>
+                  value="HAVE_CONFIG_H;WOLFSSL_IGNORE_FILE_WARN"/>
         <property key="strict-ansi" value="false"/>
         <property key="support-ansi" value="false"/>
         <property key="tentative-definitions" value=""/>
@@ -1183,9 +1190,9 @@
         <property key="exclude-floating-point-library" value="false"/>
         <property key="expand-macros" value="false"/>
         <property key="extra-include-directories-for-assembler"
-                  value="../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/pic32mz_w1_curiosity_freertos;;"/>
+                  value="../src/config/pic32mz_w1_curiosity_freertos;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ"/>
         <property key="extra-include-directories-for-preprocessor"
-                  value="../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/pic32mz_w1_curiosity_freertos;;"/>
+                  value="../src/config/pic32mz_w1_curiosity_freertos;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ"/>
         <property key="false-conditionals" value="false"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
@@ -1232,10 +1239,9 @@
         <property key="map-file" value="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"/>
         <property key="no-device-startup-code" value="true"/>
         <property key="no-startup-files" value="false"/>
-        <property key="oXC32ld-extra-opts"
-                  value="-mreserve=prog@0x100FF000:0x100FFFFF;"/>
+        <property key="oXC32ld-extra-opts" value="-mreserve=prog@0x100FF000:0x100FFFFF"/>
         <property key="optimization-level" value=""/>
-        <property key="preprocessor-macros" value=";"/>
+        <property key="preprocessor-macros" value=""/>
         <property key="remove-unused-sections" value="true"/>
         <property key="report-memory-usage" value="false"/>
         <property key="serial-length" value=""/>
@@ -1258,7 +1264,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/pic32mz_w1_curiosity_freertos;;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;;"/>
+                  value="../src;../src/config/pic32mz_w1_curiosity_freertos;../src/third_party/rtos/FreeRTOS/Source/include;../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -1409,6 +1415,8 @@
         <property key="communication.interface" value=""/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="freeze.timers" value="false"/>
@@ -1452,6 +1460,7 @@
         <property key="programoptions.preserveprogramrange.end" value="0x1d003fff"/>
         <property key="programoptions.preserveprogramrange.start" value="0x1d000000"/>
         <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
@@ -1514,6 +1523,8 @@
         <property key="communication.interface" value=""/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="freeze.timers" value="false"/>
@@ -1530,7 +1541,6 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="10000000-100fffff"/>
-        <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
         <property key="programmerToGoImageName"
                   value="pic32mz_w1_curiosity_freertos_ptg"/>
@@ -1551,6 +1561,7 @@
         <property key="programoptions.preserveprogram.ranges" value=""/>
         <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>

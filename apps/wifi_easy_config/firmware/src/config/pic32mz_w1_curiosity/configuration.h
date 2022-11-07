@@ -129,7 +129,7 @@ extern "C" {
 
 
 #define SYS_CONSOLE_DEVICE_MAX_INSTANCES   			1
-#define SYS_CONSOLE_UART_MAX_INSTANCES 	   			1
+#define SYS_CONSOLE_UART_MAX_INSTANCES 	   			2
 #define SYS_CONSOLE_USB_CDC_MAX_INSTANCES 	   		0
 #define SYS_CONSOLE_PRINT_BUFFER_SIZE        		256
 
@@ -157,6 +157,8 @@ extern "C" {
 
 /*** WiFi PIC32MZW1 Driver Configuration ***/
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
+#define WDRV_PIC32MZW_WPA3_PERSONAL_SUPPORT
+#define WDRV_PIC32MZW_BIGINTSW_SUPPORT
 #define WDRV_PIC32MZW_ALARM_PERIOD_1MS          0
 #define WDRV_PIC32MZW_ALARM_PERIOD_MAX          0
 
@@ -193,9 +195,9 @@ extern "C" {
 
 /*** ICMPv4 Client Configuration ***/
 #define TCPIP_STACK_USE_ICMP_CLIENT
-#define TCPIP_ICMP_CLIENT_USER_NOTIFICATION   true
 #define TCPIP_ICMP_ECHO_REQUEST_TIMEOUT        500
 #define TCPIP_ICMP_TASK_TICK_RATE              33
+#define TCPIP_STACK_MAX_CLIENT_ECHO_REQUESTS   4
 #define TCPIP_ICMP_COMMAND_ENABLE              true
 #define TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUESTS         4
 #define TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUEST_DELAY    1000
@@ -246,6 +248,8 @@ extern "C" {
 #define TCPIP_DHCP_TIME_SERVER_ADDRESSES            0
 #define TCPIP_DHCP_USE_OPTION_NTP_SERVER            0
 #define TCPIP_DHCP_NTP_SERVER_ADDRESSES             0
+#define TCPIP_DHCP_ARP_LEASE_CHECK_TMO              1000
+#define TCPIP_DHCP_WAIT_ARP_FAIL_CHECK_TMO          10
 
 
 
@@ -520,7 +524,12 @@ extern "C" {
 #define SYS_WIFI_COUNTRYCODE        	   "GEN"
 #define SYS_WIFI_STA_SSID        			"DEMO_AP"
 #define SYS_WIFI_STA_PWD        			"password"
+
+
 #define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPAWPA2MIXED 
+
+
+
 #define SYS_WIFI_STA_AUTOCONNECT   			true
 
 
@@ -529,6 +538,7 @@ extern "C" {
 #define SYS_WIFI_AP_AUTHTYPE				SYS_WIFI_WPA2
 #define SYS_WIFI_AP_CHANNEL					1
 #define SYS_WIFI_AP_SSIDVISIBILE   			true
+
 
 #define SYS_WIFI_SCAN_CHANNEL               0
 #define SYS_WIFI_SCAN_MAX_SSID_COUNT    	DRV_PIC32MZW_MAX_HIDDEN_SITES
@@ -544,6 +554,9 @@ extern "C" {
 
 
 
+
+
+#define TCPIP_STACK_NETWORK_INTERAFCE_COUNT  	1
 
 
 

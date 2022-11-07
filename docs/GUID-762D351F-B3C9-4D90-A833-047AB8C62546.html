@@ -11,9 +11,8 @@
 <meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
 <meta name="DC.format" content="XHTML" />
 <meta name="DC.identifier" content="over-the-air-ota-programming-using-wi-fi" />
-<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>Over The Air (OTA) Programming Using Wi-Fi</title>
+<title>Over The Air (OTA) Programming Using Wi-Fi</title>
 <meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-over-the-air-ota-programming-using-wi-fi" />
 <meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
 <meta name="Microsoft.Help.TocOrder" content="0" />
@@ -62,10 +61,9 @@
 			}
 
 		</script><script language="javascript">
-        function cpy(id, button) {
-        
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
+         
+         function copyContent(content, button) {
+         
             var textArea = document.createElement("textarea");
             
             // Place in the top-left corner of screen regardless of scroll position.
@@ -89,7 +87,6 @@
             // Avoid flash of the white box if rendered for any reason.
             textArea.style.background = 'transparent';
             
-            
             textArea.value = content;
             
             document.body.appendChild(textArea);
@@ -103,16 +100,49 @@
                   button.textContent = "Copied";
                   button.classList.add("copied");
                   setTimeout(function(){
-                    button.textContent = "Copy";
-                    button.classList.remove("copied");
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
                   },1000);
                }
             } catch (err) {
-              console.log('Oops, unable to copy');
+               console.log('Oops, unable to copy');
             }
             
             document.body.removeChild(textArea);
-        }
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
       </script><script language="javascript">
           
           // Add the MathML namespace to html
@@ -151,7 +181,7 @@
           window.top.location = Default;
           }       
           
-        </script><style xml:space="">
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
         
           button.copy-code{
             display:none;
@@ -193,7 +223,7 @@
           }
         
         
-      </style></head>
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="over-the-air-ota-programming-using-wi-fi">
 <h1 class="title topictitle1" id="ariaid-title1">Over The Air (OTA) Programming Using Wi-Fi</h1><div class="body"><p class="p">This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and perform OTA application update process to download an image present in the user defined OTA-HTTP server.</p>
 </div>
@@ -247,25 +277,25 @@
 </ul>
 </li>
 </ul>
-<pre class="pre codeblock language-json"><button title="Copy Code" class="copy-code" onclick="cpy('d8849e212', this);">Copy</button><code id="d8849e212" content="    {&#xA;    &#xA;    &#34;ota&#34;: [&#xA;            {&#xA;                &#34;Version&#34;: 3,&#xA;                &#34;URL&#34;: &#34;http://192.168.43.173:8000/wifi_ota103.bin&#34;,&#xA;                &#34;Digest&#34;: &#34;745189cbb24b752a0175de1f9d5d61433ba47d89aff5b5a3686f54ca2d5dfb22&#34;,&#xA;                &#34;Signature&#34;: &#34;pra2wlOiZO/zjzqaP9DZGe9dmm0aC4gx4r0yoyI7DU3sVpkdJ034v5XoiN5jdpeuLRge4RjsB/KSrVho8pwC2w==&#34;,&#xA;                &#34;EraseVer&#34;: false&#xA;            },&#xA;            {&#xA;                &#34;Version&#34;: 6,&#xA;                &#34;URL&#34;: &#34;http://192.168.43.173:8000/wifi_ota100.bin&#34;,&#xA;                &#34;Digest&#34;: &#34;885189cbb24b7b1a0175deef9d5d61f53c247d89a095b5a3686f54ca2d5dfbaa&#34;,&#xA;                &#34;Signature&#34;: &#34;pra2wlOiZO/zjzqaP9DZGe9dmm0aC4gx4r0yoyI7DU3sVpkdJ034v5XoiN5jdpeuLRge4RjsB/KSrVho8pwC2w==&#34;,&#xA;                &#34;EraseVer&#34;: false&#xA;            }&#xA;           ]&#xA;    }">    <span class="ph token punctuation">{</span>
+<pre class="pre codeblock json">    {
     
-    <span class="ph token property">"ota"</span><span class="ph token operator">:</span> <span class="ph token punctuation">[</span>
-            <span class="ph token punctuation">{</span>
-                <span class="ph token property">"Version"</span><span class="ph token operator">:</span> <span class="ph token number">3</span><span class="ph token punctuation">,</span>
-                <span class="ph token property">"URL"</span><span class="ph token operator">:</span> <span class="ph token string">"http://192.168.43.173:8000/wifi_ota103.bin"</span><span class="ph token punctuation">,</span>
-                <span class="ph token property">"Digest"</span><span class="ph token operator">:</span> <span class="ph token string">"745189cbb24b752a0175de1f9d5d61433ba47d89aff5b5a3686f54ca2d5dfb22"</span><span class="ph token punctuation">,</span>
-                <span class="ph token property">"Signature"</span><span class="ph token operator">:</span> <span class="ph token string">"pra2wlOiZO/zjzqaP9DZGe9dmm0aC4gx4r0yoyI7DU3sVpkdJ034v5XoiN5jdpeuLRge4RjsB/KSrVho8pwC2w=="</span><span class="ph token punctuation">,</span>
-                <span class="ph token property">"EraseVer"</span><span class="ph token operator">:</span> <span class="ph token boolean">false</span>
-            <span class="ph token punctuation">}</span><span class="ph token punctuation">,</span>
-            <span class="ph token punctuation">{</span>
-                <span class="ph token property">"Version"</span><span class="ph token operator">:</span> <span class="ph token number">6</span><span class="ph token punctuation">,</span>
-                <span class="ph token property">"URL"</span><span class="ph token operator">:</span> <span class="ph token string">"http://192.168.43.173:8000/wifi_ota100.bin"</span><span class="ph token punctuation">,</span>
-                <span class="ph token property">"Digest"</span><span class="ph token operator">:</span> <span class="ph token string">"885189cbb24b7b1a0175deef9d5d61f53c247d89a095b5a3686f54ca2d5dfbaa"</span><span class="ph token punctuation">,</span>
-                <span class="ph token property">"Signature"</span><span class="ph token operator">:</span> <span class="ph token string">"pra2wlOiZO/zjzqaP9DZGe9dmm0aC4gx4r0yoyI7DU3sVpkdJ034v5XoiN5jdpeuLRge4RjsB/KSrVho8pwC2w=="</span><span class="ph token punctuation">,</span>
-                <span class="ph token property">"EraseVer"</span><span class="ph token operator">:</span> <span class="ph token boolean">false</span>
-            <span class="ph token punctuation">}</span>
-           <span class="ph token punctuation">]</span>
-    <span class="ph token punctuation">}</span></code></pre><p class="p">OTA service will download json file from server first when update check process is triggered by application, try to fetch information and proceed further .</p>
+    <span class="hl-json_key">"ota"</span>: [
+            {
+                <span class="hl-json_key">"Version"</span>: <span class="hl-number">3</span>,
+                <span class="hl-json_key">"URL"</span>: <span class="hl-string">"http://192.168.43.173:8000/wifi_ota103.bin"</span>,
+                <span class="hl-json_key">"Digest"</span>: <span class="hl-string">"745189cbb24b752a0175de1f9d5d61433ba47d89aff5b5a3686f54ca2d5dfb22"</span>,
+                <span class="hl-json_key">"Signature"</span>: <span class="hl-string">"pra2wlOiZO/zjzqaP9DZGe9dmm0aC4gx4r0yoyI7DU3sVpkdJ034v5XoiN5jdpeuLRge4RjsB/KSrVho8pwC2w=="</span>,
+                <span class="hl-json_key">"EraseVer"</span>: false
+            },
+            {
+                <span class="hl-json_key">"Version"</span>: <span class="hl-number">6</span>,
+                <span class="hl-json_key">"URL"</span>: <span class="hl-string">"http://192.168.43.173:8000/wifi_ota100.bin"</span>,
+                <span class="hl-json_key">"Digest"</span>: <span class="hl-string">"885189cbb24b7b1a0175deef9d5d61f53c247d89a095b5a3686f54ca2d5dfbaa"</span>,
+                <span class="hl-json_key">"Signature"</span>: <span class="hl-string">"pra2wlOiZO/zjzqaP9DZGe9dmm0aC4gx4r0yoyI7DU3sVpkdJ034v5XoiN5jdpeuLRge4RjsB/KSrVho8pwC2w=="</span>,
+                <span class="hl-json_key">"EraseVer"</span>: false
+            }
+           ]
+    }</pre><p class="p">OTA service will download json file from server first when update check process is triggered by application, try to fetch information and proceed further .</p>
 <p class="p"><strong class="ph b">For more details , Please follow documentation provided for Over The Air (OTA) firmware update System Service</strong>.</p>
 </div>
 </div>
@@ -276,15 +306,14 @@
 <p class="p">Path of the application within the repository is <strong class="ph b">apps/wifi_ota_app_upgrade/firmware</strong> .</p>
 <p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d8849e389"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d8849e391"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d8830e257"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d8830e259"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8849e389 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8849e391 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8830e257 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8830e259 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8849e389 "><span> </span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8849e391 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d8830e257 d8830e259 "><span> </span></td>
 </tr>
 </tbody>
 </table>

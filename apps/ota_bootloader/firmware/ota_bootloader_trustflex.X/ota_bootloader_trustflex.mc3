@@ -5198,7 +5198,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\clk\plib_clk.c</file>
-         <hash>afb8a6acde7f95fd812f71721dfd5346018b6d5b7270cd1400300ed24a483d3b</hash>
+         <hash>1eff263c23d2037355577057e9aa1adfac552939903357caca635a3838e8edde</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\int\src\sys_int.c</file>

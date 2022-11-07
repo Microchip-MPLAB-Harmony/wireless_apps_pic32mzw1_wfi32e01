@@ -11,9 +11,8 @@
 <meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
 <meta name="DC.format" content="XHTML" />
 <meta name="DC.identifier" content="wi-fi-easy-configuration" />
-<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>Wi-Fi Easy Configuration</title>
+<title>Wi-Fi Easy Configuration</title>
 <meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-wi-fi-easy-configuration" />
 <meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
 <meta name="Microsoft.Help.TocOrder" content="0" />
@@ -62,10 +61,9 @@
 			}
 
 		</script><script language="javascript">
-        function cpy(id, button) {
-        
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
+         
+         function copyContent(content, button) {
+         
             var textArea = document.createElement("textarea");
             
             // Place in the top-left corner of screen regardless of scroll position.
@@ -89,7 +87,6 @@
             // Avoid flash of the white box if rendered for any reason.
             textArea.style.background = 'transparent';
             
-            
             textArea.value = content;
             
             document.body.appendChild(textArea);
@@ -103,16 +100,49 @@
                   button.textContent = "Copied";
                   button.classList.add("copied");
                   setTimeout(function(){
-                    button.textContent = "Copy";
-                    button.classList.remove("copied");
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
                   },1000);
                }
             } catch (err) {
-              console.log('Oops, unable to copy');
+               console.log('Oops, unable to copy');
             }
             
             document.body.removeChild(textArea);
-        }
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
       </script><script language="javascript">
           
           // Add the MathML namespace to html
@@ -151,7 +181,7 @@
           window.top.location = Default;
           }       
           
-        </script><style xml:space="">
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
         
           button.copy-code{
             display:none;
@@ -193,7 +223,7 @@
           }
         
         
-      </style></head>
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="wi-fi-easy-configuration">
 <h1 class="title topictitle1" id="ariaid-title1">Wi-Fi Easy Configuration</h1><div class="body"><p class="p">This example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket and HTTP.</p>
 </div>
@@ -210,18 +240,17 @@
 <p class="p">Path of the application within the repository is <strong class="ph b">apps/wifi_easy_config/firmware</strong> .</p>
 <p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d5278e52"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d5278e54"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d5549e52"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d5549e54"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d5278e52 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d5278e54 "><span>MPLABX FreeRTOS project for PIC32MZ W1 Curiosity Board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d5549e52 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d5549e54 "><span>MPLABX FreeRTOS project for PIC32MZ W1 Curiosity Board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d5278e52 "><span>pic32mz_w1_curiosity</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d5278e54 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d5549e52 "><span>pic32mz_w1_curiosity</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d5549e54 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d5278e52 "><span> </span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d5278e54 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d5549e52 d5549e54 "><span> </span></td>
 </tr>
 </tbody>
 </table>
@@ -271,10 +300,10 @@
 <li class="li"><p class="p">Note: User would need to edit the default JSON file as per their home AP settings.</p>
 </li>
 </ul>
-<pre class="pre codeblock language-json"><button title="Copy Code" class="copy-code" onclick="cpy('d5278e149', this);">Copy</button><code id="d5278e149" content="{ &#xA;&#34;mode&#34;: 0, &#34;save_config&#34;: 1,&#34;countrycode&#34;:&#34;GEN&#34;, &#xA;&#34;STA&#34;: { &#34;ch&#34;: 0, &#34;auto&#34;: 1, &#34;auth&#34;: 3, &#34;SSID&#34;: &#34;dlink&#34;, &#34;PWD&#34;:&#34;password&#34;}, &#xA;&#34;AP&#34;: {&#34;ch&#34;: 2, &#34;ssidv&#34;: 1, &#34;auth&#34;: 4, &#34;SSID&#34;: &#34;DEMO_AP_SOFTAP&#34;, &#34;PWD&#34;: &#34;password&#34; } } "><span class="ph token punctuation">{</span> 
-<span class="ph token property">"mode"</span><span class="ph token operator">:</span> <span class="ph token number">0</span><span class="ph token punctuation">,</span> <span class="ph token property">"save_config"</span><span class="ph token operator">:</span> <span class="ph token number">1</span><span class="ph token punctuation">,</span><span class="ph token property">"countrycode"</span><span class="ph token operator">:</span><span class="ph token string">"GEN"</span><span class="ph token punctuation">,</span> 
-<span class="ph token property">"STA"</span><span class="ph token operator">:</span> <span class="ph token punctuation">{</span> <span class="ph token property">"ch"</span><span class="ph token operator">:</span> <span class="ph token number">0</span><span class="ph token punctuation">,</span> <span class="ph token property">"auto"</span><span class="ph token operator">:</span> <span class="ph token number">1</span><span class="ph token punctuation">,</span> <span class="ph token property">"auth"</span><span class="ph token operator">:</span> <span class="ph token number">3</span><span class="ph token punctuation">,</span> <span class="ph token property">"SSID"</span><span class="ph token operator">:</span> <span class="ph token string">"dlink"</span><span class="ph token punctuation">,</span> <span class="ph token property">"PWD"</span><span class="ph token operator">:</span><span class="ph token string">"password"</span><span class="ph token punctuation">}</span><span class="ph token punctuation">,</span> 
-<span class="ph token property">"AP"</span><span class="ph token operator">:</span> <span class="ph token punctuation">{</span><span class="ph token property">"ch"</span><span class="ph token operator">:</span> <span class="ph token number">2</span><span class="ph token punctuation">,</span> <span class="ph token property">"ssidv"</span><span class="ph token operator">:</span> <span class="ph token number">1</span><span class="ph token punctuation">,</span> <span class="ph token property">"auth"</span><span class="ph token operator">:</span> <span class="ph token number">4</span><span class="ph token punctuation">,</span> <span class="ph token property">"SSID"</span><span class="ph token operator">:</span> <span class="ph token string">"DEMO_AP_SOFTAP"</span><span class="ph token punctuation">,</span> <span class="ph token property">"PWD"</span><span class="ph token operator">:</span> <span class="ph token string">"password"</span> <span class="ph token punctuation">}</span> <span class="ph token punctuation">}</span> </code></pre><br /><img class="image" src="GUID-56F696FD-14FA-49CE-B547-7E8CD4FC4A81-low.png" alt="wifi_easyconfig_tool" /><br /><ul class="ul"><li class="li"><p class="p">For more details follow the steps available in : <strong class="ph b">Wi-Fi provisioning Using JSON Format under Wi-Fi provisioning System Service</strong></p>
+<pre class="pre codeblock json">{ 
+<span class="hl-json_key">"mode"</span>: <span class="hl-number">0</span>, <span class="hl-json_key">"save_config"</span>: <span class="hl-number">1</span>,<span class="hl-json_key">"countrycode"</span>:<span class="hl-string">"GEN"</span>, 
+<span class="hl-json_key">"STA"</span>: { <span class="hl-json_key">"ch"</span>: <span class="hl-number">0</span>, <span class="hl-json_key">"auto"</span>: <span class="hl-number">1</span>, <span class="hl-json_key">"auth"</span>: <span class="hl-number">3</span>, <span class="hl-json_key">"SSID"</span>: <span class="hl-string">"dlink"</span>, <span class="hl-json_key">"PWD"</span>:<span class="hl-string">"password"</span>}, 
+<span class="hl-json_key">"AP"</span>: {<span class="hl-json_key">"ch"</span>: <span class="hl-number">2</span>, <span class="hl-json_key">"ssidv"</span>: <span class="hl-number">1</span>, <span class="hl-json_key">"auth"</span>: <span class="hl-number">4</span>, <span class="hl-json_key">"SSID"</span>: <span class="hl-string">"DEMO_AP_SOFTAP"</span>, <span class="hl-json_key">"PWD"</span>: <span class="hl-string">"password"</span> } } </pre><br /><img class="image" src="GUID-56F696FD-14FA-49CE-B547-7E8CD4FC4A81-low.png" alt="wifi_easyconfig_tool" /><br /><ul class="ul"><li class="li"><p class="p">For more details follow the steps available in : <strong class="ph b">Wi-Fi provisioning Using JSON Format under Wi-Fi provisioning System Service</strong></p>
 </li>
 </ul>
 </div>

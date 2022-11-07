@@ -171,32 +171,39 @@ void CLK_Initialize( void )
     SYSKEY = 0xAA996655;
     SYSKEY = 0x556699AA;
 
-    if(!CLKSTATbits.SPLLRDY)
-    {
-       EWPLLCON = 0x808; // Start with PWR-OFF PLL
-       SPLLCON  = 0x808; // Start with PWR-OFF PLL
-       DelayMs(5);
-    }
-
     if(((DEVID & 0x0FF00000) >> 20) == PIC32MZW1_B0)
     {
-		CFGCON2  |= 0x300; // Start with POSC Turned OFF
-		/* if POSC was on give some time for POSC to shut off */
-		DelayMs(5);
-		/* make sure we properly reset SPI to a known state */
-		*RFSPICTL = 0x80000022;
-		/* make sure we properly take out of reset */
-		*RFSPICTL = 0x80000002;
-
-		if(1 == DEVIDbits.VER)
+        if((!CLKSTATbits.SPLLRDY && RCONbits.POR == 1 && RCONbits.EXTR == 1)
+            || (1 == CLKSTATbits.SPLLRDY && 0 == RCONbits.POR &&
+            ((1 == RCONbits.EXTR) || (1 == RCONbits.SWR))))
 		{
-			// Read counter used only for debug and testing
-			wifi_spi_write(0x85, 0x00F2); /* MBIAS filter and A31 analog_test */ //if (wifi_spi_read (0x85) != 0xF0) {Error, Stop};
-			wifi_spi_write(0x84, 0x0001); /* A31 Analog test */// if (wifi_spi_read (0x84) != 0x1) {Error, Stop};
-			wifi_spi_write(0x1e, 0x510); /* MBIAS reference adjustment */ //if (wifi_spi_read (0x1e) != 0x510) {Error, Stop};
-			wifi_spi_write(0x82, 0x6000); /* XTAL LDO feedback divider (1.3+v) */ //if (wifi_spi_read (0x82) != 0x6000) {Error, Stop};
+			EWPLLCON = 0x808; // Start with PWR-OFF PLL
+			SPLLCON  = 0x808; // Start with PWR-OFF PLL
+			DelayMs(5);
 
-			DelayMs(2);
+			CFGCON2  |= 0x300; // Start with POSC Turned OFF
+			/* if POSC was on give some time for POSC to shut off */
+			DelayMs(5);
+			/* make sure we properly reset SPI to a known state */
+			*RFSPICTL = 0x80000022;
+			/* make sure we properly take out of reset */
+			*RFSPICTL = 0x80000002;
+
+			if(1 == DEVIDbits.VER)
+			{
+                wifi_spi_write(0x85, 0x00F2); /* MBIAS filter and A31 analog_test */
+                wifi_spi_write(0x84, 0x0001); /* A31 Analog test */
+                wifi_spi_write(0x1e, 0x510); /* MBIAS reference adjustment */
+                wifi_spi_write(0x82, 0x6000); /* XTAL LDO feedback divider (1.3+v) */
+			}
+			else
+            {
+                wifi_spi_write(0x85, 0x00F0); /* MBIAS filter and A31 analog_test */
+                wifi_spi_write(0x84, 0x0001); /* A31 Analog test */
+                wifi_spi_write(0x1e, 0x510); /* MBIAS reference adjustment */
+                wifi_spi_write(0x82, 0x6400); /* XTAL LDO feedback divider (1.3+v) */
+			}
+            DelayMs(2);
 			/* Enable POSC */
 			CFGCON2  &= 0xFFFFFCFF; // enable POSC
 			DelayMs(5);
@@ -205,7 +212,6 @@ void CLK_Initialize( void )
 			CFGCON3 = 10;
 			CFGCON0bits.SPLLHWMD = 1;
 
-			/* SPLLCON = 0x01496869 */
 			/* SPLLBSWSEL   = 1   */
 			/* SPLLPWDN     = PLL_ON     */
 			/* SPLLPOSTDIV1 = 6 */
@@ -240,64 +246,12 @@ void CLK_Initialize( void )
 				/*POSC failed to start!*/
 				while(1);
 			}
-			/*Disabling internal schmitt-trigger to increase noise immunity */
-			wifi_spi_write(0x85, 0x00F4);
-		}
-		else
-		{
-			// Read counter part is there only for debug and testing, or else not needed, so use ifdef as needed
-			wifi_spi_write(0x85, 0x00F0); /* MBIAS filter and A31 analog_test */ //if (wifi_spi_read (0x85) != 0xF0) {Error, Stop};
-			wifi_spi_write(0x84, 0x0001); /* A31 Analog test */// if (wifi_spi_read (0x84) != 0x1) {Error, Stop};
-			wifi_spi_write(0x1e, 0x510); /* MBIAS reference adjustment */ //if (wifi_spi_read (0x1e) != 0x510) {Error, Stop};
-			wifi_spi_write(0x82, 0x6400); /* XTAL LDO feedback divider (1.3+v) */ //if (wifi_spi_read (0x82) != 0x6000) {Error, Stop};
-
-			DelayMs(2);
-			/* Enable POSC */
-			CFGCON2  &= 0xFFFFFCFF; // enable POSC
-
-			DelayMs(5);
-			/*Configure SPLL*/
-			CFGCON3 = 10;
-			CFGCON0bits.SPLLHWMD = 1;
-
-			/* SPLLCON = 0x01496869 */
-			/* SPLLBSWSEL   = 1   */
-			/* SPLLPWDN     = PLL_ON     */
-			/* SPLLPOSTDIV1 = 6 */
-			/* SPLLFLOCK    = NO_ASSERT    */
-			/* SPLLRST      = NO_ASSERT      */
-			/* SPLLFBDIV    = 150  */
-			/* SPLLREFDIV   = 5   */
-			/* SPLLICLK     = POSC     */
-			/* SPLL_BYP     = NO_BYPASS     */
-			SPLLCON = 0x1496061;
-			DelayMs(1);
-
-			/* OSWEN    = SWITCH_COMPLETE    */
-			/* SOSCEN   = OFF   */
-			/* UFRCEN   = USBCLK   */
-			/* CF       = NO_FAILDET       */
-			/* SLPEN    = IDLE    */
-			/* CLKLOCK  = UNLOCKED  */
-			/* NOSC     = SPLL     */
-			/* WAKE2SPD = SELECTED_CLK */
-			/* DRMEN    = NO_EFFECT    */
-			/* FRCDIV   = OSC_FRC_DIV_1   */
-			OSCCON = 0x100;
-
-			OSCCONSET = _OSCCON_OSWEN_MASK;  /* request oscillator switch to occur */
-
-			while( OSCCONbits.OSWEN );
-			/****************************************************************
-			* check to see if PLL locked; indicates POSC must have started
-			*****************************************************************/
-			if(0 == (*PLLDBG & 0x1))
+			if(1 == DEVIDbits.VER)
 			{
-				/*POSC failed to start!*/
-				while(1);
+				/*Disabling internal schmitt-trigger to increase noise immunity */
+				wifi_spi_write(0x85, 0x00F4);
 			}
 		}
-
 		/* Configure EWPLL */
 		/* EWPLLBSWSEL   = 6 */
 		/* EWPLLPWDN     = PLL_ON */
@@ -429,6 +383,12 @@ void CLK_Initialize( void )
     PMD2 = 0x7c0f0f;
     PMD3 = 0x19030216;
 
+	if(1 == RCONbits.POR)
+		RCONbits.POR = 0;
+	if(1 == RCONbits.EXTR)
+		RCONbits.EXTR = 0;
+    if(1 == RCONbits.SWR)
+        RCONbits.SWR = 0;
 
     /* Lock system since done with clock configuration */
     SYSKEY = 0x33333333;

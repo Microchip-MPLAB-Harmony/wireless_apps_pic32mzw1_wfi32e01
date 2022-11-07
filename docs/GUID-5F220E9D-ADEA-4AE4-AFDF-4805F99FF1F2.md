@@ -21,7 +21,7 @@ To build the application, refer to the following table and open the project usin
 |Project Name|Description|
 |------------|-----------|
 |pic32mz\_w1\_curiosity\_driver.X|MPLABX project for PIC32MZ W1 Curiosity Board|
-| | |
+| |
 
 ## Configuring the Application
 
@@ -48,7 +48,7 @@ The following table shows the target hardware for the application projects.
 |Project Name|Board|
 |------------|-----|
 |pic32mz\_w1\_curiosity\_driver.X|PIC32MZ W1 Curiosity Board|
-| | |
+| |
 
 ### Setting up PIC32MZ W1 Curiosity Board
 
@@ -89,5 +89,5 @@ The following table shows the target hardware for the application projects.
 |wlan save config|Stores the WLAN configurations given in command “wlan config” to flash memory. On restart DUT is started as AP with the credentials stored in flash.|
 |wlan set regdomain <reg\_domain\_name\>|Sets the regulatory domain|
 |wlan get regdomain <all / current\>|Displays the regulatory domain all – request all regulatory domains; current - request current regulatory domain|
-| | |
+| |
 

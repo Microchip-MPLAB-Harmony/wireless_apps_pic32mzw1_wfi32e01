@@ -11,9 +11,8 @@
 <meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
 <meta name="DC.format" content="XHTML" />
 <meta name="DC.identifier" content="ifttt-demo" />
-<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>IFTTT Demo</title>
+<title>IFTTT Demo</title>
 <meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-ifttt-demo" />
 <meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
 <meta name="Microsoft.Help.TocOrder" content="0" />
@@ -62,10 +61,9 @@
 			}
 
 		</script><script language="javascript">
-        function cpy(id, button) {
-        
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
+         
+         function copyContent(content, button) {
+         
             var textArea = document.createElement("textarea");
             
             // Place in the top-left corner of screen regardless of scroll position.
@@ -89,7 +87,6 @@
             // Avoid flash of the white box if rendered for any reason.
             textArea.style.background = 'transparent';
             
-            
             textArea.value = content;
             
             document.body.appendChild(textArea);
@@ -103,16 +100,49 @@
                   button.textContent = "Copied";
                   button.classList.add("copied");
                   setTimeout(function(){
-                    button.textContent = "Copy";
-                    button.classList.remove("copied");
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
                   },1000);
                }
             } catch (err) {
-              console.log('Oops, unable to copy');
+               console.log('Oops, unable to copy');
             }
             
             document.body.removeChild(textArea);
-        }
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
       </script><script language="javascript">
           
           // Add the MathML namespace to html
@@ -151,7 +181,7 @@
           window.top.location = Default;
           }       
           
-        </script><style xml:space="">
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
         
           button.copy-code{
             display:none;
@@ -193,7 +223,7 @@
           }
         
         
-      </style></head>
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="ifttt-demo">
 <h1 class="title topictitle1" id="ariaid-title1">IFTTT Demo</h1><div class="body"><p class="p">This example application demosntrates how we can generate a trigger to IFTTT web platform to make it perform a specific action like sending a mail/ sms etc using an applet.</p>
 </div>
@@ -208,15 +238,14 @@
 <p class="p">Path of the application within the repository is <strong class="ph b">apps/ifttt/firmware</strong> .</p>
 <p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e47"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e49"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d10827e47"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d10827e49"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e47 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e49 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e47 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e49 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e47 "><span> </span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e49 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d10827e47 d10827e49 "><span> </span></td>
 </tr>
 </tbody>
 </table>
@@ -246,54 +275,52 @@
 </li>
 <li class="li"><span class="indent-level-default">5.</span><p class="p">The user would need to populate the following</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e115"><span>Parameter Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e117"><span>Default Value</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d11058e119"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d10827e114"><span>Parameter Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d10827e116"><span>Default Value</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d10827e118"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_EVENT_TYPE</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>IFTTT_EVENT_BUTTON_PRESS</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board (IFTTT_EVENT_BUTTON_PRESS), or by running a timer (IFTTT_EVENT_PERIODIC_TIMER) and sending the trigger periodically. The default event type is button press to trigger the applet.</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_EVENT_TYPE</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>IFTTT_EVENT_BUTTON_PRESS</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board (IFTTT_EVENT_BUTTON_PRESS), or by running a timer (IFTTT_EVENT_PERIODIC_TIMER) and sending the trigger periodically. The default event type is button press to trigger the applet.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>100 sec</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>This parameter is used for setting the timeperiod in sec, after which a periodic trigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>100 sec</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>This parameter is used for setting the timeperiod in sec, after which a periodic trigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_EVENT</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"YOUR_EVENT"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>This is a mandatory parameter to be filled in by the user, and is the 'event' which triggers the applet. This 'event' was used while creating the applet at the IFTTT web platform.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_EVENT</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>"YOUR_EVENT"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>This is a mandatory parameter to be filled in by the user, and is the 'event' which triggers the applet. This 'event' was used while creating the applet at the IFTTT web platform.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_KEY</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"YOUR_KEY"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>This is a mandatory parameter to be filled in by the user, and is the the 'key' which is generated after the creation of the applet at the IFTTT web platform.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_KEY</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>"YOUR_KEY"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>This is a mandatory parameter to be filled in by the user, and is the the 'key' which is generated after the creation of the applet at the IFTTT web platform.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_NUM_OF_VALUES</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>1</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>The IFTTT applet can use upto 3 values/ data while performing an action. This parameter indicates the number of values which this application needs to send along with the trigger.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_NUM_OF_VALUES</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>1</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>The IFTTT applet can use upto 3 values/ data while performing an action. This parameter indicates the number of values which this application needs to send along with the trigger.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_VALUE1</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"Value1"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>Data Value1 that needs to be sent along with the trigger.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_VALUE1</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>"Value1"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>Data Value1 that needs to be sent along with the trigger.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_VALUE2</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"Value2"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>Data Value2 that needs to be sent along with the trigger.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_VALUE2</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>"Value2"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>Data Value2 that needs to be sent along with the trigger.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_VALUE3</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>"Value3"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>Data Value3 that needs to be sent along with the trigger.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_VALUE3</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>"Value3"</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>Data Value3 that needs to be sent along with the trigger.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_USER_CALLBACK</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>NULL</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>In case users want to process some data and based on the result want to dynamically decide if the trigger needs to be sent or not, they will need to map this parameter to APP_IFTTT_Callback() function and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the 'Value1' and sent.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_USER_CALLBACK</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>NULL</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>In case users want to process some data and based on the result want to dynamically decide if the trigger needs to be sent or not, they will need to map this parameter to APP_IFTTT_Callback() function and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the 'Value1' and sent.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span>IFTTT_USER_CALLBACK_CTX</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span>NULL</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span>Callback context/ parameter which will be passed on to APP_IFTTT_Callback(). This could a structure pointer which contains the data to be processed and decide if the trigger needs to be sent.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e114 "><span>IFTTT_USER_CALLBACK_CTX</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e116 "><span>NULL</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10827e118 "><span>Callback context/ parameter which will be passed on to APP_IFTTT_Callback(). This could a structure pointer which contains the data to be processed and decide if the trigger needs to be sent.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e115 "><span> </span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e117 "><span> </span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d11058e119 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d10827e114 d10827e116 d10827e118 "><span> </span></td>
 </tr>
 </tbody>
 </table>

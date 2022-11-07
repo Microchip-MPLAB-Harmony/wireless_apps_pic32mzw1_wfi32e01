@@ -93,7 +93,7 @@ extern "C" {
 #define SYS_OTA_NUM_IMGS                    2
 #define SYS_OTA_ENFORCE_TLS   			    false
 #define SYS_OTA_CLICMD_ENABLED   			    
-	
+
 
 #define SYS_NET_SUPP_INTF_WIFI_ONLY
 #define SYS_NET_SUPP_NUM_OF_SOCKS        		2
@@ -555,8 +555,14 @@ extern "C" {
 #define SYS_WIFI_COUNTRYCODE        	   "GEN"
 #define SYS_WIFI_STA_SSID        			"DEMO_AP"
 #define SYS_WIFI_STA_PWD        			"password"
+
+
 #define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPAWPA2MIXED 
+
+
+
 #define SYS_WIFI_STA_AUTOCONNECT   			true
+
 
 
 

@@ -29,9 +29,8 @@
 <meta name="DC.relation" scheme="URI" content="GUID-E6146ACA-EA1A-4F4B-8062-8B27B1E22725.html" />
 <meta name="DC.format" content="XHTML" />
 <meta name="DC.identifier" content="harmony-3-wireless-application-examples-for-pic32mz-w1-family" />
-<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>Harmony 3 Wireless application examples for PIC32MZ W1 family</title>
+<title>Harmony 3 Wireless application examples for PIC32MZ W1 family</title>
 <meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-harmony-3-wireless-application-examples-for-pic32mz-w1-family" />
 <meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
 <meta name="Microsoft.Help.TocOrder" content="0" />
@@ -80,10 +79,9 @@
 			}
 
 		</script><script language="javascript">
-        function cpy(id, button) {
-        
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
+         
+         function copyContent(content, button) {
+         
             var textArea = document.createElement("textarea");
             
             // Place in the top-left corner of screen regardless of scroll position.
@@ -107,7 +105,6 @@
             // Avoid flash of the white box if rendered for any reason.
             textArea.style.background = 'transparent';
             
-            
             textArea.value = content;
             
             document.body.appendChild(textArea);
@@ -121,16 +118,49 @@
                   button.textContent = "Copied";
                   button.classList.add("copied");
                   setTimeout(function(){
-                    button.textContent = "Copy";
-                    button.classList.remove("copied");
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
                   },1000);
                }
             } catch (err) {
-              console.log('Oops, unable to copy');
+               console.log('Oops, unable to copy');
             }
             
             document.body.removeChild(textArea);
-        }
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
       </script><script language="javascript">
           
           // Add the MathML namespace to html
@@ -169,7 +199,7 @@
           window.top.location = Default;
           }       
           
-        </script><style xml:space="">
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
         
           button.copy-code{
             display:none;
@@ -211,7 +241,7 @@
           }
         
         
-      </style></head>
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="harmony-3-wireless-application-examples-for-pic32mz-w1-family">
 <h1 class="title topictitle1" id="ariaid-title1">Harmony 3 Wireless application examples for PIC32MZ W1 family</h1><div class="body"><p class="p">MPLAB® Harmony 3 is an extension of the MPLAB® ecosystem for creating embedded firmware solutions for Microchip 32-bit SAM and PIC® microcontroller and microprocessor devices.  Refer to the following links for more information.</p>
 <ul class="ul"><li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/design-centers/32-bit" target="_blank">Microchip 32-bit MCUs</a></p>
@@ -276,15 +306,15 @@ This content can also be downloaded using content manager by following these <a 
 </li>
 </ul>
 </div><div class="topic nested1" aria-labelledby="ariaid-title2" id="contents-summary"><h2 class="title topictitle2" id="ariaid-title2">Contents Summary</h2><div class="body">
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d2632e174"><span>Folder</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d2632e176"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d2931e174"><span>Folder</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d2931e176"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e174 "><span>apps</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e176 "><span>Contains Wireless service example applications.</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e174 "><span>apps</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e176 "><span>Contains Wireless service example applications.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e174 "><span>docs</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e176 "><span>Contains documentation in html format for offline viewing (to be used only after cloning this repository onto a local machine). Use <a class="xref" href="https://microchip-mplab-harmony.github.io/wireless_apps_pic32mzw1_wfi32e01/" target="_blank">github pages</a> of this repository for viewing it online.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e174 "><span>docs</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e176 "><span>Contains documentation in html format for offline viewing (to be used only after cloning this repository onto a local machine). Use <a class="xref" href="https://microchip-mplab-harmony.github.io/wireless_apps_pic32mzw1_wfi32e01/" target="_blank">github pages</a> of this repository for viewing it online.</span></td>
 </tr>
 </tbody>
 </table>
@@ -293,66 +323,66 @@ This content can also be downloaded using content manager by following these <a 
 </div>
 <div class="topic nested1" aria-labelledby="ariaid-title3" id="code-examples"><h2 class="title topictitle2" id="ariaid-title3">Code Examples</h2><div class="body"><p class="p">The following applications are provided to demonstrate the typical or interesting usage models of one or more wireless usecases.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d2632e205"><span>Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d2632e207"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d2931e205"><span>Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d2931e207"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>OTA Bootloader</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>OTA bootloader for PIC32MZW1 devices</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>OTA Bootloader</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>OTA bootloader for PIC32MZW1 devices</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Wi-Fi OTA upgrade</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Wi-Fi OTA image upgrade demo</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Wi-Fi OTA upgrade</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Wi-Fi OTA image upgrade demo</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Paho MQTT Client</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Paho MQTT client example application</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Paho MQTT Client</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Paho MQTT client example application</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Paho MQTT TLS Client</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Paho MQTT TLS client example application</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Paho MQTT TLS Client</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Paho MQTT TLS client example application</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>TCP Client</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>TCP Client example application</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>TCP Client</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>TCP Client example application</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>TCP Server</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>TCP Server example application</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>TCP Server</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>TCP Server example application</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>UDP Client</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>UDP Client example application</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>UDP Client</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>UDP Client example application</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>UDP Server</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>UDP Server example application</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>UDP Server</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>UDP Server example application</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Weather Client</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Weather Client example application</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Weather Client</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Weather Client example application</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Wi-Fi Soft AP (driver mode)</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Wi-Fi Soft AP driver mode example aplication</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Wi-Fi Soft AP (driver mode)</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Wi-Fi Soft AP driver mode example aplication</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Wi-Fi Soft AP (service mode)</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>WiFi Soft AP service mode example</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Wi-Fi Soft AP (service mode)</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>WiFi Soft AP service mode example</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Wi-Fi easy config (bare metal)</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Bare metal HTTP server / web-page based Wi-Fi provisioning example.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Wi-Fi easy config (bare metal)</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Bare metal HTTP server / web-page based Wi-Fi provisioning example.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Wi-Fi easy config (RTOS)</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>RTOS based HTTP server / web-page based Wi-Fi provisioning example.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Wi-Fi easy config (RTOS)</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>RTOS based HTTP server / web-page based Wi-Fi provisioning example.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Dual interface (Wi-Fi + Ethernet)</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Dual interface example application with Wi-Fi and Ethernet interfaces</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Dual interface (Wi-Fi + Ethernet)</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Dual interface example application with Wi-Fi and Ethernet interfaces</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Wi-Fi STA (driver mode)</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Wi-Fi STA driver mode example aplication</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Wi-Fi STA (driver mode)</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Wi-Fi STA driver mode example aplication</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Wi-Fi STA (service mode)</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>WiFi STA service mode example</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Wi-Fi STA (service mode)</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>WiFi STA service mode example</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Wi-Fi touch demo</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Wi-Fi + CVD based touch demo</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Wi-Fi touch demo</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Wi-Fi + CVD based touch demo</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>IFTTT demo</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>IFTTT example application</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>IFTTT demo</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>IFTTT example application</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e205 "><span>Web Socket Server demo</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2632e207 "><span>Web Socket Server demo</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e205 "><span>Web Socket Server demo</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d2931e207 "><span>Web Socket Server demo</span></td>
 </tr>
 </tbody>
 </table>

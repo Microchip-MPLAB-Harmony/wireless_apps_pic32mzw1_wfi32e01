@@ -50,6 +50,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "system/wifi/sys_wifi.h"
 #include "configuration.h"
 #include "system/wifiprov/sys_wifiprov.h"
+
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Type Definitions
@@ -549,25 +551,6 @@ static SYS_WIFI_RESULT SYS_WIFI_ConfigReq(void)
                 }
                 break;
             }
-
-            case SYS_WIFI_WPA2WPA3MIXED:
-            {
-                if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_AuthCtxSetPersonal(&g_wifiSrvcObj.wifiSrvcAuthCtx, pwd, pwdLen, WDRV_PIC32MZW_AUTH_TYPE_WPA2WPA3_PERSONAL)) 
-                {
-                    ret = SYS_WIFI_CONFIG_FAILURE;
-                }
-                break;
-            }
-
-            case SYS_WIFI_WPA3:
-            {
-                if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_AuthCtxSetPersonal(&g_wifiSrvcObj.wifiSrvcAuthCtx, pwd, pwdLen, WDRV_PIC32MZW_AUTH_TYPE_WPA3_PERSONAL)) 
-                {
-                    ret = SYS_WIFI_CONFIG_FAILURE;
-                }
-                break;
-            }
-
             case SYS_WIFI_WEP:
             {
                ret = SYS_WIFI_CONFIG_FAILURE; 
@@ -732,6 +715,8 @@ static uint32_t SYS_WIFI_ExecuteBlock
                     {
                         if (SYS_WIFI_SUCCESS == SYS_WIFI_ConfigReq()) 
                         {
+						
+
                             if (SYS_WIFI_SUCCESS == SYS_WIFI_ConnectReq()) 
                             {
                                 wifiSrvcObj->wifiSrvcStatus = SYS_WIFI_STATUS_WAIT_FOR_AP_IP;

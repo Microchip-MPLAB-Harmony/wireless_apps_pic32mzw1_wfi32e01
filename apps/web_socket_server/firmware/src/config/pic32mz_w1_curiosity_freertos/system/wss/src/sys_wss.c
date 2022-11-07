@@ -593,6 +593,32 @@ static void wssNetCallback(uint32_t event, void *data, void *cookie) {
             break;
         }
             break;
+#if (SYS_WSS_ENABLE_TLS == true)      
+        case SYS_NET_EVNT_SSL_FAILED:
+        {
+            WSS_DEBUG_PRINT("\r\n SSL Negotiation Failed");
+            wssUserCallback(SYS_WSS_EVENT_SSL_FAILED, NULL, clientIndex);
+            break;
+        }
+#endif   //(SYS_WSS_ENABLE_TLS == true) 
+        case SYS_NET_EVNT_SOCK_OPEN_FAILED:
+        {
+            SYS_CONSOLE_PRINT("\r\n Socket Open Failed");
+            wssUserCallback(SYS_WSS_EVENT_SOCK_OPEN_FAILED, NULL, clientIndex);
+            break;
+        }
+        case SYS_NET_EVNT_LL_INTF_DOWN:
+        {
+            SYS_CONSOLE_PRINT("\r\n Lower Layer Down");
+            wssUserCallback(SYS_WSS_EVENT_LL_INTF_DOWN, NULL, clientIndex);
+            break;
+        }
+        case SYS_NET_EVNT_LL_INTF_UP:
+        {
+            SYS_CONSOLE_PRINT("\r\n Lower Layer Up\r\n");
+            wssUserCallback(SYS_WSS_EVENT_LL_INTF_UP, NULL, clientIndex);
+            break;
+        }     
     }
 }
 

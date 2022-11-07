@@ -1,4 +1,4 @@
-<config configName="pic32mz_w1_curiosity_driver" projectName="wifi_sta_pic32mz_w1_curiosity_driver" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.1">
+<config configName="pic32mz_w1_curiosity_driver" projectName="wifi_sta_pic32mz_w1_curiosity_driver" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.11">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -179,7 +179,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.0.3"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.1.5"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -733,15 +733,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;GraphSettings canvasHeight=&quot;453&quot; canvasWidth=&quot;550&quot; dnOrder=&quot;0&quot;/&gt;
-    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;TRANSPORT LAYER&quot;&gt;
-      &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
-        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipTcp&quot; x=&quot;432&quot; y=&quot;69&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipUdp&quot; x=&quot;287&quot; y=&quot;46&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpip_transport_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
-      &lt;/ElementPositions&gt;
-    &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;2&quot; id=&quot;TCP/IP STACK&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;0&quot; id=&quot;TCP/IP STACK&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;APPLICATION LAYER&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;BASIC CONFIGURATION&quot; x=&quot;252&quot; y=&quot;83&quot;/&gt;
@@ -750,33 +742,66 @@
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;TRANSPORT LAYER&quot; x=&quot;200&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;3&quot; id=&quot;Group2&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;TRANSPORT LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
-        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;TCP/IP STACK&quot; x=&quot;427&quot; y=&quot;354&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;sys_command&quot; x=&quot;464&quot; y=&quot;45&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;sys_console&quot; x=&quot;243&quot; y=&quot;99&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;sys_debug&quot; x=&quot;471&quot; y=&quot;194&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;uart1&quot; x=&quot;50&quot; y=&quot;217&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipTcp&quot; x=&quot;432&quot; y=&quot;69&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipUdp&quot; x=&quot;287&quot; y=&quot;46&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpip_transport_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;4&quot; id=&quot;DRIVER LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;2&quot; id=&quot;Group2&quot;&gt;
+      &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
+        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;sys_command&quot; x=&quot;464&quot; y=&quot;45&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;sys_console&quot; x=&quot;243&quot; y=&quot;99&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;sys_debug&quot; x=&quot;471&quot; y=&quot;194&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;uart1&quot; x=&quot;50&quot; y=&quot;217&quot;/&gt;
+      &lt;/ElementPositions&gt;
+    &lt;/ComponentGraph&gt;
+    &lt;ComponentGraph dnOrder=&quot;3&quot; id=&quot;BASIC CONFIGURATION&quot;&gt;
+      &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
+        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;drvWifiPic32mzw1&quot; x=&quot;30&quot; y=&quot;160&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipCmd&quot; x=&quot;387&quot; y=&quot;319&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpipNetConfig&quot; x=&quot;420&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;tcpipStack&quot; x=&quot;240&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;tcpip_basic_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
+      &lt;/ElementPositions&gt;
+    &lt;/ComponentGraph&gt;
+    &lt;ComponentGraph dnOrder=&quot;4&quot; id=&quot;NETWORK LAYER&quot;&gt;
+      &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
+        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipArp&quot; x=&quot;408&quot; y=&quot;31&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipIPv4&quot; x=&quot;275&quot; y=&quot;32&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpipIcmp&quot; x=&quot;537&quot; y=&quot;31&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;tcpip_network_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
+      &lt;/ElementPositions&gt;
+    &lt;/ComponentGraph&gt;
+    &lt;ComponentGraph dnOrder=&quot;5&quot; id=&quot;DRIVER LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpip_driver_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;5&quot; id=&quot;Group0&quot;&gt;
+    &lt;GraphSettings canvasHeight=&quot;453&quot; canvasWidth=&quot;550&quot; dnOrder=&quot;6&quot;/&gt;
+    &lt;ComponentGraph dnOrder=&quot;7&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
-        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;core_timer&quot; x=&quot;16&quot; y=&quot;67&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;sys_time&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;Group0&quot; x=&quot;91&quot; y=&quot;106&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;Group1&quot; x=&quot;87&quot; y=&quot;148&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;Group2&quot; x=&quot;346&quot; y=&quot;135&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;HarmonyCore&quot; x=&quot;353&quot; y=&quot;13&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;TCP/IP STACK&quot; x=&quot;30&quot; y=&quot;180&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;core&quot; x=&quot;240&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;dfp&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;lib_crypto&quot; x=&quot;297&quot; y=&quot;241&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;lib_wolfcrypt&quot; x=&quot;51&quot; y=&quot;219&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;lib_wolfssl&quot; x=&quot;301&quot; y=&quot;344&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;nvm&quot; x=&quot;199&quot; y=&quot;109&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;6&quot; id=&quot;Group1&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;8&quot; id=&quot;Group1&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;stdio&quot; x=&quot;353&quot; y=&quot;228&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;uart3&quot; x=&quot;175&quot; y=&quot;251&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;7&quot; id=&quot;APPLICATION LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;9&quot; id=&quot;APPLICATION LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipDhcp&quot; x=&quot;324&quot; y=&quot;23&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipDns&quot; x=&quot;740&quot; y=&quot;20&quot;/&gt;
@@ -785,35 +810,10 @@
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;tcpip_apps_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;8&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;10&quot; id=&quot;Group0&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
-        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;Group0&quot; x=&quot;91&quot; y=&quot;106&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;Group1&quot; x=&quot;87&quot; y=&quot;148&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;Group2&quot; x=&quot;346&quot; y=&quot;135&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;HarmonyCore&quot; x=&quot;353&quot; y=&quot;13&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;core&quot; x=&quot;240&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;dfp&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;lib_crypto&quot; x=&quot;297&quot; y=&quot;241&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;lib_wolfcrypt&quot; x=&quot;51&quot; y=&quot;219&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;lib_wolfssl&quot; x=&quot;301&quot; y=&quot;344&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;nvm&quot; x=&quot;199&quot; y=&quot;109&quot;/&gt;
-      &lt;/ElementPositions&gt;
-    &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;9&quot; id=&quot;NETWORK LAYER&quot;&gt;
-      &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
-        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipArp&quot; x=&quot;408&quot; y=&quot;31&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipIPv4&quot; x=&quot;275&quot; y=&quot;32&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpipIcmp&quot; x=&quot;537&quot; y=&quot;31&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;tcpip_network_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
-      &lt;/ElementPositions&gt;
-    &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;10&quot; id=&quot;BASIC CONFIGURATION&quot;&gt;
-      &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
-        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;drvWifiPic32mzw1&quot; x=&quot;30&quot; y=&quot;160&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipCmd&quot; x=&quot;387&quot; y=&quot;319&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpipNetConfig&quot; x=&quot;420&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;tcpipStack&quot; x=&quot;240&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;tcpip_basic_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;core_timer&quot; x=&quot;16&quot; y=&quot;67&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;sys_time&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
   &lt;/UserData&gt;
@@ -4153,22 +4153,6 @@
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="drvWifiPic32mzw1" name="DRV_WIFI_PIC32MZW1_SUPPORT_WPA3"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;drvWifiPic32mzw1&gt;
-  &lt;drvWifiPic32mzw1 dnOrder=&quot;0&quot; id=&quot;DRV_WIFI_PIC32MZW1_SUPPORT_WPA3&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;readOnly&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-    &lt;Values dnOrder=&quot;1&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;drvWifiPic32mzw1&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/drvWifiPic32mzw1&gt;
-&lt;/drvWifiPic32mzw1&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="drvWifiPic32mzw1" name="DRV_WIFI_PIC32MZW1_SYS_RTOS_TASK"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;drvWifiPic32mzw1&gt;
   &lt;drvWifiPic32mzw1 dnOrder=&quot;0&quot; id=&quot;DRV_WIFI_PIC32MZW1_SYS_RTOS_TASK&quot;&gt;
@@ -5567,19 +5551,6 @@
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="uart1" name="UART_BRGH_MODE_COMMENT"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;uart1&gt;
-  &lt;uart1 dnOrder=&quot;0&quot; id=&quot;UART_BRGH_MODE_COMMENT&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;String dnOrder=&quot;0&quot; id=&quot;text&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;***&amp;amp;#160;High&amp;amp;#160;Speed&amp;amp;#160;mode&amp;amp;#160;4x&amp;amp;#160;baud&amp;amp;#160;clock&amp;amp;#160;enabled&amp;amp;#160;(BRGH&amp;amp;#160;=&amp;amp;#160;1)&amp;amp;#160;***&lt;/Value&gt;
-      &lt;/String&gt;
-    &lt;/Attributes&gt;
-  &lt;/uart1&gt;
-&lt;/uart1&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="uart1" name="UART_CLOCK_FREQ"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;uart1&gt;
   &lt;uart1 dnOrder=&quot;0&quot; id=&quot;UART_CLOCK_FREQ&quot;&gt;
@@ -5786,19 +5757,6 @@
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="uart3" name="UART_BRGH_MODE_COMMENT"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;uart3&gt;
-  &lt;uart3 dnOrder=&quot;0&quot; id=&quot;UART_BRGH_MODE_COMMENT&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;String dnOrder=&quot;0&quot; id=&quot;text&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;***&amp;amp;#160;High&amp;amp;#160;Speed&amp;amp;#160;mode&amp;amp;#160;4x&amp;amp;#160;baud&amp;amp;#160;clock&amp;amp;#160;enabled&amp;amp;#160;(BRGH&amp;amp;#160;=&amp;amp;#160;1)&amp;amp;#160;***&lt;/Value&gt;
-      &lt;/String&gt;
-    &lt;/Attributes&gt;
-  &lt;/uart3&gt;
-&lt;/uart3&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="uart3" name="UART_CLOCK_FREQ"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;uart3&gt;
   &lt;uart3 dnOrder=&quot;0&quot; id=&quot;UART_CLOCK_FREQ&quot;&gt;
@@ -5878,7 +5836,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\oahash.h</file>
-         <hash>14cd46dce77ffceacb33fbef8ed5dc96b8e5bd24fae6d72d5b7dddf5c2b3fa8f</hash>
+         <hash>75929a00c86e29359dcb5452f9dc184fa1c714906b6244c79982f911063b8848</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\wc_encrypt.c</file>
@@ -5886,7 +5844,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\oahash.c</file>
-         <hash>5651aa16152a6548ce9bb8e1a0dd914ade8cfa27b9acf72a7453744c6f783598</hash>
+         <hash>f8e65ee4421a5405e219e05f5a5ab875ab948b51e9aa035566b11e1060941af6</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\blake2.h</file>
@@ -5902,7 +5860,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\dhcp.h</file>
-         <hash>4f6af9fc08fdfd47f5551e16127028960151ea26da2c43c7b99992648a101e8a</hash>
+         <hash>30d1c8ba29e1fe380bafd1b247df7245499e023cf5cdc7c444f660703a0fdaba</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\icmpv6.h</file>
@@ -5914,7 +5872,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\uart\plib_uart1.h</file>
-         <hash>f883960fe2c546d77d5e7e2aabbe06fb6409e820f637b3139d5c7787a8d10c4a</hash>
+         <hash>0ec046da754bd41fbc1ef4d4ed224c01f95d37b3675750cde7a5f94e11abaa2f</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\src\ssl.c</file>
@@ -5922,7 +5880,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_assoc.c</file>
-         <hash>f8867f5cbf464aab357775346be68a347e3658910370cf8b501ab8455873a521</hash>
+         <hash>7d0020d00dcff110aae733880d44856cacdeddf31ea782167fbff2711f4515ea</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\iperf.c</file>
@@ -5962,7 +5920,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\drv_pic32mzw1_crypto.c</file>
-         <hash>b95ada4b97252ae47ebb224c7eebdb2816f9e24762110b43e4b9d94a340322d5</hash>
+         <hash>56b7f3517ebf88c08ed4c8534ac8471d06b592f4492edb2b389cd1f3c677a5ee</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\CryptoLib_GF2NEccMul_pb.h</file>
@@ -5986,7 +5944,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\ftp_private.h</file>
-         <hash>ce44f931cbdd4e2a95e2482c56f95c13560364ac2a380ab99fcd55e89b3b3398</hash>
+         <hash>41a8b196b82fe5d660f349010fbe6661e5d5d9297afdcee3bbe4dd231ffb0876</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\tcpip_commands.h</file>
@@ -6070,11 +6028,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_sta.c</file>
-         <hash>8279f4534bd8993f3370722a8ea7e90ad5f9c79548828966426ee34be1e00c84</hash>
+         <hash>a2e90f6d8f4f42c96d7bfc32d90afecc3d5f5a2e9c87de4501d74c8b11cc77f0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\tcpip_manager.c</file>
-         <hash>2ac7f7419789dc9a3624ab7afd8a2d09c8ea5c59d6f2c3bc0304e4d50f6dcdbb</hash>
+         <hash>1159559e437c574a27256913c02c4a242369eedde85b8957a79a30647c9d5801</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\port\pic32\crypt_pukcl_functions.c</file>
@@ -6130,7 +6088,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\drv_pic32mzw1_crypto.h</file>
-         <hash>17ea465fa17ba4ab6b6597e2434062626142e9800995d710a971513fbf51832b</hash>
+         <hash>3f1d7cfc8ed96a714925cb784b7210fca843860ee93f82fc07c12a79f7913a72</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\srp.h</file>
@@ -6150,7 +6108,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw.h</file>
-         <hash>b8b43516b23940ae50d78a4976941e1586e3f75b81703c61bfaff99914fe1630</hash>
+         <hash>231e2272cdc40d4cfbf4158301874463d55d297a5302f40f2f8e0bd75735070a</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\src\keys.c</file>
@@ -6158,7 +6116,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\time\src\sys_time.c</file>
-         <hash>ddec1a83e32b63552ae72f884dc849e376b60d411669554f7ec492fff180662f</hash>
+         <hash>b722ac0c5d955d289bd906609ab6f302342166c5ba66f87b30cac17ac6bfdcd9</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\port\pic32\crypt_tdes_sam6150.c</file>
@@ -6166,7 +6124,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\uart\plib_uart3.h</file>
-         <hash>8280525be6c55311f6dce079d4a0584a55afa6e5555afca2b9fcfb08479ab64c</hash>
+         <hash>6cbeedca233f307953c2a055494337fe4b1a5467f57b7a77649721f28e201e30</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\wc_port.c</file>
@@ -6190,7 +6148,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_authctx.c</file>
-         <hash>4f6dedc165b2d14de14d8463888b065ed7a5ce2ac1ad15d536ffacdee09fdf8f</hash>
+         <hash>b0e915d5f15aeefccf7f045283b953b08218f29beda8a131e72bffad26b4e371</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\icmp_manager.h</file>
@@ -6202,11 +6160,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\time\src\sys_time_local.h</file>
-         <hash>a761ad68ce0cbac8c326bd17e54cc01d10324ed8d5e120ef092856a21604b6a2</hash>
+         <hash>d3ef06b59d9a89efe9e8eb54fcf3b75120d56156cc21f6847ca4f9e902eb7c9d</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\berkeley_api.h</file>
-         <hash>7c7bd67361c5c73dfada1108aadd3828a606617ae246cbdfc707b6b5d1c7d680</hash>
+         <hash>872e102da2b316e0bd29c0340fd40034570d4208459773043b348070de1149c5</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\dh.c</file>
@@ -6250,7 +6208,7 @@
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\settings.h</file>
-         <hash>0131d22c9c73278c8123f7efcadf514e85ccb95cd61dbe7a40976de10800b2d0</hash>
+         <hash>86a92896cc09608435ffe0d78f4aa3421fb5f19a5675761070d1e9c85ad22de8</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\toolchain_specifics.h</file>
@@ -6290,7 +6248,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_custie.h</file>
-         <hash>b107240c50dace37c92484317dc03771b848a819e62dd4c904c7ff4a11908ebf</hash>
+         <hash>71cd36fbf61df8978c2ab961e6058411c1fad7e5537d861889c371cf710ba39c</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\src\sniffer.c</file>
@@ -6306,7 +6264,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_ps.h</file>
-         <hash>896e31cf86394753e63a18327c66f1a11b89b311542d38fabd71c82068f42259</hash>
+         <hash>8425198466be6cce0ae20346980d36904b16469c83d1f650e0d5e55b76020816</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\blake2b.c</file>
@@ -6326,7 +6284,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\udp.c</file>
-         <hash>1d4490188a6b554716a2f727c46a34a8977f26b9ce3bf0d41765a6c0de59d278</hash>
+         <hash>f2f3ce399aaee365a5907bd607caa3ee46f73ef55e6fad9f04ecc670e83268e6</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\blake2s.c</file>
@@ -6346,7 +6304,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\uart\plib_uart1.c</file>
-         <hash>e200aa7299b386975f8cd2d99aebc9eea9641f086bf2ae5b084a7f65ae5b2f96</hash>
+         <hash>6aa1a0b4945ed6cef6aef9494e848496ecf6e14a1432e5bfe7c24868c85afbf8</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\hash.h</file>
@@ -6386,7 +6344,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_softap.h</file>
-         <hash>e3cd79c36f4740d6f40e1bad2c72ba306d46a00d8301392c4e164d6dbbb2c8c8</hash>
+         <hash>0cd6f94d3aefd9df09617ca6327478d3df22c685b4a1ecda67e9522e7dff0a0b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\ndp_private.h</file>
@@ -6398,7 +6356,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\udp_private.h</file>
-         <hash>2d8965cee12c8c61365f8e3133dc2ebba2184950f476d01553cf27dda13cdf48</hash>
+         <hash>5473b909c7f844b5362b8651704c651a5064e4df66f1cbf1ba67b8f727717f2e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\tcpip_packet.c</file>
@@ -6406,7 +6364,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\tcpip_commands.c</file>
-         <hash>a318c2c82ae38260022a0a90f3f742fdf09ba0db470090b958a39b593b456ad3</hash>
+         <hash>1712afdb545445153a481c3c5e96bf6527df66e840e525800eff45825efdf05e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\tcpip_ethernet.h</file>
@@ -6439,6 +6397,10 @@
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\port\pic32\crypt_rng_u2242.c</file>
          <hash>7d583f6bf69d6406342dac2c11d1c7aa2a4b8976880ab2a2eb2e6677c3332f98</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\dhcp_server_private.h</file>
+         <hash>7e85322b5eadd0a1eaca264334cbe2ce041df42bbde4fa210cd4f6c4fd4585f6</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\port\pic32\crypt_aes_u2238.c</file>
@@ -6482,7 +6444,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\debug\sys_debug.h</file>
-         <hash>970de73fb9806906b5429168c66ab403309d8a9cad46febab875a5e6d071525e</hash>
+         <hash>16fbc4bbf026e4713e9b835b1511411e053aaf92ab7d6a000638630576fe92b3</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\wolfmath.c</file>
@@ -6490,7 +6452,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\configuration.h</file>
-         <hash>9145c8362e061e757275bd5e30625a3e3e7810e035fdbd9bd953aaf5a3151b6a</hash>
+         <hash>6b595d5f74d6e12e8cb96be4dc0d61352729861b57c15e61a358cc7bde3f5434</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\ed25519.h</file>
@@ -6502,7 +6464,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\dns.c</file>
-         <hash>8321c27e58d85cbc9d806acfdfb4c6e081644b6d6eee616e56a37e906ed37782</hash>
+         <hash>49e3596965c281bbbd7a9818b6e3e3b2b812c6627ae77529490ef18f6776ef1a</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\tftps_manager.h</file>
@@ -6546,7 +6508,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\dhcp_private.h</file>
-         <hash>b91eda5e97999b9b0c12d509616899fbbd4816dd06311b96cf7fbb90ea6db8ca</hash>
+         <hash>91ffa8cd07a9564bc1d05744dd8779dede435bd4036d3ab4a905cd5ca17c7cf8</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\http_private.h</file>
@@ -6566,7 +6528,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\clk\plib_clk.c</file>
-         <hash>e7dc86307540147d627de515c01d0f3370985b618da012b7f831bfa6d3ca2367</hash>
+         <hash>affa9dfe270c52a61a46b235c9a282f357afe64bf979e12b4de9d1f813a7009f</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\idea.h</file>
@@ -6654,7 +6616,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\evic\plib_evic.c</file>
-         <hash>b4c6619d7737ac8f981c114e876d49ed139583beb6c72f48d8d1c70dcfce0860</hash>
+         <hash>488d7d23eca93b37c03fe4a2f24c765a7efeb8e87093633bc1ccb6095be06b4b</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\sha3.h</file>
@@ -6686,11 +6648,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\stdio\xc32_monitor.c</file>
-         <hash>5c2e9b2e4c9c91befdae6a161ba852856a3272e17b2fa51b5a9c6eb16811a5b0</hash>
+         <hash>a36426493a09f10cb08b762955b2cf31bde9af511cfb65b2b9b690ef0b7fcf74</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\http_net.h</file>
-         <hash>27308a2d6103136d39c0101be76c3fa8eb40622ac3e307868e98ebf0285d98d3</hash>
+         <hash>5fdff94f9de406e711d4571e130bfa25338f6d7c5072ff168565a35bce7e7f7a</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\crypt_tdes_sam6150.h</file>
@@ -6742,7 +6704,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\dhcp.c</file>
-         <hash>2f523116d6e2f9e86c3481394df36907c4720b4f662621810ef775b9e2156a60</hash>
+         <hash>45dbcf12064725af8225654619727d41b23e5fe632d2912bf31073f2c9cd890d</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\blake2-impl.h</file>
@@ -6769,6 +6731,10 @@
          <hash>fed3e8f5e982656e5dfd3a703d677a8595cb73b8425a59474c2a4050a531db79</hash>
       </entry>
       <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\dhcp_server.h</file>
+         <hash>51e645d3ded493317ac36d913b5534bd60a59d705d4310eced80c7be89c1eeff</hash>
+      </entry>
+      <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\crypt_sha512_hw.h</file>
          <hash>9f79bfa42a12c0c63f1f83312b54b9f39c3f707b4b42ddaace5b269bb3a11c2a</hash>
       </entry>
@@ -6782,7 +6748,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\initialization.c</file>
-         <hash>c4e88809d38b3a57bbeb9e6ec6cf54234706ac3f403835d89d3871f73267351b</hash>
+         <hash>12d99af8d25a120d2aa73c2918ca3c13016718ff46e8f1737e16012e650d9919</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\CryptoLib_FastCopy_pb.h</file>
@@ -6813,6 +6779,10 @@
          <hash>37d0563cc98f903f4b64265ff3b71b0ef1f191bfd5e6e719443bab029bca3d3d</hash>
       </entry>
       <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\drv_pic32mzw1_tls.c</file>
+         <hash>a1c677761531bcf6a7adf48a0fe1f7a0760419776bf17a5184cd232277c7f95a</hash>
+      </entry>
+      <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\ge_operations.c</file>
          <hash>fa5942896074029f5e41d1ded32e303fadf720638e81a57027494e3561f128cd</hash>
       </entry>
@@ -6822,7 +6792,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_custie.c</file>
-         <hash>5f3bb886487e165f2fb0114770568f1bda662ce0e486d8ccfcee16f757c5bf4e</hash>
+         <hash>ceb297fb4d22e3844cf491aeef9c0287fffa69b6d2d58d2880f1b57c91acc4c4</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\mpi_superclass.h</file>
@@ -6854,11 +6824,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\sys_random_h2_adapter.c</file>
-         <hash>ec02569fe86d160b78280f0113cbb50eb58d818a33a94fffa53960c8d152ac05</hash>
+         <hash>6e84293cf74f2640b5b5af0ee0b6eaedf2a246fd7e233cf71385f468a45c901e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\sys_random_h2_adapter.h</file>
-         <hash>f04b3baf0f66dde3c4b217b331a2ad50de6122be786b44cb49a92b4b840c4594</hash>
+         <hash>f12e175e7261158adacd99331c8e3252491e309658e90aec6adb0ffeff5f5587</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\tcpip_mac_object.h</file>
@@ -6891,6 +6861,10 @@
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\fe_operations.h</file>
          <hash>f01ad06013976735c7e2e56108837528bfaae06b2403fc02692683dccac6efa5</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_ie.c</file>
+         <hash>99c1abca50fcd9513fd21bcfe330613b691bee0ace150c6aabae23b220f1c85f</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\error-crypt.h</file>
@@ -6938,7 +6912,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\udp.h</file>
-         <hash>f891d19968374ae333734d32cafe0241cecac1ae31674caf3112d365d43cdc8d</hash>
+         <hash>6d1fa5692af3cef0125eb5581e1e7cb555ea6de98a82827e070b164e0c13ab76</hash>
       </entry>
       <entry>
          <file>..\src\app_driver.c</file>
@@ -7002,7 +6976,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\ipv4_private.h</file>
-         <hash>a3d97439130503608cb09cb559fdd8cb3e1cdfb508103b5569c7deb5b54ef808</hash>
+         <hash>c3d6d368ccd35c2836cdcb9d85226c16fc4a07709e92a6f4400110552e2771de</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\CryptoLib_GF2NEccConv_pb.h</file>
@@ -7038,7 +7012,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\console\sys_console.h</file>
-         <hash>f4a1d6e28347f9d6dcc091dc65032ef01f9b0651bc710001ba4b2eb4af29f4bb</hash>
+         <hash>e8a97986345fb2c80389834b113384eba523837ee43f7798d9b56be630a6e7b3</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\CryptoLib_GCD_pb.h</file>
@@ -7058,11 +7032,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\icmp.c</file>
-         <hash>cf009623bc221603c2058e167b7144c279e0d60b75350eae6b73f41c02a7027e</hash>
+         <hash>727d020f0077fe0b965a9627c7fb21afc146c807e60889a9bd7bdbfe8fc8525f</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\dhcp_server_manager.h</file>
+         <hash>461db7f0b8c8a501769971a2ec777a8b83693149aee28b02c2e1d9096ea200bb</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw.c</file>
-         <hash>777edaa0d5335f3c36fe6d6a51fb1e893a80c65b471027b042c9473be825778b</hash>
+         <hash>cc875a0b54fcb76f5185a4e4ca8b98a6fdbd24349257eb41737d3a6471fd1c21</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\md4.c</file>
@@ -7097,6 +7075,10 @@
          <hash>78be165bda8a848205e1f307154195ca1d947dcb013cd8217a47541bf0b69624</hash>
       </entry>
       <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\drv_pic32mzw1_tls.h</file>
+         <hash>5f9772c2599140767a9cd81fcb4024534c2d48a7aad52b2b66490b369ea672d3</hash>
+      </entry>
+      <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\tcpip_reboot.h</file>
          <hash>517762c01eb49e374e7d751172d08c9bb57a524222aeb8e1c7fdd15b5d01a349</hash>
       </entry>
@@ -7114,7 +7096,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\dns.h</file>
-         <hash>0a5b8a799412808cc56a78eb8aa644af8f9dda61a5d403e198af9e9697f31999</hash>
+         <hash>180ee8622056b0db299e51437f55aaa760949a9c700feefc22b91aa69cd20c84</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\reset\sys_reset.h</file>
@@ -7142,7 +7124,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\p32MZ1025W104132.ld</file>
-         <hash>0c9d6c017d47f5d42465e8867f916f298037922d4bf98a7e84159404a9d8f70e</hash>
+         <hash>faa9c359cf4e7de76330fc14ead3392b11c9019b93afdc81801c1f48cc737b50</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\udp_manager.h</file>
@@ -7162,7 +7144,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_cfg.c</file>
-         <hash>7df9200ae46d737998bf2a021a0773d899a147cfb3bf6eb065718bba217c836a</hash>
+         <hash>3b0899f4b423a9e24180e21d883d32f5d15f705531a4b82f7b4ba950228514a6</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\port\pic32\crypt_sam_u2803.c</file>
@@ -7206,7 +7188,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\arp.h</file>
-         <hash>f36470195390b76b01dde07a13e8fe55e607a724ace803243b2b77eb1f379e52</hash>
+         <hash>6ae66cd429f88b2f1c618a280b8b1ab3842825041af987a6f0415209a4d0d82b</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\CryptoLib_mapping_pb.h</file>
@@ -7242,7 +7224,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_softap.c</file>
-         <hash>28efdf8ed49c951eb5753b787a54c1ab90b391b9407a4f2bdef12a1f1571fd4d</hash>
+         <hash>73616ae9ba01006994161d10c1ffc579d26c3d80d83181da590ebb51f63d830f</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\CryptoLib_Fmult_pb.h</file>
@@ -7274,11 +7256,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\tcpip_mac.h</file>
-         <hash>016a72953f90e948baff4818b8fa8b9b0edf0f909068e6ac7b110cb6f0eb4ba5</hash>
+         <hash>c517aafb8c11f40bf01a702af6232251e3bc8ff922282c8799f3d8abad2cfb0e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\arp.c</file>
-         <hash>5338def807918e048842e9e78eb62fc7868f7a3662059931e5b6517d578b3707</hash>
+         <hash>e78a4e6b26d1f2cf65a8a0cae85ea725ee9f57d83b4f23c9ddc4dfbb2601715d</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\driver.h</file>
@@ -7294,7 +7276,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_regdomain.h</file>
-         <hash>808ea42123d8216cbe4177ec2a00327f87746d26ff6d00864a4012c6e22da6cc</hash>
+         <hash>e49ae9bcca101ef3f6a7e5187e8cf062cff184398e1cf4b0004a39377f94bcf4</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\console\src\sys_console_uart.h</file>
@@ -7318,7 +7300,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_common.h</file>
-         <hash>fb4d54773cc66696132f0e6ffdc367e846667ba9e529df237fb21f1dceb0ce92</hash>
+         <hash>60bd8193a96b6563aec125eb1e36e98d88b3ad247ffad22d5dbacac6a2747ee6</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\console\src\sys_console_uart.c</file>
@@ -7346,7 +7328,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_regdomain.c</file>
-         <hash>97c7c1c16b4bf8ff9189a273168b182a7c36992f4363afbc4f7a05b03a0d350a</hash>
+         <hash>88271ebda4fba2e0f4fc11b5346f09b64f058fc3762b463ddb437fade2a9349d</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\crypt_ecc_pukcl.h</file>
@@ -7369,6 +7351,10 @@
          <hash>44e32e8ca635d907faaf87904b3e1d6dccc49d82b3fa1f4d974d662a612f9b04</hash>
       </entry>
       <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_ie.h</file>
+         <hash>5ee2cbddade982ee3bc13b526870122e5b7d12dbd7cf3bad2029b0c4555c449d</hash>
+      </entry>
+      <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\rabbit.h</file>
          <hash>f021556dd2d1c41af774b90a8ae9194252919f18a6f1a3305a19eea54398c5a8</hash>
       </entry>
@@ -7382,15 +7368,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\lib\pic32mzw1.a</file>
-         <hash>4d62bdd7b0ee40e46faaacb2567fdad3ee677b4a4dbe64ecceb4b72feca1eb2a</hash>
+         <hash>06c864761bf44f70629f208f589b7360094f6feff451b8835b346d9df29d11ca</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\command\sys_command.h</file>
-         <hash>c29ae3a018b8513dbdb95ee26b477c52d076ebe3c5a1eb168d3f101170e53077</hash>
+         <hash>8d8b4c4f428355afecc0771ff799785869386e7cfb079e327773628226ee2e2d</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_cfg.h</file>
-         <hash>d57e3dd1153be97ac58fafcd0a0a389d65615ac3c83867d4a1d25a63a11ac660</hash>
+         <hash>289ab82e785a6710a21a56f6d3e79ba875865d481592db2e95e57117e6e048fa</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\tcpip_mac_bridge_private.h</file>
@@ -7414,11 +7400,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\icmp.h</file>
-         <hash>9d8f67ac45146f25b1d7ddbfcb0f660a0d69fa3b569d198974808dd71e34dde6</hash>
+         <hash>c41fdfc0036ec543e8d804ea684d0426029947a5853d1530234c1cbeafbb3ac2</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\gpio\plib_gpio.c</file>
-         <hash>3316c268f71e02479034e26137372abc34e6cdd73140f6d57eafef6cd3a21be0</hash>
+         <hash>15563d8f35473f57a483b12388753369e86b62fb6a658517cab5f342fbcd6f82</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\integer.h</file>
@@ -7430,15 +7416,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\gpio\plib_gpio.h</file>
-         <hash>6c011ec6763395cbee9c0b3ddfe94d7490cc6e5a774447031ce7092591040bfb</hash>
+         <hash>6790434a0a01d46089c12e39a77722c274135303c73192e0d1961e08f13d4d02</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_sta.h</file>
-         <hash>437ec5b26c2dbc7c7997ba9fdd997c0320ce8120561e4876e4ffe45395f29232</hash>
+         <hash>7b8cae5e89a4e20fad6fdaf80ec9e9d4db27ca18fc3d41ca1129831a5d1409af</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\nvm\plib_nvm.c</file>
-         <hash>8bedf463fc08f44fef1ad45f709901d99ab14ba186ece7178bc900670b951ed8</hash>
+         <hash>12dc2733c2a98450b988fc718f2e9933e69d8d9480136d2536f62b174dc83889</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\crypto\crypto.h</file>
@@ -7446,7 +7432,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\tcpip_helpers.c</file>
-         <hash>41b5e3b503aafc4cb0aa78acd06cb780c8ce61f339e510f6d7a7de80616fce0e</hash>
+         <hash>4db07f17febbc0b56170c064e15966a696792f6ccb08aad4fb42f2fbc7640154</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\src\tls.c</file>
@@ -7454,7 +7440,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\nvm\plib_nvm.h</file>
-         <hash>3b8d2ab5e7c11afd2339e33090b54665cfae6f48acd9e8cdc8c27d8d192fa75d</hash>
+         <hash>0d8aaf0054c6b03cb7c7d256a07a28c6460211ec1553649cd45957595f215a4f</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\chacha20_poly1305.c</file>
@@ -7462,7 +7448,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_assoc.h</file>
-         <hash>a9edcb52beaf5f49aa93b7902d2ee09e2370d85b1c41c78163c0856cd566ff69</hash>
+         <hash>2b9896bde91d5447c6e0650ce024b1f2cae7357a1a3080f7e62526696bc0ec72</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\helpers.c</file>
@@ -7470,7 +7456,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_ps.c</file>
-         <hash>3844982f362f2c58292e02449292965c78fc8c78df02bf08511dee7c4cd78c68</hash>
+         <hash>761f20a7b22bb780ed45c089ce3928df58fac473ffba1382f992d1a93ccfa912</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\sp_arm32.c</file>
@@ -7550,7 +7536,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\system\command\src\sys_command.c</file>
-         <hash>d1e9a128db653a24ba44efacb812861f6b0db9e444952f421cdc202a4db9ff7e</hash>
+         <hash>f6ffa260b5a6f1e0134c8845c405d0e21dcdc5fd02e95dcc7a4a5fccf1cb23ae</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\port\pic32\crypt_sha224_hw.h</file>
@@ -7570,7 +7556,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\uart\plib_uart3.c</file>
-         <hash>b4c23f13f90f8972b1ab282c418f7930bb33d711f7d981579be81ad7982b6f54</hash>
+         <hash>befb3ead49ef3251c4ac1671151879918e67f45bae5542d6b3d4d974c48bbf65</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\peripheral\coretimer\plib_coretimer.h</file>
@@ -7602,7 +7588,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\tcpip_manager_control.h</file>
-         <hash>67049612c82158d3ee62db2267ea8c829a4d50f2dc4001a04dfc21e0dd9f5452</hash>
+         <hash>87b88b3cda8ff015aaf63432223c11c7d62cd45d39fcaf50cdb94ca2cc0feb90</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\dh.h</file>
@@ -7642,7 +7628,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\wdrv_pic32mzw_bssfind.c</file>
-         <hash>fff57838b23f29b3d8625119ed9d1d93d169945d029a5207fa06d0cbf14020b3</hash>
+         <hash>e1e0c04b6653833ab5e59eea82311f049dfe85a0bee847f96334f998bc75b32f</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\src\tfm.c</file>
@@ -7690,7 +7676,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\drv_pic32mzw1.h</file>
-         <hash>cbfce322c6f53b9bc17095bd5eedf827a9e83062de943096fa4cdd0eb3d84b93</hash>
+         <hash>2059731ea071627c5dae675b560731f5a55dbdad90cc15d551a6e6b1afbf6f41</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\tcpip_common_ports.h</file>
@@ -7722,7 +7708,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\tcpip_heap_external.c</file>
-         <hash>384829256f2eb5d70f8fbd85587cc46173d29ad4ac949133f72b24f4fc9c0976</hash>
+         <hash>701f115763ccb65fb8e3db5db01aa228d8418b6497381924c0e507dd183911e2</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\tcpip_reboot_manager.h</file>
@@ -7774,11 +7760,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_authctx.h</file>
-         <hash>501f4178127c122a74ea0fe0b81eca8c98d6f88e85420ddc7ea7c22d86ea3450</hash>
+         <hash>c7e9f7b6fac1714b66922977b88ecd8a40b192da756bebb01a927a8ba4852bbc</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\ipv4.c</file>
-         <hash>445eb07eab9aed995ea8a022d22d1b31b8b9a1492da22d54abb6fc36aa36c660</hash>
+         <hash>584d4645ee0e3ee479e23ec48ae3399af38edb9f6f57b42ca3e8cea33ef3c619</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_driver\library\tcpip\src\arp_private.h</file>

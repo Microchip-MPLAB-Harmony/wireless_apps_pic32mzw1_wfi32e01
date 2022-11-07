@@ -20,7 +20,7 @@ This repository contains the MPLAB® Harmony 3 Wireless application examples for
 -   [MPLAB® Harmony License](GUID-7C9EF151-E183-4F16-9ECC-90A2044AE17A.md)
 
 
-To clone or download these applications from Github, go to the [main page of this repository](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01) and then click **Clone** button to clone this repository or download as zip file. This content can also be downloaded using content manager by following these [instructions](https://github.com/Microchip-MPLAB-Harmony/contentmanager/wiki).
+To clone or download these applications from Github, go to the [main page of this repository](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01) and then click **Clone** button to clone this repository or download as zip file.<br />This content can also be downloaded using content manager by following these [instructions](https://github.com/Microchip-MPLAB-Harmony/contentmanager/wiki).
 
 -   **[Paho MQTT Client Power Save](GUID-20C8A60E-F767-4756-9B58-9DB322426EB5.md)**  
 

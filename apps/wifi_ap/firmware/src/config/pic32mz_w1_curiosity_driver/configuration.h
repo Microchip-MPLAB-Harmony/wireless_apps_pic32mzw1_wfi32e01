@@ -108,7 +108,7 @@ extern "C" {
 
 
 #define SYS_CONSOLE_DEVICE_MAX_INSTANCES   			1
-#define SYS_CONSOLE_UART_MAX_INSTANCES 	   			1
+#define SYS_CONSOLE_UART_MAX_INSTANCES 	   			2
 #define SYS_CONSOLE_USB_CDC_MAX_INSTANCES 	   		0
 #define SYS_CONSOLE_PRINT_BUFFER_SIZE        		200
 
@@ -122,6 +122,8 @@ extern "C" {
 // *****************************************************************************
 /*** WiFi PIC32MZW1 Driver Configuration ***/
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
+#define WDRV_PIC32MZW_WPA3_PERSONAL_SUPPORT
+#define WDRV_PIC32MZW_BIGINTSW_SUPPORT
 #define WDRV_PIC32MZW_ALARM_PERIOD_1MS          390
 #define WDRV_PIC32MZW_ALARM_PERIOD_MAX          168
 
@@ -158,9 +160,9 @@ extern "C" {
 
 /*** ICMPv4 Client Configuration ***/
 #define TCPIP_STACK_USE_ICMP_CLIENT
-#define TCPIP_ICMP_CLIENT_USER_NOTIFICATION   true
 #define TCPIP_ICMP_ECHO_REQUEST_TIMEOUT        500
 #define TCPIP_ICMP_TASK_TICK_RATE              33
+#define TCPIP_STACK_MAX_CLIENT_ECHO_REQUESTS   4
 #define TCPIP_ICMP_COMMAND_ENABLE              false
 
 /******************************************************************************/
@@ -445,6 +447,9 @@ extern "C" {
 #define NO_ERROR_STRINGS
 #define NO_WOLFSSL_MEMORY
 // ---------- FUNCTIONAL CONFIGURATION END ----------
+
+#define TCPIP_STACK_NETWORK_INTERAFCE_COUNT  	1
+
 
 
 

@@ -4,7 +4,7 @@
 
 
 project: ota_bootloader
-creation_date: 2022-10-11T10:22:10.743+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2022-11-02T12:57:14.762+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: Standalone            # [IDE|Standalone|Headless]
 mhc_version: v3.8.5
@@ -13,10 +13,9 @@ plugin_version: NA        # if MPLAB X plugin only
 compiler: xc32
 
 modules:
-    - {name: "csp", version: "v3.13.1"}
+    - {name: "csp", version: "v3.14.0"}
     - {name: "core", version: "v3.11.1"}
     - {name: "dev_packs", version: "v3.13.1"}
-    - {name: "littlefs", version: "unknown"}
     - {name: "wolfssl", version: "v4.7.0"}
     - {name: "bsp", version: "v3.13.0"}
     - {name: "crypto", version: "v3.7.6"}

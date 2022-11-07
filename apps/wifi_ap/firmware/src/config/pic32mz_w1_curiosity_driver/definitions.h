@@ -51,8 +51,8 @@
 #include <stdio.h>
 #include "crypto/crypto.h"
 #include "bsp/bsp.h"
-#include "system/time/sys_time.h"
 #include "peripheral/nvm/plib_nvm.h"
+#include "system/time/sys_time.h"
 #include "peripheral/coretimer/plib_coretimer.h"
 #include "peripheral/uart/plib_uart3.h"
 #include "peripheral/uart/plib_uart1.h"

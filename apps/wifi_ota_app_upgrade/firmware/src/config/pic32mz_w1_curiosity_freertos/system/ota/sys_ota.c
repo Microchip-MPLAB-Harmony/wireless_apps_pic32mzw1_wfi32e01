@@ -1212,7 +1212,6 @@ void SYS_OTA_Tasks(void) {
                 SYS_OTA_RTCset();
                 sys_otaData.state = SYS_OTA_WAIT_FOR_OTA_TIMER_TRIGGER;
             } else {
-                
 #ifdef  SYS_OTA_TLS_ENABLED
                 if(sys_ota_tls == true){
                     uint32_t time = TCPIP_SNTP_UTCSecondsGet();
@@ -1315,7 +1314,6 @@ void SYS_OTA_Tasks(void) {
         }
         case SYS_OTA_TRIGGER_OTA:
         {
-            
 #ifdef  SYS_OTA_TLS_ENABLED
             if(SYS_OTA_IsTls_Request(ota_params.ota_server_url) == true){
                 uint32_t time = TCPIP_SNTP_UTCSecondsGet();

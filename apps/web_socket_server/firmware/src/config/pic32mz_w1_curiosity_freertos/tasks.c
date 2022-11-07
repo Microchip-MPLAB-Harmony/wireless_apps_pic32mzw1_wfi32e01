@@ -68,6 +68,16 @@ void _DRV_BA414E_Tasks(  void *pvParameters  )
     }
 }
 
+
+void _TCPIP_STACK_Task(  void *pvParameters  )
+{
+    while(1)
+    {
+        TCPIP_STACK_Task(sysObj.tcpip);
+        vTaskDelay(1 / portTICK_PERIOD_MS);
+    }
+}
+
 /* Handle for the APP_Tasks. */
 TaskHandle_t xAPP_Tasks;
 
@@ -76,16 +86,6 @@ void _APP_Tasks(  void *pvParameters  )
     while(1)
     {
         APP_Tasks();
-    }
-}
-
-
-void _TCPIP_STACK_Task(  void *pvParameters  )
-{
-    while(1)
-    {
-        TCPIP_STACK_Task(sysObj.tcpip);
-        vTaskDelay(1 / portTICK_PERIOD_MS);
     }
 }
 
@@ -105,16 +105,7 @@ void _NET_PRES_Tasks(  void *pvParameters  )
     while(1)
     {
         NET_PRES_Tasks(sysObj.netPres);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-}
-
-static void _SYS_WSS_Task(  void *pvParameters  )
-{
-    while(1)
-    {
-        SYS_WSS_Task(sysObj.sysWSS);
-        vTaskDelay(1/ portTICK_PERIOD_MS);
+        vTaskDelay(1 / portTICK_PERIOD_MS);
     }
 }
 
@@ -132,6 +123,15 @@ static void _WDRV_PIC32MZW1_Tasks(  void *pvParameters  )
         {
             vTaskDelay(50 / portTICK_PERIOD_MS);
         }
+    }
+}
+
+static void _SYS_WSS_Task(  void *pvParameters  )
+{
+    while(1)
+    {
+        SYS_WSS_Task(sysObj.sysWSS);
+        vTaskDelay(1/ portTICK_PERIOD_MS);
     }
 }
 
@@ -177,20 +177,20 @@ void SYS_Tasks ( void )
 
 
     /* Maintain Device Drivers */
-        xTaskCreate( _SYS_WSS_Task,
-        "SYS_WSS_Task",
-        SYS_WSS_RTOS_STACK_SIZE,
-        (void*)NULL,
-        SYS_WSS_RTOS_TASK_PRIORITY,
-        (TaskHandle_t*)NULL
-    );
-
-
-    xTaskCreate( _WDRV_PIC32MZW1_Tasks,
+        xTaskCreate( _WDRV_PIC32MZW1_Tasks,
         "WDRV_PIC32MZW1_Tasks",
         1024,
         (void*)NULL,
         1,
+        (TaskHandle_t*)NULL
+    );
+
+
+    xTaskCreate( _SYS_WSS_Task,
+        "SYS_WSS_Task",
+        SYS_WSS_RTOS_STACK_SIZE,
+        (void*)NULL,
+        SYS_WSS_RTOS_TASK_PRIORITY,
         (TaskHandle_t*)NULL
     );
 

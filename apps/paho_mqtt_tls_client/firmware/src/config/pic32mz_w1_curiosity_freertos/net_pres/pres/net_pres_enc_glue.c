@@ -127,6 +127,8 @@ bool NET_PRES_EncProviderStreamClientInit0(NET_PRES_TransportObject * transObjec
     {
         return false;
     }
+	wolfSSL_CTX_set_verify(net_pres_wolfSSLInfoStreamClient0.context, WOLFSSL_VERIFY_PEER, 0);
+	
     wolfSSL_SetIORecv(net_pres_wolfSSLInfoStreamClient0.context, (CallbackIORecv)&NET_PRES_EncGlue_StreamClientReceiveCb0);
     wolfSSL_SetIOSend(net_pres_wolfSSLInfoStreamClient0.context, (CallbackIOSend)&NET_PRES_EncGlue_StreamClientSendCb0);
     if (wolfSSL_CTX_load_verify_buffer(net_pres_wolfSSLInfoStreamClient0.context, caCertsPtr, caCertsLen, SSL_FILETYPE_ASN1) != SSL_SUCCESS)
@@ -136,7 +138,6 @@ bool NET_PRES_EncProviderStreamClientInit0(NET_PRES_TransportObject * transObjec
         wolfSSL_CTX_free(net_pres_wolfSSLInfoStreamClient0.context);
         return false;
     }
-	wolfSSL_CTX_set_verify(net_pres_wolfSSLInfoStreamClient0.context, WOLFSSL_VERIFY_PEER, 0);
     net_pres_wolfSSLInfoStreamClient0.isInited = true;
     return true;
 }

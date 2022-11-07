@@ -50,6 +50,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "system/wifi/sys_wifi.h"
 #include "configuration.h"
 #include "system/wifiprov/sys_wifiprov.h"
+
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Type Definitions
@@ -972,7 +974,6 @@ static SYS_WIFI_RESULT SYS_WIFI_ConfigReq(void)
                 }
                 break;
             }
-
             case SYS_WIFI_WEP:
             {
                ret = SYS_WIFI_CONFIG_FAILURE; 
@@ -1156,6 +1157,8 @@ static uint32_t SYS_WIFI_ExecuteBlock
                     {
                         if (SYS_WIFI_SUCCESS == SYS_WIFI_ConfigReq()) 
                         {
+						
+
                             if (SYS_WIFI_SUCCESS == SYS_WIFI_ConnectReq()) 
                             {
                                 wifiSrvcObj->wifiSrvcStatus = (SYS_WIFI_STA == SYS_WIFI_GetMode()) ? SYS_WIFI_STATUS_TCPIP_READY : SYS_WIFI_STATUS_WAIT_FOR_AP_IP;
@@ -1190,6 +1193,16 @@ static uint32_t SYS_WIFI_ExecuteBlock
                 wifiSrvcObj->wifiSrvcStatus = SYS_WIFI_STATUS_TCPIP_READY;
                 break;
             }
+            case SYS_WIFI_STATUS_CONNECT_ERROR:
+            {
+                if (g_wifiSrvcAutoConnectRetry == MAX_AUTO_CONNECT_RETRY)
+                {
+                    SYS_WIFI_CallBackFun(SYS_WIFI_AUTO_CONNECT_FAIL, NULL, g_wifiSrvcCookie); 
+                    wifiSrvcObj->wifiSrvcStatus = SYS_WIFI_STATUS_CONFIG_ERROR;
+                }
+                break;
+            }
+
 
 
             case SYS_WIFI_STATUS_WAIT_FOR_AP_IP:
@@ -1334,13 +1347,20 @@ static void SYS_WIFI_WIFIPROVCallBack
                                            ((SYS_WIFIPROV_STA == (SYS_WIFIPROV_MODE) SYS_WIFI_GetMode()) ? "STA" : "AP"),\
                                            ((SYS_WIFIPROV_STA == wifiConfig->mode)?"STA":"AP"));
                             /* Copy received configuration into Wi-Fi service structure */
-			if (SYS_WIFIPROV_STA == (SYS_WIFIPROV_MODE) SYS_WIFI_GetMode())
-                        {
-                            SYS_WIFI_DisConnect();
-                        }
-                            memcpy(&g_wifiSrvcConfig, wifiConfig, sizeof (SYS_WIFIPROV_CONFIG));
-                            WDRV_PIC32MZW_Close(g_wifiSrvcObj.wifiSrvcDrvHdl);
-                            SYS_WIFI_SetTaskstatus(SYS_WIFI_STATUS_INIT);
+			    if (SYS_WIFIPROV_STA == (SYS_WIFIPROV_MODE) SYS_WIFI_GetMode())
+                            {
+                                SYS_WIFI_DisConnect();
+                            }
+                            if((SYS_WIFIPROV_STA == wifiConfig->mode) && (SYS_WIFIPROV_AP == (SYS_WIFIPROV_MODE) SYS_WIFI_GetMode()))
+                            {
+                                SYS_RESET_SoftwareReset();
+                            } 
+                            else
+                            {
+                                memcpy(&g_wifiSrvcConfig, wifiConfig, sizeof (SYS_WIFIPROV_CONFIG));
+                                WDRV_PIC32MZW_Close(g_wifiSrvcObj.wifiSrvcDrvHdl);
+                                SYS_WIFI_SetTaskstatus(SYS_WIFI_STATUS_INIT);
+                            }
                         }
                         if (data) 
                         {

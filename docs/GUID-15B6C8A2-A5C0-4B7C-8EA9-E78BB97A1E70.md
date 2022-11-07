@@ -19,7 +19,7 @@ To build the application, refer to the following table and open the project usin
 |Project Name|Description|
 |------------|-----------|
 |pic32mz\_w1\_curiosity\_freertos.X|MPLABX project for PIC32MZ W1 Curiosity Board|
-| | |
+| |
 
 ## Setting up PIC32MZ W1 Curiosity Board
 

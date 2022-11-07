@@ -11,9 +11,8 @@
 <meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
 <meta name="DC.format" content="XHTML" />
 <meta name="DC.identifier" content="wlan-ap" />
-<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>WLAN AP</title>
+<title>WLAN AP</title>
 <meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-wlan-ap" />
 <meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
 <meta name="Microsoft.Help.TocOrder" content="0" />
@@ -62,10 +61,9 @@
 			}
 
 		</script><script language="javascript">
-        function cpy(id, button) {
-        
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
+         
+         function copyContent(content, button) {
+         
             var textArea = document.createElement("textarea");
             
             // Place in the top-left corner of screen regardless of scroll position.
@@ -89,7 +87,6 @@
             // Avoid flash of the white box if rendered for any reason.
             textArea.style.background = 'transparent';
             
-            
             textArea.value = content;
             
             document.body.appendChild(textArea);
@@ -103,16 +100,49 @@
                   button.textContent = "Copied";
                   button.classList.add("copied");
                   setTimeout(function(){
-                    button.textContent = "Copy";
-                    button.classList.remove("copied");
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
                   },1000);
                }
             } catch (err) {
-              console.log('Oops, unable to copy');
+               console.log('Oops, unable to copy');
             }
             
             document.body.removeChild(textArea);
-        }
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
       </script><script language="javascript">
           
           // Add the MathML namespace to html
@@ -151,7 +181,7 @@
           window.top.location = Default;
           }       
           
-        </script><style xml:space="">
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
         
           button.copy-code{
             display:none;
@@ -193,7 +223,7 @@
           }
         
         
-      </style></head>
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="wlan-ap">
 <h1 class="title topictitle1" id="ariaid-title1">WLAN AP</h1><div class="body"><p class="p">This example application shows how to use the PIC32MZW1 WLAN APIs to configure the device in AP mode directly using the WLAN driver APIs.</p>
 </div>
@@ -208,15 +238,14 @@
 <br /><img class="image" src="GUID-5A0898D6-366C-4E6D-9FC4-DD3725922C4E-low.png" alt="clone" /><br /><p class="p">Path of the application within the repository is <strong class="ph b">apps/wifi_ap/firmware</strong> .</p>
 <p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d8280e51"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d8280e53"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d8275e51"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d8275e53"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e51 "><span>pic32mz_w1_curiosity_driver.X</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e53 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e51 "><span>pic32mz_w1_curiosity_driver.X</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e53 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e51 "><span> </span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e53 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e51 "><span> </span></td>
 </tr>
 </tbody>
 </table>
@@ -236,15 +265,14 @@
 </div>
 <div class="topic nested2" aria-labelledby="ariaid-title8" id="setting-up-the-hardware"><h3 class="title topictitle3" id="ariaid-title8">Setting up the hardware</h3><div class="body"><p class="p">The following table shows the target hardware for the application projects.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d8280e105"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d8280e107"><span>Board</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d8275e104"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d8275e106"><span>Board</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d8280e105 "><span>pic32mz_w1_curiosity_driver.X</span></td>
-<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d8280e107 "><span>PIC32MZ W1 Curiosity Board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d8275e104 "><span>pic32mz_w1_curiosity_driver.X</span></td>
+<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d8275e106 "><span>PIC32MZ W1 Curiosity Board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d8280e105 "><span> </span></td>
-<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d8280e107 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d8275e104 "><span> </span></td>
 </tr>
 </tbody>
 </table>
@@ -260,7 +288,7 @@
 </div>
 <div class="topic nested2" aria-labelledby="ariaid-title10" id="running-the-application"><h3 class="title topictitle3" id="ariaid-title10">Running the Application</h3><div class="body"><p class="p">1.Open the Terminal application (Ex.:Tera term) on the computer</p>
 <p class="p">2.Connect to the "USB to UART" COM port and configure the serial settings as follows:</p>
-<pre class="pre codeblock"><button title="Copy Code" class="copy-code" onclick="cpy('d8280e141', this);">Copy</button><code id="d8280e141" content="- Baud : 115200&#xD;&#xA;- Data : 8 Bits&#xD;&#xA;- Parity : None&#xD;&#xA;- Stop : 1 Bit&#xD;&#xA;- Flow Control : None&#xD;">- Baud : 115200&#xD;
+<pre class="pre codeblock"><code id="d8275e139" content="- Baud : 115200&#xD;&#xA;- Data : 8 Bits&#xD;&#xA;- Parity : None&#xD;&#xA;- Stop : 1 Bit&#xD;&#xA;- Flow Control : None&#xD;">- Baud : 115200&#xD;
 - Data : 8 Bits&#xD;
 - Parity : None&#xD;
 - Stop : 1 Bit&#xD;
@@ -270,36 +298,35 @@
 </div>
 </div>
 <div class="topic nested1" aria-labelledby="ariaid-title11" id="supported-commands"><h2 class="title topictitle2" id="ariaid-title11">Supported Commands</h2><div class="body">
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d8280e160"><span>Command</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d8280e162"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d8275e158"><span>Command</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d8275e160"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e160 "><span>wlan config &lt;ssid&gt; &lt;ssid_length&gt; &lt;ssid_visible&gt; &lt;channel&gt; &lt;open/wpa2/wpam/wpa3/wpa3m/wep&gt; &lt;password&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e162 "><span>Configures the SSID, SSID length, SSID visibility, channel number and the security of the AP that DUT wants to connect. NOTE: Valid channel numbers are in range 1-13</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e158 "><span>wlan config &lt;ssid&gt; &lt;ssid_length&gt; &lt;ssid_visible&gt; &lt;channel&gt; &lt;open/wpa2/wpam/wpa3/wpa3m/wep&gt; &lt;password&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e160 "><span>Configures the SSID, SSID length, SSID visibility, channel number and the security of the AP that DUT wants to connect. NOTE: Valid channel numbers are in range 1-13</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e160 "><span>wlan ap start</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e162 "><span>Start the AP</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e158 "><span>wlan ap start</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e160 "><span>Start the AP</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e160 "><span>wlan ap stop</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e162 "><span>Stop the AP</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e158 "><span>wlan ap stop</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e160 "><span>Stop the AP</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e160 "><span>wlan show devices</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e162 "><span>The connected devices are shown – MAC and IP addresses are displayed</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e158 "><span>wlan show devices</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e160 "><span>The connected devices are shown – MAC and IP addresses are displayed</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e160 "><span>wlan scan &lt;active / passive&gt; &lt;channel&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e162 "><span>Runs either a active or passive scan (as per the input) on the channel number specified</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e158 "><span>wlan scan &lt;active / passive&gt; &lt;channel&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e160 "><span>Runs either a active or passive scan (as per the input) on the channel number specified</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e160 "><span>wlan save config</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e162 "><span>Stores the WLAN configurations given in command “wlan config” to flash memory. On restart DUT is started as AP with the credentials stored in flash.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e158 "><span>wlan save config</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e160 "><span>Stores the WLAN configurations given in command “wlan config” to flash memory. On restart DUT is started as AP with the credentials stored in flash.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e160 "><span>wlan set regdomain &lt;reg_domain_name&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e162 "><span>Sets the regulatory domain</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e158 "><span>wlan set regdomain &lt;reg_domain_name&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e160 "><span>Sets the regulatory domain</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e160 "><span>wlan get regdomain &lt;all / current&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e162 "><span>Displays the regulatory domain all – request all regulatory domains; current - request current regulatory domain</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e158 "><span>wlan get regdomain &lt;all / current&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e160 "><span>Displays the regulatory domain all – request all regulatory domains; current - request current regulatory domain</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e160 "><span> </span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8280e162 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8275e158 "><span> </span></td>
 </tr>
 </tbody>
 </table>

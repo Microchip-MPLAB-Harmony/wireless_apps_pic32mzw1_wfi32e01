@@ -10,9 +10,8 @@
 <meta name="DC.title" content="Microchip MPLAB® Harmony 3 Release Notes" />
 <meta name="DC.format" content="XHTML" />
 <meta name="DC.identifier" content="microchip-mplab-harmony-3-release-notes" />
-<link rel="stylesheet" type="text/css" href="stylesheets/commonltr.css" />
 <link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<link rel="stylesheet" type="text/css" href="./stylesheets/common-extended.css" /><title>Microchip MPLAB® Harmony 3 Release Notes</title>
+<title>Microchip MPLAB® Harmony 3 Release Notes</title>
 <meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-microchip-mplab-harmony-3-release-notes" />
 <meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
 <meta name="Microsoft.Help.TocOrder" content="0" />
@@ -61,10 +60,9 @@
 			}
 
 		</script><script language="javascript">
-        function cpy(id, button) {
-        
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
+         
+         function copyContent(content, button) {
+         
             var textArea = document.createElement("textarea");
             
             // Place in the top-left corner of screen regardless of scroll position.
@@ -88,7 +86,6 @@
             // Avoid flash of the white box if rendered for any reason.
             textArea.style.background = 'transparent';
             
-            
             textArea.value = content;
             
             document.body.appendChild(textArea);
@@ -102,16 +99,49 @@
                   button.textContent = "Copied";
                   button.classList.add("copied");
                   setTimeout(function(){
-                    button.textContent = "Copy";
-                    button.classList.remove("copied");
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
                   },1000);
                }
             } catch (err) {
-              console.log('Oops, unable to copy');
+               console.log('Oops, unable to copy');
             }
             
             document.body.removeChild(textArea);
-        }
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
       </script><script language="javascript">
           
           // Add the MathML namespace to html
@@ -150,7 +180,7 @@
           window.top.location = Default;
           }       
           
-        </script><style xml:space="">
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
         
           button.copy-code{
             display:none;
@@ -192,27 +222,29 @@
           }
         
         
-      </style></head>
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="microchip-mplab-harmony-3-release-notes">
 <h1 class="title topictitle1" id="ariaid-title1">Microchip MPLAB® Harmony 3 Release Notes</h1><div class="body"></div>
-<div class="topic nested1" aria-labelledby="ariaid-title2" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v361"><h2 class="title topictitle2" id="ariaid-title2">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.6.1</strong></h2><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title2" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v370"><h2 class="title topictitle2" id="ariaid-title2">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.7.0</strong></h2><div class="body"></div>
 <div class="topic nested2" aria-labelledby="ariaid-title3" id="development-kit-and-demo-application-support"><h3 class="title topictitle3" id="ariaid-title3">Development kit and demo application support</h3><div class="body"><p class="p">Following table provides number of Wireless examples available for different development kits.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e28"><span>Development Kits</span></th>
-<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e30"><span>MPLABx applications</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e28"><span>Development Kits</span></th>
+<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e30"><span>MPLABx applications</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e28 "><span>PIC32MZ W1 Curiosity Board</span></td>
-<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e30 "><span>20</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e28 "><span>PIC32MZ W1 Curiosity Board</span></td>
+<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e30 "><span>20</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title4" id="new-features"><h3 class="title topictitle3" id="ariaid-title4">New Features</h3><div class="body"><ul class="ul"><li class="li"><ul class="ul"><li class="li"><p class="p">New Low power save demo added.</p>
+<div class="topic nested2" aria-labelledby="ariaid-title4" id="new-features"><h3 class="title topictitle3" id="ariaid-title4">New Features</h3><div class="body"><ul class="ul"><li class="li"><p class="p">All applications have been migrated from MHC to MCC.</p>
 </li>
-</ul>
+<li class="li"><p class="p">Low Power demo application updated with Wi-Fi connected sleep modes(WSM and WDS).</p>
+</li>
+<li class="li"><p class="p">Updated OTA bootloader and application with support for WOLFSSL and Trustflex.</p>
 </li>
 <li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
 </li>
@@ -224,14 +256,63 @@
 </ul>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title6" id="known-issues"><h3 class="title topictitle3" id="ariaid-title6">Known Issues</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Due to an underlying issue in the underlying <code class="ph codeph">net</code> repo, you need to turn off <code class="ph codeph">-Werror</code> for the <code class="ph codeph">icmp.c</code> file in your projects.</p>
+<div class="topic nested2" aria-labelledby="ariaid-title6" id="known-issues"><h3 class="title topictitle3" id="ariaid-title6">Known Issues</h3><div class="body"><ul class="ul"><li class="li"><p class="p">In paho mqtt client power save application, user is requested to ensure that plib_clk.c, app_mqtt.c , app_mqtt.h,app.c and app.h files are not overwritten with generated code.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title7" id="development-tools"><h3 class="title topictitle3" id="ariaid-title7">Development Tools</h3><div class="body"><ul class="ul"><li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/mplab-x-ide" target="_blank">MPLAB® X IDE v6.00</a></p>
+</li>
+<li class="li"><p class="p">MPLAB® X IDE plug-ins:</p>
+<ul class="ul"><li class="li"><p class="p">MPLAB® Code Configurator (MCC) v5.1.17</p>
+</li>
+</ul>
+</li>
+<li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/compilers" target="_blank">MPLAB® XC32 C/C++ Compiler v3.01</a></p>
+</li>
+<li class="li"><p class="p"><strong class="ph b">DFP 1.6.220</strong></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title8" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v361"><h2 class="title topictitle2" id="ariaid-title8">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.6.1</strong></h2><div class="body"></div>
+<div class="topic nested2" aria-labelledby="ariaid-title9" id="development-kit-and-demo-application-support-1"><h3 class="title topictitle3" id="ariaid-title9">Development kit and demo application support</h3><div class="body"><p class="p">Following table provides number of Wireless examples available for different development kits.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e121"><span>Development Kits</span></th>
+<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e123"><span>MPLABx applications</span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e121 "><span>PIC32MZ W1 Curiosity Board</span></td>
+<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e123 "><span>20</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title10" id="new-features-1"><h3 class="title topictitle3" id="ariaid-title10">New Features</h3><div class="body"><ul class="ul"><li class="li"><ul class="ul"><li class="li"><p class="p">New Low power save demo added.</p>
+</li>
+</ul>
+</li>
+<li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title11" id="bug-fixes-and-improvements-1"><h3 class="title topictitle3" id="ariaid-title11">Bug fixes and Improvements</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title12" id="known-issues-1"><h3 class="title topictitle3" id="ariaid-title12">Known Issues</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Due to an underlying issue in the underlying <code class="ph codeph">net</code> repo, you need to turn off <code class="ph codeph">-Werror</code> for the <code class="ph codeph">icmp.c</code> file in your projects.</p>
 </li>
 <li class="li"><p class="p">While programming the image into hardware, user may observe the “Target Device ID is an Invalid Device Id” warning which needs to be ignored. The issue will be resolved with new DFP package release.</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title7" id="development-tools"><h3 class="title topictitle3" id="ariaid-title7">Development Tools</h3><div class="body"><ul class="ul"><li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/mplab-x-ide" target="_blank">MPLAB® X IDE v6.00</a></p>
+<div class="topic nested2" aria-labelledby="ariaid-title13" id="development-tools-1"><h3 class="title topictitle3" id="ariaid-title13">Development Tools</h3><div class="body"><ul class="ul"><li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/mplab-x-ide" target="_blank">MPLAB® X IDE v6.00</a></p>
 </li>
 <li class="li"><p class="p">MPLAB® X IDE plug-ins:</p>
 <ul class="ul"><li class="li"><p class="p">MPLAB® Harmony Configurator (MHC) v3.8.2</p>
@@ -246,72 +327,24 @@
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title8" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v360"><h2 class="title topictitle2" id="ariaid-title8">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.6.0</strong></h2><div class="body"></div>
-<div class="topic nested2" aria-labelledby="ariaid-title9" id="development-kit-and-demo-application-support-1"><h3 class="title topictitle3" id="ariaid-title9">Development kit and demo application support</h3><div class="body"><p class="p">Following table provides number of Wireless examples available for different development kits.</p>
-
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e129"><span>Development Kits</span></th>
-<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e131"><span>MPLABx applications</span></th>
-</tr>
-</thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e129 "><span>PIC32MZ W1 Curiosity Board</span></td>
-<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e131 "><span>19</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="topic nested2" aria-labelledby="ariaid-title10" id="new-features-1"><h3 class="title topictitle3" id="ariaid-title10">New Features</h3><div class="body"><ul class="ul"><li class="li"><p class="p">New IFTTT and Web Socket Server demos added</p>
-</li>
-<li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="topic nested2" aria-labelledby="ariaid-title11" id="bug-fixes-and-improvements-1"><h3 class="title topictitle3" id="ariaid-title11">Bug fixes and Improvements</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="topic nested2" aria-labelledby="ariaid-title12" id="known-issues-1"><h3 class="title topictitle3" id="ariaid-title12">Known Issues</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Due to an underlying issue in the underlying <code class="ph codeph">net</code> repo, you need to turn off <code class="ph codeph">-Werror</code> for the <code class="ph codeph">icmp.c</code> file in your projects.</p>
-</li>
-<li class="li"><p class="p">L2 Bridging is known to have some instabilities when there is high network data traffic.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="topic nested2" aria-labelledby="ariaid-title13" id="development-tools-1"><h3 class="title topictitle3" id="ariaid-title13">Development Tools</h3><div class="body"><ul class="ul"><li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/mplab-x-ide" target="_blank">MPLAB® X IDE v5.50</a></p>
-</li>
-<li class="li"><p class="p">MPLAB® X IDE plug-ins:</p>
-<ul class="ul"><li class="li"><p class="p">MPLAB® Harmony Configurator (MHC) v3.8.0</p>
-</li>
-</ul>
-</li>
-<li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/compilers" target="_blank">MPLAB® XC32 C/C++ Compiler v3.01</a></p>
-</li>
-<li class="li"><p class="p"><strong class="ph b">DFP 1.5.203</strong></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="topic nested1" aria-labelledby="ariaid-title14" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v351"><h2 class="title topictitle2" id="ariaid-title14">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.5.1</strong></h2><div class="body"><p class="p"><strong class="ph b">Note</strong> : This is an incremental release. All notes under the <code class="ph codeph">v3.5.0</code> release are applicable to this release as well.</p>
-</div>
+<div class="topic nested1" aria-labelledby="ariaid-title14" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v360"><h2 class="title topictitle2" id="ariaid-title14">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.6.0</strong></h2><div class="body"></div>
 <div class="topic nested2" aria-labelledby="ariaid-title15" id="development-kit-and-demo-application-support-2"><h3 class="title topictitle3" id="ariaid-title15">Development kit and demo application support</h3><div class="body"><p class="p">Following table provides number of Wireless examples available for different development kits.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e235"><span>Development Kits</span></th>
-<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e237"><span>MPLABx applications</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e222"><span>Development Kits</span></th>
+<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e224"><span>MPLABx applications</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e235 "><span>PIC32MZ W1 Curiosity Board</span></td>
-<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e237 "><span>17</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e222 "><span>PIC32MZ W1 Curiosity Board</span></td>
+<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e224 "><span>19</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title16" id="new-features-2"><h3 class="title topictitle3" id="ariaid-title16">New Features</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
+<div class="topic nested2" aria-labelledby="ariaid-title16" id="new-features-2"><h3 class="title topictitle3" id="ariaid-title16">New Features</h3><div class="body"><ul class="ul"><li class="li"><p class="p">New IFTTT and Web Socket Server demos added</p>
+</li>
+<li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
 </li>
 </ul>
 </div>
@@ -321,7 +354,7 @@
 </ul>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title18" id="known-issues-2"><h3 class="title topictitle3" id="ariaid-title18">Known Issues</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Due to an underlying issue in the DHCP code in <code class="ph codeph">net</code> repo, compiler optimization should be turned off in the dual interface project.</p>
+<div class="topic nested2" aria-labelledby="ariaid-title18" id="known-issues-2"><h3 class="title topictitle3" id="ariaid-title18">Known Issues</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Due to an underlying issue in the underlying <code class="ph codeph">net</code> repo, you need to turn off <code class="ph codeph">-Werror</code> for the <code class="ph codeph">icmp.c</code> file in your projects.</p>
 </li>
 <li class="li"><p class="p">L2 Bridging is known to have some instabilities when there is high network data traffic.</p>
 </li>
@@ -337,19 +370,22 @@
 </li>
 <li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/compilers" target="_blank">MPLAB® XC32 C/C++ Compiler v3.01</a></p>
 </li>
+<li class="li"><p class="p"><strong class="ph b">DFP 1.5.203</strong></p>
+</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title20" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v350"><h2 class="title topictitle2" id="ariaid-title20">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.5.0</strong></h2><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title20" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v351"><h2 class="title topictitle2" id="ariaid-title20">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.5.1</strong></h2><div class="body"><p class="p"><strong class="ph b">Note</strong> : This is an incremental release. All notes under the <code class="ph codeph">v3.5.0</code> release are applicable to this release as well.</p>
+</div>
 <div class="topic nested2" aria-labelledby="ariaid-title21" id="development-kit-and-demo-application-support-3"><h3 class="title topictitle3" id="ariaid-title21">Development kit and demo application support</h3><div class="body"><p class="p">Following table provides number of Wireless examples available for different development kits.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e321"><span>Development Kits</span></th>
-<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e323"><span>MPLABx applications</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e328"><span>Development Kits</span></th>
+<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e330"><span>MPLABx applications</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e321 "><span>PIC32MZ W1 Curiosity Board</span></td>
-<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e323 "><span>17</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e328 "><span>PIC32MZ W1 Curiosity Board</span></td>
+<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e330 "><span>17</span></td>
 </tr>
 </tbody>
 </table>
@@ -362,8 +398,6 @@
 </div>
 </div>
 <div class="topic nested2" aria-labelledby="ariaid-title23" id="bug-fixes-and-improvements-3"><h3 class="title topictitle3" id="ariaid-title23">Bug fixes and Improvements</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
-</li>
-<li class="li"><p class="p">UART3 is now configured to use RK13/RK14 pins.</p>
 </li>
 </ul>
 </div>
@@ -388,37 +422,84 @@
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title26" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v341"><h2 class="title topictitle2" id="ariaid-title26">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.4.1</strong></h2><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title26" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v350"><h2 class="title topictitle2" id="ariaid-title26">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.5.0</strong></h2><div class="body"></div>
 <div class="topic nested2" aria-labelledby="ariaid-title27" id="development-kit-and-demo-application-support-4"><h3 class="title topictitle3" id="ariaid-title27">Development kit and demo application support</h3><div class="body"><p class="p">Following table provides number of Wireless examples available for different development kits.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e410"><span>Development Kits</span></th>
-<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d720e412"><span>MPLABx applications</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e414"><span>Development Kits</span></th>
+<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e416"><span>MPLABx applications</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e410 "><span>PIC32MZ W1 Curiosity Board</span></td>
-<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d720e412 "><span>17</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e414 "><span>PIC32MZ W1 Curiosity Board</span></td>
+<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e416 "><span>17</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title28" id="new-features-4"><h3 class="title topictitle3" id="ariaid-title28">New Features</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Split wireless apps into a seperate repo</p>
+<div class="topic nested2" aria-labelledby="ariaid-title28" id="new-features-4"><h3 class="title topictitle3" id="ariaid-title28">New Features</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title29" id="bug-fixes"><h3 class="title topictitle3" id="ariaid-title29">Bug fixes</h3><div class="body"><ul class="ul"><li class="li"><p class="p">None</p>
+<div class="topic nested2" aria-labelledby="ariaid-title29" id="bug-fixes-and-improvements-4"><h3 class="title topictitle3" id="ariaid-title29">Bug fixes and Improvements</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Please refer to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md" target="_blank">system services release notes.</a></p>
+</li>
+<li class="li"><p class="p">UART3 is now configured to use RK13/RK14 pins.</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title30" id="known-issues-4"><h3 class="title topictitle3" id="ariaid-title30">Known Issues</h3><div class="body"><ul class="ul"><li class="li"><p class="p">None</p>
+<div class="topic nested2" aria-labelledby="ariaid-title30" id="known-issues-4"><h3 class="title topictitle3" id="ariaid-title30">Known Issues</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Due to an underlying issue in the DHCP code in <code class="ph codeph">net</code> repo, compiler optimization should be turned off in the dual interface project.</p>
+</li>
+<li class="li"><p class="p">L2 Bridging is known to have some instabilities when there is high network data traffic.</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title31" id="development-tools-4"><h3 class="title topictitle3" id="ariaid-title31">Development Tools</h3><div class="body"><ul class="ul"><li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/mplab-x-ide" target="_blank">MPLAB® X IDE v5.40</a></p>
+<div class="topic nested2" aria-labelledby="ariaid-title31" id="development-tools-4"><h3 class="title topictitle3" id="ariaid-title31">Development Tools</h3><div class="body"><ul class="ul"><li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/mplab-x-ide" target="_blank">MPLAB® X IDE v5.50</a></p>
+</li>
+<li class="li"><p class="p">MPLAB® X IDE plug-ins:</p>
+<ul class="ul"><li class="li"><p class="p">MPLAB® Harmony Configurator (MHC) v3.8.0</p>
+</li>
+</ul>
+</li>
+<li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/compilers" target="_blank">MPLAB® XC32 C/C++ Compiler v3.01</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title32" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family--v341"><h2 class="title topictitle2" id="ariaid-title32">Harmony 3 Wireless application examples for PIC32MZ W1 family  <strong class="ph b">v3.4.1</strong></h2><div class="body"></div>
+<div class="topic nested2" aria-labelledby="ariaid-title33" id="development-kit-and-demo-application-support-5"><h3 class="title topictitle3" id="ariaid-title33">Development kit and demo application support</h3><div class="body"><p class="p">Following table provides number of Wireless examples available for different development kits.</p>
+
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e503"><span>Development Kits</span></th>
+<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d748e505"><span>MPLABx applications</span></th>
+</tr>
+</thead>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e503 "><span>PIC32MZ W1 Curiosity Board</span></td>
+<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d748e505 "><span>17</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title34" id="new-features-5"><h3 class="title topictitle3" id="ariaid-title34">New Features</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Split wireless apps into a seperate repo</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title35" id="bug-fixes"><h3 class="title topictitle3" id="ariaid-title35">Bug fixes</h3><div class="body"><ul class="ul"><li class="li"><p class="p">None</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title36" id="known-issues-5"><h3 class="title topictitle3" id="ariaid-title36">Known Issues</h3><div class="body"><ul class="ul"><li class="li"><p class="p">None</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="topic nested2" aria-labelledby="ariaid-title37" id="development-tools-5"><h3 class="title topictitle3" id="ariaid-title37">Development Tools</h3><div class="body"><ul class="ul"><li class="li"><p class="p"><a class="xref" href="https://www.microchip.com/mplab/mplab-x-ide" target="_blank">MPLAB® X IDE v5.40</a></p>
 </li>
 <li class="li"><p class="p">MPLAB® X IDE plug-ins:</p>
 <ul class="ul"><li class="li"><p class="p">MPLAB® Harmony Configurator (MHC) v3.6.2</p>

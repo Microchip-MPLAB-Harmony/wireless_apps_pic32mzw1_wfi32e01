@@ -126,5 +126,27 @@ void wss_user_callback(SYS_WSS_EVENTS event, void *data, int32_t clientIndex, vo
             SYS_CONSOLE_PRINT("wssSysServCallback(%d): SYS_WSS_EVENT_CLIENT_TIMEOUT\r\n",clientIndex);
             break;
         }
+#if SYS_WSS_ENABLE_TLS == true
+        case SYS_WSS_EVENT_SSL_FAILED:
+        {
+            SYS_CONSOLE_PRINT("wssSysServCallback(%d): SYS_WSS_EVENT_SSL_FAILED\r\n",clientIndex);
+            break;
+        }
+#endif		
+        case SYS_WSS_EVENT_SOCK_OPEN_FAILED:
+        {
+            SYS_CONSOLE_PRINT("wssSysServCallback(%d): SYS_WSS_EVENT_SOCK_OPEN_FAILED\r\n",clientIndex);
+            break;
+        }
+        case SYS_WSS_EVENT_LL_INTF_DOWN:
+        {
+            SYS_CONSOLE_PRINT("wssSysServCallback(%d): SYS_WSS_EVENT_LL_INTF_DOWN\r\n",clientIndex);
+            break;
+        }
+        case SYS_WSS_EVENT_LL_INTF_UP:
+        {
+            SYS_CONSOLE_PRINT("wssSysServCallback(%d): SYS_WSS_EVENT_LL_INTF_UP\r\n",clientIndex);
+            break;
+        }
     }
 }

@@ -4491,7 +4491,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_wolfcrypt\peripheral\clk\plib_clk.c</file>
-         <hash>751923cf5c8e226d06b3b7d5e0cd83925f5a4a264a0cf7462b82569197bef860</hash>
+         <hash>1264c6a6ef9366d0cf4e041c8c13e876e5c2e6c1e8fd8bcb735c8ca0653a7f3c</hash>
       </entry>
       <entry>
          <file>..\src\third_party\wolfssl\wolfssl\wolfcrypt\memory.h</file>
