@@ -4,7 +4,7 @@
 	"content": {
 		"metaDataVersion": "1.3.0",
 		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_wifi_easy_config",
-		"version": "3.6.1",
+		"version": "3.7.0",
 		"displayName": "Wi-Fi Easy Configuration (bare-metal)",
 		"projectName": "wifi_easy_config_pic32mz_w1_curiosity",
 		"shortDescription": "This bare-metal example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket and HTTP.",
@@ -20,7 +20,7 @@
 		],
 		"dfp": {
 			"name": "PIC32MZ-W_DFP",
-			"semverRange": "^1.5.203"
+			"semverRange": "^1.6.220"
 		},
 		"configurator": {
 			"name": "MHC",

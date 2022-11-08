@@ -3,10 +3,10 @@
 	"category": "com.microchip.ide.project",
 	"content": {
 		"metaDataVersion": "1.3.0",
-		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_secured_tcp_client",
-		"version": "3.6.1",
+		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_tcp_client",
+		"version": "3.7.0",
 		"displayName": "Secured TCP Client ",
-		"projectName": "secured_tcp_client_pic32mz_w1_curiosity",
+		"projectName": "tcp_client_pic32mz_w1_curiosity",
 		"shortDescription": "This PIC32MZW1 example application acts as a TCP Client to connect to Secured TCP Server and exchange data in a non-blocking manner.",
 		"ide": {
 			"name": "MPLABX",
@@ -20,7 +20,7 @@
 		],
 		"dfp": {
 			"name": "PIC32MZ-W_DFP",
-			"semverRange": "^1.5.203"
+			"semverRange": "^1.6.220"
 		},
 		"configurator": {
 			"name": "MHC",

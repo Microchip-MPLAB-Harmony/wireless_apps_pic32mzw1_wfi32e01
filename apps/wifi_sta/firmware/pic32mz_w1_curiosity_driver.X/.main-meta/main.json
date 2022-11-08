@@ -4,7 +4,7 @@
 	"content": {
 		"metaDataVersion": "1.3.0",
 		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_wifi_sta_driver",
-		"version": "3.6.1",
+		"version": "3.7.0",
 		"displayName": "Wi-Fi Station(STA) Mode (Driver)",
 		"projectName": "wifi_sta_driver_pic32mz_w1_curiosity",
 		"shortDescription": "This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and exchange data directly using the WLAN driver APIs.",
@@ -20,7 +20,7 @@
 		],
 		"dfp": {
 			"name": "PIC32MZ-W_DFP",
-			"semverRange": "^1.5.203"
+			"semverRange": "^1.6.220"
 		},
 		"configurator": {
 			"name": "MHC",
