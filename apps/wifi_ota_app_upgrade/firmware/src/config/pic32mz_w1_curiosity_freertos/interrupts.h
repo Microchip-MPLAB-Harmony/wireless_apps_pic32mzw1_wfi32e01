@@ -50,11 +50,27 @@
 #include <stdint.h>
 
 
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Handler Routines
 // *****************************************************************************
 // *****************************************************************************
+
+void CORE_TIMER_InterruptHandler( void );
+void TIMER_2_InterruptHandler( void );
+void NVM_InterruptHandler( void );
+void RTCC_InterruptHandler( void );
+void SPI1_RX_InterruptHandler( void );
+void SPI1_TX_InterruptHandler( void );
+void UART1_FAULT_InterruptHandler( void );
+void UART1_RX_InterruptHandler( void );
+void UART1_TX_InterruptHandler( void );
+void WDRV_PIC32MZW_TasksRFSMCISR( void );
+void WDRV_PIC32MZW_TasksRFMACISR( void );
+void WDRV_PIC32MZW_TasksRFTimer0ISR( void );
+void DRV_BA414E_InterruptHandler( void );
+void DRV_BA414E_ErrorInterruptHandler( void );
 
 
 

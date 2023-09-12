@@ -48,10 +48,10 @@
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-
 #include "configuration.h"
 #include "interrupts.h"
 #include "definitions.h"
+
 
 
 // *****************************************************************************
@@ -61,15 +61,24 @@
 // *****************************************************************************
 
 
-void NVM_InterruptHandler( void );
-void SPI1_RX_InterruptHandler( void );
-void SPI1_TX_InterruptHandler( void );
-void I2C1_BUS_InterruptHandler( void );
-void I2C1_MASTER_InterruptHandler( void );
-
-
-
 /* All the handlers are defined here.  Each will call its PLIB-specific function. */
+// *****************************************************************************
+// *****************************************************************************
+// Section: System Interrupt Vector declarations
+// *****************************************************************************
+// *****************************************************************************
+void FLASH_CONTROL_Handler (void);
+void SPI1_RX_Handler (void);
+void SPI1_TX_Handler (void);
+void I2C1_BUS_Handler (void);
+void I2C1_MASTER_Handler (void);
+
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: System Interrupt Vector definitions
+// *****************************************************************************
+// *****************************************************************************
 void __ISR(_FLASH_CONTROL_VECTOR, ipl1SRS) FLASH_CONTROL_Handler (void)
 {
     NVM_InterruptHandler();

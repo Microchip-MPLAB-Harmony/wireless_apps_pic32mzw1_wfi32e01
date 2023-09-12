@@ -166,6 +166,10 @@ typedef struct
 typedef struct OTA_PARAMS {
         char    ota_server_url[OTA_URL_SIZE];
         char    serv_app_digest_string[66];
+#ifdef SYS_OTA_FILE_DOWNLOAD_ENABLED
+        int8_t file_index;
+        char    file_url[OTA_URL_SIZE];
+#endif
 #ifdef SYS_OTA_SECURE_BOOT_ENABLED		
         char    serv_app_digest_sign_string[98];
 #endif		
@@ -193,7 +197,6 @@ typedef struct OTA_PARAMS {
         uint8_t patch_progress_status;
 #endif
 } OTA_PARAMS;
-
 
 // *****************************************************************************
 /*

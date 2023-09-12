@@ -48,14 +48,14 @@
 
 void RNG_Initialize (void)
 {
-	/* Setup RNGCON		*/
-	/* PLEN 	= 0	*/
-	/* TRNGEN	= 1		*/
-	/* PRNGEN	= 1		*/
-	/* CONT 	= 1		*/
-	/* TRNGMODE	= 0 	*/
-	
-	RNGCON = 0x700;
+    /* Setup RNGCON        */
+    /* PLEN     = 0    */
+    /* TRNGEN   = 1      */
+    /* PRNGEN   = 1      */
+    /* CONT     = 1        */
+    /* TRNGMODE = 0    */
+
+    RNGCON = 0x700;
 }
 
 void RNG_TrngEnable(void)
@@ -71,21 +71,25 @@ void RNG_TrngDisable(void)
 void RNG_WaitForTrngCnt(void)
 {
     /* Random number is ready when RNGCNT value reaches PRNG Polynomial Length */
-    while (RNGCNT < 0);
+    while (RNGCNT < 0U)
+    {
+          /* Nothing to do */
+     }
+
 }
 
 uint32_t RNG_Seed1Get (void)
 {
-	uint32_t seed = RNGSEED1;
-	
-	return seed;
+    uint32_t seed = RNGSEED1;
+
+    return seed;
 }
 
 uint32_t RNG_Seed2Get (void)
 {
-	uint32_t seed = RNGSEED2;
-	
-	return seed;
+    uint32_t seed = RNGSEED2;
+
+    return seed;
 }
 
 void RNG_PrngEnable(void)
@@ -100,48 +104,48 @@ void RNG_PrngDisable(void)
 
 void RNG_LoadSet (void)
 {
-	RNGCON |= _RNGCON_LOAD_MASK;
+    RNGCON |= _RNGCON_LOAD_MASK;
 }
 
 bool RNG_LoadGet (void)
 {
-	bool load = (RNGCON & _RNGCON_LOAD_MASK) >> _RNGCON_LOAD_POSITION;
-	
-	return load;
+    bool load = (((RNGCON & _RNGCON_LOAD_MASK) >> _RNGCON_LOAD_POSITION) != 0U);
+
+    return load;
 }
 
 void RNG_Poly1Set (uint32_t poly)
 {
-	RNGPOLY1 = poly;
+    RNGPOLY1 = poly;
 }
 
 void RNG_Poly2Set (uint32_t poly)
 {
-	RNGPOLY2 = poly;
+    RNGPOLY2 = poly;
 }
 
 uint32_t RNG_Poly1Get (void)
 {
-	uint32_t poly = RNGPOLY1;
-	
-	return poly;
+    uint32_t poly = RNGPOLY1;
+
+    return poly;
 }
 
 uint32_t RNG_Poly2Get (void)
 {
-	uint32_t poly = RNGPOLY2;
-	
-	return poly;
+    uint32_t poly = RNGPOLY2;
+
+    return poly;
 }
 
 void RNG_NumGen1Set (uint32_t numgen)
 {
-	RNGNUMGEN1 = numgen;
+    RNGNUMGEN1 = numgen;
 }
 
-void RNG_NumGen2Set (uint32_t numgen)
+void RNG_NumGen2Set (uint32_t poly)
 {
-	RNGNUMGEN2 = numgen;
+    RNGNUMGEN2 = poly;
 }
 
 /* Ensure to wait for 0 cycles (Polynomial length) after
@@ -150,9 +154,9 @@ void RNG_NumGen2Set (uint32_t numgen)
  */
 uint32_t RNG_NumGen1Get (void)
 {
-	uint32_t numgen = RNGNUMGEN1;
-	
-	return numgen;
+    uint32_t numgen = RNGNUMGEN1;
+
+    return numgen;
 }
 
 /* Ensure to wait for 0 cycles (Polynomial length) after
@@ -161,7 +165,7 @@ uint32_t RNG_NumGen1Get (void)
  */
 uint32_t RNG_NumGen2Get (void)
 {
-	uint32_t numgen = RNGNUMGEN2;
-	
-	return numgen;
+    uint32_t numgen = RNGNUMGEN2;
+
+    return numgen;
 }

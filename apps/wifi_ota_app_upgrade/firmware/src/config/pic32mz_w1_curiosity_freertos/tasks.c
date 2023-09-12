@@ -52,6 +52,7 @@
 
 #include "configuration.h"
 #include "definitions.h"
+#include "sys_tasks.h"
 
 
 // *****************************************************************************
@@ -77,9 +78,9 @@ void _DRV_BA414E_Tasks(  void *pvParameters  )
     }
 }
 
-void _DRV_MEMORY_0_Tasks(  void *pvParameters  )
+static void lDRV_MEMORY_0_Tasks(  void *pvParameters  )
 {
-    while(1)
+    while(true)
     {
         DRV_MEMORY_Tasks(sysObj.drvMemory0);
         vTaskDelay(DRV_MEMORY_RTOS_DELAY_IDX0 / portTICK_PERIOD_MS);
@@ -89,12 +90,12 @@ void _DRV_MEMORY_0_Tasks(  void *pvParameters  )
 /* Handle for the APP_Tasks. */
 TaskHandle_t xAPP_Tasks;
 
-void _APP_Tasks(  void *pvParameters  )
+static void lAPP_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_Tasks();
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(10U / portTICK_PERIOD_MS);
     }
 }
 
@@ -108,7 +109,8 @@ void _TCPIP_STACK_Task(  void *pvParameters  )
     }
 }
 
-void _SYS_CMD_Tasks(  void *pvParameters  )
+TaskHandle_t xSYS_CMD_Tasks;
+void lSYS_CMD_Tasks(  void *pvParameters  )
 {
     while(1)
     {
@@ -128,6 +130,7 @@ void _NET_PRES_Tasks(  void *pvParameters  )
     }
 }
 
+
 static void _WDRV_PIC32MZW1_Tasks(  void *pvParameters  )
 {
     while(1)
@@ -146,12 +149,12 @@ static void _WDRV_PIC32MZW1_Tasks(  void *pvParameters  )
 }
 
 
-void _SYS_FS_Tasks(  void *pvParameters  )
+static void lSYS_FS_Tasks(  void *pvParameters  )
 {
-    while(1)
+    while(true)
     {
         SYS_FS_Tasks();
-        vTaskDelay(1 / portTICK_PERIOD_MS);
+        vTaskDelay(1U / portTICK_PERIOD_MS);
     }
 }
 
@@ -186,17 +189,17 @@ void SYS_Tasks ( void )
     /* Maintain system services */
     
 
-    xTaskCreate( _SYS_CMD_Tasks,
+    (void) xTaskCreate( lSYS_CMD_Tasks,
         "SYS_CMD_TASKS",
         SYS_CMD_RTOS_STACK_SIZE,
         (void*)NULL,
         SYS_CMD_RTOS_TASK_PRIORITY,
-        (TaskHandle_t*)NULL
+        &xSYS_CMD_Tasks
     );
 
 
 
-    xTaskCreate( _SYS_FS_Tasks,
+    (void) xTaskCreate( lSYS_FS_Tasks,
         "SYS_FS_TASKS",
         SYS_FS_STACK_SIZE,
         (void*)NULL,
@@ -216,7 +219,7 @@ void SYS_Tasks ( void )
     );
 
 
-    xTaskCreate( _DRV_MEMORY_0_Tasks,
+    (void)xTaskCreate( lDRV_MEMORY_0_Tasks,
         "DRV_MEM_0_TASKS",
         DRV_MEMORY_STACK_SIZE_IDX0,
         (void*)NULL,
@@ -279,7 +282,7 @@ void SYS_Tasks ( void )
 
     /* Maintain the application's state machine. */
         /* Create OS Thread for APP_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_Tasks,
+    (void) xTaskCreate((TaskFunction_t) lAPP_Tasks,
                 "APP_Tasks",
                 1024,
                 NULL,

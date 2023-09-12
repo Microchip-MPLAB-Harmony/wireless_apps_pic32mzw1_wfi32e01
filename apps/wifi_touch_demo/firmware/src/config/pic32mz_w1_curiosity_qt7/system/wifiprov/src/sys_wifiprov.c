@@ -899,7 +899,7 @@ static void SYS_WIFIPROV_InitSocket(void)
             g_wifiProvSrvcSocket = INVALID_SOCKET;
         }
         /* Open the TCP server socket */
-        g_wifiProvSrvcSocket = TCPIP_TCP_ServerOpen(IP_ADDRESS_TYPE_IPV4, SYS_WIFIPROV_SOCKETPORT, 0);
+        g_wifiProvSrvcSocket = TCPIP_TCP_ServerOpen(IP_ADDRESS_TYPE_ANY, SYS_WIFIPROV_SOCKETPORT, 0);
         if (g_wifiProvSrvcSocket == INVALID_SOCKET) 
         {
             SYS_CONSOLE_MESSAGE("Couldn't open Wi-Fi Provision service server socket \r\n");

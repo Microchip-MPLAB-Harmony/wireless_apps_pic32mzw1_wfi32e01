@@ -671,11 +671,14 @@ void SYS_MQTT_Paho_Task(SYS_MODULE_OBJ obj)
 
     case SYS_MQTT_STATUS_MQTT_DISCONNECTED:
     {
-        /* Delete Semaphore */
-        OSAL_SEM_Delete(&hdl->InstSemaphore);
+        if(hdl->sCfgInfo.sBrokerConfig.autoConnect == false)
+        {
+            /* Delete Semaphore */
+            OSAL_SEM_Delete(&hdl->InstSemaphore);
 
-        /* Free the handle */
-        SYS_MQTT_FreeHandle(hdl);
+            /* Free the handle */
+            SYS_MQTT_FreeHandle(hdl);
+        }
     }
         break;
 

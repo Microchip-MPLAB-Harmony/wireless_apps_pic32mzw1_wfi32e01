@@ -52,6 +52,7 @@
 
 #include "configuration.h"
 #include "definitions.h"
+#include "sys_tasks.h"
 
 
 
@@ -95,7 +96,7 @@ DRV_BA414E_Tasks(sysObj.ba414e);
 
 
 
-TCPIP_STACK_Task(sysObj.tcpip);
+   TCPIP_STACK_Task(sysObj.tcpip);
 
 
 SYS_WIFI_Tasks(sysObj.syswifi);

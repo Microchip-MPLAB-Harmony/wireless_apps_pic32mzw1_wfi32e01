@@ -38,8 +38,8 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#ifndef _PLIB_RNG_H
-#define _PLIB_RNG_H
+#ifndef PLIB_RNG_H
+#define PLIB_RNG_H
 
 #include <stddef.h>
 #include <stdbool.h>
@@ -90,4 +90,4 @@ uint32_t RNG_NumGen2Get (void);
 #endif
 
 // DOM-IGNORE-END
-#endif // _PLIB_RNG_H
+#endif // PLIB_RNG_H

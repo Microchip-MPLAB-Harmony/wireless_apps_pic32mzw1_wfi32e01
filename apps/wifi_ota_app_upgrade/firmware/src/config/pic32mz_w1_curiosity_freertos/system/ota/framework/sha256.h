@@ -48,19 +48,19 @@ typedef struct {
 	uint32_t datalen;
 	unsigned long long bitlen;
 	uint32_t state[8];
-} SHA256_CTX;
+} OTA_SHA256_CTX;
 
 /*********************** FUNCTION DECLARATIONS **********************/
-void sha256_init(SHA256_CTX *ctx);
-void sha256_update(SHA256_CTX *ctx, const uint8_t data[], size_t len);
-void sha256_final(SHA256_CTX *ctx, uint8_t hash[]);
+void ota_sha256_init(OTA_SHA256_CTX *ctx);
+void ota_sha256_update(OTA_SHA256_CTX *ctx, const uint8_t data[], size_t len);
+void ota_sha256_final(OTA_SHA256_CTX *ctx, uint8_t hash[]);
 
 
-#define CRYPT_SHA256_CTX                        SHA256_CTX
-#define CRYPT_SHA256_DIGEST_SIZE 				32
-#define CRYPT_SHA256_Initialize(ctx)			sha256_init(ctx)
-#define CRYPT_SHA256_DataSizeSet(ctx, len)
-#define CRYPT_SHA256_DataAdd(ctx, buf, len)		sha256_update(ctx, buf, len)
-#define CRYPT_SHA256_Finalize(ctx, digest)		sha256_final(ctx, digest)
+#define OTA_CRYPT_SHA256_CTX                        OTA_SHA256_CTX
+#define OTA_CRYPT_SHA256_DIGEST_SIZE 				32
+#define OTA_CRYPT_SHA256_Initialize(ctx)			ota_sha256_init(ctx)
+#define OTA_CRYPT_SHA256_DataSizeSet(ctx, len)
+#define OTA_CRYPT_SHA256_DataAdd(ctx, buf, len)		ota_sha256_update(ctx, buf, len)
+#define OTA_CRYPT_SHA256_Finalize(ctx, digest)		ota_sha256_final(ctx, digest)
 
 #endif   // SHA256_H

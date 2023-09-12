@@ -84,6 +84,13 @@ typedef enum
 #define NVM_INTERRUPT_ENABLE_MASK   0x40000000
 #define NVM_INTERRUPT_FLAG_MASK     0x40000000
 
+typedef struct
+{
+    NVM_CALLBACK CallbackFunc;
+    uintptr_t Context;
+}nvmCallbackObjType;
+
+volatile static nvmCallbackObjType nvmCallbackObj;
 /* ************************************************************************** */
 /* ************************************************************************** */
 // Section: Local Functions                                                   */
@@ -96,24 +103,21 @@ typedef enum
 // *****************************************************************************
 // *****************************************************************************
 
-NVM_CALLBACK nvmCallbackFunc;
-
-uintptr_t nvmContext;
-
 void NVM_CallbackRegister( NVM_CALLBACK callback, uintptr_t context )
 {
     /* Register callback function */
-    nvmCallbackFunc    = callback;
-    nvmContext         = context;
+    nvmCallbackObj.CallbackFunc    = callback;
+    nvmCallbackObj.Context         = context;
 }
 
-void NVM_InterruptHandler( void )
+void __attribute__((used)) NVM_InterruptHandler( void )
 {
     IFS0CLR = NVM_INTERRUPT_FLAG_MASK;
 
-    if(nvmCallbackFunc != NULL)
+    if(nvmCallbackObj.CallbackFunc != NULL)
     {
-        nvmCallbackFunc(nvmContext);
+        uintptr_t context = nvmCallbackObj.Context;
+        nvmCallbackObj.CallbackFunc(context);
     }
 }
 
@@ -180,10 +184,11 @@ void NVM_Initialize( void )
     NVM_StartOperationAtAddress( NVMADDR,  NO_OPERATION );
 }
 
+
 bool NVM_Read( uint32_t *data, uint32_t length, const uint32_t address )
 {
-    const uint32_t *paddress_read = (uint32_t *)address;
-    (void) memcpy(data, KVA0_TO_KVA1(paddress_read), length);
+    /* MISRA C-2012 Rule 11.6 violated 1 time below. Deviation record ID - H3_MISRAC_2012_R_11_6_DR_1*/
+    (void) memcpy(data, (uint32_t*)KVA0_TO_KVA1(address), length);
     return true;
 }
 

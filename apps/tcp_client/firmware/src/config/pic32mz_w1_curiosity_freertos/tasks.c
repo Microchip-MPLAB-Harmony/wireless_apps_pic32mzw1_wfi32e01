@@ -52,6 +52,7 @@
 
 #include "configuration.h"
 #include "definitions.h"
+#include "sys_tasks.h"
 
 
 // *****************************************************************************
@@ -71,12 +72,12 @@ void _DRV_BA414E_Tasks(  void *pvParameters  )
 /* Handle for the APP_PIC32MZW1_Tasks. */
 TaskHandle_t xAPP_PIC32MZW1_Tasks;
 
-void _APP_PIC32MZW1_Tasks(  void *pvParameters  )
+static void lAPP_PIC32MZW1_Tasks(  void *pvParameters  )
 {   
-    while(1)
+    while(true)
     {
         APP_PIC32MZW1_Tasks();
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(10U / portTICK_PERIOD_MS);
     }
 }
 
@@ -90,7 +91,8 @@ void _TCPIP_STACK_Task(  void *pvParameters  )
     }
 }
 
-void _SYS_CMD_Tasks(  void *pvParameters  )
+TaskHandle_t xSYS_CMD_Tasks;
+void lSYS_CMD_Tasks(  void *pvParameters  )
 {
     while(1)
     {
@@ -109,6 +111,7 @@ void _NET_PRES_Tasks(  void *pvParameters  )
         vTaskDelay(1 / portTICK_PERIOD_MS);
     }
 }
+
 
 static void _WDRV_PIC32MZW1_Tasks(  void *pvParameters  )
 {
@@ -157,12 +160,12 @@ void SYS_Tasks ( void )
     /* Maintain system services */
     
 
-    xTaskCreate( _SYS_CMD_Tasks,
+    (void) xTaskCreate( lSYS_CMD_Tasks,
         "SYS_CMD_TASKS",
         SYS_CMD_RTOS_STACK_SIZE,
         (void*)NULL,
         SYS_CMD_RTOS_TASK_PRIORITY,
-        (TaskHandle_t*)NULL
+        &xSYS_CMD_Tasks
     );
 
 
@@ -224,7 +227,7 @@ void SYS_Tasks ( void )
 
     /* Maintain the application's state machine. */
         /* Create OS Thread for APP_PIC32MZW1_Tasks. */
-    xTaskCreate((TaskFunction_t) _APP_PIC32MZW1_Tasks,
+    (void) xTaskCreate((TaskFunction_t) lAPP_PIC32MZW1_Tasks,
                 "APP_PIC32MZW1_Tasks",
                 1024,
                 NULL,

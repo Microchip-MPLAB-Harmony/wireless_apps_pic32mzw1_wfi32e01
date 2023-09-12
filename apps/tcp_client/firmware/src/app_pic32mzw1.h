@@ -60,7 +60,7 @@ extern "C" {
 
 /*******************************************************************************
   Function:
-    void APP_Initialize ( void )
+    void APP_PIC32MZW1_Initialize ( void )
 
   Summary:
      MPLAB Harmony application initialization routine.
@@ -68,7 +68,7 @@ extern "C" {
   Description:
     This function initializes the Harmony application.  It places the
     application in its initial state and prepares it to run so that its
-    APP_Tasks function can be called.
+    APP_PIC32MZW1_Tasks function can be called.
 
   Precondition:
     All other system initialization routines should be called before calling
@@ -82,7 +82,7 @@ extern "C" {
 
   Example:
     <code>
-    APP_Initialize();
+    APP_PIC32MZW1_Initialize();
     </code>
 
   Remarks:
@@ -94,7 +94,7 @@ void APP_PIC32MZW1_Initialize ( void );
 
 /*******************************************************************************
   Function:
-    void APP_Tasks ( void )
+    void APP_PIC32MZW1_Tasks ( void )
 
   Summary:
     MPLAB Harmony Demo application tasks function
@@ -115,7 +115,7 @@ void APP_PIC32MZW1_Initialize ( void );
 
   Example:
     <code>
-    APP_Tasks();
+    APP_PIC32MZW1_Tasks();
     </code>
 
   Remarks:
@@ -130,7 +130,7 @@ void APP_PIC32MZW1_Tasks( void );
 #endif
 //DOM-IGNORE-END
 
-#endif /* _APP_RIO2_H */
+#endif /* _APP_PIC32MZW1_H */
 
 /*******************************************************************************
  End of File

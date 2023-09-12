@@ -194,6 +194,7 @@ typedef struct
     /* Wi-Fi station mode IP address */
     IPV4_ADDR ipAddr;
 
+
 } SYS_WIFIPROV_STA_CONFIG;
 
 // *****************************************************************************

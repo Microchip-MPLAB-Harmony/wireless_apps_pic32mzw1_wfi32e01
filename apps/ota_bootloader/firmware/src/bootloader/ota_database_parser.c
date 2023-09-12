@@ -50,9 +50,12 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "osal/osal.h"
 #include "../bootloader/csv/csv.h"
 #include "ota_database_parser.h"
+#include "bootloader.h"
 #include <string.h>
 #define APP_MOUNT_NAME          "/mnt/myDrive1"
 #define SYS_CONSOLE_DEBUG1      printf /*To Do*/
+
+#ifdef SYS_OTA_FS_ENABLED
 /*
  ** Get buffer for image data base in the external flash
  */
@@ -266,3 +269,4 @@ int OTADbDeleteEntry(OTA_DB_BUFFER *imageDB, uint8_t selected_row) {
         return -1;
     return 0;
 }
+#endif

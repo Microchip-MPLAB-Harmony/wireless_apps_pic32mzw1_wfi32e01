@@ -45,7 +45,13 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-
+#include "definitions.h"
+#include "configuration.h"
+#include <wolfssl/wolfcrypt/coding.h>
+#include <wolfssl/wolfcrypt/sha.h>
+#include <wolfssl/wolfcrypt/hash.h>
+#include <strings.h>
+#include <stdlib.h>
 
 
 // DOM-IGNORE-BEGIN
@@ -64,7 +70,67 @@ extern "C" {
 // *****************************************************************************
 
 // *****************************************************************************    
-    
+
+/* SYS_WSS_MASKING_KEY_LEN
+
+  Summary:
+     - Set to 4
+
+  Remarks:
+       Length of the masking key used in the websocket client.
+ */
+#define SYS_WSS_MASKING_KEY_LEN         4
+
+/* SYS_WSS_HEADER_LEN
+
+  Summary:
+     - Set to 2
+
+  Remarks:
+       Length of the websocket frame header in bytes.
+ */
+#define SYS_WSS_HEADER_LEN              2
+
+/* SYS_WSS_SERVER
+
+  Summary:
+     - Set to 1
+
+  Remarks:
+       Indicates the server mode of the websocket service.
+ */
+#define SYS_WSS_SERVER                  1
+
+/* SYS_WSS_CLIENT
+
+  Summary:
+     - Set to 0
+
+  Remarks:
+       Indicates the client mode of the websocket service.
+ */
+#define SYS_WSS_CLIENT                  0
+
+/* SYS_WSS_ETHERNET
+
+  Summary:
+     - Set to 1
+
+  Remarks:
+       Indicates the ethernet interface used  in the websocket service.
+ */
+#define SYS_WSS_ETHERNET                1
+
+/* SYS_WSS_WIFI
+
+  Summary:
+     - Set to 0
+
+  Remarks:
+       Indicates the Wi-Fi interface used  in the websocket service.
+ */ 
+#define SYS_WSS_WIFI                    0
+
 /* SYS_WSS_KA_TIMER_PERIOD
 
   Summary:
@@ -442,6 +508,9 @@ extern "C" {
         uint8_t fin : 1;         // fin bit as defined by RFC6455.Indicates that this is the final fragment in a message.0=first frame, 1= final frame
         uint8_t payloadLen : 7;  //byte1, Payload length as defined by the RFC6455.It can be 7 bits, 7+16 bits, or 7+64 bits.
         uint8_t mask : 1;        //Defines whether the "Payload data" is masked. 1=masked,0=not masked
+#if SYS_WSS_MODE == WSS_CLIENT
+        uint8_t  maskingKey[SYS_WSS_MASKING_KEY_LEN];
+#endif
         uint8_t extPayloadLen[]; //byte2,Extended payload length, I can be 16 or 64 bits based on the payloadLen
     } SYS_WSS_FRAME_HEADER;
 

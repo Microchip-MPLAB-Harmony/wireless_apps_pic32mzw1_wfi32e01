@@ -48,10 +48,10 @@
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-
 #include "configuration.h"
 #include "interrupts.h"
 #include "definitions.h"
+
 
 
 // *****************************************************************************
@@ -61,26 +61,35 @@
 // *****************************************************************************
 
 
-void EXTERNAL_0_InterruptHandler( void );
-void TIMER_1_InterruptHandler( void );
-void TIMER_3_InterruptHandler( void );
-void NVM_InterruptHandler( void );
-void RTCC_InterruptHandler( void );
-void UART1_FAULT_InterruptHandler( void );
-void UART1_RX_InterruptHandler( void );
-void UART1_TX_InterruptHandler( void );
-void I2C1_BUS_InterruptHandler( void );
-void I2C1_MASTER_InterruptHandler( void );
-void CHANGE_NOTICE_A_InterruptHandler( void );
-void WDRV_PIC32MZW_TasksRFSMCISR( void );
-void WDRV_PIC32MZW_TasksRFMACISR( void );
-void WDRV_PIC32MZW_TasksRFTimer0ISR( void );
-void DRV_BA414E_InterruptHandler( void );
-void DRV_BA414E_ErrorInterruptHandler( void );
-
-
-
 /* All the handlers are defined here.  Each will call its PLIB-specific function. */
+// *****************************************************************************
+// *****************************************************************************
+// Section: System Interrupt Vector declarations
+// *****************************************************************************
+// *****************************************************************************
+void EXTERNAL_0_Handler (void);
+void TIMER_1_Handler (void);
+void TIMER_3_Handler (void);
+void FLASH_CONTROL_Handler (void);
+void RTCC_Handler (void);
+void UART1_FAULT_Handler (void);
+void UART1_RX_Handler (void);
+void UART1_TX_Handler (void);
+void I2C1_BUS_Handler (void);
+void I2C1_MASTER_Handler (void);
+void CHANGE_NOTICE_A_Handler (void);
+void RFSMC_Handler (void);
+void RFMAC_Handler (void);
+void RFTM0_Handler (void);
+void CRYPTO1_Handler (void);
+void CRYPTO1_FAULT_Handler (void);
+
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: System Interrupt Vector definitions
+// *****************************************************************************
+// *****************************************************************************
 void __ISR(_EXTERNAL_0_VECTOR, ipl2SRS) EXTERNAL_0_Handler (void)
 {
     EXTERNAL_0_InterruptHandler();

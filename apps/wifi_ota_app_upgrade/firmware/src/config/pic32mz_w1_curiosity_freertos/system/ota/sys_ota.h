@@ -86,6 +86,10 @@ extern "C" {
     #define JSON_URL_MAX_LEN    1000
 #endif
     #define FACTORY_IMAGE_SIGNATURE_MAX_LEN    1000
+    
+    #define SYS_OTA_WIFI 0
+	
+    #define SYS_OTA_ETHERNET 1
     // *****************************************************************************
 
     /* Application states
@@ -161,7 +165,6 @@ extern "C" {
 
         /*Checking JSON content for proper value and mandatory fields */
         SYS_OTA_UPDATE_CHECK_JSON_CONTENT,
-
         /*Complete of OTA update check*/
         SYS_OTA_UPDATE_CHECK_DONE,
         
@@ -171,8 +174,9 @@ extern "C" {
 
     } SYS_OTA_STATES;
 
-    // *****************************************************************************
 
+
+    // *****************************************************************************//
     /* System ota service control message types
 
       Summary:
@@ -656,10 +660,10 @@ extern "C" {
     // *****************************************************************************
 
     /* Function:
-       SYS_OTA_RESULT SYS_OTA_CtrlMsg(uint32_t event, void *buffer, uint32_t length);
+       void SYS_OTA_SET_PARAMETERS(char *url, uint32_t version, char *digest)
 
       Summary:
-        Returns success/ failure for the update check/ota trigger/system reset operations asked by client. 
+        This function is used to set OTA server and image related parameters
 
       Description:
         This function is used to set OTA server and image related parameters

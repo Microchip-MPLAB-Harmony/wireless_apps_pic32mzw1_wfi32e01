@@ -139,6 +139,14 @@ typedef enum {
 
 //#define SYS_OTA_SECURE_BOOT_ENABLED
 
+/* Should be defined if the user wants to use the External flash memory to download the file  */
+#define SYS_OTA_FS_ENABLED
+
+#ifndef SYS_OTA_FS_ENABLED
+/* Jump to the new application image downloaded via OTA. This will be available only if the OTA is using internal memory to download image. In this case, user should disable "SYS_OTA_FS_ENABLED" */
+//#define SYS_OTA_FILE_JUMP_ENABLE    
+#endif
+
 #ifdef  __cplusplus
 }
 #endif

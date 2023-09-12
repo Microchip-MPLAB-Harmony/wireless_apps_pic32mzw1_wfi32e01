@@ -52,18 +52,18 @@
 #include "crypto/crypto.h"
 #include "driver/ba414e/drv_ba414e.h"
 #include "system/net/sys_net.h"
-#include "peripheral/nvm/plib_nvm.h"
 #include "system/time/sys_time.h"
-#include "peripheral/uart/plib_uart3.h"
+#include "peripheral/nvm/plib_nvm.h"
 #include "peripheral/coretimer/plib_coretimer.h"
+#include "peripheral/uart/plib_uart3.h"
 #include "peripheral/uart/plib_uart1.h"
+#include "library/tcpip/tcpip.h"
+#include "system/sys_time_h2_adapter.h"
+#include "system/sys_random_h2_adapter.h"
 #include "system/int/sys_int.h"
 #include "system/reset/sys_reset.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
-#include "library/tcpip/tcpip.h"
-#include "system/sys_time_h2_adapter.h"
-#include "system/sys_random_h2_adapter.h"
 #include "system/command/sys_command.h"
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/gpio/plib_gpio.h"
@@ -90,6 +90,12 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+
+/* Device Information */
+#define DEVICE_NAME			 "PIC32MZ1025W104132"
+#define DEVICE_ARCH			 "MIPS"
+#define DEVICE_FAMILY		 "PIC32MZW"
+#define DEVICE_SERIES		 "PIC32MZW"
 
 /* CPU clock frequency */
 #define CPU_CLOCK_FREQUENCY 200000000
@@ -215,6 +221,7 @@ typedef struct
     SYS_MODULE_OBJ  sysDebug;
 
     SYS_MODULE_OBJ  netPres;
+
 
     SYS_MODULE_OBJ  drvWifiPIC32MZW1;
     SYS_MODULE_OBJ  syswifi;

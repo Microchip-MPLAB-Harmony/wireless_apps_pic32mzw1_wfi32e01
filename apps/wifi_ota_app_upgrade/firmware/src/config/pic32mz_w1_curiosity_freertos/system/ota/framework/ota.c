@@ -49,7 +49,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "osal/osal.h"
 #include "crypto/crypto.h"
 #include "system/ota/framework/csv/csv.h"
-
 #ifdef SYS_OTA_PATCH_ENABLE
 #include "ota_patch.h"
 #endif
@@ -65,6 +64,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 
 
+
 #define BOOT_ADDRESS    0xB0020000 + 0x00001000
 #define APP_IMG_BOOT_CTL_BLANK      { 0xFF, 0xFF, 0xFF, 0x03, 0xFFFFFFFF,  0x00000001   ,  BOOT_ADDRESS  }
 #define OTA_DOWNLOADER_TIMEOUT 1000
@@ -75,7 +75,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define APP_DEVICE_NAME         "/dev/mtda1"
 #define APP_FS_TYPE             FAT
 #define FACTORY_IMAGE           "factory_reset.bin"
-
 
 #ifdef SYS_OTA_FREE_SECTOR_CHECK_ENABLE
 #define OTA_CHECK_FREE_SECTOR
@@ -146,9 +145,9 @@ typedef struct {
 static OTA_DATA __attribute__((coherent, aligned(128))) ota;
 
 static OTA_PARAMS ota_params;
-static OTA_DB_BUFFER *imageDB;
+
 extern size_t field_content_length;
-static char image_name[100];
+
 #ifdef SYS_OTA_SECURE_BOOT_ENABLED
 static char image_signature_file_name[100];
 #endif
@@ -158,6 +157,9 @@ static bool patch_verification = false;
 static uint8_t serv_app_patch_digest_g[32];
 static char serv_app_patch_digest_gl[4];
 #endif
+
+static char image_name[100];
+static OTA_DB_BUFFER *imageDB;
 static uint8_t serv_app_digest_g[32];
 static char serv_app_digest_gl[4];
 static int8_t selected_row;
@@ -200,7 +202,6 @@ typedef struct {
 
 } APP_DATA_FILE;
 APP_DATA_FILE CACHE_ALIGN appFile;
-
 #ifdef SYS_OTA_PATCH_ENABLE
 OTA_PATCH_PARAMS_t patch_param;
 #endif
@@ -555,6 +556,7 @@ static void OTA_patch_build_image_path() {
     strcpy((strrchr(image_name, '.') + 1), "bin");
 }
 #endif
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: convert string digest into hex format
@@ -589,7 +591,6 @@ static void formulate_digest() {
         SYS_CONSOLE_PRINT("SYS OTA : formulated digest[%d]: %x\r\n", i, serv_app_digest_g[i]);
 #endif
     }
-    
 #ifdef SYS_OTA_PATCH_ENABLE
     if(ota_params.patch_request == true){
         index = 0;
@@ -907,6 +908,7 @@ static void OTA_CleanUp(void) {
         csv_destroy_buffer((CSV_BUFFER *) imageDB);
     SYS_FS_DirClose(dirHandle);
 }
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: To update user about OTA status
@@ -1199,7 +1201,7 @@ static SYS_STATUS OTA_Task_DownloadImage(void) {
 //---------------------------------------------------------------------------
 
 typedef struct {
-    CRYPT_SHA256_CTX *sha256;
+    OTA_CRYPT_SHA256_CTX *sha256;
     uint8_t *buf;
     uint32_t len;
     uint32_t offset;
@@ -1228,17 +1230,17 @@ static SYS_STATUS OTA_Task_VerifyImage(void) {
             ctx->offset = 0;
             ctx->len = FLASH_SECTOR_SIZE;
             ctx->buf = (uint8_t*) OSAL_Malloc(
-                    FLASH_SECTOR_SIZE + sizeof (CRYPT_SHA256_CTX) + 128);
+                    FLASH_SECTOR_SIZE + sizeof (OTA_CRYPT_SHA256_CTX) + 128);
             formulate_digest();
             if (ctx->buf == NULL) {
 
                 return SYS_STATUS_ERROR;
             }
             /*Below step need to check*/
-            ctx->sha256 = (CRYPT_SHA256_CTX *) (((unsigned long) ctx->buf + FLASH_SECTOR_SIZE + 128) & 0xFFFFFF80);
+            ctx->sha256 = (OTA_CRYPT_SHA256_CTX *) (((unsigned long) ctx->buf + FLASH_SECTOR_SIZE + 128) & 0xFFFFFF80);
 
-            memset(ctx->sha256, 0, sizeof (CRYPT_SHA256_CTX));
-            CRYPT_SHA256_Initialize(ctx->sha256);
+            memset(ctx->sha256, 0, sizeof (OTA_CRYPT_SHA256_CTX));
+            OTA_CRYPT_SHA256_Initialize(ctx->sha256);
 
             ctx->img_sz = field_content_length;
             
@@ -1274,7 +1276,7 @@ static SYS_STATUS OTA_Task_VerifyImage(void) {
         case TASK_STATE_V_READ:
         {
 
-            CRYPT_SHA256_DataAdd(ctx->sha256, ctx->buf, ctx->len);
+            OTA_CRYPT_SHA256_DataAdd(ctx->sha256, ctx->buf, ctx->len);
             ctx->offset += ctx->len;
 
             if (ctx->offset == ctx->img_sz) {
@@ -1300,11 +1302,11 @@ static SYS_STATUS OTA_Task_VerifyImage(void) {
         }
         case TASK_STATE_V_DONE:
         {
-            uint8_t digest[CRYPT_SHA256_DIGEST_SIZE];
+            uint8_t digest[OTA_CRYPT_SHA256_DIGEST_SIZE];
             FIRMWARE_IMAGE_HEADER *img;
             if (param->abort == 0) {
 
-                CRYPT_SHA256_Finalize(ctx->sha256, digest);
+                OTA_CRYPT_SHA256_Finalize(ctx->sha256, digest);
                 img = (FIRMWARE_IMAGE_HEADER*) ctx->buf;
                 int i;
 #ifdef SYS_OTA_PATCH_ENABLE                 
@@ -1330,7 +1332,7 @@ static SYS_STATUS OTA_Task_VerifyImage(void) {
                     SYS_CONSOLE_PRINT("SYS OTA : digest[%d] = %d, img->digest[%d] = %d\r\n", i, digest[i], i, img->digest[i]);
                 }
 #endif
-                if (memcmp(digest, img->digest, CRYPT_SHA256_DIGEST_SIZE) != 0) {
+                if (memcmp(digest, img->digest, OTA_CRYPT_SHA256_DIGEST_SIZE) != 0) {
                     SYS_CONSOLE_MESSAGE("SYS OTA : digest mismatch\r\n");
                     status = SYS_STATUS_ERROR;
                 } else {
@@ -1596,7 +1598,7 @@ static SYS_STATUS OTA_Task_FactoryReset(void) {
 #if (SERVICE_TYPE == OTA_DEBUG)
             SYS_CONSOLE_PRINT("Removing \r\n");
 #endif
-            SYS_FS_RESULT res;
+            SYS_FS_RESULT res = SYS_FS_RES_SUCCESS;
             res = SYS_FS_FileDirectoryRemove(APP_DIR_NAME"/image_database.csv");
             if (res == SYS_FS_RES_FAILURE) {
                 // Directory remove operation failed
@@ -1783,7 +1785,6 @@ SYS_STATUS OTA_Start(OTA_PARAMS *param) {
 #endif    
 	memcpy(ota_params.ota_server_url, param->ota_server_url, strlen(param->ota_server_url) + 1);
     ota_params.version = param->version;
-    
 #ifdef SYS_OTA_PATCH_ENABLE      
     if(param->patch_request == true)
     {
@@ -1911,7 +1912,6 @@ SYS_STATUS OTA_EraseImage(uint32_t version) {
     ota.status = SYS_STATUS_BUSY;
     return SYS_STATUS_READY;
 }
-
 // *****************************************************************************
 // *****************************************************************************
 // Section: Erase a particular version of image 
@@ -2076,6 +2076,7 @@ SYS_STATUS OTA_Search_ImageVersion(uint32_t version,char *base_ver_digest) {
     return SYS_STATUS_READY;
 }
 #endif
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: To check if OTA state is idel
@@ -2168,6 +2169,7 @@ void OTA_Tasks(void) {
         case OTA_TASK_SET_IMAGE_STATUS:
         {
             ota.ota_idle = false;
+			ota.status = SYS_STATUS_READY;
             ota.status = OTA_Task_SetImageStatus();
             if (ota.status != SYS_STATUS_BUSY) {
                 ota.ota_result = OTA_RESULT_NONE;
@@ -2203,7 +2205,6 @@ void OTA_Tasks(void) {
                 ota.task.state = OTA_TASK_INIT;
 #endif
             }
-            
 #ifdef SYS_OTA_PATCH_ENABLE               
             if (ota.ota_result == OTA_RESULT_PATCH_IMAGE_DIGEST_VERIFY_SUCCESS) {
                 ota.current_task = OTA_TASK_PATCH_BUILD_IMAGE;
@@ -2254,7 +2255,6 @@ void OTA_Tasks(void) {
             break;
         }
 #endif
-        
 #ifdef SYS_OTA_PATCH_ENABLE        
         case OTA_TASK_SEARCH_PATCH_BASEVERSION:
         {
@@ -2272,10 +2272,11 @@ void OTA_Tasks(void) {
             }
             break;
         }
-#endif        
+#endif 
         case OTA_TASK_DOWNLOAD_IMAGE:
         {
             ota.ota_idle = false;
+			ota.status = SYS_STATUS_READY;
             ota.status = OTA_Task_DownloadImage();
             if (ota.status == SYS_STATUS_READY) {
                 if(ota_isTls_request == true){
@@ -2302,7 +2303,6 @@ void OTA_Tasks(void) {
 
             break;
         }
-        
 #ifdef SYS_OTA_PATCH_ENABLE        
         case OTA_TASK_PATCH_BUILD_IMAGE:
         {           
@@ -2341,6 +2341,7 @@ void OTA_Tasks(void) {
         case OTA_TASK_VERIFY_IMAGE_DIGEST:
         {
             ota.ota_idle = false;
+			ota.status = SYS_STATUS_READY;
 #ifdef SYS_OTA_PATCH_ENABLE            
             patch_verification = false;
 #endif
@@ -2374,7 +2375,6 @@ void OTA_Tasks(void) {
             }
             break;
         }
-        
 #ifdef SYS_OTA_PATCH_ENABLE        
         case OTA_TASK_VERIFY_PATCH_IMAGE_DIGEST:
         {
@@ -2412,6 +2412,7 @@ void OTA_Tasks(void) {
         case OTA_TASK_DATABASE_ENTRY:
         {
             ota.ota_idle = false;
+			ota.status = SYS_STATUS_READY;
             ota.status = OTA_Task_DataEntry();
             if (ota.status == SYS_STATUS_READY) {
 #if (SERVICE_TYPE == OTA_DEBUG)
@@ -2450,6 +2451,7 @@ void OTA_Tasks(void) {
         case OTA_TASK_ERASE_IMAGE:
         {
             ota.ota_idle = false;
+			ota.status = SYS_STATUS_READY;
 #if (SERVICE_TYPE == OTA_DEBUG)
             SYS_CONSOLE_MESSAGE("SYS OTA : OTA_TASK_ERASE_IMAGE\r\n");
 #endif

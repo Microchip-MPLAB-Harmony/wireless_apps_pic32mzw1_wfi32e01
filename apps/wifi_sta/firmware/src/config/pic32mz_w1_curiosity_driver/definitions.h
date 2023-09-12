@@ -83,6 +83,12 @@ extern "C" {
 #endif
 // DOM-IGNORE-END
 
+/* Device Information */
+#define DEVICE_NAME			 "PIC32MZ1025W104132"
+#define DEVICE_ARCH			 "MIPS"
+#define DEVICE_FAMILY		 "PIC32MZW"
+#define DEVICE_SERIES		 "PIC32MZW"
+
 /* CPU clock frequency */
 #define CPU_CLOCK_FREQUENCY 200000000
 
@@ -202,6 +208,7 @@ typedef struct
 
     SYS_MODULE_OBJ  tcpip;
     SYS_MODULE_OBJ  sysDebug;
+
 
     SYS_MODULE_OBJ  drvWifiPIC32MZW1;
 

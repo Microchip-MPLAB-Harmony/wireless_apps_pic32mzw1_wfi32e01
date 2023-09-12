@@ -27,6 +27,7 @@
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/driver/memory/src/drv_memory_local.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/driver/memory/drv_memory.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/driver/memory/drv_memory_definitions.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/driver/memory/src/drv_memory_file_system.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="sst26" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/driver/sst26/drv_sst26.h</itemPath>
@@ -40,16 +41,20 @@
           <logicalFolder name="f4" displayName="library" projectFiles="true">
             <logicalFolder name="f1" displayName="cryptoauthlib" projectFiles="true">
               <logicalFolder name="atcacert" displayName="atcacert" projectFiles="true">
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atcacert/atcacert_check_config.h</itemPath>
               </logicalFolder>
               <logicalFolder name="calib" displayName="calib" projectFiles="true">
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_config_check.h</itemPath>
               </logicalFolder>
               <logicalFolder name="crypto" displayName="crypto" projectFiles="true">
                 <logicalFolder name="hashes" displayName="hashes" projectFiles="true">
                 </logicalFolder>
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/crypto_config_check.h</itemPath>
               </logicalFolder>
               <logicalFolder name="hal" displayName="hal" projectFiles="true">
               </logicalFolder>
               <logicalFolder name="host" displayName="host" projectFiles="true">
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/host/atca_host_config_check.h</itemPath>
               </logicalFolder>
               <logicalFolder name="jwt" displayName="jwt" projectFiles="true">
               </logicalFolder>
@@ -66,6 +71,8 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/tng/tng_root_cert.h</itemPath>
               </logicalFolder>
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_config.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_platform.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_config_check.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f6" displayName="osal" projectFiles="true">
@@ -108,6 +115,9 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f5" displayName="system" projectFiles="true">
+            <logicalFolder name="cache" displayName="cache" projectFiles="true">
+              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/system/cache/sys_cache.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f4" displayName="debug" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/system/debug/sys_debug.h</itemPath>
             </logicalFolder>
@@ -147,6 +157,7 @@
           <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/device.h</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/user.h</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/configuration.h</itemPath>
+          <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/sys_tasks.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/app.h</itemPath>
@@ -239,6 +250,7 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_updateextra.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_verify.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_write.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_delete.c</itemPath>
               </logicalFolder>
               <logicalFolder name="f3" displayName="crypto" projectFiles="true">
                 <logicalFolder name="f1" displayName="hashes" projectFiles="true">
@@ -255,14 +267,13 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_hw_aes_ctr.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_pbkdf2.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw.h</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_ecdsa.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_ecdsa.h</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_rand.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_rand.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_sha1.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_sha1.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_sha2.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_sha2.h</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_pad.c</itemPath>
               </logicalFolder>
               <logicalFolder name="f2" displayName="hal" projectFiles="true">
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/hal/ATECC608_0.c</itemPath>
@@ -426,11 +437,11 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>3.01</languageToolchainVersion>
+        <languageToolchainVersion>4.30</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC32MZ-W_DFP" vendor="Microchip" version="1.4.193"/>
+        <pack name="PIC32MZ-W_DFP" vendor="Microchip" version="1.8.326"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>

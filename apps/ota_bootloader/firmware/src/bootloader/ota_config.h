@@ -45,7 +45,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #ifndef __INC_OTA_CONFIG_H__
 #define __INC_OTA_CONFIG_H__
 #include <stdint.h>
-
+#include "user.h"
 #ifdef  __cplusplus
 extern "C" {
 #endif
@@ -54,15 +54,38 @@ extern "C" {
 
 
 #define FLASH_SECTOR_SIZE         4096
+    
+    
+#ifdef SYS_OTA_BOOTLOAD_FROM_DEDICATED_BOOTFLASH_ENABLED
+/*Boot loader will be loaded from the dedicated boot memory and the boot control area resides
+ * at beginning of the program memory */    
+#define APP_IMG_SLOT_ADDR         0x00000000  //0x00020000  
+#define APP_BOOT_CTL_SLOT_ADDR         0x00000000  //0x00020000  
+/*Pointer to image boot control area*/     
+#define APP_IMG_BOOT_CTL         ((volatile const FIRMWARE_IMAGE_HEADER *)0xB0000000)    
+/*Pointer to image boot address*/      
+#define APP_IMG_BOOT_ADDR        0x90001000
+    
+#else 
+/*Boot loader  and the boot control area resides at beginning of the program memory */     
+    
 #define APP_IMG_SLOT_ADDR         0x00020000  
-#define FACTORY_RESET_IMG_SIZE    0xDF000
-#define OTA_BOOT_CTL_SIZE         FLASH_SECTOR_SIZE
-
-//------------------------------------------------------------------------------    
 /*Pointer to image boot control area*/     
 #define APP_IMG_BOOT_CTL         ((volatile const FIRMWARE_IMAGE_HEADER *)0xb0020000)    
 /*Pointer to image boot address*/      
-#define APP_IMG_BOOT_ADDR        0xb0021000     
+#define APP_IMG_BOOT_ADDR        0xb0021000  
+#endif
+    
+#define FACTORY_RESET_IMG_SIZE    0xDF000
+#define OTA_BOOT_CTL_SIZE         FLASH_SECTOR_SIZE
+    
+#ifndef SYS_OTA_FS_ENABLED
+/*Jump address of the new image.This shall be updated with the proper memory calculation*/
+#define APP_IMG_BOOT_ADDR_2      0x900ef200
+#endif
+
+
+
 //------------------------------------------------------------------------------    
 
 #ifdef  __cplusplus

@@ -68,6 +68,7 @@
 #include "peripheral/spi/spi_master/plib_spi1_master.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
+#include "system/cache/sys_cache.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
 #include "app.h"
@@ -81,6 +82,12 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+
+/* Device Information */
+#define DEVICE_NAME			 "PIC32MZ1025W104132"
+#define DEVICE_ARCH			 "MIPS"
+#define DEVICE_FAMILY		 "PIC32MZW"
+#define DEVICE_SERIES		 "PIC32MZW"
 
 /* CPU clock frequency */
 #define CPU_CLOCK_FREQUENCY 200000000

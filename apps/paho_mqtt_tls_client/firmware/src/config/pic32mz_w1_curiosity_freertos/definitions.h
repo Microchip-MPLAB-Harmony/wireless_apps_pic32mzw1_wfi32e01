@@ -56,8 +56,8 @@
 #include "peripheral/nvm/plib_nvm.h"
 #include "peripheral/coretimer/plib_coretimer.h"
 #include "peripheral/uart/plib_uart3.h"
-#include "system/mqtt/sys_mqtt.h"
 #include "peripheral/uart/plib_uart1.h"
+#include "system/mqtt/sys_mqtt.h"
 #include "system/int/sys_int.h"
 #include "system/reset/sys_reset.h"
 #include "osal/osal.h"
@@ -91,6 +91,12 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+
+/* Device Information */
+#define DEVICE_NAME			 "PIC32MZ1025W104132"
+#define DEVICE_ARCH			 "MIPS"
+#define DEVICE_FAMILY		 "PIC32MZW"
+#define DEVICE_SERIES		 "PIC32MZW"
 
 /* CPU clock frequency */
 #define CPU_CLOCK_FREQUENCY 200000000
@@ -216,6 +222,7 @@ typedef struct
     SYS_MODULE_OBJ  sysDebug;
 
     SYS_MODULE_OBJ  netPres;
+
 
     SYS_MODULE_OBJ  drvWifiPIC32MZW1;
     SYS_MODULE_OBJ  syswifi;

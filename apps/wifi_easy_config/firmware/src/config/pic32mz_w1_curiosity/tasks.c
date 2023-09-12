@@ -52,6 +52,7 @@
 
 #include "configuration.h"
 #include "definitions.h"
+#include "sys_tasks.h"
 
 
 
@@ -92,7 +93,7 @@ WDRV_PIC32MZW_Tasks(sysObj.drvWifiPIC32MZW1);
 
     /* Maintain Middleware & Other Libraries */
     
-TCPIP_STACK_Task(sysObj.tcpip);
+   TCPIP_STACK_Task(sysObj.tcpip);
 
 
 SYS_WIFI_Tasks(sysObj.syswifi);

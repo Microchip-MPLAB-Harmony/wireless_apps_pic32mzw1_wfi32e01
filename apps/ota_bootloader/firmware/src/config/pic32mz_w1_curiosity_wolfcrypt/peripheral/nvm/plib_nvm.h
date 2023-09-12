@@ -63,7 +63,7 @@
 // DOM-IGNORE-END
 
 #define NVM_FLASH_START_ADDRESS    (0x90000000U)
-#define NVM_FLASH_SIZE             (0x100000U)
+#define NVM_FLASH_SIZE             (0x200000U)
 #define NVM_FLASH_ROWSIZE          (1024U)
 #define NVM_FLASH_PAGESIZE         (4096U)
 

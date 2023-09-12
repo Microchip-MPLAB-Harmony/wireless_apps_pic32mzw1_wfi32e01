@@ -127,6 +127,7 @@ static SYS_WIFI_RESULT SYS_WIFI_ConnectReq(void);
 static void  SYS_WIFI_WIFIPROVCallBack(uint32_t event, void * data,void *cookie);
 
 
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Local Functions
@@ -505,10 +506,28 @@ static SYS_WIFI_RESULT SYS_WIFI_ConfigReq(void)
                 }
                 break;
             }
+
+            case SYS_WIFI_WPA2WPA3MIXED:
+            {
+                if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_AuthCtxSetPersonal(&g_wifiSrvcObj.wifiSrvcAuthCtx, pwd, pwdLen, WDRV_PIC32MZW_AUTH_TYPE_WPA2WPA3_PERSONAL)) 
+                {
+                    ret = SYS_WIFI_CONFIG_FAILURE;
+                }
+                break;
+            }
+
+            case SYS_WIFI_WPA3:
+            {
+                if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_AuthCtxSetPersonal(&g_wifiSrvcObj.wifiSrvcAuthCtx, pwd, pwdLen, WDRV_PIC32MZW_AUTH_TYPE_WPA3_PERSONAL)) 
+                {
+                    ret = SYS_WIFI_CONFIG_FAILURE;
+                }
+                break;
+            }
             case SYS_WIFI_WEP:
             {
-               ret = SYS_WIFI_CONFIG_FAILURE; 
-              /* Wi-Fi service doesn't support WEP */
+                ret = SYS_WIFI_CONFIG_FAILURE; 
+                /* Wi-Fi service doesn't support WEP */
                 break;
             }
 
@@ -563,6 +582,7 @@ static uint32_t SYS_WIFI_ExecuteBlock
     static TCPIP_NET_HANDLE      netHdl;
     SYS_WIFI_OBJ *               wifiSrvcObj = (SYS_WIFI_OBJ *) object;
     uint8_t                      ret =  SYS_WIFIPROV_OBJ_INVALID;
+	static bool provConnStatus = false;
 
  
     if (&g_wifiSrvcObj == (SYS_WIFI_OBJ*) wifiSrvcObj)
@@ -685,7 +705,6 @@ static uint32_t SYS_WIFI_ExecuteBlock
             case SYS_WIFI_STATUS_STA_IP_RECIEVED:
             {
                 WDRV_PIC32MZW_CHANNEL_ID channel;
-                bool provConnStatus = false;
                  
                 /* Update the application(client) on receiving IP address */
                 SYS_WIFI_CallBackFun(SYS_WIFI_CONNECT, &g_wifiSrvcConfig.staConfig.ipAddr, g_wifiSrvcCookie);
@@ -706,6 +725,9 @@ static uint32_t SYS_WIFI_ExecuteBlock
                 wifiSrvcObj->wifiSrvcStatus = SYS_WIFI_STATUS_TCPIP_READY;
                 break;
             }
+			
+
+			
             case SYS_WIFI_STATUS_CONNECT_ERROR:
             {
                 if (g_wifiSrvcAutoConnectRetry == MAX_AUTO_CONNECT_RETRY)

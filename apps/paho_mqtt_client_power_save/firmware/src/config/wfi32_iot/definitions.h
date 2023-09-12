@@ -50,8 +50,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "crypto/crypto.h"
-#include "system/time/sys_time.h"
 #include "driver/i2c/drv_i2c.h"
+#include "system/time/sys_time.h"
 #include "system/int/sys_int.h"
 #include "system/reset/sys_reset.h"
 #include "osal/osal.h"
@@ -66,8 +66,8 @@
 #include "system/net/sys_net.h"
 #include "peripheral/nvm/plib_nvm.h"
 #include "peripheral/uart/plib_uart3.h"
-#include "peripheral/uart/plib_uart1.h"
 #include "system/mqtt/sys_mqtt.h"
+#include "peripheral/uart/plib_uart1.h"
 #include "peripheral/tmr/plib_tmr3.h"
 #include "peripheral/tmr1/plib_tmr1.h"
 #include "library/tcpip/tcpip.h"
@@ -95,6 +95,12 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+
+/* Device Information */
+#define DEVICE_NAME			 "PIC32MZ1025W104132"
+#define DEVICE_ARCH			 "MIPS"
+#define DEVICE_FAMILY		 "PIC32MZW"
+#define DEVICE_SERIES		 "PIC32MZW"
 
 /* CPU clock frequency */
 #define CPU_CLOCK_FREQUENCY 200000000
@@ -223,6 +229,7 @@ typedef struct
 
     SYS_MODULE_OBJ  tcpip;
     SYS_MODULE_OBJ  sysDebug;
+
 
     SYS_MODULE_OBJ  drvWifiPIC32MZW1;
     SYS_MODULE_OBJ  syswifi;
