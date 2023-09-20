@@ -238,31 +238,8 @@ void CLK_Initialize( void )
                 wifi_spi_write(0x85, 0x00F4);
             }
         }
-        /* Configure EWPLL */
-        /* EWPLLBSWSEL   = 6 */
-        /* EWPLLPWDN     = PLL_ON */
-        /* EWPLLPOSTDIV1 = 32 */
-        /* EWPLLFLOCK    = NO_FORCE */
-        /* EWPLLRST      = NORESET_EWPLL */
-        /* EWPLLFBDIV    = 800 */
-        /* EWPLLREFDIV   = 20 */
-        /* EWPLLICLK     = POSC */
-        /* ETHCLKOUTEN   = ENABLED */
-        /* EWPLL_BYP     = NO_BYPASS */
-        EWPLLCON = 0x15320206U ^ EWPLLCON_MSK;
-         DelayUs(200);
-        EWPLLCON &= ~PLL_PWROFF;
-        /****************************************************************
-        * check to see if PLL locked; indicates POSC must have started
-        *****************************************************************/
-        if(0U == (*PLLDBG & 0x5U))
-        {
-            /*POSC failed to start!*/
-            while(true)
-            {
-                /* Nothing to do */
-            }
-        }
+        /* Power down the EWPLL */
+        EWPLLCONbits.EWPLLPWDN = 1;
 
         /* Power down the UPLL */
         UPLLCONbits.UPLLPWDN = 1;
@@ -319,23 +296,8 @@ void CLK_Initialize( void )
         /* Power down the UPLL */
         UPLLCONbits.UPLLPWDN = 1;
 
-        /* Configure EWPLL */
-        /* EWPLLBSWSEL   = 6 */
-        /* EWPLLPWDN     = PLL_ON */
-        /* EWPLLPOSTDIV1 = 32 */
-        /* EWPLLFLOCK    = NO_FORCE */
-        /* EWPLLRST      = NORESET_EWPLL */
-        /* EWPLLFBDIV    = 800 */
-        /* EWPLLREFDIV   = 20 */
-        /* EWPLLICLK     = POSC */
-        /* ETHCLKOUTEN   = ENABLED */
-        /* EWPLL_BYP     = NO_BYPASS */
-        EWPLLCON = 0x15320206U ^ 0x438080cU;
-        CFGCON0bits.ETHPLLHWMD = 1;
-        while(((*PLLDBG) & 0x4U) == 0U)
-        {
-            /* Nothing to do */
-        }
+        /* Power down the EWPLL */
+        EWPLLCONbits.EWPLLPWDN = 1;
 
         /* Power down the BTPLL */
         BTPLLCONbits.BTPLLPWDN = 1;
@@ -380,11 +342,13 @@ void CLK_Initialize( void )
 
     /* Peripheral Module Disable Configuration */
 
+    CFGCON0bits.PMDLOCK = 0;
 
-    PMD1 = 0x20018981;
-    PMD2 = 0x7c0f0f;
-    PMD3 = 0x19030214;
+    PMD1 = 0x25818981;
+    PMD2 = 0x7f0f0f;
+    PMD3 = 0x19031216;
 
+    CFGCON0bits.PMDLOCK = 1;
 
     /* Lock system since done with clock configuration */
     SYSKEY = 0x33333333;

@@ -903,6 +903,7 @@
       <itemPath>../src/main.c</itemPath>
       <itemPath>../../tools/hex2bin/hex2bin.py</itemPath>
       <itemPath>../../tools/ecdsaSign.py</itemPath>
+      <itemPath>../../tools/hex2bin/hex2bin.exe</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -1044,7 +1045,7 @@
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
-        <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
         <makeCustomizationPostStep>../../tools/hex2bin/hex2bin.exe</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>

@@ -263,6 +263,13 @@
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
+      <logicalFolder name="config" displayName="config" projectFiles="true">
+        <logicalFolder name="pic32mz_w1_curiosity_wolfcrypt"
+                       displayName="pic32mz_w1_curiosity_wolfcrypt"
+                       projectFiles="true">
+          <itemPath>../src/config/pic32mz_w1_curiosity_wolfcrypt/p32MZ1025W104132.ld</itemPath>
+        </logicalFolder>
+      </logicalFolder>
       <itemPath>../src/bootloader/p32MZ1025W104132_bootloader.ld</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
@@ -349,7 +356,6 @@
           <itemPath>../src/config/pic32mz_w1_curiosity_wolfcrypt/initialization.c</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_wolfcrypt/interrupts.c</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_wolfcrypt/exceptions.c</itemPath>
-          <itemPath>../src/config/pic32mz_w1_curiosity_wolfcrypt/exceptionsHandler.S</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_wolfcrypt/pmu_init.c</itemPath>
           <itemPath>../src/config/pic32mz_w1_curiosity_wolfcrypt/tasks.c</itemPath>
         </logicalFolder>
@@ -561,7 +567,7 @@
     <conf name="pic32mz_w1_curiosity_wolfcrypt" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>PIC32MZ2051W104132</targetDevice>
+        <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
         <platformTool>noID</platformTool>
@@ -677,7 +683,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="8192"/>
+        <property key="heap-size" value="512"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>

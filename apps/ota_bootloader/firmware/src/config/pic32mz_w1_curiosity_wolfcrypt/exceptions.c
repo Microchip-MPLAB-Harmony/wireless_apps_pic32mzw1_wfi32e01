@@ -1,5 +1,5 @@
 /*******************************************************************************
-  MPLAB Harmony Filtering Advanced Exception Source File
+  MPLAB Harmony Exceptions Source File
 
   File Name:
     exceptions.c
@@ -9,23 +9,16 @@
     handler provided by the XC32 compiler.
 
   Description:
-    The standard exception handling provided by the compiler's installation is
-    insufficient to handle overflow exception that can happen inside of assembly
-    IIR routines.
-
-    Exceptions are handled by the default code by simply throwing the application
-    into a while (1) loop, which simply ends all processing of the application.
-    This new code attempts to return control back to the application.
-
-    If an overflow exception is trapped, a fall-back return value is written to
-    the $v0 register for use by the IIR primitive that generated the overflow.
-    The application can use +1 (0x7FFF) or Zero, or random noise as the fall-back
-    return value.
+    This file redefines the default _weak_  exception handler with a more debug
+    friendly one. If an unexpected exception occurs the code will stop in a
+    while(1) loop.  The debugger can be halted and two variables exception_code
+    and exception_address can be examined to determine the cause and address
+    where the exception occurred.
  *******************************************************************************/
 
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2019 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -47,20 +40,44 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 // DOM-IGNORE-END
-
 // *****************************************************************************
 // *****************************************************************************
-// Section: Exception handling
+// Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
 #include "configuration.h"
+#include "device.h"
 #include "definitions.h"
 #include <stdio.h>
 
-//Get stack pointer value
-#ifndef GET_EXCEP_SP
-#define GET_EXCEP_SP(var) asm volatile("sw $sp,%0" : "=m" (var))
-#endif
+// *****************************************************************************
+// *****************************************************************************
+// Section: Forward declaration of the handler functions
+// *****************************************************************************
+// *****************************************************************************
+/* MISRAC 2012 deviation block start */
+/* MISRA C-2012 Rule 21.2 deviated 8 times. Deviation record ID -  H3_MISRAC_2012_R_21_2_DR_4 */
+void _general_exception_handler(void);
+void _bootstrap_exception_handler(void);
+void _cache_err_exception_handler (void);
+void _simple_tlb_refill_exception_handler(void);
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: Global Data Definitions
+// *****************************************************************************
+// *****************************************************************************
+
+/*******************************************************************************
+  Exception Reason Data
+
+  <editor-fold defaultstate="expanded" desc="Exception Reason Data">
+
+  Remarks:
+    These global static items are used instead of local variables in the
+    _general_exception_handler function because the stack may not be available
+    if an exception has occured.
+*/
 
 /* Exception codes */
 #define EXCEP_IRQ       0U // interrupt
@@ -78,53 +95,17 @@
 #define EXCEP_CEU       17U // CorExtend Unuseable
 #define EXCEP_C2E       18U // coprocessor 2
 
-typedef struct XCPT_FRAME_tag  // access to all major registers from the instruction that caused the exception
-{
-    uint32_t at;
-    uint32_t v0;
-    uint32_t v1;
-    uint32_t a0;
-    uint32_t a1;
-    uint32_t a2;
-    uint32_t a3;
-    uint32_t t0;
-    uint32_t t1;
-    uint32_t t2;
-    uint32_t t3;
-    uint32_t t4;
-    uint32_t t5;
-    uint32_t t6;
-    uint32_t t7;
-    uint32_t t8;
-    uint32_t t9;
-    uint32_t ra;
-    uint32_t lo;
-    uint32_t hi;
-    uint32_t cause;
-    uint32_t status;
-    uint32_t epc;
+/* Address of instruction that caused the exception. */
+static unsigned int exception_address;
 
-} XCPT_FRAME;
+/* Code identifying the cause of the exception (CP0 Cause register). */
+static uint32_t  exception_code;
 
-/* MISRAC 2012 deviation block start */
-/* MISRA C-2012 Rule 21.2 deviated 8 times. Deviation record ID -  H3_MISRAC_2012_R_21_2_DR_4 */
-/* MISRA C-2012 Rule 21.6 deviated 1 time. Deviation record ID -  H3_MISRAC_2012_R_21_6_DR_2 */
-void _general_exception_handler(XCPT_FRAME* const pXFrame);
-void _bootstrap_exception_handler(void);
-void _cache_err_exception_handler (void);
-void _simple_tlb_refill_exception_handler(void);
-
-// Use static variables, with fixed addresses, since S/W stack can be unstable
-static uint32_t exception_code;
-static uint32_t exception_address;
-static uint32_t cp0_status_value; // Status value from CP0 Register 12
-static uintptr_t stack_pointer_value; // Stack pointer value
-static uintptr_t bad_virtual_address; // Bad address for address exceptions
-static uintptr_t return_address; // Return Address (ra)
+// </editor-fold>
 
 /*******************************************************************************
   Function:
-    void _general_exception_handler ( XCPT_FRAME* const pXFrame )
+    void _general_exception_handler ( void )
 
   Description:
     A general exception is any non-interrupt exception which occurs during program
@@ -134,33 +115,14 @@ static uintptr_t return_address; // Return Address (ra)
     Refer to the XC32 User's Guide for additional information.
  */
 
-void __attribute__((nomips16, weak)) _general_exception_handler (XCPT_FRAME* const pXFrame)
+void __attribute__((noreturn, weak)) _general_exception_handler ( void )
 {
-    exception_address = pXFrame->epc;
-    exception_code = pXFrame->cause;   // capture exception type
-    exception_code = (exception_code & 0x0000007CU) >> 2U;
+    /* Mask off the ExcCode Field from the Cause Register
+    Refer to the MIPs Software User's manual */
+    exception_code = ((_CP0_GET_CAUSE() & 0x0000007CU) >> 2U);
+    exception_address = _CP0_GET_EPC();
 
-    cp0_status_value   = _CP0_GET_STATUS();
-    GET_EXCEP_SP(stack_pointer_value);
-    bad_virtual_address = _CP0_GET_BADVADDR();
-    return_address     = pXFrame->ra;
-
-    if (exception_code == EXCEP_Overflow)
-    {// Provide fallback return value for filtering primitive throwing an overflow exception.
-        pXFrame->v0 = 0x7FFFU;  // set function output to maximum (saturation)
-        pXFrame->v1 = 0x7FFFU;  // set intermediate results to maximum (saturation)
-        pXFrame->epc = pXFrame->epc + 4U; // set return from exception to next instruction (skip)
-        return;
-    }
-
-    (void)printf("**EXCEPTION:*\r\n"
-           " ECode: %d, EAddr: 0x%08X, CPO Status: 0x%08X\r\n"
-           " Stack Ptr: 0x%08X, Bad Addr: 0x%08X, Return Addr: 0x%08X\r\n"
-           "**EXCEPTION:*\r\n",
-           exception_code,exception_address,cp0_status_value,
-           stack_pointer_value,bad_virtual_address,return_address);
-
-    while(true)
+    while (true)
     {
         #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
             __builtin_software_breakpoint();
@@ -180,14 +142,14 @@ void __attribute__((nomips16, weak)) _general_exception_handler (XCPT_FRAME* con
     Refer to the XC32 User's Guide for additional information.
  */
 
-void  __attribute__((noreturn, weak)) _bootstrap_exception_handler(void)
+void __attribute__((noreturn, weak)) _bootstrap_exception_handler(void)
 {
     /* Mask off the ExcCode Field from the Cause Register
     Refer to the MIPs Software User's manual */
     exception_code = (_CP0_GET_CAUSE() & 0x0000007CU) >> 2U;
     exception_address = _CP0_GET_EPC();
 
-    while(true)
+    while (true)
     {
         #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
             __builtin_software_breakpoint();
@@ -208,14 +170,14 @@ void  __attribute__((noreturn, weak)) _bootstrap_exception_handler(void)
     Refer to the XC32 User's Guide for additional information.
  */
 
-void  __attribute__((noreturn, weak)) _cache_err_exception_handler(void)
+void __attribute__((noreturn, weak)) _cache_err_exception_handler(void)
 {
     /* Mask off the ExcCode Field from the Cause Register
     Refer to the MIPs Software User's manual */
     exception_code = (_CP0_GET_CAUSE() & 0x0000007CU) >> 2U;
     exception_address = _CP0_GET_EPC();
 
-    while(true)
+    while (true)
     {
         #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
             __builtin_software_breakpoint();
@@ -238,14 +200,14 @@ void  __attribute__((noreturn, weak)) _cache_err_exception_handler(void)
     Refer to the XC32 User's Guide for additional information.
  */
 
-void  __attribute__((noreturn, weak)) _simple_tlb_refill_exception_handler(void)
+void __attribute__((noreturn, weak)) _simple_tlb_refill_exception_handler(void)
 {
     /* Mask off the ExcCode Field from the Cause Register
     Refer to the MIPs Software User's manual */
     exception_code = (_CP0_GET_CAUSE() & 0x0000007CU) >> 2U;
     exception_address = _CP0_GET_EPC();
 
-    while(true)
+    while (true)
     {
         #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
             __builtin_software_breakpoint();

@@ -121,7 +121,7 @@ extern "C" {
 #define DRV_SST26_START_ADDRESS         (0x0U)
 #define DRV_SST26_PAGE_SIZE             (256U)
 #define DRV_SST26_ERASE_BUFFER_SIZE     (4096U)
-#define DRV_SST26_CHIP_SELECT_PIN       SYS_PORT_PIN_RA1
+#define DRV_SST26_CHIP_SELECT_PIN       SYS_PORT_PIN_RA0
 
 
 /* Memory Driver Instance 0 Configuration */
@@ -151,29 +151,35 @@ extern "C" {
 #define HAVE_MCAPI
 #define WOLF_CRYPTO_CB  // provide call-back support
 #define WOLFCRYPT_ONLY
-#define WOLFSSL_MICROCHIP_PIC32MZ
-// ---------- CRYPTO HARDWARE MANIFEST START ----------
-#define WOLFSSL_HAVE_MCHP_HW_CRYPTO_ECC_HW_BA414E
-#define WOLFSSL_HAVE_MCHP_BA414E_CRYPTO
-// ---------- CRYPTO HARDWARE MANIFEST END ----------
+#if (__XC32_VERSION > 100000000)
+#define WOLFSSL_HAVE_MIN
+#define WOLFSSL_HAVE_MAX
+#endif
 #undef WOLFSSL_HAVE_MIN
 #undef WOLFSSL_HAVE_MAX
 // ---------- FUNCTIONAL CONFIGURATION START ----------
 #define WOLFSSL_AES_SMALL_TABLES
 #define NO_MD4
-#define NO_MD5
-#define NO_SHA // specifically, no SHA1 (legacy name)
-#define NO_SHA224
-#define NO_PIC32MZ_HASH
-#define NO_DES3
-#define NO_AES
+#define WOLFSSL_SHA224
+#define WOLFSSL_AES_128
+#define WOLFSSL_AES_192
+#define WOLFSSL_AES_256
+#define WOLFSSL_AES_DIRECT
+#define HAVE_AES_DECRYPT
+#define HAVE_AES_ECB
+#define HAVE_AES_CBC
+#define WOLFSSL_AES_COUNTER
+#define WOLFSSL_AES_OFB
+#define HAVE_AESGCM
+#define HAVE_AESCCM
 #define NO_RC4
 #define NO_HC128
 #define NO_RABBIT
 #define HAVE_ECC
 #define NO_DH
 #define NO_DSA
-#define NO_RSA
+#define FP_MAX_BITS 4096
+#define USE_CERT_BUFFERS_2048
 #define NO_DEV_RANDOM
 #define WC_NO_RNG
 #define WC_NO_HASHDRBG
