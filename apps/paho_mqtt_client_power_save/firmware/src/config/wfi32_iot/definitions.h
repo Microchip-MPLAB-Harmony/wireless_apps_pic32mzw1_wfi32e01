@@ -50,8 +50,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "crypto/crypto.h"
-#include "system/time/sys_time.h"
 #include "driver/i2c/drv_i2c.h"
+#include "system/time/sys_time.h"
 #include "system/int/sys_int.h"
 #include "system/reset/sys_reset.h"
 #include "osal/osal.h"
@@ -66,8 +66,8 @@
 #include "system/net/sys_net.h"
 #include "peripheral/nvm/plib_nvm.h"
 #include "peripheral/uart/plib_uart3.h"
-#include "peripheral/uart/plib_uart1.h"
 #include "system/mqtt/sys_mqtt.h"
+#include "peripheral/uart/plib_uart1.h"
 #include "peripheral/tmr/plib_tmr3.h"
 #include "peripheral/tmr1/plib_tmr1.h"
 #include "library/tcpip/tcpip.h"
