@@ -4,7 +4,7 @@
 
 
 project: paho_mqtt_client_power_save
-creation_date: 2023-09-22T09:43:13.363+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2023-09-27T15:25:02.825+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mcc_mode: IDE            # [IDE|Standalone|Headless]
 mcc_version: v5.3.7
@@ -19,7 +19,7 @@ modules:
     - {name: "wireless_wifi", version: "v3.9.1"}
     - {name: "paho.mqtt.embedded-c", version: "v1.2.3"}
     - {name: "dev_packs", version: "v3.18.0"}
-    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.7.0-14-g08639b0"}
+    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.7.0-17-gafe7f83"}
     - {name: "wolfssl", version: "v5.4.0"}
     - {name: "net", version: "v3.10.0"}
     - {name: "crypto", version: "v3.8.0"}

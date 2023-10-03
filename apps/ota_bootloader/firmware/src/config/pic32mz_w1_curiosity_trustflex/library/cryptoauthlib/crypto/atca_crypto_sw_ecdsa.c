@@ -1,6 +1,7 @@
 /**
  * \file
- * \brief  Configure the platform interfaces for cryptoauthlib
+ * \brief API wrapper for software ECDSA verify.  Currently unimplemented but could be
+ *        implemented via a 3rd party library such as MicroECC.
  *
  * \copyright (c) 2015-2020 Microchip Technology Inc. and its subsidiaries.
  *
@@ -24,38 +25,24 @@
  * THE AMOUNT OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR
  * THIS SOFTWARE.
  */
-#ifndef ATCA_PLATFORM_H
-#define ATCA_PLATFORM_H
 
-#include <stddef.h>
-#include <string.h>
 
-#if defined(ATCA_TESTS_ENABLED) || !defined(ATCA_PLATFORM_MALLOC)
-void*   hal_malloc(size_t size);
-void    hal_free(void* ptr);
-#else
-#define hal_malloc      ATCA_PLATFORM_MALLOC
-#define hal_free        ATCA_PLATFORM_FREE
-#endif
+#include "atca_crypto_sw_ecdsa.h"
 
-#ifdef ATCA_PLATFORM_MEMSET_S
-#define hal_memset_s    ATCA_PLATFORM_MEMSET_S
-#else
-#ifndef memset_s
-#define hal_memset_s    atcab_memset_s
-#else
-#define hal_memset_s    memset_s
-#endif
-#endif
+/** \brief return software generated ECDSA verification result and the function is currently not implemented
+ * \param[in] msg         ptr to message or challenge
+ * \param[in] signature   ptr to the signature to verify
+ * \param[in] public_key  ptr to public key of device which signed the challenge
+ * return ATCA_UNIMPLEMENTED , as the function is currently not implemented
+ */
 
-#ifdef ATCA_PLATFORM_STRCASESTR
-#define lib_strcasestr  ATCA_PLATFORM_STRCASESTR
-#else
-#ifndef strcasestr
-char *lib_strcasestr(const char *haystack, const char *needle);
-#else
-#define lib_strcasestr  strcasestr
-#endif
-#endif /* ATCA_PLATFORM_STRCASESTR */
+int atcac_sw_ecdsa_verify_p256(const uint8_t msg[ATCA_ECC_P256_FIELD_SIZE],
+                               const uint8_t signature[ATCA_ECC_P256_SIGNATURE_SIZE],
+                               const uint8_t public_key[ATCA_ECC_P256_PUBLIC_KEY_SIZE])
+{
+    (void)msg;
+    (void)signature;
+    (void)public_key;
 
-#endif /* ATCA_PLATFORM_H */
+    return ATCA_UNIMPLEMENTED;
+}

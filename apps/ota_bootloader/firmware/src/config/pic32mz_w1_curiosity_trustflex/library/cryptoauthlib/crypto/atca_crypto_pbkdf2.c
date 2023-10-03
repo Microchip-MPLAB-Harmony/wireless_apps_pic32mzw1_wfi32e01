@@ -28,7 +28,6 @@
 
 #include "cryptoauthlib.h"
 
-#if ATCAC_PBKDF2_SHA256_EN
 /** \brief Calculate a PBKDF2 hash of a given password and salt
  *
  *  \return ATCA_SUCCESS on success, otherwise an error code.
@@ -112,9 +111,7 @@ ATCA_STATUS atcac_pbkdf2_sha256(
     }
     return status;
 }
-#endif /* ATCAC_PBKDF2_SHA256 */
 
-#if ATCAB_PBKDF2_SHA256_EN
 /** \brief Calculate a PBKDF2 password hash using a stored key inside a device. The key length is
  *  determined by the device being used. ECCx08: 32 bytes, TA100: 16-64 bytes
  *
@@ -196,4 +193,3 @@ ATCA_STATUS atcab_pbkdf2_sha256(
 {
     return atcab_pbkdf2_sha256_ext(atcab_get_device(), iter, slot, salt, salt_len, result, result_len);
 }
-#endif /* ATCAB_PBKDF2_SHA256_EN */

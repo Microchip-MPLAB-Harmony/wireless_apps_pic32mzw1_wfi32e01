@@ -995,7 +995,7 @@ static uint32_t SYS_WIFI_ExecuteBlock
             }
             case SYS_WIFI_STATUS_STA_IP_RECIEVED:
             {
-                WDRV_PIC32MZW_CHANNEL_ID channel;
+                WDRV_PIC32MZW_CHANNEL_ID channel = 0;
                  
                 /* Update the application(client) on receiving IP address */
                 SYS_WIFI_CallBackFun(SYS_WIFI_CONNECT, &g_wifiSrvcConfig.staConfig.ipAddr, g_wifiSrvcCookie);

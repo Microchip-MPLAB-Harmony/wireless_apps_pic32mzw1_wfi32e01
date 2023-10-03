@@ -71,9 +71,9 @@
 #include "net_pres/pres/net_pres_encryptionproviderapi.h"
 #include "net_pres/pres/net_pres_transportapi.h"
 #include "net_pres/pres/net_pres_socketapi.h"
-#include "driver/wifi/pic32mzw1/include/wdrv_pic32mzw_api.h"
 #include "system/wss/sys_wss.h"
 #include "system/wss/app_wss.h"
+#include "driver/wifi/pic32mzw1/include/wdrv_pic32mzw_api.h"
 #include "system/wifi/sys_wifi.h"
 #include "system/console/sys_console.h"
 #include "system/console/src/sys_console_uart_definitions.h"
@@ -222,9 +222,9 @@ typedef struct
 
     SYS_MODULE_OBJ  netPres;
 
+    SYS_MODULE_OBJ  sysWSS;
 
     SYS_MODULE_OBJ  drvWifiPIC32MZW1;
-    SYS_MODULE_OBJ  sysWSS;
     SYS_MODULE_OBJ  syswifi;
 
 } SYSTEM_OBJECTS;

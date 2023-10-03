@@ -8645,7 +8645,7 @@
       </entry>
       <entry>
          <file>..\src\config\wfi32_iot\system\wifi\src\sys_wifi.c</file>
-         <hash>32c3ad93f7fc20ea80d0846fa7dc094f25fce5d1a34c6fd0f35e4d12a1d71d52</hash>
+         <hash>ad16d0886c0bb5478166d7853378e3e133dd6b22155fdab2d7b3627568f16b07</hash>
       </entry>
       <entry>
          <file>..\src\config\wfi32_iot\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_regdomain.h</file>

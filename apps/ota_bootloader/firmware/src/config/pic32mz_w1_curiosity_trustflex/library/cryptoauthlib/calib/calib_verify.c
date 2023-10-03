@@ -33,10 +33,8 @@
  */
 
 #include "cryptoauthlib.h"
-
 #include "host/atca_host.h"
 
-#if CALIB_VERIFY_EN
 /** \brief Executes the Verify command, which takes an ECDSA [R,S] signature
  *          and verifies that it is correctly generated from a given message and
  *          public key. In all cases, the signature is an input to the command.
@@ -125,9 +123,7 @@ ATCA_STATUS calib_verify(ATCADevice device, uint8_t mode, uint16_t key_id, const
 
     return status;
 }
-#endif /* CALIB_VERIFY */
 
-#if CALIB_VERIFY_MAC_EN
 /** \brief Executes the Verify command with verification MAC for the External
  *          or Stored Verify modes.. This function is only available on the
  *          ATECC608.
@@ -217,59 +213,6 @@ static ATCA_STATUS calib_verify_extern_stored_mac(ATCADevice device, uint8_t mod
     return status;
 }
 
-/** \brief Executes the Verify command with verification MAC, which verifies a
- *          signature (ECDSA verify operation) with all components (message,
- *          signature, and public key) supplied. This function is only available
- *          on the ATECC608.
- *
- * \param[in]  device       Device context pointer
- * \param[in]  message      32 byte message to be verified. Typically
- *                          the SHA256 hash of the full message.
- * \param[in]  signature    Signature to be verified. R and S integers in
- *                          big-endian format. 64 bytes for P256 curve.
- * \param[in]  public_key   The public key to be used for verification. X and
- *                          Y integers in big-endian format. 64 bytes for
- *                          P256 curve.
- * \param[in]  num_in       System nonce (32 byte) used for the verification
- *                          MAC.
- * \param[in]  io_key       IO protection key for verifying the validation MAC.
- * \param[out] is_verified  Boolean whether or not the message, signature,
- *                          public key verified.
- *
- * \return ATCA_SUCCESS on verification success or failure, because the
- *         command still completed successfully.
- */
-ATCA_STATUS calib_verify_extern_mac(ATCADevice device, const uint8_t *message, const uint8_t* signature, const uint8_t* public_key, const uint8_t* num_in, const uint8_t* io_key, bool* is_verified)
-{
-    return calib_verify_extern_stored_mac(device, VERIFY_MODE_EXTERNAL, VERIFY_KEY_P256, message, signature, public_key, num_in, io_key, is_verified);
-}
-
-/** \brief Executes the Verify command with verification MAC, which verifies a
- *          signature (ECDSA verify operation) with a public key stored in the
- *          device. This function is only available on the ATECC608.
- *
- * \param[in]  device       Device context pointer
- * \param[in]  message      32 byte message to be verified. Typically
- *                          the SHA256 hash of the full message.
- * \param[in]  signature    Signature to be verified. R and S integers in
- *                          big-endian format. 64 bytes for P256 curve.
- * \param[in]  key_id       Slot containing the public key to be used in the
- *                          verification.
- * \param[in]  num_in       System nonce (32 byte) used for the verification
- *                          MAC.
- * \param[in]  io_key       IO protection key for verifying the validation MAC.
- * \param[out] is_verified  Boolean whether or not the message, signature,
- *                          public key verified.
- *
- * \return ATCA_SUCCESS on verification success or failure, because the
- *         command still completed successfully.
- */
-ATCA_STATUS calib_verify_stored_mac(ATCADevice device, const uint8_t *message, const uint8_t *signature, uint16_t key_id, const uint8_t* num_in, const uint8_t* io_key, bool* is_verified)
-{
-    return calib_verify_extern_stored_mac(device, VERIFY_MODE_STORED, key_id, message, signature, NULL, num_in, io_key, is_verified);
-}
-#endif  /* CALIB_VERIFY_MAC_EN */
-
 /** \brief Executes the Verify command, which verifies a signature (ECDSA
  *          verify operation) with all components (message, signature, and
  *          public key) supplied. The message to be signed will be loaded into
@@ -290,8 +233,6 @@ ATCA_STATUS calib_verify_stored_mac(ATCADevice device, const uint8_t *message, c
  * \return ATCA_SUCCESS on verification success or failure, because the
  *         command still completed successfully.
  */
-
-#if CALIB_VERIFY_EXTERN_EN
 ATCA_STATUS calib_verify_extern(ATCADevice device, const uint8_t *message, const uint8_t *signature, const uint8_t *public_key, bool *is_verified)
 {
     ATCA_STATUS status = ATCA_GEN_FAIL;
@@ -333,9 +274,34 @@ ATCA_STATUS calib_verify_extern(ATCADevice device, const uint8_t *message, const
 
     return status;
 }
-#endif  /* CALIB_VERIFY_EXTERN */
 
-#if CALIB_VERIFY_STORED_EN
+/** \brief Executes the Verify command with verification MAC, which verifies a
+ *          signature (ECDSA verify operation) with all components (message,
+ *          signature, and public key) supplied. This function is only available
+ *          on the ATECC608.
+ *
+ * \param[in]  device       Device context pointer
+ * \param[in]  message      32 byte message to be verified. Typically
+ *                          the SHA256 hash of the full message.
+ * \param[in]  signature    Signature to be verified. R and S integers in
+ *                          big-endian format. 64 bytes for P256 curve.
+ * \param[in]  public_key   The public key to be used for verification. X and
+ *                          Y integers in big-endian format. 64 bytes for
+ *                          P256 curve.
+ * \param[in]  num_in       System nonce (32 byte) used for the verification
+ *                          MAC.
+ * \param[in]  io_key       IO protection key for verifying the validation MAC.
+ * \param[out] is_verified  Boolean whether or not the message, signature,
+ *                          public key verified.
+ *
+ * \return ATCA_SUCCESS on verification success or failure, because the
+ *         command still completed successfully.
+ */
+ATCA_STATUS calib_verify_extern_mac(ATCADevice device, const uint8_t *message, const uint8_t* signature, const uint8_t* public_key, const uint8_t* num_in, const uint8_t* io_key, bool* is_verified)
+{
+    return calib_verify_extern_stored_mac(device, VERIFY_MODE_EXTERNAL, VERIFY_KEY_P256, message, signature, public_key, num_in, io_key, is_verified);
+}
+
 /** \brief Executes the Verify command, which verifies a signature (ECDSA
  *          verify operation) with a public key stored in the device. The
  *          message to be signed will be loaded into the Message Digest Buffer
@@ -395,53 +361,31 @@ ATCA_STATUS calib_verify_stored(ATCADevice device, const uint8_t *message, const
     return status;
 }
 
-/** \brief Executes the Verify command, which verifies a signature (ECDSA
- *         verify operation) with a public key stored in the device.
- *         keyConfig.reqrandom bit should be set and the message to be signed 
- *         should be already loaded into TempKey for all devices.
- *
- * Please refer to TEST(atca_cmd_basic_test, verify_stored_on_reqrandom_set) in
- * atca_tests_verify.c for proper use of this api
+/** \brief Executes the Verify command with verification MAC, which verifies a
+ *          signature (ECDSA verify operation) with a public key stored in the
+ *          device. This function is only available on the ATECC608.
  *
  * \param[in]  device       Device context pointer
+ * \param[in]  message      32 byte message to be verified. Typically
+ *                          the SHA256 hash of the full message.
  * \param[in]  signature    Signature to be verified. R and S integers in
  *                          big-endian format. 64 bytes for P256 curve.
  * \param[in]  key_id       Slot containing the public key to be used in the
  *                          verification.
+ * \param[in]  num_in       System nonce (32 byte) used for the verification
+ *                          MAC.
+ * \param[in]  io_key       IO protection key for verifying the validation MAC.
  * \param[out] is_verified  Boolean whether or not the message, signature,
  *                          public key verified.
  *
  * \return ATCA_SUCCESS on verification success or failure, because the
  *         command still completed successfully.
  */
-ATCA_STATUS calib_verify_stored_with_tempkey(ATCADevice device, const uint8_t* signature, uint16_t key_id, bool* is_verified)
+ATCA_STATUS calib_verify_stored_mac(ATCADevice device, const uint8_t *message, const uint8_t *signature, uint16_t key_id, const uint8_t* num_in, const uint8_t* io_key, bool* is_verified)
 {
-    ATCA_STATUS status = ATCA_GEN_FAIL;
-    uint8_t verify_source = VERIFY_MODE_SOURCE_TEMPKEY;
-
-    if ((device == NULL) || (is_verified == NULL) || (signature == NULL))
-    {
-        return ATCA_TRACE(ATCA_BAD_PARAM, "NULL pointer received");
-    }
-
-    *is_verified = false;
-
-    do
-    {
-        status = calib_verify(device, VERIFY_MODE_STORED | verify_source, key_id, signature, NULL, NULL, NULL);
-
-        *is_verified = (status == ATCA_SUCCESS);
-        if (status == ATCA_CHECKMAC_VERIFY_FAILED)
-        {
-            status = ATCA_SUCCESS;  // Verify failed, but command succeeded
-        }
-    } while (0);
-
-    return status;
+    return calib_verify_extern_stored_mac(device, VERIFY_MODE_STORED, key_id, message, signature, NULL, num_in, io_key, is_verified);
 }
-#endif  /* CALIB_VERIFY_STORED */
 
-#if CALIB_VERIFY_VALIDATE_EN
 /** \brief Executes the Verify command in Validate mode to validate a public
  *          key stored in a slot.
  *
@@ -517,4 +461,3 @@ ATCA_STATUS calib_verify_invalidate(ATCADevice device, uint16_t key_id, const ui
 
     return status;
 }
-#endif  /* CALIB_VERIFY_VALIDATE_EN */

@@ -7301,7 +7301,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\wifi\src\sys_wifi.c</file>
-         <hash>b7c9ecea07615ec7fd8b5804e65816ac1e41b397df4786abb7900f2d3c8bb173</hash>
+         <hash>93bff072e70b1341c1ed45304202e0ad0910cf0be54c4cc0eef5aba38d00863e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\tcpip_helpers.h</file>

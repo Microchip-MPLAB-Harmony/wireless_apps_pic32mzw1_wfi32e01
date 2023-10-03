@@ -32,12 +32,8 @@
  */
 
 #include "cryptoauthlib.h"
-
-#if CALIB_SECUREBOOT_MAC_EN
 #include "host/atca_host.h"
-#endif
 
-#if CALIB_SECUREBOOT_EN
 /** \brief Executes Secure Boot command, which provides support for secure
  *          boot of an external MCU or MPU.
  *
@@ -97,9 +93,7 @@ ATCA_STATUS calib_secureboot(ATCADevice device, uint8_t mode, uint16_t param2, c
 
     return status;
 }
-#endif /* CALIB_SECUREBOOT_EN */
 
-#if CALIB_SECUREBOOT_MAC_EN
 /** \brief Executes Secure Boot command with encrypted digest and validated
  *          MAC response using the IO protection key.
  *
@@ -221,4 +215,3 @@ ATCA_STATUS calib_secureboot_mac(ATCADevice device, uint8_t mode, const uint8_t*
 
     return status;
 }
-#endif /* CALIB_SECUREBOOT_MAC_EN */

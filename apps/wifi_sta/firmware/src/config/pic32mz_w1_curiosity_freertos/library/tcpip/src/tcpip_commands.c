@@ -1005,7 +1005,6 @@ static void _Command_DHCPsLeaseList(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char*
     }extLeaseInfo;
 
     const void* cmdIoParam = pCmdIO->cmdIoParam;
-    memset(&extLeaseInfo.leaseInfo, 0, sizeof(extLeaseInfo.leaseInfo));
 
     uint16_t nLeases;
     uint16_t usedLeases;

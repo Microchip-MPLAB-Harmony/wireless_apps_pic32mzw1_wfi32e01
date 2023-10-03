@@ -1,7 +1,6 @@
 /**
  * \file
- *
- * \brief  Microchip CryptoAuth Library Version
+ * \brief API wrapper for software random
  *
  * \copyright (c) 2015-2020 Microchip Technology Inc. and its subsidiaries.
  *
@@ -26,13 +25,21 @@
  * THIS SOFTWARE.
  */
 
-#ifndef _ATCA_VERSION_H
-#define _ATCA_VERSION_H
+#include "cryptoauthlib.h"
 
-// Version format yyyymmdd
-#define ATCA_LIBRARY_VERSION_DATE   "20211006"
-#define ATCA_LIBRARY_VERSION_MAJOR  3
-#define ATCA_LIBRARY_VERSION_MINOR  3
-#define ATCA_LIBRARY_VERSION_BUILD  3
+#ifdef ATCA_ENABLE_RAND_IMPL
 
-#endif /* _ATCA_VERSION_H */
+#include "atca_crypto_sw_rand.h"
+
+/** \brief return software generated random number and the function is currently not implemented
+ * \param[out] data       ptr to space to receive the random number
+ * \param[in]  data_size  size of data buffer
+ * return ATCA_UNIMPLEMENTED , as the function is not implemented
+ */
+
+int atcac_sw_random(uint8_t* data, size_t data_size)
+{
+    return ATCA_UNIMPLEMENTED;
+}
+
+#endif

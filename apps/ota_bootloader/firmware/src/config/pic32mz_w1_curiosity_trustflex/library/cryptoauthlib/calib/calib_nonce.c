@@ -35,7 +35,6 @@
 
 #include "cryptoauthlib.h"
 
-#if CALIB_NONCE_EN
 /** \brief Executes Nonce command, which loads a random or fixed nonce/data
  *          into the device for use by subsequent commands.
  *
@@ -44,7 +43,7 @@
  *                          write.
  * \param[in]  param2       Param2, normally 0, but can be used to indicate a
  *                          nonce calculation mode (bit 15).
- *                          For ECC204,TA010,SHA10x represent tarnsport key id greater than
+ *                          For ECC204, represent tarnsport key id greater than
  *                          or equal to 0x8000
  * \param[in]  num_in       Input value to either be included in the nonce
  *                          calculation in random modes (20 bytes) or to be
@@ -120,6 +119,7 @@ ATCA_STATUS calib_nonce_base(ATCADevice device, uint8_t mode, uint16_t param2, c
     return status;
 }
 
+
 /** \brief Execute a Nonce command in pass-through mode to initialize TempKey
  *         to a specified value.
  *
@@ -132,6 +132,7 @@ ATCA_STATUS calib_nonce(ATCADevice device, const uint8_t *num_in)
 {
     return calib_nonce_base(device, NONCE_MODE_PASSTHROUGH, 0, num_in, NULL);
 }
+
 
 /** \brief Execute a Nonce command in pass-through mode to load one of the
  *          device's internal buffers with a fixed value.
@@ -219,7 +220,7 @@ ATCA_STATUS calib_challenge_seed_update(ATCADevice device, const uint8_t *num_in
 }
 
 /** \brief Use Nonce command to generate session key for use by a subsequent write command
- *         This Mode only supports in ECC204,TA010,SHA10x devices.
+ *         This Mode only supports in ECC204 device.
  *  \param[in]  device    Device context pointer
  *  \param[in]  param2    Key id points to transport key
  *  \param[in]  num_in    Input value from host system
@@ -233,4 +234,3 @@ ATCA_STATUS calib_nonce_gen_session_key(ATCADevice device, uint16_t param2, uint
 {
     return calib_nonce_base(device, NONCE_MODE_GEN_SESSION_KEY, param2, num_in, rand_out);
 }
-#endif /* CALIB_NONCE_EN */

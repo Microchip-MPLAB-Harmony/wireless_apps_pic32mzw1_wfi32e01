@@ -93,6 +93,7 @@ void APP_Initialize ( void )
     
     Bootloader_Initialize();
 
+
     /* TODO: Initialize your application's state machine and other
      * parameters.
      */

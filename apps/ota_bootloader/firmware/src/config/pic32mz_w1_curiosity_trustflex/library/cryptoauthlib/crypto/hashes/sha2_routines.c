@@ -25,12 +25,11 @@
  * THIS SOFTWARE.
  */
 
-#include "cryptoauthlib.h"
+#include <string.h>
 #include "sha2_routines.h"
-
+#include "atca_compiler.h"
 #define rotate_right(value, places) ((value >> places) | (value << (32 - places)))
 
-#if ATCA_CRYPTO_SHA2_EN
 /**
  * \brief Processes whole blocks (64 bytes) of data.
  *
@@ -256,4 +255,3 @@ void sw_sha256(const uint8_t* message, unsigned int len, uint8_t digest[SHA256_D
     sw_sha256_update(&ctx, message, len);
     sw_sha256_final(&ctx, digest);
 }
-#endif /* ATCA_CRYPTO_SHA2_EN */

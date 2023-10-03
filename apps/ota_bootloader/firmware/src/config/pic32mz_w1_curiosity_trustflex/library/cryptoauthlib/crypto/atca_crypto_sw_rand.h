@@ -1,7 +1,6 @@
 /**
  * \file
- *
- * \brief  Microchip CryptoAuth Library Version
+ * \brief
  *
  * \copyright (c) 2015-2020 Microchip Technology Inc. and its subsidiaries.
  *
@@ -26,13 +25,29 @@
  * THIS SOFTWARE.
  */
 
-#ifndef _ATCA_VERSION_H
-#define _ATCA_VERSION_H
+#ifndef ATCA_CRYPTO_SW_RAND_H
+#define ATCA_CRYPTO_SW_RAND_H
 
-// Version format yyyymmdd
-#define ATCA_LIBRARY_VERSION_DATE   "20211006"
-#define ATCA_LIBRARY_VERSION_MAJOR  3
-#define ATCA_LIBRARY_VERSION_MINOR  3
-#define ATCA_LIBRARY_VERSION_BUILD  3
+#include "atca_crypto_sw.h"
+#include <stddef.h>
+#include <stdint.h>
 
-#endif /* _ATCA_VERSION_H */
+/** \defgroup atcac_ Software crypto methods (atcac_)
+ *
+ * \brief
+ * These methods provide a software implementation of various crypto
+ * algorithms
+ *
+   @{ */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int atcac_sw_random(uint8_t* data, size_t data_size);
+
+#ifdef __cplusplus
+}
+#endif
+/** @} */
+
+#endif

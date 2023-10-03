@@ -4,14 +4,14 @@
 
 
 project: wifi_sta
-creation_date: 2023-09-12T12:12:58.847+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2023-10-03T15:08:10.602+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mcc_mode: IDE            # [IDE|Standalone|Headless]
 mcc_version: v5.3.7
 mcc_core_version: v5.5.7
 mplabx_version: v6.15        # if MPLAB X plugin only
 harmony_version: v1.3.2
-compiler: XC32 (v4.30) 
+compiler: XC32 (v4.35) 
 
 modules:
     - {name: "core", version: "v3.13.1"}
@@ -19,6 +19,6 @@ modules:
     - {name: "wireless_wifi", version: "v3.9.1"}
     - {name: "dev_packs", version: "v3.18.0"}
     - {name: "wolfssl", version: "v5.4.0"}
-    - {name: "net", version: "v3.10.1"}
+    - {name: "net", version: "v3.10.0"}
     - {name: "crypto", version: "v3.8.0"}
 

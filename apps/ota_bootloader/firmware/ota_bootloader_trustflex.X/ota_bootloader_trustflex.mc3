@@ -5082,7 +5082,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\hashes\sha2_routines.c</file>
-         <hash>878a312fa61d40739ad8a5d55e38740d2a03ffdef59134f1671292fab42d1be3</hash>
+         <hash>c29a7f5cd6bdde714f62e335c18fbf0692dfe99a3c4805ee115917bed28197c0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_status.h</file>
@@ -5110,15 +5110,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_hw_aes.h</file>
-         <hash>fe60d8122ebeea88a71105cf616e54452f05c66d95033c9a8e75a647b769c6a5</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_check_config.h</file>
-         <hash>6c3873e130dd4df815f9e4b4359adf49476df15136f910f48dc9e5ccf8798335</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_config_check.h</file>
-         <hash>d702af64983babc2cf0e0c21d2ab3fcf330ba3455d0054d60cfdaf75cb8acdfe</hash>
+         <hash>b5fc6d288548f5b5054ffcb5f629c3331d3df2a6bd5afe09e045ee02e6c3782e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\hal\ATECC608_0.c</file>
@@ -5134,7 +5126,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_sign.c</file>
-         <hash>2abbacb8632c2c058d64b42cb0bc89f0072698526f09889f88fafa44afce487e</hash>
+         <hash>9c1832c6a40a5733b1dab96d43bf4046d95607b0cc4e4294897d332cb5293c68</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\int\sys_int.h</file>
@@ -5157,12 +5149,8 @@
          <hash>02e656f0627ceed96c9918807cb5e2c8d7d0cf1e105338aef97fe4631388032c</hash>
       </entry>
       <entry>
-         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_platform.h</file>
-         <hash>626fdb51a75dc8180c1e49be01a19bb4310b49f0c7e13a0fe0e80b584c49351a</hash>
-      </entry>
-      <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_helpers.c</file>
-         <hash>863e6709b5dd11f8f9798f526b27c04e37feb59d7f3e67b933ab0ad869e7a5ad</hash>
+         <hash>7c8847669e9d1009b31c32de0522e88f296fe166528c817d804efeec7452214c</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\tng\tflxtls_cert_def_4_device.c</file>
@@ -5170,7 +5158,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_pbkdf2.c</file>
-         <hash>c6d821bf02c4654305bfda71f6c188f5183898e6968e8a352206aad5fe6fbd48</hash>
+         <hash>8768d97c0a1ce46467cc77b46f30a9585ec266a1a52e2f5dc75a362ebb079ba2</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_helpers.h</file>
@@ -5206,11 +5194,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_client.c</file>
-         <hash>2d8ca36b525a172c80b4409b3e056a60223afd0472e98b1b143581cacf0d8450</hash>
+         <hash>85a9e87ca9b7b4d4962cfada7df4959015f80a122926cca1f60a825821e08651</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\hashes\sha1_routines.c</file>
-         <hash>68fbcf4031f698c118566173d56c035e9f51c1fb36098653dfb6a5b3874dbc92</hash>
+         <hash>a34e415a81c52d7ae070e02e4d139f292c9d1d08d9ae8ea054c07a354b17ce36</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\toolchain_specifics.h</file>
@@ -5242,7 +5230,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_read.c</file>
-         <hash>0bcaad1b579329190e9bb0178f2860336f045452dd70622a93e8fce32f798efb</hash>
+         <hash>e4cc6c4d6bf52022abb6dd5a55c94435f0b70566f643a49d534b7fa8daa42707</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\stdio\xc32_monitor.c</file>
@@ -5250,11 +5238,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_privwrite.c</file>
-         <hash>278fbe9acd9bd2e3cf987388db9e71529eee2489504171d13a645eec9dbeff78</hash>
+         <hash>d92573f2bbb16a49b8efd1404e7aaf7b3d7b531d659809e4153a141a72195b73</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_checkmac.c</file>
-         <hash>9f390c0afe5addc80449364affc260481e8444b693f2a29b63e000813514a99c</hash>
+         <hash>b9d238a9cd751ff4235506f20243e168b8e72d08988a9c2f7ea58e79a3d7bae6</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\device_cache.h</file>
@@ -5266,7 +5254,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_mac.c</file>
-         <hash>668d49ca552953da4cce8c5c0c6d514c0fc81fe8011acbc65eb97398cb9265c4</hash>
+         <hash>9f32e9e7569cff39466b6e7d2d1a858d2897783d950c92116b5066a27d2bf7c0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\driver\sst26\src\drv_sst26_spi_interface.c</file>
@@ -5274,11 +5262,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_iface.h</file>
-         <hash>771502561f2c10faadec29f4357e2d10aaa263997d5db8ff978e230cd8b9a3ac</hash>
+         <hash>4aee1e9d68747d34d4ef1f85226ea1a8df49ac1c7660c4260fc40767ac5bd781</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_iface.c</file>
-         <hash>cb572268014982abf7fcd1fa4aeb32ceeb6778aa11bcec54fe344a027cbcc821</hash>
+         <hash>254ed46541119063f075f135cadcadb6e835dee531f44f48e6ccd69f647f43c4</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\driver\sst26\drv_sst26.h</file>
@@ -5302,11 +5290,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_hw_aes_cbc.c</file>
-         <hash>da8567d7acfc77f9c606cc0af6110f5edcdd1ea964eb773b6c5e36fc36182c1e</hash>
+         <hash>1723c3090ac60a14707551ca54cd2ee7a211411c8d03cce678274fd658b5842b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_date.c</file>
-         <hash>b5e56938d057e54cc95c0771a8073b479a60ec6c235c12c1cd8159452a2c11bd</hash>
+         <hash>a0396d40b93b9768646e993870133754ad272461707229a1b8c120c591bae4ed</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\nvm\plib_nvm.h</file>
@@ -5322,19 +5310,19 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\hal\hal_i2c_harmony.c</file>
-         <hash>3688a406578e38ebbe903cd91e1c213e5b4ae2eb8937ee79169a67ab5d18f57a</hash>
+         <hash>511127258f1f5cda686cb206472391ab165e3e8b0a1d3f9537327fdc3ce2cdfe</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_der.c</file>
-         <hash>c6b08c7a72339ff2f477f0b19ca6219ec34992abeff4778cba172148a1124ecc</hash>
+         <hash>b28fa6d44f55594e16ad34d21e177243c711d6d42c4ea0d72e0572e0d32d1c84</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_sw_sha1.c</file>
-         <hash>0236326e2c5d753c680b97edec372959715e4de1c741ccb2e73857a404e63507</hash>
+         <hash>1f27ad9639ac507ff79ae21bc6b7846605db55e1c0eb4f67e8be31b538cec732</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_cfgs.c</file>
-         <hash>f534b8add605a18d5e44663831a9661c03d8ce67e3e3ee5df000d3b6ab2b0354</hash>
+         <hash>069d1314fdd07cbaf1fd66bd5f0a50a81244bf73436781e39cc21a2c139a8940</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\spi\spi_master\plib_spi_master_common.h</file>
@@ -5346,7 +5334,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_cfgs.h</file>
-         <hash>673b095e37545ff7198ae8473e3a1fa5b28111180794fb92b9569835b864fbc3</hash>
+         <hash>2c3341451f8fb34eea9b966683e0b4fa6c51be858742bd2b96e034ab5794c548</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_der.h</file>
@@ -5358,7 +5346,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_hw_aes_ccm.c</file>
-         <hash>358f9a4408870e4118e6e9c7341a0aba68734030de67559e5fe95439a3d6d53e</hash>
+         <hash>e869906380c93962f94d8cb65f6c11eff1fc57a9cc7b6a22bd0dd715267caed2</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\fs\src\sys_fs_local.h</file>
@@ -5366,7 +5354,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_version.h</file>
-         <hash>c2180ed044d26bc957a097fdba22494fa92657ebfeec5b9213b8d8b1ac00209f</hash>
+         <hash>35cc6b524326b849a25f8dac90e8031a8cef8b85d37325113fa9b09bed6a5749</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\system_module.h</file>
@@ -5378,15 +5366,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\hal\atca_hal.c</file>
-         <hash>a776ec795ffd66189d56ecf02b6e32052580d7c74ab7c8eb84473410806cf2b9</hash>
+         <hash>e4348b3e95f0a520b42c3d0f151cb27e486870807dcba9e370ceb461fc8545a8</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_pem.c</file>
-         <hash>a2e782b895f7a8b8031eb0a6b3d3f3323ae28a1a7e530c6cae5b8105585d4609</hash>
+         <hash>4139cc9c4bf1c2962b0bcc223f32ca3efa57532cfff47856fb802de80ab0596b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\hal\atca_hal.h</file>
-         <hash>9ba44e5d6b7e187b287c0dd31dd2bed0da1724f0b2716c15e980b5468af2f103</hash>
+         <hash>cdfd8865cf7719537bfbb5574d394a2d7c8648395c9518ae5333715f7585eb8a</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\cache\plib_cache.c</file>
@@ -5394,7 +5382,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert.h</file>
-         <hash>0a15c758150903a9258446a73607b36003ec7a44b8a639ecc3d7702043c775c7</hash>
+         <hash>21b93a20dce56c1b3b34c03079bc2690ac33b49d134fa8685acb1d2a50dd1804</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\cache\plib_cache.h</file>
@@ -5406,7 +5394,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_sw.h</file>
-         <hash>b1e732ad50cff0c446ad33555ec9b2e7fe46ae8c2efd31bb008e735e666be87f</hash>
+         <hash>b626ada215d5fd0c6b930d629caf1a72bf5d7d5b96dc438f9cc7ae2926aca382</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\configuration.h</file>
@@ -5414,19 +5402,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_basic.c</file>
-         <hash>259de4446b1b8761c7cd7141a1b7a8ca8ad23d12ded39873cf8f475ada88d795</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_config_check.h</file>
-         <hash>834953241a9711bc8f6921abc9f4fd1958439972f8e415921c6faf36796fa349</hash>
+         <hash>dca77ffda49c0dee82145ac26f46dd27ee80df8d9942176585d0dc852cb367a0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_basic.h</file>
-         <hash>68e3b9d31bf9027e0f5b5dc84832416129eaeb154f3fe784512088741953221d</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_pad.c</file>
-         <hash>1e2af6e4f27de4c652b16af897210737cf352a9a62526e7faa9bfbf9fbf244d1</hash>
+         <hash>3fd0906b164c5cfb6a64b00db22af217dea0b457b3ab120527fea68561bc270f</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_compiler.h</file>
@@ -5438,15 +5418,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_nonce.c</file>
-         <hash>fb487f2f60f989a417e8e62a2ca1ac8913d823203c9fa43142c1fcf87001f4b4</hash>
+         <hash>9187e7fc9c0e6a16b9b24a5a301c3d1ab616cfc0a327b28af0045efd7b451a8b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_basic.h</file>
-         <hash>c2630d23b56bc3e4a58239ad9f4e611c76ffb40726e66bdef68d67792c449f74</hash>
+         <hash>5b00ef42c605ea0e4fee64693e485f3238ff5cf7a6395b914934f232ea0b944a</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_selftest.c</file>
-         <hash>bc2712bb9a53f581b16dfb031fed82e46eb8ae3f385be21d87affb44e8bdaef3</hash>
+         <hash>4d30e17a0b53eb73bcacf17b6b069af1a09cac6e6646299f2b5dff3b136e17e2</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\tng\tng_root_cert.h</file>
@@ -5454,7 +5434,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_counter.c</file>
-         <hash>180fa50c9ad63b53664136264882853cfba6d79ca45b64689027bcf33fb3298a</hash>
+         <hash>71f374433064137ed87f663ecddc9541c145c58b708fdffafb2238454dc38d2f</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\cache\plib_cache_local.h</file>
@@ -5466,19 +5446,19 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_basic.c</file>
-         <hash>09ae33218c050d1612d8dbc5eb0397707940fa9087c048e8cc5e6dbeba93797f</hash>
+         <hash>46def1e3462a4f47c953425b1f1a2917489889951b16c76f7b6f3e9b362d08f7</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_hmac.c</file>
-         <hash>9c8aa0411a9ebc28417e982c23fd4df47cc44851dbe4ad5d0d09ee6e56dc82c0</hash>
+         <hash>56ea4d077b89e1ea93ba0c9491c06fc6566c1f4f9f901eea18512ff05ca29090</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_kdf.c</file>
-         <hash>a9d4e86ce667cf27fc0042f0f82f6a6fe4c12a5f9c25f48eddaeec4baaf86e20</hash>
+         <hash>10db4dceb14581fa0821deb9504b0a2b82104e95630016cc65ee2242b43cf2a1</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_gendig.c</file>
-         <hash>11942e9303f425ee3d29546c48a55ef0da972ec6bfe0bcc09e374efe3feedc9f</hash>
+         <hash>33d2a5328c5ff26558d2c9c004669c873cf5459e54fd7eb7f05c8cd1382121e9</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\driver\memory\src\drv_memory_file_system.c</file>
@@ -5486,7 +5466,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_ecdh.c</file>
-         <hash>e7c5a2b1b5d88a913dd452c5c21981446c9a71070913445112321f6fe5404d92</hash>
+         <hash>911e856607238640ed99f97fd7f61443a2cd9882b748b08a2c3d111686d81d9b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\driver\sst26\drv_sst26_definitions.h</file>
@@ -5498,7 +5478,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_command.c</file>
-         <hash>da491045ceb1f856ed3fb0c74f1d7c06a23ac9e4fb49ee1f470415b3bc79488c</hash>
+         <hash>ec1c1de4edbe3fd6e724c56127b3d67e5035e8efabefcea207d96b5d214cc95e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\fs\fat_fs\file_system\ffconf.h</file>
@@ -5506,7 +5486,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_command.h</file>
-         <hash>5760e37470f33b7e97c6cd99d88407e03acaf221c000d4af5bfd976056461b8e</hash>
+         <hash>c93f1fa1546672243b63d0a1b44446260509668475c28753a622115c635bb12a</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\system_common.h</file>
@@ -5534,7 +5514,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\jwt\atca_jwt.c</file>
-         <hash>657829776fa4cf35bd3ac4df9cc707bac294dffd73d263b5ed06d88f265517d9</hash>
+         <hash>3985b9d158fd73a9d0abca46019325af8219dc27528d9c6b355b8490d7014174</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_sw_rand.c</file>
+         <hash>005659d2c6c93e2432612913c970d1e0efd5212111319d62135f631358035b21</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\osal\osal_impl_basic.h</file>
@@ -5542,7 +5526,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_verify.c</file>
-         <hash>5dedc521774cdad9590d9c68c475d961a1df92f4ecf8a49d18f478fd352b67c9</hash>
+         <hash>faf442caa9380b3930093e62d1c9d60bfb3480479dc63cb8eadd488d1b43084b</hash>
       </entry>
       <entry>
          <file>..\src\app.h</file>
@@ -5550,7 +5534,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\jwt\atca_jwt.h</file>
-         <hash>474562055657d29505a2fee41428e4b6c8b52e2109475bb8ae041d4c58831d35</hash>
+         <hash>a0e996b4ac40870502765c7f454880b56b3962998ad7974a0584ade4f15c5e63</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_bool.h</file>
@@ -5569,20 +5553,24 @@
          <hash>646a1312cfd3878a6d24b6c1d26850972727c8d53024ef226e631f74d06c2584</hash>
       </entry>
       <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_sw_rand.h</file>
+         <hash>e71b70659ca039c9ae24a1d82af05229677e535e9089ba755e73414ff05d8543</hash>
+      </entry>
+      <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_host_hw.h</file>
          <hash>61081571372015c4c5114c5e587589d0f3e35dddd74c6d0793b00f943147f991</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_random.c</file>
-         <hash>7e325853a6cbda47912d760041f4e869c4c1bde456b52dc510c97665a7229b34</hash>
+         <hash>625efba62f435f2c3349284b7c29dd47d47adbd8d79319c12662779a218b4e71</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_host_hw.c</file>
-         <hash>f29f9cdcae0f9b5ee0956cf22ca577d6f5ad7d9f467a374834ce10c9865dac16</hash>
+         <hash>7825cd8ce16e2f82b0a149a1ad60edf689ab7d11d0930fc086990f9f57f955f2</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_helpers.c</file>
-         <hash>c2f9943f15fef1e5f740bcc3903a36febacf11d5dfbbb26decffb71177411a15</hash>
+         <hash>cd8d72f78767c0783921f228fa04f2a18d3517c3a4ad5ca5ed540b4f3f0dd4e5</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\gpio\plib_gpio.h</file>
@@ -5590,7 +5578,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_sha.c</file>
-         <hash>12eb8f7d95e05491a768fa3a44f8c9d3865d8fcc4091fdbf14108d5368e9f4d1</hash>
+         <hash>9f2b40abeb2045a8aac88db4b8f7b127b5d6e3f55f2ec5cd69a5078a31e71783</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\gpio\plib_gpio.c</file>
@@ -5599,10 +5587,6 @@
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\tng\tng_atca.h</file>
          <hash>e7cc88d4d2851ad725ec1be011a3eae8681357eeeae0533915dd2eb1910f825d</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\crypto_config_check.h</file>
-         <hash>67b3815a6a65a02bc7908554172d99bca7752f2ebc6035ebf185920f38ec195b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\ports\sys_ports.h</file>
@@ -5630,15 +5614,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_updateextra.c</file>
-         <hash>e901a5da37ac1fdf622b3acf81cc59eec0e6f495b2f3e4790333297d03ba8136</hash>
+         <hash>58df4562b1d36b66c50f41f69e04138ad9abd8f61ad2f3d753f780c70c71555a</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_hw_aes_ctr.c</file>
-         <hash>bfa535f09f5b6c3e285b1ee35fb8555fcf419fa76a4396f0602db37e683657f3</hash>
+         <hash>86c9f5b0f62e2aeba2861f18a27c170908f63b695c359eb2a1fcacad596e4bb0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_debug.c</file>
-         <hash>c0b37f2957728461706afd48baf8c7e281263b50cfae9941a84aa53ff98d73f5</hash>
+         <hash>72c2264c02265a5a26ff5d9b45ccf5083dbf13f97d7049c73b2aa9fbe3794982</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\driver\driver.h</file>
@@ -5646,7 +5630,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_sw_sha2.c</file>
-         <hash>278c845e52b899df4c5c068e5707aff0709f487d048e152f608bc7e8a7b7d2a2</hash>
+         <hash>9a1374db7518e90177dff68b323ad4ba7658e1ddab5daed303e17479f740fd26</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_host_sw.h</file>
@@ -5670,7 +5654,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_host_sw.c</file>
-         <hash>30f69dc795dd4e0a3f0dffaa6675a9251c51643f575edb4f47aeafc306442448</hash>
+         <hash>3dc121c231e568d46fc6cc4b951d94ab0e8878bb09e9853c08e0fdea3fc772b6</hash>
       </entry>
       <entry>
          <file>..\src\main.c</file>
@@ -5678,7 +5662,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_config.h</file>
-         <hash>f07c74c84078b58feeba4a57dad5c8b8754b4e6105ce4823e27146b8b174cf58</hash>
+         <hash>fefb68644c16d762e99826a1b588939000446b8b0141840e1ba3203ef0deb4cf</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\cache\sys_cache.h</file>
@@ -5690,7 +5674,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_execution.h</file>
-         <hash>44e5f5be5fd28f8da1c3be886de9942ff85f50988f0e7c460957d9278e9e6d2c</hash>
+         <hash>cfbfe887dc00c59a3524e41392d7acab986f60180d245fa0a4f606f28d39d880</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\int\sys_int_mapping.h</file>
@@ -5698,7 +5682,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_utils_sizes.c</file>
-         <hash>5d2094f034597dbc48504fe175d11e6e56eb714b464e50a7ae472be763038c8e</hash>
+         <hash>0a717119ee793e48997af01f8de210dbd905a555a74f75cdf8e092d0450a4375</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\ports\sys_ports_mapping.h</file>
@@ -5706,11 +5690,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_execution.c</file>
-         <hash>e5c65c8b4e51492ce9c3894cad905663b1e57fb14062c160ea2ffcc6158d89c8</hash>
+         <hash>6013547ca1fcee42ed68346c6ebad6e0abd069fbdf5baa93519e4807195b032d</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_def.c</file>
-         <hash>d5cbcad53fb4823be85937ae552f837ef0454025f27eb6a4ddc0ffab48f368c6</hash>
+         <hash>800a3c3cb7f886c51c2cf6dad8bf7f5850a75ff980118486a55ef51005b44372</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\fs\src\sys_fs_media_manager_local.h</file>
@@ -5722,15 +5706,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atcacert\atcacert_def.h</file>
-         <hash>b71f2998e92b947dc988a89e63e65440570def8d4cbf4cc5a7e3c972bccf5019</hash>
+         <hash>137e9a945a894c50fab90914f10fdc7901ff467ab499e3eeb926cdda96a88716</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_write.c</file>
-         <hash>c6362ceb2f111e34b3c12d201de125c08f23c9f1416881c21ea676e6bf9a5bc0</hash>
+         <hash>1998ec33f901f76fa233aea8478a891c0086d9de6a8920fdeabe3b6def363a9b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_derivekey.c</file>
-         <hash>53eb876df2fb2c8be9b616b4e4e1a621b975bb7ded96f81c144ea9b89077eb86</hash>
+         <hash>ff03c4b811d6619a3592a4c89f5fe4ecc4965b3ac5aa5eb39f04305f391e1da5</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\tng\tnglora_cert_def_4_device.c</file>
@@ -5738,7 +5722,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_lock.c</file>
-         <hash>5c3f92956088ad62d329346eb16b060afa144a5387f187a3d7479665e0c972ff</hash>
+         <hash>1e6ace944591f56d72faa2f7879e6598ce6905f1a171ef1f89c79e4cf6d349de</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\system\fs\src\sys_fs_fat_interface.c</file>
@@ -5746,7 +5730,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_info.c</file>
-         <hash>3075983e542a5eee3c1601e30eada9d80dac4244062ec18289003c1f69ce5863</hash>
+         <hash>11c0f5be7dc95aab201f0d885a383dd9228ce54ca709e127fba14ee907b99662</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\i2c\master\plib_i2c1_master.h</file>
@@ -5762,11 +5746,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\atca_devtypes.h</file>
-         <hash>73635f185e9e767f3afa11c75890b92ddf85959751ed91d6ae38bd3fd06e0df1</hash>
+         <hash>3a4e904970db8ea89bfd04f163e8797f8ebca3d4740d0e5bfd472180fa91fbf2</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_hw_aes_cbcmac.c</file>
-         <hash>b03de91ce72cb172d4b60934626fd5ce7a5f22242b72c82cd24f25db5b6e21bd</hash>
+         <hash>a2d0b5781e36551432786198fded2946ce5af76f649a6bf64b905ccf65515d81</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_sw_ecdsa.c</file>
+         <hash>eb4111307e5af7551b1e9809e514e4f31cf36f3116ca101528e7c80c0a2b91ea</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\interrupts.c</file>
@@ -5777,12 +5765,16 @@
          <hash>b1af6898d6f198efb1d0c2dbf396840d3ad6b910900ae1720e2b4e424f80c6d8</hash>
       </entry>
       <entry>
+         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_sw_ecdsa.h</file>
+         <hash>6c84c68643ac5e2d912238691c2bceef91a9cd0cd219bc256443d114b9d48fe7</hash>
+      </entry>
+      <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\tng\tng_atcacert_client.h</file>
          <hash>223d56c71fca026c8307dbd1396707c48ceaf126dd11cb9db3fe20f8c4482de7</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_genkey.c</file>
-         <hash>e1abd45c2eb9472c442c63e74b4b302854fd2b6b0d3cdc15829c5f2d7c6302f5</hash>
+         <hash>b99bceac73047383a97d2ac5704650140463b0531c36b187123f0b3341c51781</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\tng\tng_atcacert_client.c</file>
@@ -5794,11 +5786,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\cryptoauthlib.h</file>
-         <hash>f7d040c906bc7c471558d2110ad5f87ac7b8986a96d8d0fa75dc1651167fcde4</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_delete.c</file>
-         <hash>dfeda9b94ffde5cd3701dd197941dfa0b3d24fb016d4b670a276d87004d25c28</hash>
+         <hash>5fa4784ec0e642ce8f85ce996c3ead74773a076d0c87bb6850d1090e4c920907</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\i2c\master\plib_i2c_master_common.h</file>
@@ -5814,7 +5802,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\host\atca_host.h</file>
-         <hash>1f56d5cd068b53db41147ca9492830b859ec48ff084217107182cf3d0db02591</hash>
+         <hash>345c219e8e41380dc3789946123b0a7703e10758d46da0013846d8c270166b62</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\exceptionsHandler.S</file>
@@ -5826,15 +5814,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\host\atca_host.c</file>
-         <hash>2173bad21da48e8df6a817789d7b7553a01b0cf7edb2825ec4298696b45462fb</hash>
+         <hash>a556432c447b61818c11434ccb2e72474ce76a7979ee2c1910d026dd5a8909b0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\cache\plib_cache_pic32mz.h</file>
          <hash>e401b896c670e8d0e1714eafc2b93a12b1fe6592783951e2353471bb4ced58e8</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\host\atca_host_config_check.h</file>
-         <hash>aeb0900e4230fc9d4e851c195aabbf36af2e24d6888e53bcf90795e987da155f</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\tng\tnglora_cert_def_4_device.h</file>
@@ -5842,7 +5826,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\crypto\atca_crypto_hw_aes_cmac.c</file>
-         <hash>44335ea2db3dea6b4c4d6132eae05018c9220252b02153dd2eaa3ce906c83406</hash>
+         <hash>856307742ed0a3754fefa05ab739a00a417424443773fbdd1051a1eafb6da2e5</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\peripheral\uart\plib_uart1.c</file>
@@ -5850,7 +5834,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_aes_gcm.c</file>
-         <hash>21fe25a379ea8dc21b9078b08eab8a1a17e10154c18f3f55f9752aa8a5ead956</hash>
+         <hash>79269ce757c1ac9843b8baf5409281ddc53fc00b4a2196ea079b0411e502980d</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\hal\hal_pic32_delay.c</file>
@@ -5858,11 +5842,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_aes_gcm.h</file>
-         <hash>4403b396029c55cff7e5dcbfab6962e2411c5afa7645b164268c924c39e4ca47</hash>
+         <hash>d9caf5ab8d7bf200d5825d10c4a8cf4cbce9b2e50724484df782dd96a7d8f60d</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_secureboot.c</file>
-         <hash>12c960be28a7659cf503685cb1f3046c452e153676f0eb24566dde4c8dfea84b</hash>
+         <hash>f549061375d2104a644ea6c7e7b21a06f77e849dc4a0173bfc68e46fce0756c4</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\tng\tnglora_cert_def_1_signer.c</file>
@@ -5902,7 +5886,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_trustflex\library\cryptoauthlib\calib\calib_aes.c</file>
-         <hash>ece6a240f1046459e2f2a5d0c9b45e67625904e84d220c91a849e02425eeebba</hash>
+         <hash>1d79ca033dc3537a543244a91dedc9f9fcbf6955e4ddd189ca7574215df62369</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>

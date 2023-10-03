@@ -35,7 +35,6 @@
 
 #include "cryptoauthlib.h"
 
-#if CALIB_KDF_EN
 /** \brief Executes the KDF command, which derives a new key in PRF, AES, or
  *          HKDF modes.
  *
@@ -137,4 +136,3 @@ ATCA_STATUS calib_kdf(ATCADevice device, uint8_t mode, uint16_t key_id, const ui
 
     return status;
 }
-#endif  /* CALIB_KDF */

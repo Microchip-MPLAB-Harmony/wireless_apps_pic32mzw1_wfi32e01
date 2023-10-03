@@ -33,7 +33,6 @@
 
 #include "cryptoauthlib.h"
 
-#if CALIB_RANDOM_EN
 /** \brief Executes Random command, which generates a 32 byte random number
  *          from the CryptoAuth device.
  *
@@ -87,4 +86,3 @@ ATCA_STATUS calib_random(ATCADevice device, uint8_t *rand_out)
 
     return status;
 }
-#endif  /* CALIB_RANDOM_EN */

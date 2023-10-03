@@ -92,7 +92,7 @@ uint8_t g_networkType;
 
 static inline uint8_t Findstring_lenth(uint8_t *ptr)
 {
-    uint8_t len=0;
+    uint8_t len = 0;
     for(;*ptr != '&';ptr++,len++);
     return len;
 }
@@ -147,7 +147,7 @@ HTTP_IO_RESULT TCPIP_HTTP_GetExecute(HTTP_CONN_HANDLE connHandle)
     const uint8_t *ptr;
     const uint8_t *ptr1;
     uint16_t bssIdx;
-    uint8_t filename[20];
+    uint8_t filename[20] = {0};
     uint8_t *httpDataBuff;
     uint8_t bssIdxStr[2];
 
@@ -236,7 +236,7 @@ HTTP_IO_RESULT TCPIP_HTTP_GetExecute(HTTP_CONN_HANDLE connHandle)
 HTTP_IO_RESULT TCPIP_HTTP_PostExecute(HTTP_CONN_HANDLE connHandle)
 {
     // Resolve which function to use and pass along
-    uint8_t filename[20];
+    uint8_t filename[20] = {0};
 
     // Load the file name
     // Make sure uint8_t filename[] above is large enough for your longest name
@@ -379,11 +379,11 @@ static HTTP_IO_RESULT HTTPPostConfig_wifi(HTTP_CONN_HANDLE connHandle)
 
         if(!strncmp((char *)httpDataBuff+Index, (const char *)"stassid=",strlen("stassid=")))
         {
-
-            uint8_t len ;
             Index += strlen("stassid=");
-            len = Findstring_lenth(httpDataBuff+Index);
+            uint8_t len = Findstring_lenth(httpDataBuff+Index);
+            if(len > 0){
             strncpy((char *)wifiConfig.staConfig.ssid,(const char *)httpDataBuff+Index,len);
+            }
             wifiConfig.staConfig.ssid[len] ='\0';
 
             Index += len ;
@@ -392,10 +392,11 @@ static HTTP_IO_RESULT HTTPPostConfig_wifi(HTTP_CONN_HANDLE connHandle)
 
         if(!strncmp((char *)httpDataBuff+Index, (const char *)"stapwd=",strlen("stapwd=")))
         {
-            uint8_t len ;
             Index += strlen("stapwd=");
-            len = Findstring_lenth(httpDataBuff+Index);
+            uint8_t len = Findstring_lenth(httpDataBuff+Index);
+            if(len > 0){
             strncpy((char *)wifiConfig.staConfig.psk,(const char *)httpDataBuff+Index,len);
+            }
             wifiConfig.staConfig.psk[len] ='\0';
 
             Index += len ;
@@ -428,20 +429,22 @@ static HTTP_IO_RESULT HTTPPostConfig_wifi(HTTP_CONN_HANDLE connHandle)
          Index += 2;
         if(!strncmp((char *)httpDataBuff+Index, (const char *)"apssid=",strlen("apssid=")))
         {
-            uint8_t len ;
             Index += strlen("apssid=");
-            len = Findstring_lenth(httpDataBuff+Index);
-            strncpy((char *)wifiConfig.apConfig.ssid,(const char *)httpDataBuff+Index,len);
+            uint8_t len = Findstring_lenth(httpDataBuff+Index);
+            if(len>0){
+                strncpy((char *)wifiConfig.apConfig.ssid,(const char *)httpDataBuff+Index,len);
+            }          
             wifiConfig.apConfig.ssid[len] ='\0';
             Index += len;
         }
          Index += 1;
         if(!strncmp((char *)httpDataBuff+Index, (const char *)"appwd=",strlen("appwd=")))
         {
-            uint8_t len ;
             Index += strlen("appwd=");
-            len = Findstring_lenth(httpDataBuff+Index);
+            uint8_t len = Findstring_lenth(httpDataBuff+Index);
+            if(len > 0){
             strncpy((char *)wifiConfig.apConfig.psk,(const char *)httpDataBuff+Index,len);
+            }
             wifiConfig.apConfig.psk[len] ='\0';
             Index += len;
         }

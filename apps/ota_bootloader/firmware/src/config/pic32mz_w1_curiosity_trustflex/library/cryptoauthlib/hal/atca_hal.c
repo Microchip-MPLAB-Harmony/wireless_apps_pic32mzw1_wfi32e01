@@ -253,7 +253,6 @@ static ATCA_STATUS hal_iface_set_registered(ATCAIfaceType iface_type, ATCAHAL_t*
         }
         else if (empty < atca_registered_hal_list_size)
         {
-            atca_registered_hal_list[empty].iface_type = iface_type;
             atca_registered_hal_list[empty].hal = hal;
             atca_registered_hal_list[empty].hal = phy;
             status = ATCA_SUCCESS;
@@ -285,7 +284,7 @@ ATCA_STATUS hal_iface_register_hal(ATCAIfaceType iface_type, ATCAHAL_t *hal, ATC
         status = hal_iface_set_registered(iface_type, hal, phy);
     }
 
-    return status;
+    return ATCA_SUCCESS;
 }
 
 /** \brief Standard HAL API for ATCA to initialize a physical interface
