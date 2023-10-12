@@ -46,6 +46,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define __INC_OTA_CONFIG_H__
 #include <stdint.h>
 #include "user.h"
+#include "bootloader.h"
 #ifdef  __cplusplus
 extern "C" {
 #endif
@@ -80,8 +81,10 @@ extern "C" {
 #define OTA_BOOT_CTL_SIZE         FLASH_SECTOR_SIZE
     
 #ifndef SYS_OTA_FS_ENABLED
+#ifdef SYS_OTA_FILE_JUMP_ENABLE
 /*Jump address of the new image.This shall be updated with the proper memory calculation*/
-#define APP_IMG_BOOT_ADDR_2      0x900ef200
+#define APP_IMG_BOOT_ADDR_2      0x900f8200
+#endif
 #endif
 
 

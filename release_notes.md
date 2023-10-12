@@ -8,6 +8,37 @@ nav_order: 99
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+## Harmony 3 Wireless application examples for PIC32MZ W1 family  **v3.8.0**
+
+### Development kit and demo application support
+
+Following table provides number of Wireless examples available for different development kits.
+
+| Development Kits           | MPLABx applications |
+|:--------------------------:|:-------------------:|
+| PIC32MZ W1 Curiosity Board |       20            |
+
+### New Features
+- Migrated all the applications with latest "wireless_wifi" driver v3.9.1 
+- Please refer to the [system services release notes.](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md)
+
+### Bug fixes and Improvements
+- Please refer to the [system services release notes.](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md)
+
+
+### Known Issues
+- In paho mqtt client power save application, user is requested to ensure that plib_clk.c, app_mqtt.c , app_mqtt.h,app.c and app.h files are not overwritten with generated code.
+
+### Development Tools
+
+- [MPLAB® X IDE v6.15](https://www.microchip.com/mplab/mplab-x-ide)
+- MPLAB® X IDE plug-ins:
+  - MPLAB® Code Configurator (MCC) v5.3.1
+- [MPLAB® XC32 C/C++ Compiler v4.35](https://www.microchip.com/mplab/compilers)
+- **DFP 1.8.326**
+
+
+
 ## Harmony 3 Wireless application examples for PIC32MZ W1 family  **v3.7.0**
 
 ### Development kit and demo application support

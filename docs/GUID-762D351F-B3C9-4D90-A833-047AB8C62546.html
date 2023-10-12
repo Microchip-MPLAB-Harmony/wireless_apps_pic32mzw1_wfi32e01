@@ -4,9 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
-<meta name="DC.rights.owner" content="(C) Copyright 2022" />
-<meta name="DC.type" content="topic" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
 <meta name="DC.title" content="Over The Air (OTA) Programming Using Wi-Fi" />
 <meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
 <meta name="DC.format" content="XHTML" />
@@ -18,7 +18,7 @@
 <meta name="Microsoft.Help.TocOrder" content="0" />
 <meta name="Microsoft.Help.Locale" content="en-US" />
 <meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 01/2022" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 10/2023" />
 <script language="javascript">
        
        if (window.parent.location.protocol != 'file:') {
@@ -225,19 +225,19 @@
         
       </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="over-the-air-ota-programming-using-wi-fi">
-<h1 class="title topictitle1" id="ariaid-title1">Over The Air (OTA) Programming Using Wi-Fi</h1><div class="body"><p class="p">This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and perform OTA application update process to download an image present in the user defined OTA-HTTP server.</p>
+<h1 class="title topictitle1" id="ariaid-title1" style="">Over The Air (OTA) Programming Using Wi-Fi</h1><div class="body"><p class="p">This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and perform OTA application update process to download an image present in the user defined OTA-HTTP server.</p>
 </div>
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html">Harmony 3 Wireless application examples for PIC32MZ W1 family</a></div>
 </div>
-</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2">Description</h2><div class="body"><p class="p">This application demonstrates how a user can perform OTA application upgrade using Wi-Fi. The user would need to configure the Home AP credentials (like SSID and security items). The Wi-Fi service will use the credentials to connect to the Home AP and acquire an IP address. Once the IP address is obtained application will perform OTA update process.</p>
+</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2" style="">Description</h2><div class="body"><p class="p">This application demonstrates how a user can perform OTA application upgrade using Wi-Fi. The user would need to configure the Home AP credentials (like SSID and security items). The Wi-Fi service will use the credentials to connect to the Home AP and acquire an IP address. Once the IP address is obtained application will perform OTA update process.</p>
 <br /><img class="image" src="GUID-14DE7F63-D45F-4C34-81F7-8D15A8FBAA8A-low.png" alt="resized_wifi_sta_http_server_1" /><br /><p class="p">Application will try to connect with the defined server address and download the new image. The downloaded image will be stored in the external flash (sst26vf) initially. Application will reset the device to run new image once image is successfully downloaded from server. When device is reset ,bootloader will try to program the image from the external flash and if programming is successful ,downloaded image from the server will be executed .</p>
 <p class="p">It is required to build "ota_bootloader" project located in the apps folder of <code class="ph codeph">wireless_apps_pic32mzw1_wfi32e01</code> repo first before building this application as the image of the bootloader application will be used to integrate with the "wifi_ota_app_upgrade" application image. A unified hex file will be built using Hexmate tool and the unified HEX image will be loaded to the device. More details about this can be found in "Running Application" section below.</p>
 <p class="p">This application uses File System, a harmony component which internally use SPI protocol to place the newly downloaded image to the external flash.</p>
 <br /><img class="image" src="GUID-F6229610-6517-403F-B091-530CBC5DDBC9-low.png" alt="spi_com" /><br /></div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title3" id="ota-application-framework-architecture"><h2 class="title topictitle2" id="ariaid-title3">OTA Application framework Architecture</h2><div class="body"><p class="p">Over the Air (OTA) firmware upgrade feature is designed with a two step process, Image Downloading and Image Programming process. Image Downloading process is done by <code class="ph codeph">OTA SERVICE</code>, harmony componet and <code class="ph codeph">ota_bootloader</code> will take care of programming process.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="ota-application-framework-architecture"><h2 class="title topictitle2" id="ariaid-title3" style="">OTA Application framework Architecture</h2><div class="body"><p class="p">Over the Air (OTA) firmware upgrade feature is designed with a two step process, Image Downloading and Image Programming process. Image Downloading process is done by <code class="ph codeph">OTA SERVICE</code>, harmony componet and <code class="ph codeph">ota_bootloader</code> will take care of programming process.</p>
 <p class="p">Abstraction model:</p>
 <br /><img class="image" src="GUID-562A7C18-F3CA-4203-8DDB-E9ABECFECB5D-low.png" alt="abstraction_model" /><br /><p class="p"><strong class="ph b">User Application:</strong> This is where the customer application logic is built.</p>
 <p class="p"><strong class="ph b">OTA Service:</strong> This layer includes the service level logic implementation. This is a Harmony component which provides certain user configurable parameters(ex- Version, Periodic update check etc.) . Based on user configuration, generated code will be activated with required functionalities.</p>
@@ -246,7 +246,7 @@
 <p class="p"><strong class="ph b">Bootloader :</strong> This layer consists of the logic to safely program images from the file system (external) into program the program memory (NVM) of the device. At device boot, the bootloader will check if a new image is available in the external image store and transfer it to the NVM.</p>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title4" id="securing-ota-by-verifying-images-in-bootloader"><h2 class="title topictitle2" id="ariaid-title4">Securing OTA by verifying Images in Bootloader</h2><div class="body"><p class="p">We have implemented 2 configurations of OTA Bootloader to perform signature verification of images:</p>
+<div class="topic nested1" aria-labelledby="ariaid-title4" id="securing-ota-by-verifying-images-in-bootloader"><h2 class="title topictitle2" id="ariaid-title4" style="">Securing OTA by verifying Images in Bootloader</h2><div class="body"><p class="p">We have implemented 2 configurations of OTA Bootloader to perform signature verification of images:</p>
 <ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">In software using Wolfcrypt (ota_booloader_wolfcrypt.x).</p>
 </li>
 <li class="li"><span class="indent-level-default">2.</span><p class="p">In Hardware using Trust Flex device (ota_booloader_trustflex.x).</p>
@@ -257,7 +257,7 @@
 <p class="p">For more details , Please follow documentation provided for <strong class="ph b">Over The Air (OTA) firmware update System Service</strong>.</p>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title5" id="ota-server-json-manifest"><h2 class="title topictitle2" id="ariaid-title5">OTA server JSON manifest</h2><div class="body"><p class="p">The Application expects the HTTP based OTA server to provide metadata of images available in the server in <code class="ph codeph">json</code> format. During update checks, the OTA service will download and parse this manifest file. Each entry in the manifest file should include the following fields :</p>
+<div class="topic nested1" aria-labelledby="ariaid-title5" id="ota-server-json-manifest"><h2 class="title topictitle2" id="ariaid-title5" style="">OTA server JSON manifest</h2><div class="body"><p class="p">The Application expects the HTTP based OTA server to provide metadata of images available in the server in <code class="ph codeph">json</code> format. During update checks, the OTA service will download and parse this manifest file. Each entry in the manifest file should include the following fields :</p>
 <ul class="ul"><li class="li"><p class="p"><strong class="ph b"><code class="ph codeph">Version</code></strong> indicates the application version number. It is a integer value.</p>
 </li>
 <li class="li"><p class="p"><strong class="ph b"><code class="ph codeph">URL</code></strong> contains the image path from which the application image can be downloaded. It is a string variable.</p>
@@ -299,28 +299,28 @@
 <p class="p"><strong class="ph b">For more details , Please follow documentation provided for Over The Air (OTA) firmware update System Service</strong>.</p>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title6" id="ota-image-generation"><h2 class="title topictitle2" id="ariaid-title6">OTA image generation</h2><div class="body"><p class="p">Please refer <code class="ph codeph">Generating OTA image section</code> in <code class="ph codeph">usage</code> manual present in the documentation of <strong class="ph b">Over The Air (OTA) firmware update System Service</strong>.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title6" id="ota-image-generation"><h2 class="title topictitle2" id="ariaid-title6" style="">OTA image generation</h2><div class="body"><p class="p">Please refer <code class="ph codeph">Generating OTA image section</code> in <code class="ph codeph">usage</code> manual present in the documentation of <strong class="ph b">Over The Air (OTA) firmware update System Service</strong>.</p>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title7" id="downloading-and-building-the-application"><h2 class="title topictitle2" id="ariaid-title7">Downloading and building the application</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a></p>
+<div class="topic nested1" aria-labelledby="ariaid-title7" id="downloading-and-building-the-application"><h2 class="title topictitle2" id="ariaid-title7" style="">Downloading and building the application</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a></p>
 <p class="p">Path of the application within the repository is <strong class="ph b">apps/wifi_ota_app_upgrade/firmware</strong> .</p>
 <p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d8830e257"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d8830e259"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d10943e257"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d10943e259"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d8830e257 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d8830e259 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d10943e257 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d10943e259 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d8830e257 d8830e259 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d10943e257 d10943e259 "><span> </span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title8" id="setting-up-pic32mz-w1-curiosity-board"><h2 class="title topictitle2" id="ariaid-title8">Setting up PIC32MZ W1 Curiosity Board</h2><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable</p>
+<div class="topic nested1" aria-labelledby="ariaid-title8" id="setting-up-pic32mz-w1-curiosity-board"><h2 class="title topictitle2" id="ariaid-title8" style="">Setting up PIC32MZ W1 Curiosity Board</h2><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable</p>
 </li>
 <li class="li"><p class="p">On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter</p>
 </li>
@@ -333,7 +333,7 @@
 </ul>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title9" id="running-the-application"><h2 class="title topictitle2" id="ariaid-title9">Running the Application</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open the project "wifi_ota_app_upgrade".</p>
+<div class="topic nested1" aria-labelledby="ariaid-title9" id="running-the-application"><h2 class="title topictitle2" id="ariaid-title9" style="">Running the Application</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open the project "wifi_ota_app_upgrade".</p>
 </li>
 <li class="li"><span class="indent-level-default">2.</span><p class="p">Demo is configured with the default wifi credentials shown in the image below. To change the configurations launch the Harmony 3 configurator and update the home AP credentials for STA Mode and generate code.</p>
 <br /><img class="image" src="GUID-4120AA9A-9A2D-439B-A8EB-AB6187572D56-low.png" alt="resized_wifi_sta_MHC1" /><br /></li>

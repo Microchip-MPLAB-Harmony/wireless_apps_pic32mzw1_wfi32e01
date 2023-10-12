@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Worldwide Sales and Service" />
+<meta name="DC.relation" scheme="URI" content="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="GUID-02A694CF-88A5-4ADA-8785-7EEEC62D66EA" />
+<meta name="DC.language" content="en-US" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<title>Worldwide Sales and Service</title>
+<meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-GUID-02A694CF-88A5-4ADA-8785-7EEEC62D66EA" />
+<meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 10/2023" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+         
+         function copyContent(content, button) {
+         
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+               console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?GUID-02A694CF-88A5-4ADA-8785-7EEEC62D66EA"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
+<body id="GUID-02A694CF-88A5-4ADA-8785-7EEEC62D66EA">
+
+        <h1 class="title topictitle1" id="GUID-02A694CF-88A5-4ADA-8785-7EEEC62D66EA__GUID-4DAB5D73-8C67-4B76-B3C4-9F45353628C6" style="">Worldwide Sales and Service</h1>
+        <div class="body">
+                
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="GUID-02A694CF-88A5-4ADA-8785-7EEEC62D66EA__TABLE_DG5_NDW_GX" class="table nocolor widetable salessection" style="font-size: 80%;" frame="void" border="1" rules="all">
+                                <col style="width:25%" />
+                                <col style="width:25%" />
+                                <col style="width:25%" />
+                                <col style="width:25%" />
+                                <thead class="thead" style="text-align:left;">
+                                        <tr class="row">
+                                                <th class="entry cell-norowborder" style="text-align:left;vertical-align:middle;" id="d6709e32"><span>AMERICAS</span></th>
+
+                                                <th class="entry cell-norowborder" style="text-align:left;vertical-align:middle;" id="d6709e35"><span>ASIA/PACIFIC</span></th>
+
+                                                <th class="entry cell-norowborder" style="text-align:left;vertical-align:middle;" id="d6709e38"><span>ASIA/PACIFIC</span></th>
+
+                                                <th class="entry nocellnorowborder" style="text-align:left;vertical-align:middle;" id="d6709e41"><span>EUROPE</span></th>
+
+                                        </tr>
+
+                                </thead>
+
+                                <tbody class="tbody">
+                                        <tr class="row">
+                                                <td class="entry cell-norowborder" style="text-align:left;vertical-align:middle;" headers="d6709e32 "><span>
+                                                  <p class="p"><strong class="ph b">Corporate Office</strong></p>
+
+                                                  <p class="p">2355 West Chandler Blvd.</p>
+
+                                                  <p class="p">Chandler, AZ 85224-6199</p>
+
+                                                  <p class="p">Tel: 480-792-7200</p>
+
+                                                  <p class="p">Fax: 480-792-7277</p>
+
+                                                  <p class="p">Technical Support:</p>
+
+                                                  <p class="p"><a class="xref" href="https://www.microchip.com/support" target="_blank">www.microchip.com/support</a></p>
+
+                                                  <p class="p">Web Address:</p>
+
+                                                  <p class="p"><a class="xref" href="https://www.microchip.com" target="_blank">www.microchip.com</a></p>
+
+                                                  <p class="p"><strong class="ph b">Atlanta</strong></p>
+
+                                                  <p class="p">Duluth, GA</p>
+
+                                                  <p class="p">Tel: 678-957-9614</p>
+
+                                                  <p class="p">Fax: 678-957-1455</p>
+
+                                                  <p class="p"><strong class="ph b">Austin, TX</strong></p>
+
+                                                  <p class="p">Tel: 512-257-3370</p>
+
+                                                  <p class="p"><strong class="ph b">Boston</strong></p>
+
+                                                  <p class="p">Westborough, MA</p>
+
+                                                  <p class="p">Tel: 774-760-0087</p>
+
+                                                  <p class="p">Fax: 774-760-0088</p>
+
+                                                  <p class="p"><strong class="ph b">Chicago</strong></p>
+
+                                                  <p class="p">Itasca, IL</p>
+
+                                                  <p class="p">Tel: 630-285-0071</p>
+
+                                                  <p class="p">Fax: 630-285-0075</p>
+
+                                                  <p class="p"><strong class="ph b">Dallas</strong></p>
+
+                                                  <p class="p">Addison, TX</p>
+
+                                                  <p class="p">Tel: 972-818-7423</p>
+
+                                                  <p class="p">Fax: 972-818-2924</p>
+
+                                                  <p class="p"><strong class="ph b">Detroit</strong></p>
+
+                                                  <p class="p">Novi, MI</p>
+
+                                                  <p class="p">Tel: 248-848-4000</p>
+
+                                                  <p class="p"><strong class="ph b">Houston, TX</strong></p>
+
+                                                  <p class="p">Tel: 281-894-5983</p>
+
+                                                  <p class="p"><strong class="ph b">Indianapolis</strong></p>
+
+                                                  <p class="p">Noblesville, IN</p>
+
+                                                  <p class="p">Tel: 317-773-8323</p>
+
+                                                  <p class="p">Fax: 317-773-5453</p>
+
+                                                  <p class="p">Tel: 317-536-2380</p>
+
+                                                  <p class="p"><strong class="ph b">Los Angeles</strong></p>
+
+                                                  <p class="p">Mission Viejo, CA</p>
+
+                                                  <p class="p">Tel: 949-462-9523</p>
+
+                                                  <p class="p">Fax: 949-462-9608</p>
+
+                                                  <p class="p">Tel: 951-273-7800</p>
+
+                                                  <p class="p"><strong class="ph b">Raleigh, NC</strong></p>
+
+                                                  <p class="p">Tel: 919-844-7510</p>
+
+                                                  <p class="p"><strong class="ph b">New York, NY</strong></p>
+
+                                                  <p class="p">Tel: 631-435-6000</p>
+
+                                                  <p class="p"><strong class="ph b">San Jose, CA</strong></p>
+
+                                                  <p class="p">Tel: 408-735-9110</p>
+
+                                                  <p class="p">Tel: 408-436-4270</p>
+
+                                                  <p class="p"><strong class="ph b">Canada - Toronto</strong></p>
+
+                                                  <p class="p">Tel: 905-695-1980</p>
+
+                                                  <p class="p">Fax: 905-695-2078</p>
+
+                                                </span></td>
+
+                                                <td class="entry cell-norowborder" style="text-align:left;vertical-align:middle;" headers="d6709e35 "><span>
+                                                  <p class="p"><strong class="ph b">Australia - Sydney</strong></p>
+
+                                                  <p class="p">Tel: 61-2-9868-6733</p>
+
+                                                  <p class="p"><strong class="ph b">China - Beijing</strong></p>
+
+                                                  <p class="p">Tel: 86-10-8569-7000</p>
+
+                                                  <p class="p"><strong class="ph b">China - Chengdu</strong></p>
+
+                                                  <p class="p">Tel: 86-28-8665-5511</p>
+
+                                                  <p class="p"><strong class="ph b">China - Chongqing</strong></p>
+
+                                                  <p class="p">Tel: 86-23-8980-9588</p>
+
+                                                  <p class="p"><strong class="ph b">China - Dongguan</strong></p>
+
+                                                  <p class="p">Tel: 86-769-8702-9880</p>
+
+                                                  <p class="p"><strong class="ph b">China - Guangzhou</strong></p>
+
+                                                  <p class="p">Tel: 86-20-8755-8029</p>
+
+                                                  <p class="p"><strong class="ph b">China - Hangzhou</strong></p>
+
+                                                  <p class="p">Tel: 86-571-8792-8115</p>
+
+                                                  <p class="p"><strong class="ph b">China - Hong Kong SAR</strong></p>
+
+                                                  <p class="p">Tel: 852-2943-5100</p>
+
+                                                  <p class="p"><strong class="ph b">China - Nanjing</strong></p>
+
+                                                  <p class="p">Tel: 86-25-8473-2460</p>
+
+                                                  <p class="p"><strong class="ph b">China - Qingdao</strong></p>
+
+                                                  <p class="p">Tel: 86-532-8502-7355</p>
+
+                                                  <p class="p"><strong class="ph b">China - Shanghai</strong></p>
+
+                                                  <p class="p">Tel: 86-21-3326-8000</p>
+
+                                                  <p class="p"><strong class="ph b">China - Shenyang</strong></p>
+
+                                                  <p class="p">Tel: 86-24-2334-2829</p>
+
+                                                  <p class="p"><strong class="ph b">China - Shenzhen</strong></p>
+
+                                                  <p class="p">Tel: 86-755-8864-2200</p>
+
+                                                  <p class="p"><strong class="ph b">China - Suzhou</strong></p>
+
+                                                  <p class="p">Tel: 86-186-6233-1526</p>
+
+                                                  <p class="p"><strong class="ph b">China - Wuhan</strong></p>
+
+                                                  <p class="p">Tel: 86-27-5980-5300</p>
+
+                                                  <p class="p"><strong class="ph b">China - Xian</strong></p>
+
+                                                  <p class="p">Tel: 86-29-8833-7252</p>
+
+                                                  <p class="p"><strong class="ph b">China - Xiamen</strong></p>
+
+                                                  <p class="p">Tel: 86-592-2388138</p>
+
+                                                  <p class="p"><strong class="ph b">China - Zhuhai</strong></p>
+
+                                                  <p class="p">Tel: 86-756-3210040</p>
+
+                                                </span></td>
+
+                                                <td class="entry cell-norowborder" style="text-align:left;vertical-align:middle;" headers="d6709e38 "><span>
+                                                  <p class="p"><strong class="ph b">India - Bangalore</strong></p>
+
+                                                  <p class="p">Tel: 91-80-3090-4444</p>
+
+                                                  <p class="p"><strong class="ph b">India - New Delhi</strong></p>
+
+                                                  <p class="p">Tel: 91-11-4160-8631</p>
+
+                                                  <p class="p"><strong class="ph b">India - Pune</strong></p>
+
+                                                  <p class="p">Tel: 91-20-4121-0141</p>
+
+                                                  <p class="p"><strong class="ph b">Japan - Osaka</strong></p>
+
+                                                  <p class="p">Tel: 81-6-6152-7160</p>
+
+                                                  <p class="p"><strong class="ph b">Japan - Tokyo</strong></p>
+
+                                                  <p class="p">Tel: 81-3-6880- 3770</p>
+
+                                                  <p class="p"><strong class="ph b">Korea - Daegu</strong></p>
+
+                                                  <p class="p">Tel: 82-53-744-4301</p>
+
+                                                  <p class="p"><strong class="ph b">Korea - Seoul</strong></p>
+
+                                                  <p class="p">Tel: 82-2-554-7200</p>
+
+                                                  <p class="p"><strong class="ph b">Malaysia - Kuala Lumpur</strong></p>
+
+                                                  <p class="p">Tel: 60-3-7651-7906</p>
+
+                                                  <p class="p"><strong class="ph b">Malaysia - Penang</strong></p>
+
+                                                  <p class="p">Tel: 60-4-227-8870</p>
+
+                                                  <p class="p"><strong class="ph b">Philippines - Manila</strong></p>
+
+                                                  <p class="p">Tel: 63-2-634-9065</p>
+
+                                                  <p class="p"><strong class="ph b">Singapore</strong></p>
+
+                                                  <p class="p">Tel: 65-6334-8870</p>
+
+                                                  <p class="p"><strong class="ph b">Taiwan - Hsin Chu</strong></p>
+
+                                                  <p class="p">Tel: 886-3-577-8366</p>
+
+                                                  <p class="p"><strong class="ph b">Taiwan - Kaohsiung</strong></p>
+
+                                                  <p class="p">Tel: 886-7-213-7830</p>
+
+                                                  <p class="p"><strong class="ph b">Taiwan - Taipei</strong></p>
+
+                                                  <p class="p">Tel: 886-2-2508-8600</p>
+
+                                                  <p class="p"><strong class="ph b">Thailand - Bangkok</strong></p>
+
+                                                  <p class="p">Tel: 66-2-694-1351</p>
+
+                                                  <p class="p"><strong class="ph b">Vietnam - Ho Chi Minh</strong></p>
+
+                                                  <p class="p">Tel: 84-28-5448-2100</p>
+
+                                                </span></td>
+
+                                                <td class="entry nocellnorowborder" style="text-align:left;vertical-align:middle;" headers="d6709e41 "><span>
+                                                  <p class="p"><strong class="ph b">Austria - Wels</strong></p>
+
+                                                  <p class="p">Tel: 43-7242-2244-39</p>
+
+                                                  <p class="p">Fax: 43-7242-2244-393</p>
+
+                                                  <p class="p"><strong class="ph b">Denmark - Copenhagen</strong></p>
+
+                                                  <p class="p">Tel: 45-4485-5910</p>
+
+                                                  <p class="p">Fax: 45-4485-2829</p>
+
+                                                  <p class="p"><strong class="ph b">Finland - Espoo</strong></p>
+
+                                                  <p class="p">Tel: 358-9-4520-820</p>
+
+                                                  <p class="p"><strong class="ph b">France - Paris</strong></p>
+
+                                                  <p class="p">Tel: 33-1-69-53-63-20</p>
+
+                                                  <p class="p">Fax: 33-1-69-30-90-79</p>
+
+                                                  <p class="p"><strong class="ph b">Germany - Garching</strong></p>
+
+                                                  <p class="p">Tel: 49-8931-9700</p>
+
+                                                  <p class="p"><strong class="ph b">Germany - Haan</strong></p>
+
+                                                  <p class="p">Tel: 49-2129-3766400</p>
+
+                                                  <p class="p"><strong class="ph b">Germany - Heilbronn</strong></p>
+
+                                                  <p class="p">Tel: 49-7131-72400</p>
+
+                                                  <p class="p"><strong class="ph b">Germany - Karlsruhe</strong></p>
+
+                                                  <p class="p">Tel: 49-721-625370</p>
+
+                                                  <p class="p"><strong class="ph b">Germany - Munich</strong></p>
+
+                                                  <p class="p">Tel: 49-89-627-144-0</p>
+
+                                                  <p class="p">Fax: 49-89-627-144-44</p>
+
+                                                  <p class="p"><strong class="ph b">Germany - Rosenheim</strong></p>
+
+                                                  <p class="p">Tel: 49-8031-354-560</p>
+
+                                                  <p class="p"><strong class="ph b">Israel - Ra’anana</strong></p>
+
+                                                  <p class="p">Tel: 972-9-744-7705</p>
+
+                                                  <p class="p"><strong class="ph b">Italy - Milan</strong></p>
+
+                                                  <p class="p">Tel: 39-0331-742611</p>
+
+                                                  <p class="p">Fax: 39-0331-466781</p>
+
+                                                  <p class="p"><strong class="ph b">Italy - Padova</strong></p>
+
+                                                  <p class="p">Tel: 39-049-7625286</p>
+
+                                                  <p class="p"><strong class="ph b">Netherlands - Drunen</strong></p>
+
+                                                  <p class="p">Tel: 31-416-690399</p>
+
+                                                  <p class="p">Fax: 31-416-690340</p>
+
+                                                  <p class="p"><strong class="ph b">Norway - Trondheim</strong></p>
+
+                                                  <p class="p">Tel: 47-72884388</p>
+
+                                                  <p class="p"><strong class="ph b">Poland - Warsaw</strong></p>
+
+                                                  <p class="p">Tel: 48-22-3325737</p>
+
+                                                  <p class="p"><strong class="ph b">Romania - Bucharest</strong></p>
+
+                                                  <p class="p">Tel: 40-21-407-87-50</p>
+
+                                                  <p class="p"><strong class="ph b">Spain - Madrid</strong></p>
+
+                                                  <p class="p">Tel: 34-91-708-08-90</p>
+
+                                                  <p class="p">Fax: 34-91-708-08-91</p>
+
+                                                  <p class="p"><strong class="ph b">Sweden - Gothenberg</strong></p>
+
+                                                  <p class="p">Tel: 46-31-704-60-40</p>
+
+                                                  <p class="p"><strong class="ph b">Sweden - Stockholm</strong></p>
+
+                                                  <p class="p">Tel: 46-8-5090-4654</p>
+
+                                                  <p class="p"><strong class="ph b">UK - Wokingham</strong></p>
+
+                                                  <p class="p">Tel: 44-118-921-5800</p>
+
+                                                  <p class="p">Fax: 44-118-921-5820</p>
+
+                                                </span></td>
+
+                                        </tr>
+
+                                </tbody>
+
+                        </table>
+</div>
+
+        </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B.html">Microchip Information</a></div>
+</div>
+</div></body>
+</html>

@@ -4,23 +4,23 @@
 	"content": {
 		"metaDataVersion": "1.3.0",
 		"name": "com.microchip.mcu32.mplabx.project.wireless_apps_pic32mzw1_wfi32e01_paho_mqtt_tls_client",
-		"version": "3.7.0",
+		"version": "3.8.0",
 		"displayName": "Paho MQTT TLS Client ",
 		"projectName": "paho_mqtt_tls_client_pic32mz_w1_curiosity",
 		"shortDescription": "This example application acts as a Paho MQTT TLS Client to connect to Secured MQTT Broker and publishes and subscribes to data on subtopics.",
 		"ide": {
 			"name": "MPLABX",
-			"semverRange": ">=6.00"
+			"semverRange": ">=6.15"
 		},
 		"compiler": [
 			{
 				"name": "XC32",
-				"semverRange": ">=3.1.0"
+				"semverRange": ">=4.3.5"
 			}
 		],
 		"dfp": {
 			"name": "PIC32MZ-W_DFP",
-			"semverRange": "^1.6.220"
+			"semverRange": "^1.8.326"
 		},
 		"configurator": {
 			"name": "MHC",

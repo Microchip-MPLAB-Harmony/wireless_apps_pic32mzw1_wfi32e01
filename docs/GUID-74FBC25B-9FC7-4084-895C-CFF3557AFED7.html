@@ -4,9 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
-<meta name="DC.rights.owner" content="(C) Copyright 2022" />
-<meta name="DC.type" content="topic" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
 <meta name="DC.title" content="OTA Boot Loader" />
 <meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
 <meta name="DC.format" content="XHTML" />
@@ -18,7 +18,7 @@
 <meta name="Microsoft.Help.TocOrder" content="0" />
 <meta name="Microsoft.Help.Locale" content="en-US" />
 <meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 01/2022" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 10/2023" />
 <script language="javascript">
        
        if (window.parent.location.protocol != 'file:') {
@@ -225,23 +225,22 @@
         
       </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="ota-boot-loader">
-<h1 class="title topictitle1" id="ariaid-title1">OTA Boot Loader</h1><div class="body"><p class="p">This example acts as loader of OTA image (downloaded using OTA process) to load it to device memory .</p>
+<h1 class="title topictitle1" id="ariaid-title1" style="">OTA Boot Loader</h1><div class="body"><p class="p">This example acts as loader of OTA image (downloaded using OTA process) to load it to device memory .</p>
 </div>
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html">Harmony 3 Wireless application examples for PIC32MZ W1 family</a></div>
 </div>
-</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2">Description</h2><div class="body"><p class="p">This bootloader project can be used by user to program an image , which is downloaded through OTA process. It is required to build this project first using its IDE (MPLABX) before building OTA application, as the image of the bootloader will be integrated with the "wifi_ota_app_upgrade" application image.</p>
+</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2" style="">Description</h2><div class="body"><p class="p">This bootloader project can be used by user to program an image , which is downloaded through OTA process. It is required to build this project first using its IDE (MPLABX) before building OTA application, as the image of the bootloader will be integrated with the "wifi_ota_app_upgrade" application image.</p>
 <p class="p">During boot-up, bootloader will check if any new valid image available in the external flash. If available, it chooses the newly (latest downloaded) available image in the External flash (sst26vf) and program it to Program-Flash area of the device. Bootloader uses SPI protocol to program the image from the external flash.</p>
 <p class="p">If there is no new downloaded image present in the external flash, bootloader will handover the control to current application present in the program-flash area and application will start executing.</p>
 <p class="p"><strong class="ph b">For more details , Please follow documentation provided for Over The Air (OTA) firmware update System Service</strong></p>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title3" id="securing-ota-by-verifying-images-in-bootloader"><h2 class="title topictitle2" id="ariaid-title3">Securing OTA by verifying Images in Bootloader</h2><div class="body"><p class="p">We have implemented 2 configurations of OTA Bootloader to perform signature verification of images:</p>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="securing-ota-by-verifying-images-in-bootloader"><h2 class="title topictitle2" id="ariaid-title3" style="">Securing OTA by verifying Images in Bootloader</h2><div class="body"><p class="p">We have implemented 2 configurations of OTA Bootloader to perform signature verification of images:</p>
 <ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p"><strong class="ph b">In software using Wolfcrypt (ota_booloader_wolfcrypt.x)</strong></p>
-<ul class="ul"><li class="li"><p class="p">This configuration uses <code class="ph codeph">wolfcrypt</code> library, to verify siganture of image.
-<img class="image" src="GUID-372868FA-B3F9-464A-99C8-123DA4FA8113-low.png" alt="wolfcrypt" /><br /></p>
-</li>
+<ul class="ul"><li class="li with-image"><p class="p">This configuration uses <code class="ph codeph">wolfcrypt</code> library, to verify siganture of image.</p>
+<br /><img class="image" src="GUID-372868FA-B3F9-464A-99C8-123DA4FA8113-low.png" alt="wolfcrypt" /><br /></li>
 <li class="li with-image"><p class="p">User need to provide public key in the form of array in <code class="ph codeph">pub_key.h</code> file. Array holds the <code class="ph codeph">DER</code> encoded public key. The name of the array should be <code class="ph codeph">pubKey[]</code>.</p>
 <br /><img class="image" src="GUID-A66A5B29-D08E-4628-A397-9866EC323194-low.png" alt="pub_key_array_resized" /><br /></li>
 <li class="li"><p class="p">For development and testing user may use <code class="ph codeph">key2heder.py</code> python file present in <code class="ph codeph">tools</code> folder of bootloader project. User follow below steps:</p>
@@ -262,15 +261,14 @@
 <li class="li"><span class="indent-level-default">2.</span><p class="p"><strong class="ph b">In Hardware using Trust Flex device (ota_booloader_trustflex.x)</strong></p>
 <ul class="ul"><li class="li"><p class="p">This configuration requires <code class="ph codeph">trustflex</code> device for signature verification. For provisioning of trust flex device and other hardware details please follow <code class="ph codeph">Provisioning TrustFlex parts for OTA FW Verification</code> below.</p>
 </li>
-<li class="li"><p class="p">In MHC, <code class="ph codeph">ATECC608</code> component is configured for signature verification.
-<img class="image" src="GUID-7A952D0E-CAFF-49D5-A6C0-46BE28F8B994-low.png" alt="ATECC608" /><br /></p>
-</li>
+<li class="li with-image"><p class="p">In MHC, <code class="ph codeph">ATECC608</code> component is configured for signature verification.</p>
+<br /><img class="image" src="GUID-7A952D0E-CAFF-49D5-A6C0-46BE28F8B994-low.png" alt="ATECC608" /><br /></li>
 </ul>
 </li>
 </ol>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title4" id="provisioning-trustflex-parts-for-ota-fw-verification"><h2 class="title topictitle2" id="ariaid-title4">Provisioning TrustFlex parts for OTA FW Verification</h2><div class="body"><p class="p">ATECC608 based Trustflex can be used to perform secure firmware verification. The steps to provision it using TPDS2 is documented here.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title4" id="provisioning-trustflex-parts-for-ota-fw-verification"><h2 class="title topictitle2" id="ariaid-title4" style="">Provisioning TrustFlex parts for OTA FW Verification</h2><div class="body"><p class="p">ATECC608 based Trustflex can be used to perform secure firmware verification. The steps to provision it using TPDS2 is documented here.</p>
 <ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Setup TPDS V2</p>
 <p class="p">Setup TPDSV2 following the steps at https://microchipdeveloper.com/authentication:trust-platform-v2</p>
 <p class="p">Make sure that you update TPDS after installation.</p>
@@ -311,7 +309,7 @@
 </ol>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title5" id="enabling-secure-ota"><h2 class="title topictitle2" id="ariaid-title5">Enabling Secure OTA</h2><div class="body"><p class="p">By default, <code class="ph codeph">secure ota</code> option will be disabled. To enable it , user need to follow below steps.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title5" id="enabling-secure-ota"><h2 class="title topictitle2" id="ariaid-title5" style="">Enabling Secure OTA</h2><div class="body"><p class="p">By default, <code class="ph codeph">secure ota</code> option will be disabled. To enable it , user need to follow below steps.</p>
 <ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Enable <code class="ph codeph">Secure OTA Functionality</code> as described in <code class="ph codeph">configure Advances Configuration</code> section of <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/system/ota/docs/configuration.md" target="_blank">link</a>.</p>
 </li>
 <li class="li"><span class="indent-level-default">2.</span><p class="p">Define "SYS_OTA_SECURE_BOOT_ENABLED" in "bootloader.h" of bootloader project. User can simply uncomment line of code in "bootloader.h" as shown in below image :
@@ -322,10 +320,10 @@
 </ol>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title6" id="generating-signature"><h2 class="title topictitle2" id="ariaid-title6">Generating Signature</h2><div class="body"><p class="p">For generating signature please refer <code class="ph codeph">Generating Signature</code> section of <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/system/ota/docs/usage.md" target="_blank">usage</a> manual, which is part of <code class="ph codeph">ota</code> system component.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title6" id="generating-signature"><h2 class="title topictitle2" id="ariaid-title6" style="">Generating Signature</h2><div class="body"><p class="p">For generating signature please refer <code class="ph codeph">Generating Signature</code> section of <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/system/ota/docs/usage.md" target="_blank">usage</a> manual, which is part of <code class="ph codeph">ota</code> system component.</p>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title7" id="required-steps-for-secure-ota"><h2 class="title topictitle2" id="ariaid-title7">Required steps for Secure-ota</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Generate <code class="ph codeph">private key</code> using command
+<div class="topic nested1" aria-labelledby="ariaid-title7" id="required-steps-for-secure-ota"><h2 class="title topictitle2" id="ariaid-title7" style="">Required steps for Secure-ota</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Generate <code class="ph codeph">private key</code> using command
 <code class="ph codeph">openssl ecparam -genkey -name prime256v1 -noout -out ECC_prime256v1.key</code></p>
 </li>
 <li class="li"><span class="indent-level-default">2.</span><p class="p">Generate <code class="ph codeph">public key</code> using command
@@ -345,36 +343,40 @@
 </ol>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title8" id="using-bootloader-for-non-secure-ota"><h2 class="title topictitle2" id="ariaid-title8">Using bootloader for Non-secure OTA</h2><div class="body"><p class="p">User need to undefine macro <code class="ph codeph">SYS_OTA_SECURE_BOOT_ENABLED</code> in "bootloader.h" of bootloader project to disable <code class="ph codeph">Signature</code> verfication of images. In this case, only <code class="ph codeph">Digest</code> verification will be done by bootloader.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title8" id="using-bootloader-for-non-secure-ota"><h2 class="title topictitle2" id="ariaid-title8" style="">Using bootloader for Non-secure OTA</h2><div class="body"><p class="p">User need to undefine macro <code class="ph codeph">SYS_OTA_SECURE_BOOT_ENABLED</code> in "bootloader.h" of bootloader project to disable <code class="ph codeph">Signature</code> verfication of images. In this case, only <code class="ph codeph">Digest</code> verification will be done by bootloader.</p>
 <br /><img class="image" src="GUID-64E3542B-D374-42B0-97FF-CF5992F28496-low.png" alt="define_secure_boot" /><br /></div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title9" id="downloading-and-generating-bootloader-code"><h2 class="title topictitle2" id="ariaid-title9">Downloading and Generating Bootloader Code</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a></p>
+<div class="topic nested1" aria-labelledby="ariaid-title9" id="disabling-file-system-in-bootloader-code"><h2 class="title topictitle2" id="ariaid-title9" style="">Disabling File system in Bootloader code</h2><div class="body"><p class="p">The File system can be disbaled only in the bootloader, <code class="ph codeph">ota_booloader_wolfcrypt.x</code>. User can disable the File System by undefining the macro <code class="ph codeph">SYS_OTA_FS_ENABLED</code> in <code class="ph codeph">bootloader.h</code>.
+Also user can enbale the feature, jumping to the start address of the new image downloaded via file downloader, by enabling the macro <code class="ph codeph">SYS_OTA_FILE_JUMP_ENABLE</code> in  <code class="ph codeph">bootloader.h</code>. Update the jump address of the new image <code class="ph codeph">APP_IMG_BOOT_ADDR_2</code> in <code class="ph codeph">ota_config.h</code> file .This feature is available only with <code class="ph codeph">ota_booloader_wolfcrypt.x</code>.</p>
+<br /><img class="image" src="GUID-663D3C8C-BDA0-4A91-BA23-EBD49216AFEE-low.png" alt="ota_bootloader_fs_macro" /><br /></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title10" id="downloading-and-generating-bootloader-code"><h2 class="title topictitle2" id="ariaid-title10" style="">Downloading and Generating Bootloader Code</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a></p>
 <p class="p">Path of the project within the repository is <strong class="ph b">apps/ota_bootloader/firmware</strong>.</p>
 <p class="p">To genearte code, refer to the following table and open the project using its IDE.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d7183e404"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d7183e406"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d9173e439"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d9173e441"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d7183e404 "><span>ota_booloader_trustflex.x</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d7183e406 "><span>MPLABX project for PIC32MZ W1 Curiosity Board using trustflex click board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d9173e439 "><span>ota_booloader_trustflex.x</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d9173e441 "><span>MPLABX project for PIC32MZ W1 Curiosity Board using trustflex click board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d7183e404 "><span>ota_booloader_wolfcrypt.x</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d7183e406 "><span>MPLABX project for PIC32MZ W1 Curiosity Board using wolfcrypt library</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d9173e439 "><span>ota_booloader_wolfcrypt.x</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d9173e441 "><span>MPLABX project for PIC32MZ W1 Curiosity Board using wolfcrypt library</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d7183e404 d7183e406 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d9173e439 d9173e441 "><span> </span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title10" id="setting-up-pic32mz-w1-curiosity-board"><h2 class="title topictitle2" id="ariaid-title10">Setting up PIC32MZ W1 Curiosity Board</h2><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable</p>
+<div class="topic nested1" aria-labelledby="ariaid-title11" id="setting-up-pic32mz-w1-curiosity-board"><h2 class="title topictitle2" id="ariaid-title11" style="">Setting up PIC32MZ W1 Curiosity Board</h2><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title11" id="generating-bootloader-code"><h2 class="title topictitle2" id="ariaid-title11">Generating BootLoader Code</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open "ota_bootloader" project and launch Harmony3 configurator. Path of the application within the repository is <strong class="ph b">apps/ota_bootloader/firmware</strong>.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title12" id="generating-bootloader-code"><h2 class="title topictitle2" id="ariaid-title12" style="">Generating BootLoader Code</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open "ota_bootloader" project and launch Harmony3 configurator. Path of the application within the repository is <strong class="ph b">apps/ota_bootloader/firmware</strong>.</p>
 </li>
 <li class="li"><span class="indent-level-default">2.</span><p class="p">In case , <code class="ph codeph">ota_booloader_wolfcrypt.x</code> to be used, provide public key in <code class="ph codeph">pub_key.h</code> file, as described above. This step is not required , in case customer wants to use <code class="ph codeph">ota_booloader_trustflex.x</code>.</p>
 </li>

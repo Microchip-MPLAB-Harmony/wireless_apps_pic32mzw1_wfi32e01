@@ -4,9 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
-<meta name="DC.rights.owner" content="(C) Copyright 2022" />
-<meta name="DC.type" content="topic" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
 <meta name="DC.title" content="WLAN STA" />
 <meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
 <meta name="DC.format" content="XHTML" />
@@ -18,7 +18,7 @@
 <meta name="Microsoft.Help.TocOrder" content="0" />
 <meta name="Microsoft.Help.Locale" content="en-US" />
 <meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 01/2022" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 10/2023" />
 <script language="javascript">
        
        if (window.parent.location.protocol != 'file:') {
@@ -225,57 +225,57 @@
         
       </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="wlan-sta">
-<h1 class="title topictitle1" id="ariaid-title1">WLAN STA</h1><div class="body"><p class="p">This example application shows how to use the PIC32MZW1 WLAN APIs to configure the device in STA mode directly using the WLAN driver APIs.</p>
+<h1 class="title topictitle1" id="ariaid-title1" style="">WLAN STA</h1><div class="body"><p class="p">This example application shows how to use the PIC32MZW1 WLAN APIs to configure the device in STA mode directly using the WLAN driver APIs.</p>
 </div>
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html">Harmony 3 Wireless application examples for PIC32MZ W1 family</a></div>
 </div>
-</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2">Description</h2><div class="body"><p class="p">This application shows the various commands to be used for STA mode of PIC32MZW1 device. The user can use these commands in configuring the device that it wants to connect, scan operations, etc...</p>
+</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2" style="">Description</h2><div class="body"><p class="p">This application shows the various commands to be used for STA mode of PIC32MZW1 device. The user can use these commands in configuring the device that it wants to connect, scan operations, etc...</p>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title3" id="downloading-and-building-the-application"><h2 class="title topictitle2" id="ariaid-title3">Downloading and building the application</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a> and click</p>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="downloading-and-building-the-application"><h2 class="title topictitle2" id="ariaid-title3" style="">Downloading and building the application</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a> and click</p>
 <br /><img class="image" src="GUID-3E635D54-42F2-42D5-BFD9-B6E43E0DDAB3-low.png" alt="clone" /><br /><p class="p">Path of the application within the repository is <strong class="ph b">apps/wifi_sta/firmware</strong> .</p>
 <p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d3858e51"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d3858e53"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d4183e51"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d4183e53"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e51 "><span>pic32mz_w1_curiosity_driver.X</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e53 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e51 "><span>pic32mz_w1_curiosity_driver.X</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e53 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title4" id="configuring-the-application"><h2 class="title topictitle2" id="ariaid-title4">Configuring the Application</h2><div class="body"></div>
-<div class="topic nested2" aria-labelledby="ariaid-title5" id="setting-up-a-regulatory-region"><h3 class="title topictitle3" id="ariaid-title5">Setting up a regulatory region</h3><div class="body"><p class="p">The available regulatory domains are  - GEN, USA, EMEA, CUST1 and CUST2. One of these regulatory domains must be selected as an active domain. This selection can be done in two ways.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title4" id="configuring-the-application"><h2 class="title topictitle2" id="ariaid-title4" style="">Configuring the Application</h2><div class="body"></div>
+<div class="topic nested2" aria-labelledby="ariaid-title5" id="setting-up-a-regulatory-region"><h3 class="title topictitle3" id="ariaid-title5" style="">Setting up a regulatory region</h3><div class="body"><p class="p">The available regulatory domains are  - GEN, USA, EMEA, CUST1 and CUST2. One of these regulatory domains must be selected as an active domain. This selection can be done in two ways.</p>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title6" id="using-mhc"><h3 class="title topictitle3" id="ariaid-title6">Using MHC</h3><div class="body"><p class="p">Figure below shows how to set the regulatory domain in MHC and the path is: TCPIP &amp; SYS_CONSOLE -&gt; TCP/IP STACK -&gt; BASIC CONFIGURATION -&gt; PIC32MZW1</p>
+<div class="topic nested2" aria-labelledby="ariaid-title6" id="using-mhc"><h3 class="title topictitle3" id="ariaid-title6" style="">Using MHC</h3><div class="body"><p class="p">Figure below shows how to set the regulatory domain in MHC and the path is: TCPIP &amp; SYS_CONSOLE -&gt; TCP/IP STACK -&gt; BASIC CONFIGURATION -&gt; PIC32MZW1</p>
 <br /><img class="image" src="GUID-4F636DB8-52DD-425D-8D38-93440B8CC459-low.png" alt="mhc_regulatory" /><br /></div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title7" id="using-command"><h3 class="title topictitle3" id="ariaid-title7">Using command</h3><div class="body"><p class="p"><strong class="ph b">wlan set regdomain &lt;reg_domain_name&gt;</strong> is the command used to set the regulatory domain. (wlan set regdomain USA – sets the regulatory domain to USA).</p>
+<div class="topic nested2" aria-labelledby="ariaid-title7" id="using-command"><h3 class="title topictitle3" id="ariaid-title7" style="">Using command</h3><div class="body"><p class="p"><strong class="ph b">wlan set regdomain &lt;reg_domain_name&gt;</strong> is the command used to set the regulatory domain. (wlan set regdomain USA – sets the regulatory domain to USA).</p>
 <p class="p">Note: User can change the regulatory domain using this command only if the current setting is "None" (cofigured using MHC)</p>
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title8" id="setting-up-the-hardware"><h2 class="title topictitle2" id="ariaid-title8">Setting up the hardware</h2><div class="body"><p class="p">The following table shows the target hardware for the application projects.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title8" id="setting-up-the-hardware"><h2 class="title topictitle2" id="ariaid-title8" style="">Setting up the hardware</h2><div class="body"><p class="p">The following table shows the target hardware for the application projects.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d3858e102"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d3858e104"><span>Board</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d4183e102"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="text-align:center;vertical-align:middle;" id="d4183e104"><span>Board</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d3858e102 "><span>pic32mz_w1_curiosity_driver.X</span></td>
-<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d3858e104 "><span>PIC32MZ W1 Curiosity Board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d4183e102 "><span>pic32mz_w1_curiosity_driver.X</span></td>
+<td class="entry cellrowborder" style="text-align:center;vertical-align:middle;" headers="d4183e104 "><span>PIC32MZ W1 Curiosity Board</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title9" id="setting-up-pic32mz-w1-curiosity-board"><h3 class="title topictitle3" id="ariaid-title9">Setting up PIC32MZ W1 Curiosity Board</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable</p>
+<div class="topic nested2" aria-labelledby="ariaid-title9" id="setting-up-pic32mz-w1-curiosity-board"><h3 class="title topictitle3" id="ariaid-title9" style="">Setting up PIC32MZ W1 Curiosity Board</h3><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable</p>
 </li>
 <li class="li"><p class="p">On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter like <a class="xref" href="https://www.mikroe.com/usb-uart-click" target="_blank">USB UART click</a> respectively</p>
 </li>
@@ -283,7 +283,7 @@
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title10" id="running-the-application"><h2 class="title topictitle2" id="ariaid-title10">Running the Application</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open the Terminal application (Ex.:Tera term) on the computer</p>
+<div class="topic nested1" aria-labelledby="ariaid-title10" id="running-the-application"><h2 class="title topictitle2" id="ariaid-title10" style="">Running the Application</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open the Terminal application (Ex.:Tera term) on the computer</p>
 </li>
 <li class="li"><span class="indent-level-default">2.</span><p class="p">Connect to the "USB to UART" COM port and configure the serial settings as follows:</p>
 <ul class="ul"><li class="li"><p class="p">Baud : 115200</p>
@@ -305,40 +305,40 @@
 </ol>
 <br /><img class="image" src="GUID-BBEA4901-0498-4B26-BC56-BED07F1D03A3-low.png" alt="output" /><br /></div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title11" id="supported-commands"><h2 class="title topictitle2" id="ariaid-title11">Supported Commands</h2><div class="body">
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d3858e173"><span>Command</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d3858e175"><span>Description</span></th>
+<div class="topic nested1" aria-labelledby="ariaid-title11" id="supported-commands"><h2 class="title topictitle2" id="ariaid-title11" style="">Supported Commands</h2><div class="body">
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d4183e173"><span>Command</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d4183e175"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan config &lt;ssid&gt; &lt;ssid_length&gt; &lt;channel&gt; &lt;open/wpa2/wpam/wpa3/wep&gt; &lt;password&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Configures the SSID, SSID length, channel number and the security of the AP that DUT wants to connect. NOTE: Valid channel numbers are in range 1-13 and 0 or 255 - scans all channels</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan config &lt;ssid&gt; &lt;ssid_length&gt; &lt;channel&gt; &lt;open/wpa2/wpam/wpa3/wep&gt; &lt;password&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Configures the SSID, SSID length, channel number and the security of the AP that DUT wants to connect. NOTE: Valid channel numbers are in range 1-13 and 0 or 255 - scans all channels</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan connect</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Connects the device to the AP configured in the command “wlan config”</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan connect</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Connects the device to the AP configured in the command “wlan config”</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan scan_options &lt;num_slots&gt; &lt;active_slot_time in ms&gt; &lt;probes_per_slot&gt; &lt;passive_scan_time in ms&gt; &lt;stop_on_first&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Configure scan parameters</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan scan_options &lt;num_slots&gt; &lt;active_slot_time in ms&gt; &lt;probes_per_slot&gt; &lt;passive_scan_time in ms&gt; &lt;stop_on_first&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Configure scan parameters</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan scan &lt;active / passive&gt; &lt;channel&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Runs either a active or passive scan (as per the input) on the channel number specified for the time set in "wlan scan_options". Note: If no time is set, default value is used</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan scan &lt;active / passive&gt; &lt;channel&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Runs either a active or passive scan (as per the input) on the channel number specified for the time set in "wlan scan_options". Note: If no time is set, default value is used</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan scan_ssidlist &lt;channel&gt; &lt;num_ssids&gt; &lt;ssid_list&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Scan a list of known SSID's (Maximum SSID is 4)</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan scan_ssidlist &lt;channel&gt; &lt;num_ssids&gt; &lt;ssid_list&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Scan a list of known SSID's (Maximum SSID is 4)</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan set channel_mask &lt;channel_mask&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Sets the channel mask for channel 1-13. Note: 1 for enable and 0 for disable</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan set channel_mask &lt;channel_mask&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Sets the channel mask for channel 1-13. Note: 1 for enable and 0 for disable</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan get rssi</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Gets the RSSI of current association</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan get rssi</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Gets the RSSI of current association</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan save config</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Stores the WLAN configurations given in command “wlan config” to flash memory. On restart an attempt is made to establish a connection to the AP based on the credentials stored in flash memory.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan save config</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Stores the WLAN configurations given in command “wlan config” to flash memory. On restart an attempt is made to establish a connection to the AP based on the credentials stored in flash memory.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan set regdomain &lt;reg_domain_name&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Sets the regulatory domain.</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan set regdomain &lt;reg_domain_name&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Sets the regulatory domain.</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e173 "><span>wlan get regdomain &lt;all / current&gt;</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d3858e175 "><span>Displays the regulatory domain all – request all regulatory domains; current - request current regulatory domain</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e173 "><span>wlan get regdomain &lt;all / current&gt;</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d4183e175 "><span>Displays the regulatory domain all – request all regulatory domains; current - request current regulatory domain</span></td>
 </tr>
 </tbody>
 </table>

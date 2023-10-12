@@ -4,9 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
-<meta name="DC.rights.owner" content="(C) Copyright 2022" />
-<meta name="DC.type" content="topic" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
 <meta name="DC.title" content="Wi-Fi Easy Configuration" />
 <meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
 <meta name="DC.format" content="XHTML" />
@@ -18,7 +18,7 @@
 <meta name="Microsoft.Help.TocOrder" content="0" />
 <meta name="Microsoft.Help.Locale" content="en-US" />
 <meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 01/2022" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 10/2023" />
 <script language="javascript">
        
        if (window.parent.location.protocol != 'file:') {
@@ -225,39 +225,39 @@
         
       </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="wi-fi-easy-configuration">
-<h1 class="title topictitle1" id="ariaid-title1">Wi-Fi Easy Configuration</h1><div class="body"><p class="p">This example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket and HTTP.</p>
+<h1 class="title topictitle1" id="ariaid-title1" style="">Wi-Fi Easy Configuration</h1><div class="body"><p class="p">This example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket and HTTP.</p>
 </div>
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html">Harmony 3 Wireless application examples for PIC32MZ W1 family</a></div>
 </div>
-</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2">Description</h2><div class="body"><p class="p">This application demonstrates how a user can configure the device with the credentials of the Home AP. The device will come up in SoftAP mode, the user will connect to the SoftAP via a third party STA. User will then send the Home AP credentials to the device and the device will store the credentials in the NVM. The device will auto reboot. Upon reboot, the device will come up in STA mode, it will connect to the Home AP and acquire an IP address.</p>
+</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2" style="">Description</h2><div class="body"><p class="p">This application demonstrates how a user can configure the device with the credentials of the Home AP. The device will come up in SoftAP mode, the user will connect to the SoftAP via a third party STA. User will then send the Home AP credentials to the device and the device will store the credentials in the NVM. The device will auto reboot. Upon reboot, the device will come up in STA mode, it will connect to the Home AP and acquire an IP address.</p>
 <p class="p"><img class="image" src="GUID-21E02675-1EB1-42B0-BAA7-B20FAC3E037B-low.png" alt="wifi_easyconfig_diagram" /><br />
  DUT will act either in AP mode or STA mode.</p>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title3" id="downloading-and-building-the-application"><h2 class="title topictitle2" id="ariaid-title3">Downloading and building the application</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a></p>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="downloading-and-building-the-application"><h2 class="title topictitle2" id="ariaid-title3" style="">Downloading and building the application</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a></p>
 <p class="p">Path of the application within the repository is <strong class="ph b">apps/wifi_easy_config/firmware</strong> .</p>
 <p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d5549e52"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d5549e54"><span>Description</span></th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d6031e52"><span>Project Name</span></th>
+<th class="entry cellrowborder" style="vertical-align:middle;" id="d6031e54"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d5549e52 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d5549e54 "><span>MPLABX FreeRTOS project for PIC32MZ W1 Curiosity Board</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d6031e52 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d6031e54 "><span>MPLABX FreeRTOS project for PIC32MZ W1 Curiosity Board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d5549e52 "><span>pic32mz_w1_curiosity</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d5549e54 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
+<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d6031e52 "><span>pic32mz_w1_curiosity</span></td>
+<td class="entry cellrowborder" style="vertical-align:middle;" headers="d6031e54 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
 </tr>
-<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d5549e52 d5549e54 "><span> </span></td>
+<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d6031e52 d6031e54 "><span> </span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title4" id="setting-up-pic32mz-w1-curiosity-board"><h2 class="title topictitle2" id="ariaid-title4">Setting up PIC32MZ W1 Curiosity Board</h2><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable</p>
+<div class="topic nested1" aria-labelledby="ariaid-title4" id="setting-up-pic32mz-w1-curiosity-board"><h2 class="title topictitle2" id="ariaid-title4" style="">Setting up PIC32MZ W1 Curiosity Board</h2><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable</p>
 </li>
 <li class="li"><p class="p">On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter</p>
 </li>
@@ -266,7 +266,7 @@
 </ul>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title5" id="running-the-application"><h2 class="title topictitle2" id="ariaid-title5">Running the Application</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open the project and launch Harmony3 configurator.</p>
+<div class="topic nested1" aria-labelledby="ariaid-title5" id="running-the-application"><h2 class="title topictitle2" id="ariaid-title5" style="">Running the Application</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open the project and launch Harmony3 configurator.</p>
 </li>
 <li class="li"><span class="indent-level-default">2.</span><p class="p">Configure SoftAP credentials as required.</p>
 <br /><img class="image" src="GUID-5390FF59-2FA0-45F3-8D41-BAE6DC7F01EC-low.png" alt="resized_wifi_easyconfig_MHC1" /><br /></li>
@@ -293,7 +293,7 @@
 <br /><img class="image" src="GUID-794A83F8-D14E-4FA1-8CA2-FA90C4AE87CC-low.png" alt="wifi_easyconfig_log1" /><br /></li>
 </ol>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title6" id="provisioning-using-tcp-socket"><h3 class="title topictitle3" id="ariaid-title6">Provisioning using TCP Socket</h3><div class="body"><ul class="ul"><li class="li with-image"><p class="p">Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.</p>
+<div class="topic nested2" aria-labelledby="ariaid-title6" id="provisioning-using-tcp-socket"><h3 class="title topictitle3" id="ariaid-title6" style="">Provisioning using TCP Socket</h3><div class="body"><ul class="ul"><li class="li with-image"><p class="p">Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.</p>
 <br /><img class="image" src="GUID-34AA70B9-E65D-4286-88D4-DDB631A9A3AE-low.png" alt="wifi_easyconfig_log2" /><br /></li>
 <li class="li"><p class="p">Using a TCP Client tool like Packet Sender installed in the laptop connected to the softAP, send the following JSON file to AP’s provisioning port (192.168.1.1:6666)</p>
 </li>
@@ -308,21 +308,21 @@
 </ul>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title7" id="provisioning-using-mobile-application"><h3 class="title topictitle3" id="ariaid-title7">Provisioning using Mobile Application</h3><div class="body"><ul class="ul"><li class="li with-image"><p class="p">Connect to the SoftAP from a mobile phone.User may have to enter password on mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.</p>
+<div class="topic nested2" aria-labelledby="ariaid-title7" id="provisioning-using-mobile-application"><h3 class="title topictitle3" id="ariaid-title7" style="">Provisioning using Mobile Application</h3><div class="body"><ul class="ul"><li class="li with-image"><p class="p">Connect to the SoftAP from a mobile phone.User may have to enter password on mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.</p>
 <br /><img class="image" src="GUID-34AA70B9-E65D-4286-88D4-DDB631A9A3AE-low.png" alt="wifi_easyconfig_log2" /><br /></li>
 <li class="li"><p class="p">For more details follow the steps available in : <strong class="ph b">Wi-Fi provisioning Using Mobile Application under Over Wi-Fi provisioning System Service</strong></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title8" id="provisioning-using-httpwebpage"><h3 class="title topictitle3" id="ariaid-title8">Provisioning using HTTP(webpage)</h3><div class="body"><ul class="ul"><li class="li with-image"><p class="p">Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.</p>
+<div class="topic nested2" aria-labelledby="ariaid-title8" id="provisioning-using-httpwebpage"><h3 class="title topictitle3" id="ariaid-title8" style="">Provisioning using HTTP(webpage)</h3><div class="body"><ul class="ul"><li class="li with-image"><p class="p">Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.</p>
 <br /><img class="image" src="GUID-34AA70B9-E65D-4286-88D4-DDB631A9A3AE-low.png" alt="wifi_easyconfig_log2" /><br /></li>
 <li class="li"><p class="p">For more details follow the steps available in : <strong class="ph b">Wi-Fi provisioning using HTTP under Wi-Fi provisioning System Service</strong></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="topic nested2" aria-labelledby="ariaid-title9" id="provisioning-using-command-line"><h3 class="title topictitle3" id="ariaid-title9">Provisioning using Command line</h3><div class="body"><ul class="ul"><li class="li"><p class="p">User can enter the below command to switch mode to STA and set desired SSID,passphase and security .</p>
+<div class="topic nested2" aria-labelledby="ariaid-title9" id="provisioning-using-command-line"><h3 class="title topictitle3" id="ariaid-title9" style="">Provisioning using Command line</h3><div class="body"><ul class="ul"><li class="li"><p class="p">User can enter the below command to switch mode to STA and set desired SSID,passphase and security .</p>
 </li>
 <li class="li"><p class="p">wifiprov set 0 1 &lt;country_code&gt; &lt;channel&gt; &lt;authtype&gt; &lt;ssid_name&gt; &lt;psk_name&gt;</p>
 </li>

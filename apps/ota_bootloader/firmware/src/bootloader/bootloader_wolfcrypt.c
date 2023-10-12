@@ -1606,28 +1606,16 @@ static BOOTLOADER_STATUS Bootloader_Task_InvalidateImage(void) {
     void(*fptr)(void);
    
     EVIC_Deinitialize();
-#ifdef SYS_OTA_FILE_JUMP_ENABLE
-    /* Read the start address of the application downloaded via OTA from the Boot control area*/
-    BOOTLOADER_TASK_PARAM AppImgBootCtl;
-    static uint8_t boot_buf[4096] CACHE_ALIGN;
-    INT_Flash_Open();
-    INT_Flash_Read(APP_IMG_SLOT_ADDR, boot_buf, FLASH_SECTOR_SIZE);
-    while( NVM_IsBusy() ) ;
-    INT_Flash_Close();
-    BOOTLOADER_TASK_PARAM *ctx = (BOOTLOADER_TASK_PARAM *)&boot_buf;
-#endif
 #ifdef SYS_OTA_FS_ENABLED
     fptr = (void(*)(void)) (APP_IMG_BOOT_CTL->boot_addr);
-#else
+#else SYS_OTA_FILE_JUMP_ENABLE
     if( APP_IMG_BOOT_CTL->type == IMG_TYPE_FACTORY_RESET)
     {
         fptr = (void(*)(void)) (APP_IMG_BOOT_CTL->boot_addr);
     }
-#ifdef SYS_OTA_FILE_JUMP_ENABLE
     else
     {
-        fptr = (void(*)(void)) (ctx->img.boot_addr);
-#endif
+        fptr = (void(*)(void)) (APP_IMG_BOOT_ADDR_2);
     }
 #endif
     fptr();
