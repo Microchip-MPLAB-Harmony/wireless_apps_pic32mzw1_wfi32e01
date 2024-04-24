@@ -89,7 +89,7 @@ extern "C" {
 #define SYS_NET_INDEX0_RECONNECT       			1
 #define SYS_NET_INDEX0_ENABLE_TLS        		0
 #define SYS_NET_INDEX0_IPPROT       			SYS_NET_IP_PROT_UDP
-#define SYS_NET_INDEX0_HOST_NAME        		"192.168.43.95"
+#define SYS_NET_INDEX0_HOST_NAME        		"192.168.79.14"//"192.168.43.95"
 
 
 
@@ -145,12 +145,17 @@ extern "C" {
 // *****************************************************************************
 
 /*** WiFi PIC32MZW1 Driver Configuration ***/
+
+#pragma region name="wlan_mem" origin=0xa0040000 size=0x10000
+#define PIC32MZW_RSR_PKT_NUM    (0x10000 / sizeof(WDRV_PIC32MZW_PKT_LIST_NODE))
+
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
 #define WDRV_PIC32MZW_WPA3_PERSONAL_SUPPORT
 #define WDRV_PIC32MZW_BA414E_SUPPORT
 #define WDRV_PIC32MZW_BIGINTSW_SUPPORT
 #define WDRV_PIC32MZW_ALARM_PERIOD_1MS          0
 #define WDRV_PIC32MZW_ALARM_PERIOD_MAX          0
+
 
 
 // *****************************************************************************

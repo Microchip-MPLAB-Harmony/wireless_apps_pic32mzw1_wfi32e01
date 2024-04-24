@@ -121,7 +121,7 @@ extern "C" {
 #define DRV_SST26_START_ADDRESS         (0x0U)
 #define DRV_SST26_PAGE_SIZE             (256U)
 #define DRV_SST26_ERASE_BUFFER_SIZE     (4096U)
-#define DRV_SST26_CHIP_SELECT_PIN       SYS_PORT_PIN_RA0
+#define DRV_SST26_CHIP_SELECT_PIN       SYS_PORT_PIN_RA1
 
 
 /* Memory Driver Instance 0 Configuration */

@@ -17,27 +17,27 @@
 *******************************************************************************/	
 
 /*******************************************************************************
-Copyright (c) Microchip Technology Inc.  All rights reserved.
+Copyright (C) [2023], Microchip Technology Inc., and its subsidiaries. All rights reserved.
 
-Microchip licenses to you the right to use, modify, copy and distribute
-Software only when embedded on a Microchip microcontroller or digital signal
-controller that is integrated into your product or third party product
-(pursuant to the sublicense terms in the accompanying license agreement).
+The software and documentation is provided by microchip and its contributors
+"as is" and any express, implied or statutory warranties, including, but not
+limited to, the implied warranties of merchantability, fitness for a particular
+purpose and non-infringement of third party intellectual property rights are
+disclaimed to the fullest extent permitted by law. In no event shall microchip
+or its contributors be liable for any direct, indirect, incidental, special,
+exemplary, or consequential damages (including, but not limited to, procurement
+of substitute goods or services; loss of use, data, or profits; or business
+interruption) however caused and on any theory of liability, whether in contract,
+strict liability, or tort (including negligence or otherwise) arising in any way
+out of the use of the software and documentation, even if advised of the
+possibility of such damage.
 
-You should refer to the license agreement accompanying this Software for
-additional information regarding your rights and obligations.
-
-SOFTWARE AND DOCUMENTATION ARE PROVIDED AS IS  WITHOUT  WARRANTY  OF  ANY  KIND,
-EITHER EXPRESS  OR  IMPLIED,  INCLUDING  WITHOUT  LIMITATION,  ANY  WARRANTY  OF
-MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A  PARTICULAR  PURPOSE.
-IN NO EVENT SHALL MICROCHIP OR  ITS  LICENSORS  BE  LIABLE  OR  OBLIGATED  UNDER
-CONTRACT, NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION,  BREACH  OF  WARRANTY,  OR
-OTHER LEGAL  EQUITABLE  THEORY  ANY  DIRECT  OR  INDIRECT  DAMAGES  OR  EXPENSES
-INCLUDING BUT NOT LIMITED TO ANY  INCIDENTAL,  SPECIAL,  INDIRECT,  PUNITIVE  OR
-CONSEQUENTIAL DAMAGES, LOST  PROFITS  OR  LOST  DATA,  COST  OF  PROCUREMENT  OF
-SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
-(INCLUDING BUT NOT LIMITED TO ANY DEFENSE  THEREOF),  OR  OTHER  SIMILAR  COSTS.
-*******************************************************************************/
+Except as expressly permitted hereunder and subject to the applicable license terms
+for any third-party software incorporated in the software and any applicable open
+source software license terms, no license or other rights, whether express or
+implied, are granted under any patent or other intellectual property rights of
+Microchip or any third party.
+************************************************************************************/
 
 /*============================================================================
 Filename : hcvd_driver_PIC32MZ1025W104 : QTouch Modular Library
@@ -52,8 +52,8 @@ Revision 1.1 - QTMODLIB-205: Fixed pointer casting issue
                QTMODLIB-207: Assigned the correct value to CVDADC register
 ============================================================================*/
 
-#ifndef __HCVD_PIC32MZ__
-#define __HCVD_PIC32MZ__
+#ifndef HCVD_DRIVER_PIC32MZ1025W104
+#define HCVD_DRIVER_PIC32MZ1025W104
 
 /*----------------------------------------------------------------------------
 include files
@@ -70,9 +70,9 @@ manifest constants
 
 #define QTM_MODULE_ID_PIC32MZW_ACQ        0x003eu
 
-/* Version 1.1:  */ 
+/* Version 1.2:  */ 
 
-#define QTM_MODULE_VERSION                  0x11u
+#define QTM_MODULE_VERSION                  0x12u
 
 /* CSD Limit is 7 bits, otherwise overflow at acquisition status bit */
 #define NUM_BITS_CSD                          7u
@@ -106,4 +106,4 @@ manifest constants
 #define QTM_ACQ_WINDOWCOMP 2u
 
 #define TIMEOUT_OVERHEAD        2
-#endif /* __HCVD_PIC32MZ__ */
+#endif /* HCVD_DRIVER_PIC32MZ1025W104 */

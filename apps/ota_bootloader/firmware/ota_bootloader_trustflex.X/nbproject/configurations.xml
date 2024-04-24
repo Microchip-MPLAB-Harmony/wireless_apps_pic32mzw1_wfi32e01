@@ -41,16 +41,22 @@
           <logicalFolder name="f4" displayName="library" projectFiles="true">
             <logicalFolder name="f1" displayName="cryptoauthlib" projectFiles="true">
               <logicalFolder name="atcacert" displayName="atcacert" projectFiles="true">
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atcacert/atcacert_check_config.h</itemPath>
               </logicalFolder>
               <logicalFolder name="calib" displayName="calib" projectFiles="true">
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_config_check.h</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_device.h</itemPath>
               </logicalFolder>
               <logicalFolder name="crypto" displayName="crypto" projectFiles="true">
                 <logicalFolder name="hashes" displayName="hashes" projectFiles="true">
                 </logicalFolder>
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/crypto_sw_config_check.h</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/crypto_hw_config_check.h</itemPath>
               </logicalFolder>
               <logicalFolder name="hal" displayName="hal" projectFiles="true">
               </logicalFolder>
               <logicalFolder name="host" displayName="host" projectFiles="true">
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/host/atca_host_config_check.h</itemPath>
               </logicalFolder>
               <logicalFolder name="jwt" displayName="jwt" projectFiles="true">
               </logicalFolder>
@@ -67,6 +73,10 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/tng/tng_root_cert.h</itemPath>
               </logicalFolder>
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_config.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_config_check.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_platform.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/cal_buffer.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/cal_internal.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f6" displayName="osal" projectFiles="true">
@@ -156,6 +166,35 @@
       </logicalFolder>
       <itemPath>../src/app.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="true">
+      <logicalFolder name="f1"
+                     displayName="pic32mz_w1_curiosity_trustflex.mhc"
+                     projectFiles="true">
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/atecc608.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/BSP_PIC32MZ_W1_Curiosity.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/core.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/cryptoauthlib.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/cryptoauthlib_tng.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/dfp.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/drv_memory.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/drv_sst26.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/HarmonyCore.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/i2c1.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/nvm.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/project.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/settings.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/spi1.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/stdio.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/sys_fs.yml</itemPath>
+        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/uart1.yml</itemPath>
+      </logicalFolder>
+      <itemPath>Makefile</itemPath>
+      <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/harmony-manifest-success.yml</itemPath>
+      <itemPath>ota_bootloader_trustflex.mc3</itemPath>
+    </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
@@ -244,6 +283,7 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_updateextra.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_verify.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_write.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/calib/calib_delete.c</itemPath>
               </logicalFolder>
               <logicalFolder name="f3" displayName="crypto" projectFiles="true">
                 <logicalFolder name="f1" displayName="hashes" projectFiles="true">
@@ -266,8 +306,8 @@
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_sha1.h</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_sha2.c</itemPath>
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_sha2.h</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_rand.c</itemPath>
-                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_ecdsa.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_pad.c</itemPath>
+                <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/crypto/atca_crypto_sw_aes_gcm.c</itemPath>
               </logicalFolder>
               <logicalFolder name="f2" displayName="hal" projectFiles="true">
                 <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/hal/ATECC608_0.c</itemPath>
@@ -314,9 +354,9 @@
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_iface.c</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_iface.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_status.h</itemPath>
-              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_utils_sizes.c</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/atca_version.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/cryptoauthlib.h</itemPath>
+              <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/library/cryptoauthlib/cal_buffer.c</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f3" displayName="peripheral" projectFiles="true">
@@ -386,35 +426,6 @@
       </logicalFolder>
       <itemPath>../src/main.c</itemPath>
       <itemPath>../src/app.c</itemPath>
-    </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false">
-      <logicalFolder name="f1"
-                     displayName="pic32mz_w1_curiosity_trustflex.mhc"
-                     projectFiles="true">
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/atecc608.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/BSP_PIC32MZ_W1_Curiosity.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/core.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/cryptoauthlib.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/cryptoauthlib_tng.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/dfp.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/drv_memory.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/drv_sst26.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/GraphSettings.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/HarmonyCore.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/i2c1.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/nvm.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/project.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/settings.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/spi1.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/stdio.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/sys_fs.yml</itemPath>
-        <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/pic32mz_w1_curiosity_trustflex.mhc/uart1.yml</itemPath>
-      </logicalFolder>
-      <itemPath>Makefile</itemPath>
-      <itemPath>../src/config/pic32mz_w1_curiosity_trustflex/harmony-manifest-success.yml</itemPath>
-      <itemPath>ota_bootloader_trustflex.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

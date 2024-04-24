@@ -5,6 +5,39 @@
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+
+## Harmony 3 Wireless application examples for PIC32MZ W1 family  **v3.9.0**
+
+### Development kit and demo application support
+
+Following table provides number of Wireless examples available for different development kits.
+
+| Development Kits           | MPLABx applications |
+|:--------------------------:|:-------------------:|
+| PIC32MZ W1 Curiosity Board |       20            |
+
+### New Features
+- Migrated all the applications with latest "wireless_wifi" driver v3.10.1 
+- Device support added for PIC32MZ2051W104132/WFI32E03. 
+  - To migrate the existing applications of PIC32MZ1025W104132, follow the steps mentioned in the section "Migration guide from PIC32MZ1025W104132/WFI32E01/WFI32E02 to PIC32MZ2051W104132/WFI32E03" of [PIC32MZ-W1 / WFI32E0x Application Developer's Guide](https://onlinedocs.microchip.com/oxy/GUID-83859130-3660-4EE8-8AEB-4D161F595226-en-US-2/index.html).
+- Please refer to the [system services release notes.](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md)
+
+### Bug fixes and Improvements
+- Please refer to the [system services release notes.](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/blob/master/release_notes.md)
+
+
+### Known Issues
+
+### Development Tools
+
+- [MPLAB® X IDE v6.20](https://www.microchip.com/mplab/mplab-x-ide)
+- MPLAB® X IDE plug-ins:
+  - MPLAB® Code Configurator (MCC) v5.5.0
+- [MPLAB® XC32 C/C++ Compiler v4.35](https://www.microchip.com/mplab/compilers)
+- **DFP 1.8.326**
+
+
+
 ## Harmony 3 Wireless application examples for PIC32MZ W1 family  **v3.8.0**
 
 ### Development kit and demo application support

@@ -466,6 +466,92 @@
       <itemPath>../src/app.h</itemPath>
       <itemPath>../src/app_mqtt.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="true">
+      <logicalFolder name="f1" displayName="wfi32_iot.mhc" projectFiles="true">
+        <logicalFolder name="f1" displayName="System_Configuration" projectFiles="true">
+          <logicalFolder name="f1" displayName="TCP_IP_STACK" projectFiles="true">
+            <logicalFolder name="f1" displayName="APPLICATION_LAYER" projectFiles="true">
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/APPLICATION_LAYER.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcp.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcps.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDns.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDnss.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipSntp.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpip_apps_config.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f2" displayName="BASIC_CONFIGURATION" projectFiles="true">
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/BASIC_CONFIGURATION.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpipCmd.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpip_basic_config.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f3" displayName="DRIVER_LAYER" projectFiles="true">
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/DRIVER_LAYER.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/tcpip_driver_config.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f4" displayName="NETWORK_LAYER" projectFiles="true">
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/NETWORK_LAYER.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipArp.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIcmp.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIPv4.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpip_network_config.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f5" displayName="PRESENTATION_LAYER" projectFiles="true">
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/net_Pres.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/PRESENTATION_LAYER.yml</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f6" displayName="TRANSPORT_LAYER" projectFiles="true">
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipTcp.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipUdp.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpip_transport_config.yml</itemPath>
+              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/TRANSPORT_LAYER.yml</itemPath>
+            </logicalFolder>
+            <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TCP_IP_STACK.yml</itemPath>
+          </logicalFolder>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/drvWifiPic32mzw1.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/drv_ba414e.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/HarmonyCore.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/lib_crypto.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/lib_pahomqtt.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/lib_wolfcrypt.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/nvm.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/System_Configuration.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/sys_command.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/sys_console.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/sys_debug.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/sys_time.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/tcpipNetConfig.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/tcpipStack.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/tmr1.yml</itemPath>
+          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/uart1.yml</itemPath>
+        </logicalFolder>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/core.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/dfp.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/drv_i2c.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/i2c1.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/power.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/project.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/rcon.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/rtcc.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/settings.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/stdio.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/sysMqttPic32mzw1.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/sysNetPic32mzw1.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/sysWifiPic32mzw1.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/sysWifiProvPic32mzw1.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/tmr3.yml</itemPath>
+        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/uart3.yml</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="wolfcrypt" projectFiles="true">
+        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/misc.c</itemPath>
+        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/evp.c</itemPath>
+      </logicalFolder>
+      <itemPath>Makefile</itemPath>
+      <itemPath>../src/config/wfi32_iot/harmony-manifest-success.yml</itemPath>
+      <itemPath>paho_mqtt_client_power_save_wfi32_iot.mc3</itemPath>
+    </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
@@ -768,92 +854,6 @@
       <itemPath>../src/main.c</itemPath>
       <itemPath>../src/app_mqtt.c</itemPath>
     </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false">
-      <logicalFolder name="f1" displayName="wfi32_iot.mhc" projectFiles="true">
-        <logicalFolder name="f1" displayName="System_Configuration" projectFiles="true">
-          <logicalFolder name="f1" displayName="TCP_IP_STACK" projectFiles="true">
-            <logicalFolder name="f1" displayName="APPLICATION_LAYER" projectFiles="true">
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/APPLICATION_LAYER.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcp.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcps.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDns.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDnss.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipSntp.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpip_apps_config.yml</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f2" displayName="BASIC_CONFIGURATION" projectFiles="true">
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/BASIC_CONFIGURATION.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpipCmd.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpip_basic_config.yml</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f3" displayName="DRIVER_LAYER" projectFiles="true">
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/DRIVER_LAYER.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/tcpip_driver_config.yml</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f4" displayName="NETWORK_LAYER" projectFiles="true">
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/NETWORK_LAYER.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipArp.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIcmp.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIPv4.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpip_network_config.yml</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f5" displayName="PRESENTATION_LAYER" projectFiles="true">
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/net_Pres.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/PRESENTATION_LAYER.yml</itemPath>
-            </logicalFolder>
-            <logicalFolder name="f6" displayName="TRANSPORT_LAYER" projectFiles="true">
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipTcp.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipUdp.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpip_transport_config.yml</itemPath>
-              <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/TRANSPORT_LAYER.yml</itemPath>
-            </logicalFolder>
-            <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/TCP_IP_STACK/TCP_IP_STACK.yml</itemPath>
-          </logicalFolder>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/drvWifiPic32mzw1.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/drv_ba414e.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/HarmonyCore.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/lib_crypto.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/lib_pahomqtt.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/lib_wolfcrypt.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/nvm.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/System_Configuration.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/sys_command.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/sys_console.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/sys_debug.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/sys_time.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/tcpipNetConfig.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/tcpipStack.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/tmr1.yml</itemPath>
-          <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/System_Configuration/uart1.yml</itemPath>
-        </logicalFolder>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/core.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/dfp.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/drv_i2c.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/GraphSettings.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/i2c1.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/power.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/project.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/rcon.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/rtcc.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/settings.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/stdio.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/sysMqttPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/sysNetPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/sysWifiPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/sysWifiProvPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/tmr3.yml</itemPath>
-        <itemPath>../src/config/wfi32_iot/wfi32_iot.mhc/uart3.yml</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f2" displayName="wolfcrypt" projectFiles="true">
-        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/misc.c</itemPath>
-        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/evp.c</itemPath>
-      </logicalFolder>
-      <itemPath>Makefile</itemPath>
-      <itemPath>../src/config/wfi32_iot/harmony-manifest-success.yml</itemPath>
-      <itemPath>paho_mqtt_client_power_save_wfi32_iot.mc3</itemPath>
-    </logicalFolder>
   </logicalFolder>
   <sourceRootList>
     <Elem>../src</Elem>
@@ -866,7 +866,7 @@
         <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>4.35</languageToolchainVersion>
         <platform>3</platform>

@@ -325,6 +325,8 @@ const TCPIP_STACK_MODULE_CONFIG TCPIP_STACK_MODULE_CONFIG_TBL [] =
     {TCPIP_MODULE_DNS_CLIENT,       &tcpipDNSClientInitData},       // TCPIP_MODULE_DNS_CLIENT
     {TCPIP_MODULE_SNTP,             &tcpipSNTPInitData},            // TCPIP_MODULE_SNTP
 
+    {TCPIP_MODULE_COMMAND,          0},                             // TCPIP_MODULE_COMMAND,
+    {TCPIP_MODULE_IPERF,            0},                             // TCPIP_MODULE_IPERF,
     { TCPIP_MODULE_MANAGER,         &tcpipHeapConfig },             // TCPIP_MODULE_MANAGER
 
 // MAC modules
@@ -522,8 +524,16 @@ void SYS_Initialize ( void* data )
 
 
     /* Initialize the PIC32MZW1 Driver */
-    CRYPT_RNG_Initialize(&wdrvRngCtx);
-    sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
+    if (CRYPT_RNG_Initialize(&wdrvRngCtx) >= 0)
+    {
+        sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
+
+        SYS_ASSERT(sysObj.drvWifiPIC32MZW1 != SYS_MODULE_OBJ_INVALID, "WDRV_PIC32MZW_Initialize Failed");
+    }
+    else
+    {
+        SYS_ASSERT(false, "CRYPT_RNG_Initialize Failed");
+    }
 
 
     /* MISRA C-2012 Rule 11.3, 11.8 deviated below. Deviation record ID -  

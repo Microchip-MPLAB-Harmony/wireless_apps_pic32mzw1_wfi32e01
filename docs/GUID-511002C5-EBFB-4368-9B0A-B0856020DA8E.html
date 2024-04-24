@@ -1,387 +1,302 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
-<meta name="DC.rights.owner" content="(C) Copyright 2023" />
-<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
-<meta name="DC.title" content="IFTTT Demo" />
-<meta name="DC.relation" scheme="URI" content="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" />
-<meta name="DC.format" content="XHTML" />
-<meta name="DC.identifier" content="ifttt-demo" />
-<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<title>IFTTT Demo</title>
-<meta name="Microsoft.Help.Id" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6-ifttt-demo" />
-<meta name="Microsoft.Help.TocParent" content="GUID-6863E711-3A96-49BC-B369-8645955ECCD6" />
-<meta name="Microsoft.Help.TocOrder" content="0" />
-<meta name="Microsoft.Help.Locale" content="en-US" />
-<meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony Wireless application examples for PIC32MZ W1 family Reference A 10/2023" />
-<script language="javascript">
-       
-       if (window.parent.location.protocol != 'file:') {
-				document.addEventListener('click', function(e) {
-				    if (e.target) {
-               if (e.target.nodeName == "A" ) {
-                    if (!e.target.target) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                              
-                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
-                      if (origUrl.length === 0) {
-                          origUrl = window.parent.location.href;
-                      }
-                      var href= e.target.getAttribute("href");
-                      var parts = href.split("#");
-          
-                      var url = "";
-                      if (parts.length == 2 ) {
-                        if (!parts[0].length) {
-                            url = window.parent.location.search.replace('?','')
-                        } else {
-                            url = parts[0].replace('.html','');
-                        }
-                      } else {
-                        url = parts[0].replace('.html','');
-                      }
-
-                      if (parts.length == 2) {
-                          url += "#" + parts[1];
-                      }
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us" data-whc_version="24.1">
+    <head><link rel="shortcut icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><link rel="icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="description" content="This example application demosntrates how we can generate a trigger to IFTTT web platform to make it perform a specific action like sending a mail/ sms etc using an applet. IFTTT is short for &#34;If This ..."/><meta name="copyright" content="(C) Copyright 2024"/><meta name="generator" content="DITA-OT"/><title>1.14 IFTTT Demo</title><!--  Generated with Oxygen version 24.1, build number 2022062014.  --><meta name="wh-path2root" content=""/><meta name="wh-toc-id" content="&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;&lt;?workdir /D:\InfoShare\Data\Publish\Data\i0ljxc4yqul\work\temp?&gt;&lt;?workdir-uri file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/temp/?&gt;&lt;?path2project?&gt;&lt;?path2project-uri ./?&gt;&lt;?path2rootmap-uri ./?&gt;&lt;topic xmlns:dita-ot=&#34;http://dita-ot.sourceforge.net/ns/201007/dita-ot&#34; xmlns:ditaarch=&#34;http://dita.oasis-open.org/architecture/2005/&#34; class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;ifttt-demo&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;topic:1;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;title:1;184:15&#34;&gt;IFTTT Demo&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;body:1;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:1;184:15&#34;&gt;This example application demosntrates how we can generate a trigger to IFTTT web platform to make it perform a specific action like sending a mail/ sms etc using an applet.&lt;/p&gt;&lt;/body&gt;&lt;related-links class=&#34;- topic/related-links &#34;&gt;&lt;linkpool class=&#34;- topic/linkpool &#34; mapkeyref=&#34;GUID-AD42A25B-1AB7-4B86-8431-B386D384D7EA&#34; xtrc=&#34;topicref:1;6:99&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-DA1F030F-3F6F-4AD8-9C0B-1B040C9B7F67.ditamap&#34;&gt;&lt;link class=&#34;- topic/link &#34; format=&#34;dita&#34; href=&#34;GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.md&#34; mapclass=&#34;- map/topicref &#34; role=&#34;parent&#34; scope=&#34;local&#34; type=&#34;topic&#34; xtrc=&#34;topicref:1;6:99&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-AD42A25B-1AB7-4B86-8431-B386D384D7EA.ditamap&#34;&gt;&lt;?ditaot usertext?&gt;&lt;linktext class=&#34;- topic/linktext &#34;&gt;&lt;?ditaot gentext?&gt;Harmony 3 Wireless application examples for PIC32MZ W1 family&lt;/linktext&gt;&lt;/link&gt;&lt;/linkpool&gt;&lt;/related-links&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;description&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;topic:2;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;title:2;184:15&#34;&gt;Description&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;body:2;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:2;184:15&#34;&gt;IFTTT is short for &#34;If This Then That&#34;. IFTTT is a third-party web platform which uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the button (SW1) on the Curiosity Board is pressed.&lt;/p&gt;&lt;/body&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;downloading-and-building-the-application&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;topic:3;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;title:3;184:15&#34;&gt;Downloading and building the application&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;body:3;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:3;184:15&#34;&gt;To download or clone this application from Github, go to the &lt;xref class=&#34;- topic/xref &#34; href=&#34;https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01&#34; format=&#34;html&#34; scope=&#34;external&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;xref:1;184:15&#34;&gt;&lt;?ditaot usertext?&gt;top level of the repository&lt;/xref&gt;&lt;/p&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:4;184:15&#34;&gt;Path of the application within the repository is &lt;b class=&#34;+ topic/ph hi-d/b &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;b:1;184:15&#34;&gt;apps/ifttt/firmware&lt;/b&gt; .&lt;/p&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:5;184:15&#34;&gt;To build the application, refer to the following table and open the project using its IDE.&lt;/p&gt;&lt;table class=&#34;- topic/table &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;table:1;184:15&#34;&gt;&lt;tgroup class=&#34;- topic/tgroup &#34; cols=&#34;2&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;tgroup:1;184:15&#34;&gt;&lt;colspec class=&#34;- topic/colspec &#34; colname=&#34;col1&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;colspec:1;184:15&#34; colnum=&#34;1&#34;/&gt;&lt;colspec class=&#34;- topic/colspec &#34; colname=&#34;col2&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;colspec:2;184:15&#34; colnum=&#34;2&#34;/&gt;&lt;thead class=&#34;- topic/thead &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;thead:1;184:15&#34;&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:1;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:1;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;1&#34;&gt;Project Name&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:2;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;1&#34;&gt;Description&lt;/entry&gt;&lt;/row&gt;&lt;/thead&gt;&lt;tbody class=&#34;- topic/tbody &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;tbody:1;184:15&#34;&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:2;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:3;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;2&#34;&gt;pic32mz_w1_curiosity_freertos.X&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:4;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;2&#34;&gt;MPLABX project for PIC32MZ W1 Curiosity Board&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:3;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; namest=&#34;col1&#34; nameend=&#34;col2&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:5;184:15&#34; colname=&#34;col1&#34; dita-ot:morecols=&#34;1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;3&#34;/&gt;&lt;/row&gt;&lt;/tbody&gt;&lt;/tgroup&gt;&lt;/table&gt;&lt;/body&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;creating-an-applet-on-ifttt-web-platform&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;topic:4;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;title:4;184:15&#34;&gt;Creating an Applet on IFTTT web platform&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;body:4;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:6;184:15&#34;&gt;IFTTT is a third-party web platform, and one can create an applet of their own. More details on how one can use IFTTT and create their own applets can be found at &lt;xref class=&#34;- topic/xref &#34; href=&#34;https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet&#34; format=&#34;html&#34; scope=&#34;external&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;xref:2;184:15&#34;&gt;&lt;?ditaot usertext?&gt;https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet&lt;/xref&gt;&lt;/p&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:7;184:15&#34;&gt;More details on how to use a webhook applet in IFTTT can be found in the Appendix of this document.&lt;/p&gt;&lt;/body&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;setting-up-pic32mz-w1-curiosity-board&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;topic:5;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;title:5;184:15&#34;&gt;Setting up PIC32MZ W1 Curiosity Board&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;body:5;184:15&#34;&gt;&lt;ul class=&#34;- topic/ul &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;ul:1;184:15&#34;&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:1;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:8;184:15&#34;&gt;Connect the Debug USB port on the board to the computer using a micro USB cable to power on the board.&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:2;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:9;184:15&#34;&gt;On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:3;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:10;184:15&#34;&gt;Home AP (Wi-Fi Access Point with internet connection)&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;running-the-application&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;topic:6;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;title:6;184:15&#34;&gt;Running the Application&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;body:6;184:15&#34;&gt;&lt;ol class=&#34;- topic/ol &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;ol:1;184:15&#34;&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:4;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:11;184:15&#34;&gt;Open the project and launch Harmony3 configurator.&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:5;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:12;184:15&#34;&gt;Configure home AP credentials for STA Mode.&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-75A79677-9EF2-45D6-9C0A-229A66AEC86A-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:1;184:15&#34; dita-ot:image-width=&#34;650&#34; dita-ot:image-height=&#34;301&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:1;184:15&#34;&gt;MHC_SSID_Configuration&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:6;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:13;184:15&#34;&gt;Save configurations and generate code via MHC.&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:7;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:14;184:15&#34;&gt;Currently application expects the user to create an applet at the IFTTT web platform and configure the relevant details related to the applet in the app.c file. These details will help in creating the trigger which we send to make the applet perform the action.&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:8;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:15;184:15&#34;&gt;The user would need to populate the following&lt;/p&gt;&lt;table class=&#34;- topic/table &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;table:2;184:15&#34;&gt;&lt;tgroup class=&#34;- topic/tgroup &#34; cols=&#34;3&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;tgroup:2;184:15&#34;&gt;&lt;colspec class=&#34;- topic/colspec &#34; colname=&#34;col1&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;colspec:3;184:15&#34; colnum=&#34;1&#34;/&gt;&lt;colspec class=&#34;- topic/colspec &#34; colname=&#34;col2&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;colspec:4;184:15&#34; colnum=&#34;2&#34;/&gt;&lt;colspec class=&#34;- topic/colspec &#34; colname=&#34;col3&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;colspec:5;184:15&#34; colnum=&#34;3&#34;/&gt;&lt;thead class=&#34;- topic/thead &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;thead:2;184:15&#34;&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:4;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:6;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;1&#34;&gt;Parameter Name&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:7;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;1&#34;&gt;Default Value&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:8;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;1&#34;&gt;Description&lt;/entry&gt;&lt;/row&gt;&lt;/thead&gt;&lt;tbody class=&#34;- topic/tbody &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;tbody:2;184:15&#34;&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:5;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:9;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;2&#34;&gt;IFTTT_EVENT_TYPE&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:10;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;2&#34;&gt;IFTTT_EVENT_BUTTON_PRESS&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:11;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;2&#34;&gt;The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board (IFTTT_EVENT_BUTTON_PRESS), or by running a timer (IFTTT_EVENT_PERIODIC_TIMER) and sending the trigger periodically. The default event type is button press to trigger the applet.&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:6;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:12;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;3&#34;&gt;IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:13;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;3&#34;&gt;100 sec&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:14;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;3&#34;&gt;This parameter is used for setting the timeperiod in sec, after which a periodic trigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:7;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:15;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;4&#34;&gt;IFTTT_EVENT&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:16;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;4&#34;&gt;&#34;YOUR_EVENT&#34;&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:17;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;4&#34;&gt;This is a mandatory parameter to be filled in by the user, and is the 'event' which triggers the applet. This 'event' was used while creating the applet at the IFTTT web platform.&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:8;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:18;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;5&#34;&gt;IFTTT_KEY&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:19;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;5&#34;&gt;&#34;YOUR_KEY&#34;&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:20;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;5&#34;&gt;This is a mandatory parameter to be filled in by the user, and is the the 'key' which is generated after the creation of the applet at the IFTTT web platform.&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:9;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:21;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;6&#34;&gt;IFTTT_NUM_OF_VALUES&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:22;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;6&#34;&gt;1&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:23;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;6&#34;&gt;The IFTTT applet can use upto 3 values/ data while performing an action. This parameter indicates the number of values which this application needs to send along with the trigger.&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:10;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:24;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;7&#34;&gt;IFTTT_VALUE1&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:25;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;7&#34;&gt;&#34;Value1&#34;&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:26;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;7&#34;&gt;Data Value1 that needs to be sent along with the trigger.&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:11;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:27;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;8&#34;&gt;IFTTT_VALUE2&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:28;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;8&#34;&gt;&#34;Value2&#34;&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:29;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;8&#34;&gt;Data Value2 that needs to be sent along with the trigger.&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:12;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:30;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;9&#34;&gt;IFTTT_VALUE3&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:31;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;9&#34;&gt;&#34;Value3&#34;&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:32;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;9&#34;&gt;Data Value3 that needs to be sent along with the trigger.&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:13;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:33;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;10&#34;&gt;IFTTT_USER_CALLBACK&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:34;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;10&#34;&gt;NULL&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:35;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;10&#34;&gt;In case users want to process some data and based on the result want to dynamically decide if the trigger needs to be sent or not, they will need to map this parameter to APP_IFTTT_Callback() function and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the 'Value1' and sent.&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:14;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:36;184:15&#34; colname=&#34;col1&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;11&#34;&gt;IFTTT_USER_CALLBACK_CTX&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:37;184:15&#34; colname=&#34;col2&#34; dita-ot:x=&#34;2&#34; dita-ot:y=&#34;11&#34;&gt;NULL&lt;/entry&gt;&lt;entry class=&#34;- topic/entry &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:38;184:15&#34; colname=&#34;col3&#34; dita-ot:x=&#34;3&#34; dita-ot:y=&#34;11&#34;&gt;Callback context/ parameter which will be passed on to APP_IFTTT_Callback(). This could a structure pointer which contains the data to be processed and decide if the trigger needs to be sent.&lt;/entry&gt;&lt;/row&gt;&lt;row class=&#34;- topic/row &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;row:15;184:15&#34;&gt;&lt;entry class=&#34;- topic/entry &#34; namest=&#34;col1&#34; nameend=&#34;col3&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;entry:39;184:15&#34; colname=&#34;col1&#34; dita-ot:morecols=&#34;2&#34; dita-ot:x=&#34;1&#34; dita-ot:y=&#34;12&#34;/&gt;&lt;/row&gt;&lt;/tbody&gt;&lt;/tgroup&gt;&lt;/table&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:9;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:16;184:15&#34;&gt;Build and program the generated image into the hardware using the IDE.&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:10;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:17;184:15&#34;&gt;Open the terminal application(Ex:Tera term) on the computer.&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:11;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:18;184:15&#34;&gt;Connect to the COM port related to the external USB-UART connected to the GPIO heade and configure the serial settings as follows:&lt;/p&gt;&lt;ul class=&#34;- topic/ul &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;ul:2;184:15&#34;&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:12;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:19;184:15&#34;&gt;Baud : 115200&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:13;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:20;184:15&#34;&gt;Data : 8 Bits&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:14;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:21;184:15&#34;&gt;Parity : None&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:15;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:22;184:15&#34;&gt;Stop : 1 Bit&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:16;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:23;184:15&#34;&gt;Flow Control : None&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:17;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:24;184:15&#34;&gt;The Board will connect to Home AP.&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-C311498A-7404-4F67-886A-A38B9AFE8563-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:2;184:15&#34; dita-ot:image-width=&#34;660&#34; dita-ot:image-height=&#34;335&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:2;184:15&#34;&gt;Console_STA_Connected&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:18;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:25;184:15&#34;&gt;Every time the button/ switch (SW1) is pressed&lt;/p&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:26;184:15&#34;&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-843C5638-0F7B-4920-8FC7-0FE6E96805B9-low.png&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:3;184:15&#34; dita-ot:image-width=&#34;656&#34; dita-ot:image-height=&#34;454&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:3;184:15&#34;&gt;Curiosity_Board&lt;/alt&gt;&lt;/image&gt;,&lt;/p&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:27;184:15&#34;&gt;it shall connect to maker.ifttt.com and send the trigger.&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-587A8EE4-8BB3-4D5E-A495-2C72FB81742C-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:4;184:15&#34; dita-ot:image-width=&#34;661&#34; dita-ot:image-height=&#34;343&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:4;184:15&#34;&gt;Console_Trigger_Sent&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:19;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:28;184:15&#34;&gt;This Trigger will be received by the ifttt server which will invoke the applet. Let us assume the user created an applet using webhooks which shall 'send an email' as an action. The email could look something like this:&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-D313EBCD-FAA5-4A48-8352-99D607BBE3B3-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:5;184:15&#34; dita-ot:image-width=&#34;657&#34; dita-ot:image-height=&#34;355&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:5;184:15&#34;&gt;Applet_Email&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:20;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:29;184:15&#34;&gt;Every time a trigger is being sent by the Curiosity Board, the red LED on the board will be ON, and it will go OFF once the trigger request has been successfully trasmitted to IFTTT server. Any new request while the LED is ON will not be honoured. Hence, it is receommended to press the button for a new request only when the red LED has gone OFF.&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;appendix&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;topic:7;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;title:7;184:15&#34;&gt;Appendix&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;body:7;184:15&#34;/&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;creating-a-webhook-applet-on-ifttt-web-platform&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;topic:8;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;title:8;184:15&#34;&gt;Creating a Webhook applet on IFTTT web platform.&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;body:8;184:15&#34;&gt;&lt;ol class=&#34;- topic/ol &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;ol:2;184:15&#34;&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:21;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:30;184:15&#34;&gt;Create an IFTTT account.&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:22;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:31;184:15&#34;&gt;Sign in to the account.&lt;/p&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:23;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:32;184:15&#34;&gt;Click &#34;Create&#34; on the right side toolbar to create an applet&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-EF14E9DA-E72F-4BF8-896F-F93B2B946B9B-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:6;184:15&#34; dita-ot:image-width=&#34;419&#34; dita-ot:image-height=&#34;365&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:6;184:15&#34;&gt;applet_create&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:24;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:33;184:15&#34;&gt;Clock on 'Add' and choose &#34;webhooks&#34;&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-39023696-28FC-4C56-8EEB-CD34B5AA7A3D-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:7;184:15&#34; dita-ot:image-width=&#34;419&#34; dita-ot:image-height=&#34;134&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:7;184:15&#34;&gt;applet_choose_service&lt;/alt&gt;&lt;/image&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-BA1CE8F9-5FB8-431B-8401-B64F5CAC54C6-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:8;184:15&#34; dita-ot:image-width=&#34;421&#34; dita-ot:image-height=&#34;290&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:8;184:15&#34;&gt;applet_choose_webhooks&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:25;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:34;184:15&#34;&gt;Choose a trigger - 'Receive a webrequest'&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-D772B504-0BEE-4702-82FE-6DA9D5E76442-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:9;184:15&#34; dita-ot:image-width=&#34;420&#34; dita-ot:image-height=&#34;571&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:9;184:15&#34;&gt;applet_trigger&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:26;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:35;184:15&#34;&gt;Fill in the event name and create a 'trigger'.Copy the event and past it to parameter IFTTT_EVENT in the demo code.&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-9FF82895-D914-46B6-BB59-500A8C2023D8-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:10;184:15&#34; dita-ot:image-width=&#34;425&#34; dita-ot:image-height=&#34;302&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:10;184:15&#34;&gt;applet_trigger_create&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:27;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:36;184:15&#34;&gt;Add the action - could be sending an 'email'&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-578E8CC2-3882-4E42-B235-907DC3892469-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:11;184:15&#34; dita-ot:image-width=&#34;421&#34; dita-ot:image-height=&#34;389&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:11;184:15&#34;&gt;applet_action_add&lt;/alt&gt;&lt;/image&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-6D9D2247-D609-4579-8CF2-DE95F11AC271-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:12;184:15&#34; dita-ot:image-width=&#34;422&#34; dita-ot:image-height=&#34;283&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:12;184:15&#34;&gt;applet_action_email&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:28;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:37;184:15&#34;&gt;Set the action fields. In case of 'email' it could be subject and body of the mail.&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-A6572774-7C50-47DB-A0E5-BC57E8FA3612-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:13;184:15&#34; dita-ot:image-width=&#34;370&#34; dita-ot:image-height=&#34;614&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:13;184:15&#34;&gt;applet_action_fields&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:29;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:38;184:15&#34;&gt;'Finish' the applet.&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-BB28D174-0DD7-4B70-ABB0-EB0B1C4EB95D-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:14;184:15&#34; dita-ot:image-width=&#34;430&#34; dita-ot:image-height=&#34;360&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:14;184:15&#34;&gt;applet_finish&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:30;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:39;184:15&#34;&gt;Goto webhooks settings (https://ifttt.com/maker_webhooks/setting)&lt;/p&gt;&lt;image class=&#34;- topic/image &#34; href=&#34;GUID-3009DB01-AA1A-4613-A8F6-A4E9B012BCA7-low.png&#34; placement=&#34;break&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;image:15;184:15&#34; dita-ot:image-width=&#34;377&#34; dita-ot:image-height=&#34;432&#34; dita-ot:horizontal-dpi=&#34;96&#34; dita-ot:vertical-dpi=&#34;96&#34;&gt;&lt;alt class=&#34;- topic/alt &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;alt:15;184:15&#34;&gt;applet_webhook_settings&lt;/alt&gt;&lt;/image&gt;&lt;/li&gt;&lt;li class=&#34;- topic/li &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;li:31;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/i0ljxc4yqul/work/3/en-US/GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md&#34; xtrc=&#34;p:40;184:15&#34;&gt;The string after the https://maker.ifttt.com/use/ in the URL is the 'Key' needed by the Demo Application. Copy the key and pasted it to parameter IFTTT_KEY in the demo code.&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/topic&gt;&lt;/topic&gt;&lt;/topic&gt;"/><meta name="wh-source-relpath" content="GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.md"/><meta name="wh-out-relpath" content="GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.html"/>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/lib/bootstrap/css/bootstrap.min.css"/>
     
-                      window.parent.location.href = origUrl + "?" + url;
+    <link rel="stylesheet" href="./oxygen-webhelp/lib/jquery-ui/jquery-ui.min.css"/>
+    
+    <!-- Template default styles  -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/app/topic-page.css?buildId=2022062014"/>
+    
+    
+    <script src="./oxygen-webhelp/lib/jquery/jquery-3.5.1.min.js"></script>
+    
+    <script data-main="./oxygen-webhelp/app/topic-page.js" src="./oxygen-webhelp/lib/requirejs/require.js"></script>
+<link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/microchip.css?buildId=2022062014"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/notes.css?buildId=2022062014"/>
+<script src="mchp-context-help.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async="" type="text/javascript"></script>
+    <script src="https://assets.adobedtm.com/6a72a357eb48/a636c708c7fe/launch-0b0023397020.min.js"></script><!-- Adobe Analytics -->
+</head>
 
-                      return false;
-                    }
-               }
-            }
-				});
-			}
-
-		</script><script language="javascript">
-         
-         function copyContent(content, button) {
-         
-            var textArea = document.createElement("textarea");
-            
-            // Place in the top-left corner of screen regardless of scroll position.
-            textArea.style.position = 'fixed';
-            textArea.style.top = 0;
-            textArea.style.left = 0;
-            
-            // Ensure it has a small width and height. Setting to 1px / 1em
-            // doesn't work as this gives a negative w/h on some browsers.
-            textArea.style.width = '2em';
-            textArea.style.height = '2em';
-            
-            // We don't need padding, reducing the size if it does flash render.
-            textArea.style.padding = 0;
-            
-            // Clean up any borders.
-            textArea.style.border = 'none';
-            textArea.style.outline = 'none';
-            textArea.style.boxShadow = 'none';
-            
-            // Avoid flash of the white box if rendered for any reason.
-            textArea.style.background = 'transparent';
-            
-            textArea.value = content;
-            
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-               var successful = document.execCommand('copy');
-               var msg = successful ? 'successful' : 'unsuccessful';
-               if (!button.classList.contains("copied")){
-                  button.textContent = "Copied";
-                  button.classList.add("copied");
-                  setTimeout(function(){
-                     button.textContent = "Copy";
-                     button.classList.remove("copied");
-                  },1000);
-               }
-            } catch (err) {
-               console.log('Oops, unable to copy');
-            }
-            
-            document.body.removeChild(textArea);
-         }
-         
-         function cpy(id, button) {
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
-            
-            copyContent(content, button);
-         }
-         
-         document.addEventListener("DOMContentLoaded", function(event) {
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.style.position = "relative";
-               var copy = document.createElement("button");
-               copy.textContent = "Copy";
-               copy.setAttribute("class", "copy-code");
-               
-               var content = elem.textContent;
-               
-               copy.addEventListener("click", function(){
-                  copyContent(content, copy);
-               });
-               
-               elem.addEventListener("mouseenter", function(evt){
-                  elem.prepend(copy);
-               });
-            });
-            
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.addEventListener("mouseleave", function(evt){
-                  document.querySelector(".copy-code").remove();
-               });
-            });
-         });
-         
-      </script><script language="javascript">
-          
-          // Add the MathML namespace to html
-          var html = document.getElementsByTagName("html")[0],
-          head = document.getElementsByTagName("head")[0];
-          
-          var mathJax = document.createElement("script");
-          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
-          head.appendChild(mathJax);
-          
-          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
-          
-          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
-          
-          if (!inIframe()) { 
-          
-          var Default = "index.html?GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E"; 
-          
-          var displaylocation = "value" + window.location.href;
-          
-          var GUIDS = displaylocation.split('GUID');          
-          
-          if (displaylocation.indexOf('#GUID') != -1) {            
-          var First = GUIDS[1].split('.html');  
-          if (GUIDS[3]){First = GUIDS[2].split('.html');}
-          if (GUIDS[4]){First = GUIDS[3].split('.html');}
-          if (GUIDS[5]){First = GUIDS[4].split('.html');}
-          
-          var Second = GUIDS[2].split('#');   
-          if (GUIDS[3]){Second = GUIDS[3].split('#');}
-          if (GUIDS[4]){Second = GUIDS[4].split('#');}
-          if (GUIDS[5]){Second = GUIDS[5].split('#');}
-          
-          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
-          }                    
-          window.top.location = Default;
-          }       
-          
-        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
-        
-          button.copy-code{
-            display:none;
-            padding:0.7em 1.4em;
-            margin:0 0.3em 0.3em 0;
-            border-radius:0.15em;
-            box-sizing: border-box;
-            text-decoration:none;
-            font-family:'Roboto',sans-serif;
-            text-transform:uppercase;
-            font-weight:400;
-            color:#FFFFFF;
-            background-color:#9c9c9c;
-            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
-            text-align:center;
-            position:relative;
-            border: 0;
-            float: right;
-            border-radius: .5em;
-            cursor: pointer;
-          }
-          button.copy-code:active{
-            top:0.1em;
-          }
-          
-          pre:hover button.copy-code{
-            display: inline-block !important;
-          }
-          button.copy-code.copied {
-            cursor: default !important;
-          }
-          
-          
-          @media all and (max-width:30em){
-            button.copy-code{
-              display:block;
-              margin:0.4em auto;
-            }
-          }
+    <body id="ifttt-demo" class="wh_topic_page frmBody">
+        <a href="#wh_topic_body" class="sr-only sr-only-focusable">
+            Jump to main content
+        </a>
         
         
-      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
-<body id="ifttt-demo">
-<h1 class="title topictitle1" id="ariaid-title1" style="">IFTTT Demo</h1><div class="body"><p class="p">This example application demosntrates how we can generate a trigger to IFTTT web platform to make it perform a specific action like sending a mail/ sms etc using an applet.</p>
-</div>
-<div class="related-links">
-<div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html">Harmony 3 Wireless application examples for PIC32MZ W1 family</a></div>
-</div>
-</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="title topictitle2" id="ariaid-title2" style="">Description</h2><div class="body"><p class="p">IFTTT is short for "If This Then That". IFTTT is a third-party web platform which uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA  mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the button (SW1) on the Curiosity Board is pressed.</p>
-</div>
-</div>
-<div class="topic nested1" aria-labelledby="ariaid-title3" id="downloading-and-building-the-application"><h2 class="title topictitle2" id="ariaid-title3" style="">Downloading and building the application</h2><div class="body"><p class="p">To download or clone this application from Github, go to the <a class="xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank">top level of the repository</a></p>
-<p class="p">Path of the application within the repository is <strong class="ph b">apps/ifttt/firmware</strong> .</p>
-<p class="p">To build the application, refer to the following table and open the project using its IDE.</p>
+        
+        
+        <header class="navbar navbar-default wh_header">
+    <div class="container-fluid">
+        <div class="wh_header_flex_container navbar-nav navbar-expand-md navbar-dark">
+            <div class="wh_logo_and_publication_title_container">
+                <div class="wh_logo_and_publication_title">
+                    
+                    <a href="index.html" class=" wh_logo d-none d-sm-block "><img src="oxygen-webhelp\template\resources/images/microchip.png" alt="MPLAB Harmony Wireless application examples for PIC32MZ W1 family &#xA;    "/></a>
+                    <div class=" wh_publication_title "><a href="index.html">MPLAB Harmony Wireless application examples for PIC32MZ W1 family 
+    </a></div>
+                    
+                </div>
+                
+                
+            </div>
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d13066e47"><span>Project Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d13066e49"><span>Description</span></th>
-</tr>
-</thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e47 "><span>pic32mz_w1_curiosity_freertos.X</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e49 "><span>MPLABX project for PIC32MZ W1 Curiosity Board</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" colspan="2" style="vertical-align:middle;" headers="d13066e47 d13066e49 "><span> </span></td>
-</tr>
-</tbody>
-</table>
+            <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</header>
+        
+        
+         
+        
+        <div class=" wh_search_input navbar-form wh_topic_page_search search " role="form">
+            
+            
+            
+            <form id="searchForm" method="get" role="search" action="search.html"><div class="d-flex justify-contents-around"><div class="flex-grow-1"></div><div class="position-relative flex-grow-1"><input type="search" placeholder="Search " class="wh_search_textfield" id="textToSearch" name="searchQuery" aria-label="Search query" required="required"/><button type="submit" class="wh_search_button" aria-label="Search"><span class="search_input_text">Search</span></button></div><div class="align-self-center flex-grow-1 ml-2"></div></div></form>
+            
+            <div class="mchp-color-stripe-grid-container">
+  <div class="mchp-main-bar mchp-orange-bar"></div>
+  <div class="mchp-main-bar mchp-blue-bar"></div>
+  <div class="mchp-main-bar mchp-green-bar"></div>
 </div>
-</div>
-</div>
-<div class="topic nested1" aria-labelledby="ariaid-title4" id="creating-an-applet-on-ifttt-web-platform"><h2 class="title topictitle2" id="ariaid-title4" style="">Creating an Applet on IFTTT web platform</h2><div class="body"><p class="p">IFTTT is a third-party web platform, and one can create an applet of their own. More details on how one can use IFTTT and create their own applets can be found at <a class="xref" href="https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet" target="_blank">https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet</a></p>
-<p class="p">More details on how to use a webhook applet in IFTTT can be found in the Appendix of this document.</p>
-</div>
-</div>
-<div class="topic nested1" aria-labelledby="ariaid-title5" id="setting-up-pic32mz-w1-curiosity-board"><h2 class="title topictitle2" id="ariaid-title5" style="">Setting up PIC32MZ W1 Curiosity Board</h2><div class="body"><ul class="ul"><li class="li"><p class="p">Connect the Debug USB port on the board to the computer using a micro USB cable to power on the board.</p>
-</li>
-<li class="li"><p class="p">On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter</p>
-</li>
-<li class="li"><p class="p">Home AP (Wi-Fi Access Point with internet connection)</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="topic nested1" aria-labelledby="ariaid-title6" id="running-the-application"><h2 class="title topictitle2" id="ariaid-title6" style="">Running the Application</h2><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Open the project and launch Harmony3 configurator.</p>
-</li>
-<li class="li"><span class="indent-level-default">2.</span><p class="p">Configure home AP credentials for STA Mode.</p>
-<br /><img class="image" src="GUID-75A79677-9EF2-45D6-9C0A-229A66AEC86A-low.png" alt="MHC_SSID_Configuration" /><br /></li>
-<li class="li"><span class="indent-level-default">3.</span><p class="p">Save configurations and generate code via MHC.</p>
-</li>
-<li class="li"><span class="indent-level-default">4.</span><p class="p">Currently application expects the user to create an applet at the IFTTT web platform and configure the relevant details related to the applet in the app.c file. These details will help in creating the trigger which we send to make the applet perform the action.</p>
-</li>
-<li class="li"><span class="indent-level-default">5.</span><p class="p">The user would need to populate the following</p>
+            
+        </div>
+        
+        <div class="container-fluid" id="wh_topic_container">
+            <div class="row">
 
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="vertical-align:middle;" id="d13066e114"><span>Parameter Name</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d13066e116"><span>Default Value</span></th>
-<th class="entry cellrowborder" style="vertical-align:middle;" id="d13066e118"><span>Description</span></th>
-</tr>
-</thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_EVENT_TYPE</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>IFTTT_EVENT_BUTTON_PRESS</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board (IFTTT_EVENT_BUTTON_PRESS), or by running a timer (IFTTT_EVENT_PERIODIC_TIMER) and sending the trigger periodically. The default event type is button press to trigger the applet.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>100 sec</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>This parameter is used for setting the timeperiod in sec, after which a periodic trigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_EVENT</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>"YOUR_EVENT"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>This is a mandatory parameter to be filled in by the user, and is the 'event' which triggers the applet. This 'event' was used while creating the applet at the IFTTT web platform.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_KEY</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>"YOUR_KEY"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>This is a mandatory parameter to be filled in by the user, and is the the 'key' which is generated after the creation of the applet at the IFTTT web platform.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_NUM_OF_VALUES</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>1</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>The IFTTT applet can use upto 3 values/ data while performing an action. This parameter indicates the number of values which this application needs to send along with the trigger.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_VALUE1</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>"Value1"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>Data Value1 that needs to be sent along with the trigger.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_VALUE2</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>"Value2"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>Data Value2 that needs to be sent along with the trigger.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_VALUE3</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>"Value3"</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>Data Value3 that needs to be sent along with the trigger.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_USER_CALLBACK</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>NULL</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>In case users want to process some data and based on the result want to dynamically decide if the trigger needs to be sent or not, they will need to map this parameter to APP_IFTTT_Callback() function and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the 'Value1' and sent.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e114 "><span>IFTTT_USER_CALLBACK_CTX</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e116 "><span>NULL</span></td>
-<td class="entry cellrowborder" style="vertical-align:middle;" headers="d13066e118 "><span>Callback context/ parameter which will be passed on to APP_IFTTT_Callback(). This could a structure pointer which contains the data to be processed and decide if the trigger needs to be sent.</span></td>
-</tr>
-<tr class="row"><td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d13066e114 d13066e116 d13066e118 "><span> </span></td>
-</tr>
-</tbody>
-</table>
+                <nav class="wh_tools d-print-none navbar-expand-md" aria-label="Tools">
+                    
+                    <div data-tooltip-position="bottom" class=" wh_breadcrumb "><ol class="d-print-none"><li><span class="home"><a href="index.html"><span>Home</span></a></span></li><li><div class="topicref" data-id="harmony-3-wireless-application-examples-for-pic32mz-w1-family"><div class="title"><a href="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+Harmony 3 Wireless application examples for PIC32MZ W1 family</a></div></div></li><li class="active"><div class="topicref" data-id="ifttt-demo"><div class="title"><a href="GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.14</ph>
+IFTTT Demo</a></div></div></li></ol></div>
+                    
+                    
+                    
+                    <div class="wh_right_tools">
+                        <button class="wh_hide_highlight" aria-label="Toggle search highlights" title="Toggle search highlights"></button>
+                        <button class="webhelp_expand_collapse_sections" data-next-state="collapsed" aria-label="Collapse sections" title="Collapse sections"></button>
+                        
+                        
+                        
+                        
+                        <div class=" wh_print_link print d-none d-md-inline-block "><button onClick="window.print()" title="Print this page" aria-label="Print this page"></button></div>
+                        
+                        <button type="button" id="wh_toc_button" class="custom-toggler navbar-toggler collapsed wh_toggle_button navbar-light" aria-expanded="false" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    
+                </nav>
+            </div>
+            
+            <div class="row" style="margin-top: -1em;"><div class="col-lg-7 col-md-7 col-sm-12 offset-lg-3 offset-md-3 text-right border-bottom mb-1"><h2 class="text-dark header_title">
+    </h2></div></div>
+            
+            
+            <div class="wh_content_area">
+                <div class="row">
+                    
+                        <nav id="wh_publication_toc" class="col-lg-3 col-md-3 col-sm-12 d-md-block d-none d-print-none" aria-label="Table of Contents Container">
+                            <div id="wh_publication_toc_content">
+		                        
+                            	<div class=" wh_publication_toc " data-tooltip-position="right"><span class="expand-button-action-labels"><span id="button-expand-action" role="button" aria-label="Expand"></span><span id="button-collapse-action" role="button" aria-label="Collapse"></span><span id="button-pending-action" role="button" aria-label="Pending"></span></span><ul role="tree" aria-label="Table of Contents"><li role="treeitem" aria-expanded="true"><div data-tocid="harmony-3-wireless-application-examples-for-pic32mz-w1-family-d528e11" class="topicref" data-id="harmony-3-wireless-application-examples-for-pic32mz-w1-family" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action harmony-3-wireless-application-examples-for-pic32mz-w1-family-d528e11-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-60AE2339-6045-4BAA-AEBC-AAEE24D8C566.html" id="harmony-3-wireless-application-examples-for-pic32mz-w1-family-d528e11-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+Harmony 3 Wireless application examples for PIC32MZ W1 family</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem"><div data-tocid="paho-mqtt-client-power-save-d528e19" class="topicref" data-id="paho-mqtt-client-power-save" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-20C8A60E-F767-4756-9B58-9DB322426EB5.html" id="paho-mqtt-client-power-save-d528e19-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1</ph>
+Paho MQTT Client Power Save</a></div></div></li><li role="treeitem"><div data-tocid="over-the-air-ota-programming-using-wi-fi-d528e27" class="topicref" data-id="over-the-air-ota-programming-using-wi-fi" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-762D351F-B3C9-4D90-A833-047AB8C62546.html" id="over-the-air-ota-programming-using-wi-fi-d528e27-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2</ph>
+Over The Air (OTA) Programming Using Wi-Fi</a></div></div></li><li role="treeitem"><div data-tocid="ota-boot-loader-d528e35" class="topicref" data-id="ota-boot-loader" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-74FBC25B-9FC7-4084-895C-CFF3557AFED7.html" id="ota-boot-loader-d528e35-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3</ph>
+OTA Boot Loader</a></div></div></li><li role="treeitem"><div data-tocid="paho-mqtt-client-d528e43" class="topicref" data-id="paho-mqtt-client" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-9E856A96-A839-48E3-A836-DB540A6DAD5F.html" id="paho-mqtt-client-d528e43-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.4</ph>
+Paho MQTT Client</a></div></div></li><li role="treeitem"><div data-tocid="paho-mqtt-tls-client-d528e51" class="topicref" data-id="paho-mqtt-tls-client" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-9AB43217-7703-4E5C-A4E9-95ECE752BC96.html" id="paho-mqtt-tls-client-d528e51-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.5</ph>
+Paho MQTT TLS Client</a></div></div></li><li role="treeitem"><div data-tocid="secured-tcp-client-d528e59" class="topicref" data-id="secured-tcp-client" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-57D1D89F-96CA-4B17-91DF-87EE35C253AD.html" id="secured-tcp-client-d528e59-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.6</ph>
+Secured TCP Client</a></div></div></li><li role="treeitem"><div data-tocid="tcp-server-d528e67" class="topicref" data-id="tcp-server" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-D77D373B-6C31-4B89-B845-20EBC43B5338.html" id="tcp-server-d528e67-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.7</ph>
+TCP Server</a></div></div></li><li role="treeitem"><div data-tocid="udp-client-d528e75" class="topicref" data-id="udp-client" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-FAC00AC7-190C-4DA4-9DD1-1AA5CF66C91B.html" id="udp-client-d528e75-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.8</ph>
+UDP Client</a></div></div></li><li role="treeitem"><div data-tocid="udp-server-d528e83" class="topicref" data-id="udp-server" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-15B6C8A2-A5C0-4B7C-8EA9-E78BB97A1E70.html" id="udp-server-d528e83-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.9</ph>
+UDP Server</a></div></div></li><li role="treeitem"><div data-tocid="weather-client-d528e91" class="topicref" data-id="weather-client" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-469E62DD-F12B-4957-B7CE-CE9872A959AF.html" id="weather-client-d528e91-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.10</ph>
+Weather Client</a></div></div></li><li role="treeitem"><div data-tocid="wi-fi-easy-configuration-d528e100" class="topicref" data-id="wi-fi-easy-configuration" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-54CDF33A-7EAD-4852-BA0C-B094340DD005.html" id="wi-fi-easy-configuration-d528e100-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.11</ph>
+Wi-Fi Easy Configuration</a></div></div></li><li role="treeitem"><div data-tocid="wifi-ethernet-dual-interface-d528e108" class="topicref" data-id="wifi-ethernet-dual-interface" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-C338829F-E46E-4F48-BC7F-FB2FD4F5E765.html" id="wifi-ethernet-dual-interface-d528e108-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.12</ph>
+Wifi-ethernet dual interface</a></div></div></li><li role="treeitem"><div data-tocid="wi-fi-touch-demo-d528e116" class="topicref" data-id="wi-fi-touch-demo" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-317E7EAB-8478-4719-B61E-C3962DC4B956.html" id="wi-fi-touch-demo-d528e116-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.13</ph>
+Wi-Fi Touch Demo</a></div></div></li><li role="treeitem" class="active"><div data-tocid="ifttt-demo-d528e124" class="topicref" data-id="ifttt-demo" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-511002C5-EBFB-4368-9B0A-B0856020DA8E.html" id="ifttt-demo-d528e124-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.14</ph>
+IFTTT Demo</a></div></div></li><li role="treeitem"><div data-tocid="wlan-ap-d528e132" class="topicref" data-id="wlan-ap" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-5F220E9D-ADEA-4AE4-AFDF-4805F99FF1F2.html" id="wlan-ap-d528e132-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.15</ph>
+WLAN AP</a></div></div></li><li role="treeitem"><div data-tocid="wi-fi-access-pointap-mode-d528e140" class="topicref" data-id="wi-fi-access-pointap-mode" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-B2859BF5-FA82-4C16-9F20-1CAB153ABCA1.html" id="wi-fi-access-pointap-mode-d528e140-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.16</ph>
+Wi-Fi Access Point(AP) Mode</a></div></div></li><li role="treeitem"><div data-tocid="wlan-sta-d528e148" class="topicref" data-id="wlan-sta" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-418D4259-4AF0-495E-A69E-34AF86FEA705.html" id="wlan-sta-d528e148-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.17</ph>
+WLAN STA</a></div></div></li><li role="treeitem"><div data-tocid="wi-fi-stationsta-mode-d528e156" class="topicref" data-id="wi-fi-stationsta-mode" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-583F51B5-E64F-49D3-995D-86BB3570AF16.html" id="wi-fi-stationsta-mode-d528e156-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.18</ph>
+Wi-Fi Station(STA) Mode</a></div></div></li><li role="treeitem"><div data-tocid="web-socket-server-d528e164" class="topicref" data-id="web-socket-server" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-E6146ACA-EA1A-4F4B-8062-8B27B1E22725.html" id="web-socket-server-d528e164-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.19</ph>
+Web Socket Server</a></div></div></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d528e172" class="topicref backmatter backmatter_parent" data-id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d528e172-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B.html" id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d528e172-link">Microchip Information</a></div></div></li></ul></div>
+		                        
+                            </div>
+                        </nav>
+                    
+                    
+                    <div class="col-lg-7 col-md-9 col-sm-12" id="wh_topic_body">
+                        <button id="wh_close_publication_toc_button" class="close-toc-button d-none" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc" aria-expanded="true">
+                            <span class="close-toc-icon-container">
+                                <span class="close-toc-icon"></span>     
+                            </span>
+                        </button>
+                        <button id="wh_close_topic_toc_button" class="close-toc-button d-none" aria-label="Toggle topic table of content" aria-controls="wh_topic_toc" aria-expanded="true">
+                            <span class="close-toc-icon-container">
+                                <span class="close-toc-icon"></span>     
+                            </span>
+                        </button>
+                        
+                        <div class=" wh_topic_content body "><main role="main"><article role="article" aria-labelledby="ariaid-title1"><h1 class="- topic/title title topictitle1" id="ariaid-title1" style="">1.14 IFTTT Demo</h1><div class="- topic/body body"><p class="- topic/p p">This example application demosntrates how we can generate a trigger to IFTTT web platform to make it perform a specific action like sending a mail/ sms etc using an applet.</p></div><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title2" id="description"><h2 class="- topic/title title topictitle2" id="ariaid-title2" style=""> Description</h2><div class="- topic/body body"><p class="- topic/p p">IFTTT is short for "If This Then That". IFTTT is a third-party web platform which uses applets for performing specific actions when they are triggered via a connection. This application demonstrates how a user can trigger a pre-existing applet. The application shall come up in STA  mode, and will establish a TLS connection with maker.ifttt.com. It shall send a trigger every time the button (SW1) on the Curiosity Board is pressed.</p></div></article><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title3" id="downloading-and-building-the-application"><h2 class="- topic/title title topictitle2" id="ariaid-title3" style=""> Downloading and building the application</h2><div class="- topic/body body"><p class="- topic/p p">To download or clone this application from Github, go to the <a class="- topic/xref xref" href="https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32mzw1_wfi32e01" target="_blank" rel="external noopener">top level of the repository</a></p><p class="- topic/p p">Path of the application within the repository is <strong class="+ topic/ph hi-d/b ph b">apps/ifttt/firmware</strong> .</p><p class="- topic/p p">To build the application, refer to the following table and open the project using its IDE.</p><div class="table-container"><table class="- topic/table table" data-cols="2"><caption></caption><colgroup><col/><col/></colgroup><thead class="- topic/thead thead"><tr class="- topic/row"><th class="- topic/entry entry colsep-0 rowsep-0" id="downloading-and-building-the-application__entry__1">Project Name</th><th class="- topic/entry entry colsep-0 rowsep-0" id="downloading-and-building-the-application__entry__2">Description</th></tr></thead><tbody class="- topic/tbody tbody"><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="downloading-and-building-the-application__entry__1">pic32mz_w1_curiosity_freertos.X</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="downloading-and-building-the-application__entry__2">MPLABX project for PIC32MZ W1 Curiosity Board</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="downloading-and-building-the-application__entry__1 downloading-and-building-the-application__entry__2" colspan="2"></td></tr></tbody></table></div></div></article><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title4" id="creating-an-applet-on-ifttt-web-platform"><h2 class="- topic/title title topictitle2" id="ariaid-title4" style=""> Creating an Applet on IFTTT web platform</h2><div class="- topic/body body"><p class="- topic/p p">IFTTT is a third-party web platform, and one can create an applet of their own. More details on how one can use IFTTT and create their own applets can be found at <a class="- topic/xref xref" href="https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet" target="_blank" rel="external noopener">https://help.ifttt.com/hc/en-us/articles/360021401373-Creating-your-own-Applet</a></p><p class="- topic/p p">More details on how to use a webhook applet in IFTTT can be found in the Appendix of this document.</p></div></article><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title5" id="setting-up-pic32mz-w1-curiosity-board"><h2 class="- topic/title title topictitle2" id="ariaid-title5" style=""> Setting up PIC32MZ W1 Curiosity Board</h2><div class="- topic/body body"><ul class="- topic/ul ul"><li class="- topic/li li"><p class="- topic/p p">Connect the Debug USB port on the board to the computer using a micro USB cable to power on the board.</p></li><li class="- topic/li li"><p class="- topic/p p">On the GPIO Header (J207), connect U1RX (PIN 13) and U1TX (PIN 23) to TX and RX pin of any USB to UART converter</p></li><li class="- topic/li li"><p class="- topic/p p">Home AP (Wi-Fi Access Point with internet connection)</p></li></ul></div></article><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title6" id="running-the-application"><h2 class="- topic/title title topictitle2" id="ariaid-title6" style=""> Running the Application</h2><div class="- topic/body body"><ol class="- topic/ol ol"><li class="- topic/li li"><p class="- topic/p p">Open the project and launch Harmony3 configurator.</p></li><li class="- topic/li li"><p class="- topic/p p">Configure home AP credentials for STA Mode.</p><div class=""><img class="- topic/image image break break" src="GUID-75A79677-9EF2-45D6-9C0A-229A66AEC86A-low.png" alt="MHC_SSID_Configuration"/></div></li><li class="- topic/li li"><p class="- topic/p p">Save configurations and generate code via MHC.</p></li><li class="- topic/li li"><p class="- topic/p p">Currently application expects the user to create an applet at the IFTTT web platform and configure the relevant details related to the applet in the app.c file. These details will help in creating the trigger which we send to make the applet perform the action.</p></li><li class="- topic/li li"><p class="- topic/p p">The user would need to populate the following</p><div class="table-container"><table class="- topic/table table" data-cols="3"><caption></caption><colgroup><col/><col/><col/></colgroup><thead class="- topic/thead thead"><tr class="- topic/row"><th class="- topic/entry entry colsep-0 rowsep-0" id="running-the-application__entry__1">Parameter Name</th><th class="- topic/entry entry colsep-0 rowsep-0" id="running-the-application__entry__2">Default Value</th><th class="- topic/entry entry colsep-0 rowsep-0" id="running-the-application__entry__3">Description</th></tr></thead><tbody class="- topic/tbody tbody"><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_EVENT_TYPE</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">IFTTT_EVENT_BUTTON_PRESS</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">The IFTTT applet can be triggered in two ways via this application - by pressing the button on the board (IFTTT_EVENT_BUTTON_PRESS), or by running a timer (IFTTT_EVENT_PERIODIC_TIMER) and sending the trigger periodically. The default event type is button press to trigger the applet.</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_EVENT_PERIOIDC_TIMER_TIMEOUT</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">100 sec</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">This parameter is used for setting the timeperiod in sec, after which a periodic trigger will be generated. This is valid only when the IFTTT_EVENT_TYPE has been set to IFTTT_EVENT_PERIODIC_TIMER</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_EVENT</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">"YOUR_EVENT"</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">This is a mandatory parameter to be filled in by the user, and is the 'event' which triggers the applet. This 'event' was used while creating the applet at the IFTTT web platform.</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_KEY</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">"YOUR_KEY"</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">This is a mandatory parameter to be filled in by the user, and is the the 'key' which is generated after the creation of the applet at the IFTTT web platform.</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_NUM_OF_VALUES</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">1</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">The IFTTT applet can use upto 3 values/ data while performing an action. This parameter indicates the number of values which this application needs to send along with the trigger.</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_VALUE1</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">"Value1"</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">Data Value1 that needs to be sent along with the trigger.</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_VALUE2</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">"Value2"</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">Data Value2 that needs to be sent along with the trigger.</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_VALUE3</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">"Value3"</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">Data Value3 that needs to be sent along with the trigger.</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_USER_CALLBACK</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">NULL</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">In case users want to process some data and based on the result want to dynamically decide if the trigger needs to be sent or not, they will need to map this parameter to APP_IFTTT_Callback() function and implement the action inside this function. This function is expected to return a true if the trigger needs to be sent, else false based on the processing of the data relevant to the user application. For example the user may be implementing a temperature sensor and would want to poll periodically for the temperature but send in a trigger only when the temperature crosses certain threshold. In such a case, implementing this function accordingly can help achive the above objective. Also, there can be requirement that the user needs to also send in the sensed temperature value with the trigger, which can be populated in the 'Value1' and sent.</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1">IFTTT_USER_CALLBACK_CTX</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__2">NULL</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__3">Callback context/ parameter which will be passed on to APP_IFTTT_Callback(). This could a structure pointer which contains the data to be processed and decide if the trigger needs to be sent.</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-0 rowsep-0" headers="running-the-application__entry__1 running-the-application__entry__2 running-the-application__entry__3" colspan="3"></td></tr></tbody></table></div></li><li class="- topic/li li"><p class="- topic/p p">Build and program the generated image into the hardware using the IDE.</p></li><li class="- topic/li li"><p class="- topic/p p">Open the terminal application(Ex:Tera term) on the computer.</p></li><li class="- topic/li li"><p class="- topic/p p">Connect to the COM port related to the external USB-UART connected to the GPIO heade and configure the serial settings as follows:</p><ul class="- topic/ul ul"><li class="- topic/li li"><p class="- topic/p p">Baud : 115200</p></li><li class="- topic/li li"><p class="- topic/p p">Data : 8 Bits</p></li><li class="- topic/li li"><p class="- topic/p p">Parity : None</p></li><li class="- topic/li li"><p class="- topic/p p">Stop : 1 Bit</p></li><li class="- topic/li li"><p class="- topic/p p">Flow Control : None</p></li></ul></li><li class="- topic/li li"><p class="- topic/p p">The Board will connect to Home AP.</p><div class=""><img class="- topic/image image break break" src="GUID-C311498A-7404-4F67-886A-A38B9AFE8563-low.png" alt="Console_STA_Connected"/></div></li><li class="- topic/li li"><p class="- topic/p p">Every time the button/ switch (SW1) is pressed</p><p class="- topic/p p"><div class=""><img class="- topic/image image" src="GUID-843C5638-0F7B-4920-8FC7-0FE6E96805B9-low.png" alt="Curiosity_Board"/></div>,</p><p class="- topic/p p">it shall connect to maker.ifttt.com and send the trigger.</p><div class=""><img class="- topic/image image break break" src="GUID-587A8EE4-8BB3-4D5E-A495-2C72FB81742C-low.png" alt="Console_Trigger_Sent"/></div></li><li class="- topic/li li"><p class="- topic/p p">This Trigger will be received by the ifttt server which will invoke the applet. Let us assume the user created an applet using webhooks which shall 'send an email' as an action. The email could look something like this:</p><div class=""><img class="- topic/image image break break" src="GUID-D313EBCD-FAA5-4A48-8352-99D607BBE3B3-low.png" alt="Applet_Email"/></div></li><li class="- topic/li li"><p class="- topic/p p">Every time a trigger is being sent by the Curiosity Board, the red LED on the board will be ON, and it will go OFF once the trigger request has been successfully trasmitted to IFTTT server. Any new request while the LED is ON will not be honoured. Hence, it is receommended to press the button for a new request only when the red LED has gone OFF.</p></li></ol></div></article><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title7" id="appendix"><h2 class="- topic/title title topictitle2" id="ariaid-title7" style=""> Appendix</h2><div class="- topic/body body"></div><article class="- topic/topic topic nested2" aria-labelledby="ariaid-title8" id="creating-a-webhook-applet-on-ifttt-web-platform"><h3 class="- topic/title title topictitle3" id="ariaid-title8" style=""> Creating a Webhook applet on IFTTT web platform.</h3><div class="- topic/body body"><ol class="- topic/ol ol"><li class="- topic/li li"><p class="- topic/p p">Create an IFTTT account.</p></li><li class="- topic/li li"><p class="- topic/p p">Sign in to the account.</p></li><li class="- topic/li li"><p class="- topic/p p">Click "Create" on the right side toolbar to create an applet</p><div class=""><img class="- topic/image image break break" src="GUID-EF14E9DA-E72F-4BF8-896F-F93B2B946B9B-low.png" alt="applet_create"/></div></li><li class="- topic/li li"><p class="- topic/p p">Clock on 'Add' and choose "webhooks"</p><div class=""><img class="- topic/image image break break" src="GUID-39023696-28FC-4C56-8EEB-CD34B5AA7A3D-low.png" alt="applet_choose_service"/></div><div class=""><img class="- topic/image image break break" src="GUID-BA1CE8F9-5FB8-431B-8401-B64F5CAC54C6-low.png" alt="applet_choose_webhooks"/></div></li><li class="- topic/li li"><p class="- topic/p p">Choose a trigger - 'Receive a webrequest'</p><div class=""><img class="- topic/image image break break" src="GUID-D772B504-0BEE-4702-82FE-6DA9D5E76442-low.png" alt="applet_trigger"/></div></li><li class="- topic/li li"><p class="- topic/p p">Fill in the event name and create a 'trigger'.Copy the event and past it to parameter IFTTT_EVENT in the demo code.</p><div class=""><img class="- topic/image image break break" src="GUID-9FF82895-D914-46B6-BB59-500A8C2023D8-low.png" alt="applet_trigger_create"/></div></li><li class="- topic/li li"><p class="- topic/p p">Add the action - could be sending an 'email'</p><div class=""><img class="- topic/image image break break" src="GUID-578E8CC2-3882-4E42-B235-907DC3892469-low.png" alt="applet_action_add"/></div><div class=""><img class="- topic/image image break break" src="GUID-6D9D2247-D609-4579-8CF2-DE95F11AC271-low.png" alt="applet_action_email"/></div></li><li class="- topic/li li"><p class="- topic/p p">Set the action fields. In case of 'email' it could be subject and body of the mail.</p><div class=""><img class="- topic/image image break break" src="GUID-A6572774-7C50-47DB-A0E5-BC57E8FA3612-low.png" alt="applet_action_fields"/></div></li><li class="- topic/li li"><p class="- topic/p p">'Finish' the applet.</p><div class=""><img class="- topic/image image break break" src="GUID-BB28D174-0DD7-4B70-ABB0-EB0B1C4EB95D-low.png" alt="applet_finish"/></div></li><li class="- topic/li li"><p class="- topic/p p">Goto webhooks settings (https://ifttt.com/maker_webhooks/setting)</p><div class=""><img class="- topic/image image break break" src="GUID-3009DB01-AA1A-4613-A8F6-A4E9B012BCA7-low.png" alt="applet_webhook_settings"/></div></li><li class="- topic/li li"><p class="- topic/p p">The string after the https://maker.ifttt.com/use/ in the URL is the 'Key' needed by the Demo Application. Copy the key and pasted it to parameter IFTTT_KEY in the demo code.</p></li></ol></div></article></article></article></main></div>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                        <nav role="navigation" id="wh_topic_toc" aria-label="On this page" class="col-lg-2 d-none d-lg-block navbar d-print-none"> 
+                            <div id="wh_topic_toc_content">
+		                        
+	                            <div class=" wh_topic_toc "><div class="wh_topic_label">On this page</div><ul><li class="topic-item"><a href="#description" data-tocid="description"> Description</a></li><li class="topic-item"><a href="#downloading-and-building-the-application" data-tocid="downloading-and-building-the-application"> Downloading and building the application</a></li><li class="topic-item"><a href="#creating-an-applet-on-ifttt-web-platform" data-tocid="creating-an-applet-on-ifttt-web-platform"> Creating an Applet on IFTTT web platform</a></li><li class="topic-item"><a href="#setting-up-pic32mz-w1-curiosity-board" data-tocid="setting-up-pic32mz-w1-curiosity-board"> Setting up PIC32MZ W1 Curiosity Board</a></li><li class="topic-item"><a href="#running-the-application" data-tocid="running-the-application"> Running the Application</a></li><li class="topic-item"><a href="#appendix" data-tocid="appendix"> Appendix</a><ul><li class="topic-item"><a href="#creating-a-webhook-applet-on-ifttt-web-platform" data-tocid="creating-a-webhook-applet-on-ifttt-web-platform"> Creating a Webhook applet on IFTTT web platform.</a></li></ul></li></ul></div>
+	                        	
+                        	</div>
+                        </nav>
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div> 
+        <footer class="navbar navbar-default wh_footer">
+  <div class=" footer-container mx-auto ">
+    <div class="footer">
+  <div class="mchp-wh-footer">
+    <div class="mchp-footer">
+      <div class="mchp-footer-tier1">
+        <div class="spacer"></div>
+        <div class="mchp-footer-container">
+          <div class="mchp-footer-links mchp-social-media-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.facebook.com/pages/Microchip-Technology-Inc/20320981741" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Facebook" src="oxygen-webhelp/template/resources/images/201016-corp-facebook.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.linkedin.com/company/microchip-technology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip LinkedIn" src="oxygen-webhelp/template/resources/images/201016-corp-linkedin.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://twitter.com/MicrochipTech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Twitter" src="oxygen-webhelp/template/resources/images/201016-corp-twitter.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.youtube.com/user/MicrochipTechnology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip YouTube" src="oxygen-webhelp/template/resources/images/201016-corp-youtube.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.instagram.com/microchiptechnologyinc/" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Instagram" src="oxygen-webhelp/template/resources/images/201016-corp-instagram.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.weibo.com/microchiptech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Weibo" src="oxygen-webhelp/template/resources/images/201016-corp-weibo.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.microchip.com/en-us/about/blog" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Blog" src="oxygen-webhelp/template/resources/images/201016-corp-blog.png"/>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://www.microchip.com/about-us/contact-us" class="mchp-link__link">Contact</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information" class="mchp-link__link">Legal</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/privacy-policy" class="mchp-link__link">Privacy Policy</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/microchip-cookie-statement" class="mchp-link__link">Cookies</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://careers.microchip.com/" class="mchp-link__link">Careers</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-newsletter">
+            <div class="cmp-text">
+              <p>Stay on the leading edge with our blog</p>
+            </div>
+            <div class="mchp-button-wrapper">
+              <a role="button" href="https://www.microchip.com/en-us/about/blog" class="mchp-button mchp-button-regular solid">
+                <span class="mchp-button__span">MicroSolutions</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="graphic">
+          <img src="oxygen-webhelp/template/resources/images/footer-graphic.png"/>
+        </div>
+      </div>
+      <div class="mchp-footer-tier2">
+        <p class="mchp-copyright">© Copyright 1998-2022 Microchip Technology Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="true" src="https://www.googletagmanager.com/gtag/js?id=UA-2724382-19"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];  
+    function gtag(){dataLayer.push(arguments);}  
+    gtag('js', new Date());   
+    gtag('config', 'UA-2724382-19');
+  </script>
+  
+  <script type="text/javascript">_satellite.pageBottom();</script><!-- Adobe Analytics -->
+  <script type="text/javascript" src="mchp-js/prepend.js"></script><!-- Package for viewing PDFs on mobile devices -->
+  
 </div>
-</li>
-<li class="li"><span class="indent-level-default">6.</span><p class="p">Build and program the generated image into the hardware using the IDE.</p>
-</li>
-<li class="li"><span class="indent-level-default">7.</span><p class="p">Open the terminal application(Ex:Tera term) on the computer.</p>
-</li>
-<li class="li"><span class="indent-level-default">8.</span><p class="p">Connect to the COM port related to the external USB-UART connected to the GPIO heade and configure the serial settings as follows:</p>
-<ul class="ul"><li class="li"><p class="p">Baud : 115200</p>
-</li>
-<li class="li"><p class="p">Data : 8 Bits</p>
-</li>
-<li class="li"><p class="p">Parity : None</p>
-</li>
-<li class="li"><p class="p">Stop : 1 Bit</p>
-</li>
-<li class="li"><p class="p">Flow Control : None</p>
-</li>
-</ul>
-</li>
-<li class="li"><span class="indent-level-default">9.</span><p class="p">The Board will connect to Home AP.</p>
-<br /><img class="image" src="GUID-C311498A-7404-4F67-886A-A38B9AFE8563-low.png" alt="Console_STA_Connected" /><br /></li>
-<li class="li"><span class="indent-level-default">10.</span><p class="p">Every time the button/ switch (SW1) is pressed</p>
-<p class="p"><img class="image" src="GUID-843C5638-0F7B-4920-8FC7-0FE6E96805B9-low.png" alt="Curiosity_Board" /><br />,</p>
-<p class="p">it shall connect to maker.ifttt.com and send the trigger.</p>
-<br /><img class="image" src="GUID-587A8EE4-8BB3-4D5E-A495-2C72FB81742C-low.png" alt="Console_Trigger_Sent" /><br /></li>
-<li class="li"><span class="indent-level-default">11.</span><p class="p">This Trigger will be received by the ifttt server which will invoke the applet. Let us assume the user created an applet using webhooks which shall 'send an email' as an action. The email could look something like this:</p>
-<br /><img class="image" src="GUID-D313EBCD-FAA5-4A48-8352-99D607BBE3B3-low.png" alt="Applet_Email" /><br /></li>
-<li class="li"><span class="indent-level-default">12.</span><p class="p">Every time a trigger is being sent by the Curiosity Board, the red LED on the board will be ON, and it will go OFF once the trigger request has been successfully trasmitted to IFTTT server. Any new request while the LED is ON will not be honoured. Hence, it is receommended to press the button for a new request only when the red LED has gone OFF.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="topic nested1" aria-labelledby="ariaid-title7" id="appendix"><h2 class="title topictitle2" id="ariaid-title7" style="">Appendix</h2><div class="body"></div>
-<div class="topic nested2" aria-labelledby="ariaid-title8" id="creating-a-webhook-applet-on-ifttt-web-platform"><h3 class="title topictitle3" id="ariaid-title8" style="">Creating a Webhook applet on IFTTT web platform.</h3><div class="body"><ol class="ol"><li class="li"><span class="indent-level-default">1.</span><p class="p">Create an IFTTT account.</p>
-</li>
-<li class="li"><span class="indent-level-default">2.</span><p class="p">Sign in to the account.</p>
-</li>
-<li class="li"><span class="indent-level-default">3.</span><p class="p">Click "Create" on the right side toolbar to create an applet</p>
-<br /><img class="image" src="GUID-EF14E9DA-E72F-4BF8-896F-F93B2B946B9B-low.png" alt="applet_create" /><br /></li>
-<li class="li"><span class="indent-level-default">4.</span><p class="p">Clock on 'Add' and choose "webhooks"</p>
-<br /><img class="image" src="GUID-39023696-28FC-4C56-8EEB-CD34B5AA7A3D-low.png" alt="applet_choose_service" /><br /><br /><img class="image" src="GUID-BA1CE8F9-5FB8-431B-8401-B64F5CAC54C6-low.png" alt="applet_choose_webhooks" /><br /></li>
-<li class="li"><span class="indent-level-default">5.</span><p class="p">Choose a trigger - 'Receive a webrequest'</p>
-<br /><img class="image" src="GUID-D772B504-0BEE-4702-82FE-6DA9D5E76442-low.png" alt="applet_trigger" /><br /></li>
-<li class="li"><span class="indent-level-default">6.</span><p class="p">Fill in the event name and create a 'trigger'.Copy the event and past it to parameter IFTTT_EVENT in the demo code.</p>
-<br /><img class="image" src="GUID-9FF82895-D914-46B6-BB59-500A8C2023D8-low.png" alt="applet_trigger_create" /><br /></li>
-<li class="li"><span class="indent-level-default">7.</span><p class="p">Add the action - could be sending an 'email'</p>
-<br /><img class="image" src="GUID-578E8CC2-3882-4E42-B235-907DC3892469-low.png" alt="applet_action_add" /><br /><br /><img class="image" src="GUID-6D9D2247-D609-4579-8CF2-DE95F11AC271-low.png" alt="applet_action_email" /><br /></li>
-<li class="li"><span class="indent-level-default">8.</span><p class="p">Set the action fields. In case of 'email' it could be subject and body of the mail.</p>
-<br /><img class="image" src="GUID-A6572774-7C50-47DB-A0E5-BC57E8FA3612-low.png" alt="applet_action_fields" /><br /></li>
-<li class="li"><span class="indent-level-default">9.</span><p class="p">'Finish' the applet.</p>
-<br /><img class="image" src="GUID-BB28D174-0DD7-4B70-ABB0-EB0B1C4EB95D-low.png" alt="applet_finish" /><br /></li>
-<li class="li"><span class="indent-level-default">10.</span><p class="p">Goto webhooks settings (https://ifttt.com/maker_webhooks/setting)</p>
-<br /><img class="image" src="GUID-3009DB01-AA1A-4613-A8F6-A4E9B012BCA7-low.png" alt="applet_webhook_settings" /><br /></li>
-<li class="li"><span class="indent-level-default">11.</span><p class="p">The string after the https://maker.ifttt.com/use/ in the URL is the 'Key' needed by the Demo Application. Copy the key and pasted it to parameter IFTTT_KEY in the demo code.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</body>
+  </div>
+</footer>
+        
+        <div id="go2top" class="d-print-none">
+            <span class="oxy-icon oxy-icon-up"></span>
+        </div>
+        
+        <div id="modal_img_large" class="modal">
+            <span class="close oxy-icon oxy-icon-remove"></span>
+            <div id="modal_img_container"></div>
+            <div id="caption"></div>
+        </div>
+        
+        
+        
+       
+        </body>
 </html>

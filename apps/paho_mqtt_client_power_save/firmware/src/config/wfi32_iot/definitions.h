@@ -232,6 +232,7 @@ typedef struct
 
 
     SYS_MODULE_OBJ  drvWifiPIC32MZW1;
+
     SYS_MODULE_OBJ  syswifi;
 
 } SYSTEM_OBJECTS;

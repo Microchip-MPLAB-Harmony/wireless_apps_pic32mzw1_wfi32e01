@@ -1,5 +1,5 @@
 /*******************************************************************************
-  Touch Library v3.12.1 Release
+  Touch Library v3.15.0 Release
 
   Company:
     Microchip Technology Inc.
@@ -17,39 +17,40 @@
 *******************************************************************************/
 
 /*******************************************************************************
-Copyright (c)  2022 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) [2024], Microchip Technology Inc., and its subsidiaries. All rights reserved.
 
-Microchip licenses to you the right to use, modify, copy and distribute
-Software only when embedded on a Microchip microcontroller or digital signal
-controller that is integrated into your product or third party product
-(pursuant to the sublicense terms in the accompanying license agreement).
+The software and documentation is provided by microchip and its contributors
+"as is" and any express, implied or statutory warranties, including, but not
+limited to, the implied warranties of merchantability, fitness for a particular
+purpose and non-infringement of third party intellectual property rights are
+disclaimed to the fullest extent permitted by law. In no event shall microchip
+or its contributors be liable for any direct, indirect, incidental, special,
+exemplary, or consequential damages (including, but not limited to, procurement
+of substitute goods or services; loss of use, data, or profits; or business
+interruption) however caused and on any theory of liability, whether in contract,
+strict liability, or tort (including negligence or otherwise) arising in any way
+out of the use of the software and documentation, even if advised of the
+possibility of such damage.
 
-You should refer to the license agreement accompanying this Software for
-additional information regarding your rights and obligations.
+Except as expressly permitted hereunder and subject to the applicable license terms
+for any third-party software incorporated in the software and any applicable open
+source software license terms, no license or other rights, whether express or
+implied, are granted under any patent or other intellectual property rights of
+Microchip or any third party.
+************************************************************************************/
 
-SOFTWARE AND DOCUMENTATION ARE PROVIDED AS IS  WITHOUT  WARRANTY  OF  ANY  KIND,
-EITHER EXPRESS  OR  IMPLIED,  INCLUDING  WITHOUT  LIMITATION,  ANY  WARRANTY  OF
-MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A  PARTICULAR  PURPOSE.
-IN NO EVENT SHALL MICROCHIP OR  ITS  LICENSORS  BE  LIABLE  OR  OBLIGATED  UNDER
-CONTRACT, NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION,  BREACH  OF  WARRANTY,  OR
-OTHER LEGAL  EQUITABLE  THEORY  ANY  DIRECT  OR  INDIRECT  DAMAGES  OR  EXPENSES
-INCLUDING BUT NOT LIMITED TO ANY  INCIDENTAL,  SPECIAL,  INDIRECT,  PUNITIVE  OR
-CONSEQUENTIAL DAMAGES, LOST  PROFITS  OR  LOST  DATA,  COST  OF  PROCUREMENT  OF
-SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
-(INCLUDING BUT NOT LIMITED TO ANY DEFENSE  THEREOF),  OR  OTHER  SIMILAR  COSTS.
-*******************************************************************************/
 
 
 /*----------------------------------------------------------------------------
  *     include files
  *----------------------------------------------------------------------------*/
 #include "definitions.h"
+#include "../interrupts.h"
 #include "touch/touch.h"
 
 /*----------------------------------------------------------------------------
  *   prototypes
  *----------------------------------------------------------------------------*/
-
 /*! \brief configure keys, wheels and sliders.
  */
 static touch_ret_t touch_sensors_config(void);
@@ -63,29 +64,28 @@ static void qtm_measure_complete_callback(void);
 static void qtm_error_callback(uint8_t error);
 
 
+
 /*----------------------------------------------------------------------------
  *     Global Variables
  *----------------------------------------------------------------------------*/
-
 /* Flag to indicate time for touch measurement */
-volatile uint8_t time_to_measure_touch_var = 0;
+static volatile uint8_t time_to_measure_touch_var = 0u;
 /* post-process request flag */
-volatile uint8_t touch_postprocess_request = 0;
+static volatile uint8_t touch_postprocess_request = 0u;
 
 /* Measurement Done Touch Flag  */
-volatile uint8_t measurement_done_touch = 0;
-static uint8_t all_measure_complete = 0;
+volatile uint8_t measurement_done_touch = 0u;
+static uint8_t all_measure_complete = 0u;
 
 /* Error Handling */
-uint8_t module_error_code = 0;
-
+uint8_t module_error_code = 0u;
 
 
 /* Acquisition module internal data - Size to largest acquisition set */
-uint32_t touch_acq_signals_raw[DEF_NUM_CHANNELS];
+static uint32_t touch_acq_signals_raw[DEF_NUM_CHANNELS];
 /* Acquisition set 1 - General settings */
-qtm_acq_node_group_config_t ptc_qtlib_acq_gen1
-    = {DEF_NUM_CHANNELS, DEF_SENSOR_TYPE, DEF_PTC_CAL_AUTO_TUNE, DEF_SEL_FREQ_INIT, 1};
+static qtm_acq_node_group_config_t ptc_qtlib_acq_gen1
+    = {DEF_NUM_CHANNELS, DEF_SENSOR_TYPE, DEF_PTC_CAL_AUTO_TUNE, (uint8_t)DEF_SEL_FREQ_INIT, 1u};
 
 /* Node status, signal, calibration values */
 qtm_acq_node_data_t ptc_qtlib_node_stat1[DEF_NUM_CHANNELS];
@@ -94,16 +94,16 @@ qtm_acq_node_data_t ptc_qtlib_node_stat1[DEF_NUM_CHANNELS];
 qtm_acq_pic32mzw_node_config_t ptc_seq_node_cfg1[DEF_NUM_CHANNELS] = {NODE_0_PARAMS,NODE_1_PARAMS,NODE_2_PARAMS,NODE_3_PARAMS,NODE_4_PARAMS};
 
 /* Container */
-qtm_acquisition_control_t qtlib_acq_set1 = {&ptc_qtlib_acq_gen1, &ptc_seq_node_cfg1[0], &ptc_qtlib_node_stat1[0]};
+static qtm_acquisition_control_t qtlib_acq_set1 = {&ptc_qtlib_acq_gen1, &ptc_seq_node_cfg1[0], &ptc_qtlib_node_stat1[0]};
 
 /**********************************************************/
 /*********** Frequency Hop Auto tune Module **********************/
 /**********************************************************/
 
 /* Buffer used with various noise filtering functions */
-uint16_t noise_filter_buffer[DEF_NUM_CHANNELS * NUM_FREQ_STEPS];
-uint8_t  freq_hop_delay_selection[NUM_FREQ_STEPS] = {DEF_MEDIAN_FILTER_FREQUENCIES};
-uint8_t  freq_hop_autotune_counters[NUM_FREQ_STEPS];
+static uint16_t noise_filter_buffer[DEF_NUM_CHANNELS * NUM_FREQ_STEPS];
+static uint8_t  freq_hop_delay_selection[NUM_FREQ_STEPS] = {DEF_MEDIAN_FILTER_FREQUENCIES};
+static uint8_t  freq_hop_autotune_counters[NUM_FREQ_STEPS];
 
 /* Configuration */
 qtm_freq_hop_autotune_config_t qtm_freq_hop_autotune_config1 = {DEF_NUM_CHANNELS,
@@ -115,11 +115,11 @@ qtm_freq_hop_autotune_config_t qtm_freq_hop_autotune_config1 = {DEF_NUM_CHANNELS
                                                                 FREQ_AUTOTUNE_COUNT_IN};
 
 /* Data */
-qtm_freq_hop_autotune_data_t qtm_freq_hop_autotune_data1
+static qtm_freq_hop_autotune_data_t qtm_freq_hop_autotune_data1
     = {0, 0, &noise_filter_buffer[0], &ptc_qtlib_node_stat1[0], &freq_hop_autotune_counters[0]};
 
 /* Container */
-qtm_freq_hop_autotune_control_t qtm_freq_hop_autotune_control1
+static qtm_freq_hop_autotune_control_t qtm_freq_hop_autotune_control1
     = {&qtm_freq_hop_autotune_data1, &qtm_freq_hop_autotune_config1};
 
 /**********************************************************/
@@ -137,7 +137,7 @@ qtm_touch_key_group_config_t qtlib_key_grp_config_set1 = {DEF_NUM_SENSORS,
                                                           DEF_DRIFT_HOLD_TIME,
                                                           DEF_REBURST_MODE};
 
-qtm_touch_key_group_data_t qtlib_key_grp_data_set1;
+static qtm_touch_key_group_data_t qtlib_key_grp_data_set1;
 
 /* Key data */
 qtm_touch_key_data_t qtlib_key_data_set1[DEF_NUM_SENSORS];
@@ -145,7 +145,7 @@ qtm_touch_key_data_t qtlib_key_data_set1[DEF_NUM_SENSORS];
 /* Key Configurations */
 qtm_touch_key_config_t qtlib_key_configs_set1[DEF_NUM_SENSORS] = { KEY_0_PARAMS, KEY_1_PARAMS, KEY_2_PARAMS, KEY_3_PARAMS,KEY_4_PARAMS}; 
 /* Container */
-qtm_touch_key_control_t qtlib_key_set1
+static qtm_touch_key_control_t qtlib_key_set1
     = {&qtlib_key_grp_data_set1, &qtlib_key_grp_config_set1, &qtlib_key_data_set1[0], &qtlib_key_configs_set1[0]};
 
 /**********************************************************/
@@ -154,16 +154,16 @@ qtm_touch_key_control_t qtlib_key_set1
 
 /* Individual and Group Data */
 qtm_scroller_data_t       qtm_scroller_data1[DEF_NUM_SCROLLERS];
-qtm_scroller_group_data_t qtm_scroller_group_data1 = {0};
+static qtm_scroller_group_data_t qtm_scroller_group_data1 = {0};
 
 /* Group Configuration */
-qtm_scroller_group_config_t qtm_scroller_group_config1 = {&qtlib_key_data_set1[0], DEF_NUM_SCROLLERS};
+static qtm_scroller_group_config_t qtm_scroller_group_config1 = {&qtlib_key_data_set1[0], DEF_NUM_SCROLLERS};
 
 /* Scroller Configurations */
 qtm_scroller_config_t qtm_scroller_config1[DEF_NUM_SCROLLERS] = {SCROLLER_0_PARAMS}; 
 
 /* Container */
-qtm_scroller_control_t qtm_scroller_control1
+static qtm_scroller_control_t qtm_scroller_control1
     = {&qtm_scroller_group_data1, &qtm_scroller_group_config1, &qtm_scroller_data1[0], &qtm_scroller_config1[0]};
 
 
@@ -188,24 +188,23 @@ static touch_ret_t touch_sensors_config(void)
     touch_ret_t touch_ret = TOUCH_SUCCESS;
 
     /* Init acquisition module */
-    qtm_cvd_init_acquisition_module(&qtlib_acq_set1);
-    qtm_cvd_qtlib_assign_signal_memory(&touch_acq_signals_raw[0]);
+    touch_ret = qtm_cvd_init_acquisition_module(&qtlib_acq_set1);
+    touch_ret = qtm_cvd_qtlib_assign_signal_memory(&touch_acq_signals_raw[0]);
 
     /* Initialize sensor nodes */
-    for (sensor_nodes = 0u; sensor_nodes < DEF_NUM_CHANNELS; sensor_nodes++) {
+    for (sensor_nodes = 0u; sensor_nodes < (uint16_t) DEF_NUM_CHANNELS; sensor_nodes++) {
         /* Enable each node for measurement and mark for calibration */
-        qtm_enable_sensor_node(&qtlib_acq_set1, sensor_nodes);
-        qtm_calibrate_sensor_node(&qtlib_acq_set1, sensor_nodes);
+        touch_ret = qtm_enable_sensor_node(&qtlib_acq_set1, sensor_nodes);
+        touch_ret = qtm_calibrate_sensor_node(&qtlib_acq_set1, sensor_nodes);
     }
 
-
     /* Enable sensor keys and assign nodes */
-    for (sensor_nodes = 0u; sensor_nodes < DEF_NUM_SENSORS; sensor_nodes++) {
-			qtm_init_sensor_key(&qtlib_key_set1, sensor_nodes, &ptc_qtlib_node_stat1[sensor_nodes]);
+    for (sensor_nodes = 0u; sensor_nodes < (uint16_t)DEF_NUM_SENSORS; sensor_nodes++) {
+			touch_ret=qtm_init_sensor_key(&qtlib_key_set1, (uint8_t) sensor_nodes, &ptc_qtlib_node_stat1[sensor_nodes]);
     }
 
 	/* scroller init */
-	touch_ret |= qtm_init_scroller_module(&qtm_scroller_control1);
+	touch_ret = qtm_init_scroller_module(&qtm_scroller_control1);
 
 
     return (touch_ret);
@@ -262,10 +261,9 @@ void touch_init(void)
 	touch_timer_config();
 
 	/* Configure touch sensors with Application specific settings */
-	touch_sensors_config();
+    (void)touch_sensors_config();
 
 	
-
 }
 
 /*============================================================================
@@ -346,20 +344,20 @@ void touch_timer_handler(void)
 {
  
   
-    time_to_measure_touch_var = 1u;
-    qtm_update_qtlib_timer(DEF_TOUCH_MEASUREMENT_PERIOD_MS);
+        time_to_measure_touch_var = 1u;
+        qtm_update_qtlib_timer(DEF_TOUCH_MEASUREMENT_PERIOD_MS);
 }
-void timer_handler( uint32_t intCause, uintptr_t context )
+static void timer_handler( uint32_t intCause, uintptr_t context )
 {
      touch_timer_handler();
 }
-uintptr_t tmr_context;
+static uintptr_t tmr_context;
 
 void touch_timer_config(void)
 {
 	TMR2_CallbackRegister(timer_handler,tmr_context);
 	TMR2_Start();
-	TMR2_PeriodSet(DEF_TOUCH_MEASUREMENT_PERIOD_MS*(TMR2_FrequencyGet()/1000));
+	TMR2_PeriodSet((uint16_t)((uint16_t)(DEF_TOUCH_MEASUREMENT_PERIOD_MS)* (uint16_t)(TMR2_FrequencyGet()/(uint32_t)1000)));
 }
 
 uint16_t get_sensor_node_signal(uint16_t sensor_node)
@@ -404,10 +402,17 @@ void update_sensor_state(uint16_t sensor_node, uint8_t new_state)
 
 void calibrate_node(uint16_t sensor_node)
 {
+	touch_ret_t touch_ret = TOUCH_SUCCESS;
     /* Calibrate Node */
-    qtm_calibrate_sensor_node(&qtlib_acq_set1, sensor_node);
+	touch_ret = qtm_calibrate_sensor_node(&qtlib_acq_set1, sensor_node);
+    if(touch_ret != TOUCH_SUCCESS) {
+		/* Error condition */
+	}
     /* Initialize key */
-    qtm_init_sensor_key(&qtlib_key_set1, sensor_node, &ptc_qtlib_node_stat1[sensor_node]);
+    touch_ret = qtm_init_sensor_key(&qtlib_key_set1, (uint8_t) sensor_node, &ptc_qtlib_node_stat1[sensor_node]);
+    if(touch_ret != TOUCH_SUCCESS) {
+		/* Error condition */
+	}
 }
 
 uint8_t get_scroller_state(uint16_t sensor_node)

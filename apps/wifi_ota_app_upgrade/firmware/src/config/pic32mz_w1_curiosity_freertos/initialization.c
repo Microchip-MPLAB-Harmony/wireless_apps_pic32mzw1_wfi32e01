@@ -384,6 +384,7 @@ const TCPIP_STACK_MODULE_CONFIG TCPIP_STACK_MODULE_CONFIG_TBL [] =
     {TCPIP_MODULE_DNS_CLIENT,       &tcpipDNSClientInitData},       // TCPIP_MODULE_DNS_CLIENT
     {TCPIP_MODULE_SNTP,             &tcpipSNTPInitData},            // TCPIP_MODULE_SNTP
 
+    {TCPIP_MODULE_COMMAND,          0},                             // TCPIP_MODULE_COMMAND,
     { TCPIP_MODULE_MANAGER,         &tcpipHeapConfig },             // TCPIP_MODULE_MANAGER
 
 // MAC modules
@@ -760,11 +761,9 @@ void SYS_Initialize ( void* data )
 
     sysObj.drvSST26 = DRV_SST26_Initialize((SYS_MODULE_INDEX)DRV_SST26_INDEX, (SYS_MODULE_INIT *)&drvSST26InitData);
 
-
-    /* Initialize the PIC32MZW1 Driver */
-    CRYPT_RNG_Initialize(&wdrvRngCtx);
-    sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
-
+    CRYPT_WCCB_Initialize();
+    /*** File System Service Initialization Code ***/
+    (void) SYS_FS_Initialize( (const void *) sysFSInit );
 
     OTA_Initialize();
     SYS_OTA_Initialize();
@@ -805,9 +804,17 @@ void SYS_Initialize ( void* data )
    SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
 
 
-    CRYPT_WCCB_Initialize();
-    /*** File System Service Initialization Code ***/
-    (void) SYS_FS_Initialize( (const void *) sysFSInit );
+     /* Initialize the PIC32MZW1 Driver */
+    if (CRYPT_RNG_Initialize(&wdrvRngCtx) >= 0)
+    {
+        sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
+
+        SYS_ASSERT(sysObj.drvWifiPIC32MZW1 != SYS_MODULE_OBJ_INVALID, "WDRV_PIC32MZW_Initialize Failed");
+    }
+    else
+    {
+        SYS_ASSERT(false, "CRYPT_RNG_Initialize Failed");
+    }
 
 
     /* MISRAC 2012 deviation block end */

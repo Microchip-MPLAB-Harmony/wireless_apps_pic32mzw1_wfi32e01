@@ -17,31 +17,31 @@
 *******************************************************************************/
 
 /*******************************************************************************
-Copyright (c) Microchip Technology Inc.  All rights reserved.
+Copyright (C) [2023], Microchip Technology Inc., and its subsidiaries. All rights reserved.
 
-Microchip licenses to you the right to use, modify, copy and distribute
-Software only when embedded on a Microchip microcontroller or digital signal
-controller that is integrated into your product or third party product
-(pursuant to the sublicense terms in the accompanying license agreement).
+The software and documentation is provided by microchip and its contributors
+"as is" and any express, implied or statutory warranties, including, but not
+limited to, the implied warranties of merchantability, fitness for a particular
+purpose and non-infringement of third party intellectual property rights are
+disclaimed to the fullest extent permitted by law. In no event shall microchip
+or its contributors be liable for any direct, indirect, incidental, special,
+exemplary, or consequential damages (including, but not limited to, procurement
+of substitute goods or services; loss of use, data, or profits; or business
+interruption) however caused and on any theory of liability, whether in contract,
+strict liability, or tort (including negligence or otherwise) arising in any way
+out of the use of the software and documentation, even if advised of the
+possibility of such damage.
 
-You should refer to the license agreement accompanying this Software for
-additional information regarding your rights and obligations.
-
-SOFTWARE AND DOCUMENTATION ARE PROVIDED AS IS  WITHOUT  WARRANTY  OF  ANY  KIND,
-EITHER EXPRESS  OR  IMPLIED,  INCLUDING  WITHOUT  LIMITATION,  ANY  WARRANTY  OF
-MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A  PARTICULAR  PURPOSE.
-IN NO EVENT SHALL MICROCHIP OR  ITS  LICENSORS  BE  LIABLE  OR  OBLIGATED  UNDER
-CONTRACT, NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION,  BREACH  OF  WARRANTY,  OR
-OTHER LEGAL  EQUITABLE  THEORY  ANY  DIRECT  OR  INDIRECT  DAMAGES  OR  EXPENSES
-INCLUDING BUT NOT LIMITED TO ANY  INCIDENTAL,  SPECIAL,  INDIRECT,  PUNITIVE  OR
-CONSEQUENTIAL DAMAGES, LOST  PROFITS  OR  LOST  DATA,  COST  OF  PROCUREMENT  OF
-SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
-(INCLUDING BUT NOT LIMITED TO ANY DEFENSE  THEREOF),  OR  OTHER  SIMILAR  COSTS.
-*******************************************************************************/
+Except as expressly permitted hereunder and subject to the applicable license terms
+for any third-party software incorporated in the software and any applicable open
+source software license terms, no license or other rights, whether express or
+implied, are granted under any patent or other intellectual property rights of
+Microchip or any third party.
+************************************************************************************/
 
 
-#ifndef __TOUCH_API_PIC32MZW_ACQ_H__
-#define __TOUCH_API_PIC32MZW_ACQ_H__
+#ifndef TOUCH_API_PIC32MZW_ACQ_H
+#define TOUCH_API_PIC32MZW_ACQ_H
 
 /* Include files */
 #include <stdint.h>
@@ -70,6 +70,7 @@ SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
 
 /* X line bit position - CVDT line */
 #define X_NONE 0u
+#undef X
 #define X(n) ((uint32_t)(1u << (n)))
 
 /* Y line bit position - CVDR line */
@@ -248,36 +249,6 @@ Notes  :
 touch_ret_t qtm_cvd_start_measurement_seq(qtm_acquisition_control_t* qtm_acq_control_pointer, void (*measure_complete_callback) (void));
 
 /*============================================================================
-void qtm_cvd_set_timer_period_function(void (*timer_period_function_ptr) (uint16_t period))
-------------------------------------------------------------------------------
-Purpose:  set the timer period function 
-Input  :  function pointer of the timer period function
-Output :  
-Notes  :
-============================================================================*/
-void qtm_cvd_set_timer_period_function(void (*timer_period_function_ptr) (uint16_t period));
-
-/*============================================================================
-void qtm_cvd_set_timer_start_function(void (*timer_start) (void))
-------------------------------------------------------------------------------
-Purpose:  set the timer start function 
-Input  :  function pointer of the timer start function
-Output :  
-Notes  :
-============================================================================*/
-void qtm_cvd_set_timer_start_function(void (*timer_start) (void));
-
-/*============================================================================
-void qtm_cvd_set_timer_stop_function(void (*timer_stop) (void))
-------------------------------------------------------------------------------
-Purpose:  set the timer start function 
-Input  :  function pointer of the timer start function
-Output :  
-Notes  :
-============================================================================*/
-void qtm_cvd_set_timer_stop_function(void (*timer_stop) (void));
-
-/*============================================================================
 void qtm_cvd_de_init(void)
 ------------------------------------------------------------------------------
 Purpose: Clear hcvd Pin registers, set TOUCH_STATE_NULL
@@ -327,14 +298,4 @@ Notes    :  none
 ============================================================================*/
 void qtm_cvd_clear_interrupt(void);
 
-/*============================================================================
-void qtm_pic32_cvd_handler_eoc(void)
-------------------------------------------------------------------------------
-Purpose:  Captures  the  measurement,  starts  the  next  or  End  Of  Sequence  handler
-Input    :  none
-Output  :  none
-Notes    :  none
-============================================================================*/
-void qtm_pic32_cvd_handler_eoc(void);
-
-#endif    /* __TOUCH_API_PIC32MZW_ACQ_H__ */
+#endif    /* TOUCH_API_PIC32MZW_ACQ_H */

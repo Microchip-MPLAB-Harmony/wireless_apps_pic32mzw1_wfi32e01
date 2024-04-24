@@ -193,7 +193,7 @@ static const DRV_BA414E_INIT_DATA ba414eInitData =
 
 /*** ETH MAC Initialization Data ***/
 const TCPIP_MODULE_MAC_PIC32INT_CONFIG tcpipMACPIC32INTInitData =
-{ 
+{
     .nTxDescriptors         = TCPIP_EMAC_TX_DESCRIPTORS,
     .rxBuffSize             = TCPIP_EMAC_RX_BUFF_SIZE,
     .nRxDescriptors         = TCPIP_EMAC_RX_DESCRIPTORS,
@@ -201,14 +201,12 @@ const TCPIP_MODULE_MAC_PIC32INT_CONFIG tcpipMACPIC32INTInitData =
     .nRxInitBuffers         = TCPIP_EMAC_RX_INIT_BUFFERS,
     .rxLowThreshold         = TCPIP_EMAC_RX_LOW_THRESHOLD,
     .rxLowFill              = TCPIP_EMAC_RX_LOW_FILL,
-    .linkInitDelay          = DRV_LAN8740_PHY_LINK_INIT_DELAY, 
+    .linkInitDelay          = DRV_LAN8740_PHY_LINK_INIT_DELAY,
     .ethFlags               = TCPIP_EMAC_ETH_OPEN_FLAGS,
     .ethModuleId            = TCPIP_INTMAC_MODULE_ID,
     .pPhyBase               = &DRV_ETHPHY_OBJECT_BASE_Default,
     .pPhyInit               = &tcpipPhyInitData_LAN8740,
 };
-
-
 
 
 // <editor-fold defaultstate="collapsed" desc="TCP/IP Stack Initialization Data">
@@ -386,6 +384,7 @@ const TCPIP_STACK_MODULE_CONFIG TCPIP_STACK_MODULE_CONFIG_TBL [] =
     {TCPIP_MODULE_DHCP_SERVER,      &tcpipDHCPSInitData},           // TCPIP_MODULE_DHCP_SERVER
     {TCPIP_MODULE_DNS_SERVER,       &tcpipDNSServerInitData},       // TCPIP_MODULE_DNS_SERVER
 
+    {TCPIP_MODULE_COMMAND,          0},                             // TCPIP_MODULE_COMMAND,
     { TCPIP_MODULE_MANAGER,         &tcpipHeapConfig },             // TCPIP_MODULE_MANAGER
 
 // MAC modules
@@ -586,12 +585,20 @@ void SYS_Initialize ( void* data )
 
 
    /* Initialize the MIIM Driver Instance 0*/
-   sysObj.drvMiim_0 = DRV_MIIM_Initialize(DRV_MIIM_DRIVER_INDEX_0, (const SYS_MODULE_INIT *) &drvMiimInitData_0); 
+   sysObj.drvMiim_0 = DRV_MIIM_OBJECT_BASE_Default.DRV_MIIM_Initialize(DRV_MIIM_DRIVER_INDEX_0, (const SYS_MODULE_INIT *) &drvMiimInitData_0); 
 
 
     /* Initialize the PIC32MZW1 Driver */
-    CRYPT_RNG_Initialize(&wdrvRngCtx);
-    sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
+    if (CRYPT_RNG_Initialize(&wdrvRngCtx) >= 0)
+    {
+        sysObj.drvWifiPIC32MZW1 = WDRV_PIC32MZW_Initialize(WDRV_PIC32MZW_SYS_IDX_0, (SYS_MODULE_INIT*)&wdrvPIC32MZW1InitData);
+
+        SYS_ASSERT(sysObj.drvWifiPIC32MZW1 != SYS_MODULE_OBJ_INVALID, "WDRV_PIC32MZW_Initialize Failed");
+    }
+    else
+    {
+        SYS_ASSERT(false, "CRYPT_RNG_Initialize Failed");
+    }
 
 
     /* MISRA C-2012 Rule 11.3, 11.8 deviated below. Deviation record ID -  

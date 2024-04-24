@@ -60,7 +60,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #endif
 //#include <xc.h>
 //---------------------------------------------------------------------------
-#define FACTORY_IMAGE_BACKUP_DISABLE
+
 
 #ifdef SYS_OTA_SECURE_BOOT_ENABLED
 static int verify;
@@ -393,7 +393,7 @@ exit:
 void Bootloader_Initialize(void) {
     memset(&bootloader, 0, sizeof (bootloader));
     bootloader.current_task = BOOTLOADER_TASK_INIT;
-    printf("\nBOOTLOADER Build %s %s\n", __DATE__, __TIME__);
+    printf("\nBOOTLOADER Build %s %s\r\n", __DATE__, __TIME__);
 #ifdef OTA_DEBUG
     printf("\n");
     printf("***********************************************************\n");
@@ -1914,10 +1914,8 @@ void Bootloader_Tasks(void) {
                 next = BOOTLOADER_TASK_SELECT_IMAGE;
             }
 #else
-			next = BOOTLOADER_TASK_SELECT_IMAGE;
+			next = BOOTLOADER_TASK_JUMP_TO_APP;
 #endif			
-      
-                            next = BOOTLOADER_TASK_JUMP_TO_APP;
             break;
         }
         case BOOTLOADER_TASK_SELECT_IMAGE:
@@ -2055,7 +2053,7 @@ void Bootloader_Tasks(void) {
     }
 
     if (next != bootloader.current_task) {
-#if OTA_DEBUG 
+#ifdef OTA_DEBUG 
         {
             static const char * s[] __attribute__((unused)) = {
                 "BOOTLOADER_TASK_INIT",

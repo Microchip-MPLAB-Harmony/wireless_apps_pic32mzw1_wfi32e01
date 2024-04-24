@@ -904,6 +904,7 @@ static void SYS_OTA_Command_Process(int argc, char *argv[]) {
         else{
             if((!strcmp((char*) argv[2], "info"))){
                 OTA_GetImageDbInfo();
+			
             }
             else{
                 SYS_CONSOLE_PRINT("Following Command supported : \n\r");
