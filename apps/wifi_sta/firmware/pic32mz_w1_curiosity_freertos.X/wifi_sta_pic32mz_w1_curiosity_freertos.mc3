@@ -1138,6 +1138,28 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="BSP_PIN_56_FUNCTION_TYPE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;BSP_PIN_56_FUNCTION_TYPE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;U3TX&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="BSP_PIN_56_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;BSP_PIN_56_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;DIGITAL&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="BSP_PIN_5_MODE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;BSP_PIN_5_MODE&quot;&gt;
@@ -1207,9 +1229,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="BSP_PIN_74_FUNCTION_TYPE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;BSP_PIN_74_FUNCTION_TYPE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;User dnOrder=&quot;0&quot; value=&quot;U3TX&quot;/&gt;
-    &lt;/Values&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/core&gt;
 &lt;/core&gt;
 </value>
@@ -1218,9 +1238,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="BSP_PIN_74_MODE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;BSP_PIN_74_MODE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;User dnOrder=&quot;0&quot; value=&quot;DIGITAL&quot;/&gt;
-    &lt;/Values&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/core&gt;
 &lt;/core&gt;
 </value>
@@ -2994,7 +3012,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;SYS_PORT_B_ANSEL&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;0&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;512&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -3058,7 +3076,7 @@
       &lt;/Boolean&gt;
     &lt;/Attributes&gt;
     &lt;Values dnOrder=&quot;1&quot;&gt;
-      &lt;User dnOrder=&quot;0&quot; value=&quot;RPC14&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;RPB9&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -5701,7 +5719,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\configuration.h</file>
-         <hash>981ee351d0f724f97ee7a097797c4f3977efe9479b59d2daac5d43386b81d353</hash>
+         <hash>752bfc1e0ac41d945b719f583fcff72f3e1dc436a730ec4553381ea8aeaf7b7a</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\crypto\crypto.h</file>
@@ -5713,7 +5731,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\definitions.h</file>
-         <hash>ea3c68db76e1160c3967a31d26e39feb5fd13ba42043b29d762657dbb22d3df6</hash>
+         <hash>0b69c8bedea36e1a9e20118c05397b7e29d7b940b2a05d7888aedd9d99a3f7c2</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\device.h</file>
@@ -5745,7 +5763,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\drv_pic32mzw1_crypto.c</file>
-         <hash>16afe1d985213e4904d0a2a8039a4497e2961819ebf051a065c97b822469878a</hash>
+         <hash>e4a04e5307c45d77c8b1b6417c0f354b691a6e6ca029b764b326502770646d11</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\drv_pic32mzw1_tls.c</file>
@@ -5753,11 +5771,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\drv_pic32mzw1.h</file>
-         <hash>c351cce18c41811c1faec6a54872e5517f48c530f5a1784d8d735127fe32cc0a</hash>
+         <hash>208a38c7df6e90b7e14cdba0e83ab3850709445ec234b6867195c174a38f5870</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\drv_pic32mzw1_crypto.h</file>
-         <hash>fd750adfe6860a79d511cf973709ac7ca8ce16d4e25af7ad9cfb49b06adf01ee</hash>
+         <hash>cbd4b8a9fce0d97f0ec3c73c7fb56d6b32d6b54612832e1eddd92818f655dd38</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\drv_pic32mzw1_tls.h</file>
@@ -5765,7 +5783,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\wdrv_pic32mzw.h</file>
-         <hash>7635a071a93157c2913350b1116314beae575e5a0fb683caa88324bb30424af3</hash>
+         <hash>24ed2fc98a300378ef20eb82953f4f6f6b852f55a9e30ec1d0c1032ea265b40a</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_api.h</file>
@@ -5785,11 +5803,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_bssfind.h</file>
-         <hash>4f9ba78e61e493d18f01657cebc334d1499e80512cd2e3bb152e8624e9baf501</hash>
+         <hash>38034426f1961fd58ddd62ddc75189d1b9ff1968ed59c26d2564814909019956</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_cfg.h</file>
-         <hash>0f06ae98ec966bdc072440aace1161ad4df39f0fff7e83bec1a9d1711bcbd1f0</hash>
+         <hash>d65474f8ad9e845c9a5f6ceb9d3d2684cc7f03153bd6cc132dc27634e085cd1c</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_client_api.h</file>
@@ -5797,11 +5815,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_common.h</file>
-         <hash>47f659f2f552462bdfef8bf7f97daf42c2a3551420defd9960a2537522917b57</hash>
+         <hash>a6b8be7acd0dc9d0b803cb43fde983f0fab8e00387af77213499b221b5b8ce95</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_custie.h</file>
-         <hash>23edfaea4b0fc88aa7a20a766ec8a2ff3b539097d3b38a3e3696f38235e2308f</hash>
+         <hash>e6fd24ccd01bff0014362037f50ac6ba1e64f6575caee2606d20de74b6fc00f4</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_debug.h</file>
@@ -5829,15 +5847,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\include\wdrv_pic32mzw_sta.h</file>
-         <hash>350733c01f8f9756618ea0624c3492d6fd54d4ba5ce33bbfb6b3278feeb77ad2</hash>
+         <hash>f505673b448446351204462e7b2eaa316213109a6394214d7844901793a6fb05</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\lib\pic32mzw1.a</file>
-         <hash>720cf8e3ce6be85ee4a34f6940324444b8b400deeead4b2bec99e01d30a82508</hash>
+         <hash>ce8c1f4feaadc86818a3bb7b30bcab0b6f89982550303720142a8e38cc75b3ef</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw.c</file>
-         <hash>c9398712b540d263df403235a8666b970047ec5b7519374e78f9a614ea34d76b</hash>
+         <hash>a19ff3c0ec02eb4965dad1e1db65a22c0b8140052b930b87a43bd65b90428e64</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw_assoc.c</file>
@@ -5845,7 +5863,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw_authctx.c</file>
-         <hash>a05483c227f841bc0b17c1c5e57589410c2f9d94b0629b5a435ffc4a4bc8d81b</hash>
+         <hash>ff231120576ea17a485557d1484a99bd184da3425e7461a12f36f80c94cd2f34</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw_bssctx.c</file>
@@ -5853,7 +5871,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw_bssfind.c</file>
-         <hash>67e9166fe893bf9c5b01c11d40f1571db9a22f009d3f781376d259f595462d64</hash>
+         <hash>6a0040fb2c1f3db371410d0f92672ce77c6c18f619515bab966fc1045d4b179f</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw_cfg.c</file>
@@ -5881,11 +5899,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw_softap.c</file>
-         <hash>9dd8637f75934dc865dbe9d0c088a4692c63812750c2ae2a7d0e7cba50e86671</hash>
+         <hash>c6c3e3e69a8f941546a41f131bfe5e7bfd4163bc3f5f5df95022071a934ec179</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw_sta.c</file>
-         <hash>2d5e5f6fb5eb1f7f7f16cd8eab1554e492e9ad355f29b61c44cb74a96b639e37</hash>
+         <hash>0594d8baa1d58bee97e2bb4c6e4de0389b8423371682e22282a8fb9ded330192</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\exceptions.c</file>
@@ -6505,7 +6523,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\p32MZ1025W104132.ld</file>
-         <hash>ed773c18bcb76a06cb673da8ddabc215598912f30a7ccc69f9f56643b6766ce0</hash>
+         <hash>e849df6b26695298a99b211d74c905d887b94f25883e54b6dd489ceeed30be9e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\peripheral\clk\plib_clk.c</file>
@@ -6533,7 +6551,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\peripheral\gpio\plib_gpio.c</file>
-         <hash>15fb8019788c95fdbe9d7d2139532b1fab890240fbc66c538e4a8abd6d75d496</hash>
+         <hash>5833b33da988a77589cc2a55746dda3e1ce8138d0cad4fa8f78b3cda41846934</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\peripheral\gpio\plib_gpio.h</file>

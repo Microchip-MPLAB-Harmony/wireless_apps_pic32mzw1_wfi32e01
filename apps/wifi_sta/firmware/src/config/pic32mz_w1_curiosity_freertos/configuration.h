@@ -447,7 +447,7 @@ extern "C" {
 #define SYS_WIFI_STA_PWD        			"password"
 
 
-#define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPAWPA2MIXED 
+#define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPA2
 
 
 

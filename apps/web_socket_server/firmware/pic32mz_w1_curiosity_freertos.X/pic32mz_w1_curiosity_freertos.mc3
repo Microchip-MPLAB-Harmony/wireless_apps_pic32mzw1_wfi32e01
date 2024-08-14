@@ -860,7 +860,7 @@
     &lt;ComponentGraph dnOrder=&quot;7&quot; id=&quot;TCP/IP STACK&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;APPLICATION LAYER&quot; x=&quot;700&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;BASIC CONFIGURATION&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;BASIC CONFIGURATION&quot; x=&quot;30&quot; y=&quot;80&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;DRIVER LAYER&quot; x=&quot;560&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;NETWORK LAYER&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;PRESENTATION LAYER&quot; x=&quot;30&quot; y=&quot;80&quot;/&gt;
@@ -2726,6 +2726,17 @@
          <value>__ROOTVIEW</value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sysNetPic32mzw1" name="SYS_NET_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sysNetPic32mzw1&gt;
+  &lt;sysNetPic32mzw1 dnOrder=&quot;0&quot; id=&quot;SYS_NET_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysNetPic32mzw1&quot; value=&quot;CLIENT&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/sysNetPic32mzw1&gt;
+&lt;/sysNetPic32mzw1&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sysNetPic32mzw1" name="SYS_NET_SUPP_NO_OF_SOCKS"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sysNetPic32mzw1&gt;
   &lt;sysNetPic32mzw1 dnOrder=&quot;0&quot; id=&quot;SYS_NET_SUPP_NO_OF_SOCKS&quot;&gt;
@@ -2754,6 +2765,17 @@
   &lt;sysWssPic32mzw1 dnOrder=&quot;0&quot; id=&quot;SYS_WSS_MAX_NUM_CLIENTS&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;User dnOrder=&quot;0&quot; value=&quot;3&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/sysWssPic32mzw1&gt;
+&lt;/sysWssPic32mzw1&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sysWssPic32mzw1" name="SYS_WSS_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sysWssPic32mzw1&gt;
+  &lt;sysWssPic32mzw1 dnOrder=&quot;0&quot; id=&quot;SYS_WSS_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;SYS_WSS_CLIENT&quot;/&gt;
     &lt;/Values&gt;
   &lt;/sysWssPic32mzw1&gt;
 &lt;/sysWssPic32mzw1&gt;
@@ -3910,7 +3932,7 @@
    <generatedFileHashHistoryMap class="java.util.TreeMap">
       <entry>
          <file>..\src\app.c</file>
-         <hash>632c78c323cb9f8c6359f20337440c08f8461eb4b0304552b6a3cfd5c4052620</hash>
+         <hash>53748f90722c518f17e40a3017ddc50f7021030fa509c9b1fe8d7c61b41d7d15</hash>
       </entry>
       <entry>
          <file>..\src\app.h</file>
@@ -3926,7 +3948,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\configuration.h</file>
-         <hash>376bfad9dfac3ef6b76844ab73329c8cb4adad0d622be38aa9accbdfc0730e2a</hash>
+         <hash>e16c8f980752d176e5379bfb689bb66aa4ce1949e261a47fd11fa05813935613</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\crypto\crypto.h</file>
@@ -4766,7 +4788,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\p32MZ1025W104132.ld</file>
-         <hash>ed773c18bcb76a06cb673da8ddabc215598912f30a7ccc69f9f56643b6766ce0</hash>
+         <hash>e849df6b26695298a99b211d74c905d887b94f25883e54b6dd489ceeed30be9e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\peripheral\clk\plib_clk.c</file>
@@ -4954,7 +4976,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\wifi\src\sys_wifi.c</file>
-         <hash>18b2d6911b5a89a8f142ac3ef010d316d931dc258bf88d622d1d55b72c042f7d</hash>
+         <hash>e0406ca7cc711a1800f66bc751699ad64ed4a1fa889dcf7929e9a500346e95eb</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\wifi\sys_wifi.h</file>
@@ -4986,11 +5008,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\wss\src\sys_wss.c</file>
-         <hash>5e70f36fcb8dcb3a935bebd7338c36e41ef2e48d733ddd33204f278162fba8cf</hash>
+         <hash>d4ade1a88e6c9328061027d6c6b93151f53f6861ccb82341fe018190619af4cf</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\wss\sys_wss.h</file>
-         <hash>8f6371e88801d2b0e468a5a2eb1e1918d6dd7c7e782da4b3d72e56e6a74ef9ca</hash>
+         <hash>1af3d52de976b6e24ac88aa298c74c47006fae24d88be9c5e342156733cfadf0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system_config.h</file>

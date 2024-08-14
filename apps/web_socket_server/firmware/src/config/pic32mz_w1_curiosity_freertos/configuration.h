@@ -136,13 +136,13 @@ extern "C" {
 #define SYS_WSS_RTOS_TASK_DELAY     1
 #define SYS_WSS_PORT                        8000
 #define SYS_WSS_SERVER_IP                   "192.168.1.1"
-#define SYS_WSS_MODE                        SYS_WSS_SERVER
+#define SYS_WSS_MODE                        SYS_WSS_CLIENT
 #define SYS_WSS_HOST_NAME                   "ws://192.168.1.1:8000"
 #define SYS_WSS_INTF                        SYS_WSS_WIFI
 #define SYS_WSS_ENABLE_TLS   			    false
 #define SYS_WSS_ENABLE_DEBUG   			    0
 #define SYS_WSS_MAX_RX_BUFFER               1400
-#define SYS_WSS_MAX_NUM_CLIENTS             3
+#define SYS_WSS_MAX_NUM_CLIENTS             1
 #define SYS_WSS_START_AT_BOOT   			1
 #define SYS_WSS_CLIENT_TIMEOUT              30000
 #define WOLFSSL_BASE64_ENCODE

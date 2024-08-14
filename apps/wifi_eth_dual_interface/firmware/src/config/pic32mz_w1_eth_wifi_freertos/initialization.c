@@ -450,11 +450,13 @@ const DRV_ETHPHY_INIT tcpipPhyInitData_LAN8740 =
     .phyAddress             = DRV_LAN8740_PHY_ADDRESS,
     .phyFlags               = DRV_LAN8740_PHY_CONFIG_FLAGS,
     .pPhyObject             = &DRV_ETHPHY_OBJECT_LAN8740,
-    .resetFunction          = 0,
     .ethphyTmo              = &drvlan8740Tmo,
     .pMiimObject            = &DRV_MIIM_OBJECT_BASE_Default,
     .pMiimInit              = &drvMiimInitData_0,
     .miimIndex              = 0,
+
+
+    .resetFunction          = 0,
 };
 
 

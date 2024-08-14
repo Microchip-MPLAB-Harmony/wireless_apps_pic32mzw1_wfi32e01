@@ -115,6 +115,101 @@ int wss_strcasecmp(const char * s1, const char * s2)
 }
 #endif
 
+char *wss_strcpy(char *strDest, const char *strSrc)
+{
+    assert(strDest!=NULL && strSrc!=NULL);
+    char *temp = strDest;
+    while((*strDest++=*strSrc++) != '\0');
+    return temp;
+}
+
+unsigned int wss_strlen(char *p)
+{
+    unsigned int count = 0;
+
+    while(*p!='\0')
+    {
+        count++;
+        p++;
+    }
+    return count;
+}
+
+char *wss_strcat(char *dest, const char *src)
+{
+    if((dest == NULL) && (src == NULL))
+        return NULL;
+    char *start = dest;
+    while(*start != '\0')
+    {
+        start++;
+    }
+    while(*src != '\0')
+    {
+        *start++ = *src++;
+    }
+    *start = '\0';
+    return dest;
+}
+
+bool wss_is_delim(char c, char *delim)
+{
+  while(*delim != '\0')
+  {
+    if(c == *delim)
+      return true;
+    delim++;
+  }
+  return false;
+}
+
+char *wss_strtok(char *s, char *delim)
+{
+  static char *p; 
+  if(!s)
+  {
+    s = p;
+  }
+  if(!s)
+  { 
+    return NULL;
+  }
+
+  while(1)
+  {
+    if(wss_is_delim(*s, delim))
+    {
+      s++;
+      continue;
+    }
+    if(*s == '\0')
+    {
+      return NULL;
+    }
+    break;
+  }
+
+  char *ret = s;
+  while(1)
+  {
+    if(*s == '\0')
+    {
+      p = s;
+      return ret;
+    }
+    if(wss_is_delim(*s, delim))
+    {
+      *s = '\0';
+      p = s + 1;
+      return ret;
+    }
+    s++;
+  }
+}
+
+
+
+
 #if SYS_WSS_MODE == SYS_WSS_CLIENT
 static void maskData(uint8_t *buffer,uint16_t dataLen,uint8_t *maskingKey);
 static SYS_WSS_RESULT parseServerHandshake(void *buffer, uint16_t length, int32_t clientIndex);
@@ -141,17 +236,17 @@ static SYS_WSS_RESULT wssSendErrorResponse( SYS_WSS_RESULT res,int32_t clientInd
     SYS_WSS_RESULT result = SYS_WSS_SUCCESS;
     if (SYS_WSS_FAILURE!=res){
         statusCode=400;
-        strcpy(statusMsg,"Bad Request");
-        strcpy(message,"Invalid handshake request");
+        wss_strcpy(statusMsg,"Bad Request");
+        wss_strcpy(message,"Invalid handshake request");
     }
     else{
         statusCode=500;
-        strcpy(statusMsg,"Internal Server Error");
-        strcpy(message,"Encountered an internal error.Server unable to process the request");
+        wss_strcpy(statusMsg,"Internal Server Error");
+        wss_strcpy(message,"Encountered an internal error.Server unable to process the request");
     }  
 
 
-    length = strlen(WSS_ERR_TEMPLATE) + strlen(message);
+    length = wss_strlen(WSS_ERR_TEMPLATE) + wss_strlen(message);
     sprintf(err_txMsg,WSS_ERR_TEMPLATE,statusCode,statusMsg,length, statusCode, statusCode, message);
     WSS_DEBUG_PRINT("\r\n  Error Message %s \r\n", err_txMsg);
     SYS_NET_SendMsg(g_wssSrvcObj[clientIndex].wssNetHandle, (uint8_t *) err_txMsg, length);
@@ -388,15 +483,15 @@ static SYS_WSS_RESULT wssGenerateServerKey(int32_t clientIndex) {
 
     /*Concatenate the Sec-WebSocket-Key with the GUID(258EAFA5-E914-47DA-95CA-C5AB0DC85B11) string
     and generate SHA-1 of the resulting string*/
-    strcpy((char *) buffer, g_wssSrvcObj[clientIndex].wssHandshake.clientKey);
-    strcat((char *) buffer, SYS_WSS_GUID);
-    key_len = strlen((char *) buffer);
+    wss_strcpy((char *) buffer, g_wssSrvcObj[clientIndex].wssHandshake.clientKey);
+    wss_strcat((char *) buffer, SYS_WSS_GUID);
+    key_len = wss_strlen((char *) buffer);
     ret = wc_ShaHash(buffer, key_len, shaSum);
     if (ret) {
         result = SYS_WSS_FAILURE;
     } else {
         memset(buffer, 0, SYS_WSS_SERVER_KEY_SIZE);
-        key_len = (uint32_t) strlen((char *) shaSum);
+        key_len = (uint32_t) wss_strlen((char *) shaSum);
         //Encode the result using Base64
         ret = Base64_Encode((uint8_t *) shaSum, SYS_WSS_SHA1_DIGEST_SIZE, (uint8_t *) & buffer, &outlen);
         WSS_DEBUG_PRINT("WSS:  Server key from wolfssl: %s\r\n", (char *) buffer);
@@ -441,8 +536,8 @@ static SYS_WSS_RESULT validateClientHandshake(int32_t clientIndex) {
         result = SYS_WSS_ERROR_INVALID_REQUEST;
     }
     if (SYS_WSS_SUCCESS == result) {
-        WSS_DEBUG_PRINT("WSS: Verifying client's key...Key : %s  Key Len :%d. \r\n", g_wssSrvcObj[clientIndex].wssHandshake.clientKey, (strlen(g_wssSrvcObj[clientIndex].wssHandshake.clientKey)));
-        ret = Base64_Decode((uint8_t *) g_wssSrvcObj[clientIndex].wssHandshake.clientKey, (uint32_t )(strlen(g_wssSrvcObj[clientIndex].wssHandshake.clientKey)), (uint8_t *) & buffer, &outlen);
+        WSS_DEBUG_PRINT("WSS: Verifying client's key...Key : %s  Key Len :%d. \r\n", g_wssSrvcObj[clientIndex].wssHandshake.clientKey, (wss_strlen(g_wssSrvcObj[clientIndex].wssHandshake.clientKey)));
+        ret = Base64_Decode((uint8_t *) g_wssSrvcObj[clientIndex].wssHandshake.clientKey, (uint32_t )(wss_strlen(g_wssSrvcObj[clientIndex].wssHandshake.clientKey)), (uint8_t *) & buffer, &outlen);
         if (ret) {
 
             WSS_DEBUG_PRINT("Base64_Decode failed\r\n");
@@ -465,7 +560,7 @@ static SYS_WSS_RESULT parseHandshake(void *buffer, uint16_t length, int32_t clie
     WSS_DEBUG_PRINT("In parseHandshake :%s\r\n", buffer);
 
     //Check if the request line starts with GET method
-    token = strtok(buffer, " \r\n");
+    token = wss_strtok(buffer, " \r\n");
     WSS_DEBUG_PRINT("In parseHandshake TOKEN1: %s\r\n", token);
 
     if ((token == NULL) || (wss_strcasecmp(token, "GET"))) {
@@ -474,8 +569,8 @@ static SYS_WSS_RESULT parseHandshake(void *buffer, uint16_t length, int32_t clie
     }
 
     //Check for HTTP version
-    token = strtok(NULL, " ");
-    token = strtok(NULL, " \r\n");
+    token = wss_strtok(NULL, " ");
+    token = wss_strtok(NULL, " \r\n");
     WSS_DEBUG_PRINT("\r\nIn parseHandshake TOKEN2: %s", token);
 
     if (token == NULL) {
@@ -498,16 +593,16 @@ static SYS_WSS_RESULT parseHandshake(void *buffer, uint16_t length, int32_t clie
 
     do {
         //Check for URI
-        token = strtok(NULL, " \r\n");
+        token = wss_strtok(NULL, " \r\n");
         if (token == NULL)
            break;
         WSS_DEBUG_PRINT("\r\nIn parseHandshake TOKEN3: %s", token);
         if (!wss_strcasecmp(token, "HOST:")) {
-            token = strtok(NULL, " \r\n");
+            token = wss_strtok(NULL, " \r\n");
             WSS_DEBUG_PRINT("\r\nIn parseHandshake TOKEN4: %s", token);
         } else if (!wss_strcasecmp(token, "UPGRADE:")) {
 
-            token = strtok(NULL, " \r\n");
+            token = wss_strtok(NULL, " \r\n");
             WSS_DEBUG_PRINT("\r\nIn parseHandshake TOKEN5: %s", token);
             if (!wss_strcasecmp(token, "websocket")) {
                 g_wssSrvcObj[clientIndex].wssHandshake.upgradeWebSocket = true;
@@ -515,20 +610,20 @@ static SYS_WSS_RESULT parseHandshake(void *buffer, uint16_t length, int32_t clie
 
 
         } else if (!wss_strcasecmp(token, "ORIGIN:")) {
-            token = strtok(NULL, " \r\n");
+            token = wss_strtok(NULL, " \r\n");
             g_wssSrvcObj[clientIndex].wssHandshake.origin = true;
             WSS_DEBUG_PRINT("\r\nIn parseHandshake TOKEN6: %s", token);
         } else if (!wss_strcasecmp(token, "Sec-WebSocket-Key:")) {
-            token = strtok(NULL, " \r\n");
-            strcpy(g_wssSrvcObj[clientIndex].wssHandshake.clientKey, token);
+            token = wss_strtok(NULL, " \r\n");
+            wss_strcpy(g_wssSrvcObj[clientIndex].wssHandshake.clientKey, token);
             g_wssSrvcObj[clientIndex].wssHandshake.iskey = true;
             WSS_DEBUG_PRINT("\r\nIn parseHandshake TOKEN7: %s", g_wssSrvcObj[clientIndex].wssHandshake.clientKey);
         } else if (!wss_strcasecmp(token, "Sec-WebSocket-Version:")) {
-            token = strtok(NULL, " \r\n");
+            token = wss_strtok(NULL, " \r\n");
             //  memcpy((uint8_t *)g_wssSrvcObj[clientIndex].wssHandshake.ws_version,(char *) token,1);
             WSS_DEBUG_PRINT("\r\nIn parseHandshake TOKEN8: %s", g_wssSrvcObj[clientIndex].wssHandshake.ws_version);
         } else if (!wss_strcasecmp(token, "Connection:")) {
-            token = strtok(NULL, " \r\n");
+            token = wss_strtok(NULL, " \r\n");
             if (!wss_strcasecmp(token, "Upgrade")) {
                 g_wssSrvcObj[clientIndex].wssHandshake.connectionUpgrade = true;
                 WSS_DEBUG_PRINT("\r\nIn parseHandshake TOKEN9: %s", token);
@@ -562,7 +657,7 @@ void processData(void *buffer, uint16_t length, int32_t clientIndex) {
                     if (SYS_WSS_SUCCESS == result) {
                         WSS_DEBUG_PRINT("\tSuccessfully generated the server handshake\r\n");
                         result = wssFormatServerHandshake(clientIndex);
-                        SYS_NET_SendMsg(g_wssSrvcObj[clientIndex].wssNetHandle, (uint8_t *) g_wssSrvcObj[clientIndex].sHandshake, strlen(g_wssSrvcObj[clientIndex].sHandshake));
+                        SYS_NET_SendMsg(g_wssSrvcObj[clientIndex].wssNetHandle, (uint8_t *) g_wssSrvcObj[clientIndex].sHandshake, wss_strlen(g_wssSrvcObj[clientIndex].sHandshake));
 
                         wssUserCallback(SYS_WSS_EVENT_CLIENT_CONNECTED, NULL, clientIndex);
                         g_wssSrvcObj[clientIndex].wssState = SYS_WSS_STATE_CONNECTED;
@@ -655,7 +750,7 @@ void processData(void *buffer, uint16_t length, int32_t clientIndex) {
             rxdata.datalen =(int64_t)dataLength;
 
             //Uncomment to implement a echoServer
-            //wssSendResponse(dataframe->fin, dataframe->opcode, tmp_buf, (size_t) (strlen((const char *) tmp_buf)), clientIndex);
+            //wssSendResponse(dataframe->fin, dataframe->opcode, tmp_buf, (size_t) (wss_strlen((const char *) tmp_buf)), clientIndex);
 
             } else {
                 /*Client message shall always  be masked*/
@@ -783,7 +878,7 @@ static void wssNetCallback(uint32_t event, void *data, void *cookie) {
             {
              WSS_DEBUG_PRINT("\r\nSYS_WSS_connectToServer: Sending  client handshake request\r\n");
 
-            SYS_NET_SendMsg(g_wssSrvcObj[clientIndex].wssNetHandle, (uint8_t *) g_wssSrvcObj[clientIndex].cHandshake, strlen(g_wssSrvcObj[clientIndex].cHandshake));
+            SYS_NET_SendMsg(g_wssSrvcObj[clientIndex].wssNetHandle, (uint8_t *) g_wssSrvcObj[clientIndex].cHandshake, wss_strlen(g_wssSrvcObj[clientIndex].cHandshake));
             g_wssSrvcObj[clientIndex].wssState = SYS_WSS_STATE_CONNECTING;
             }
 
@@ -944,7 +1039,7 @@ SYS_MODULE_OBJ SYS_WSS_Initialize(SYS_WSS_CONFIG *config, SYS_WSS_CALLBACK callb
         g_wssSrvcObj[i].wssNetCfg.mode = SYS_NET_MODE_SERVER;
 #elif SYS_WSS_MODE == SYS_WSS_CLIENT
         g_wssSrvcObj[i].wssNetCfg.mode = SYS_NET_MODE_CLIENT;
-		strcpy(g_wssSrvcObj[i].wssNetCfg.host_name,SYS_WSS_SERVER_IP);
+		wss_strcpy(g_wssSrvcObj[i].wssNetCfg.host_name,SYS_WSS_SERVER_IP);
 #endif
 #if SYS_WSS_INTF == SYS_WSS_ETHERNET
 	    g_wssSrvcObj[i].wssNetCfg.intf = SYS_NET_INTF_ETHERNET;  
@@ -1085,7 +1180,7 @@ static SYS_WSS_RESULT parseServerHandshake(void *buffer, uint16_t length, int32_
     WSS_DEBUG_PRINT("In parseServerHandshake :%s\r\n", buffer);
 
     //Check if the request line starts with GET method
-    token = strtok(buffer, "\r\n");
+    token = wss_strtok(buffer, "\r\n");
     WSS_DEBUG_PRINT("In parseServerHandshake TOKEN1: %s\r\n", token);
         
 
@@ -1104,20 +1199,20 @@ static SYS_WSS_RESULT parseServerHandshake(void *buffer, uint16_t length, int32_
         //do nothing
         }
 
-        token = strtok(NULL, "\r\n");
+        token = wss_strtok(NULL, "\r\n");
         WSS_DEBUG_PRINT("\r\nIn parseServerHandshake TOKEN2: %s", token);
         if (strstr(token, "Upgrade: websocket"))
         {
-            token = strtok(NULL, "\r\n");
+            token = wss_strtok(NULL, "\r\n");
             WSS_DEBUG_PRINT("\r\nIn parseServerHandshake TOKEN3: %s", token);
             if (strstr(token, "Connection: Upgrade"))
             {
-                token = strtok(NULL, " \r\n");
+                token = wss_strtok(NULL, " \r\n");
                 WSS_DEBUG_PRINT("\r\nIn parseServerHandshake TOKEN4: %s", token);
                 if (strstr(token, "Sec-WebSocket-Accept"))
                 {
                     //compare and confirm the server acceptance key
-                    token = strtok(NULL, " ");
+                    token = wss_strtok(NULL, " ");
                     WSS_DEBUG_PRINT("\r\nIn parseServerHandshake TOKEN5 ,received server key : %s ", token);
                     result = wssGenerateServerKey(0);
 
@@ -1261,7 +1356,7 @@ static void processServerData(void *buffer, uint16_t length, int32_t clientIndex
             rxdata.datalen =(int64_t)dataLength;
 
             //Uncomment to implement a echoServer
-            //wssSendResponse(dataframe->fin, dataframe->opcode, tmp_buf, (size_t) (strlen((const char *) tmp_buf)), clientIndex);
+            //wssSendResponse(dataframe->fin, dataframe->opcode, tmp_buf, (size_t) (wss_strlen((const char *) tmp_buf)), clientIndex);
 
             } else {
                 /*Server message need not be always  be masked*/

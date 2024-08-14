@@ -50,7 +50,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <wolfssl/wolfcrypt/coding.h>
 #include <wolfssl/wolfcrypt/sha.h>
 #include <wolfssl/wolfcrypt/hash.h>
-#include <strings.h>
 #include <stdlib.h>
 
 

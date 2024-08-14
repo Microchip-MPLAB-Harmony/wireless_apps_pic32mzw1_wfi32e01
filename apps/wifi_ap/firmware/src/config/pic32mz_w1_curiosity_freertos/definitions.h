@@ -51,10 +51,10 @@
 #include <stdio.h>
 #include "crypto/crypto.h"
 #include "driver/ba414e/drv_ba414e.h"
-#include "peripheral/nvm/plib_nvm.h"
 #include "system/time/sys_time.h"
-#include "peripheral/coretimer/plib_coretimer.h"
+#include "peripheral/nvm/plib_nvm.h"
 #include "peripheral/uart/plib_uart3.h"
+#include "peripheral/coretimer/plib_coretimer.h"
 #include "peripheral/uart/plib_uart1.h"
 #include "library/tcpip/tcpip.h"
 #include "system/sys_time_h2_adapter.h"

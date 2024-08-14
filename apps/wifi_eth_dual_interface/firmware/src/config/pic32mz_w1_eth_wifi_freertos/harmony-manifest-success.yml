@@ -4,23 +4,23 @@
 
 
 project: wifi_eth_dual_interface
-creation_date: 2024-04-19T10:19:51.203+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2024-08-12T23:46:38.282+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mcc_mode: IDE            # [IDE|Standalone|Headless]
 mcc_version: v5.5.0
 mcc_core_version: v5.7.0
 mplabx_version: v6.20        # if MPLAB X plugin only
 harmony_version: v1.3.2
-compiler: XC32 4.35
+compiler: XC32 4.45
 
 modules:
-    - {name: "wireless_wifi", version: "v3.10.1"}
-    - {name: "core", version: "v3.13.3"}
-    - {name: "csp", version: "v3.18.4"}
+    - {name: "wireless_wifi", version: "v3.11.1"}
+    - {name: "core", version: "v3.13.5"}
+    - {name: "csp", version: "v3.19.3"}
     - {name: "dev_packs", version: "v3.18.1"}
-    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.9.0"}
+    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.9.0-6-g02ca986"}
     - {name: "wolfssl", version: "v5.4.0"}
-    - {name: "net", version: "v3.11.0"}
+    - {name: "net", version: "v3.12.0"}
     - {name: "crypto", version: "v3.8.1"}
     - {name: "CMSIS-FreeRTOS", version: "v11.0.1"}
 

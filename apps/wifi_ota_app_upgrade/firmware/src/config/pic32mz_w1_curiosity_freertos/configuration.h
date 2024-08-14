@@ -87,8 +87,8 @@ extern "C" {
 #define SYS_OTA_AUTOUPDATE_ENABLE           true
 #define SYS_OTA_PERODIC_UPDATE   			true
 #define SYS_OTA_APP_VER_NUM                 1
-#define SYS_OTA_TIME_INTERVAL               60
-#define SYS_OTA_URL                         "http://192.168.76.183:8000/ota.json"
+#define SYS_OTA_TIME_INTERVAL               10
+#define SYS_OTA_URL                         "http://192.168.163.14:8000/ota.json"
 #define SYS_OTA_JSON_FILE_MAXSIZE           2000
 #define SYS_OTA_NUM_IMGS                    2
 #define SYS_OTA_INTF                        SYS_OTA_WIFI

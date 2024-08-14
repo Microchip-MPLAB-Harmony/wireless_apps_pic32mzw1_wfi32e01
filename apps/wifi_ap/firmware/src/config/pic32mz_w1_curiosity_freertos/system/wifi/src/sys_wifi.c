@@ -409,6 +409,9 @@ static void SYS_WIFI_APConnCallBack
             psStaConnInfo = SYS_WIFI_FindStaConnInfo(assocHandle);
             if(psStaConnInfo != NULL)
             {
+                SYS_CONSOLE_PRINT("\r\nDisconnected STA MAC Address=%x:%x:%x:%x:%x:%x", psStaConnInfo->wifiSrvcStaAppInfo.macAddr[0], psStaConnInfo->wifiSrvcStaAppInfo.macAddr[1], psStaConnInfo->wifiSrvcStaAppInfo.macAddr[2], psStaConnInfo->wifiSrvcStaAppInfo.macAddr[3], psStaConnInfo->wifiSrvcStaAppInfo.macAddr[4], psStaConnInfo->wifiSrvcStaAppInfo.macAddr[5]);
+                TCPIP_NET_HANDLE netHdl = TCPIP_STACK_NetHandleGet("PIC32MZW1");
+                TCPIP_DHCPS_LeaseEntryRemove(netHdl, (TCPIP_MAC_ADDR*)psStaConnInfo->wifiSrvcStaAppInfo.macAddr);
                 /* Update the application on receiving Disconnect event */
                 SYS_WIFI_CallBackFun(SYS_WIFI_DISCONNECT, psStaConnInfo->wifiSrvcStaAppInfo.macAddr, g_wifiSrvcCookie);
 
