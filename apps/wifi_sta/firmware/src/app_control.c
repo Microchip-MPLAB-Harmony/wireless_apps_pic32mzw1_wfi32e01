@@ -217,6 +217,13 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
 {
     if (argc < 2)
     {
+        SYS_CONSOLE_MESSAGE("usage: wlan scan <active | passive> <channel> \r\n");
+        SYS_CONSOLE_MESSAGE("EX: wlan scan active 1 - Runs active scan on channel 1 \r\n");
+        SYS_CONSOLE_MESSAGE("EX: wlan scan passive 6 - Runs passive scan on channel 6 \r\n");
+        SYS_CONSOLE_MESSAGE("Note: Setting channel to '0' or '255' scans all channels \r\n");
+        SYS_CONSOLE_MESSAGE("usage: wlan config <ssid> <ssid_length> <channel> <open | wpa2 | wpam | wpa3 | wpa3m | wep> <password>\r\n");
+        SYS_CONSOLE_MESSAGE("usage: wlan config <ssid> <ssid_length> <channel> <open | wpa2 | wpam | wpa3 | wpa3m | wep> <password>\r\n");
+        SYS_CONSOLE_MESSAGE("usage: wlan set regdomain <reg_domain_name>\r\n");
         return;
     }
     
@@ -372,7 +379,6 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
         if (argc < 3)
         {
             SYS_CONSOLE_MESSAGE("usage: wlan set regdomain <reg_domain_name>\r\n");
-            SYS_CONSOLE_MESSAGE("usage: wlan set channel_mask <channel_mask>\r\n");
             return;
         }
         
@@ -392,31 +398,7 @@ static void WLANCMDProcessing(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv
                 {
                     memset(app_controlData.regDomName, 0, 7);
                     strcpy(app_controlData.regDomName, argv[3]);
-                    app_controlData.regDomChanged = true;
-                }
-            }
-        }
-        else if (!strcmp("channel_mask", argv[2]))
-        {
-            if (argc < 4)
-            {
-                SYS_CONSOLE_MESSAGE("usage: wlan set channel_mask <channel_mask>\r\n");
-                SYS_CONSOLE_MESSAGE("Ex: wlan set channel_mask 2045 - Enables channel 1 and 3-11. Disables channel 2\r\n");
-                return;
-            }
-            else
-            {
-                unsigned int channelMask;
-                channelMask = strtoul(argv[3],0,10);
-                
-                if(0 == channelMask)
-                {
-                    SYS_CONSOLE_MESSAGE("Channel mask invalid \r\n");
-                    return;
-                }
-                else
-                {
-                    APP_ChannelMaskSet(channelMask);
+                    app_controlData.regDomChanged = true;                    
                 }
             }
         }

@@ -382,18 +382,6 @@ void APP_ScanSSIDList(uint8_t channel, uint8_t numSSIDs, char *ssid)
     }
 }
 
-void APP_ChannelMaskSet(uint16_t channelMask)
-{
-    if (WDRV_PIC32MZW_STATUS_OK != WDRV_PIC32MZW_BSSFindSetEnabledChannels24(appData.wdrvHandle, channelMask))
-    {
-        SYS_CONSOLE_MESSAGE("APP Error: Setting channel mask. Using the value set already \r\n");
-    }
-    else
-    {
-        SYS_CONSOLE_MESSAGE("APP: Channel mask set successfully \r\n");
-    }
-}
-
 void APP_RSSIGet()
 {
     if(!appData.isConnected)
@@ -556,6 +544,18 @@ static void WIFI_ConnectCallback(DRV_HANDLE handle, WDRV_PIC32MZW_ASSOC_HANDLE a
             SYS_CONSOLE_PRINT("APP: WiFi Connecting\r\n" );
             break;
     	}
+        
+        case WDRV_PIC32MZW_CONN_STATE_ROAMED:
+        {
+            /*** TO DO ***/
+            break;
+        }
+        
+        case WDRV_PIC32MZW_CONN_STATE_RECONNECTED:
+        {
+            /*** TO DO ***/
+            break;
+        }
     }
     drvAssocHandle = assocHandle;
 }
@@ -729,6 +729,12 @@ void APP_DRIVER_Tasks ( void )
                 }
                 
                 app_controlData.wlanConfigChanged = false;
+            }
+            if(app_controlData.regDomChanged)
+            {
+                SYS_CONSOLE_MESSAGE("APP: calling WDRV_PIC32MZW_RegDomainSet from APP_WIFI_IDLE\r\n" );
+                WDRV_PIC32MZW_RegDomainSet(appData.wdrvHandle, app_controlData.regDomName, APP_RegDomainSetCallback);
+                app_controlData.regDomChanged = false;
             }
             break;
         }
