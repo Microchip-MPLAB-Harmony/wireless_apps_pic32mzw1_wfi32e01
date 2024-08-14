@@ -38,7 +38,7 @@
 /** Weather information provider server(Configured with MHC).*/
 #define WEATHER_SERVER_NAME            "api.openweathermap.org"
 /** Input City Name. */
-#define CITY_NAME                        "New York"//"paris" "London" "Bengaluru" "Ahmedabad" "California" "New York"
+#define CITY_NAME                        "New%20York"//"paris" "London" "Bengaluru" "Ahmedabad" "California" "New York"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -77,7 +77,7 @@ void TcpClientCallback(uint32_t event, void *data, void* cookie)
 
         case SYS_NET_EVNT_RCVD_DATA:
         {
-            char networkBuffer[512];
+            char networkBuffer[1024];
             char *pcIndxPtr = NULL;
             char *pcEndPtr = NULL;
             memset(networkBuffer, 0, sizeof (networkBuffer));
