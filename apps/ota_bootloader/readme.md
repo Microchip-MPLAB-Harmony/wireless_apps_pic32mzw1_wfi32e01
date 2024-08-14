@@ -10,6 +10,8 @@ During boot-up, bootloader will check if any new valid image available in the ex
 
 If there is no new downloaded image present in the external flash, bootloader will handover the control to current application present in the program-flash area and application will start executing.
 
+During the first boot-up, the bootloader will take a back-up of the factory image. User should define the size of this FACTORY_RESET_IMG_SIZE in ota_config.h file. This value may vary based on the factory image size and the device flash size. The default value of FACTORY_RESET_IMG_SIZE will be 0xDF000. 
+
 **For more details , Please follow documentation provided for Over The Air (OTA) firmware update System Service** 
 <!--[link](https://github.com/Microchip-MPLAB-Harmony/wireless_system_pic32mzw1_wfi32e01/tree/master/system/ota/docs)-->
 

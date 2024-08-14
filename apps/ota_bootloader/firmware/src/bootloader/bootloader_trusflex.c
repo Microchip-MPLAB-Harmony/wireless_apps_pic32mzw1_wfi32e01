@@ -1568,6 +1568,7 @@ static BOOTLOADER_STATUS Bootloader_Task_FactoryReset(void) {
                 img = (FIRMWARE_IMAGE_HEADER *) ctx->buf;
                 img->type = IMG_TYPE_FACTORY_RESET;
                 ctx->buf[FIRMWARE_IMAGE_HEADER_STATUS_BYTE] = 0xF8; //img->status;
+                img->boot_addr = APP_IMG_BOOT_ADDR;
             }
 			#ifdef FACTORY_IMAGE_VERIFICATION_ENABLED
             CRYPT_SHA256_DataAdd(&ctx->sha256, ctx->buf, FLASH_SECTOR_SIZE);
@@ -1593,6 +1594,7 @@ static BOOTLOADER_STATUS Bootloader_Task_FactoryReset(void) {
             img = (FIRMWARE_IMAGE_HEADER *) ctx->buf;
             img->type = IMG_TYPE_FACTORY_RESET;
             img->status = 0xF8;
+            img->boot_addr = APP_IMG_BOOT_ADDR;
             INT_Flash_Write(APP_IMG_SLOT_ADDR, ctx->buf, FLASH_SECTOR_SIZE);
 
             bootloader.task.state = TASK_STATE_FR_DONE;
