@@ -854,9 +854,9 @@
         <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>pk4hybrid</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.35</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -1038,7 +1038,6 @@
       <C32>
         <property key="additional-warnings" value="true"/>
         <property key="addresss-attribute-use" value="false"/>
-        <property key="appendMe" value=""/>
         <property key="enable-app-io" value="false"/>
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-symbols" value="true"/>
@@ -1049,7 +1048,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
-        <property key="make-warnings-into-errors" value="true"/>
+        <property key="make-warnings-into-errors" value="false"/>
         <property key="optimization-level" value="-O1"/>
         <property key="place-data-into-section" value="false"/>
         <property key="post-instruction-scheduling" value="default"/>
@@ -1069,7 +1068,6 @@
         <property key="additional-options-chop-files" value="false"/>
       </C32-AR>
       <C32-AS>
-        <property key="appendMe" value=""/>
         <property key="assembler-symbols" value=""/>
         <property key="enable-symbols" value="true"/>
         <property key="exclude-floating-point-library" value="false"/>
@@ -1099,7 +1097,6 @@
         <property key="additional-options-use-response-files" value="false"/>
         <property key="additional-options-write-sla" value="false"/>
         <property key="allocate-dinit" value="false"/>
-        <property key="appendMe" value=""/>
         <property key="code-dinit" value="false"/>
         <property key="ebase-addr" value=""/>
         <property key="enable-check-sections" value="false"/>
@@ -1139,7 +1136,6 @@
       <C32CPP>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
-        <property key="appendMe" value=""/>
         <property key="check-new" value="false"/>
         <property key="eh-specs" value="true"/>
         <property key="enable-app-io" value="false"/>
@@ -1294,6 +1290,7 @@
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="event.recorder.debugger.behavior" value="Running"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>
         <property key="freeze.timers" value="false"/>
@@ -1335,6 +1332,7 @@
         <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.smart.program" value="When debugging only"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
         <property key="ptgProgramImage" value="true"/>
         <property key="ptgSendImage" value="true"/>
@@ -1397,6 +1395,7 @@
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="event.recorder.debugger.behavior" value="Running"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>
         <property key="freeze.timers" value="false"/>
@@ -1437,6 +1436,7 @@
         <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.smart.program" value="When debugging only"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
         <property key="ptgProgramImage" value="true"/>
         <property key="ptgSendImage" value="true"/>
