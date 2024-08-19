@@ -4,11 +4,11 @@
         <Dependency name="bsp" version="v3.20.1"/>
         <Dependency name="CMSIS-FreeRTOS" version="v11.0.1"/>
         <Dependency name="core" version="v3.13.5"/>
-        <Dependency name="crypto" version="v3.8.1"/>
+        <Dependency name="crypto" version="v3.8.2"/>
         <Dependency name="cryptoauthlib" version="v3.7.5"/>
-        <Dependency name="csp" version="v3.19.3"/>
+        <Dependency name="csp" version="v3.19.4"/>
         <Dependency name="dev_packs" version="v3.18.1"/>
-        <Dependency name="net" version="v3.12.0"/>
+        <Dependency name="net" version="v3.12.2"/>
         <Dependency name="paho.mqtt.embedded-c" version="v1.2.3"/>
         <Dependency name="usb" version="v3.14.0"/>
         <Dependency name="wireless_wifi" version="v3.11.1"/>
