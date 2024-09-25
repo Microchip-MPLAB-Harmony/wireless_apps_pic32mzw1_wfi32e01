@@ -21,7 +21,7 @@ package:
       version: "v3.7.5"
     - name: "csp"
       type: "package"
-      version: "v3.19.4"
+      version: "v3.19.5"
     - name: "dev_packs"
       type: "package"
       version: "v3.18.1"

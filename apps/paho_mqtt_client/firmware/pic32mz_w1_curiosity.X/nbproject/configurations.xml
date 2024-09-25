@@ -817,9 +817,9 @@
         <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>pk4hybrid</platformTool>
+        <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.35</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -1420,6 +1420,11 @@
                   value="Press to select which tool pack to use"/>
         <property key="voltagevalue" value="3.25"/>
       </pk4hybrid>
+      <pkob4hybrid>
+        <property key="memories.programmemory.ranges" value="10000000-100fffff"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/Work/Rio2_v3_9_1_Release/wireless_apps_pic32mzw1_wfi32e01/apps/paho_mqtt_client/firmware/pic32mz_w1_curiosity.X/debug/pic32mz_w1_curiosity/pic32mz_w1_curiosity_ptg"/>
+      </pkob4hybrid>
     </conf>
   </confs>
 </configurationDescriptor>

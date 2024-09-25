@@ -1,4 +1,4 @@
-<config configName="pic32mz_w1_curiosity_wolfcrypt" projectName="ota_bootloader_wolfcrypt" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.0">
+<config configName="pic32mz_w1_curiosity_wolfcrypt" projectName="ota_bootloader_wolfcrypt" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.1">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -55,7 +55,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.5.0"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.5.3"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -1073,7 +1073,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_wolfcrypt\configuration.h</file>
-         <hash>8234cbc4f516e1ad284367d70e217b2b19483d892a30a5936a0ec7563c3e758e</hash>
+         <hash>eaf8065f7ef6602b91fb97b15771c22d1c4e648f6d2442846b445ffc4df8c21b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_wolfcrypt\definitions.h</file>

@@ -58,7 +58,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 static SYS_MODULE_OBJ      g_udpServHandle = SYS_MODULE_OBJ_INVALID;
 
-#define RECV_BUFFER_LEN		1400
+#define RECV_BUFFER_LEN		1400  
 uint8_t recv_buffer[RECV_BUFFER_LEN + 1];
 
 void UdpClientCallback(uint32_t event, void *data, void* cookie)

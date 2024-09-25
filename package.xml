@@ -6,7 +6,7 @@
         <Dependency name="core" version="v3.13.5"/>
         <Dependency name="crypto" version="v3.8.2"/>
         <Dependency name="cryptoauthlib" version="v3.7.5"/>
-        <Dependency name="csp" version="v3.19.4"/>
+        <Dependency name="csp" version="v3.19.5"/>
         <Dependency name="dev_packs" version="v3.18.1"/>
         <Dependency name="net" version="v3.12.2"/>
         <Dependency name="paho.mqtt.embedded-c" version="v1.2.3"/>

@@ -1,4 +1,4 @@
-<config configName="pic32mz_w1_curiosity_freertos" projectName="wifi_ap_pic32mz_w1_curiosity_freertos" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.0">
+<config configName="pic32mz_w1_curiosity_freertos" projectName="wifi_ap_pic32mz_w1_curiosity_freertos" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.1">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -183,7 +183,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.3.2"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.5.3"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -829,7 +829,10 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
     &lt;GraphSettings canvasHeight=&quot;264&quot; canvasWidth=&quot;910&quot; dnOrder=&quot;0&quot;/&gt;
-    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;APPLICATION LAYER&quot;&gt;
+    &lt;PowerProfiles dnOrder=&quot;1&quot;&gt;
+      &lt;Profile dnOrder=&quot;0&quot; id=&quot;profile0&quot; name=&quot;Main&quot;/&gt;
+    &lt;/PowerProfiles&gt;
+    &lt;ComponentGraph dnOrder=&quot;2&quot; id=&quot;APPLICATION LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipDhcps&quot; x=&quot;460&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipDns&quot; x=&quot;600&quot; y=&quot;20&quot;/&gt;
@@ -838,18 +841,18 @@
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;tcpip_apps_config&quot; x=&quot;20&quot; y=&quot;19&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;2&quot; id=&quot;BASIC CONFIGURATION&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;3&quot; id=&quot;BASIC CONFIGURATION&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipCmd&quot; x=&quot;240&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpip_basic_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;3&quot; id=&quot;DRIVER LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;4&quot; id=&quot;DRIVER LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpip_driver_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;4&quot; id=&quot;NETWORK LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;5&quot; id=&quot;NETWORK LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipArp&quot; x=&quot;440&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipIPv4&quot; x=&quot;300&quot; y=&quot;20&quot;/&gt;
@@ -857,27 +860,26 @@
         &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;tcpip_network_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;5&quot; id=&quot;System Configuration&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;6&quot; id=&quot;System Configuration&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;FreeRTOS&quot; x=&quot;30&quot; y=&quot;580&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;HarmonyCore&quot; x=&quot;30&quot; y=&quot;480&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;TCP/IP STACK&quot; x=&quot;410&quot; y=&quot;360&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;core_timer&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;drvWifiPic32mzw1&quot; x=&quot;30&quot; y=&quot;340&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;drv_ba414e&quot; x=&quot;250&quot; y=&quot;340&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;lib_crypto&quot; x=&quot;30&quot; y=&quot;100&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;lib_wolfcrypt&quot; x=&quot;500&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;nvm&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;sys_command&quot; x=&quot;30&quot; y=&quot;180&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;sys_console&quot; x=&quot;450&quot; y=&quot;160&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;11&quot; id=&quot;sys_debug&quot; x=&quot;230&quot; y=&quot;220&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;12&quot; id=&quot;sys_time&quot; x=&quot;290&quot; y=&quot;100&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;13&quot; id=&quot;tcpipNetConfig&quot; x=&quot;430&quot; y=&quot;420&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;14&quot; id=&quot;tcpipStack&quot; x=&quot;250&quot; y=&quot;420&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;15&quot; id=&quot;uart1&quot; x=&quot;340&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;core_timer&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;drvWifiPic32mzw1&quot; x=&quot;30&quot; y=&quot;340&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;drv_ba414e&quot; x=&quot;250&quot; y=&quot;340&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;lib_crypto&quot; x=&quot;30&quot; y=&quot;100&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;lib_wolfcrypt&quot; x=&quot;500&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;nvm&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;sys_command&quot; x=&quot;30&quot; y=&quot;180&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;sys_console&quot; x=&quot;450&quot; y=&quot;160&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;sys_debug&quot; x=&quot;230&quot; y=&quot;220&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;11&quot; id=&quot;sys_time&quot; x=&quot;290&quot; y=&quot;100&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;12&quot; id=&quot;tcpipNetConfig&quot; x=&quot;430&quot; y=&quot;420&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;13&quot; id=&quot;tcpipStack&quot; x=&quot;250&quot; y=&quot;420&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;14&quot; id=&quot;uart1&quot; x=&quot;340&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;6&quot; id=&quot;TCP/IP STACK&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;7&quot; id=&quot;TCP/IP STACK&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;APPLICATION LAYER&quot; x=&quot;30&quot; y=&quot;260&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;BASIC CONFIGURATION&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
@@ -886,22 +888,23 @@
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;TRANSPORT LAYER&quot; x=&quot;380&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;7&quot; id=&quot;TRANSPORT LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;8&quot; id=&quot;TRANSPORT LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipTcp&quot; x=&quot;440&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipUdp&quot; x=&quot;300&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpip_transport_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;8&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;9&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;System Configuration&quot; x=&quot;480&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;core&quot; x=&quot;210&quot; y=&quot;60&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;dfp&quot; x=&quot;278&quot; y=&quot;18&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;stdio&quot; x=&quot;391&quot; y=&quot;72&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;sysWifiPic32mzw1&quot; x=&quot;129&quot; y=&quot;194&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;sysWifiProvPic32mzw1&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;uart3&quot; x=&quot;242&quot; y=&quot;105&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;TCP/IP STACK&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;core&quot; x=&quot;210&quot; y=&quot;60&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;dfp&quot; x=&quot;278&quot; y=&quot;18&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;stdio&quot; x=&quot;391&quot; y=&quot;72&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;sysWifiPic32mzw1&quot; x=&quot;129&quot; y=&quot;194&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;sysWifiProvPic32mzw1&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;uart3&quot; x=&quot;242&quot; y=&quot;105&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
   &lt;/UserData&gt;
@@ -5141,7 +5144,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\configuration.h</file>
-         <hash>cc23dfe4e923d731ee95b1642ef6ced198c376d5423d6c4a26c03c3fffa79c28</hash>
+         <hash>17c5080ca175f2ad95451cff4d34473e93d2377d7661506615cdfac20fd34211</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\crypto\crypto.h</file>
@@ -5153,7 +5156,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\definitions.h</file>
-         <hash>6499b970cfe8585cdfdd386dcf9674fc191191bd6a0973b9f38138927bb10f26</hash>
+         <hash>99d958c223307a27454c08fb8fe7db53bcff3805bcf4c4bac8d3b89ecf0c70f2</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\device.h</file>
@@ -5273,7 +5276,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\lib\pic32mzw1.a</file>
-         <hash>ce8c1f4feaadc86818a3bb7b30bcab0b6f89982550303720142a8e38cc75b3ef</hash>
+         <hash>78cfad3bab5bc3c8414bae1ac81ffc891e9144f98b177708fe996604d53a0ed7</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw.c</file>
@@ -5329,7 +5332,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\exceptions.c</file>
-         <hash>e2fd9e990c04c36dc7a93ef49e819ce0ea8c6a5ebb8bbb21a40955318ddd2118</hash>
+         <hash>d8d867098b4578d1c8221d25728bd2ea5d88c688fddda30d355fa7a5fb952de1</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\freertos_hooks.c</file>
@@ -5365,7 +5368,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\dhcp.h</file>
-         <hash>4594bbf9c37117583548d8a5cf7e54fb470b4cb60c5bd18f245b02f99ebf5f99</hash>
+         <hash>b4d999699bf15079ea9d3c907ac3cc77f3d0547b46b100413e58bc4530708559</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\dhcp_server.h</file>
@@ -5373,7 +5376,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\dhcps.h</file>
-         <hash>0c6459cf65d1c4da32a6e7b9f12b2edc9f525922411c2eda680e757d5e1bef0f</hash>
+         <hash>660852a6a642b29f23ffcdab88fd8931adc1acae051288691247ecddecc2d3ac</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\dhcpv6.h</file>
@@ -5397,7 +5400,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\http.h</file>
-         <hash>f911deb4198c712caf25ed6ffc749776586c0945e692fc222500fdf2a5cb479f</hash>
+         <hash>c624983fac1a910df704aea42e31de2dabf37e54f0994f36b945243d76fb69a9</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\http_net.h</file>
@@ -5425,7 +5428,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\ipv6.h</file>
-         <hash>b675c4df60b778005ba0cde22d44a25d8baf0991f631747d9f377830f0271f1f</hash>
+         <hash>a4748496db76d2c0fca2fc462666e934bc8067b496fcdc46a5b2f43b0be90f1f</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\lldp.h</file>
@@ -5441,7 +5444,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\smtp.h</file>
-         <hash>474828e7dc8a204101443abf70a5b622986734367e430eee2db797d20c67620c</hash>
+         <hash>79268ea631f733be1f34cab892fb9bb0d6e956652f805e5e96fd7d557c3129ba</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\smtpc.h</file>
@@ -5453,7 +5456,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\snmpv3.h</file>
-         <hash>8c24aaa8cc60fedc4077728ac0a219ed7d921c39fa78bbded08fd3232f37609f</hash>
+         <hash>aceaa660e21a025148679aef5bebc1a162376392cf66736388dbe4bbecbe80ce</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\sntp.h</file>
@@ -5461,7 +5464,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\arp.c</file>
-         <hash>a61a82c338f7b8409f82bb3c2e1f589a7930680d3fc765a90d71f2e0805b4fe3</hash>
+         <hash>79977f34fd72ff71a5cd9c5bebd932d9cb5d5300a5b5c8a4a2a48e59cc006578</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\arp_manager.h</file>
@@ -5489,7 +5492,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dhcp.c</file>
-         <hash>a629753d2f2d981f8004f7531c95dec09437223bac5939caa805018d6e1353ae</hash>
+         <hash>d0e21acd785cd7e1a6c8ea805caa09a4fed69f9a100372a37db79e9fea892b3f</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dhcp_manager.h</file>
@@ -5497,7 +5500,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dhcp_private.h</file>
-         <hash>23be25f5989fcd849e4690f7504f5321a326dc8e685c41d385f0ca6f1294af4b</hash>
+         <hash>239cf6740eedd49b616c0ed0d19a0e753d23ea39005ac45917cca0a739ea9c5c</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dhcp_server_manager.h</file>
@@ -5509,7 +5512,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dhcps.c</file>
-         <hash>2206e56866e8f045a6b2d6e4bd94c3dbfe377c9c21c8dc9d621cd1e6877bd19c</hash>
+         <hash>31018820b673c251a7616e1cc1917a09ab27e2afe0b182be854013db049750bb</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dhcps_manager.h</file>
@@ -5517,7 +5520,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dhcps_private.h</file>
-         <hash>05813acf368bf4936adb3ff2a8fe1a643e377d4552ec2bbff9259b49159e4a3d</hash>
+         <hash>5e8f0c30c2bc0abfe3ed2fd00fca8fa27f75980098f0dbc434ea793f4737497e</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dhcpv6_manager.h</file>
@@ -5541,7 +5544,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dnss.c</file>
-         <hash>f6171f71f461b29eada981a911a6535b0c7eebfe7c7f976c790b6abbe0d8b7e6</hash>
+         <hash>ca922a93aa093bb4e6a44cc746549ecee259a0f6439e489cc56f768e4bc2c0ae</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\dnss_manager.h</file>
@@ -5697,7 +5700,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\snmpv3_private.h</file>
-         <hash>99dce061177b8e4d7b6a2d05e0c9930184a5902e23e56b064927ffc38df5b7c2</hash>
+         <hash>2829d2d64b8dd0022f06f2dc93567cce8bc86c059130af2ea3028252b736a1f9</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\sntp.c</file>
@@ -5725,7 +5728,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_commands.c</file>
-         <hash>6b0979407f65fe3e4a0345b59551018c84bd9968de00716b10f5a51d4c47594a</hash>
+         <hash>bd191b1edf0eb4e2b48c781c8563f0036033a7d4a33cc2fc49651b4b3ddfb589</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_commands_manager.h</file>
@@ -5749,7 +5752,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_helpers.c</file>
-         <hash>9a4ecbe2ef8d7d68543bc4c9410aa04a99908f902a97d52cd5f1f2666b97ab07</hash>
+         <hash>01c815b30c11e011d30a60761ff0586213695c7405416ab90e2aab3ba4f38154</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_helpers_private.h</file>
@@ -5765,7 +5768,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_manager.c</file>
-         <hash>a349da5cf9b7604cdbc2615f6e738fae4acef9c189ec3b82bf67a1d3b0b07061</hash>
+         <hash>e9dec6713d48442e6ef68c99982c6ed4e971dbefc8d5f008c16ee406a77c21fe</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_manager_control.h</file>
@@ -5785,7 +5788,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_packet.c</file>
-         <hash>db457403eda9d5500a17439f9a737d5d37d114b23c53a16c3db211ee65f06589</hash>
+         <hash>e0414e6148ed6f2f36c57a2c1e91c7d1a1c668e1a9d0ce45680c28e83ee759e3</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_packet.h</file>
@@ -5825,7 +5828,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\udp.c</file>
-         <hash>666b20fc7b4c256205c0a0c5c93947ac3c87424e6479363c74f6c1ef8f85ee2b</hash>
+         <hash>86f5c342bb780dbb897afc351707a7c0cc96a56559b884fe4b5bb7dde466d431</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\udp_manager.h</file>
@@ -5833,7 +5836,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\udp_private.h</file>
-         <hash>da5614473b469d1f1b2b52c4b529fd13126fccc55684db2ad85a3c34c95997df</hash>
+         <hash>d45d62008b7e4978453c37e124a7205662558d4c0086ac03fab7b41990f3c9fa</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\zero_conf_helper.h</file>
@@ -5881,7 +5884,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\tcpip_mac.h</file>
-         <hash>7137ed6478803b511ada20f717583d7168e680c784b6d6c42dbaa75e4b928ea1</hash>
+         <hash>9622e737678d0333a496018e8d4191762002c8550528d681e1b85d21b53b873b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\tcpip_mac_bridge.h</file>
@@ -5913,7 +5916,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\udp.h</file>
-         <hash>ea405bdcd021f77c5002ff868dc513a76a1f4074cedc29f7df364c9a48b2e89d</hash>
+         <hash>29442924e56cb3a82e5973c04b23adca67a21ff4052876e12dc46e431e17f75d</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\zero_conf_link_local.h</file>
@@ -5953,7 +5956,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\p32MZ1025W104132.ld</file>
-         <hash>e849df6b26695298a99b211d74c905d887b94f25883e54b6dd489ceeed30be9e</hash>
+         <hash>ed773c18bcb76a06cb673da8ddabc215598912f30a7ccc69f9f56643b6766ce0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\peripheral\clk\plib_clk.c</file>
@@ -5973,11 +5976,11 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\peripheral\evic\plib_evic.c</file>
-         <hash>a9998a20c026c11351646e5f817dd260e31e000381ee82c220d608901b902526</hash>
+         <hash>3b3c67b5bd5f58e68f982ee6497e5b0c3b551dda0271b10251d3e3c43af8b5bc</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\peripheral\evic\plib_evic.h</file>
-         <hash>4d9c6de38398672e081c666b1cf471c1f7e1fa98e291f6dbcc14a625c82c6978</hash>
+         <hash>61f076457c5302ca6a2c990e31e4a588ae923795991315f68dd937bc31af9168</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\peripheral\gpio\plib_gpio.c</file>
@@ -6029,7 +6032,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\command\src\sys_command.c</file>
-         <hash>e13dfdfba00c4c9b65ef425ae0a568913d754b64e58bda03f37627b23bf9659a</hash>
+         <hash>84360285206bc304af70cc0b29fea061345ba6e27674613b5bb947da9fda0768</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\command\sys_command.h</file>
@@ -6069,7 +6072,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\debug\sys_debug.h</file>
-         <hash>6dc7375ac05501951020122a9baa63e17e9331e11423c70c8ddd3c0944fd632c</hash>
+         <hash>aa94da8f32cbcb40672145542d149d077ff8f4b25c08d47d53e3d206d1c6bb83</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\int\src\sys_int.c</file>
@@ -6165,7 +6168,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\tasks.c</file>
-         <hash>dd2ea74ef6bfa186cc69820276762f38b950584af8093c2afa8e9aa42dcf285a</hash>
+         <hash>d63cf713ba307838902a0dadf2af9b7d470fe70ad4017fdbfad19aa7615192ae</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\toolchain_specifics.h</file>

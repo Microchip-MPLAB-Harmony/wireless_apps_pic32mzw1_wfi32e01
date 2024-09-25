@@ -716,7 +716,7 @@ bool SYS_CMD_DELETE(SYS_CMD_DEVICE_NODE* pDeviceNode)
         {
             cmdIODevList.head = p_listnode->next;
         }
-        free(pDevNode);
+        OSAL_Free(pDevNode);
         return true;
     }
 
@@ -731,7 +731,7 @@ bool SYS_CMD_DELETE(SYS_CMD_DEVICE_NODE* pDeviceNode)
             if (cmdIODevList.tail==pDevNode) {
                 cmdIODevList.tail = pre_listnode;
             }
-            free(pDevNode);
+            OSAL_Free(pDevNode);
             return true;
         }
         pre_listnode = p_listnode;
@@ -898,7 +898,7 @@ static void CommandQuit(SYS_CMD_DEVICE_NODE* pCmdIO, int argc, char** argv)
             cmdIODevList.head = cmdIODevList.head->next;
         }
 
-        free(pCmdIoNode);
+        OSAL_Free(pCmdIoNode);
     }
 
     // no longer run the SYS_CMD_Tasks

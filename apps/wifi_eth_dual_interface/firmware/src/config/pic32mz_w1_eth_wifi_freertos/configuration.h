@@ -168,10 +168,6 @@ extern "C" {
 #define DRV_BA414E_RTOS_TASK_PRIORITY             1	
 
 
-#define SYS_WIFIPROV_NVMADDR        		0x900FF000
-#define SYS_WIFIPROV_SAVECONFIG        			true
-#define SYS_WIFIPROV_SOCKETPORT        		6666
-
 
 /*** ICMPv4 Server Configuration ***/
 #define TCPIP_STACK_USE_ICMP_SERVER
@@ -183,6 +179,10 @@ extern "C" {
 #define TCPIP_ICMP_TASK_TICK_RATE              33
 #define TCPIP_STACK_MAX_CLIENT_ECHO_REQUESTS   4
 #define TCPIP_ICMP_COMMAND_ENABLE              false
+
+#define SYS_WIFIPROV_NVMADDR        		0x900FF000
+#define SYS_WIFIPROV_SAVECONFIG        			true
+#define SYS_WIFIPROV_SOCKETPORT        		6666
 
 /*** TCPIP MAC Configuration ***/
 #define TCPIP_EMAC_TX_DESCRIPTORS				    8
@@ -513,6 +513,7 @@ extern "C" {
 #define SINGLE_THREADED
 #define NO_SIG_WRAPPER
 #define NO_ERROR_STRINGS
+#define WOLFSSL_MAX_ERROR_SZ 38 // Fix Mandatory Misra 21.18 caused by removing error strings with defining NO_ERROR_STRINGS
 #define NO_WOLFSSL_MEMORY
 // ---------- FUNCTIONAL CONFIGURATION END ----------
 

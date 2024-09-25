@@ -1,4 +1,4 @@
-<config configName="pic32mz_w1_curiosity_freertos" projectName="wifi_easy_config_pic32mz_w1_curiosity_freertos" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.0">
+<config configName="pic32mz_w1_curiosity_freertos" projectName="wifi_easy_config_pic32mz_w1_curiosity_freertos" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.1">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -207,7 +207,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.3.2"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.5.3"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -925,7 +925,10 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
     &lt;GraphSettings canvasHeight=&quot;291&quot; canvasWidth=&quot;727&quot; dnOrder=&quot;0&quot;/&gt;
-    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;APPLICATION LAYER&quot;&gt;
+    &lt;PowerProfiles dnOrder=&quot;1&quot;&gt;
+      &lt;Profile dnOrder=&quot;0&quot; id=&quot;profile0&quot; name=&quot;Main&quot;/&gt;
+    &lt;/PowerProfiles&gt;
+    &lt;ComponentGraph dnOrder=&quot;2&quot; id=&quot;APPLICATION LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipDhcp&quot; x=&quot;170&quot; y=&quot;60&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipDhcps&quot; x=&quot;30&quot; y=&quot;60&quot;/&gt;
@@ -936,18 +939,18 @@
         &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;tcpip_apps_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;2&quot; id=&quot;BASIC CONFIGURATION&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;3&quot; id=&quot;BASIC CONFIGURATION&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipCmd&quot; x=&quot;240&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpip_basic_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;3&quot; id=&quot;DRIVER LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;4&quot; id=&quot;DRIVER LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpip_driver_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;4&quot; id=&quot;NETWORK LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;5&quot; id=&quot;NETWORK LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipArp&quot; x=&quot;440&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipIPv4&quot; x=&quot;300&quot; y=&quot;20&quot;/&gt;
@@ -955,7 +958,7 @@
         &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;tcpip_network_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;5&quot; id=&quot;System Configuration&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;6&quot; id=&quot;System Configuration&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;FreeRTOS&quot; x=&quot;590&quot; y=&quot;340&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;HarmonyCore&quot; x=&quot;30&quot; y=&quot;380&quot;/&gt;
@@ -977,7 +980,7 @@
         &lt;ElementPosition dnOrder=&quot;17&quot; id=&quot;uart1&quot; x=&quot;340&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;6&quot; id=&quot;TCP/IP STACK&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;7&quot; id=&quot;TCP/IP STACK&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;APPLICATION LAYER&quot; x=&quot;30&quot; y=&quot;60&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;BASIC CONFIGURATION&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
@@ -986,14 +989,14 @@
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;TRANSPORT LAYER&quot; x=&quot;380&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;7&quot; id=&quot;TRANSPORT LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;8&quot; id=&quot;TRANSPORT LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipTcp&quot; x=&quot;440&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipUdp&quot; x=&quot;300&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpip_transport_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;8&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;9&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;BSP_PIC32MZ_W1_Curiosity&quot; x=&quot;203&quot; y=&quot;105&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;System Configuration&quot; x=&quot;304&quot; y=&quot;153&quot;/&gt;
@@ -4455,19 +4458,6 @@
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sysWifiProvPic32mzw1" name="SYS_WIFIPROV_CUSTOM_HTTP_SOURCE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sysWifiProvPic32mzw1&gt;
-  &lt;sysWifiProvPic32mzw1 dnOrder=&quot;0&quot; id=&quot;SYS_WIFIPROV_CUSTOM_HTTP_SOURCE&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/sysWifiProvPic32mzw1&gt;
-&lt;/sysWifiProvPic32mzw1&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sysWifiProvPic32mzw1" name="SYS_WIFIPROV_HTTP"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sysWifiProvPic32mzw1&gt;
   &lt;sysWifiProvPic32mzw1 dnOrder=&quot;0&quot; id=&quot;SYS_WIFIPROV_HTTP&quot;&gt;
@@ -4475,32 +4465,6 @@
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiProvPic32mzw1&quot; value=&quot;true&quot;/&gt;
       &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
-  &lt;/sysWifiProvPic32mzw1&gt;
-&lt;/sysWifiProvPic32mzw1&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sysWifiProvPic32mzw1" name="SYS_WIFIPROV_HTTP_SOURCE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sysWifiProvPic32mzw1&gt;
-  &lt;sysWifiProvPic32mzw1 dnOrder=&quot;0&quot; id=&quot;SYS_WIFIPROV_HTTP_SOURCE&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/sysWifiProvPic32mzw1&gt;
-&lt;/sysWifiProvPic32mzw1&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sysWifiProvPic32mzw1" name="SYS_WIFIPROV_MPFS_SOURCE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sysWifiProvPic32mzw1&gt;
-  &lt;sysWifiProvPic32mzw1 dnOrder=&quot;0&quot; id=&quot;SYS_WIFIPROV_MPFS_SOURCE&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
   &lt;/sysWifiProvPic32mzw1&gt;
 &lt;/sysWifiProvPic32mzw1&gt;
 </value>
@@ -5174,17 +5138,6 @@
          <value>NETWORK LAYER</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipArp" name="TCPIP_ARP_HEAP_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipArp&gt;
-  &lt;tcpipArp dnOrder=&quot;0&quot; id=&quot;TCPIP_ARP_HEAP_SIZE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipArp&quot; value=&quot;222&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipArp&gt;
-&lt;/tcpipArp&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipCmd" name="!@#harmonyAttachmentState"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipCmd&gt;
   &lt;tcpipCmd dnOrder=&quot;0&quot;/&gt;
@@ -5207,17 +5160,6 @@
          <value>APPLICATION LAYER</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipDhcp" name="TCPIP_DHCP_HEAP_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipDhcp&gt;
-  &lt;tcpipDhcp dnOrder=&quot;0&quot; id=&quot;TCPIP_DHCP_HEAP_SIZE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipDhcp&quot; value=&quot;88&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipDhcp&gt;
-&lt;/tcpipDhcp&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipDhcps" name="!@#harmonyAttachmentState"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipDhcps&gt;
   &lt;tcpipDhcps dnOrder=&quot;0&quot;/&gt;
@@ -5227,17 +5169,6 @@
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipDhcps" name="#&amp;__MCC_Group_Parrent_id"/>
          <value>APPLICATION LAYER</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipDhcps" name="TCPIP_DHCP_SERVER_HEAP_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipDhcps&gt;
-  &lt;tcpipDhcps dnOrder=&quot;0&quot; id=&quot;TCPIP_DHCP_SERVER_HEAP_SIZE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipDhcps&quot; value=&quot;492&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipDhcps&gt;
-&lt;/tcpipDhcps&gt;
-</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipDns" name="!@#harmonyAttachmentState"/>
@@ -5251,17 +5182,6 @@
          <value>APPLICATION LAYER</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipDns" name="TCPIP_DNS_CLIENT_HEAP_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipDns&gt;
-  &lt;tcpipDns dnOrder=&quot;0&quot; id=&quot;TCPIP_DNS_CLIENT_HEAP_SIZE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipDns&quot; value=&quot;504&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipDns&gt;
-&lt;/tcpipDns&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipDnss" name="!@#harmonyAttachmentState"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipDnss&gt;
   &lt;tcpipDnss dnOrder=&quot;0&quot;/&gt;
@@ -5273,17 +5193,6 @@
          <value>APPLICATION LAYER</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipDnss" name="TCPIP_DNSS_HEAP_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipDnss&gt;
-  &lt;tcpipDnss dnOrder=&quot;0&quot; id=&quot;TCPIP_DNSS_HEAP_SIZE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipDnss&quot; value=&quot;264&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipDnss&gt;
-&lt;/tcpipDnss&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipHttp" name="!@#harmonyAttachmentState"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipHttp&gt;
   &lt;tcpipHttp dnOrder=&quot;0&quot;/&gt;
@@ -5293,39 +5202,6 @@
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipHttp" name="#&amp;__MCC_Group_Parrent_id"/>
          <value>APPLICATION LAYER</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipHttp" name="TCPIP_HTTP_CUSTOM_TEMPLATE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipHttp&gt;
-  &lt;tcpipHttp dnOrder=&quot;0&quot; id=&quot;TCPIP_HTTP_CUSTOM_TEMPLATE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiProvPic32mzw1&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipHttp&gt;
-&lt;/tcpipHttp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipHttp" name="TCPIP_HTTP_CUSTOM_TEMPLATE_SL"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipHttp&gt;
-  &lt;tcpipHttp dnOrder=&quot;0&quot; id=&quot;TCPIP_HTTP_CUSTOM_TEMPLATE_SL&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiProvPic32mzw1&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipHttp&gt;
-&lt;/tcpipHttp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipHttp" name="TCPIP_HTTP_HEAP_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipHttp&gt;
-  &lt;tcpipHttp dnOrder=&quot;0&quot; id=&quot;TCPIP_HTTP_HEAP_SIZE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipHttp&quot; value=&quot;1840&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipHttp&gt;
-&lt;/tcpipHttp&gt;
-</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIPv4" name="!@#harmonyAttachmentState"/>
@@ -5348,124 +5224,6 @@
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="#&amp;__MCC_Group_Parrent_id"/>
          <value>NETWORK LAYER</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="TCPIP_ICMP_COMMAND_ENABLE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipIcmp&gt;
-  &lt;tcpipIcmp dnOrder=&quot;0&quot; id=&quot;TCPIP_ICMP_COMMAND_ENABLE&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-    &lt;Values dnOrder=&quot;1&quot;&gt;
-      &lt;User dnOrder=&quot;0&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipIcmp&gt;
-&lt;/tcpipIcmp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="TCPIP_ICMP_ECHO_REQUEST_TIMEOUT"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipIcmp&gt;
-  &lt;tcpipIcmp dnOrder=&quot;0&quot; id=&quot;TCPIP_ICMP_ECHO_REQUEST_TIMEOUT&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/tcpipIcmp&gt;
-&lt;/tcpipIcmp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="TCPIP_ICMP_TASK_TICK_RATE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipIcmp&gt;
-  &lt;tcpipIcmp dnOrder=&quot;0&quot; id=&quot;TCPIP_ICMP_TASK_TICK_RATE&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/tcpipIcmp&gt;
-&lt;/tcpipIcmp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUESTS"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipIcmp&gt;
-  &lt;tcpipIcmp dnOrder=&quot;0&quot; id=&quot;TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUESTS&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/tcpipIcmp&gt;
-&lt;/tcpipIcmp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUEST_BUFF_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipIcmp&gt;
-  &lt;tcpipIcmp dnOrder=&quot;0&quot; id=&quot;TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUEST_BUFF_SIZE&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/tcpipIcmp&gt;
-&lt;/tcpipIcmp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUEST_DATA_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipIcmp&gt;
-  &lt;tcpipIcmp dnOrder=&quot;0&quot; id=&quot;TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUEST_DATA_SIZE&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/tcpipIcmp&gt;
-&lt;/tcpipIcmp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUEST_DELAY"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipIcmp&gt;
-  &lt;tcpipIcmp dnOrder=&quot;0&quot; id=&quot;TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUEST_DELAY&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/tcpipIcmp&gt;
-&lt;/tcpipIcmp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="TCPIP_STACK_COMMANDS_ICMP_ECHO_TIMEOUT"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipIcmp&gt;
-  &lt;tcpipIcmp dnOrder=&quot;0&quot; id=&quot;TCPIP_STACK_COMMANDS_ICMP_ECHO_TIMEOUT&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/tcpipIcmp&gt;
-&lt;/tcpipIcmp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipIcmp" name="TCPIP_STACK_USE_ICMP_CLIENT"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipIcmp&gt;
-  &lt;tcpipIcmp dnOrder=&quot;0&quot; id=&quot;TCPIP_STACK_USE_ICMP_CLIENT&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiPic32mzw1&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipIcmp&gt;
-&lt;/tcpipIcmp&gt;
-</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipNetConfig" name="!@#harmonyAttachmentState"/>
@@ -5503,94 +5261,6 @@
          <value>tcpipNetConfig</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipNetConfig_0" name="TCPIP_NETWORK_DEFAULT_DNS_IDX0"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipNetConfig_0&gt;
-  &lt;tcpipNetConfig_0 dnOrder=&quot;0&quot; id=&quot;TCPIP_NETWORK_DEFAULT_DNS_IDX0&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipNetConfig_0&quot; value=&quot;192.168.1.1&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipNetConfig_0&gt;
-&lt;/tcpipNetConfig_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipNetConfig_0" name="TCPIP_NETWORK_DEFAULT_GATEWAY_IDX0"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipNetConfig_0&gt;
-  &lt;tcpipNetConfig_0 dnOrder=&quot;0&quot; id=&quot;TCPIP_NETWORK_DEFAULT_GATEWAY_IDX0&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipNetConfig_0&quot; value=&quot;192.168.1.1&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipNetConfig_0&gt;
-&lt;/tcpipNetConfig_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipNetConfig_0" name="TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX0"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipNetConfig_0&gt;
-  &lt;tcpipNetConfig_0 dnOrder=&quot;0&quot; id=&quot;TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX0&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipNetConfig_0&quot; value=&quot;MCHPBOARD_W&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipNetConfig_0&gt;
-&lt;/tcpipNetConfig_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipNetConfig_0" name="TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX0"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipNetConfig_0&gt;
-  &lt;tcpipNetConfig_0 dnOrder=&quot;0&quot; id=&quot;TCPIP_NETWORK_DEFAULT_INTERFACE_NAME_IDX0&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipNetConfig_0&quot; value=&quot;PIC32MZW1&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipNetConfig_0&gt;
-&lt;/tcpipNetConfig_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipNetConfig_0" name="TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX0"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipNetConfig_0&gt;
-  &lt;tcpipNetConfig_0 dnOrder=&quot;0&quot; id=&quot;TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX0&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipNetConfig_0&quot; value=&quot;0.0.0.0&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipNetConfig_0&gt;
-&lt;/tcpipNetConfig_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipNetConfig_0" name="TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX0"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipNetConfig_0&gt;
-  &lt;tcpipNetConfig_0 dnOrder=&quot;0&quot; id=&quot;TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX0&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipNetConfig_0&quot; value=&quot;WDRV_PIC32MZW1_MACObject&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipNetConfig_0&gt;
-&lt;/tcpipNetConfig_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipNetConfig_0" name="TCPIP_STACK_NETWORK_CONFIG_IDX0"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipNetConfig_0&gt;
-  &lt;tcpipNetConfig_0 dnOrder=&quot;0&quot; id=&quot;TCPIP_STACK_NETWORK_CONFIG_IDX0&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipNetConfig_0&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipNetConfig_0&gt;
-&lt;/tcpipNetConfig_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipNetConfig_0" name="TCPIP_STACK_NETWORK_CONFIG_NUMBER"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipNetConfig_0&gt;
-  &lt;tcpipNetConfig_0 dnOrder=&quot;0&quot; id=&quot;TCPIP_STACK_NETWORK_CONFIG_NUMBER&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipNetConfig_0&quot; value=&quot;0&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipNetConfig_0&gt;
-&lt;/tcpipNetConfig_0&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipSntp" name="!@#harmonyAttachmentState"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipSntp&gt;
   &lt;tcpipSntp dnOrder=&quot;0&quot;/&gt;
@@ -5600,28 +5270,6 @@
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipSntp" name="#&amp;__MCC_Group_Parrent_id"/>
          <value>APPLICATION LAYER</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipSntp" name="TCPIP_NTP_DEFAULT_IF"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipSntp&gt;
-  &lt;tcpipSntp dnOrder=&quot;0&quot; id=&quot;TCPIP_NTP_DEFAULT_IF&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipSntp&quot; value=&quot;PIC32MZW1&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipSntp&gt;
-&lt;/tcpipSntp&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipSntp" name="TCPIP_NTP_TASK_TICK_RATE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipSntp&gt;
-  &lt;tcpipSntp dnOrder=&quot;0&quot; id=&quot;TCPIP_NTP_TASK_TICK_RATE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiPic32mzw1&quot; value=&quot;10&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipSntp&gt;
-&lt;/tcpipSntp&gt;
-</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipStack" name="!@#harmonyAttachmentState"/>
@@ -5801,17 +5449,6 @@
          <value>TRANSPORT LAYER</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipTcp" name="TCPIP_TCP_HEAP_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipTcp&gt;
-  &lt;tcpipTcp dnOrder=&quot;0&quot; id=&quot;TCPIP_TCP_HEAP_SIZE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipTcp&quot; value=&quot;12264&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipTcp&gt;
-&lt;/tcpipTcp&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipUdp" name="!@#harmonyAttachmentState"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipUdp&gt;
   &lt;tcpipUdp dnOrder=&quot;0&quot;/&gt;
@@ -5823,111 +5460,12 @@
          <value>TRANSPORT LAYER</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpipUdp" name="TCPIP_UDP_HEAP_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpipUdp&gt;
-  &lt;tcpipUdp dnOrder=&quot;0&quot; id=&quot;TCPIP_UDP_HEAP_SIZE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpipUdp&quot; value=&quot;16360&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpipUdp&gt;
-&lt;/tcpipUdp&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_apps_config" name="#&amp;__MCC_Group_Parrent_id"/>
          <value>APPLICATION LAYER</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_apps_config" name="TCPIP_AUTOCONFIG_ENABLE_DHCP_CLIENT"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_apps_config&gt;
-  &lt;tcpip_apps_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_DHCP_CLIENT&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiPic32mzw1&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_apps_config&gt;
-&lt;/tcpip_apps_config&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_apps_config" name="TCPIP_AUTOCONFIG_ENABLE_DHCP_SERVER"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_apps_config&gt;
-  &lt;tcpip_apps_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_DHCP_SERVER&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiPic32mzw1&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_apps_config&gt;
-&lt;/tcpip_apps_config&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_apps_config" name="TCPIP_AUTOCONFIG_ENABLE_DNS_CLIENT"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_apps_config&gt;
-  &lt;tcpip_apps_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_DNS_CLIENT&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiPic32mzw1&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_apps_config&gt;
-&lt;/tcpip_apps_config&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_apps_config" name="TCPIP_AUTOCONFIG_ENABLE_DNS_SERVER"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_apps_config&gt;
-  &lt;tcpip_apps_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_DNS_SERVER&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiPic32mzw1&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_apps_config&gt;
-&lt;/tcpip_apps_config&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_apps_config" name="TCPIP_AUTOCONFIG_ENABLE_SNTP"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_apps_config&gt;
-  &lt;tcpip_apps_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_SNTP&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;User dnOrder=&quot;0&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_apps_config&gt;
-&lt;/tcpip_apps_config&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_basic_config" name="#&amp;__MCC_Group_Parrent_id"/>
          <value>BASIC CONFIGURATION</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_basic_config" name="TCPIP_AUTOCONFIG_ENABLE_NETCONFIG"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_basic_config&gt;
-  &lt;tcpip_basic_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_NETCONFIG&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpip_apps_config&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_basic_config&gt;
-&lt;/tcpip_basic_config&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_basic_config" name="TCPIP_AUTOCONFIG_ENABLE_STACK"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_basic_config&gt;
-  &lt;tcpip_basic_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_STACK&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpip_apps_config&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_basic_config&gt;
-&lt;/tcpip_basic_config&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_basic_config" name="TCPIP_AUTOCONFIG_ENABLE_TCPIPCMD"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_basic_config&gt;
-  &lt;tcpip_basic_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_TCPIPCMD&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiPic32mzw1&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_basic_config&gt;
-&lt;/tcpip_basic_config&gt;
-</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_driver_config" name="#&amp;__MCC_Group_Parrent_id"/>
@@ -5938,63 +5476,8 @@
          <value>NETWORK LAYER</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_network_config" name="TCPIP_AUTOCONFIG_ENABLE_ARP"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_network_config&gt;
-  &lt;tcpip_network_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_ARP&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpip_network_config&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_network_config&gt;
-&lt;/tcpip_network_config&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_network_config" name="TCPIP_AUTOCONFIG_ENABLE_ICMPv4"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_network_config&gt;
-  &lt;tcpip_network_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_ICMPv4&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiPic32mzw1&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_network_config&gt;
-&lt;/tcpip_network_config&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_network_config" name="TCPIP_AUTOCONFIG_ENABLE_IPV4"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_network_config&gt;
-  &lt;tcpip_network_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_IPV4&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpip_apps_config&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_network_config&gt;
-&lt;/tcpip_network_config&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_transport_config" name="#&amp;__MCC_Group_Parrent_id"/>
          <value>TRANSPORT LAYER</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_transport_config" name="TCPIP_AUTOCONFIG_ENABLE_TCP"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_transport_config&gt;
-  &lt;tcpip_transport_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_TCP&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sysWifiPic32mzw1&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_transport_config&gt;
-&lt;/tcpip_transport_config&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcpip_transport_config" name="TCPIP_AUTOCONFIG_ENABLE_UDP"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcpip_transport_config&gt;
-  &lt;tcpip_transport_config dnOrder=&quot;0&quot; id=&quot;TCPIP_AUTOCONFIG_ENABLE_UDP&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcpip_apps_config&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/tcpip_transport_config&gt;
-&lt;/tcpip_transport_config&gt;
-</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="uart1" name="!@#harmonyAttachmentState"/>
@@ -6368,15 +5851,15 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\configuration.h</file>
-         <hash>17f708a22e02c48837a5463be1838ecc5bda4499de50a6bfd7e92e40ec1cf9a1</hash>
+         <hash>2355384a901dfaf08e647e035997000457d58de9f7156cff47c04bea36afbd43</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\crypto\crypto.h</file>
-         <hash>89d2747602540d5216047edf6aaaa8e4bcf092c4a8b3ee2b700f1a7237514f57</hash>
+         <hash>63bc6589b6538aeb76bc00351d3b99016c8357699c9403067f79a7f43461d208</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\crypto\src\crypto.c</file>
-         <hash>4d62f32e7abe92e85613c095176465c1a0a92e207eb85f050730f8c45039bfa5</hash>
+         <hash>4c1b271685e092105d8271ee0615ac36c95abbea944b3e3c8e5bc194da00c014</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\definitions.h</file>
@@ -6536,7 +6019,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\lib\pic32mzw1.a</file>
-         <hash>ce8c1f4feaadc86818a3bb7b30bcab0b6f89982550303720142a8e38cc75b3ef</hash>
+         <hash>78cfad3bab5bc3c8414bae1ac81ffc891e9144f98b177708fe996604d53a0ed7</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw.c</file>
@@ -6688,7 +6171,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\ipv6.h</file>
-         <hash>b675c4df60b778005ba0cde22d44a25d8baf0991f631747d9f377830f0271f1f</hash>
+         <hash>a4748496db76d2c0fca2fc462666e934bc8067b496fcdc46a5b2f43b0be90f1f</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\lldp.h</file>
@@ -6996,7 +6479,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_commands.c</file>
-         <hash>f10116b6f8e2d8e9076dbc507ec998aa4cedeb205f00125a2d9bec0ec44f67d5</hash>
+         <hash>bd191b1edf0eb4e2b48c781c8563f0036033a7d4a33cc2fc49651b4b3ddfb589</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\tcpip_commands_manager.h</file>
@@ -7096,7 +6579,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\udp.c</file>
-         <hash>666b20fc7b4c256205c0a0c5c93947ac3c87424e6479363c74f6c1ef8f85ee2b</hash>
+         <hash>86f5c342bb780dbb897afc351707a7c0cc96a56559b884fe4b5bb7dde466d431</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\udp_manager.h</file>
@@ -7104,7 +6587,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\udp_private.h</file>
-         <hash>da5614473b469d1f1b2b52c4b529fd13126fccc55684db2ad85a3c34c95997df</hash>
+         <hash>d45d62008b7e4978453c37e124a7205662558d4c0086ac03fab7b41990f3c9fa</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\src\zero_conf_helper.h</file>
@@ -7152,7 +6635,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\tcpip_mac.h</file>
-         <hash>7137ed6478803b511ada20f717583d7168e680c784b6d6c42dbaa75e4b928ea1</hash>
+         <hash>9622e737678d0333a496018e8d4191762002c8550528d681e1b85d21b53b873b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\tcpip_mac_bridge.h</file>
@@ -7184,7 +6667,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\udp.h</file>
-         <hash>ea405bdcd021f77c5002ff868dc513a76a1f4074cedc29f7df364c9a48b2e89d</hash>
+         <hash>29442924e56cb3a82e5973c04b23adca67a21ff4052876e12dc46e431e17f75d</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\library\tcpip\zero_conf_link_local.h</file>
@@ -7224,7 +6707,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\p32MZ1025W104132.ld</file>
-         <hash>e849df6b26695298a99b211d74c905d887b94f25883e54b6dd489ceeed30be9e</hash>
+         <hash>ed773c18bcb76a06cb673da8ddabc215598912f30a7ccc69f9f56643b6766ce0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\peripheral\cache\plib_cache.c</file>
@@ -7480,7 +6963,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\wifi\src\sys_wifi.c</file>
-         <hash>0915fcb95546133b646309815a0f32e2f645f0c6f20bffcfc825e919d34248e6</hash>
+         <hash>a46c15830fc4da50337db83606793c8cf4a6cd4eaa8a8d126e3a40f1fabff29c</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_curiosity_freertos\system\wifi\sys_wifi.h</file>
@@ -7535,8 +7018,20 @@
          <hash>451e0878e9fcf6cf9fab046c1452ea662757988346c7f39e6bc98478ca25f995</hash>
       </entry>
       <entry>
+         <file>..\src\custom_http_app.c</file>
+         <hash>d76f87572ce42a3bc40742f56670eba33d8f0dcf9f8d31cc7170a288018bbde6</hash>
+      </entry>
+      <entry>
+         <file>..\src\http_print.c</file>
+         <hash>1f9821d1a2a5ead5cfa8fc6c2f9f22101509193f57eb705bd133a21a9a5ff92d</hash>
+      </entry>
+      <entry>
          <file>..\src\main.c</file>
          <hash>d3c233d419e6304bfacbafc18cc68c0f5c26e365f23b20ea40ccfac458f664c5</hash>
+      </entry>
+      <entry>
+         <file>..\src\mpfs_img2.c</file>
+         <hash>58eadb3c14ab6c4f3d540f3228eb4b110f7fee99441376efcb118e06c296cfdb</hash>
       </entry>
       <entry>
          <file>..\src\third_party\rtos\FreeRTOS\Source\FreeRTOS_tasks.c</file>

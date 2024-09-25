@@ -69,16 +69,6 @@ void _DRV_BA414E_Tasks(  void *pvParameters  )
     }
 }
 
-
-void _TCPIP_STACK_Task(  void *pvParameters  )
-{
-    while(1)
-    {
-        TCPIP_STACK_Task(sysObj.tcpip);
-        vTaskDelay(4 / portTICK_PERIOD_MS);
-    }
-}
-
 /* Handle for the APP_Tasks. */
 TaskHandle_t xAPP_Tasks;
 
@@ -88,6 +78,16 @@ static void lAPP_Tasks(  void *pvParameters  )
     {
         APP_Tasks();
         vTaskDelay(4000U / portTICK_PERIOD_MS);
+    }
+}
+
+
+void _TCPIP_STACK_Task(  void *pvParameters  )
+{
+    while(1)
+    {
+        TCPIP_STACK_Task(sysObj.tcpip);
+        vTaskDelay(4 / portTICK_PERIOD_MS);
     }
 }
 

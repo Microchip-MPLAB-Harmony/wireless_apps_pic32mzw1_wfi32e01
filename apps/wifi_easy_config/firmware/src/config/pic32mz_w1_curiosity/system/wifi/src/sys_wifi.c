@@ -843,8 +843,7 @@ static SYS_WIFI_RESULT SYS_WIFI_SetScan (void)
 
         if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_BSSFindSetScanMatchMode(g_wifiSrvcObj.wifiSrvcDrvHdl, g_wifiSrvcScanConfig.matchMode))
         {
-            if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_BSSFindSetScanChannels24(g_wifiSrvcObj.wifiSrvcDrvHdl, g_wifiSrvcScanConfig.chan24Mask))
-            {
+            
                 if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_BSSFindSetScanParameters(g_wifiSrvcObj.wifiSrvcDrvHdl, g_wifiSrvcScanConfig.numSlots, g_wifiSrvcScanConfig.activeSlotTime, g_wifiSrvcScanConfig.passiveSlotTime, g_wifiSrvcScanConfig.numProbes))
                 {
                     if (WDRV_PIC32MZW_STATUS_OK == WDRV_PIC32MZW_BSSFindFirst(g_wifiSrvcObj.wifiSrvcDrvHdl, g_wifiSrvcScanConfig.channel, g_wifiSrvcScanConfig.mode, pSSIDList, (WDRV_PIC32MZW_BSSFIND_NOTIFY_CALLBACK) g_wifiSrvcScanConfig.pNotifyCallback))   
@@ -852,7 +851,7 @@ static SYS_WIFI_RESULT SYS_WIFI_SetScan (void)
                         ret = SYS_WIFI_SUCCESS ;
                     }
                 }
-            }
+
         }
     }
     return ret;

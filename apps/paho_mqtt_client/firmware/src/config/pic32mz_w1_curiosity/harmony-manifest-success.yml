@@ -4,23 +4,25 @@
 
 
 project: paho_mqtt_client
-creation_date: 2024-04-18T16:21:59.773+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2024-09-25T09:39:24.376+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mcc_mode: IDE            # [IDE|Standalone|Headless]
-mcc_version: v5.5.0
-mcc_core_version: v5.7.0
+mcc_version: v5.5.1
+mcc_core_version: v5.7.1
 mplabx_version: v6.20        # if MPLAB X plugin only
-harmony_version: v1.3.2
-compiler: XC32 4.35
+harmony_version: v1.5.2
+compiler: XC32 4.45
 
 modules:
-    - {name: "core", version: "v3.13.3"}
-    - {name: "csp", version: "v3.18.4"}
-    - {name: "wireless_wifi", version: "v3.10.1"}
+    - {name: "core", version: "v3.13.5"}
+    - {name: "csp", version: "v3.19.6"}
+    - {name: "wireless_wifi", version: "v3.11.1"}
     - {name: "paho.mqtt.embedded-c", version: "v1.2.3"}
-    - {name: "dev_packs", version: "v3.18.1"}
-    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.9.0"}
+    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.9.1"}
     - {name: "wolfssl", version: "v5.4.0"}
-    - {name: "net", version: "v3.11.0"}
-    - {name: "crypto", version: "v3.8.1"}
+    - {name: "net", version: "v3.12.2"}
+    - {name: "crypto", version: "v3.8.2"}
+
+packs:
+    - {name: "PIC32MZ-W_DFP", version: "1.8.326"}
 

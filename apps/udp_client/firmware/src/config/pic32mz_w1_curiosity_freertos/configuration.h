@@ -89,7 +89,7 @@ extern "C" {
 #define SYS_NET_INDEX0_RECONNECT       			1
 #define SYS_NET_INDEX0_ENABLE_TLS        		0
 #define SYS_NET_INDEX0_IPPROT       			SYS_NET_IP_PROT_UDP
-#define SYS_NET_INDEX0_HOST_NAME        		"192.168.79.14"//"192.168.43.95"
+#define SYS_NET_INDEX0_HOST_NAME        		"192.168.43.95"
 
 
 
@@ -483,6 +483,7 @@ extern "C" {
 #define FREERTOS
 #define NO_SIG_WRAPPER
 #define NO_ERROR_STRINGS
+#define WOLFSSL_MAX_ERROR_SZ 38 // Fix Mandatory Misra 21.18 caused by removing error strings with defining NO_ERROR_STRINGS
 #define NO_WOLFSSL_MEMORY
 // ---------- FUNCTIONAL CONFIGURATION END ----------
 
@@ -521,7 +522,7 @@ extern "C" {
 #define SYS_WIFI_STA_PWD        			"password"
 
 
-#define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPAWPA2MIXED 
+#define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPA2
 
 
 

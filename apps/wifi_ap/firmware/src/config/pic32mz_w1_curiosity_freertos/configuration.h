@@ -173,9 +173,6 @@ extern "C" {
 #define DRV_BA414E_RTOS_TASK_PRIORITY             1	
 
 
-#define SYS_WIFIPROV_NVMADDR        		0x900FF000
-#define SYS_WIFIPROV_SAVECONFIG        			true
-
 
 /*** ICMPv4 Server Configuration ***/
 #define TCPIP_STACK_USE_ICMP_SERVER
@@ -192,6 +189,9 @@ extern "C" {
 #define TCPIP_STACK_COMMANDS_ICMP_ECHO_TIMEOUT          5000
 #define TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUEST_BUFF_SIZE    2000
 #define TCPIP_STACK_COMMANDS_ICMP_ECHO_REQUEST_DATA_SIZE    100
+
+#define SYS_WIFIPROV_NVMADDR        		0x900FF000
+#define SYS_WIFIPROV_SAVECONFIG        			true
 
 
 /*** TCP Configuration ***/

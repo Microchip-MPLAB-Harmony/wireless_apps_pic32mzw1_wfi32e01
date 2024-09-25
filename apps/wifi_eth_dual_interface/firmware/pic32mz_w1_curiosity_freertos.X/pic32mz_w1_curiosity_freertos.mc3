@@ -1,4 +1,4 @@
-<config configName="pic32mz_w1_eth_wifi_freertos" projectName="pic32mz_w1_curiosity_freertos" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.0">
+<config configName="pic32mz_w1_eth_wifi_freertos" projectName="pic32mz_w1_curiosity_freertos" configVersion="1.1" device="PIC32MZ1025W104132" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.1">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -183,7 +183,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.3.2"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.5.3"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -817,25 +817,28 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
     &lt;GraphSettings canvasHeight=&quot;576&quot; canvasWidth=&quot;910&quot; dnOrder=&quot;0&quot;/&gt;
-    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;APPLICATION LAYER&quot;&gt;
+    &lt;PowerProfiles dnOrder=&quot;1&quot;&gt;
+      &lt;Profile dnOrder=&quot;0&quot; id=&quot;profile0&quot; name=&quot;Main&quot;/&gt;
+    &lt;/PowerProfiles&gt;
+    &lt;ComponentGraph dnOrder=&quot;2&quot; id=&quot;APPLICATION LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipDhcps&quot; x=&quot;440&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipDnss&quot; x=&quot;720&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpip_apps_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;2&quot; id=&quot;BASIC CONFIGURATION&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;3&quot; id=&quot;BASIC CONFIGURATION&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipCmd&quot; x=&quot;240&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpip_basic_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;3&quot; id=&quot;DRIVER LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;4&quot; id=&quot;DRIVER LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpip_driver_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;4&quot; id=&quot;NETWORK LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;5&quot; id=&quot;NETWORK LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipArp&quot; x=&quot;420&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipIPv4&quot; x=&quot;280&quot; y=&quot;20&quot;/&gt;
@@ -843,32 +846,31 @@
         &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;tcpip_network_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;5&quot; id=&quot;System Configuration&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;6&quot; id=&quot;System Configuration&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;FreeRTOS&quot; x=&quot;250&quot; y=&quot;400&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;HarmonyCore&quot; x=&quot;730&quot; y=&quot;300&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;TCP/IP STACK&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;core&quot; x=&quot;46&quot; y=&quot;266&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;core_timer&quot; x=&quot;160&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;dfp&quot; x=&quot;250&quot; y=&quot;360&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;drvExtPhyLan8740&quot; x=&quot;393&quot; y=&quot;473&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;drvMiim&quot; x=&quot;263&quot; y=&quot;480&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;drvPic32mEthmac&quot; x=&quot;487&quot; y=&quot;458&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;drvWifiPic32mzw1&quot; x=&quot;30&quot; y=&quot;300&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;drv_ba414e&quot; x=&quot;770&quot; y=&quot;180&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;11&quot; id=&quot;lib_crypto&quot; x=&quot;440&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;12&quot; id=&quot;lib_wolfcrypt&quot; x=&quot;680&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;13&quot; id=&quot;nvm&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;14&quot; id=&quot;sys_command&quot; x=&quot;390&quot; y=&quot;100&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;15&quot; id=&quot;sys_console&quot; x=&quot;190&quot; y=&quot;100&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;16&quot; id=&quot;sys_debug&quot; x=&quot;590&quot; y=&quot;180&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;17&quot; id=&quot;sys_time&quot; x=&quot;30&quot; y=&quot;100&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;18&quot; id=&quot;tcpipNetConfig&quot; x=&quot;570&quot; y=&quot;300&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;19&quot; id=&quot;tcpipStack&quot; x=&quot;390&quot; y=&quot;220&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;20&quot; id=&quot;uart1&quot; x=&quot;300&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;core&quot; x=&quot;46&quot; y=&quot;266&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;core_timer&quot; x=&quot;160&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;dfp&quot; x=&quot;250&quot; y=&quot;360&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;drvExtPhyLan8740&quot; x=&quot;393&quot; y=&quot;473&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;drvMiim&quot; x=&quot;263&quot; y=&quot;480&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;drvPic32mEthmac&quot; x=&quot;487&quot; y=&quot;458&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;drvWifiPic32mzw1&quot; x=&quot;30&quot; y=&quot;300&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;drv_ba414e&quot; x=&quot;770&quot; y=&quot;180&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;lib_crypto&quot; x=&quot;440&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;11&quot; id=&quot;lib_wolfcrypt&quot; x=&quot;680&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;12&quot; id=&quot;nvm&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;13&quot; id=&quot;sys_command&quot; x=&quot;390&quot; y=&quot;100&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;14&quot; id=&quot;sys_console&quot; x=&quot;190&quot; y=&quot;100&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;15&quot; id=&quot;sys_debug&quot; x=&quot;590&quot; y=&quot;180&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;16&quot; id=&quot;sys_time&quot; x=&quot;30&quot; y=&quot;100&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;17&quot; id=&quot;tcpipNetConfig&quot; x=&quot;570&quot; y=&quot;300&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;18&quot; id=&quot;tcpipStack&quot; x=&quot;390&quot; y=&quot;220&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;19&quot; id=&quot;uart1&quot; x=&quot;300&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;6&quot; id=&quot;TCP/IP STACK&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;7&quot; id=&quot;TCP/IP STACK&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;APPLICATION LAYER&quot; x=&quot;700&quot; y=&quot;19&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;BASIC CONFIGURATION&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
@@ -877,18 +879,19 @@
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;TRANSPORT LAYER&quot; x=&quot;380&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;7&quot; id=&quot;TRANSPORT LAYER&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;8&quot; id=&quot;TRANSPORT LAYER&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;tcpipTcp&quot; x=&quot;440&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;tcpipUdp&quot; x=&quot;300&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;tcpip_transport_config&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;ComponentGraph dnOrder=&quot;8&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;9&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;System Configuration&quot; x=&quot;460&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;sysWifiPic32mzw1&quot; x=&quot;320&quot; y=&quot;20&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;sysWifiProvPic32mzw1&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;TCP/IP STACK&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;sysWifiPic32mzw1&quot; x=&quot;320&quot; y=&quot;20&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;sysWifiProvPic32mzw1&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
   &lt;/UserData&gt;
@@ -4457,19 +4460,19 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\configuration.h</file>
-         <hash>cb0bbaa79d70d310e112556ed7af9366e01aa27d2966443a0caee90a5111cc4d</hash>
+         <hash>aad3a3545756863eaf6dd75e6376077dea5eaf6ce92a2151b583633bcad510e1</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\crypto\crypto.h</file>
-         <hash>89d2747602540d5216047edf6aaaa8e4bcf092c4a8b3ee2b700f1a7237514f57</hash>
+         <hash>63bc6589b6538aeb76bc00351d3b99016c8357699c9403067f79a7f43461d208</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\crypto\src\crypto.c</file>
-         <hash>4d62f32e7abe92e85613c095176465c1a0a92e207eb85f050730f8c45039bfa5</hash>
+         <hash>4c1b271685e092105d8271ee0615ac36c95abbea944b3e3c8e5bc194da00c014</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\definitions.h</file>
-         <hash>9f4b846ae6d53ecceb1ebcde8f658c71e7a686eb3cd3e7bb38414e7bac280d25</hash>
+         <hash>6166ecb4e36027c87c5d62ac49dce678dbdeb83dee76d43a304b415e3ba886ad</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\device.h</file>
@@ -4665,7 +4668,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\driver\wifi\pic32mzw1\lib\pic32mzw1.a</file>
-         <hash>ce8c1f4feaadc86818a3bb7b30bcab0b6f89982550303720142a8e38cc75b3ef</hash>
+         <hash>78cfad3bab5bc3c8414bae1ac81ffc891e9144f98b177708fe996604d53a0ed7</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\driver\wifi\pic32mzw1\wdrv_pic32mzw.c</file>
@@ -4817,7 +4820,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\ipv6.h</file>
-         <hash>b675c4df60b778005ba0cde22d44a25d8baf0991f631747d9f377830f0271f1f</hash>
+         <hash>a4748496db76d2c0fca2fc462666e934bc8067b496fcdc46a5b2f43b0be90f1f</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\lldp.h</file>
@@ -5113,7 +5116,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\src\tcpip_commands.c</file>
-         <hash>f10116b6f8e2d8e9076dbc507ec998aa4cedeb205f00125a2d9bec0ec44f67d5</hash>
+         <hash>bd191b1edf0eb4e2b48c781c8563f0036033a7d4a33cc2fc49651b4b3ddfb589</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\src\tcpip_commands_manager.h</file>
@@ -5213,7 +5216,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\src\udp.c</file>
-         <hash>666b20fc7b4c256205c0a0c5c93947ac3c87424e6479363c74f6c1ef8f85ee2b</hash>
+         <hash>86f5c342bb780dbb897afc351707a7c0cc96a56559b884fe4b5bb7dde466d431</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\src\udp_manager.h</file>
@@ -5221,7 +5224,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\src\udp_private.h</file>
-         <hash>da5614473b469d1f1b2b52c4b529fd13126fccc55684db2ad85a3c34c95997df</hash>
+         <hash>d45d62008b7e4978453c37e124a7205662558d4c0086ac03fab7b41990f3c9fa</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\src\zero_conf_helper.h</file>
@@ -5269,7 +5272,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\tcpip_mac.h</file>
-         <hash>7137ed6478803b511ada20f717583d7168e680c784b6d6c42dbaa75e4b928ea1</hash>
+         <hash>9622e737678d0333a496018e8d4191762002c8550528d681e1b85d21b53b873b</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\tcpip_mac_bridge.h</file>
@@ -5301,7 +5304,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\udp.h</file>
-         <hash>ea405bdcd021f77c5002ff868dc513a76a1f4074cedc29f7df364c9a48b2e89d</hash>
+         <hash>29442924e56cb3a82e5973c04b23adca67a21ff4052876e12dc46e431e17f75d</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\library\tcpip\zero_conf_link_local.h</file>
@@ -5341,7 +5344,7 @@
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\p32MZ1025W104132.ld</file>
-         <hash>e849df6b26695298a99b211d74c905d887b94f25883e54b6dd489ceeed30be9e</hash>
+         <hash>ed773c18bcb76a06cb673da8ddabc215598912f30a7ccc69f9f56643b6766ce0</hash>
       </entry>
       <entry>
          <file>..\src\config\pic32mz_w1_eth_wifi_freertos\peripheral\clk\plib_clk.c</file>

@@ -87,8 +87,8 @@ extern "C" {
 #define SYS_OTA_AUTOUPDATE_ENABLE           true
 #define SYS_OTA_PERODIC_UPDATE   			true
 #define SYS_OTA_APP_VER_NUM                 1
-#define SYS_OTA_TIME_INTERVAL               10
-#define SYS_OTA_URL                         "http://192.168.163.14:8000/ota.json"
+#define SYS_OTA_TIME_INTERVAL               60
+#define SYS_OTA_URL                         "http://192.168.76.183:8000/ota.json"
 #define SYS_OTA_JSON_FILE_MAXSIZE           2000
 #define SYS_OTA_NUM_IMGS                    2
 #define SYS_OTA_INTF                        SYS_OTA_WIFI
@@ -486,7 +486,7 @@ extern "C" {
 #define TCPIP_UDP_MAX_SOCKETS		                	10
 #define TCPIP_UDP_SOCKET_DEFAULT_TX_SIZE		    	512
 #define TCPIP_UDP_SOCKET_DEFAULT_TX_QUEUE_LIMIT    	 	3
-#define TCPIP_UDP_SOCKET_DEFAULT_RX_QUEUE_LIMIT			16
+#define TCPIP_UDP_SOCKET_DEFAULT_RX_QUEUE_LIMIT			3
 #define TCPIP_UDP_USE_POOL_BUFFERS   false
 #define TCPIP_UDP_USE_TX_CHECKSUM             			true
 #define TCPIP_UDP_USE_RX_CHECKSUM             			true
@@ -549,6 +549,7 @@ extern "C" {
 #define FREERTOS
 #define NO_SIG_WRAPPER
 #define NO_ERROR_STRINGS
+#define WOLFSSL_MAX_ERROR_SZ 38 // Fix Mandatory Misra 21.18 caused by removing error strings with defining NO_ERROR_STRINGS
 #define NO_WOLFSSL_MEMORY
 // ---------- FUNCTIONAL CONFIGURATION END ----------
 
@@ -573,7 +574,7 @@ extern "C" {
 #define SYS_WIFI_STA_PWD        			"password"
 
 
-#define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPAWPA2MIXED 
+#define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPA2
 
 
 

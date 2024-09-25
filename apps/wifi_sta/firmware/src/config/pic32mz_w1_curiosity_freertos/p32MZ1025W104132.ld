@@ -1,8 +1,8 @@
 /*--------------------------------------------------------------------------
  * MPLAB XC Compiler -  PIC32MZ1025W104132 linker script
- * Build date : Jul 04 2024
+ * Build date : Aug 07 2023
  * 
- * Copyright (c) 2024, Microchip Technology Inc. and its subsidiaries ("Microchip")
+ * Copyright (c) 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
  * All rights reserved.
  * 
  * This software is developed by Microchip Technology Inc. and its
@@ -87,12 +87,14 @@ PROVIDE(_ebase_address = 0x90000000);
  * _RESET_ADDR                    -- Reset Vector or entry point
  * _BEV_EXCPT_ADDR                -- Boot exception Vector
  * _DBG_EXCPT_ADDR                -- In-circuit Debugging Exception Vector
+ * _SIMPLE_TLB_REFILL_EXCPT_ADDR  -- Simple TLB-Refill Exception Vector
  * _CACHE_ERR_EXCPT_ADDR          -- Cache-error Exception Vector
  * _GEN_EXCPT_ADDR                -- General Exception Vector
  *************************************************************************/
 _RESET_ADDR                    = 0xBFC00000;
 _BEV_EXCPT_ADDR                = 0xBFC00380;
 _DBG_EXCPT_ADDR                = 0xBFC00480;
+_SIMPLE_TLB_REFILL_EXCPT_ADDR  = _ebase_address + 0;
 _CACHE_ERR_EXCPT_ADDR          = _ebase_address + 0x100;
 _GEN_EXCPT_ADDR                = _ebase_address + 0x180;
 
@@ -210,6 +212,10 @@ SECTIONS
     *(.cache_init.*)
   } > kseg1_boot_mem_4B0
 
+  .simple_tlb_refill_excpt _SIMPLE_TLB_REFILL_EXCPT_ADDR :
+  {
+    KEEP(*(.simple_tlb_refill_vector))
+  } > kseg0_program_mem
   .cache_err_excpt _CACHE_ERR_EXCPT_ADDR :
   {
     KEEP(*(.cache_err_vector))

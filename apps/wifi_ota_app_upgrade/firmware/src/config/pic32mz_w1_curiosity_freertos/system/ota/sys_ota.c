@@ -390,34 +390,6 @@ void _OTACallback(uint32_t event, void * data, void *cookies) {
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Wifi service callback function
-// *****************************************************************************
-// *****************************************************************************
-
-void WiFiServCallback(uint32_t event, void * data, void *cookie) {
-
-    switch (event) {
-        case SYS_WIFI_CONNECT:
-        {
-            SYS_CONSOLE_PRINT("Device CONNECTED \r\n");
-            sys_otaData.dev_cnctd_to_nw = true;
-            break;
-        }
-        case SYS_WIFI_DISCONNECT:
-        {
-            SYS_CONSOLE_PRINT("Device DISCONNECTED \r\n");
-            break;
-        }
-        case SYS_WIFI_PROVCONFIG:
-        {
-            SYS_CONSOLE_PRINT("Received the Provisioning data \r\n");
-            break;
-        }
-    }
-}
-
-// *****************************************************************************
-// *****************************************************************************
 // Section: To check TLS request
 // *****************************************************************************
 // *****************************************************************************
@@ -489,8 +461,9 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
         }
     }
 
-    switch (SYS_OTA_IsEraseImageRequest()) {
-        case true:
+    bool request =false;
+    request = SYS_OTA_IsEraseImageRequest(); {
+        if (request == true)
         {
             cJSON *ota_image_version = OTA_cJSON_GetObjectItem(server_data, "Version");
             if (OTA_cJSON_IsNumber(ota_image_version) && (ota_image_version->valueint != 0)) {
@@ -508,9 +481,9 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
                 ota_params.delete_img_version = ((int) ota_image_version->valuedouble);
                 return false;
             }
-            break;
+            
         }
-        case false:
+        else 
         {
             if ((ota_image_version != NULL)&& (ota_url_l != NULL) && (serv_digest != NULL)) {
                 /*do nothing here, proceed further */
@@ -573,7 +546,17 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
                                         SYS_CONSOLE_PRINT("SYS OTA : Error parsing Server app patch Digest\r\n");
                                         err = true;
                                     }
-                                    break;
+                               //     break;  
+                                if (err == true)
+                                {
+                                    return false;
+                                }
+                                else
+                                {
+                                    return true;
+                                }
+                                    
+                                
                             }
                             else{
                                 SYS_CONSOLE_PRINT("SYS OTA : Base Image version not found\n\r");
@@ -683,7 +666,6 @@ static bool SYS_OTA_ParseJsonContent(cJSON *config_json) {
                 }
             }
 
-            break;
         }
     }
     

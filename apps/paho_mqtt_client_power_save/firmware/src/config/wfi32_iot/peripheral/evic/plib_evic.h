@@ -363,6 +363,10 @@ bool EVIC_INT_Disable( void );
 
 void EVIC_INT_Restore( bool state );
 
+bool EVIC_INT_SourceDisable( INT_SOURCE source );
+
+void EVIC_INT_SourceRestore( INT_SOURCE source, bool status );
+
 bool EVIC_ExternalInterruptCallbackRegister(
         EXTERNAL_INT_PIN extIntPin,
         const EXTERNAL_INT_PIN_CALLBACK callback,

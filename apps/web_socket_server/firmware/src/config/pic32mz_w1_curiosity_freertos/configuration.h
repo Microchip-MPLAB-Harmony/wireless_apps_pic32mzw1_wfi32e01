@@ -84,7 +84,7 @@ extern "C" {
 #define SYS_NET_SUPP_NUM_OF_SOCKS        		3
 
 #define SYS_NET_INDEX0_INTF       				SYS_NET_INTF_WIFI
-#define SYS_NET_INDEX0_MODE       				SYS_NET_MODE_CLIENT
+#define SYS_NET_INDEX0_MODE       				SYS_NET_MODE_SERVER
 #define SYS_NET_INDEX0_PORT        				1
 #define SYS_NET_INDEX0_RECONNECT       			1
 #define SYS_NET_INDEX0_ENABLE_TLS        		0
@@ -136,13 +136,13 @@ extern "C" {
 #define SYS_WSS_RTOS_TASK_DELAY     1
 #define SYS_WSS_PORT                        8000
 #define SYS_WSS_SERVER_IP                   "192.168.1.1"
-#define SYS_WSS_MODE                        SYS_WSS_CLIENT
+#define SYS_WSS_MODE                        SYS_WSS_SERVER
 #define SYS_WSS_HOST_NAME                   "ws://192.168.1.1:8000"
 #define SYS_WSS_INTF                        SYS_WSS_WIFI
 #define SYS_WSS_ENABLE_TLS   			    false
 #define SYS_WSS_ENABLE_DEBUG   			    0
 #define SYS_WSS_MAX_RX_BUFFER               1400
-#define SYS_WSS_MAX_NUM_CLIENTS             1
+#define SYS_WSS_MAX_NUM_CLIENTS             3
 #define SYS_WSS_START_AT_BOOT   			1
 #define SYS_WSS_CLIENT_TIMEOUT              30000
 #define WOLFSSL_BASE64_ENCODE
@@ -480,6 +480,7 @@ extern "C" {
 #define FREERTOS
 #define NO_SIG_WRAPPER
 #define NO_ERROR_STRINGS
+#define WOLFSSL_MAX_ERROR_SZ 38 // Fix Mandatory Misra 21.18 caused by removing error strings with defining NO_ERROR_STRINGS
 #define NO_WOLFSSL_MEMORY
 // ---------- FUNCTIONAL CONFIGURATION END ----------
 
@@ -518,7 +519,7 @@ extern "C" {
 #define SYS_WIFI_STA_PWD        			"password"
 
 
-#define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPAWPA2MIXED 
+#define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPA2
 
 
 
