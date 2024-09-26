@@ -841,6 +841,7 @@
       </logicalFolder>
       <itemPath>../src/app.c</itemPath>
       <itemPath>../src/main.c</itemPath>
+      <itemPath>../src/mpfs_img2.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -854,7 +855,7 @@
         <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>pk4hybrid</platformTool>
+        <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
@@ -1034,6 +1035,8 @@
           <property key="stack-smashing" value=""/>
           <property key="wpo-lto" value="false"/>
         </C32Global>
+      </item>
+      <item path="../src/mpfs_img2.c" ex="true" overriding="false">
       </item>
       <C32>
         <property key="additional-warnings" value="true"/>
